@@ -46,15 +46,20 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://github.com/Cccceb/Cccceb.github.io/index.html">
+  <meta name="description" content="uva12166 修改天平    (括号表示法给出树)给出一个深度不超过16的二叉树，代表一个天平。每根杆都悬挂在中间，每个秤砣的重量已知。至少修改多少个秤砣的重量才能让天平平衡？ 思路 思考如何使得修改的天平最少：保证让总重量最多的秤砣不变。 用sum记录总的秤砣个数，用base记录每个对应重量的秤砣数。注意秤砣重量与所在高度有关，重w的秤砣在depth深处的总重量为w&lt;&lt;depth">
+<meta property="og:type" content="article">
+<meta property="og:title" content="修改天平">
+<meta property="og:url" content="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E4%BF%AE%E6%94%B9%E5%A4%A9%E5%B9%B3/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="uva12166 修改天平    (括号表示法给出树)给出一个深度不超过16的二叉树，代表一个天平。每根杆都悬挂在中间，每个秤砣的重量已知。至少修改多少个秤砣的重量才能让天平平衡？ 思路 思考如何使得修改的天平最少：保证让总重量最多的秤砣不变。 用sum记录总的秤砣个数，用base记录每个对应重量的秤砣数。注意秤砣重量与所在高度有关，重w的秤砣在depth深处的总重量为w&lt;&lt;depth">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-20T03:48:55.760Z">
+<meta property="article:modified_time" content="2020-01-20T06:48:03.136Z">
 <meta property="article:author" content="Ceb">
+<meta property="article:tag" content="hide">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://github.com/Cccceb/Cccceb.github.io/">
+<link rel="canonical" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E4%BF%AE%E6%94%B9%E5%A4%A9%E5%B9%B3/">
 
 
 <script id="page-configurations">
@@ -62,11 +67,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false
+    isPost: true
   };
 </script>
 
-  <title>Hexo</title>
+  <title>修改天平 | Hexo</title>
   
 
 
@@ -161,11 +166,11 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/UVA%E4%B9%A0%E9%A2%98%E7%AC%94%E8%AE%B0/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E4%BF%AE%E6%94%B9%E5%A4%A9%E5%B9%B3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -178,8 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/20/UVA%E4%B9%A0%E9%A2%98%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">UVA习题笔记</a>
+          修改天平
         </h1>
 
         <div class="post-meta">
@@ -190,7 +194,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-01-20 11:55:25 / Modified: 14:51:05" itemprop="dateCreated datePublished" datetime="2020-01-20T11:55:25+08:00">2020-01-20</time>
+              <time title="Created: 2020-01-20 11:48:55 / Modified: 14:48:03" itemprop="dateCreated datePublished" datetime="2020-01-20T11:48:55+08:00">2020-01-20</time>
             </span>
 
           
@@ -204,33 +208,70 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <i>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/20/UVA%E4%B9%A0%E9%A2%98%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+        <h1 id="uva12166-修改天平-括号表示法给出树"><a href="#uva12166-修改天平-括号表示法给出树" class="headerlink" title="uva12166 修改天平    (括号表示法给出树)"></a>uva12166 修改天平    (括号表示法给出树)</h1><p>给出一个深度不超过16的二叉树，代表一个天平。每根杆都悬挂在中间，每个秤砣的重量已知。至少修改多少个秤砣的重量才能让天平平衡？</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+<li>思考如何使得修改的天平最少：保证让总重量最多的秤砣不变。</li>
+<li>用sum记录总的秤砣个数，用base记录每个对应重量的秤砣数。注意秤砣重量与所在高度有关，重w的秤砣在depth深处的总重量为w&lt;&lt;depth</li>
+<li>括号表示法给出树的结构可以参考本题</li>
+</ol>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>```<br>    #include&lt;bits/stdc++.h&gt;<br>    # pragma warning(disable:4996)<br>    # define LOCAL<br>    # ifdef LOCAL<br>    FILE *fin = freopen(“习题6-6in.txt”, “r”, stdin);<br>    FILE *fout = freopen(“习题6-6out.txt”, “w”, stdout);<br>    # endif<br>    using namespace std;<br>    int T;<br>    string s;<br>    int sum;<br>    map&lt;long long, int&gt; base;<br>    void dfs(int depth, int p, int e) {<br>        if (s[p] == ‘[‘) {<br>        int not_ok = 0;<br>        for (int i = p + 1; i != e; i++) {<br>            if (s[i] == ‘[‘) not_ok++;<br>            if (s[i] == ‘]’) not_ok–;<br>            //注意此处脱括号的方法非常灵性<br>            if (!not_ok&amp;&amp;s[i] == ‘,’) {<br>                dfs(depth + 1, p + 1, i - 1);<br>                dfs(depth + 1, i + 1, e - 1);<br>            }<br>        }<br>    }<br>    else {<br>        long long w = 0;<br>        for (int i = p; i &lt;= e; i++)<br>            w = w * 10 + s[i] - ‘0’;<br>        ++sum;<br>        ++base[w &lt;&lt; depth];//sum统计砝码总数量，base[w&lt;&lt;depth]统计该总重量对应的砝码个数</p>
+<pre><code>}
+}
+int main() {
+cin &gt;&gt; T;
+while (T--)
+{
+    cin &gt;&gt; s;
+    sum = 0;
+    base.clear();
+    dfs(0, 0, s.length() - 1);
+    int maxn = 0;
+    for (auto it = base.begin(); it != base.end(); it++)
+        maxn = max(maxn, it-&gt;second);
+    cout &lt;&lt; sum - maxn &lt;&lt; endl;
+}
+}</code></pre>
     </div>
 
     
     
     
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/hide/" rel="tag"># hide</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/20/%E5%9C%A8Web%E4%B8%AD%E6%90%9C%E7%B4%A2/" rel="prev" title="在Web中搜索">
+      <i class="fa fa-chevron-left"></i> 在Web中搜索
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/20/%E5%91%A8%E6%9C%9F%E4%B8%B2/" rel="next" title="周期串">
+      周期串 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
+    
   </article>
   
   
   
 
   </div>
-
-  
-
 
 
           </div>
@@ -281,6 +322,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#uva12166-修改天平-括号表示法给出树"><span class="nav-number">1.</span> <span class="nav-text">uva12166 修改天平    (括号表示法给出树)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

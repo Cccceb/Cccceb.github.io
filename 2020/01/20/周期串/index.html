@@ -46,15 +46,20 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://github.com/Cccceb/Cccceb.github.io/index.html">
+  <meta name="description" content="tag: hide  uav 455 周期串如果一个字符串可以由某个长度为kkk 的字符串重复多次得到，则称该串以kkk 为周期。例如，abcabcabcabcabcabcabcabcabcabcabcabc 以333 为周期（注意，它也以666 和121212 为周期）。 输入一个长度不超过808080 的字符串，输出其最小周期。 代码#include&lt;iostream&gt; #inc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="周期串">
+<meta property="og:url" content="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E5%91%A8%E6%9C%9F%E4%B8%B2/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="tag: hide  uav 455 周期串如果一个字符串可以由某个长度为kkk 的字符串重复多次得到，则称该串以kkk 为周期。例如，abcabcabcabcabcabcabcabcabcabcabcabc 以333 为周期（注意，它也以666 和121212 为周期）。 输入一个长度不超过808080 的字符串，输出其最小周期。 代码#include&lt;iostream&gt; #inc">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-20T03:48:55.776Z">
+<meta property="article:modified_time" content="2020-01-20T06:48:22.988Z">
 <meta property="article:author" content="Ceb">
+<meta property="article:tag" content="hide">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://github.com/Cccceb/Cccceb.github.io/">
+<link rel="canonical" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E5%91%A8%E6%9C%9F%E4%B8%B2/">
 
 
 <script id="page-configurations">
@@ -62,11 +67,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false
+    isPost: true
   };
 </script>
 
-  <title>Hexo</title>
+  <title>周期串 | Hexo</title>
   
 
 
@@ -161,11 +166,11 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/UVA%E4%B9%A0%E9%A2%98%E7%AC%94%E8%AE%B0/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E5%91%A8%E6%9C%9F%E4%B8%B2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -178,8 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/20/UVA%E4%B9%A0%E9%A2%98%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">UVA习题笔记</a>
+          周期串
         </h1>
 
         <div class="post-meta">
@@ -190,7 +194,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-01-20 11:55:25 / Modified: 14:51:05" itemprop="dateCreated datePublished" datetime="2020-01-20T11:55:25+08:00">2020-01-20</time>
+              <time title="Created: 2020-01-20 11:48:55 / Modified: 14:48:22" itemprop="dateCreated datePublished" datetime="2020-01-20T11:48:55+08:00">2020-01-20</time>
             </span>
 
           
@@ -204,33 +208,87 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <i>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/20/UVA%E4%B9%A0%E9%A2%98%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+        <hr>
+<p>tag: hide</p>
+<hr>
+<h1 id="uav-455-周期串"><a href="#uav-455-周期串" class="headerlink" title="uav 455 周期串"></a>uav 455 周期串</h1><p>如果一个字符串可以由某个长度为kkk 的字符串重复多次得到，则称该串以kkk 为周期。例如，abcabcabcabcabcabcabcabcabcabcabcabc 以333 为周期（注意，它也以666 和121212 为周期）。</p>
+<p>输入一个长度不超过808080 的字符串，输出其最小周期。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><pre><code>#include&lt;iostream&gt;
+#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+ # pragma warning(disable:4996)
+# define LOCAL
+# ifdef LOCAL
+FILE *fin = freopen(&quot;习题3-8in.txt&quot;, &quot;r&quot;, stdin);
+FILE *fout = freopen(&quot;习题3-8out.txt&quot;, &quot;w&quot;, stdout);
+# endif 
+using namespace std;
+int main()
+{
+    int t; cin &gt;&gt; t;
+    char s[85];
+    while (t--)
+    {
+        memset(s, 0, sizeof(s));
+        scanf(&quot;%s&quot;, s);
+        int len = strlen(s);
+        int j;
+        for (int i = 1; i &lt;= len; ++i)
+            if (len%i == 0)//说明长度i可以作为一个循环节
+            {
+                for (j = i; j &lt;= len; j++)
+                    if (s[j] != s[j%i])//之后都和0-i-1的字符串来比较
+                        break;
+                if (j == len)
+                {
+                    cout &lt;&lt; i &lt;&lt; endl;
+                    break;
+                }
+            }
+        if (t)cout &lt;&lt; endl;
+    }
+}</code></pre>
     </div>
 
     
     
     
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/hide/" rel="tag"># hide</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/20/%E4%BF%AE%E6%94%B9%E5%A4%A9%E5%B9%B3/" rel="prev" title="修改天平">
+      <i class="fa fa-chevron-left"></i> 修改天平
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/20/UVA%E4%B9%A0%E9%A2%98%E7%AC%94%E8%AE%B0/" rel="next" title="UVA习题笔记">
+      UVA习题笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
+    
   </article>
   
   
   
 
   </div>
-
-  
-
 
 
           </div>
@@ -281,6 +339,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#uav-455-周期串"><span class="nav-number">1.</span> <span class="nav-text">uav 455 周期串</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

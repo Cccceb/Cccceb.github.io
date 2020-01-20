@@ -46,15 +46,20 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://github.com/Cccceb/Cccceb.github.io/index.html">
+  <meta name="description" content="UVA 208 消防车给你一张图，输入x，y表示xy见有一条边。输出从1到z所有的遍历方案（字典序）。每个节点从1到N标号。 有多组数据，每组数据以0 0结束。 （注意，刚开始的输入不是节点或边的数目） 输入输出格式可以参考样例. 数据范围（节点总数N&lt;21） 思路 本题要求输出所有的完整的路径，即要沿着一条路走到头，所以使用dfs 辅助用bfs判断依次是否存在路径，否则会超时 本题中各层的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="消防车">
+<meta property="og:url" content="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E6%B6%88%E9%98%B2%E8%BD%A6/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="UVA 208 消防车给你一张图，输入x，y表示xy见有一条边。输出从1到z所有的遍历方案（字典序）。每个节点从1到N标号。 有多组数据，每组数据以0 0结束。 （注意，刚开始的输入不是节点或边的数目） 输入输出格式可以参考样例. 数据范围（节点总数N&lt;21） 思路 本题要求输出所有的完整的路径，即要沿着一条路走到头，所以使用dfs 辅助用bfs判断依次是否存在路径，否则会超时 本题中各层的">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-20T03:48:55.745Z">
+<meta property="article:modified_time" content="2020-01-20T06:47:57.902Z">
 <meta property="article:author" content="Ceb">
+<meta property="article:tag" content="hide">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://github.com/Cccceb/Cccceb.github.io/">
+<link rel="canonical" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E6%B6%88%E9%98%B2%E8%BD%A6/">
 
 
 <script id="page-configurations">
@@ -62,11 +67,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false
+    isPost: true
   };
 </script>
 
-  <title>Hexo</title>
+  <title>消防车 | Hexo</title>
   
 
 
@@ -161,11 +166,11 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/UVA%E4%B9%A0%E9%A2%98%E7%AC%94%E8%AE%B0/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E6%B6%88%E9%98%B2%E8%BD%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -178,8 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/20/UVA%E4%B9%A0%E9%A2%98%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">UVA习题笔记</a>
+          消防车
         </h1>
 
         <div class="post-meta">
@@ -190,7 +194,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-01-20 11:55:25 / Modified: 14:51:05" itemprop="dateCreated datePublished" datetime="2020-01-20T11:55:25+08:00">2020-01-20</time>
+              <time title="Created: 2020-01-20 11:48:55 / Modified: 14:47:57" itemprop="dateCreated datePublished" datetime="2020-01-20T11:48:55+08:00">2020-01-20</time>
             </span>
 
           
@@ -204,33 +208,131 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <i>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/20/UVA%E4%B9%A0%E9%A2%98%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+        <h1 id="UVA-208-消防车"><a href="#UVA-208-消防车" class="headerlink" title="UVA 208 消防车"></a>UVA 208 消防车</h1><p>给你一张图，输入x，y表示xy见有一条边。输出从1到z所有的遍历方案（字典序）。每个节点从1到N标号。 有多组数据，每组数据以0 0结束。 （注意，刚开始的输入不是节点或边的数目） 输入输出格式可以参考样例. 数据范围（节点总数N&lt;21）</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
+<li>本题要求输出所有的完整的路径，即要沿着一条路走到头，所以使用dfs</li>
+<li>辅助用bfs判断依次是否存在路径，否则会超时</li>
+<li>本题中各层的path之间不会影响，因为递归是走到头再返回的。</li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#include&lt;bits/stdc++.h&gt;
+# pragma warning(disable:4996)
+FILE *fin = freopen(&quot;习题7-1in.txt&quot;, &quot;r&quot;, stdin);
+FILE *fout = freopen(&quot;习题7-1out.txt&quot;, &quot;w&quot;, stdout);
+using namespace std;
+const int maxn = 20+5;
+map&lt;int, vector&lt;int&gt;&gt; g;
+bool bfs();
+void dfs(int u,int step);
+int goal, cnt,kase = 0;
+bool vis[maxn];
+int path[maxn];
+struct edge {
+int x, y;
+edge(int x, int y) :x(x), y(y) {}
+bool operator &lt; (const edge&amp;a) const { return x &lt; a.x; }
+};
+int main() {
+int a, b;
+while (scanf(&quot;%d&quot;, &amp;goal) == 1) {
+    g.clear();
+    printf(&quot;CASE %d:\n&quot;, ++kase);
+    while (scanf(&quot;%d %d&quot;, &amp;a, &amp;b) &amp;&amp; a) {
+        g[a].push_back(b);
+        g[b].push_back(a);
+    }
+    for (int i = 0; i &lt; maxn; i++)
+        sort(g[i].begin(), g[i].end());
+    cnt = 0;
+    memset(vis, 0, sizeof(0));
+    if (!bfs()) {//优化，否则会T
+        cnt = 0;
+    }
+    else {
+        vis[1] = 1;
+        dfs(1,0);
+    }
+    printf(&quot;There are %d routes from the firestation to streetcorner %d.\n&quot;, cnt,goal);
+}
+}
+bool bfs() {
+queue&lt;int&gt; q;
+q.push(1);
+while (!q.empty()) {
+    int u = q.front(); q.pop();
+    if (u == goal) {
+        memset(vis, 0, sizeof(vis));
+        return true;
+    }
+    for (int i = 0; i &lt; g[u].size(); i++) {
+        int v = g[u][i];
+        if (!vis[v])
+        {
+            vis[v] = 1;
+            q.push(v);
+        }
+    }
+}
+memset(vis, 0, sizeof(vis));
+return false;
+}
+void dfs(int u,int step) {
+path[step] = u;
+if (u == goal) {
+    printf(&quot;%d&quot;, path[0]);
+    for (int i =1; i &lt;= step; i++)
+        printf(&quot; %d&quot;, path[i]);
+    printf(&quot;\n&quot;);
+    cnt++;
+}
+for (int i = 0; i &lt; g[u].size(); i++) {
+    int v = g[u][i];
+    if (vis[v]) continue;
+    vis[v] = 1;
+    dfs(v,step+1);
+    vis[v] = 0;
+}
+}</code></pre>
     </div>
 
     
     
     
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/hide/" rel="tag"># hide</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/20/%E7%BD%91%E6%A0%BC%E5%8A%A8%E7%89%A9/" rel="prev" title="网格动物">
+      <i class="fa fa-chevron-left"></i> 网格动物
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/20/%E5%B0%8F%E7%90%83%E4%B8%8B%E8%90%BD/" rel="next" title="小球下落">
+      小球下落 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
+    
   </article>
   
   
   
 
   </div>
-
-  
-
 
 
           </div>
@@ -281,6 +383,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UVA-208-消防车"><span class="nav-number">1.</span> <span class="nav-text">UVA 208 消防车</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">1.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

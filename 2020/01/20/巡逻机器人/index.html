@@ -46,15 +46,20 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://github.com/Cccceb/Cccceb.github.io/index.html">
+  <meta name="description" content="uva1600 巡逻机器人本题有t组数据，每组数据包含一个m*n的01矩阵，0表示能走，1表示有一个障碍物。机器人能往上下左右四个方向走动.它要从(1,1)到(m,n),可以连续翻越k个障碍物,求它从(1,1)到(m,n)的最短路径.如果不能到达输出”-1”. 思路 本题基础是一个bfs，附加可以跳跃0的条件。  对无权图进行bfs的时候，走到每一个点时的步数都是一定的，所以对于每个点，应该让能够">
+<meta property="og:type" content="article">
+<meta property="og:title" content="巡逻机器人">
+<meta property="og:url" content="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E5%B7%A1%E9%80%BB%E6%9C%BA%E5%99%A8%E4%BA%BA/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="uva1600 巡逻机器人本题有t组数据，每组数据包含一个m*n的01矩阵，0表示能走，1表示有一个障碍物。机器人能往上下左右四个方向走动.它要从(1,1)到(m,n),可以连续翻越k个障碍物,求它从(1,1)到(m,n)的最短路径.如果不能到达输出”-1”. 思路 本题基础是一个bfs，附加可以跳跃0的条件。  对无权图进行bfs的时候，走到每一个点时的步数都是一定的，所以对于每个点，应该让能够">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-20T03:48:55.760Z">
+<meta property="article:modified_time" content="2020-01-20T06:48:08.385Z">
 <meta property="article:author" content="Ceb">
+<meta property="article:tag" content="hide">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://github.com/Cccceb/Cccceb.github.io/">
+<link rel="canonical" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E5%B7%A1%E9%80%BB%E6%9C%BA%E5%99%A8%E4%BA%BA/">
 
 
 <script id="page-configurations">
@@ -62,11 +67,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false
+    isPost: true
   };
 </script>
 
-  <title>Hexo</title>
+  <title>巡逻机器人 | Hexo</title>
   
 
 
@@ -161,11 +166,11 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/UVA%E4%B9%A0%E9%A2%98%E7%AC%94%E8%AE%B0/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E5%B7%A1%E9%80%BB%E6%9C%BA%E5%99%A8%E4%BA%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -178,8 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/20/UVA%E4%B9%A0%E9%A2%98%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">UVA习题笔记</a>
+          巡逻机器人
         </h1>
 
         <div class="post-meta">
@@ -190,7 +194,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-01-20 11:55:25 / Modified: 14:51:05" itemprop="dateCreated datePublished" datetime="2020-01-20T11:55:25+08:00">2020-01-20</time>
+              <time title="Created: 2020-01-20 11:48:55 / Modified: 14:48:08" itemprop="dateCreated datePublished" datetime="2020-01-20T11:48:55+08:00">2020-01-20</time>
             </span>
 
           
@@ -204,33 +208,94 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <i>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/20/UVA%E4%B9%A0%E9%A2%98%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+        <h1 id="uva1600-巡逻机器人"><a href="#uva1600-巡逻机器人" class="headerlink" title="uva1600 巡逻机器人"></a>uva1600 巡逻机器人</h1><p>本题有t组数据，每组数据包含一个m*n的01矩阵，0表示能走，1表示有一个障碍物。机器人能往上下左右四个方向走动.它要从(1,1)到(m,n),可以连续翻越k个障碍物,求它从(1,1)到(m,n)的最短路径.如果不能到达输出”-1”.</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+<li><p>本题基础是一个bfs，附加可以跳跃0的条件。</p>
+</li>
+<li><p>对无权图进行bfs的时候，走到每一个点时的步数都是一定的，所以对于每个点，应该让能够跨越障碍的机会越多越好，所以Node节点中应该包含(r,c,k,step)其中k为到达(r,c)位置时剩余的跨越障碍的机会，step为最小步数。(※如果只需要知道步数而不需要路径，则将其包在结构体里即可)</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p> #include&lt;bits/stdc++.h&gt;</p>
+<h1 id="pragma-warning-disable-4996"><a href="#pragma-warning-disable-4996" class="headerlink" title="pragma warning(disable:4996)"></a>pragma warning(disable:4996)</h1><h1 id="define-LOCAL"><a href="#define-LOCAL" class="headerlink" title="define LOCAL"></a>define LOCAL</h1><h1 id="ifdef-LOCAL"><a href="#ifdef-LOCAL" class="headerlink" title="ifdef LOCAL"></a>ifdef LOCAL</h1><p> FILE *fin = freopen(“习题6-5in.txt”, “r”, stdin);<br> FILE *fout = freopen(“习题6-5out.txt”, “w”, stdout);</p>
+<h1 id="endif"><a href="#endif" class="headerlink" title="endif"></a>endif</h1><p> using namespace std;<br> int n, x, y, k;<br> int g[20][20];<br> struct node {</p>
+<pre><code>int r, c, k, step;
+
+node(int r, int c, int k, int step = 0) :r(r), c(c), k(k), step(step) {}</code></pre><p> };<br> int step[20][20];<br> int dr[] = { 1, 0, -1, 0 };<br> int dc[] = { 0, 1, 0, -1 };<br> int min_step;<br> void bfs() {</p>
+<pre><code>queue&lt;node&gt;q;
+q.push(node(0, 0, k));
+int block = 0;
+while (!q.empty()) {
+    node u = q.front(); q.pop();
+
+    if (u.r == x - 1 &amp;&amp; u.c == y - 1) {
+        min_step = u.step;
+        break;
+    }
+    for (int i = 0; i &lt; 4; i++) {
+        int r = u.r + dr[i], c = u.c + dc[i];
+        if (r &gt;= 0 &amp;&amp; r &lt; x&amp;&amp;c &gt;= 0 &amp;&amp; c &lt; y) {
+            if (step[r][c] &lt; u.k) {//u.k是走到step[r][c]处，还剩余的跳过障碍的机会，所以要保留大的
+                step[r][c] = u.k;
+            }
+            else continue;//如果step[r][c]更大，说明目前正在走的路不是最好的(因为bfs走到每个节点的步数是一定的
+                          //所以剩余的跨越障碍的次数越多越好),不需要再走下去，所以不入队)
+            if (g[r][c] == 0) q.push(node(r, c, k, u.step + 1));
+            else if(u.k) q.push(node(r, c, u.k - 1, u.step + 1));
+        }
+    }
+}</code></pre><p> }<br> int main() {<br> cin &gt;&gt; n;<br> while (n–) {</p>
+<pre><code>memset(g, 0, sizeof(g));
+memset(step, -1, sizeof(step));
+cin &gt;&gt; x &gt;&gt; y;
+cin &gt;&gt; k;
+for (int i = 0; i &lt; x; i++)
+    for (int j = 0; j &lt; y; j++)
+        cin &gt;&gt; g[i][j];
+min_step = 999;
+bfs();
+min_step == 999 ? cout &lt;&lt; &quot;-1&quot; &lt;&lt; endl:cout &lt;&lt; min_step &lt;&lt; endl;</code></pre><p> }<br> }</p>
+</li>
+</ol>
+
     </div>
 
     
     
     
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/hide/" rel="tag"># hide</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/20/%E5%BE%AA%E7%8E%AF%E5%B0%8F%E6%95%B0/" rel="prev" title="循环小数">
+      <i class="fa fa-chevron-left"></i> 循环小数
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/20/%E5%9C%A8Web%E4%B8%AD%E6%90%9C%E7%B4%A2/" rel="next" title="在Web中搜索">
+      在Web中搜索 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
+    
   </article>
   
   
   
 
   </div>
-
-  
-
 
 
           </div>
@@ -281,6 +346,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#uva1600-巡逻机器人"><span class="nav-number">1.</span> <span class="nav-text">uva1600 巡逻机器人</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pragma-warning-disable-4996"><span class="nav-number">4.</span> <span class="nav-text">pragma warning(disable:4996)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-LOCAL"><span class="nav-number">5.</span> <span class="nav-text">define LOCAL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ifdef-LOCAL"><span class="nav-number">6.</span> <span class="nav-text">ifdef LOCAL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#endif"><span class="nav-number">7.</span> <span class="nav-text">endif</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
