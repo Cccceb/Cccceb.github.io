@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://github.com/Cccceb/Cccceb.github.io').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="光辐射 像素亮度决定因素 光源属性 表面特性光谱可见光为400nm-700nm的电磁辐射    颜色知觉      视锥细胞和视杆细胞在光谱上充当滤波器。亮度对比度和恒常 亮度对比度：恒定的有色区域根据周围的强度看起来更亮或更暗。 明度恒常性：当照明条件改变时，人知觉到的物体的相对明度保持不变。  光照定向照明： 所有射线都是平行的 等价于无穷远的点光源  漫反射  I &#x3D; N·L  漫反射反射到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="视觉第17讲">
+<meta property="og:url" content="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC17%E8%AE%B2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="光辐射 像素亮度决定因素 光源属性 表面特性光谱可见光为400nm-700nm的电磁辐射    颜色知觉      视锥细胞和视杆细胞在光谱上充当滤波器。亮度对比度和恒常 亮度对比度：恒定的有色区域根据周围的强度看起来更亮或更暗。 明度恒常性：当照明条件改变时，人知觉到的物体的相对明度保持不变。  光照定向照明： 所有射线都是平行的 等价于无穷远的点光源  漫反射  I &#x3D; N·L  漫反射反射到">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/CV_img/17-1.png">
+<meta property="og:image" content="https://github.com/CV_img/17-2.png">
+<meta property="og:image" content="https://github.com/CV_img/17-3.png">
+<meta property="og:image" content="https://github.com/CV_img/17-4.png">
+<meta property="article:published_time" content="2020-01-20T07:22:50.918Z">
+<meta property="article:modified_time" content="2020-01-20T13:25:47.461Z">
+<meta property="article:author" content="Ceb">
+<meta property="article:tag" content="hide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/CV_img/17-1.png">
+
+<link rel="canonical" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC17%E8%AE%B2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>视觉第17讲 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a href="https://github.com/you"><img style="position:absolute;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_gray_6d6d6d.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>  
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC17%E8%AE%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ceb">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          视觉第17讲
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-20 15:22:50 / Modified: 21:25:47" itemprop="dateCreated datePublished" datetime="2020-01-20T15:22:50+08:00">2020-01-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="光"><a href="#光" class="headerlink" title="光"></a>光</h1><h2 id="辐射"><a href="#辐射" class="headerlink" title="辐射"></a>辐射</h2><ol>
+<li>像素亮度决定因素<ol>
+<li>光源属性</li>
+<li>表面特性<h2 id="光谱"><a href="#光谱" class="headerlink" title="光谱"></a>光谱</h2>可见光为400nm-700nm的电磁辐射</li>
+</ol>
+</li>
+</ol>
+<h2 id="颜色知觉"><a href="#颜色知觉" class="headerlink" title="颜色知觉"></a>颜色知觉</h2><img src="/CV_img/17-1.png">
+
+
+<img src="/CV_img/17-2.png">
+
+<ol>
+<li>视锥细胞和视杆细胞在光谱上充当滤波器。<h2 id="亮度对比度和恒常"><a href="#亮度对比度和恒常" class="headerlink" title="亮度对比度和恒常"></a>亮度对比度和恒常</h2></li>
+<li>亮度对比度：恒定的有色区域根据周围的强度看起来更亮或更暗。</li>
+<li>明度恒常性：当照明条件改变时，人知觉到的物体的相对明度保持不变。</li>
+</ol>
+<h2 id="光照"><a href="#光照" class="headerlink" title="光照"></a>光照</h2><h3 id="定向照明："><a href="#定向照明：" class="headerlink" title="定向照明："></a>定向照明：</h3><ol>
+<li>所有射线都是平行的</li>
+<li>等价于无穷远的点光源</li>
+</ol>
+<h3 id="漫反射"><a href="#漫反射" class="headerlink" title="漫反射"></a>漫反射</h3><img src="/CV_img/17-3.png">
+
+<p>I = N·L</p>
+<ol>
+<li>漫反射反射到各个角度得到的光强一样，与视角无关</li>
+<li>正比于夹角余弦<h3 id="三种材料"><a href="#三种材料" class="headerlink" title="三种材料"></a>三种材料</h3></li>
+<li>理想漫反射：哑光表面</li>
+<li><h1 id="图像形成模型"><a href="#图像形成模型" class="headerlink" title="图像形成模型"></a>图像形成模型</h1></li>
+</ol>
+<img src="/CV_img/17-4.png">
+
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><ol>
+<li>Kd：表示入射光反射的比例</li>
+<li>I：光强度，表示有多少光射进来</li>
+<li>相机相应函数：假设像素值与传入光的能量成线性比例关系。<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2>测量光的方向以辨别真假照片。</li>
+</ol>
+<p>需要增加假设</p>
+<ol>
+<li>反照率恒定</li>
+<li>已知一些法线</li>
+<li>已知法线的平滑度</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/hide/" rel="tag"># hide</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC18%E8%AE%B2/" rel="prev" title="视觉第18讲">
+      <i class="fa fa-chevron-left"></i> 视觉第18讲
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC3%E8%AE%B2/" rel="next" title="视觉第3讲">
+      视觉第3讲 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#光"><span class="nav-number">1.</span> <span class="nav-text">光</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#辐射"><span class="nav-number">1.1.</span> <span class="nav-text">辐射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#光谱"><span class="nav-number">1.2.</span> <span class="nav-text">光谱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#颜色知觉"><span class="nav-number">1.3.</span> <span class="nav-text">颜色知觉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#亮度对比度和恒常"><span class="nav-number">1.4.</span> <span class="nav-text">亮度对比度和恒常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#光照"><span class="nav-number">1.5.</span> <span class="nav-text">光照</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定向照明："><span class="nav-number">1.5.1.</span> <span class="nav-text">定向照明：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漫反射"><span class="nav-number">1.5.2.</span> <span class="nav-text">漫反射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种材料"><span class="nav-number">1.5.3.</span> <span class="nav-text">三种材料</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图像形成模型"><span class="nav-number">2.</span> <span class="nav-text">图像形成模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模型"><span class="nav-number">2.1.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用途"><span class="nav-number">2.2.</span> <span class="nav-text">用途</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ceb</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ceb</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>

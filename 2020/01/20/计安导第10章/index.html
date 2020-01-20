@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://github.com/Cccceb/Cccceb.github.io').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="数据库安全两阶段协议–实现完整性和可用性 第一阶段是请求阶段： 该阶段，确定所要修改的部分，并标记。 结果是成功或终止。在成功时，每个修改请求都是可 用的，标记被修改；在中止时，由于别人早已对其进行了标记，或者 由于网络或系统出现了故障，所以不能标记所有需要修改的部分。 如果第一阶段被中止，则重置所有修改的请求，这样做是完全可行 的，因为并未进行任何永久性的修改。如果第一阶段成功完成，则协议继续第">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计安导第10章">
+<meta property="og:url" content="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC10%E7%AB%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据库安全两阶段协议–实现完整性和可用性 第一阶段是请求阶段： 该阶段，确定所要修改的部分，并标记。 结果是成功或终止。在成功时，每个修改请求都是可 用的，标记被修改；在中止时，由于别人早已对其进行了标记，或者 由于网络或系统出现了故障，所以不能标记所有需要修改的部分。 如果第一阶段被中止，则重置所有修改的请求，这样做是完全可行 的，因为并未进行任何永久性的修改。如果第一阶段成功完成，则协议继续第">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA_img/27.png">
+<meta property="og:image" content="https://github.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA_img/28.png">
+<meta property="og:image" content="https://github.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA_img/29.png">
+<meta property="og:image" content="https://github.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA_img/30.png">
+<meta property="og:image" content="https://github.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA_img/31.png">
+<meta property="og:image" content="https://github.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA_img/32.png">
+<meta property="og:image" content="https://github.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA_img/33.png">
+<meta property="og:image" content="https://github.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA_img/34.png">
+<meta property="og:image" content="https://github.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA_img/35.png">
+<meta property="article:published_time" content="2020-01-20T07:40:37.221Z">
+<meta property="article:modified_time" content="2020-01-20T13:25:46.821Z">
+<meta property="article:author" content="Ceb">
+<meta property="article:tag" content="hide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA_img/27.png">
+
+<link rel="canonical" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC10%E7%AB%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>计安导第10章 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a href="https://github.com/you"><img style="position:absolute;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_gray_6d6d6d.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>  
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC10%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ceb">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计安导第10章
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-20 15:40:37 / Modified: 21:25:46" itemprop="dateCreated datePublished" datetime="2020-01-20T15:40:37+08:00">2020-01-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="数据库安全"><a href="#数据库安全" class="headerlink" title="数据库安全"></a>数据库安全</h1><h2 id="两阶段协议–实现完整性和可用性"><a href="#两阶段协议–实现完整性和可用性" class="headerlink" title="两阶段协议–实现完整性和可用性"></a>两阶段协议–实现完整性和可用性</h2><ol>
+<li>第一阶段是请求阶段：<ol>
+<li>该阶段，确定所要修改的部分，并标记。</li>
+<li>结果是成功或终止。在成功时，每个修改请求都是可 用的，标记被修改；在中止时，由于别人早已对其进行了标记，或者 由于网络或系统出现了故障，所以不能标记所有需要修改的部分。</li>
+<li>如果第一阶段被中止，则重置所有修改的请求，这样做是完全可行 的，因为并未进行任何永久性的修改。如果第一阶段成功完成，则协议继续第二个阶段。</li>
+</ol>
+</li>
+<li>第二阶段是提交阶段<ol>
+<li>在这个阶段，对于其他 修改而言，数据库是锁定的，只执行在请求阶段确定的修改序列。</li>
+<li>如果更新成功完成，则清除所有确定请求修改的标志，并释放对数据库的锁定。</li>
+<li>如果更新操作失败，则回滚，使数据库回到完成第一 阶段后的状态。</li>
+</ol>
+</li>
+</ol>
+<h2 id="数据库访问控制"><a href="#数据库访问控制" class="headerlink" title="数据库访问控制"></a>数据库访问控制</h2><ol>
+<li><p><strong>最小特权原则</strong>：实现适当的访问控制应遵 循最小特权原则，使每个用户都拥有完成自己任务所必需的权限，但 除此之外，不再拥有其他的权限</p>
+</li>
+<li><p><strong>特权分离原则</strong>：实现适当的访问控 制还应遵循特权分离原则，以便不同的用户具有不同的权限，这取决 于他们需要执行的不同任务</p>
+</li>
+<li><p>数据库允许SQL实现权限委托</p>
+</li>
+<li><p>权限委托：除了能向其他用户授予具体的权限外，表的所有者还允许其他用户来授予 这些表的权限，这称为策略授权委托</p>
+</li>
+<li><p>权限撤销：级联撤销</p>
+</li>
+</ol>
+<h2 id="敏感信息"><a href="#敏感信息" class="headerlink" title="敏感信息"></a>敏感信息</h2><p>1.要保护用户因素，满足机密性要求<br>2. 方法：使用加密，存储密文。授权用户直到解密密钥，但不能将解密密钥存储在数据库中。<br>3. 隐私保护：如果数据库是公开的，比如说是出于研究的目的，则应删除姓名、地址、 社会安全码、员工人数和学生人数等身份信息，或改用掩码值 ，从而不提供任何身份信息。</p>
+<h2 id="推理攻击"><a href="#推理攻击" class="headerlink" title="推理攻击"></a>推理攻击</h2><ol>
+<li><p>推理攻击：即使删除或屏蔽掉身份信息，攻击者仍能将其他的信息与数据库结合，得到底层的数据。</p>
+</li>
+<li><p>推理攻击的防御：</p>
+<ol>
+<li><p>单元抑制：在使用这种技术时，会删除数据库 中的一些单元，在公开版本中只留下空白。</p>
+</li>
+<li><p>推广：在使用这种技术时，公开数据库中的一些 值被更常用的值所替代。</p>
+</li>
+<li><p>加噪：在使用这种技术时，在公开数据库中添加 了随机值，使具有相同属性的所有记录的平均噪声为零。</p>
+<img src="/计算机安全导论_img/27.png">
+
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="垃圾邮件和网络犯罪"><a href="#垃圾邮件和网络犯罪" class="headerlink" title="垃圾邮件和网络犯罪"></a>垃圾邮件和网络犯罪</h1><h2 id="SMTP"><a href="#SMTP" class="headerlink" title="SMTP"></a>SMTP</h2><ol>
+<li>使用25端口建立TCP连接</li>
+<li>客户端向服务器发送命令，服务器确认或通知错误</li>
+<li><strong>问题</strong> <ol>
+<li>发件人未经过身份验证 </li>
+<li>消息和消息头使用明文传输 </li>
+<li>消息和消息头完整性没有得到保护</li>
+</ol>
+</li>
+</ol>
+<h2 id="垃圾邮件"><a href="#垃圾邮件" class="headerlink" title="垃圾邮件"></a>垃圾邮件</h2><ol>
+<li>垃圾邮件：不清自来的批量电子邮件</li>
+</ol>
+<h2 id="黑名单"><a href="#黑名单" class="headerlink" title="黑名单"></a>黑名单</h2><img src="/计算机安全导论_img/28.png">
+
+<h2 id="灰名单"><a href="#灰名单" class="headerlink" title="灰名单"></a>灰名单</h2><ol>
+<li>灰名单：是一种垃圾邮件过滤技术，接收邮件服务器拒绝来自未知发 件人的邮件。当接收来自未知发件人的邮件时，接收服务器会发送一 个“临时拒绝”消息给发送方，并记录相应的信息。</li>
+<li>维护一个可信发件服务器的数据库</li>
+<li>简单易行高效</li>
+</ol>
+<h2 id="发件人ID和发件人策略框架"><a href="#发件人ID和发件人策略框架" class="headerlink" title="发件人ID和发件人策略框架"></a>发件人ID和发件人策略框架</h2><ol>
+<li>发件人策略框架(SPF)可对发件人的发送邮 件代理进行身份验证，其中不使用加密 技术。接收方MTA会检查发送方MTA的IP是否在发件人域的授权IP 地址列表中。</li>
+</ol>
+<h2 id="发件人的MTA身份验证：DKIM"><a href="#发件人的MTA身份验证：DKIM" class="headerlink" title="发件人的MTA身份验证：DKIM"></a>发件人的MTA身份验证：DKIM</h2><ol>
+<li>域密钥标识邮件DKIM：是一种用于验证发送邮件传输代理的方法</li>
+<li>签名实体(通常是发件人的MTA) 向消息中增加签名， 表明消息的签名实体所在的域</li>
+<li>公钥存储在DNS的文本记录中</li>
+</ol>
+<h2 id="SPF-vs-DKIM"><a href="#SPF-vs-DKIM" class="headerlink" title="SPF vs DKIM"></a>SPF vs DKIM</h2><img src="/计算机安全导论_img/29.png">
+
+<h2 id="网络犯罪"><a href="#网络犯罪" class="headerlink" title="网络犯罪"></a>网络犯罪</h2><ol>
+<li>网络犯罪：是使用计算机、网络或硬件设备犯下的任何罪行。 计算机或 设备可以是犯罪的代理人，犯罪的促进者或犯罪的目标。 犯罪可以 单独在计算机上进行，也可以在其他地方进行</li>
+</ol>
+<h2 id="信用卡"><a href="#信用卡" class="headerlink" title="信用卡"></a>信用卡</h2><ol>
+<li><p>特点</p>
+<ol>
+<li>支持保密</li>
+<li>可与多个商家共享</li>
+<li>经常被不安全的传送</li>
+<li>熵值较低</li>
+</ol>
+</li>
+<li><p>优点：简单易行</p>
+</li>
+<li><p>缺点：易发生欺诈</p>
+</li>
+<li><p>防范：</p>
+<ol>
+<li>一次性信用卡号码</li>
+<li>监控交易</li>
+<li>交易时启动密码输入</li>
+</ol>
+</li>
+</ol>
+<h2 id="常见银行欺诈"><a href="#常见银行欺诈" class="headerlink" title="常见银行欺诈"></a>常见银行欺诈</h2><ol>
+<li>伪造支票</li>
+<li>电子汇款</li>
+<li>创建恶意账户</li>
+<li>多重身份认证</li>
+<li>账户所有权验证</li>
+<li>账户限制</li>
+<li>监控银行交易</li>
+<li>取消网银</li>
+</ol>
+<h1 id="支付系统"><a href="#支付系统" class="headerlink" title="支付系统"></a>支付系统</h1><h2 id="电子支付方案"><a href="#电子支付方案" class="headerlink" title="电子支付方案"></a>电子支付方案</h2><ol>
+<li>是一种多方协议</li>
+<li>目标：<ol>
+<li>完整性：电子货币不能伪造或复制；合法交易能够兑现</li>
+<li>问责制：交易后不可否认</li>
+<li>隐私</li>
+</ol>
+</li>
+</ol>
+<h2 id="私密支付方案"><a href="#私密支付方案" class="headerlink" title="私密支付方案"></a>私密支付方案</h2><h3 id="盲签名"><a href="#盲签名" class="headerlink" title="盲签名"></a>盲签名</h3><ol>
+<li><p>允许签名者在不知道消息本身的情况下对消息进行签名</p>
+</li>
+<li><p>基本过程</p>
+<ol>
+<li>银行对客户提取的货币进行盲签名 </li>
+<li>商家验证签名并存入货币 </li>
+<li>银行无法将货币与客户关联起来</li>
+</ol>
+</li>
+<li><p>RSA 盲签名</p>
+ <img src="/计算机安全导论_img/30.png">
+
+ <img src="/计算机安全导论_img/31.png"></li>
+<li><p>对钱币进行盲签名</p>
+ <img src="/计算机安全导论_img/32.png">
+
+</li>
+</ol>
+<h2 id="防止双重支付"><a href="#防止双重支付" class="headerlink" title="防止双重支付"></a>防止双重支付</h2><ol>
+<li>联机系统：在支付过程中，银行保持在线，实时撤销已使用的钱币</li>
+<li>离线系统：<ol>
+<li>每个提款的钱币都包含客户身份的加密信息</li>
+<li>每个存款的钱币都包含商家身份的加密信息</li>
+<li>双重支付将导致欺骗者的身份被披露出来</li>
+</ol>
+</li>
+</ol>
+<h2 id="秘密分享"><a href="#秘密分享" class="headerlink" title="秘密分享"></a>秘密分享</h2><p>步骤</p>
+<ol>
+<li>一个秘密字符串 x 可以被划分为以下的随机值 y 和 z。选择一个随机数 y ；z = y⊕x</li>
+<li>通过x = y⊕z重构字符串x</li>
+<li>其中y和z都是随机值，成为x的秘密份额，任一秘密份额都不会揭示关于秘密值 x 的任何信息</li>
+</ol>
+<h2 id="钱币–保护匿名性"><a href="#钱币–保护匿名性" class="headerlink" title="钱币–保护匿名性"></a>钱币–保护匿名性</h2><ol>
+<li>给定一个秘密值x和关于x的承诺(a,b)</li>
+<li>a=h(y) b=h(z) y,z是x的秘密份额</li>
+</ol>
+<h2 id="取款"><a href="#取款" class="headerlink" title="取款"></a>取款</h2><ol>
+<li>客户生成并向银行提交 k 个钱币 </li>
+<li>银行随机选择 k-1 枚钱币 </li>
+<li>银行要求客户向其披露所选定的 k-1 个钱币的承诺的秘密份额 </li>
+<li>银行在剩余的硬币上创建一个盲签名 </li>
+<li>银行签名的钱币是有效的概率是 1 - 1/k</li>
+</ol>
+<h2 id="支付"><a href="#支付" class="headerlink" title="支付"></a>支付</h2><ol>
+<li><p>客户向商家提交钱币 {x, [(a1, b2) , … , (an, bn)]} </p>
+</li>
+<li><p>商家验证钱币上的签名 </p>
+</li>
+<li><p>商家发送给客户一个随机的二进制向量 s1, … , sn, 称为选择器。</p>
+</li>
+<li><p>客户向商家揭示由选择器所选定的秘密份额，即客户向商家发送 一组字符串 P1, … , Pn </p>
+<p> h(Pi) = ai if si = 0 </p>
+<p> h(Pi) = bi if si= 1</p>
+</li>
+</ol>
+<h2 id="存款及其安全性分析"><a href="#存款及其安全性分析" class="headerlink" title="存款及其安全性分析"></a>存款及其安全性分析</h2><ol>
+<li><p>存款</p>
+<ol>
+<li>商人将钱币和字符串 P1, … , Pn提交给银行进行存款 </li>
+<li>银行验证签名并且记录钱币和相应字符串的对应关系</li>
+</ol>
+</li>
+<li><p>安全性分析</p>
+<ol>
+<li>两个商家提供的选择器相同的概率是 1/2<sup>n</sup> </li>
+<li>因此，如果客户将1个钱币进行双重支付，那么银行发现该客户 身份的概率为 1/2<sup>n</sup>  </li>
+<li>客户想要在不被银行发现的情况进行双重支付的唯一办法是找到 一个Hash函数的碰撞。</li>
+</ol>
+</li>
+</ol>
+<h1 id="数字版权管理"><a href="#数字版权管理" class="headerlink" title="数字版权管理"></a>数字版权管理</h1><ol>
+<li>数字版权管理：是指能限制用户 使用数字内容的做法，常用于数字媒体，如DVD、下载的音乐和 许可的软件</li>
+</ol>
+<h2 id="复制保护方法"><a href="#复制保护方法" class="headerlink" title="复制保护方法"></a>复制保护方法</h2><ol>
+<li>加密狗</li>
+<li>产品密钥</li>
+<li>手机激活</li>
+</ol>
+<h2 id="用于媒体文件的DRM方案"><a href="#用于媒体文件的DRM方案" class="headerlink" title="用于媒体文件的DRM方案"></a>用于媒体文件的DRM方案</h2><p>步骤</p>
+<ol>
+<li>媒体服务器向播放器发送用文件密钥加密的媒体文件和用播放器密钥加密的文件密钥</li>
+<li>播放器先用播放器密 钥解密文件密钥，然 后使用文件密钥解密 媒体文件</li>
+</ol>
+<h2 id="叛徒识别"><a href="#叛徒识别" class="headerlink" title="叛徒识别"></a>叛徒识别</h2><p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA_img/33.png" alt=""></p>
+<h2 id="逻辑密钥对"><a href="#逻辑密钥对" class="headerlink" title="逻辑密钥对"></a>逻辑密钥对</h2><p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA_img/34.png" alt=""></p>
+<ol>
+<li>是平衡二叉树，树的每个节点都与一个对称加密密钥相关联 </li>
+<li>将设备与叶子节点关联，每个设备上存储着从叶子到根路径上的所有密钥</li>
+<li>用节点 v 的密钥加密的内容可以被 v 的子树中的所有设备解密</li>
+<li>撤销设备：如果设备需要被撤销，则必须更改此设备已知的密钥，并分发新的密钥。新密钥的分发可以通过广播对数级数量的加密消息来完成</li>
+</ol>
+<h2 id="加密广播"><a href="#加密广播" class="headerlink" title="加密广播"></a>加密广播</h2><ol>
+<li>广播之前，每个内容都用单一的对称密钥进行加密。被授权产看内容项的订阅者应该拥有解密该项的密钥</li>
+<li>每个节点的密钥可以被用来计算子孙节点的密钥</li>
+<li>存在密钥分配问题</li>
+</ol>
+<h2 id="可信设备"><a href="#可信设备" class="headerlink" title="可信设备"></a>可信设备</h2><ol>
+<li>由可信制造商加工，被分配一个保密的播放器密钥</li>
+</ol>
+<h2 id="内容扰乱系统CSS"><a href="#内容扰乱系统CSS" class="headerlink" title="内容扰乱系统CSS"></a>内容扰乱系统CSS</h2><p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA_img/35.png" alt=""></p>
+
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/hide/" rel="tag"># hide</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/20/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC2%E7%AB%A0/" rel="prev" title="计安导第2章">
+      <i class="fa fa-chevron-left"></i> 计安导第2章
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/20/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC9%E7%AB%A0/" rel="next" title="计安导第9章">
+      计安导第9章 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库安全"><span class="nav-number">1.</span> <span class="nav-text">数据库安全</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#两阶段协议–实现完整性和可用性"><span class="nav-number">1.1.</span> <span class="nav-text">两阶段协议–实现完整性和可用性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库访问控制"><span class="nav-number">1.2.</span> <span class="nav-text">数据库访问控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#敏感信息"><span class="nav-number">1.3.</span> <span class="nav-text">敏感信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推理攻击"><span class="nav-number">1.4.</span> <span class="nav-text">推理攻击</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#垃圾邮件和网络犯罪"><span class="nav-number">2.</span> <span class="nav-text">垃圾邮件和网络犯罪</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SMTP"><span class="nav-number">2.1.</span> <span class="nav-text">SMTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾邮件"><span class="nav-number">2.2.</span> <span class="nav-text">垃圾邮件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#黑名单"><span class="nav-number">2.3.</span> <span class="nav-text">黑名单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#灰名单"><span class="nav-number">2.4.</span> <span class="nav-text">灰名单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发件人ID和发件人策略框架"><span class="nav-number">2.5.</span> <span class="nav-text">发件人ID和发件人策略框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发件人的MTA身份验证：DKIM"><span class="nav-number">2.6.</span> <span class="nav-text">发件人的MTA身份验证：DKIM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPF-vs-DKIM"><span class="nav-number">2.7.</span> <span class="nav-text">SPF vs DKIM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络犯罪"><span class="nav-number">2.8.</span> <span class="nav-text">网络犯罪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信用卡"><span class="nav-number">2.9.</span> <span class="nav-text">信用卡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见银行欺诈"><span class="nav-number">2.10.</span> <span class="nav-text">常见银行欺诈</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#支付系统"><span class="nav-number">3.</span> <span class="nav-text">支付系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#电子支付方案"><span class="nav-number">3.1.</span> <span class="nav-text">电子支付方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#私密支付方案"><span class="nav-number">3.2.</span> <span class="nav-text">私密支付方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#盲签名"><span class="nav-number">3.2.1.</span> <span class="nav-text">盲签名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防止双重支付"><span class="nav-number">3.3.</span> <span class="nav-text">防止双重支付</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#秘密分享"><span class="nav-number">3.4.</span> <span class="nav-text">秘密分享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#钱币–保护匿名性"><span class="nav-number">3.5.</span> <span class="nav-text">钱币–保护匿名性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#取款"><span class="nav-number">3.6.</span> <span class="nav-text">取款</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支付"><span class="nav-number">3.7.</span> <span class="nav-text">支付</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存款及其安全性分析"><span class="nav-number">3.8.</span> <span class="nav-text">存款及其安全性分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数字版权管理"><span class="nav-number">4.</span> <span class="nav-text">数字版权管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#复制保护方法"><span class="nav-number">4.1.</span> <span class="nav-text">复制保护方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用于媒体文件的DRM方案"><span class="nav-number">4.2.</span> <span class="nav-text">用于媒体文件的DRM方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#叛徒识别"><span class="nav-number">4.3.</span> <span class="nav-text">叛徒识别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑密钥对"><span class="nav-number">4.4.</span> <span class="nav-text">逻辑密钥对</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加密广播"><span class="nav-number">4.5.</span> <span class="nav-text">加密广播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可信设备"><span class="nav-number">4.6.</span> <span class="nav-text">可信设备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内容扰乱系统CSS"><span class="nav-number">4.7.</span> <span class="nav-text">内容扰乱系统CSS</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ceb</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ceb</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>

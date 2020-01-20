@@ -165,7 +165,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E7%A0%B4%E5%9D%8F%E6%AD%A3%E6%96%B9%E5%BD%A2/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC9%E7%AB%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -179,7 +179,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/01/20/%E7%A0%B4%E5%9D%8F%E6%AD%A3%E6%96%B9%E5%BD%A2/" class="post-title-link" itemprop="url">破坏正方形</a>
+            <a href="/2020/01/20/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC9%E7%AB%A0/" class="post-title-link" itemprop="url">计安导第9章</a>
         </h1>
 
         <div class="post-meta">
@@ -190,7 +190,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-01-20 11:48:55 / Modified: 14:47:33" itemprop="dateCreated datePublished" datetime="2020-01-20T11:48:55+08:00">2020-01-20</time>
+              <time title="Created: 2020-01-20 15:40:37 / Modified: 21:25:46" itemprop="dateCreated datePublished" datetime="2020-01-20T15:40:37+08:00">2020-01-20</time>
             </span>
 
           
@@ -204,1232 +204,1467 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="UVA-1603-破坏正方形"><a href="#UVA-1603-破坏正方形" class="headerlink" title="UVA 1603 破坏正方形"></a>UVA 1603 破坏正方形</h1><p>一个 n×n的网格,共 2×n×(n+1)条边,现在已经删除了一些边,问至 少还需删去多少边,可以使得剩下的边不能构成正方形。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li><p>可以采用迭代加深度深搜，或者回溯法解决</p>
-</li>
-<li><p>搜索对象可以是木棍或者正方形，对应不同的剪枝</p>
+          <h1 id="策略、模型与信任"><a href="#策略、模型与信任" class="headerlink" title="策略、模型与信任"></a>策略、模型与信任</h1><h2 id="安全策略"><a href="#安全策略" class="headerlink" title="安全策略"></a>安全策略</h2><h3 id="主体"><a href="#主体" class="headerlink" title="主体"></a>主体</h3><p>是与系统交互的代理</p>
+<h3 id="客体"><a href="#客体" class="headerlink" title="客体"></a>客体</h3><p>是安全策略要保护和管理的信息与计算资源</p>
+<h3 id="动作"><a href="#动作" class="headerlink" title="动作"></a>动作</h3><p>主体对客体可能(或不可能)执行的操作</p>
+<h3 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h3><p>主体、操作与客体之间的映射，权限明确规定允许或禁止哪些操作</p>
+<h3 id="保护"><a href="#保护" class="headerlink" title="保护"></a>保护</h3><p>策略中包含的特定安全特性或规则，以 帮助实现特定的安全目标，如保密性、完整性、可用性或匿 名性。</p>
+<h2 id="安全模型"><a href="#安全模型" class="headerlink" title="安全模型"></a>安全模型</h2><p>是一种抽象的、为管理员指定安全策略提供 概念语言。</p>
+<p>通常定义了</p>
 <ol>
-<li>如果搜索对象是木棍，那么可以将每个木棍影响的正方形数量记录下来，从大到小排序。当最大影响数量为1时，可以停止搜索，结果为当前层数+剩余正方形数。这是因为如果最大影响数为1，说明剩余正方形之间没有耦合，删除任一木棍，至多减少1个正方形。</li>
-<li>如果搜索对象是正方形，那么应该从小正方形开始破坏。本题中采用这种方法。</li>
+<li>组织成员所拥有的访问或修改权限的层次结构</li>
 </ol>
-</li>
-<li><p>此外，还需要找规律，寻找各行各列，竖线横线的标号关系。以标记构成正方形的边。</p>
-</li>
-<li><p>本题中判断是否为正方形，<strong>通过size数组和full数组，分别记录第cnt个正方形实际有的边和应该有的边，如果二者相等，那么是一个完整的正方形</strong></p>
-</li>
-<li><p>本题中使用了回溯法，因为搜素深度有明显的上界2<em>n</em>(n+1)，其中n为边长。</p>
-</li>
-</ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="dfs"><a href="#dfs" class="headerlink" title="dfs"></a>dfs</h2><pre><code>void dfs(int d) {
-if (d &gt;= maxd) return;
-int next = getNext();
-if (next == 0) {
-    maxd = d;
-    return;
-}
-for (int j = 1; j &lt;= sum; j++) {
-    if (in[next][j])
-    {
-        for (int k = 1; k &lt;= cnt; k++)//删掉火柴棍
-            if (in[k][j]) Size[k]--;
-        dfs(d + 1);
-        for (int k = 1; k &lt;= cnt; k++)//复原
-            if (in[k][j]) Size[k]++;
-    }
-}
-return;
-}</code></pre><ol>
-<li>在删除木棍和回溯的部分，由于判断是才用size[i]==full[i]，所以in[k][j]处必有火柴。</li>
-</ol>
-<h2 id="getr-getc-求横竖线编号"><a href="#getr-getc-求横竖线编号" class="headerlink" title="getr,getc 求横竖线编号"></a>getr,getc 求横竖线编号</h2><pre><code>inline int getr(int r, int c) {
-return r * (2 * n + 1) + c + 1;
-}
-inline int getc(int r, int c) {
-return r * (2 * n + 1) + c + n + 1;
-}</code></pre><h2 id="get-cnt-填充size数组和full数组"><a href="#get-cnt-填充size数组和full数组" class="headerlink" title="get_cnt 填充size数组和full数组"></a>get_cnt 填充size数组和full数组</h2><pre><code>inline void get_cnt() {
-int a, b, e, f;
-cnt = 0;
-for (int len = 1; len &lt;= n; len++) {
-    for (int r = 0; r + len &lt;= n; r++) {
-        for (int c = 0; c + len &lt;= n; c++) {
-            ++cnt;
-            full[cnt] = len * 4;
-            Size[cnt] = 0;
-            for (int i = 0; i &lt; len; i++)
-            {
-                a = getr(r, c + i);
-                b = getr(r + len, c + i);
-                e = getc(r + i, c);
-                f = getc(r + i, c + len);
-                in[cnt][a] = true;
-                in[cnt][b] = true;
-                in[cnt][e] = true;
-                in[cnt][f] = true;
-                Size[cnt] += sticks[a] + sticks[b] + sticks[e] + sticks[f];
-            }
-        }
-    }
-}
-}</code></pre><ol>
-<li>注意这种判断的思维。</li>
-</ol>
-<h2 id="main-函数"><a href="#main-函数" class="headerlink" title="main 函数"></a>main 函数</h2><pre><code>int n, maxd, cnt, sum;
-bool sticks[2 * maxn*(maxn + 1) + 1];
-int Size[625];
-int full[625];
-int in[625][2 * maxn*(maxn + 1) + 1];
-int main() {
-int T, k, tmp;
-scanf(&quot;%d&quot;, &amp;T);
-while (T--) {
-    scanf(&quot;%d\n%d&quot;, &amp;n, &amp;k);
-    memset(sticks, 1, sizeof(sticks));
-    memset(in, 0, sizeof(in));
-    while (k--) {
-        scanf(&quot;%d&quot;, &amp;tmp);
-        sticks[tmp] = false;
-    }
-    sum = 2 * n*(n + 1);
-    maxd = sum;
-    get_cnt();
-    dfs(0);
-    printf(&quot;%d\n&quot;, maxd);
-}
-}</code></pre>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E7%A9%BA%E9%97%B4%E7%BB%93%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ceb">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/20/%E7%A9%BA%E9%97%B4%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">空间结构</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-01-20 11:48:55 / Modified: 14:47:23" itemprop="dateCreated datePublished" datetime="2020-01-20T11:48:55+08:00">2020-01-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="UVA-806-空间结构"><a href="#UVA-806-空间结构" class="headerlink" title="UVA 806 空间结构"></a>UVA 806 空间结构</h1><p>一个四分树是由一个方格的结构组成的，如图：（就是上面的三个图）。</p>
-<p>那些像素点可以构成一个四分树，如图：（就是上面的那个树）。</p>
-<p>我们规定，NW=1,NE=2,SW=3,SE=4，而一个节点所构成的数字串可以认为是一个五进制数，将它们排序后输出。</p>
-<p>例如：上图中地四号节点的路径为NE,SW，所以是32532_5325​ （五进制数）=171017_{10}1710​（十进制数）</p>
-<p>那么上树所对应的一传数列为：（在十进制下）</p>
-<p>9 14 17 22 23 44 63 69 88 94 113\text{9 14 17 22 23 44 63 69 88 94 113} 9 14 17 22 23 44 63 69 88 94 113</p>
-<p>你的任务是在这两者之间转换。</p>
-<p>注意，数串中的数字顺序是从叶子到根的，别搞错了。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li><p>对于n&gt;0的情况，需要将矩阵转化为四分树。</p>
-<p> 采用递归算法，每次递归四分之一块，如果遇到范围内纯黑或纯白，则返回。并且在遇到纯黑时，将序列存入向量中。</p>
-<p> 注意：要先判断整个图是否为纯黑或者纯白。</p>
-<p> 然后将五进制转化为十进制</p>
-</li>
-<li><p>对于n&lt;0的情况，将四分树转化为矩阵<br> 先将十进制转化为五进制，并在字符串尾部添加*，以标识叶子节点<br> 采用递归算法，每次根据当前字符，来选择下一步递归的范围。当遇到叶子节点时，将当前层的范围内的点涂黑</p>
-<p> 注意：pre向量中的每个元素，代表一条从根到叶子的路径，所以要用循环配合递归。</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p> #include<iostream><br> #include<string><br> #include&lt;string.h&gt;<br> #include<vector><br> #include<algorithm><br> #include<cmath></p>
-<h1 id="pragma-warning-disable-4996"><a href="#pragma-warning-disable-4996" class="headerlink" title="pragma warning(disable:4996)"></a>pragma warning(disable:4996)</h1><h1 id="define-LOCAL"><a href="#define-LOCAL" class="headerlink" title="define LOCAL"></a>define LOCAL</h1><h1 id="ifdef-LOCAL"><a href="#ifdef-LOCAL" class="headerlink" title="ifdef LOCAL"></a>ifdef LOCAL</h1><p> FILE *fin = freopen(“空间结构in.txt”, “r”, stdin);<br> FILE *fout = freopen(“空间结构out.txt”, “w”, stdout);</p>
-<h1 id="endif"><a href="#endif" class="headerlink" title="endif"></a>endif</h1><p> using namespace std;</p>
-<p> vector<int> number;<br> vector<string> pre;<br> char g[64][64];<br> int n;<br> void five() {</p>
-<pre><code>for (int i = 0; i &lt; number.size(); i++) {
-    int temp = 0;
-    while (number[i]) {
-        temp *= 10;        //注意此处要先乘10
-        temp += number[i] % 5;
-        number[i] = number[i] / 5;
-    }
-
-    pre.push_back(to_string(temp) + &apos;*&apos;);
-    //加*以标识叶子
-}</code></pre><p> }<br> void draw(const string s, int &amp;p, int r, int c, int w) {</p>
-<pre><code>if (p == s.length()) return;
-char ch = s[p++];
-switch (ch - &apos;0&apos;)
-{
-
-case 1:    draw(s, p, r, c, w / 2); break;
-case 2: draw(s, p, r, c + w / 2, w / 2); break;
-case 3:    draw(s, p, r + w / 2, c, w / 2); break;
-case 4:    draw(s, p, r + w / 2, c + w / 2, w / 2); break;
-default:
-    break;
-}
-if (ch == &apos;*&apos;) {
-    for (int i = r; i &lt; r + w; i++)
-        for (int j = c; j &lt; c + w; j++) {
-
-                g[i][j] = &apos;*&apos;;
-
-        }
-}</code></pre><p> }<br> bool judge(int r, int c, int w,char ch) {</p>
-<pre><code>// ch为0代表是否纯黑，为1代表是否纯白
-for (int i = r; i &lt; r + w; i++)
-    for (int j = c; j &lt; c + w; j++)
-        if (g[i][j] == ch)
-            return false;
-return true;    //任何情况下都要有return否则会RE</code></pre><p> }<br> void matrix(string str, int r, int c, int w) {</p>
-<pre><code>if (judge(r, c, w,&apos;0&apos;)) {
-    pre.push_back(str);    //纯黑则递归到头，将序列保存
-    return;
-}
-else if (judge(r, c, w,&apos;1&apos;)) return;
-else {
-    matrix(str + &quot;1&quot;, r, c, w / 2);
-    matrix(str + &quot;2&quot;, r, c + w / 2, w / 2);
-    matrix(str + &quot;3&quot;, r + w / 2, c, w / 2);
-    matrix(str + &quot;4&quot;, r + w / 2, c + w / 2, w / 2);
-}</code></pre><p> }<br> void ten() {</p>
-<pre><code>for (int i = 0; i &lt; pre.size(); i++) {
-    int temp = 0;
-    for (int j = pre[i].size() - 1; j &gt;= 0; j--)
-        temp += (pre[i][j] - &apos;0&apos;)*pow(5, j);
-    number.push_back(temp);
-
-}</code></pre><p> }<br> int main() {</p>
-<pre><code>int first = 1;
-int kase = 0;
-while (cin &gt;&gt; n &amp;&amp; n) {
-    if (first) first = 0; else cout &lt;&lt; endl;
-    cout &lt;&lt; &quot;Image &quot; &lt;&lt; ++kase &lt;&lt; endl;
-
-    number.clear();
-    pre.clear();
-    memset(g, &apos;.&apos;, sizeof(g));
-    getchar();
-    if (n &gt; 0) {
-        for (int i = 0; i &lt; n; i++)
-            for (int j = 0; j &lt; n; j++)
-                cin &gt;&gt; g[i][j];</code></pre></li>
-</ol>
-<pre><code>            if (judge(0, 0, n,&apos;0&apos;)) number.push_back(0);
-            //纯黑的情况
-            else if (judge(0, 0, n,&apos;1&apos;));//纯白
-
-            else {
-                matrix(&quot;1&quot;, 0, 0, n / 2);
-                matrix(&quot;2&quot;, 0, n / 2, n / 2);
-                matrix(&quot;3&quot;, n / 2, 0, n / 2);
-                matrix(&quot;4&quot;, n / 2, n / 2, n / 2);
-                ten();
-            }
-
-
-            sort(number.begin(), number.end());
-            if (!number.empty()) {
-                for (int i = 0; i &lt; number.size(); i++)
-                {
-                    cout &lt;&lt; number[i];
-                    if ((i + 1) % 12 == 0||i==number.size()-1) cout &lt;&lt; endl;
-                    else cout &lt;&lt; &quot; &quot;;
-                }
-            }
-
-            cout &lt;&lt; &quot;Total number of black nodes = &quot; &lt;&lt; number.size() &lt;&lt; endl;
-
-        }
-        if (n &lt; 0) {
-
-            string s;
-            bool flag = false;
-            bool zero = false;
-            for (;;) {
-                int a;
-                //由于输入的结束标志-1不一定出现在哪里，所以
-                //要设置标志
-                for (int i = 0; i &lt; 12; i++) {
-                    cin &gt;&gt; a;
-                    if (a == -1) {
-                        flag = true;
-                        break;
-                    }
-                    if (a == 0)zero = true;
-                    number.push_back(a);
-                }
-                if (flag) break;
-            }    
-            if (zero) {
-            //如果包含0，代表它是一个只有一个节点的树
-                memset(g, &apos;*&apos;, sizeof(g));
-            }
-            else {
-                five();
-                for (int i = 0; i &lt; pre.size(); i++) {
-                    int p = 0;
-                    draw(pre[i], p, 0, 0, abs(n));
-                }
-            }
-
-
-
-            for (int i = 0; i &lt; abs(n); i++) {
-                for (int j = 0; j &lt; abs(n); j++)
-                    cout &lt;&lt; g[i][j];
-                cout &lt;&lt; endl;
-            }
-        }
-
-
-    }
-}</code></pre><h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><ol>
-<li>本题加深了对递归问题的理解，使用递归算法也不是仅仅用递归实现，要搭配循环，减小递归代码的编写难度。</li>
-<li>理清思路再写递归，注意认清递归结束条件，不要模糊。</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E9%9B%86%E5%90%88%E6%A0%88%E8%AE%A1%E7%AE%97%E6%9C%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ceb">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/20/%E9%9B%86%E5%90%88%E6%A0%88%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="post-title-link" itemprop="url">集合栈计算机</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-01-20 11:48:55 / Modified: 14:47:21" itemprop="dateCreated datePublished" datetime="2020-01-20T11:48:55+08:00">2020-01-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="uva12096-※集合栈计算机※"><a href="#uva12096-※集合栈计算机※" class="headerlink" title="uva12096 ※集合栈计算机※"></a>uva12096 ※集合栈计算机※</h1><p>（输入：先输入测试次数，再输入操作次数，再输入具体操作）</p>
-<pre><code>Sample Input
-2
-9
-PUSH
-DUP
-ADD
-PUSH
-ADD
-DUP
-ADD
-DUP
-UNION
-5
-PUSH
-PUSH
-ADD
-PUSH
-INTERSECT
-
-Sample Output
-0
-0
-1
-0
-1
-1
-2
-***
-0
-0
-1
-0
-0</code></pre><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
-<li>首先考虑集合的存储问题：由于有集合作为元素插入到另一个集合的情况，所以不能直接定义集合类型的栈。考虑将集合映射到值(map)，另用一个向量存集合本身。</li>
-<li>按照题干输入输出判断操作即可。注意后三种操作可以合并简化代码<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2> #include<iostream><br> #include<string><br> #include<map><br> #include<set><br> #include<vector><br> #include<stack><br> #include<iterator><br> #include<algorithm><h1 id="define-ALL-x-x-begin-x-end"><a href="#define-ALL-x-x-begin-x-end" class="headerlink" title="define ALL(x) x.begin(),x.end()"></a>define ALL(x) x.begin(),x.end()</h1><h1 id="define-INS-x-inserter-x-x-begin"><a href="#define-INS-x-inserter-x-x-begin" class="headerlink" title="define INS(x) inserter(x,x.begin())"></a>define INS(x) inserter(x,x.begin())</h1></li>
-</ol>
-<blockquote>
-<p>INS(x)插入迭代器，插入而非覆盖<br><a href="https://blog.csdn.net/m0_37456764/article/details/83019250" target="_blank" rel="noopener">inserter</a>.</p>
-</blockquote>
-<pre><code>using namespace std;
-typedef set&lt;int&gt; Set;
-map&lt;Set, int&gt; id;//将每个集合对应一个编号，编号是在向量中的下标
-vector&lt;Set&gt; Setcache;
-int ID(Set x) {//既是插入又是查询！！
-    if (id.count(x)) return id[x];//存在则返回id
-
-    //不存在则添加
-    Setcache.push_back(x);
-    return id[x] = Setcache.size() - 1;
-}</code></pre><p>插入和查询合并简化代码</p>
-<pre><code>int main() {
-int n;
-
-cin &gt;&gt; n;
-while (n--) {
-    int m;
-    cin &gt;&gt; m;
-    stack&lt;int&gt; s;
-    while (m--) {
-        string op;
-        cin &gt;&gt; op;
-        if (op[0] == &apos;P&apos;) s.push(ID(Set()));
-        //空集入栈，注意此处空集的写法
-        else if (op[0] == &apos;D&apos;) s.push(s.top());
-        else {
-            Set x1 = Setcache[s.top()]; s.pop();
-            //不同直接用pop赋值，因为pop的返回值为void
-            Set x2 = Setcache[s.top()]; s.pop();
-            Set x;
-            if (op[0] == &apos;U&apos;) set_union(ALL(x1), ALL(x2), INS(x));
-            if (op[0] == &apos;I&apos;) set_intersection(ALL(x1), ALL(x2), INS(x));
-            if (op[0] == &apos;A&apos;) { x = x2; x.insert(ID(x1)); }
-            s.push(ID(x));
-        }
-        cout &lt;&lt; Setcache[s.top()].size() &lt;&lt; endl;
-    }
-    cout &lt;&lt; &quot;***&quot; &lt;&lt; endl;
-}
-}</code></pre><h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><ol>
-<li>本题主要注重多种STL的结合使用，尤其是集合映射为整型的处理方式</li>
-<li>记住题中交并集的函数，set_union(参数为5个迭代器),set_intersection(参数为5个迭代器);要配合两处define使用</li>
-<li>注意模拟多种操作时提取相同部分简化代码，也降低出错的可能性和调试难度。</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E9%BB%84%E9%87%91%E5%9B%BE%E5%BD%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ceb">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/20/%E9%BB%84%E9%87%91%E5%9B%BE%E5%BD%A2/" class="post-title-link" itemprop="url">黄金图形</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-01-20 11:48:55 / Modified: 14:47:18" itemprop="dateCreated datePublished" datetime="2020-01-20T11:48:55+08:00">2020-01-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="UVA-225-黄金图形"><a href="#UVA-225-黄金图形" class="headerlink" title="UVA 225 黄金图形"></a>UVA 225 黄金图形</h1><p>平面上有k个障碍点。 从(0,0)点出发，第一次走1个单位，第二次走2个单位，……， 第n次走n个单位，恰好回到(0,0)。 要求只能沿着东南西北方向走，且每次必须转弯90°（不能沿着同一个方向继续走，也不能后退）。 走出的图形可以自交，但不能经过障碍点，如图 7-25所示。每个转折点只能走一次。 输入n、k（1≤n≤20，0≤k≤50）和所有障碍点的坐标，输出所有满足要求的移动序列（用 news表示北、东、西、南），按照字典序从小到大排列，最后输出移动序列的总数。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li><p>又要输出所有的路径，所以直观的想到用dfs。dfs中处理好可以移动的方向即可。</p>
-</li>
-<li><p>本题的特殊之处在于，障碍格可能出现负坐标。由于本题中最长边长n小于等于20，所以采用给(0,0)点以及障碍物点加一个比较大的值来消负号。我是假设n=20，那么一共也就能走1+2+…20/2=105，所以我加了一个120.</p>
-</li>
-<li><p>注意：卡了很久的原因主要是题干中要求最长边等于n，这条件不仅是限定搜索深度的。他还要求必须包含长度为n的边。</p>
-</li>
-<li><p>注意每个转折点只能走一次的条件。这个转折点是指每一步走完之后的终点。</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p> #include&lt;bits/stdc++.h&gt;</p>
-<h1 id="pragma-warning-disable-4996"><a href="#pragma-warning-disable-4996" class="headerlink" title="pragma warning(disable:4996)"></a>pragma warning(disable:4996)</h1><p> FILE <em>fin = freopen(“习题7-2in.txt”, “r”, stdin);<br> FILE *fout = freopen(“习题7-2out.txt”, “w”, stdout);<br> using namespace std;<br> const int maxn = 20;<br> void dfs(int r, int c, int dir, int step);<br> int dx[] = { 1,0,0,-1 };//东北南西<br> int dy[] = { 0,1,-1,0 };<br> int cnt, n;<br> bool g[maxn * maxn + 1][maxn * maxn + 1];<br> char direction[] = { ‘e’,’n’,’s’,’w’ };<br> int path[maxn</em>maxn];<br> bool vis[maxn<em>maxn + 1][maxn</em>maxn+ 1];<br> int stax, stay;<br> int main() {<br> int T;<br> scanf(“%d”, &amp;T);<br> int k;<br> while (T–)<br> {</p>
-<pre><code>int x, y;
-memset(g, 1, sizeof(g));
-memset(path, 0, sizeof(path));
-
-scanf(&quot;%d\n%d&quot;, &amp;n, &amp;k);
-vector&lt;int&gt; tmpx;
-vector&lt;int&gt; tmpy;
-stax = stay = 120;
-cnt = 0;
-while (k--)
-{
-    scanf(&quot;%d %d&quot;, &amp;x, &amp;y);
-    g[x + stax][y + stay] = 0;
-}
-
-for (int i = 0; i &lt; 4; i++) {
-    memset(vis, 0, sizeof(vis));
-    dfs(stax, stay, i, 1);</code></pre></li>
-</ol>
-<pre><code>    }
-    printf(&quot;Found %d golygon(s).\n\n&quot;, cnt);
-}
-}
-void dfs(int r, int c, int dir, int step) {
-path[step] = dir;
-for (int i = 0; i &lt; step; i++) {
-    r += dx[dir];
-    c += dy[dir];
-    if (!g[r][c] || r &lt; 0 || c &lt; 0 ) {
-        return;
-    }
-}
-if (vis[r][c]) return;
-if (step &gt;= n) {
-    if (r == (stax) &amp;&amp; c == (stay)) {
-        for (int i = 1; i &lt;= step; i++)
-            printf(&quot;%c&quot;, direction[path[i]]);
-        printf(&quot;\n&quot;);
-        cnt++;
-    }
-    return;
-}
-
-vis[r][c] = 1;
-if (dir == 0 || dir == 3) {
-    dfs(r, c, 1, step + 1);
-    dfs(r, c, 2, step + 1);
-}
-else {
-    dfs(r, c, 0, step + 1);
-    dfs(r, c, 3, step + 1);
-}
-vis[r][c] = 0;
-}</code></pre>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ceb">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/20/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" class="post-title-link" itemprop="url">二叉树的层序遍历</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-01-20 11:48:55 / Modified: 14:47:05" itemprop="dateCreated datePublished" datetime="2020-01-20T11:48:55+08:00">2020-01-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="uva-122-树的层序遍历"><a href="#uva-122-树的层序遍历" class="headerlink" title="uva 122 树的层序遍历"></a>uva 122 树的层序遍历</h1><p>树状结构在电脑科学的许多领域中都相当重要。本问题牵涉到建立树及走访树。</p>
-<p>给你一二元树，你的任务是写一个程式来列印依「阶层（level-order）」走访的结果。在本问题中，二元树的每个节点含有一个正整数，并且节点的数目最少1个，最多256个。</p>
-<p>在「阶层」走访中，依阶层从低到高，同阶层从左到右的次序来列印。例如以下的二元树阶层走访的结果为：5, 4, 8, 11, 13, 4, 7, 2, 1</p>
-<p>在本问题中，二元树以节点来表示。每个节点以一对(n,s)来表示。n代表此节点的值，s为一字串，代表从根节点到达此节点的路径。其中L代表往左，R代表往右。所以在上方的图中内容为13的节点其表示法为(13,RL)，而内容为2的节点其表示法为(2,LLR)，而根节点为(5,)。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>先根据给出的对，构造二叉树，在借助队列层序遍历</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    #include&lt;iostream&gt;</span><br><span class="line">    #include&lt;string&gt;</span><br><span class="line">    #include&lt;queue&gt;</span><br><span class="line">    # pragma warning(disable:4996)</span><br><span class="line">    # define LOCAL</span><br><span class="line">    # ifdef LOCAL</span><br><span class="line">    FILE *fin &#x3D; freopen(&quot;树的层序遍历in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">    FILE *fout &#x3D; freopen(&quot;树的层序遍历out.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line">    # endif </span><br><span class="line">    using namespace std;</span><br><span class="line">    struct node &#123;</span><br><span class="line">    	bool have_val;</span><br><span class="line">    	int v;</span><br><span class="line">    	node *left, *right;</span><br><span class="line">    	node() :have_val(false), left(NULL), right(NULL) &#123;&#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    node* root;</span><br><span class="line">    node * newnode() &#123;</span><br><span class="line">    </span><br><span class="line">    	return new node();</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">	bool flag;</span><br><span class="line">	void addnode(string s, int v) &#123;</span><br><span class="line">	node * u &#x3D; root;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; s.length()-1; i++)</span><br><span class="line">		if (s[i] &#x3D;&#x3D; &#39;L&#39;) &#123;</span><br><span class="line">			if (u-&gt;left &#x3D;&#x3D; NULL)</span><br><span class="line">				u-&gt;left &#x3D; newnode();</span><br><span class="line">			u &#x3D; u-&gt;left;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		else if (s[i] &#x3D;&#x3D; &#39;R&#39;) &#123;</span><br><span class="line">			if (u-&gt;right &#x3D;&#x3D; NULL)</span><br><span class="line">				u-&gt;right &#x3D; newnode();</span><br><span class="line">			u &#x3D; u-&gt;right;</span><br><span class="line">		&#125;</span><br><span class="line">	if (u-&gt;have_val) &#123;</span><br><span class="line">		flag &#x3D; false;</span><br><span class="line">	&#125;</span><br><span class="line">	u-&gt;have_val &#x3D; true;	</span><br><span class="line">	u-&gt;v &#x3D; v;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	int main() &#123;</span><br><span class="line">	string s;</span><br><span class="line">	</span><br><span class="line">	while (cin.peek() !&#x3D; EOF&amp;&amp;cin.peek()!&#x3D;&#39;\n&#39;) &#123;</span><br><span class="line">		root &#x3D; newnode();</span><br><span class="line"></span><br><span class="line">		flag &#x3D; true;</span><br><span class="line"></span><br><span class="line">		while (cin &gt;&gt; s &amp;&amp; s !&#x3D; &quot;()&quot;) &#123;</span><br><span class="line">			int v;</span><br><span class="line">			sscanf(&amp;s[1], &quot;%d&quot;, &amp;v);</span><br><span class="line">&gt;※※※提取字符串中的数字的方法！！！</span><br><span class="line"></span><br><span class="line">			&#x2F;&#x2F;		cout &lt;&lt; v &lt;&lt; endl;</span><br><span class="line">			s &#x3D; s.substr(s.find(&#39;,&#39;) + 1);</span><br><span class="line">			addnode(s, v);</span><br><span class="line">		&#125;</span><br><span class="line">		getchar();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		if (!flag) &#123;</span><br><span class="line">			cout &lt;&lt; &quot;not complete&quot; &lt;&lt; endl;</span><br><span class="line">			continue;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		node *tmp &#x3D; root;</span><br><span class="line">		queue&lt;node *&gt; travel;</span><br><span class="line">		travel.push(tmp);</span><br><span class="line">&gt;注意层序遍历的初始值</span><br><span class="line"></span><br><span class="line">		string ans;</span><br><span class="line">		while (!travel.empty()) &#123;</span><br><span class="line">			tmp&#x3D; travel.front();</span><br><span class="line">			travel.pop();</span><br><span class="line">			</span><br><span class="line">			if (!tmp-&gt;have_val) &#123;</span><br><span class="line">				flag &#x3D; false;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">			ans &#x3D;ans+&quot; &quot;+to_string( tmp-&gt;v);</span><br><span class="line">			if (tmp-&gt;left) travel.push(tmp-&gt;left);</span><br><span class="line">			if (tmp-&gt;right) travel.push(tmp-&gt;right);</span><br><span class="line">		&#125;</span><br><span class="line">		flag ? cout &lt;&lt; ans.substr(1) &lt;&lt; endl : cout &lt;&lt; &quot;not complete&quot; &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><ol>
-<li><p>首先一定要学习提取字符串中数字的方法</p>
-<pre><code>：sscanf(&amp;数字起始地址,&quot;格式&quot;，&amp;存储变量名)</code></pre></li>
-<li><p>动态申请空间的时候，要释放掉，否则会导致内存泄漏；</p>
-</li>
-<li><p>可以通过维护一个简单的内存池实现</p>
-<pre><code>queue&lt;Node*&gt; freenodes;
-   Node node[maxn];
-
-void init(){
-    for(int i=0;i&lt;maxn;i++)
-    freenodes.push(&amp;node[i]);    
-}
-
-Node* new(){
-    Node* u = freenodes.front();
-    //处理u的成员变量
-    freenodes.pop();
-    return u;
-}
-
-void dele(Node *u){
-    freenodes.push(u);
-}</code></pre></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%87%8D%E5%BB%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ceb">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/20/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%87%8D%E5%BB%BA/" class="post-title-link" itemprop="url">二叉树的重建</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-01-20 11:48:55 / Modified: 14:47:08" itemprop="dateCreated datePublished" datetime="2020-01-20T11:48:55+08:00">2020-01-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="uva-536-二叉树的重建-先中造树"><a href="#uva-536-二叉树的重建-先中造树" class="headerlink" title="uva 536 二叉树的重建 (先中造树)"></a>uva 536 二叉树的重建 (先中造树)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">   #include&lt;string&gt;</span><br><span class="line">   # pragma warning(disable:4996)</span><br><span class="line">   # define LOCAL</span><br><span class="line">   # ifdef LOCAL</span><br><span class="line">   FILE *fin &#x3D; freopen(&quot;习题6-3in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">   FILE *fout &#x3D; freopen(&quot;习题6-3out.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line">   # endif </span><br><span class="line">   using namespace std;</span><br><span class="line">   typedef struct node &#123;</span><br><span class="line">   	struct node *lchild, *rchild;</span><br><span class="line">   	char data;</span><br><span class="line">   &#125;node, *ptr;</span><br><span class="line">   ptr Create(char *pre, char *in, int n)</span><br><span class="line">   &#123;</span><br><span class="line">   	ptr s;</span><br><span class="line">   </span><br><span class="line">   	if (n &#x3D;&#x3D; 1)</span><br><span class="line">   	&#123;</span><br><span class="line">   		s &#x3D; (ptr)malloc(sizeof(node));</span><br><span class="line">   		s-&gt;data &#x3D; *pre;</span><br><span class="line">   		s-&gt;lchild &#x3D; s-&gt;rchild &#x3D; NULL;</span><br><span class="line">   		return s;</span><br><span class="line">   	&#125;</span><br><span class="line">   	char *p;</span><br><span class="line">   	for (p &#x3D; in; p &lt; in + n; p++)</span><br><span class="line">   		if (*p &#x3D;&#x3D; *pre) break;</span><br><span class="line">   	int k &#x3D; p - in;</span><br><span class="line">   	s &#x3D; (ptr)malloc(sizeof(node));</span><br><span class="line">   	s-&gt;data &#x3D; *p;</span><br><span class="line">   	s-&gt;lchild &#x3D; s-&gt;rchild &#x3D; NULL;</span><br><span class="line">   	if (k) s-&gt;lchild &#x3D; Create(pre + 1, in, k);</span><br><span class="line">   	if (n - k - 1) s-&gt;rchild &#x3D; Create(pre + k + 1, p + 1, n - k - 1);</span><br><span class="line">   	return s;</span><br><span class="line">   &#125;</span><br><span class="line">   int lastorder(ptr T)</span><br><span class="line">   &#123;</span><br><span class="line">   	if (!T) return 0;</span><br><span class="line">   	lastorder(T-&gt;lchild);</span><br><span class="line">   	lastorder(T-&gt;rchild);</span><br><span class="line">   	printf(&quot;%c&quot;, T-&gt;data);</span><br><span class="line">   	return 1;</span><br><span class="line">   &#125;</span><br><span class="line">   int main()</span><br><span class="line">   &#123;</span><br><span class="line">   </span><br><span class="line">   	string pre, in;</span><br><span class="line">   	while (cin &gt;&gt; pre &gt;&gt; in) &#123;</span><br><span class="line">   		int n &#x3D; pre.length();</span><br><span class="line">   		ptr T &#x3D; Create(&amp;pre[0], &amp;in[0], n);</span><br><span class="line">   		lastorder(T);</span><br><span class="line">   		cout &lt;&lt; endl;</span><br><span class="line">   	&#125;</span><br><span class="line">   </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E5%8F%A4%E4%BB%A3%E8%B1%A1%E5%BD%A2%E7%AC%A6%E5%8F%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ceb">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/20/%E5%8F%A4%E4%BB%A3%E8%B1%A1%E5%BD%A2%E7%AC%A6%E5%8F%B7/" class="post-title-link" itemprop="url">古代象形符号</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-01-20 11:48:55 / Modified: 14:47:13" itemprop="dateCreated datePublished" datetime="2020-01-20T11:48:55+08:00">2020-01-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="uva-1103-古代象形符号"><a href="#uva-1103-古代象形符号" class="headerlink" title="uva 1103 古代象形符号"></a>uva 1103 古代象形符号</h1><p>描述： 为了理解早期文明，考古学家经常研究用古代语言编写的文本。在3000多年前的埃及使用的一种语言是基于称为象形文字的字符。如图显示了六个象形文字及其名称，在这个题目中，您需要编写一个程序来识别这六个字。 图c1<br>输入描述： 输入由几个测试用例组成，每个测试用例描述一个包含一个或多个的图像 象形文字选自图C.1所示的那些。图像以一系列水平扫描线的形式给出，这些水平扫描线由黑色像素（由1表示）和白色像素（由0表示）组成。在输入数据中，每个扫描线以十六进制表示法编码。 例如，序列将表示八个像素10011100（一个黑色像素，后面是两个白色像素，依此类推） 十六进制表示法为9c。 在十六进制中仅使用数字和小写字母a到f 编码。每个测试用例的第一行包含两个整数，H和W.H（0 &lt;H≤200）是 图像中的扫描行数。 W（0 &lt;W≤50）是每个中十六进制字符的数量 线。 接下来的H行包含图像的十六进制字符，从上到下工作。 输入图像符合以下规则： •图像仅包含图C.1中所示的象形文字。 •每个图像至少包含一个有效的象形文字。 •图像中的每个黑色像素都是有效象形文字的一部分。 •每个象形文字由一组连接的黑色像素组成，每个黑色像素至少有一个顶部，底部，左侧或右侧的其他黑色像素。 •象形文字没有触及，另一个象形文字中没有象形文字。 •对角线接触的两个黑色像素将始终具有共同的触摸黑色像素。 •象形文字可能会扭曲，但每个都有一个在拓扑上等同于其中一个的形状 图C.1中的符号。 （如果每个都可以转换，两个数字在拓扑上是等价的 通过伸展而不撕裂进入另一个。） 最后一个测试用例后跟一行包含两个零的行。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>本题中的符号可以随意压缩拉伸，所以试图去直接描述其形状是不可取的。<br>观察到每个符号的空白圈数不同，可以以此特征分辨</p>
+<h2 id="自主访问控制-DAC"><a href="#自主访问控制-DAC" class="headerlink" title="自主访问控制 DAC"></a>自主访问控制 DAC</h2><p>指的是赋予用户能力确定文件访 问权限的一种方案。</p>
 <ol>
-<li><p>注意：要先给这个图加上一圈白边，使得所有背景的白色部分可以连接起来。此处可以使用</p>
-</li>
-<li><p>所以总体来说要进行两次遍历</p>
-</li>
-<li><p>第一次将背景中的空白遍历</p>
-</li>
-<li><p>第二次去遍历黑圈，沿途遍历黑色周围未遍历的白色部分，对于每个黑色的连通分量，统计其周围遍历到的白色连通分量数，即白洞数。每次统计完的接完插入到一个向量中。</p>
-</li>
-<li><p>对向量排序，输出</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p> #include<iostream><br> #include<queue><br> #include<string><br> #include<algorithm><br> #include&lt;string.h&gt;</p>
-<h1 id="pragma-warning-disable-4996"><a href="#pragma-warning-disable-4996" class="headerlink" title="pragma warning(disable:4996)"></a>pragma warning(disable:4996)</h1><h1 id="define-LOCAL"><a href="#define-LOCAL" class="headerlink" title="define LOCAL"></a>define LOCAL</h1><h1 id="ifdef-LOCAL"><a href="#ifdef-LOCAL" class="headerlink" title="ifdef LOCAL"></a>ifdef LOCAL</h1><p> FILE *fin = freopen(“古代象形符号in.txt”, “r”, stdin);<br> FILE *fout = freopen(“古代象形符号out.txt”, “w”, stdout);</p>
-<h1 id="endif"><a href="#endif" class="headerlink" title="endif"></a>endif</h1><p> using namespace std;<br> vector<string> g;<br> int vis[205][205];<br> string b[] = { “0000”,”0001”,”0010”,”0011”,”0100”,”0101”,”0110”,”0111”,”1000”,”1001”,”1010”,”1011” ,”1100”,”1101”,”1110”,”1111” };<br> char c[] = { ‘W’,’A’,’K’,’J’,’S’,’D’ };<br> int dx[] = { -1,0,1,0 };<br> int dy[] = { 0,-1,0,1 };<br> struct Node {</p>
-<pre><code>int x, y;
-Node(int x, int y) :x(x), y(y) {}</code></pre><p> };<br> int H, W, cnt, num;<br> bool notOk(int a, int b) {</p>
-<pre><code>return vis[a][b] || a &lt; 0 || a &gt;= g.size() || b &lt; 0 || b &gt;= g[a].size();</code></pre><p> }<br> void dfs(Node u, char c) {</p>
-<pre><code>vis[u.x][u.y] = 1;
-for (int i = 0; i &lt; 4; i++) {
-    int a = u.x + dx[i];
-    int b = u.y + dy[i];
-    if (notOk(a, b)) continue;
-    if (c == &apos;1&apos;&amp;&amp; g[a][b] == &apos;0&apos;) {
-
-        cnt++;
-        dfs(Node(a, b), &apos;0&apos;);
-    }
-    if (g[a][b] == c) dfs(Node(a, b), c);
-}</code></pre><p> }</p>
-<p> int main() {</p>
-<pre><code>int kase = 0;
-while (cin &gt;&gt; H &gt;&gt; W &amp;&amp; H) {
-
-    getchar();
-    memset(vis, 0, sizeof(vis));
-    g.clear();
-    g.resize(H + 2);
-    g.front() = string(W * 4 + 2, &apos;0&apos;);//加一层白边
-    for (int i = 1; i &lt;= H; ++i) {//读取输入
-        g[i] = &quot;0&quot;;//加一层白边
-        string s;
-        getline(cin, s);
-        for (char c : s)
-        {
-            if (isdigit(c)) g[i] += b[c - &apos;0&apos;];
-            else g[i] += b[c - &apos;a&apos; + 10];
-        }
-        g[i] += &quot;0&quot;;//加一层白边
-    }
-    g.back() = string(W * 4 + 2, &apos;0&apos;);//加一层白边</code></pre></li>
+<li>允许用户根据用户和组设置访问控制措施。</li>
+<li>允许用户将资源特权授予同一系统上的其他用户。</li>
 </ol>
-<pre><code>        dfs(Node(0, 0), &apos;0&apos;);
-
-        string ans;
-        for (int i = 1; i &lt; g.size(); i++) {
-            for (int j = 1; j &lt; g[i].size(); j++) {
-                if (!vis[i][j] &amp;&amp; g[i][j] == &apos;1&apos;) {
-                    cnt = 0;
-                    dfs(Node(i, j), &apos;1&apos;);
-                    ans += c[cnt];
-
-                }
-
-
-            }
-        }
-
-        cout &lt;&lt; &quot;Case &quot; &lt;&lt; ++kase &lt;&lt; &quot;: &quot;;
-
-        sort(ans.begin(), ans.end());
-
-        cout &lt;&lt; ans &lt;&lt; endl;
-
-    }
-
-}</code></pre><h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><ol>
-<li>注意DRY问题，本题中的dfs的写法非常值得学习</li>
-<li>利用向量的直接赋值来添加百变，减少了时间复杂度</li>
+<h2 id="强制访问控制-MAC"><a href="#强制访问控制-MAC" class="headerlink" title="强制访问控制 MAC"></a>强制访问控制 MAC</h2><ol>
+<li>不允许用户定义文件的权限.</li>
+<li>而是由中央策略管理员制定安全策略。</li>
+<li>每个安全规则都由主体、客体和一系列的权限组成。其中主体是获得权限的的一方，客体是被访问的资源。</li>
 </ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E5%8F%8D%E7%89%87%E8%AF%AD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ceb">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/20/%E5%8F%8D%E7%89%87%E8%AF%AD/" class="post-title-link" itemprop="url">反片语</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-01-20 11:48:55 / Modified: 14:47:10" itemprop="dateCreated datePublished" datetime="2020-01-20T11:48:55+08:00">2020-01-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="uav156-反片语"><a href="#uav156-反片语" class="headerlink" title="uav156 反片语"></a>uav156 反片语</h1><p>输入一些单词，找出所有满足如下条件的单词：该单词不能通过字母重排，得到输入文本的另外一个单词。在判断是否满足条件时，字母不分大小写，但在输出时应保留输入中的大小写，按字典序进行排列(所有大写字母在所有小写字母的前面)</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>由于单词可以重拍，所有直接对各单词进行标准化，以便于使用map；map<br>为&lt;string,int&gt;，其中值对应单词出现次数；使用向量word记录原单词，向量ans记录答案序列；</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><pre><code>#include&lt;iostream&gt;
-#include&lt;map&gt;
-#include&lt;string&gt;
-#include&lt;vector&gt;
-#include&lt;algorithm&gt;
-using namespace std;
-vector&lt;string&gt;word;
-map&lt;string, int&gt; cnt;
-string standard(const string &amp;in) {
-string s = in;
-for (int i = 0; i &lt; s.length(); i++) {
-    s[i] = tolower(s[i]);
-}</code></pre><ol>
-<li><p>此处书上是按上述方式给的，如果形参表写成const string s，之后直接操作s，并且返回s也没发现问题。</p>
-</li>
-<li><p>注意此处const的用法，编写该模块前如果认定了in仅作为输入，则加上const防止之后错误的操作。</p>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><p>sort(s.begin(), s.end());<br>return s;<br>}<br>int main() {<br>string s;<br>while (cin &gt;&gt; s) {<br>  if (s[0] == ‘# ‘)    break;<br>  word.push_back(s);<br>  string r = standard(s);<br>  if (!cnt.count(r)) cnt[r] = 0;<br>  cnt[r]++;<br>}<br>vector<string> ans;<br>for (int i = 0; i &lt; word.size(); i++) {<br>  if (cnt[standard(word[i])] == 1) ans.push_back(word[i]);<br>}<br>sort(ans.begin(), ans.end());</p>
-<p>for (int i = 0; i &lt; ans.size(); i++) {<br>  cout &lt;&lt; ans[i] &lt;&lt; endl;<br>}<br>}</p>
-<h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><ol>
-<li>本题主要是map的应用，想要用map，标准化的步骤是关键。</li>
-<li>map提供了”[]”运算符，map[键]=值，使得map可以像数组一样使用。事实上，map也成为”关联数组”。</li>
+<h2 id="信任管理系统"><a href="#信任管理系统" class="headerlink" title="信任管理系统"></a>信任管理系统</h2><h2 id="组成包括"><a href="#组成包括" class="headerlink" title="组成包括"></a>组成包括</h2><ol>
+<li><strong>策略语言</strong></li>
+<li><strong>一致性检查器</strong></li>
+<li>策略规则由策略语言指定，并由一致性检查器执行</li>
+</ol>
+<h2 id="规则包括"><a href="#规则包括" class="headerlink" title="规则包括"></a>规则包括</h2><ol>
+<li>操作 与系统安全相关的结果</li>
+<li>主题 可以在系统 上执行操作的用户、进程或其他实体</li>
+<li>策略 就是制定的规 则，制定赋予主体哪些权限，能执行那些操作</li>
+<li>凭证 数字签名 的文件，将主体身份与允许的行 为绑定，包括允许主体将权限委 托给其他主体的权限</li>
+</ol>
+<h1 id="访问控制模型"><a href="#访问控制模型" class="headerlink" title="访问控制模型"></a>访问控制模型</h1><h2 id="Bell-La-Padula模型"><a href="#Bell-La-Padula模型" class="headerlink" title="Bell-La Padula模型"></a>Bell-La Padula模型</h2><p>强制访问控制模型，保护机密性</p>
+<h3 id="全序和偏序"><a href="#全序和偏序" class="headerlink" title="全序和偏序"></a>全序和偏序</h3><ol>
+<li>全序：自反，反对称，传递，完全性(如果x和y在U中，则x ≤ y 或 y ≤ x)</li>
+<li>偏序：去掉完全性</li>
+</ol>
+<h3 id="BLP-工作原理"><a href="#BLP-工作原理" class="headerlink" title="BLP 工作原理"></a>BLP 工作原理</h3><ol>
+<li>原则：信息只能从低安全级别流向高安全级别。</li>
+<li>安全级别是偏序的</li>
+<li>每个对象x被分配到一个安全级别L(X)。同样，每个用户u被分配到 安全级别L(U)。用户对象的访问受以下两条规则控制：<ol>
+<li>简单安全性质：只有满足L(x) ≼ L(u)，用户u才能读取对象x：即<strong>不可向上读</strong></li>
+<li>性质只有满足L(u) ≼ L(x)，用户u才能写入（创建、编 辑或追加）对象x：即<strong>不可向下写</strong></li>
 </ol>
 </li>
 </ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E5%9F%8E%E5%B8%82%E6%AD%A3%E8%A7%86%E5%9B%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ceb">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/20/%E5%9F%8E%E5%B8%82%E6%AD%A3%E8%A7%86%E5%9B%BE/" class="post-title-link" itemprop="url">城市正视图</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-01-20 11:48:55 / Modified: 14:46:56" itemprop="dateCreated datePublished" datetime="2020-01-20T11:48:55+08:00">2020-01-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="uva221-城市正视图"><a href="#uva221-城市正视图" class="headerlink" title="uva221 城市正视图"></a>uva221 城市正视图</h1><p>&ensp;如图5-4所示，有n（n≤100）个建筑物。左侧是俯视图（左上角为建筑物编号，右下角为高度），右侧是从南向北看的正视图。<br>输入每个建筑物左下角坐标（即x、y坐标的最小值）、宽度（即x方向的长度）、深度（即y方向的长度）和高度（以上数据均为实数），输出正视图中能看到的所有建筑物，按照左下角x坐标从小到大进行排序。左下角x坐标相同时，按y坐标从小到大排序。</p>
-<p>&ensp;输入保证不同的x坐标不会很接近（即任意两个x坐标要么完全相同，要么差别足够大，不会引起精度问题）。</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
-<li><p>需要对横坐标进行离散化，然后判断每个区间中点是否可以看见。</p>
-</li>
-<li><p>判断一个建筑是否在某个坐标处可见：首先，要包含这个点。其次，其他包含这个点的建筑没有比他靠近南边，并且比他高的。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p> #include<iostream><br> #include <algorithm><br> using namespace std;<br> struct bulid {</p>
-<pre><code>double x, y, w, d, h;
-int id;
-bool operator &lt;(const bulid&amp;r) const{ return x &lt; r.x || x == r.x&amp;&amp;y &lt; r.y; }</code></pre><p> }b[105];</p>
-<blockquote>
-<blockquote>
-<p>注意此处要重写小于号，用于后面的sort</p>
-</blockquote>
-</blockquote>
-<p> int n;<br> bool cover(int id, double mx) {</p>
-<pre><code>return mx &gt;= b[id].x &amp;&amp; mx &lt;= b[id].x + b[id].w;</code></pre><p> }</p>
-<blockquote>
-<blockquote>
-<p>判断id号建筑是否包办mx这个点</p>
-</blockquote>
-</blockquote>
-<p> bool visable(int id, double mx) {</p>
-<pre><code>if (!cover(id, mx)) return false;
-for (int i = 0; i &lt; n; i++) {
-    if (b[i].y &lt; b[id].y&amp;&amp;b[i].h &gt;= b[id].h&amp;&amp;cover(i, mx)) return false;
-}
-return true;</code></pre><p> }</p>
-<blockquote>
-<blockquote>
-<p>判断id号建筑是否在mx点处可见</p>
-</blockquote>
-</blockquote>
-<p> int main() {</p>
-<pre><code>int kase = 0;
-int first = 1;
-while (cin &gt;&gt; n &amp;&amp; n) {
-
-if (first) first = 0;
-else cout &lt;&lt; endl;
-
-int x[2*105]{};
-for (int i = 0; i &lt; n; i++) {
-    cin &gt;&gt; b[i].x &gt;&gt; b[i].y &gt;&gt; b[i].w &gt;&gt; b[i].d &gt;&gt; b[i].h;
-    b[i].id = i + 1;</code></pre><blockquote>
-<blockquote>
-<p>对坐标进行离散化，把连续的坐标变成离散的区间</p>
-</blockquote>
-</blockquote>
-<pre><code>    x[2 * i] = b[i].x;
-    x[2 * i + 1] = b[i].x + b[i].w;
-}</code></pre></li>
+<h2 id="Biba模型"><a href="#Biba模型" class="headerlink" title="Biba模型"></a>Biba模型</h2><ol>
+<li>Biba模型的完整性级别表明对象和用户的可信度或准确度。</li>
+<li>Biba 不允许从下一级阅读，也不允许写到上层。</li>
 </ol>
-<pre><code>sort(b, b + n);
-sort(x, x + 2 * n);
-
-
-int m = unique(x, x + 2 * n) - x;</code></pre><blockquote>
-<blockquote>
-<p>对x去重，unique返回值为一个地址，所以要减去x转成索引位置</p>
-</blockquote>
-</blockquote>
-<pre><code>    cout &lt;&lt; &quot;For map # &quot; &lt;&lt;++kase &lt;&lt; &quot;, the visible buildings are numbered as follows:&quot; &lt;&lt; endl;
-    cout &lt;&lt; b[0].id ;
-        for (int i = 1; i &lt; n; i++) {//循环所有的建筑
-            bool vis = false;
-            for (int j = 0; j &lt; m - 1; j++) {//循环所有区间
-                if (visable(i, (x[j] + x[j + 1]) / 2)) {
-                //如果id号建筑在该区间中点可见，则在整个区间可见
-                    vis = true;
-                    break;
-                }
-
-            }
-            if (vis) cout &lt;&lt;&quot; &quot;&lt;&lt; b[i].id;
-
-        }
-        cout &lt;&lt; &quot;\n&quot;;
-}
-}</code></pre>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E5%B8%A6%E5%AE%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ceb">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/20/%E5%B8%A6%E5%AE%BD/" class="post-title-link" itemprop="url">带宽</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-01-20 11:48:55 / Modified: 14:47:02" itemprop="dateCreated datePublished" datetime="2020-01-20T11:48:55+08:00">2020-01-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="uva-140-带宽"><a href="#uva-140-带宽" class="headerlink" title="uva 140 带宽"></a>uva 140 带宽</h1><p>题意： 给一个最多8个结点的无向图，把结点重排后对于图中每条边(u,v)，u和v在排列中的最大距离称为该排列的带宽。求带宽最小的排列.</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li><p>本题是带优化的穷举法—-回溯法的应用</p>
-</li>
-<li><p>所谓回溯法，就是在遍历的过程中构建树和删除树(剪枝)，如果可以确定该子树中不含有问题的解，则放弃对该子树的搜索，返回到上层的父节点，继续下一步深度优先搜索。</p>
-</li>
-<li><p>类比到本题中，有两种情况可以剪枝：</p>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>如果让I(u)表示用户u的完整性级别，I(x)表示对象x的完整性级别， 则Biba模型中有以下规则：</p>
 <ol>
-<li>对于节点u来说，假设u有m个相邻的节点，那么最理想的情况就是这m个节点紧跟在u后面，这样的节点带宽为m，而其他任何非理想情况的带宽至少为m+1</li>
-<li>如果当前节点的带宽已经大于最小带宽，那么说明这个位置不能放这个位置不能放i，即放回到上层，再又上层执行vis[i] = 0来回溯</li>
+<li>原则：信息只能从较高的完整性级别下降 到较低的完整性级别</li>
+<li>用户u只能在I(u) ≼ I(x)情况下读取对象x：</li>
+<li>用户u只能在I(x) ≼ I(u)情况下才能写入(创建、编辑或追加)一个对象x</li>
+</ol>
+<h2 id="低水印模型"><a href="#低水印模型" class="headerlink" title="低水印模型"></a>低水印模型</h2><p>扩展的Biba模型，放宽了不可想下读的限制。</p>
+<ol>
+<li>原则 具有较高完整性级别的用户可以读取完整性级别较低 的对象。</li>
+<li>在这样的读取之后，对执行读取的用户进行降级，使其完整性级别 与所读取对象的完整性级别相匹配。</li>
+</ol>
+<h2 id="克拉克-威尔逊模型"><a href="#克拉克-威尔逊模型" class="headerlink" title="克拉克-威尔逊模型"></a>克拉克-威尔逊模型</h2><p>用于处理执行事务的系统。关键组件包括</p>
+<ol>
+<li>完整性约束：表明为了保证系统的状态有效，各对象之间必须满足的关系。</li>
+<li>认证方法：验证事务给定的完整性约束。一旦认证了事务的程序，每 次执行事务时，则不必再次进行完整性约束验证。</li>
+<li>职责分离原则：防止执行事务的用户验证事务。通常，每个事务都被 分配给可以分别验证和执行事务的不相交的用户集。</li>
+</ol>
+<h2 id="中国墙模型"><a href="#中国墙模型" class="headerlink" title="中国墙模型"></a>中国墙模型</h2><p>被设计用于商业领域， 以消除利益冲突的可能性。</p>
+<ol>
+<li>讲资源分组为利益冲突类</li>
+<li>每个用户只能从每个利益冲突类访问一个资源。</li>
+</ol>
+<h2 id="基于角色的访问控制-RBAC"><a href="#基于角色的访问控制-RBAC" class="headerlink" title="基于角色的访问控制 RBAC"></a>基于角色的访问控制 RBAC</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
+<li>便于组织授权管理</li>
+<li>支持继承</li>
+<li>便于实现最小特权原则</li>
+<li>可实现指责隔离原则</li>
+<li>支持客体抽象</li>
+<li>策略中立，通过不同配置能够实现特殊策略</li>
+</ol>
+<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ol>
+<li>用户：需要访问组织的资源以执行任务的实体</li>
+<li>角色：组织中具有类似功能和职责的用户的集合</li>
+<li>权限：权限描述了允许访问资源的方法。</li>
+<li>会话：由为执行特定任务而激活用户角色的子集组成。</li>
+</ol>
+<h3 id="分级RBAC"><a href="#分级RBAC" class="headerlink" title="分级RBAC"></a>分级RBAC</h3><ol>
+<li>定义：色R1继承（inherits）R2，如果R1包含R2的所有权限，R2包括 R1的所有用户，可以表示为R1 ≽ R2。称R1为R2的上一层。</li>
+</ol>
+<h1 id="渗透测试"><a href="#渗透测试" class="headerlink" title="渗透测试"></a>渗透测试</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li><p>渗透测试：从攻击者(黑客)的角度测试系统和体系结构的安全性，在 固定时间内必须获得的具有预定目标的“模拟攻击”</p>
+<ol>
+<li>组我欸其他安全措施的补充</li>
+<li>花销大</li>
 </ol>
 </li>
-<li><p>由于A即使在没有成功运行到底的情况下，也会被改变，所以要将每次的结果更新到另一个数组里，采用memcpy函数</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p> #include&lt;bits/stdc++.h&gt;</p>
-<h1 id="pragma-warning-disable-4996"><a href="#pragma-warning-disable-4996" class="headerlink" title="pragma warning(disable:4996)"></a>pragma warning(disable:4996)</h1><h1 id="define-LOCAL"><a href="#define-LOCAL" class="headerlink" title="define LOCAL"></a>define LOCAL</h1><h1 id="ifdef-LOCAL"><a href="#ifdef-LOCAL" class="headerlink" title="ifdef LOCAL"></a>ifdef LOCAL</h1><p> FILE *fin = freopen(“带宽in.txt”, “r”, stdin);<br> FILE *fout = freopen(“带宽out.txt”, “w”, stdout);</p>
-<h1 id="endif"><a href="#endif" class="headerlink" title="endif"></a>endif</h1><p> using namespace std;<br> map&lt;int, set<int>&gt; xl;<br> int n;<br> int A[10],ans[10];<br> int vis[26];<br> int minb = 100000000;<br> void dfs(int cur, int B) {</p>
-<pre><code>if (cur == n)
-{
-    //能到这，说明已经是最优解了，所以要更新ans和最小带宽
-    memcpy(ans, A, sizeof(int)*n);
-    minb = B;
-}
-else for (auto it = xl.begin(); it != xl.end();it++) {
-    //由于给的点不一定是前n个，所以要用迭代器来遍历可以用的点
-    int i = it-&gt;first;
-    if (!vis[i]) {//vis[i]用来保证是个排列
-        int m = 0;
-        for (int j = 0; j &lt; cur; j++)
-            if (!vis[A[j]] &amp;&amp; xl[i].count(A[j])) 
-                m++;
-        if (m &gt;= minb) return;//等于号很重要，用来保证是第一个最优解
-
-        int ok = 1;
-        A[cur] = i;
-        for (int j = 0; j &lt; cur; j++) {
-
-            if (xl[i].count(A[j])) {
-                int w = cur - j;
-                if (w &gt; B) B = w;
-                if (B &gt;= minb) return;</code></pre></li>
+<li><p>流程：</p>
+<ol>
+<li>收集信息<ol>
+<li>IP地址信息</li>
+<li>个人信息</li>
 </ol>
-<pre><code>                }
+</li>
+<li>扫描IP：给定一组IP地址，确定每个服务和操作系统都在运行</li>
+<li>识别系统：通过扫描开放电脑的网络连接端，确定哪些服务运行在哪些连接端，并且推断计算机运行哪个操作系统</li>
+<li>识别易受攻击的服务：给定特定的IP地址和端口，尝试获得对机器 的访问权限。报告此目标的所有已知漏洞</li>
+<li>利用漏洞</li>
+</ol>
+</li>
+</ol>
+<h1 id="Kerberos"><a href="#Kerberos" class="headerlink" title="Kerberos"></a>Kerberos</h1><ol>
+<li>Kerberos：基于可信第三方（Trusted Third Party， TTP）的身份认证协议；</li>
+<li>旨在对整个网络进行集中身份验证，而不是在每个用户计算机上存储敏感的身份验证信息。</li>
+</ol>
+<h2 id="身份验证"><a href="#身份验证" class="headerlink" title="身份验证"></a>身份验证</h2><ol>
+<li><p>在身份验证过程中，客户端收到两个票据</p>
+<ol>
+<li>票据授予票据（TGT）：用户和会话密钥的全局标识符。</li>
+<li>服务票据（service ticket）：对用户进行身份验证，确定用户能否 使用特殊服务。</li>
+<li>票据都有时间戳，用于标明数据的有效期限</li>
+</ol>
+</li>
+<li><p>密钥分发中心 KDC 组成</p>
+<p> 为了实现安全的身份验证</p>
+<ol>
+<li>身份验证服务器(AS):用于执行用户身份验证。维护存储用户和服务密钥的数据库。对用户提供的密码执行单向散列来生成用户的密钥。</li>
+<li>票据授予服务器(TGS):用于向用户授予票据</li>
+</ol>
+</li>
+</ol>
+<h3 id="身份认证过程"><a href="#身份认证过程" class="headerlink" title="身份认证过程"></a>身份认证过程</h3><p>概括的说</p>
+<ol>
+<li>客户端与AS互相进行身份验证</li>
+<li>客户端与TGS互相进行身份验证</li>
+<li>客户端与服务S互相进行身份验证，为客户端提供服务</li>
+</ol>
+<p>具体</p>
+<ol>
+<li><p>用户输入的密码经过哈希散列形成客户端密钥Kc</p>
+</li>
+<li><p>客户端与AS联系，AS执行</p>
+<ol>
+<li><p>使用客户端密钥Kc加密客户端-TGS的会话密钥K<sub>CT</sub></p>
+</li>
+<li><p>使用TGS的密钥K<sub>T</sub>加密票据授予票据TGT。TGT中包含K<sub>CT</sub>和有效期。</p>
+</li>
+<li><p>客户端使用Kc解密TGS会话密钥K<sub>CT</sub>。之后，客户端向TGS发送如下两个消息：</p>
+<ol>
+<li>TGT 和 所请求服务名称S</li>
+<li>验证令牌 有用户ID和时间戳组成，使用客户端TGS会话密钥K<sub>CT</sub>进行加密</li>
+</ol>
+</li>
+<li><p>.TGS使KT解密TGS，从而得到客户端TGS的会话密钥K<sub>CT</sub>和TGT的 有效期。在有效期之内，TGS使用密钥K<sub>CT</sub>解密身份验证令牌，向客 户端发送如下两个消息：</p>
+<ol>
+<li>使用K<sub>CT</sub>加密的新的客户端-服务器会话密K<sub>CS</sub>。 </li>
+<li>使用具体服务的密钥KS加密客户端-服务器票据（client-server ticket），其中 TGS已知密钥KS 。票据包含客户端ID、网络地址、有效期、密钥K<sub>CS</sub>。</li>
+</ol>
+</li>
+<li><p>在对客户端-服务器会话密钥K<sub>CS</sub>解密后，为了使服务对客户端进行身份验证，客户端发送以下两个消息： </p>
+<ol>
+<li>在上个步骤中，TGS发送的客户端-服务器的票据。 </li>
+<li>使用K<sub>CS</sub>加密的客户端ID和时间戳。</li>
+</ol>
+</li>
+<li><p>服务使用自己的密钥KS解密客户端-服务器的票据，得到客户端-服 务器的会话密钥K<sub>CS</sub> 。使用K<sub>CS</sub>解密客户端ID和时间戳。最后，为了向客户端证码自己的身份，它使用时间戳加1，并用K<sub>CS</sub>重新加密送回客户端。 </p>
+</li>
+<li><p>客户端使用KCS解密并验证这个响应，如果验证成功，就可以开始 客户端-服务器的会话了。</p>
+</li>
+<li><p>票据有效期内，客户端为了访问多个服务，可以一直重复3-7步。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ol>
+<li>分布式体系结构，可以在不安全的网络中使用。</li>
+<li>由于每次传输都使用适当的密钥进行加密，攻击者在不能破解密 钥或底层的加密算法的情况下，无法伪造有效的票据来获得对未 授权服务的访问。</li>
+<li>可防止重放攻击，因为不接受未授权方重传的消息。</li>
+<li>使用对称加密，所以比较高效</li>
+</ol>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ol>
+<li>存在单点故障问题：密钥分发中心不可用</li>
+<li>如果KDC被破坏，在每个客户端和服务器的身法验证信息都被泄漏</li>
+<li>需要所有参与方都有同步的时钟</li>
+</ol>
+<h1 id="安全存储"><a href="#安全存储" class="headerlink" title="安全存储"></a>安全存储</h1><h2 id="安全保护措施"><a href="#安全保护措施" class="headerlink" title="安全保护措施"></a>安全保护措施</h2><ol>
+<li>保存好U盘手机</li>
+<li>防范窃取数据的恶意软件</li>
+<li>合理处置废旧设备</li>
+<li>备份</li>
+<li>云存储</li>
+</ol>
+<h2 id="文件密码保护"><a href="#文件密码保护" class="headerlink" title="文件密码保护"></a>文件密码保护</h2><p>保护信息的一种方法就是对文件进行加密，在密码算法没有在理论破解或密钥泄露的情况下，即使文件被盗，也不用担心信息会泄露。</p>
+<ol>
+<li><p>常见密码算法</p>
+ <img src="/计算机安全导论_img/25.png">
 
-            }
 
-            if (ok) {
-                vis[i] = 1;
-                dfs(cur + 1, B);
-                vis[i] = 0;//回溯：要么是到头了，回溯来找其他解；要么是中间返回，回溯以求正确解
-            }
-        }
-    }
-}
-int main() {
-    string line;
-    while (getline(cin, line) &amp;&amp; line != &quot;# &quot;) {
-        xl.clear();
-        memset(A, -1, sizeof(A));
-        bool flag = true;
-        char u;
-        for (int i = 0; i &lt; line.length(); i++) {
-            if (isalpha(line[i])) {
-                if (flag) {
-                    u = line[i] - &apos;A&apos;;
-                    flag = false;
-                    xl[line[i] - &apos;A&apos;];
-                }
-                else {
-                    xl[u].insert(line[i] - &apos;A&apos;);
-                    xl[line[i] - &apos;A&apos;].insert(u);
-                }
-            }
-            else if (line[i] == &apos;;&apos;) flag = true;
-        }
-        n = xl.size();
-        memset(vis, 0, sizeof(vis));
-        memset(ans, 0, sizeof(ans));
-        minb = 100000000;
-        dfs(0, 0);
-        for (int i = 0; i &lt; n; i++) cout &lt;&lt; char(&apos;A&apos; + ans[i]) &lt;&lt; &quot; &quot;;
-        cout &lt;&lt; &quot;-&gt; &quot;&lt;&lt;minb &lt;&lt; endl;
+</li>
+</ol>
+<h3 id="加密文件系统-EFS"><a href="#加密文件系统-EFS" class="headerlink" title="加密文件系统 EFS"></a>加密文件系统 EFS</h3><ol>
+<li><p>特点</p>
+<ol>
+<li>自动加密解密</li>
+<li>保护文件内容，而不保护文件名和其他元数据</li>
+<li>支持共享加密文件</li>
+</ol>
+</li>
+<li><p>缺点</p>
+<ol>
+<li>只保护本地文件系统，所以传送到其他文件系统会被破解</li>
+<li>临时文件不受保护</li>
+<li>密钥管理很麻烦</li>
+</ol>
+</li>
+<li><p>加密技术：同时使用对称和非对称加密</p>
+ <img src="/计算机安全导论_img/26.png">
+
+<ol>
+<li>加密时首先使用AES(对称)单独的加密密钥FEK加密每个文件</li>
+<li>然后使用FEK加密数据</li>
+<li>再用用户的RSA(非对称)的公钥加密FEK，并保存文件的元数据。</li>
+<li>解密时首先用用户的私钥解密FEK</li>
+<li>然后再用FEK解密数据</li>
+<li>注：每个用户对应一个经过公钥加密的FEK</li>
+</ol>
+</li>
+</ol>
+<h2 id="磁盘加密"><a href="#磁盘加密" class="headerlink" title="磁盘加密"></a>磁盘加密</h2><h3 id="TrueCrypt"><a href="#TrueCrypt" class="headerlink" title="TrueCrypt"></a>TrueCrypt</h3><ol>
+<li>以分区为基础</li>
+<li>所有加密数据都是经过AES等加密算法，难以破解</li>
+<li>加密过程自动透明</li>
+<li>提供两级方案</li>
+</ol>
+<h3 id="BitLocker"><a href="#BitLocker" class="headerlink" title="BitLocker"></a>BitLocker</h3><ol>
+<li>使用AES对扇区进行加密</li>
+<li>使用NTFS格式的卷</li>
+<li>可以通过冷启动攻击：属于一种边信道攻击方法，可 以物理接触到计算机的攻击者能够运用这种攻击手段 在冷启动或硬盘重启之后，比如计算机没经历正常的 关机过程就突然重启时，从计算机的内存(RAM)中获 取加密密钥、口令和其他数据。断电后内存中的数据 能维持几十秒或数分钟，但通过液氮或压缩空气冷冻 ，这一数据衰减过程可被攻击者拉长至数小时之久。</li>
+</ol>
+<h2 id="可信平台模块-TPM"><a href="#可信平台模块-TPM" class="headerlink" title="可信平台模块 TPM"></a>可信平台模块 TPM</h2><p>是设计安装在主板上的芯片 ，作为安全密码处理器，它能安全地生成和存储密 钥。在生产时，将一个唯一地RSA私钥铸入到每一 个TPM芯片中。TPM的设计是防篡改的，所以，能 进行物理访问的攻击者也很难恢复这个密钥。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC10%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ceb">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/20/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC10%E7%AB%A0/" class="post-title-link" itemprop="url">计安导第10章</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-20 15:40:37 / Modified: 21:25:46" itemprop="dateCreated datePublished" datetime="2020-01-20T15:40:37+08:00">2020-01-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="数据库安全"><a href="#数据库安全" class="headerlink" title="数据库安全"></a>数据库安全</h1><h2 id="两阶段协议–实现完整性和可用性"><a href="#两阶段协议–实现完整性和可用性" class="headerlink" title="两阶段协议–实现完整性和可用性"></a>两阶段协议–实现完整性和可用性</h2><ol>
+<li>第一阶段是请求阶段：<ol>
+<li>该阶段，确定所要修改的部分，并标记。</li>
+<li>结果是成功或终止。在成功时，每个修改请求都是可 用的，标记被修改；在中止时，由于别人早已对其进行了标记，或者 由于网络或系统出现了故障，所以不能标记所有需要修改的部分。</li>
+<li>如果第一阶段被中止，则重置所有修改的请求，这样做是完全可行 的，因为并未进行任何永久性的修改。如果第一阶段成功完成，则协议继续第二个阶段。</li>
+</ol>
+</li>
+<li>第二阶段是提交阶段<ol>
+<li>在这个阶段，对于其他 修改而言，数据库是锁定的，只执行在请求阶段确定的修改序列。</li>
+<li>如果更新成功完成，则清除所有确定请求修改的标志，并释放对数据库的锁定。</li>
+<li>如果更新操作失败，则回滚，使数据库回到完成第一 阶段后的状态。</li>
+</ol>
+</li>
+</ol>
+<h2 id="数据库访问控制"><a href="#数据库访问控制" class="headerlink" title="数据库访问控制"></a>数据库访问控制</h2><ol>
+<li><p><strong>最小特权原则</strong>：实现适当的访问控制应遵 循最小特权原则，使每个用户都拥有完成自己任务所必需的权限，但 除此之外，不再拥有其他的权限</p>
+</li>
+<li><p><strong>特权分离原则</strong>：实现适当的访问控 制还应遵循特权分离原则，以便不同的用户具有不同的权限，这取决 于他们需要执行的不同任务</p>
+</li>
+<li><p>数据库允许SQL实现权限委托</p>
+</li>
+<li><p>权限委托：除了能向其他用户授予具体的权限外，表的所有者还允许其他用户来授予 这些表的权限，这称为策略授权委托</p>
+</li>
+<li><p>权限撤销：级联撤销</p>
+</li>
+</ol>
+<h2 id="敏感信息"><a href="#敏感信息" class="headerlink" title="敏感信息"></a>敏感信息</h2><p>1.要保护用户因素，满足机密性要求<br>2. 方法：使用加密，存储密文。授权用户直到解密密钥，但不能将解密密钥存储在数据库中。<br>3. 隐私保护：如果数据库是公开的，比如说是出于研究的目的，则应删除姓名、地址、 社会安全码、员工人数和学生人数等身份信息，或改用掩码值 ，从而不提供任何身份信息。</p>
+<h2 id="推理攻击"><a href="#推理攻击" class="headerlink" title="推理攻击"></a>推理攻击</h2><ol>
+<li><p>推理攻击：即使删除或屏蔽掉身份信息，攻击者仍能将其他的信息与数据库结合，得到底层的数据。</p>
+</li>
+<li><p>推理攻击的防御：</p>
+<ol>
+<li><p>单元抑制：在使用这种技术时，会删除数据库 中的一些单元，在公开版本中只留下空白。</p>
+</li>
+<li><p>推广：在使用这种技术时，公开数据库中的一些 值被更常用的值所替代。</p>
+</li>
+<li><p>加噪：在使用这种技术时，在公开数据库中添加 了随机值，使具有相同属性的所有记录的平均噪声为零。</p>
+<img src="/计算机安全导论_img/27.png">
+
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="垃圾邮件和网络犯罪"><a href="#垃圾邮件和网络犯罪" class="headerlink" title="垃圾邮件和网络犯罪"></a>垃圾邮件和网络犯罪</h1><h2 id="SMTP"><a href="#SMTP" class="headerlink" title="SMTP"></a>SMTP</h2><ol>
+<li>使用25端口建立TCP连接</li>
+<li>客户端向服务器发送命令，服务器确认或通知错误</li>
+<li><strong>问题</strong> <ol>
+<li>发件人未经过身份验证 </li>
+<li>消息和消息头使用明文传输 </li>
+<li>消息和消息头完整性没有得到保护</li>
+</ol>
+</li>
+</ol>
+<h2 id="垃圾邮件"><a href="#垃圾邮件" class="headerlink" title="垃圾邮件"></a>垃圾邮件</h2><ol>
+<li>垃圾邮件：不清自来的批量电子邮件</li>
+</ol>
+<h2 id="黑名单"><a href="#黑名单" class="headerlink" title="黑名单"></a>黑名单</h2><img src="/计算机安全导论_img/28.png">
+
+<h2 id="灰名单"><a href="#灰名单" class="headerlink" title="灰名单"></a>灰名单</h2><ol>
+<li>灰名单：是一种垃圾邮件过滤技术，接收邮件服务器拒绝来自未知发 件人的邮件。当接收来自未知发件人的邮件时，接收服务器会发送一 个“临时拒绝”消息给发送方，并记录相应的信息。</li>
+<li>维护一个可信发件服务器的数据库</li>
+<li>简单易行高效</li>
+</ol>
+<h2 id="发件人ID和发件人策略框架"><a href="#发件人ID和发件人策略框架" class="headerlink" title="发件人ID和发件人策略框架"></a>发件人ID和发件人策略框架</h2><ol>
+<li>发件人策略框架(SPF)可对发件人的发送邮 件代理进行身份验证，其中不使用加密 技术。接收方MTA会检查发送方MTA的IP是否在发件人域的授权IP 地址列表中。</li>
+</ol>
+<h2 id="发件人的MTA身份验证：DKIM"><a href="#发件人的MTA身份验证：DKIM" class="headerlink" title="发件人的MTA身份验证：DKIM"></a>发件人的MTA身份验证：DKIM</h2><ol>
+<li>域密钥标识邮件DKIM：是一种用于验证发送邮件传输代理的方法</li>
+<li>签名实体(通常是发件人的MTA) 向消息中增加签名， 表明消息的签名实体所在的域</li>
+<li>公钥存储在DNS的文本记录中</li>
+</ol>
+<h2 id="SPF-vs-DKIM"><a href="#SPF-vs-DKIM" class="headerlink" title="SPF vs DKIM"></a>SPF vs DKIM</h2><img src="/计算机安全导论_img/29.png">
+
+<h2 id="网络犯罪"><a href="#网络犯罪" class="headerlink" title="网络犯罪"></a>网络犯罪</h2><ol>
+<li>网络犯罪：是使用计算机、网络或硬件设备犯下的任何罪行。 计算机或 设备可以是犯罪的代理人，犯罪的促进者或犯罪的目标。 犯罪可以 单独在计算机上进行，也可以在其他地方进行</li>
+</ol>
+<h2 id="信用卡"><a href="#信用卡" class="headerlink" title="信用卡"></a>信用卡</h2><ol>
+<li><p>特点</p>
+<ol>
+<li>支持保密</li>
+<li>可与多个商家共享</li>
+<li>经常被不安全的传送</li>
+<li>熵值较低</li>
+</ol>
+</li>
+<li><p>优点：简单易行</p>
+</li>
+<li><p>缺点：易发生欺诈</p>
+</li>
+<li><p>防范：</p>
+<ol>
+<li>一次性信用卡号码</li>
+<li>监控交易</li>
+<li>交易时启动密码输入</li>
+</ol>
+</li>
+</ol>
+<h2 id="常见银行欺诈"><a href="#常见银行欺诈" class="headerlink" title="常见银行欺诈"></a>常见银行欺诈</h2><ol>
+<li>伪造支票</li>
+<li>电子汇款</li>
+<li>创建恶意账户</li>
+<li>多重身份认证</li>
+<li>账户所有权验证</li>
+<li>账户限制</li>
+<li>监控银行交易</li>
+<li>取消网银</li>
+</ol>
+<h1 id="支付系统"><a href="#支付系统" class="headerlink" title="支付系统"></a>支付系统</h1><h2 id="电子支付方案"><a href="#电子支付方案" class="headerlink" title="电子支付方案"></a>电子支付方案</h2><ol>
+<li>是一种多方协议</li>
+<li>目标：<ol>
+<li>完整性：电子货币不能伪造或复制；合法交易能够兑现</li>
+<li>问责制：交易后不可否认</li>
+<li>隐私</li>
+</ol>
+</li>
+</ol>
+<h2 id="私密支付方案"><a href="#私密支付方案" class="headerlink" title="私密支付方案"></a>私密支付方案</h2><h3 id="盲签名"><a href="#盲签名" class="headerlink" title="盲签名"></a>盲签名</h3><ol>
+<li><p>允许签名者在不知道消息本身的情况下对消息进行签名</p>
+</li>
+<li><p>基本过程</p>
+<ol>
+<li>银行对客户提取的货币进行盲签名 </li>
+<li>商家验证签名并存入货币 </li>
+<li>银行无法将货币与客户关联起来</li>
+</ol>
+</li>
+<li><p>RSA 盲签名</p>
+ <img src="/计算机安全导论_img/30.png">
+
+ <img src="/计算机安全导论_img/31.png"></li>
+<li><p>对钱币进行盲签名</p>
+ <img src="/计算机安全导论_img/32.png">
+
+</li>
+</ol>
+<h2 id="防止双重支付"><a href="#防止双重支付" class="headerlink" title="防止双重支付"></a>防止双重支付</h2><ol>
+<li>联机系统：在支付过程中，银行保持在线，实时撤销已使用的钱币</li>
+<li>离线系统：<ol>
+<li>每个提款的钱币都包含客户身份的加密信息</li>
+<li>每个存款的钱币都包含商家身份的加密信息</li>
+<li>双重支付将导致欺骗者的身份被披露出来</li>
+</ol>
+</li>
+</ol>
+<h2 id="秘密分享"><a href="#秘密分享" class="headerlink" title="秘密分享"></a>秘密分享</h2><p>步骤</p>
+<ol>
+<li>一个秘密字符串 x 可以被划分为以下的随机值 y 和 z。选择一个随机数 y ；z = y⊕x</li>
+<li>通过x = y⊕z重构字符串x</li>
+<li>其中y和z都是随机值，成为x的秘密份额，任一秘密份额都不会揭示关于秘密值 x 的任何信息</li>
+</ol>
+<h2 id="钱币–保护匿名性"><a href="#钱币–保护匿名性" class="headerlink" title="钱币–保护匿名性"></a>钱币–保护匿名性</h2><ol>
+<li>给定一个秘密值x和关于x的承诺(a,b)</li>
+<li>a=h(y) b=h(z) y,z是x的秘密份额</li>
+</ol>
+<h2 id="取款"><a href="#取款" class="headerlink" title="取款"></a>取款</h2><ol>
+<li>客户生成并向银行提交 k 个钱币 </li>
+<li>银行随机选择 k-1 枚钱币 </li>
+<li>银行要求客户向其披露所选定的 k-1 个钱币的承诺的秘密份额 </li>
+<li>银行在剩余的硬币上创建一个盲签名 </li>
+<li>银行签名的钱币是有效的概率是 1 - 1/k</li>
+</ol>
+<h2 id="支付"><a href="#支付" class="headerlink" title="支付"></a>支付</h2><ol>
+<li><p>客户向商家提交钱币 {x, [(a1, b2) , … , (an, bn)]} </p>
+</li>
+<li><p>商家验证钱币上的签名 </p>
+</li>
+<li><p>商家发送给客户一个随机的二进制向量 s1, … , sn, 称为选择器。</p>
+</li>
+<li><p>客户向商家揭示由选择器所选定的秘密份额，即客户向商家发送 一组字符串 P1, … , Pn </p>
+<p> h(Pi) = ai if si = 0 </p>
+<p> h(Pi) = bi if si= 1</p>
+</li>
+</ol>
+<h2 id="存款及其安全性分析"><a href="#存款及其安全性分析" class="headerlink" title="存款及其安全性分析"></a>存款及其安全性分析</h2><ol>
+<li><p>存款</p>
+<ol>
+<li>商人将钱币和字符串 P1, … , Pn提交给银行进行存款 </li>
+<li>银行验证签名并且记录钱币和相应字符串的对应关系</li>
+</ol>
+</li>
+<li><p>安全性分析</p>
+<ol>
+<li>两个商家提供的选择器相同的概率是 1/2<sup>n</sup> </li>
+<li>因此，如果客户将1个钱币进行双重支付，那么银行发现该客户 身份的概率为 1/2<sup>n</sup>  </li>
+<li>客户想要在不被银行发现的情况进行双重支付的唯一办法是找到 一个Hash函数的碰撞。</li>
+</ol>
+</li>
+</ol>
+<h1 id="数字版权管理"><a href="#数字版权管理" class="headerlink" title="数字版权管理"></a>数字版权管理</h1><ol>
+<li>数字版权管理：是指能限制用户 使用数字内容的做法，常用于数字媒体，如DVD、下载的音乐和 许可的软件</li>
+</ol>
+<h2 id="复制保护方法"><a href="#复制保护方法" class="headerlink" title="复制保护方法"></a>复制保护方法</h2><ol>
+<li>加密狗</li>
+<li>产品密钥</li>
+<li>手机激活</li>
+</ol>
+<h2 id="用于媒体文件的DRM方案"><a href="#用于媒体文件的DRM方案" class="headerlink" title="用于媒体文件的DRM方案"></a>用于媒体文件的DRM方案</h2><p>步骤</p>
+<ol>
+<li>媒体服务器向播放器发送用文件密钥加密的媒体文件和用播放器密钥加密的文件密钥</li>
+<li>播放器先用播放器密 钥解密文件密钥，然 后使用文件密钥解密 媒体文件</li>
+</ol>
+<h2 id="叛徒识别"><a href="#叛徒识别" class="headerlink" title="叛徒识别"></a>叛徒识别</h2><p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA_img/33.png" alt=""></p>
+<h2 id="逻辑密钥对"><a href="#逻辑密钥对" class="headerlink" title="逻辑密钥对"></a>逻辑密钥对</h2><p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA_img/34.png" alt=""></p>
+<ol>
+<li>是平衡二叉树，树的每个节点都与一个对称加密密钥相关联 </li>
+<li>将设备与叶子节点关联，每个设备上存储着从叶子到根路径上的所有密钥</li>
+<li>用节点 v 的密钥加密的内容可以被 v 的子树中的所有设备解密</li>
+<li>撤销设备：如果设备需要被撤销，则必须更改此设备已知的密钥，并分发新的密钥。新密钥的分发可以通过广播对数级数量的加密消息来完成</li>
+</ol>
+<h2 id="加密广播"><a href="#加密广播" class="headerlink" title="加密广播"></a>加密广播</h2><ol>
+<li>广播之前，每个内容都用单一的对称密钥进行加密。被授权产看内容项的订阅者应该拥有解密该项的密钥</li>
+<li>每个节点的密钥可以被用来计算子孙节点的密钥</li>
+<li>存在密钥分配问题</li>
+</ol>
+<h2 id="可信设备"><a href="#可信设备" class="headerlink" title="可信设备"></a>可信设备</h2><ol>
+<li>由可信制造商加工，被分配一个保密的播放器密钥</li>
+</ol>
+<h2 id="内容扰乱系统CSS"><a href="#内容扰乱系统CSS" class="headerlink" title="内容扰乱系统CSS"></a>内容扰乱系统CSS</h2><p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA_img/35.png" alt=""></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC2%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ceb">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/20/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC2%E7%AB%A0/" class="post-title-link" itemprop="url">计安导第2章</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-20 15:40:37 / Modified: 16:24:07" itemprop="dateCreated datePublished" datetime="2020-01-20T15:40:37+08:00">2020-01-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="物理保护与攻击"><a href="#物理保护与攻击" class="headerlink" title="物理保护与攻击"></a>物理保护与攻击</h1><h2 id="物理安全"><a href="#物理安全" class="headerlink" title="物理安全"></a>物理安全</h2><ol>
+<li>物理安全：泛指保护贵重物品、信息或访问受限资源 所使用的物理措施，物理安全直接影响完整性、计算 机硬件和数字信息保护。包括<ol>
+<li>位置保护</li>
+<li>物理入侵检测</li>
+<li>硬件攻击</li>
+<li>窃听</li>
+<li>物理接口攻击</li>
+</ol>
+</li>
+</ol>
+<h2 id="钥匙与锁"><a href="#钥匙与锁" class="headerlink" title="钥匙与锁"></a>钥匙与锁</h2><ol>
+<li>包括TSA锁，凸块锁，万能钥匙，弹子锁</li>
+<li>非破坏性开锁：选取，旁路</li>
+<li>40种不同的钥匙坯，7个顶部锁鞘，8个不同高度的底部锁鞘，则可能的钥匙数量是40*8<sup>7</sup></li>
+</ol>
+<h2 id="特权升级"><a href="#特权升级" class="headerlink" title="特权升级"></a>特权升级</h2><p>攻击者将地权限的密钥提升为高权限的密钥</p>
+<h2 id="指纹锁相关问题"><a href="#指纹锁相关问题" class="headerlink" title="指纹锁相关问题"></a>指纹锁相关问题</h2><ol>
+<li>识别率不够高</li>
+<li>电池寿命问题</li>
+<li>指纹锁的稳定性不高</li>
+</ol>
+<h2 id="测信道攻击"><a href="#测信道攻击" class="headerlink" title="测信道攻击"></a>测信道攻击</h2><p>攻击者不是试图直接绕过 安全措施，而是通过利用 其他不受安全机制保护的 漏洞绕过安全措施</p>
+<h1 id="身份认证技术"><a href="#身份认证技术" class="headerlink" title="身份认证技术"></a>身份认证技术</h1><ol>
+<li>包括条形码，二维码，磁条卡，智能卡，SIM卡,RFID</li>
+</ol>
+<h2 id="磁条卡安全"><a href="#磁条卡安全" class="headerlink" title="磁条卡安全"></a>磁条卡安全</h2><ol>
+<li>问题：易于读取和复制。词条阅读器成本相对较低</li>
+<li>解决：要求输入PIN</li>
+</ol>
+<h2 id="智能卡安全"><a href="#智能卡安全" class="headerlink" title="智能卡安全"></a>智能卡安全</h2><ol>
+<li>可以提供保护所有者信息的安全认证机制，并且极难复制</li>
+<li>使用加密技术加强认证的手段</li>
+</ol>
+<h2 id="SIM卡安全"><a href="#SIM卡安全" class="headerlink" title="SIM卡安全"></a>SIM卡安全</h2><ol>
+<li>SIM卡：用于识别所有者并对相应的蜂窝网络进行身份验证</li>
+<li>18位，用于硬件识别</li>
+<li>128位密钥</li>
+</ol>
+<h2 id="GSM挑战-相应协议"><a href="#GSM挑战-相应协议" class="headerlink" title="GSM挑战-相应协议"></a>GSM挑战-相应协议</h2><p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA_img/36.png" alt=""></p>
+<ol>
+<li>当手机希望加入蜂窝网络时，它连接并发送其IMSI到网络提供商拥有的 本地基站。 </li>
+<li>如果IMSI匹配网络提供商的数据库中的用户记录正确，则基站将128位 随机数发送到蜂窝电话。 </li>
+<li>然后，该随机数由蜂窝电话编码存储在SIM卡中，用户的密钥使用A3的 专有加密算法，从而产生发送回基站的密文</li>
+<li>然后，基站使用其存储的用于用户密钥的值来执行相同的计算。 如果两 个密文匹配，则手机被认证到网络并被允许拨打和接听电话。</li>
+</ol>
+<h2 id="RFID"><a href="#RFID" class="headerlink" title="RFID"></a>RFID</h2><ol>
+<li>必须与单独的读取器或写入器一起使用</li>
+<li>所有RFID都使用密钥加密</li>
+</ol>
+<h2 id="生物识别技术"><a href="#生物识别技术" class="headerlink" title="生物识别技术"></a>生物识别技术</h2><ol>
+<li><p>生物特征：指用于基于生物或生理特 征唯一识别信息进行的任何身份度 量。</p>
+</li>
+<li><p>生物识别的要求</p>
+<ol>
+<li>普遍性</li>
+<li>独特性</li>
+<li>持久性</li>
+<li>可回收性：该特征应具有有效确定和量化的能力</li>
+</ol>
+</li>
+<li><p>如指纹，虹膜，步态</p>
+</li>
+</ol>
+<h1 id="针对计算设备的攻击"><a href="#针对计算设备的攻击" class="headerlink" title="针对计算设备的攻击"></a>针对计算设备的攻击</h1><h2 id="环境攻击"><a href="#环境攻击" class="headerlink" title="环境攻击"></a>环境攻击</h2><ol>
+<li>电力，温度，有限的传导</li>
+</ol>
+<h2 id="窃听"><a href="#窃听" class="headerlink" title="窃听"></a>窃听</h2><p>搭线窃听同轴电缆的电脉冲</p>
+<h2 id="信号发射"><a href="#信号发射" class="headerlink" title="信号发射"></a>信号发射</h2><p>通过计算机屏幕发出的射频信号来检测正在显示的内容</p>
+<h2 id="键盘记录"><a href="#键盘记录" class="headerlink" title="键盘记录"></a>键盘记录</h2><h2 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h2><ol>
+<li>三级：1米；20米，100米</li>
+<li>放射阻隔(阻隔光,音)</li>
+<li>法拉第笼：阻挡电磁辐射</li>
+</ol>
+<h1 id="计算机取证"><a href="#计算机取证" class="headerlink" title="计算机取证"></a>计算机取证</h1><p>计算机取证是一种获取包含在电子媒介上的信息的方 法，如计算机系统、硬盘和光盘，通常用于收集用于 法律诉讼的证据</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ol>
+<li>鉴定</li>
+<li>收集：注意不要修改数据</li>
+<li>分析和评估</li>
+<li>报告</li>
+</ol>
+<h2 id="取证约束"><a href="#取证约束" class="headerlink" title="取证约束"></a>取证约束</h2><ol>
+<li>监管链</li>
+<li>优先级RAM &gt; swap &gt; disk &gt; CDs/DVDs。第一时间捕获更易失的</li>
+<li>犯罪现场的计算机应该被视为完全敌对的</li>
+</ol>
+<h2 id="隐藏数据的方法"><a href="#隐藏数据的方法" class="headerlink" title="隐藏数据的方法"></a>隐藏数据的方法</h2><ol>
+<li>密码学</li>
+<li>隐写术</li>
+<li>更改文件名或者扩展名</li>
+<li>隐藏分区</li>
+<li>删除文件</li>
+</ol>
+<h2 id="反取证技术"><a href="#反取证技术" class="headerlink" title="反取证技术"></a>反取证技术</h2><ol>
+<li>反取证技术试图阻止调查员及其取证技术</li>
+<li>安全删除数据，以便无法使用取证方法进行恢复 </li>
+<li>首先防止创建某些数据</li>
+<li>从未出现的数据显然无法通过取证方法恢复。</li>
+</ol>
+<h2 id="磁盘擦出"><a href="#磁盘擦出" class="headerlink" title="磁盘擦出"></a>磁盘擦出</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ceb">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA/" class="post-title-link" itemprop="url">计算机安全导论</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-20 15:31:49 / Modified: 17:40:07" itemprop="dateCreated datePublished" datetime="2020-01-20T15:31:49+08:00">2020-01-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="/2020/01/20/计安导第2章/">计安导第2章</a></p>
+<p><a href="/2020/01/20/计安导第3章/">计安导第3章</a></p>
+<p><a href="/2020/01/20/计安导第4章/">计安导第4章</a></p>
+<p><a href="/2020/01/20/计安导第5章/">计安导第5章</a></p>
+<p><a href="/2020/01/20/计安导第6章/">计安导第6章</a></p>
+<p><a href="/2020/01/20/计安导第7章/">计安导第7章</a></p>
+<p><a href="/2020/01/20/计安导第8章/">计安导第8章</a></p>
+<p><a href="/2020/01/20/计安导第9章/">计安导第9章</a></p>
+<p><a href="/2020/01/20/计安导第10章/">计安导第10章</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC9%E8%AE%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ceb">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC9%E8%AE%B2/" class="post-title-link" itemprop="url">视觉第9讲</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-20 15:22:50 / Modified: 21:21:58" itemprop="dateCreated datePublished" datetime="2020-01-20T15:22:50+08:00">2020-01-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="随机抽样一致"><a href="#随机抽样一致" class="headerlink" title="随机抽样一致"></a>随机抽样一致</h1><p>针对最小二乘法出现的离群点问题</p>
+<ol>
+<li><p>思路</p>
+<ol>
+<li>先求得一条候选直线</li>
+<li>计算与该直线的内群点</li>
+<li>对于所有候选直线，选择内群点最多的那一条。</li>
+</ol>
+</li>
+<li><p>RANSAC算法</p>
+<ol>
+<li><p>思想：所有的内点将在平移向量上达成一致；少部分离群点彼此矛盾。</p>
+</li>
+<li><p>RANSAC只能在离群点少于50%时才能保证正确解。</p>
+</li>
+<li><p>衡量内点：通过阈值过滤</p>
+<p> 阈值与噪声量有关，通常噪声建模为高斯噪声，标准差为3个像素。</p>
+<p> 通过设置阈值，使高斯分布中95%的比例位于半径内。</p>
+</li>
+<li><p>算法完整过程</p>
+<ol>
+<li><p>随机选择s个样本点</p>
+<p> 通常s=可求解模型的最少样本点数</p>
+</li>
+<li><p>根据样本得到一个解</p>
+</li>
+<li><p>计算内点数</p>
+</li>
+<li><p>重复N次</p>
+</li>
+<li><p>选择具有最多内点的模型。</p>
+</li>
+<li><p>计算所有内点的平均平移向量。</p>
+</li>
+</ol>
+</li>
+<li><p>实验轮数         </p>
+ <img src="/CV_img/9_1.png " style="zoom:80%">
+
+<p> 其中p为内点概率；s是每次实验使用的样本点数目；P为能最终找到正确解的概率；R为实验轮次</p>
+</li>
+<li><p>s的取值<br> 为自由度/2下取整</p>
+ <img src="/CV_img/9_2.png " style="zoom:80%"></li>
+<li><p>优点</p>
+<ol>
+<li>简单，通用</li>
+<li>适用于许多不同的问题</li>
+<li>实践中表现良好，通常比蛮力取样要好</li>
+</ol>
+</li>
+<li><p>缺点：</p>
+<ol>
+<li>需要调整参数</li>
+<li>有时需要大量迭代，耗费时间</li>
+<li>内点概率极低时可能失败</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC5%E8%AE%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ceb">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC5%E8%AE%B2/" class="post-title-link" itemprop="url">视觉第5讲</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-20 15:22:50 / Modified: 21:21:58" itemprop="dateCreated datePublished" datetime="2020-01-20T15:22:50+08:00">2020-01-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="特征不变性"><a href="#特征不变性" class="headerlink" title="特征不变性"></a>特征不变性</h1><ol>
+<li><p>不变性与协变性</p>
+<ol>
+<li><p>不变性：图像变换后，角点位置不变。</p>
+<p> 我们希望角点的位置对光照变换有不</p>
+</li>
+<li><p>协变性：如果有两张同一图像的变换版本，则应在相应的位置检测到同一特征。</p>
+<p> 我们希望角点对几何变换具有协变性。</p>
+</li>
+</ol>
+</li>
+<li><p>Harris检测器</p>
+<ol>
+<li><p>平移：</p>
+<ol>
+<li>导数和窗口函数是平移不变的。</li>
+<li>角点位置是平移协变的。</li>
+</ol>
+</li>
+<li><p>图像旋转</p>
+<ol>
+<li>形状是旋转不变的</li>
+<li>角点位置是旋转协变的。</li>
+</ol>
+</li>
+<li><p>仿射强度变化</p>
+<ol>
+<li><p>对仿射强度变化部分具有不变性。</p>
+ <img src="/CV_img/5_1.png" style="zoom:80%"></li>
+</ol>
+</li>
+<li><p>缩放</p>
+<ol>
+<li>对缩放不具有不变性。</li>
+<li>实现尺度不变性：寻找使f具有局部最大值的尺度。<ol>
+<li>同时在位置和尺度上查找。</li>
+</ol>
+</li>
+<li>自动尺度选择：规格化到固定尺度。<ol>
+<li>是在高斯金字塔中使用固定大小的窗口。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>高斯-拉布普拉斯算子(LoG)</p>
+<p> <a href=""https://blog.csdn.net/touch_dream/article/details/62237018"/a">高斯-拉普拉斯算子</a></p>
+<ol>
+<li><p>LoG是高斯函数的二阶导数</p>
+</li>
+<li><p>为了减少计算量，可以用高斯差分算子(DoG)来近似</p>
+ <img src="/CV_img/5_2.png" style="zoom:80%">
+
+<p> 该函数逼近是因为发现高斯二阶导和原高斯函数对sigma参数求导之后函数模型的关系如上述的公式，然后约等于右边的导数表达式（严格的话需要加上极限的）！模型逼近如下：好处是可以提高算法的效率减少计算量</p>
+</li>
+<li><p>LoG和DoG都是旋转不变的。</p>
+</li>
+</ol>
+</li>
+<li><p>Blob斑点检测器</p>
+<ol>
+<li><p>在空间和尺度上查找LoG算子的极大值和极小值。</p>
+<ol>
+<li><p>将一个点与周围26个点比较，以求得极大值。</p>
+ <img src="/CV_img/5_3.png" style="zoom:80%"></li>
+</ol>
+</li>
+<li><p>特征尺度：产生拉普拉斯响应峰值的尺度。</p>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC6%E8%AE%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ceb">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC6%E8%AE%B2/" class="post-title-link" itemprop="url">视觉第6讲</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-20 15:22:50 / Modified: 18:07:11" itemprop="dateCreated datePublished" datetime="2020-01-20T15:22:50+08:00">2020-01-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="特征描述符"><a href="#特征描述符" class="headerlink" title="特征描述符"></a>特征描述符</h1><ol>
+<li>性质：<ol>
+<li>不变性：图像被变换，描述符应该不变</li>
+<li>区分力：每个点的描述符是高度唯一的<h2 id="实现不变性"><a href="#实现不变性" class="headerlink" title="实现不变性"></a>实现不变性</h2></li>
+</ol>
+</li>
+<li>确保检测器是不变的</li>
+<li>设计不变的特征描述符</li>
+</ol>
+<h2 id="旋转不变性"><a href="#旋转不变性" class="headerlink" title="旋转不变性"></a>旋转不变性</h2><p>通过寻找图像块的主导方向实现，主导方向为<br>    1. H的特征向量Xmax对应的λmax<br>    2. 梯度方向</p>
+<h2 id="MOPS"><a href="#MOPS" class="headerlink" title="MOPS"></a>MOPS</h2><ol>
+<li><strong>步骤</strong>：<ol>
+<li>选出特征点周围40×40的窗口</li>
+<li>缩放到1/5大小</li>
+<li>旋转至水平</li>
+<li>在以特征为中心的8×8窗口内采样</li>
+<li>规格化：强度减去平均值除以标准差，使之均值为0，方差为1。</li>
+</ol>
+</li>
+</ol>
+<h2 id="SIFT"><a href="#SIFT" class="headerlink" title="SIFT"></a>SIFT</h2><ol>
+<li><p><strong>步骤</strong></p>
+<ol>
+<li>取特征周围16×16的窗口，划分为4×4单元格</li>
+<li>为每个像素计算边缘方向(梯度方向-90°)</li>
+<li>通过梯度幅值阈值去除弱的边缘</li>
+<li>为剩余边缘<strong>方向</strong>建立直方图，得到16个单元格×8方向=128维描述符</li>
+<li>将该128维描述符归一化到单位长度</li>
+</ol>
+</li>
+<li><p>性质：</p>
+<ol>
+<li>可以处理视角变化</li>
+<li>适应光照变化</li>
+<li>快速高效</li>
+</ol>
+</li>
+</ol>
+<h1 id="特征匹配"><a href="#特征匹配" class="headerlink" title="特征匹配"></a>特征匹配</h1><p>想找到最佳匹配</p>
+<ol>
+<li>定义距离函数来比较两个描述符</li>
+<li>测试I2中所有的特征，找出距离最小的一个。</li>
+</ol>
+<h2 id="特征距离"><a href="#特征距离" class="headerlink" title="特征距离"></a>特征距离</h2><ol>
+<li>定义为||f1-f2||<ol>
+<li><strong>问题</strong> 可能对不正确匹配给出小的距离。</li>
+<li><strong>解决</strong> 定义距离比= ||f1-f2||/||f1-f2’||<ol>
+<li>f2是f1在I2中最好的SSD匹配</li>
+<li>f2’是f1在I2中次好的SSD匹配</li>
+<li>距离比可以对不正确的匹配给出较大的值，用阈值过滤即可。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="结果评估"><a href="#结果评估" class="headerlink" title="结果评估"></a>结果评估</h1><ol>
+<li>最大化真阳性，最小化假阳性<h2 id="Roc-曲线"><a href="#Roc-曲线" class="headerlink" title="Roc 曲线"></a>Roc 曲线</h2></li>
+</ol>
+<img src="/CV_img/6-1.png" style="zoom: ">
 
 
-    }
-}</code></pre>
+<img src="/CV_img/6-2.png" style="zoom: ">
+1. AUC:一个正例，一个负例，预测为正的概率值比负的概率值还要大的可能性。
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC8%E8%AE%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ceb">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC8%E8%AE%B2/" class="post-title-link" itemprop="url">视觉第8讲</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-20 15:22:50 / Modified: 21:21:57" itemprop="dateCreated datePublished" datetime="2020-01-20T15:22:50+08:00">2020-01-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="图像配准"><a href="#图像配准" class="headerlink" title="图像配准"></a>图像配准</h1><p>问题：给定图像A和B之间的一组匹配项，如何计算从A到B的变换T？</p>
+<ol>
+<li><p>对于平移</p>
+<ol>
+<li><p>最简单的取n对匹配的移动平均值值</p>
+ <img src="/CV_img/8_1.png" style = "zoom:80%" /></li>
+<li><p>通过线性方程组求解</p>
+<ol>
+<li><p>问题：对于n对匹配点，有2两个未知数和2n个方程–&gt;最小二乘法。</p>
+</li>
+<li><p>最小二乘法</p>
+<ol>
+<li><p>最小二乘法公式</p>
+ <img src="/CV_img/8_2.png" style = "zoom:80%"/></li>
+<li><p>矩阵形式</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<pre><code>&lt;img src=&quot;/CV_img/8_3.png&quot; style = &quot;zoom:80%&quot;/&gt;</code></pre><ol start="2">
+<li><p>对于仿射变化</p>
+<ol>
+<li><p>有6个未知数</p>
+ <img src="/CV_img/8_4.png" style = "zoom:80%"/></li>
+</ol>
+</li>
+<li><p>对于同态映射（单应映射）</p>
+<ol>
+<li><p>有8个未知数，至少需要4个匹配对。</p>
+<img src="/CV_img/8_5.png" style = "zoom:80%"/>
+
+<img src="/CV_img/8_6.png" style = "zoom:80%"/>
+
+<img src="/CV_img/8_7.png" style = "zoom:80%"/></li>
+</ol>
+</li>
+<li><p>图像配准过程</p>
+<ol>
+<li>计算A和B的特征</li>
+<li>匹配A和B之间的特征</li>
+<li>使用匹配集计算A到B单应映射矩阵的最小二乘解。</li>
+</ol>
+</li>
+<li><p>离群点（外点）</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC7%E8%AE%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ceb">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC7%E8%AE%B2/" class="post-title-link" itemprop="url">视觉第7讲</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-20 15:22:50 / Modified: 21:21:52" itemprop="dateCreated datePublished" datetime="2020-01-20T15:22:50+08:00">2020-01-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="图像卷绕"><a href="#图像卷绕" class="headerlink" title="图像卷绕"></a>图像卷绕</h1><p>卷绕&amp;滤波：</p>
+<p>滤波改变图像的值域</p>
+<p>&lt;img src=”/CV_img/7-1.png”style=”zoom: “&gt;</p>
+<p>卷绕改变图像的定义域</p>
+<p>&lt;img src=”/CV_img/7-2.png”style=”zoom: “&gt;</p>
+<h2 id="线性变换"><a href="#线性变换" class="headerlink" title="线性变换"></a>线性变换</h2><ol>
+<li><p>缩放</p>
+<p> &lt;img src=”/CV_img/7-3.png”style=”zoom: “&gt;</p>
+</li>
+<li><p>旋转</p>
+<p> &lt;img src=”/CV_img/7-4.png”style=”zoom: “&gt;</p>
+<ol>
+<li>R<sup>-1</sup>=R<sup>T</sup></li>
+</ol>
+</li>
+<li><p>镜像    </p>
+<ol>
+<li><p>关于Y轴镜像</p>
+<p> &lt;img src=”/CV_img/7-5.png”style=”zoom: “&gt;</p>
+</li>
+<li><p>关于y=x镜像</p>
+<p> &lt;img src=”/CV_img/7-6.png”style=”zoom: “&gt;</p>
+</li>
+</ol>
+</li>
+<li><p>剪切</p>
+</li>
+<li><p>性质：</p>
+<ol>
+<li>原点映射到原点</li>
+<li>直线映射到直线</li>
+<li>平行线保持平行</li>
+<li>保持比率</li>
+<li>线性变换的组合仍然是线性变换。</li>
+</ol>
+</li>
+</ol>
+<h2 id="非线性变换–仿射变换"><a href="#非线性变换–仿射变换" class="headerlink" title="非线性变换–仿射变换"></a>非线性变换–仿射变换</h2><p>&lt;img src=”/CV_img/7-8.png”style=”zoom: “&gt;</p>
+<p>方式变换是线性变换和平移变换的组合</p>
+<ol>
+<li><p>基本仿射变换</p>
+<p> &lt;img src=”/CV_img/7-7.png”style=”zoom: “&gt;</p>
+</li>
+<li><p>仿射变换的性质</p>
+<ol>
+<li>原点不一定映射到原点</li>
+<li>直线映射到直线</li>
+<li>平行线保持平行</li>
+<li>保持比率</li>
+<li>仿射变换的组合仍然是仿射变换</li>
+</ol>
+</li>
+</ol>
+<h2 id="投影变换-透视变换-单应映射"><a href="#投影变换-透视变换-单应映射" class="headerlink" title="投影变换(透视变换/单应映射)"></a>投影变换(透视变换/单应映射)</h2><p>&lt;img src=”/CV_img/7-9.png”style=”zoom: “&gt;</p>
+<ol>
+<li><p>8个自由度</p>
+</li>
+<li><p>投影变换的属性</p>
+<ol start="2">
+<li><p>保直线</p>
+</li>
+<li><p>原点不一定映射到原点</p>
+</li>
+<li><p>不保平行</p>
+</li>
+<li><p>不保比率</p>
+</li>
+<li><p>投影的组合仍然是投影变换</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&lt;img src=”/CV_img/7-10.png”style=”zoom: “&gt;</p>
+<h1 id="实现图像卷绕"><a href="#实现图像卷绕" class="headerlink" title="实现图像卷绕"></a>实现图像卷绕</h1><h2 id="前向卷绕"><a href="#前向卷绕" class="headerlink" title="前向卷绕"></a>前向卷绕</h2><p>将每个像素f (x,y)复制到g图中对应位置(x’,y’) = T(x,y)</p>
+<ol>
+<li>如果(x’,y’)不是整数，则将像素值分配给四个最近邻，记录每个点的权重并在最后归一化。</li>
+<li><strong>问题</strong> 可能有空洞，效果是混叠与模糊</li>
+</ol>
+<h2 id="反向卷绕"><a href="#反向卷绕" class="headerlink" title="反向卷绕"></a>反向卷绕</h2><p>获取每个像素g(x’, y’) 在原图像中对应的位 置 (x, y) = T<sup>-1</sup>(x’<br>, y’) 处的像素值f(x, y)</p>
+<ol>
+<li>如果(x,y)不是整数，则f(x,y)的颜色值通过原图像中邻域的插值获得，且可以使用滤波器来控制混叠。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC1%E8%AE%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ceb">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC1%E8%AE%B2/" class="post-title-link" itemprop="url">视觉第1讲</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-20 15:22:50 / Modified: 21:21:58" itemprop="dateCreated datePublished" datetime="2020-01-20T15:22:50+08:00">2020-01-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="滤波器"><a href="#滤波器" class="headerlink" title="滤波器"></a>滤波器</h1><ol>
+<li><strong>滤波</strong>：形成一个新的图像，其像素是原始像素的组合。</li>
+<li>用途：<ol>
+<li>提取边缘或轮廓</li>
+<li>消除噪音</li>
+<li>锐化和增强形象</li>
+</ol>
+</li>
+</ol>
+<h1 id="线性滤波"><a href="#线性滤波" class="headerlink" title="线性滤波"></a>线性滤波</h1><ol>
+<li>线性滤波：用相邻的线性组合(加权和)替换每个像素</li>
+</ol>
+<p>–&gt;互相关，卷积</p>
+<h2 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h2><img src="/CV_img/1-1.png" style="zoom: ">
+
+<ol>
+<li>将图像记为,以H表示权重核（大小为(2K+1)x(2K+1)),并记G为输出图像</li>
+<li>G=H×F<h2 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h2></li>
+</ol>
+<img src="/CV_img/1-2.png" style="zoom: ">
+
+<ol>
+<li>与相关相同，只是将权重核在水平和竖直方向翻转。</li>
+<li>妈祖交换律、分配律和结合律</li>
+</ol>
+<h2 id="平均滤波"><a href="#平均滤波" class="headerlink" title="平均滤波"></a>平均滤波</h2><ol>
+<li>H 全为1/k，其中k为权重核边长。</li>
+</ol>
+<h2 id="锐化-增强图像-平均滤波"><a href="#锐化-增强图像-平均滤波" class="headerlink" title="锐化 = 增强图像-平均滤波"></a>锐化 = 增强图像-平均滤波</h2><img src="/CV_img/1-3.png" style="zoom: ">
+
+<img src="/CV_img/1-5.png" style="zoom: ">
+
+<h2 id="高斯滤波"><a href="#高斯滤波" class="headerlink" title="高斯滤波"></a>高斯滤波</h2><ol>
+<li><p>高斯核</p>
+ <img src="/CV_img/1-4.png" style="zoom: ">
+
+<ol>
+<li>σ作用：σ越大，带通越大，高斯核函数的局部影响的范围就越大。中心亮点也越大，卷积后的图像越模糊。</li>
+</ol>
+</li>
+<li><p>高斯滤波器（低通滤波器）</p>
+<ol>
+<li>用宽度为σ的核卷积两次=以宽度为&radic;2σ的核卷积一次。</li>
+</ol>
+</li>
+</ol>
+<h2 id="阈值滤波器"><a href="#阈值滤波器" class="headerlink" title="阈值滤波器"></a>阈值滤波器</h2><p><strong>不是线性滤波器</strong></p>
+
       
     </div>
 
@@ -1448,7 +1683,7 @@ int main() {
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1514,7 +1749,7 @@ int main() {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">85</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

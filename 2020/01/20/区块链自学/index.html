@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://github.com/Cccceb/Cccceb.github.io').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="比特币的诞生 比特币目的是在数字世界，创造一个具有现金特性的事物  比特币组成成分  1）加密数字货币  2）分布式账本  3) 去中心网络  目前的电子现金系统：依靠中心化数据库和可信的第三方中介来避免双花问题  比特币同时做到了去中介化和去中心化  1） 个人与个人之间的电子现金无需可信第三方中介的介入，这是去中介化  2）这个电子现金的货币发行也不需要一个中心化的机构，而是由代码与社区共识完">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区块链自学">
+<meta property="og:url" content="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%87%AA%E5%AD%A6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="比特币的诞生 比特币目的是在数字世界，创造一个具有现金特性的事物  比特币组成成分  1）加密数字货币  2）分布式账本  3) 去中心网络  目前的电子现金系统：依靠中心化数据库和可信的第三方中介来避免双花问题  比特币同时做到了去中介化和去中心化  1） 个人与个人之间的电子现金无需可信第三方中介的介入，这是去中介化  2）这个电子现金的货币发行也不需要一个中心化的机构，而是由代码与社区共识完">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/1.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/3.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/4.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/5.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/6.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/7.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/9.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/10.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/11.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/10.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/15.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/16.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/17.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/18.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/19.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/20.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/21.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/22.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/23.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/24.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/25.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/26.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/39.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/40.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/41.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/42.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/44.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/45.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/46.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/47.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/49.png">
+<meta property="og:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/50.png">
+<meta property="article:published_time" content="2020-01-20T09:31:28.676Z">
+<meta property="article:modified_time" content="2020-01-20T09:31:05.770Z">
+<meta property="article:author" content="Ceb">
+<meta property="article:tag" content="hide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/%E5%8C%BA%E5%9D%97%E9%93%BE_img/1.png">
+
+<link rel="canonical" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%87%AA%E5%AD%A6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>区块链自学 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a href="https://github.com/you"><img style="position:absolute;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_gray_6d6d6d.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>  
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%87%AA%E5%AD%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ceb">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          区块链自学
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-20 17:31:28 / Modified: 17:31:05" itemprop="dateCreated datePublished" datetime="2020-01-20T17:31:28+08:00">2020-01-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="比特币的诞生"><a href="#比特币的诞生" class="headerlink" title="比特币的诞生"></a>比特币的诞生</h1><ol>
+<li><p>比特币目的是在数字世界，创造一个具有现金特性的事物</p>
+</li>
+<li><p>比特币组成成分</p>
+<p> 1）加密数字货币</p>
+<p> 2）分布式账本</p>
+<p> 3) 去中心网络</p>
+</li>
+<li><p>目前的电子现金系统：依靠中心化数据库和可信的第三方中介来避免双花问题</p>
+</li>
+<li><p>比特币同时做到了去中介化和去中心化</p>
+<p> 1） 个人与个人之间的电子现金无需可信第三方中介的介入，这是去中介化</p>
+<p> 2）这个电子现金的货币发行也不需要一个中心化的机构，而是由代码与社区共识完成，这是去中心化</p>
+</li>
+<li><p>比特币系统三层结构</p>
+<p> 1）最上一层是比特币这种电子现金。是整个系统的应用层</p>
+<p> 2）中间一层的功能是发行比特币与处理用户见的比特币转移。这一层也叫比特币协议，是整个系统的应用协议层。（相当于中央银行（发行货币）与银行（处理转账）等金融机构间的关系）</p>
+<p> 3）最底层是比特币的分布式账本和去中心化网络。这一层也被称为比特币区块链，是整个系统的通用协议层。</p>
+</li>
+</ol>
+<h1 id="区块链"><a href="#区块链" class="headerlink" title="区块链"></a>区块链</h1><ol>
+<li>定义：区块链是数字世界中进行价值表示和价值转移的技术。区块链硬币一面是表示价值的加密数字货币或通证，另一面是进行价值转移的分布式账本与去中心网络。</li>
+<li>通证：基于区块链的价值表示无都称为通证。</li>
+</ol>
+<h1 id="加密数字货币前传"><a href="#加密数字货币前传" class="headerlink" title="加密数字货币前传"></a>加密数字货币前传</h1><ol>
+<li>大卫·乔姆：<ol>
+<li>盲签：在一张纸条上， 你选择一个只有你知道的序列号，然后我在上面签名。由于我不知道这个序列号，所以我没法再复制一份这张纸条给另一个人。</li>
+<li>这个方案的缺点是：必须有一个所有参与者都薪人的中心化服务器来进行这些“数字纸条”的验证。</li>
+</ol>
+</li>
+<li>尼克·萨博<ol>
+<li>提出智能合约。智能合约是区块链处理交易的核心方式，区块链应用的实质可被看成是一个个智能合约的组合。</li>
+</ol>
+</li>
+<li>哈尔·芬妮<ol>
+<li>著名的PGP加密中的”G”</li>
+</ol>
+</li>
+<li>中本聪<ol>
+<li>首次建立了一个去中心化，非基于信任的系统。</li>
+<li>它通过已有的公钥加密方式来管理所有权，并用一个名为工作量证明的共识算法来记录谁拥有货币。</li>
+</ol>
+</li>
+</ol>
+<h1 id="中心化"><a href="#中心化" class="headerlink" title="中心化"></a>中心化</h1><h2 id="数字世界中的货币有三种形式"><a href="#数字世界中的货币有三种形式" class="headerlink" title="数字世界中的货币有三种形式"></a>数字世界中的货币有三种形式</h2><ol>
+<li>中心化的在线支付：<ol>
+<li>在这些支付系统中流转的是映射到数字世界的各国法定货币（也乘法币）</li>
+<li>法定货币的价值来自拥有者相信货币将来能维持其购买力，本身并无内在价值。 </li>
+</ol>
+</li>
+<li>中心化的计算机点数或互联网积分<ol>
+<li>不与物理世界的法币对应，而是由商业公司中心化发行，仅可以在一家公司的体系中使用，称为虚拟货币。如Q币</li>
+</ol>
+</li>
+<li>去中心化的电子现金：比特币</li>
+</ol>
+<h2 id="比特币实现了极致的去中心化"><a href="#比特币实现了极致的去中心化" class="headerlink" title="比特币实现了极致的去中心化"></a>比特币实现了极致的去中心化</h2><ol>
+<li>威廉·穆贾雅在《商业区块链》一书中对比特币白皮书摘要进行了分析，他总结了四个要点：<ol>
+<li>点对点电子交易；</li>
+<li>不需要金融机构；</li>
+<li>加密证据而不是中心化的信用；</li>
+<li>信用存在于网络，而不是某个中心机构。</li>
+</ol>
+</li>
+<li>在《去中心化应用》一书中，开发者西拉杰·拉瓦尔对去中心化应用的去中心化程度进行了一番讨论。他认为，区块链可能在四个过去集中化的方面完成去中心化： 数据；财富；身份；计算。</li>
+</ol>
+<h2 id="比特币系统设计的五个要点："><a href="#比特币系统设计的五个要点：" class="headerlink" title="比特币系统设计的五个要点："></a>比特币系统设计的五个要点：</h2><p>比特币的区块链系统是由分布式账本（即狭义的区块链）和去中心网络（点对点网络）组成的，形成链条的方式是工作量证明共识机制。最长链是由网络中的算力共同决定的，因而它是可信的，节点离开和加入依据的是最长链是可信的这一原则。这些组合起来形成了比特币系统。</p>
+<ol>
+<li><p>去中心化的点对点电子现金</p>
+</li>
+<li><p>分布式账本</p>
+<p> 比特币的区块链是基于工作量证明形成的带时间戳、存储数据的数据块和由哈希指针连接成的链条。</p>
+<p> 这个链条或者说账本以分布式的方式存储在比特币网络的各个节点上，因而也被称为分布式账本。</p>
+</li>
+<li><p>工作量证明</p>
+</li>
+<li><p>最长链原则</p>
+</li>
+<li><p>去中心网络</p>
+</li>
+</ol>
+<h1 id="比特币是如何转账的"><a href="#比特币是如何转账的" class="headerlink" title="比特币是如何转账的"></a>比特币是如何转账的</h1><h2 id="分布式账本和去中心网络"><a href="#分布式账本和去中心网络" class="headerlink" title="分布式账本和去中心网络"></a>分布式账本和去中心网络</h2><ol>
+<li><p>比特币网络由众多轻节点和全结点组成，这些结点形成一个去中心网络，其中：</p>
+<ol>
+<li>全节点包含所有比特币区块链的区块数据</li>
+<li>轻节点仅包含自己相关的数据。</li>
+<li>比特币网络是开放的，任何服务器都可以加入成为全结点</li>
+</ol>
+</li>
+<li><p>分布式账本：所有用户持有的比特币信息都存在一个分布式账本中；比特币账本可被认为同时存储在所有全结点中。</p>
+</li>
+<li><p>中心化在线支付系统的交易流程：交易双方通过中心化的交易平台中开设的账户完成交易。中心化在线支付系统维护一个中心化的账本，用户在账本上开设账户，通过密码(私钥)来与之交互。</p>
+</li>
+<li><p>比特币系统的交易过程：</p>
+<ol>
+<li><p>每个人在比特币区块链上建立账户(地址)，获得一对公钥和私钥，地址是公钥的哈希值，我们通过私钥与地址进行交互。</p>
+</li>
+<li><p>每个人有一个钱包，钱包中装的是私钥，转账时，可以通过各自的钱包软件直接进行。</p>
+</li>
+<li><p>对比而言，对于中心化在线支付系统，它通常是由中心化的服务器来管理集中式账本。对于比特币系统，它背后的系统是一个去中心网络，网络节点共同维护一个分布式账本。</p>
+<p> &nbsp;比特币是记录在账本中的，看起来还是有一个“中心”？</p>
+<p> &nbsp;其实，这个账本是分布式地存储在去中心网络中的，因而从这个层面看，它可以看成是去中心化的。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="UTXO-未使用的交易输出"><a href="#UTXO-未使用的交易输出" class="headerlink" title="UTXO:未使用的交易输出"></a>UTXO:未使用的交易输出</h2><ol>
+<li><p>比特币系统中的账户：没有账户，只有地址(是公钥的哈希值)。如果愿意可以开始无限多的钱包地址，但是系统不会汇总形成账户。</p>
+</li>
+<li><p>所以转账是从我的一个钱包地址转到你的一个钱包地址。</p>
+</li>
+<li><p>UTXO</p>
+<ol>
+<li><p>通证经济专家孟岩曾撰写一篇文章，标题是“其实没有什么比特币，只有UTXO”，这个标题指出了，对于计算机来说比特币是什么——比特币是区块链账本上的交易输出。</p>
+</li>
+<li><p>例子：假</p>
+<ol>
+<li>如我有8比特币，说明之前有一个交易把这些比特币转入我的地址，这个交易的输出未被使用，我拥有了8个比特币。</li>
+<li>现在我发起一个转账交易，这个交易的输入是我拥有的这些比特币的上一个交易。我转账给你，假设对我拥有的这8毕业比的上一个交易进行签名，把这一新转账交易的输出地址设为你的钱包地址。</li>
+<li>这样，这8比特币就属于你了，你拥有的是我这个交易的未使用的交易输出。等矿工把这一交易打包进新的区块，转账交易完成。</li>
+<li>交易中涉及比特币的公钥和私钥的非对称加密机制。钱包地址理解为房间号和锁，私钥则相当于钥匙，钥匙可以打开对应的锁。</li>
+<li>对于每一笔比特币的源头，都有一种特殊的交易–创币交易。对于矿工赢得25比特币的创币交易，它的输入是0，而输出是25个比特币进到矿工的钱包地址中。</li>
+</ol>
+</li>
+<li><p>UTXO的优点（相比于账户）</p>
+<ol>
+<li><p>UTXO设计易于确认比特币的所有权。</p>
+<p> 想要转账，只需要确认上一个交易时真实的，我就的确拥有这些比特币。而一个区块经过6次确认，其中的交易可被认为是真实无误的。</p>
+</li>
+<li><p>UTXO设计与区块链账本是完全融为一体的</p>
+<p> 区块链账本存储的是状态。区块链中的交易都是一种状态转换函数。每一个新区快和它之前的所有区块一起形成了一个新的状态。在确认之后，之前的状态就不可篡改。</p>
+</li>
+</ol>
+</li>
+<li><p>深入理解UXTO</p>
+<ol>
+<li>比特币就是UTXO<ol>
+<li>当甲要把一笔比特币转给乙时，这个过程是把甲的钱包地址中之前的一个UTXO，用私钥进行签名，发送给乙的地址，这个过程就是一个新的交易，而乙得到的是一个新的UTXO。</li>
+<li>世界上根本没有比特币，只有UTXO，你的地址中的比特币是指没花掉的交易输出。</li>
+</ol>
+</li>
+<li>详细阐述从甲向乙的转账过程。<ol>
+<li>假设A之前通过币基交易挖矿获得了12.5个比特币，那么在它的钱包地址中，就有了相应的UTXO</li>
+<li>Alice发起一个转账交易，输入是自己的上一个交易，输出是B的地址，数量是12.5比特币，A用自己的私钥进行签名。</li>
+<li>当交易的区块链确认后，A的UTXO变成0.而B的地址中就多了一个UTXO，数量是12.5.</li>
+<li>存在B的地址中的这些比特币只有用B的私钥进行签名才可以转账给其他人。</li>
+<li>总的来说，比特币转账就是用这个地址对应的私钥打开，再加密发送到另一个地址的过程。这个私钥的打开和加密就是签名的过程。在这个过程中，接受比特币的一方不需要动用自己的私钥。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>比特币存在哪儿</p>
+<ol>
+<li>一方面，你的比特币是一个物理存在的一一对应的一个数据文件。比特币以一个交易的UTXO的形式存在着，每个交易都被看成是一个数据文件。</li>
+<li>另一方面，比特币是区块链这个账本上的记录。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="比特币区块的数据结构"><a href="#比特币区块的数据结构" class="headerlink" title="比特币区块的数据结构"></a>比特币区块的数据结构</h2><ol>
+<li>每个区块由两个部分组成–区块头部和区块数据。</li>
+<li>区块头部<ol>
+<li>头部中有一个哈希指针指向上一个区块，这个哈希指针包含前一个数据块的哈希值。</li>
+<li>如果前一个区块中的数据被篡改了，那么通过哈希指针就能够发现。所以，要修改一个区块中的数据，对其后的每个区块都必须相应的进行修改。</li>
+</ol>
+</li>
+<li>区块数据：一个区块中的数据是被打包进这个区块的一系列交易。这些交易按规则打包最终形成梅克尔树。</li>
+<li>区块链中的两种哈希指针：<ol>
+<li>一个是形成”区块+链”的链状数据结构。</li>
+<li>另一个是数据块内部用来形成梅克尔树的哈希指针</li>
+</ol>
+</li>
+</ol>
+<h2 id="工作量证明共识机制"><a href="#工作量证明共识机制" class="headerlink" title="工作量证明共识机制"></a>工作量证明共识机制</h2><ol>
+<li><p>共识机制为什么存在：是因为这是一个非基于信任的网络，任何人无需许可都可以接入这个网络。并且，这些节点需要达成一致。共识机制即为这些节点达成一致的机制。</p>
+</li>
+<li><p>比特币的共识机制有两个与过去不同的特点</p>
+<ol>
+<li><p>引入了奖励机制</p>
+<ol>
+<li><p>通过比特币奖励使网络中的节点愿意打包交易，维护账本。</p>
+<p> &nbsp;除了新区块相关奖励外，挖矿节点还可以的饿到区块中包含的所有交易付出的交易费。</p>
+</li>
+</ol>
+</li>
+<li><p>包含了随机性的概念</p>
+<ol>
+<li><p>比特币的共识系统并不是完全可靠的，但是经过约一小时(6个区块)后，出问题概率呈指数级下降，从实用角度来看，这个共识是可信的。</p>
+ <img src="/区块链_img/1.png" style="zoom:80%">
+
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="比特币的挖矿机制"><a href="#比特币的挖矿机制" class="headerlink" title="比特币的挖矿机制"></a>比特币的挖矿机制</h2><ol start="5">
+<li><p>挖矿结点计算机的两个任务</p>
+<ol>
+<li><p>第一个任务是把比特币网络中未确认的交易按梅克尔树组装成候选区块，未被纳入的交易则往下顺延。</p>
+<p> 在创建候选区块时，除了普通的交易外，矿工在器中增加一个特殊的交易： 如果挖矿成功，则币基交易会凭空转出新区块的奖励比特币到矿工的钱包地址中，从而发行这些比特币出来。</p>
+</li>
+<li><p>第二个任务是进行加密哈希计算，解决一个计算难题，进行算力竞争。在众多争夺记账权的结点中，谁最先完成这个计算，它打包的区块就被加到了区块链的最后，称为最新的区块。刷先完成计算的矿工会赢得新区快对对挖矿奖励。</p>
+</li>
+</ol>
+</li>
+<li><p>比特币的工作量证明共识机制与它的挖矿机制</p>
+<ol>
+<li>向内看： 在候选区块的头部有一个32位的随机数区域，矿工需要反复调整随机数并计算，目标是让整个区块的哈希值小于一个目标值。如果尝试过所有的32位随机数可能性后，计算仍未成功，那么就要改变币基的一个随机数，接着反复计算。</li>
+<li>向外看： 随着算力的增长，会调整目标值的难度使得挖出一个区块的时间始终是10分钟左右。</li>
+<li>总之，比特币的经济系统是以竞争-记账-奖励循环为核心的。<h2 id="比特币转账过程"><a href="#比特币转账过程" class="headerlink" title="比特币转账过程"></a>比特币转账过程</h2><img src="/区块链_img/3.png" style="zoom:80%">
+
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="区块链的应用"><a href="#区块链的应用" class="headerlink" title="区块链的应用"></a>区块链的应用</h1><ol>
+<li><p>总的来说，区块链让我们从信息互联网跨越到价值互联网。</p>
+</li>
+<li><p>信息传递到价值传递</p>
+<ol>
+<li><p>区块链提供了数字世界中价值表示与价值转移</p>
+ <img src="/区块链_img/4.png" style = "zoom:80%"></li>
+<li><p>目前的互联网实现的是信息传递，其特征是进行信息的复制。这一特征使得在数字空间中进行价值转移时，必须依赖可信的第三方</p>
+</li>
+<li><p>未来，我们不再需要这些“信用中介”。基于区块链技术，我们可能建立一个通过网络本身进行价值表示、价值转移的全新交易基础设施。</p>
+</li>
+</ol>
+</li>
+<li><p>数字世界中的价值转移和价值表示</p>
+<ol>
+<li>价值的转移依靠记录：比如进行房产交易，那么要做的是把记录中所有权人改为你。</li>
+<li>数字世界中，可完美复制的数据文件和需要唯一性的价值表示形式形成冲突。为了防止双花问题，所以需要一个可信的第三方作为中介。所有与价值转移有关的事处于成本高，效率低的状态，互联网上的价值转移就局限在少数的价值类别上。</li>
+</ol>
+</li>
+</ol>
+<h2 id="价值表示"><a href="#价值表示" class="headerlink" title="价值表示"></a>价值表示</h2><ol>
+<li>价值的表示是在交易中体现出来的，因此可以从价值转移来讨论价值表示。</li>
+<li>传统的体系中：价值的表示需要一个中介来参与。中介维护一个集中的账本用以记录，协助完成价值转移。</li>
+<li>比特币系统中，区块链的账本以分布式的方式存在于互联网上，由去中心网络的节点共同维护。只要掌握自己的私钥即可。即所有人共享一个云端账本。</li>
+</ol>
+<h2 id="价值转移"><a href="#价值转移" class="headerlink" title="价值转移"></a>价值转移</h2><ol>
+<li>在基础层次上，区块链担任信用中介，协助进行价值表示和价值转移。</li>
+<li>互联网的层次：<ol>
+<li>最上层，是普通用户看到的网站与App等应用。</li>
+<li>中间层，是协议层，这一层过去主要是信息传递的WWW等协议。</li>
+<li>最底层，是网络传输硬件和网络传输协议如TCP/IP等。</li>
+</ol>
+</li>
+<li>区块链给互联网带来了进行价值表示和价值转移的新协议。区块链信用层协议由一组协议组成，在现有硬件网络之上，形成了一个协助我们进行价值表示和价值转移的新层次。这组协议目前仍未定性，也尚未被广泛认可，在持续发展中。</li>
+</ol>
+<h2 id="价值表示物：数字世界中表示价值的通证"><a href="#价值表示物：数字世界中表示价值的通证" class="headerlink" title="价值表示物：数字世界中表示价值的通证"></a>价值表示物：数字世界中表示价值的通证</h2><ol>
+<li>以太坊创始人维塔利克写道，常被提及的应用包括：<ol>
+<li>使用链上数字资产来代表定制货币和金融工具。</li>
+<li>某种基础物理设备的所有权。</li>
+<li>如域名一样的不可互换的资产</li>
+<li>以及复杂的应用来直接控制转移数字资产（<strong>智能合约</strong>）</li>
+<li>甚至基于区块链的分布式自治组织。</li>
+</ol>
+</li>
+<li><a href="http://c.biancheng.net/view/1908.html" target="_blank" rel="noopener">应用及以太坊简史</a></li>
+<li>把数字世界中，基于区块链的各种价值表示物都称为通证。</li>
+<li>总的来说，现在在数字世界中，类似于 HTML 的代表价值的语言（通证）已经准备好了。“怎么用通证，通证有什么用”等问题等待着创造性的回答。</li>
+</ol>
+<h2 id="区块链的第三第四定义"><a href="#区块链的第三第四定义" class="headerlink" title="区块链的第三第四定义"></a>区块链的第三第四定义</h2><img src="/区块链_img/5.png" style = "zoom:80%">
+
+<img src="/区块链_img/6.png" style = "zoom:80%">
+
+<img src="/区块链_img/7.png" style = "zoom:80%">
+
+<h1 id="区块链将成为互联网基础协议"><a href="#区块链将成为互联网基础协议" class="headerlink" title="区块链将成为互联网基础协议"></a>区块链将成为互联网基础协议</h1><ol>
+<li><p>目前互联网通信用的协议是TCP/IP协议族。通常认为包括四层：    </p>
+<ol>
+<li>链路层：将一些数据放在电线上。</li>
+<li>网络层：对数据进行路由</li>
+<li>传输层：将数据持久化</li>
+<li>应用层：以应用的形式提供数据的抽象。</li>
+</ol>
+</li>
+<li><p>万维网协议包括三部分：</p>
+<ol>
+<li>文本标记语言HTML</li>
+<li>文档传输协议HTTP</li>
+<li>指定文档网络地址的统一资源定位符URL</li>
+</ol>
+</li>
+<li><p>区块链技术作用于硬件网络之上、WWW协议旁边</p>
+ <img src="/区块链_img/9.png" style = "zoom:80%">
+
+</li>
+</ol>
+<h1 id="以太坊"><a href="#以太坊" class="headerlink" title="以太坊"></a>以太坊</h1><ol>
+<li><p>在软件层面加入智能合约，但在实际应用中，它真正带来巨变的是通证。</p>
+<blockquote>
+<p>当下，对于区块链的发展阶段划分，一个被普遍接受的分类来自区块链研究者梅兰妮·斯万，在《区块链：新经济蓝图》一书中，她将区块链分为：区块链1.0，货币；区块链2.0，合约；区块链3.0，应用。从货币到合约、再到应用是一种阶段分类，以太坊白皮书的题目即宣称，它试图成为智能合约和去中心化应用的平台。</p>
+</blockquote>
+</li>
+<li><p>以太坊是区块链2.0，实现了从数字现金到数字资产的转换。</p>
+</li>
+</ol>
+<h2 id="智能合约与去中心化的平台"><a href="#智能合约与去中心化的平台" class="headerlink" title="智能合约与去中心化的平台"></a>智能合约与去中心化的平台</h2><ol>
+<li><p>维塔利克分析在比特币系统的基础上开发高级应用的三种可行路径：</p>
+<ol>
+<li>建立一个新的区块链</li>
+<li>在比特币区块链上使用脚本。</li>
+<li>在比特币区块链上建立元协议。</li>
+</ol>
+</li>
+<li><p>维塔利克认为，比特币系统的主要设计UTXO和其对应的脚本语言有缺陷。他总结了四点不足：</p>
+<ol>
+<li><p>缺少图灵完备性。尽管比特币的脚本语言可以支持多种计算，但并非所有。</p>
+</li>
+<li><p>价值盲：UTXO脚本不能为账户的取款额度提供精细的控制。</p>
+</li>
+<li><p>缺少状态：UTXO只能是已花费或者未花费状态，这意味着UTXO只能用于建立简单的、一次性的合约。</p>
+</li>
+<li><p>区块链盲：UTXO看不到区块链的数据，比如区块头部的随机数、时间戳和上一个区块数据的哈希值。</p>
+<img src="/区块链_img/10.png" style = "zoom:80%">
+</li>
+</ol>
+</li>
+<li><p>以太坊的目标：提供一个区块链，内置有成熟的图灵完备的编程语言，用这种语言可以创建合约来编码，实现任意<strong>状态转换</strong>功能。（他认为比特币是一个状态转换系统）。</p>
+<ol>
+<li><p>要创建一个新的区块链。</p>
+</li>
+<li><p>这个区块链的特色是，有一个实现所有计算，即所谓的图灵完备的脚本编程语言。</p>
+</li>
+<li><p>这个脚本语言可以用来创建复杂的智能合约，用以控制区块链的状态转换，也即进行链上数字资产的转移。</p>
+<blockquote>
+<p>关于智能合约，在以太坊白皮书中，维塔利克用的词汇是“实现预先设定规则的一段代码”（implementing arbitrary rules）。在区块链上，这些代码的用途是控制链上的数字资产的转移。关于智能合约的更多介绍见相关冷知识专栏讨论</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><p>维塔利克认为在以太坊上可以开发的三大类应用</p>
+<ol>
+<li>金融应用：用他们的钱去管理和参与合约。这些应用包括子货币、金融衍生品、对冲合约、储蓄钱包、遗嘱，甚至雇用合约。</li>
+<li>半金融应用：这里有钱的存在，但非金钱的方面所占的比例也很重。一个好例子是为了解决计算问题而设的自动执行的悬赏。</li>
+<li>非金融应用：如在线投票和去中心化治理等。</li>
+</ol>
+</li>
+</ol>
+<h2 id="用智能合约管理数字资产与ERC20通证标准"><a href="#用智能合约管理数字资产与ERC20通证标准" class="headerlink" title="用智能合约管理数字资产与ERC20通证标准"></a>用智能合约管理数字资产与ERC20通证标准</h2><p>目前以太坊最常用的功能是通过编写智能合约来管理用通证表示的数字资产。</p>
+<ol>
+<li>比特币出现以后，出现了很多通过简单修改比特币开源代码的参数得到替代币。而以太坊的智能合约将创建通证的门槛降到了很低。</li>
+</ol>
+<img src="/区块链_img/11.png" style = "zoom:80%">
+
+<img src="/区块链_img/10.png" style = "zoom:80%">
+2. ERC721（不可互换通证标准）：比如我的一本专门题名给我的签名书和你的同一本书是不同的，二者不可互换。
+3. ERC20（可互换通证）：指的是每一个通证都是一模一样的，比如任何两张100元的价值是完全相同的。符合ERC20的通证的重要用途是被用于首次代币发行的筹资。人们可以用以太币按照项目方案设定的兑换率来换取这些通证，而项目方获得以太币形式的资金。
+
+<p><a href="http://c.biancheng.net/view/1915.html" target="_blank" rel="noopener">“V神简介”</a></p>
+<h1 id="智能合约"><a href="#智能合约" class="headerlink" title="智能合约"></a>智能合约</h1><ol>
+<li>其中智能可以理解为，按条件自动执行，无须人的干预，是自动的或者自治的。</li>
+<li>其中合约应该看成是存在于以太坊执行环境中的”自治代理”，它拥有自己的以太坊账户，他们收到交易信息后就相当于被捅了一下，然后自动执行一段代码—–V神如是说。（类比有限状态机，自动售货机）</li>
+<li>可以认为区块链存储的是状态，智能合约是它用于状态转换的方式。智能合约像是一个特别的时钟，把世界从同步转向异步。</li>
+</ol>
+<h2 id="智能资产：用智能合约来控制实体资产"><a href="#智能资产：用智能合约来控制实体资产" class="headerlink" title="智能资产：用智能合约来控制实体资产"></a>智能资产：用智能合约来控制实体资产</h2><ol>
+<li><p>所谓智能财产，是智能合约程序按照设定的规则控制的财产。萨博举例说明如下：</p>
+<p> 例如，为了防止一部车被偷窃，除非确定拥有者完成正确的“挑战响应协议”，否则车是不会启动激活的。<br> 例如，如果车是贷款买的，当拥有者无法偿还贷款时，智能合约将会自动启动扣押令，并将车钥匙的控制权交给银行。一旦拥有者还清贷款，智能合约就移除扣押令。</p>
+</li>
+</ol>
+<p>目前来说：由比特币区块链上的智能合约控制的资产，不管是实体的还是数字的，都叫智能资产。</p>
+<h2 id="以太坊的智能合约"><a href="#以太坊的智能合约" class="headerlink" title="以太坊的智能合约"></a>以太坊的智能合约</h2><ol>
+<li>以太坊的智能合约是存在于区块链上，可以被触发执行的一段程序代码，这些代码实现了某种预定的规则，是存在于以太坊执行环境中的“自治代理”。</li>
+</ol>
+<img src="/区块链_img/15.png" style = "zoom:80%">
+
+<p>注：合约账户不能自己启动运行自己的智能合约。要运行一个智能合约，需要由外部账户对合约账户发起交易，从而启动其中的代码的执行。</p>
+<h2 id="以太坊的智能合约有什么用"><a href="#以太坊的智能合约有什么用" class="headerlink" title="以太坊的智能合约有什么用"></a>以太坊的智能合约有什么用</h2><ol>
+<li>创建通证，通证对应的多是以太坊区块链之外的资产。</li>
+<li>图 2 是一个简明的图示，这是从 Komhar 咨询公司的一个图示重绘而来的。图示是一个典型的 ERC20 通证发行过程：一个项目通过智能合约创建通证，这个通证是实体资产或线上资产的价值表示物。投资者（用户）发起交易，向智能合约转入以太币（ETH），智能合约自动运转，在满足一定规则后，它向投资者账户转入相应数量的通证。</li>
+</ol>
+<img src="/区块链_img/16.png" style = "zoom:80%">
+
+<h1 id="令牌系统-token-systems"><a href="#令牌系统-token-systems" class="headerlink" title="令牌系统 token systems"></a>令牌系统 token systems</h1><p>令牌：用以表示资产的通证。</p>
+<ol>
+<li><p>所有的货币或者令牌系统从根本上来说都是带有如下操作的数据库：从A中减去X单位并把X单位加到B上。前提条件是</p>
+<ol>
+<li><p>A在交易之前至少有X单位</p>
+</li>
+<li><p>交易被A批准</p>
+<p>实施令牌系统，即是把这样一个逻辑实例实施到一个合约之中。</p>
+</li>
+</ol>
+</li>
+<li><p>区块链能方便的承载Token系统，是因为它存储的是状态。</p>
+</li>
+<li><blockquote>
+<p>在《商业区块链》一书中，区块链专家威廉·穆贾雅提出了一个可以用Token系统表示的事物的分类。他把区块链中可存储的事物的首字母组成了一个单词“ATOMIC”：</p>
+</blockquote>
+<p> 可编程的资产（assets）。</p>
+<p> 可编程的信任（trust）。</p>
+<p> 可编程的所有权（ownership）。</p>
+<p> 可编程的货币（money）。</p>
+<p> 可编程的身份（identity）。</p>
+<p> 可编程的合同（contracts）。</p>
+<h1 id="通证有什么用：机器比人更需要通证"><a href="#通证有什么用：机器比人更需要通证" class="headerlink" title="通证有什么用：机器比人更需要通证"></a>通证有什么用：机器比人更需要通证</h1></li>
+</ol>
+<img src="/区块链_img/17.png" style = "zoom:80%">
+
+<ol>
+<li>要<strong>把其他象限的价值映射到链上</strong>，用通证来表示，主要有两个途径：<ol>
+<li>路径之一是，把原本在互联网上通过中心化机构的数据库表示的价值和价值转移，切换到去中心化的区块链上来。比如常见的有网络零售的支付、社交网络的积分、游戏里的道具等，反映在图中就是从象限 ② 到象限 ③。</li>
+<li>路径之二是，把实体中的资产映射到链上，通过区块链进行流通。比如常见的有：把线下的民宿、供应链金融、资产证券化（ABS）中的资产用通证进行表示，反映在图中就是从象限 ③ 到象限 ①。</li>
+</ol>
+</li>
+</ol>
+<p>但实际上，以上的路通过传统的方法已经做的够好了（我们总在考虑我们手中的加密货币能兑换多少法币，这恰恰说明了法币在价值表示上已经做的很好了）</p>
+<h2 id="在机器视角看通证"><a href="#在机器视角看通证" class="headerlink" title="在机器视角看通证"></a>在机器视角看通证</h2><ol>
+<li><p>令牌：初始用于通信网络，只有拥有两派的节点才能参与通信，令牌代表了权力。</p>
+<blockquote>
+<p>一个关于令牌的例子：假设，为了防止网络中的机器发出垃圾邮件，我们设定如下规则：个人电脑或手机在发出邮件时，需要消耗一个 token；发件邮件服务器也要消耗一个 token。如果这个邮件不被垃圾邮件规则拦截，或不被个人举报为垃圾邮件，那么在一定时间内，所消耗的 token 又会回到我们手中。</p>
+</blockquote>
+<p> 在这里实际发生了令牌抵押，以确保我们在实施正当行为。</p>
+</li>
+<li><p>随着物联网技术的发展，越来越多的机器需要通证，我们的做法也不应该是给每一个传感器开设一个和法币对应的账户。这时，我们应该设计机器专用的钱包和通证。</p>
+</li>
+</ol>
+<h1 id="ERC20通证标准"><a href="#ERC20通证标准" class="headerlink" title="ERC20通证标准"></a>ERC20通证标准</h1><p>–是通过以太坊创建通证时得到一种规范。按照ERC20的规范可以编写一个智能合约。</p>
+<p><a href="http://c.biancheng.net/view/1922.html" target="_blank" rel="noopener">详解ERC20W</a></p>
+<h1 id="The-DAO众筹事件与以太坊分叉"><a href="#The-DAO众筹事件与以太坊分叉" class="headerlink" title="The DAO众筹事件与以太坊分叉"></a>The DAO众筹事件与以太坊分叉</h1><h2 id="分叉的存在：比特币共识机制"><a href="#分叉的存在：比特币共识机制" class="headerlink" title="分叉的存在：比特币共识机制"></a>分叉的存在：比特币共识机制</h2><ol>
+<li>分叉方案：即从某个区块开始以太坊区块链不向前兼容，从而把 The DAO 众筹来的以太币夺回来，转移到一个恢复地址上，再还给参与众筹的人。<br>比特币的共识机制本质上是通过算力进行的投票。在去中心化的网络中，一定程度上来说我们不存在真币和假币。你相信他是真的，愿意在包含这个交易的区块后面继续追加区块，维护这一区块链分支，那么他就是真的。日后，如果还要和其他人进行交易，并且他也认为你的比特币的起源是真实可靠的，那么你们就可以完成交易；反之，则会出现分歧，如果多数人都不站在你那边，那么你所拥有的比特币就来自非法交易。</li>
+</ol>
+<h1 id="设计通证：用通证表示资产"><a href="#设计通证：用通证表示资产" class="headerlink" title="设计通证：用通证表示资产"></a>设计通证：用通证表示资产</h1><p>有了智能合约和通证之后，以太坊就有了新的用途—进行数字资产的表示与交易。这使得数字资产也有了相对统一的价值表示形式，所以以太坊超越作为数字现金系统的比特币，开始解决如何表示资产等问题。</p>
+<img src="/区块链_img/18.png" style = "zoom:80%">
+
+<h2 id="用通证将资产表示为链上的“数字资产”"><a href="#用通证将资产表示为链上的“数字资产”" class="headerlink" title="用通证将资产表示为链上的“数字资产”"></a>用通证将资产表示为链上的“数字资产”</h2><ol>
+<li><p>通证是资产在区块链上的价值表示物，涉及的资产包括：</p>
+<ol>
+<li>比特币，以太币等链上的原生资产、映射到链上的线上资产、映射到链上的线下资产。</li>
+</ol>
+</li>
+<li><p>我们通过以太坊区块链和他的智能合约来创建与发行代表价值的通证，然后用它去关联资产。</p>
+</li>
+<li><p>以太坊上的通证包括两种：可互换的ERC20和不可互换的ERC721。可互换的通证可类比现金，不可互换的通证类比房契。</p>
+ <img src="/区块链_img/19.png" style = "zoom:80%">
+</li>
+<li><p>链上和链下的交互包括两大部分：</p>
+<ol>
+<li>将链下资产与通证关联，进行通证的发行与分配。</li>
+<li>在链上进行通证交易后，对链下资产进行相应的变动，并将变动在链上确认。 </li>
+</ol>
+</li>
+<li><p>将资产表示成通证的好处：</p>
+<ol>
+<li><p>帮助市场交易发现价格</p>
+</li>
+<li><p>在流动周转中增加资产价值。</p>
+<blockquote>
+<p>其中，关于流动增加总体价值的例子，我们在现实生活中也可以体验到：二手物品的流动让买方和卖方都收益，车辆与房屋的共享提升了资源的利用效率。</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="数字资产系统的去中心化交易场景"><a href="#数字资产系统的去中心化交易场景" class="headerlink" title="数字资产系统的去中心化交易场景"></a>数字资产系统的去中心化交易场景</h2><p>—–以太坊的出现使得基于它的智能合约创建的各种通证都可以进行中心化或去中心化交易。</p>
+<ol>
+<li><p>通过智能合约进行链上数字资产交易：假设我们编写一个合约，售卖一种基于 ERC721 的不可互换通证，如性质类似于收藏卡的“加密猫”。每个加密猫通证各不相同，预先在智能合约中设定价格均为 10 个以太币，购买方式是先到先得。</p>
+<p> 这时，去中心化的数字资产交易过程如下：</p>
+<ol>
+<li><p>买方向智能合约地址转入 10 个以太币，即为发起购买邀约，智能合约担任第三方保管的角色。</p>
+</li>
+<li><p>卖方把该收藏卡（基于 ERC721 的通证）转入买方地址。</p>
+</li>
+<li><p>智能合约自动将以太币款项转入卖家账户。</p>
+<p>由于这里仅涉及以太坊区块链上的数字资产（加密猫通证和以太币）的转移，因此在链上可以完成全部过程。</p>
+<p>对比 A、B 两种场景我们看到，原本中心化的中介（如淘宝与支付宝）被按预先设定规则自动执行的智能合约所取代。中心化中介被区块链（即分布式账本和去中心网络）所取代。 </p>
+</li>
+</ol>
+</li>
+<li><p>通过智能合约进行涉及线下资产的交易</p>
+<ol>
+<li><p>当交易的不是链上的数字资产时，智能合约和预言机是一对必备的组合。智能合约在链上，预言机在链下，它可以与链上的智能合约进行通信（见图4）。</p>
+ <img src="/区块链_img/20.png" style = "zoom:80%"></li>
+<li><p>比如，当卖家把数字文件传递给买家，买家确认之后，连接链上和链下的预言机就发出消息通知智能合约。接到消息后，智能合约执行后续的步骤，把以太币转入卖家账户。</p>
+</li>
+</ol>
+</li>
+<li><p>对比两个场景，我们知道</p>
+<ol>
+<li>有了智能合约，用通证表示的数字资产就是可编程的；</li>
+<li>它是可以由计算机自动处理的；</li>
+<li>如果数字资产交易各方形成一定的规则与逻辑，那么这些交易方之间可以进行完全自治的交易。</li>
+</ol>
+<p> <strong>最终，可以大幅度降低资产流转交易的成本，提高效率，并实现智能化。</strong></p>
+</li>
+</ol>
+<h2 id="通证的四个特征"><a href="#通证的四个特征" class="headerlink" title="通证的四个特征"></a>通证的四个特征</h2><ol>
+<li>中关村区块链产业联盟理事长元道指出的通证的三个要素：<ol>
+<li>第一是数字权益证明。通证必须代表一种权利，一种固有和内在的价值。</li>
+<li>第二是加密。通证的真实性、防篡改性，保护隐私等特性由密码学给出。</li>
+<li>第三是可流通。通证必须能够在一个网络中流通，从而随时随地都可以进行验证。<blockquote>
+<p>事实上，通证可以代表一切权益证明，从身份证到学历文凭，从货币到票据，从钥匙、门票到积分、卡券，从股票到债券，人类社会的全部权益证明都可以用通证来代表。</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li>第四个特点：通证是可编程的。</li>
+</ol>
+<p>在区块链上，可以通过智能合约自治或自动的处理通证。</p>
+<img src="/区块链_img/21.png" style = "zoom:80%">
+
+<h2 id="通过经济系统设计和通证的发行与分配"><a href="#通过经济系统设计和通证的发行与分配" class="headerlink" title="通过经济系统设计和通证的发行与分配"></a>通过经济系统设计和通证的发行与分配</h2><ol>
+<li><p>回以太坊的建立过程，他起初进行了一轮众筹，严格来说，以太币的发行时中心化的，由以太币基金会发起的。但是过程时自动化的，由预先确定规则，编写后不能修改的智能合约自动执行的。</p>
+<ol>
+<li>中心化的原因：用区块链上的通证来表示链上资产、线上资产、线下资产时，完全的去中心化，甚至完全无人介入的自动化通常是不可行的。资产的设计、发行的设计以及后续项目的运行，都需要有机构来发起。这个机构在一定程度上是区块链项目的中心。</li>
+<li>然而中心化机构只需要在初期持续运行项目和社群，直到社区能够自行运转。随着项目的发展，社区的扩大，中心化开始弱化，甚至是最终达到去中心化的状态。</li>
+</ol>
+</li>
+<li><p>通证经济体</p>
+<ol>
+<li><p>通证经济体：是一个产业生态圈或社区，用通证来表示一个生态或社区的广义资产；借助通证来进行分配、交易。</p>
+</li>
+<li><p>核心事务：</p>
+<ol>
+<li><p>链：区块链技术的落实。</p>
+</li>
+<li><p>通证：通证的建立、分配与管理。</p>
+</li>
+<li><p>社群：用户社区与投资社区等以价值共识形成的社群。</p>
+<img src="/区块链_img/22.png" style = "zoom:80%"></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>通证经济系统的设计：一方面是和通证的价值相关的设计，另一方面是和通证的数量相关的设计。</p>
+</li>
+</ol>
+<img src="/区块链_img/23.png" style = "zoom:80%">
+
+<img src="/区块链_img/24.png" style = "zoom:80%">
+4. **一个例子**：假设用通证经济系统来改造一个线下社区，那么可能的初始分配包括：投资方、团队和顾问、社区成员、留存。其中社区成员按一定规则得到的通证就是将线上资产映射到链上，用通证表示出来。之后，还需要设定规则定义生态成员如何获得通证，如何使用通证，此外还需要定义相关的经济逻辑。都确定之后，就可以通过编写智能合约来用代码实现它。
+
+<img src="/区块链_img/25.png" style = "zoom:80%">
+
+<ol start="5">
+<li><strong>通证，参考元道的说法是一种权利，不要局限于资产。他可以对应某种线上或线下的资产，也可能是代表某种功能的使用权</strong></li>
+</ol>
+<img src="/区块链_img/26.png" style = "zoom:80%">
+
+<h2 id="以太坊：数字资产的基础设施"><a href="#以太坊：数字资产的基础设施" class="headerlink" title="以太坊：数字资产的基础设施"></a>以太坊：数字资产的基础设施</h2><p>之前，在以太坊的 ERC20 标准被广泛接纳之前，要发行一个原生数字资产需要自行开发一条链，而现在我们可以基于以太坊这条公链来创建一个数字资产的价值表示物。<br>#<a href=""http://c.biancheng.net/view/1931.html"">通证的分类</a></p>
+<h1 id="以太坊只能合约的技术与组件"><a href="#以太坊只能合约的技术与组件" class="headerlink" title="以太坊只能合约的技术与组件"></a>以太坊只能合约的技术与组件</h1><img src="/区块链_img/39.png" style = "zoom:80%">
+
+<h1 id="ERC721标准与加密猫"><a href="#ERC721标准与加密猫" class="headerlink" title="ERC721标准与加密猫"></a>ERC721标准与加密猫</h1><p>加密猫—基于以太坊的ERC721标准发行的加密数字宠物，每一只猫咪<strong>各不相同</strong>。在此之前人们对以太坊的认识是，它的主要应用是用它的智能合约发行符合 ERC20 标准的可互换通证，同一种通证的一枚和另一枚是完全一样的。</p>
+<h1 id="以太坊的账户"><a href="#以太坊的账户" class="headerlink" title="以太坊的账户"></a>以太坊的账户</h1><p>以太币账户可以查看余额（包括以太币和其他基于ERC20标准的通证）。以太坊账户分为外部账户和合约账户。外部账户由密钥控制，合约账户由只能合约控制</p>
+<img src="/区块链_img/40.png" style = "zoom:80%">
+
+<ol>
+<li>以太坊的账户包括：一个随机数、账户余额、[合约代码]，存储</li>
+</ol>
+<h2 id="合约账户"><a href="#合约账户" class="headerlink" title="合约账户"></a>合约账户</h2><ol>
+<li>只有合约账户才有代码，存储的是这个账户的以太坊虚拟机代码的哈希值。生成后不可修改，即智能合约代码不能修改。</li>
+<li>合约账户可以设置多重签名</li>
+</ol>
+<h2 id="外部账户"><a href="#外部账户" class="headerlink" title="外部账户"></a>外部账户</h2><ol>
+<li>外部账户可以触发交易，而合约账户不能主动发起交易，只能在被触发后执行代码。</li>
+</ol>
+<h2 id="以太坊的区块"><a href="#以太坊的区块" class="headerlink" title="以太坊的区块"></a>以太坊的区块</h2><ol>
+<li>区块中存交易，本质是状态转移函数。一个交易触发它的执行，它将相应的账户从一个状态转变成新状态，然后将新状态存储在区块链的数据区块中。</li>
+<li>以梅克尔帕特丽夏树组织。</li>
+</ol>
+<h1 id="区块链的四大特征—区块链有什么用"><a href="#区块链的四大特征—区块链有什么用" class="headerlink" title="区块链的四大特征—区块链有什么用"></a>区块链的四大特征—区块链有什么用</h1><img src="/区块链_img/41.png" style = "zoom:80%">
+
+<h2 id="一-不可篡改"><a href="#一-不可篡改" class="headerlink" title="一 不可篡改"></a>一 不可篡改</h2><ol>
+<li>要修改一个区块中的数据，那么就要生成后面所有的区块。</li>
+<li>共识机制的重要作用之一是使得修改大量区块的成本极高，从而几乎不可能。</li>
+<li><strong>应用</strong>：农产品或商品溯源的应用：将它们的流通记录在区块链上，以确保数据记录不被篡改，从而提供追溯的证据。</li>
+</ol>
+<blockquote>
+<p>2018 年 3 月，在网络零售集团京东发布的《区块链技术实践白皮书》中，京东认为，区块链技术（分布式账本）的三种应用场景是：跨主体协作，需要低成本信任，存在长周期交易链条。这三个应用场景所利用的都是区块链的不可篡改特性。多主体在一个不可篡改的账本上协作，降低了信任成本。区块链账本中存储的是状态，未被涉及的数据的状态不会发生变化，且越早前的数据越难被篡改，这使得它适用于长周期交易。 </p>
+</blockquote>
+<h2 id="二-表示价值所需要的唯一性"><a href="#二-表示价值所需要的唯一性" class="headerlink" title="二 表示价值所需要的唯一性"></a>二 表示价值所需要的唯一性</h2><ol>
+<li>中心化账本存在是因为在数字世界中，文件可以复制。<blockquote>
+<p>2018 年年初，中国的两位科技互联网企业领袖不约而同地强调了区块链带来的“唯一性”。腾讯主要创始人、CEO 马化腾说：“区块链确实是一项具有创新性的技术，用数字化表达唯一性，区块链可以模拟现实中的实物唯一性。”</p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>百度创始人、CEO 李彦宏说：“区块链到来之后，可以真正使虚拟物品变得唯一，这样的互联网跟以前的互联网会是非常不一样的。”</p>
+</blockquote>
+<h2 id="三-智能合约"><a href="#三-智能合约" class="headerlink" title="三 智能合约"></a>三 智能合约</h2><ol>
+<li><p>智能合约的出现使得基于区块链的两个人不只是可以进行简单的价值转移，而是可以设置复杂的规则，由智能合约来进行自治，自动的管理。</p>
+</li>
+<li><p>智能合约的性质：相当于一种特殊的服务端后台程序。</p>
+<blockquote>
+<p>在以太坊白皮书中，维塔利克写道：（合约）应被看成是存在于以太坊执行环境中的“自治代理”（autonomous agents），它拥有自己的以太坊账户，收到交易信息，它们就相当于被捅了一下，然后它就自动执行一段代码。</p>
+</blockquote>
+</li>
+<li><p>编写智能合约</p>
+ <img src="/区块链_img/42.png" style = "zoom:80%">
+</li>
+<li><p><strong>区块链的新认识</strong></p>
+<ol>
+<li>区块链：是分布式账本技术。各方共同维护一个共享、互通、互联的账本，在此账本上就价值的确认、交易、分配达成共识。</li>
+<li>区块链：是基于分布式账本技术的自治执行机制，即把区块链等同于智能合约。<ol>
+<li>在没有通证的情况下，通过智能合约的自动/自治执行，进行数字资产的交易。</li>
+<li>在有通证的情况下，通过智能合约的自治执行，进行通证形式的数字资产的交易。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="四-去中心自组织"><a href="#四-去中心自组织" class="headerlink" title="四 去中心自组织"></a>四 去中心自组织</h2><p>—-可能会失控，但失控也是一种自治。</p>
+<ol>
+<li><blockquote>
+<p>在《去中心化应用》一书中，作者西拉杰·拉瓦尔（Siraj Raval）还从另一个角度进行了区分，他的这个区分有助于我们更好地理解未来的应用与组织。他从两个维度看现有的互联网技术产品：一个维度是，在组织上是中心化的，还是去中心化的；另一个维度是，在逻辑上是中心化的，还是去中心化的。</p>
+</blockquote>
+</li>
+</ol>
+<pre><code>他认为：“比特币在组织上去中心化，在逻辑上集中。”而电子邮件系统在组织上和逻辑上都是去中心化的
+
+&lt;img src=&quot;/区块链_img/43.png&quot; style = &quot;zoom:80%&quot;&gt;</code></pre><ol start="2">
+<li><strong>区块链在技术之外的意义</strong> 可能作为基础设施支持人类的生产组织和协同的变革。这正是区块链与互联网是完全同构的又一例证，互联网也不仅仅是一项技术，它改变了人们的组织和协同。</li>
+<li><strong>再看以太坊</strong> 以太坊将区块链技术带入了新的阶段，带来了智能合约和通证。作为价值表示物的通证，它的角色类似于 HTML。在有了 HTML 之后，建什么样的网站完全取决于我们的想象力。</li>
+</ol>
+<h1 id="区块链3-0"><a href="#区块链3-0" class="headerlink" title="区块链3.0"></a>区块链3.0</h1><h2 id="类比理解"><a href="#类比理解" class="headerlink" title="类比理解"></a>类比理解</h2><ol>
+<li><p>类比操作系统的市场</p>
+<blockquote>
+<p>在 2016 年出版的《商业区块链》一书中，区块链专家威廉·穆贾雅以“数以百万计的区块链”（Getting to millions of blockchains）作为一个小节的标题。从整体上，他展望的未来图景是：“随着公有、私有、半私有、特殊目的以及其他类型的区块链的增长扩散，数以百万计的区块链世界将会实现。”这个说法可能展现了最可能的区块链未来图景。</p>
+</blockquote>
+<p> 区块链的未来很可能不止是一条。</p>
+</li>
+<li><p>类比网站</p>
+<blockquote>
+<p>威廉·穆贾雅还做了一个虽然不甚准确但易懂的类比——“区块链将会成为新的网站”。在回顾了从 20 世纪 90 年代开始的网站发展史后，他类比指出：“每个公司一定会拥有或参与各种各样的区块链，无论它们是私有的、半私有的或公共的。”</p>
+</blockquote>
+</li>
+<li><p>类比为云服务平台</p>
+<ol>
+<li>和现有的云不同，他们的核心功能是价值交易。</li>
+</ol>
+</li>
+</ol>
+<h2 id="作为云服务的区块链3-0"><a href="#作为云服务的区块链3-0" class="headerlink" title="作为云服务的区块链3.0"></a>作为云服务的区块链3.0</h2><ol>
+<li>以太坊曾把自己定位为一台“全球分布式计算机”。在《区块链革命》中，商业思想家唐·塔普斯科特这样写道：“区块链上运行的所有计算资源可以在整体上视为一台计算机。”</li>
+<li>区块链3.0从一个个的通证进化到一个个的应用，会使得它的基础模型可能与已知的以太坊模型有很大的不同。</li>
+<li>目前，人们关注的焦点往往是性能问题，比如以太坊计划通过改用 POS 共识机制（casper）和分片技术（sharding）来提升性能，又比如人们关注 EOS 采用委托权益证明机制（DPOS）来提升性能。或许，架构也需要改变。</li>
+<li>要看待这一个个应用（App），可以有两种方式：既可以把它们看成是区块链操作系统上的软件，它们用的是一条区块链的分布式账本和去中心网络；也可以把这些应用看成类似于一条条链，它们有着自己的分布式账本与去中心网络。<ol>
+<li>类比地看，在云服务出现之前，要开发一个网站或应用，我们要自己架设和运维服务器；而有了云服务之后，我们可以在云服务上开发自己的应用。在采用云服务时，一个个应用就有自己的一组专用服务器，像之前一样。类似地，如果采用类似的架构来开发区块链的应用，则可以认为，一个个应用也像有着自己的一条条独立的区块链。</li>
+<li>现在的各个作为基础公链的区块链项目，做的正是云服务：以开源软件系统、分布式账本、去中心网络为基础，提供一系列和价值有关的云计算服务。</li>
+<li>现在，对试图在各个领域或产业中实际应用区域链的人来说，要在区块链上开发应用，需要的正是一个类似的云服务架构：区块链的软件系统、分布式账本与去中心网络，从及一系列云计算软件服务。</li>
+<li>当然，区块链云服务与现有的云服务也有很多不同：<ol>
+<li>它提供的云计算软件服务是基于分布式账本与去中心网络的。</li>
+<li>软件系统通常不是由一家公司开发，而是由社区开发的，以开源方式发布。</li>
+<li>去中心网络不是由一家公司运维，而是由不同主体出于经济激励而自主提供的。</li>
+<li>一系列云计算软件服务也不是由一家公司提供，而是由社区提供的。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="走向应用的五条路径"><a href="#走向应用的五条路径" class="headerlink" title="走向应用的五条路径"></a>走向应用的五条路径</h2><img src="/区块链_img/44.png" style = "zoom:80%">
+
+<ol>
+<li><p>以超级账本为代表的联盟链软件：</p>
+<ol>
+<li>与比特币，以太坊等公有链不同，联盟链需要经过许可才能加入。联盟链有其特定的用途，较为适合大型公司在自己的内部部署使用，或部署后在自己的产业链生态中邀请合作伙伴接入，也可以由产业联盟共同部署。</li>
+<li>从互联网的发展经验来看，区块链的未来只要还是开辟一套基础公链。目标是开发一条有通用功能或专一功能的公有链，并同时做三件事：开发软件，运行系统，运行社区。</li>
+</ol>
+</li>
+<li><p>基础公链：通用类</p>
+<p> 开发一条通用类的基础公链。代表EOS（一个更快，更好，更适合应用开发的以太坊）</p>
+</li>
+<li><p>基础公链：功能类</p>
+<p> 开发专用于某类功能的区块链，代表IOTA（专用于物联网等），Steem和Steemit（专用于数字内容），再比如比原链（专用于数字资产交换，按白皮书披露的信息它要做到的是，连通比特世界与原子世界，实现“比特资产”（原生的数字货币、数字资产）和“原子资产”（有传统物理世界对应物）的交互与流转。 ）</p>
+</li>
+<li><p>基础公链：行业类</p>
+<p> 开发专用于某个行业的区块链，充分考虑该行业的特点提供相关的功能，比如保险、供应链金融、游戏、政务等。</p>
+</li>
+<li><p>基础设施 跨链的资产交易</p>
+<p> 可以预见的是区块链世界中必然有着很多链，甚至是非常多的链的共存。链与链之间的功能或资产的连接就变得非常重要。</p>
+<blockquote>
+<p>2018 年年初，新区块链项目区块基石（ArcBlock）自称是区块链 3.0，它的核心是提供跨链的协议，并以云服务的形式为开发者提供便利。另一个新项目梵塔网络（Penta）则定位在做“区块链世界的连接器”，要实现三大连接——链与链的连接、链与中心化系统的连接、链下与链上价值的连接，即为了推进区块链的应用，不只是连接不同的链，连接链上与链下，更要在需要时连接链与中心化系统。<br>在鲸准研究院与节点资本研究中心的“侧链跨链研究报告”（2018年）中，它认为侧链与跨链在技术上大体相似，只有在谈到它们的服务对象时才需做细致的区分：一般来说，侧链服务于主链，而跨链试图改进的是链之间价值和功能的连通。其实，现在区块链领域的主要应用之一“币币交易所”实质上做的也是跨链资产的交易，只是目前采用的主要还是中心化的方式。目前，主要的交易所都推出了自己的通证（一般称平台币），并公布基础公链计划，也即准备用区块链技术来改进自身业务。</p>
+</blockquote>
+</li>
+<li><p>基础设施 服务中心化应用</p>
+<p> 随着去中心化应用的出现，各种基础性技术服务成为刚需。如星际文件系统，分布式文件存储等。</p>
+</li>
+<li><p>区块链3.0 类比云服务</p>
+ <img src="/区块链_img/45.png" style = "zoom:80%">
+
+</li>
+</ol>
+<h2 id="从多个网到多条链"><a href="#从多个网到多条链" class="headerlink" title="从多个网到多条链"></a>从多个网到多条链</h2><p>雷纳特·卡桑辛（Renat Khasanshyn）曾展示他基于联盟链理解的区块链应用未来。现在的各类系统，比如相互连接在一起的金融系统，是由多个中心化的数据库组成的。用区块链技术来改造这些系统，他的设想是，在合适的地方用相应的区块链来取代原来的数据库（见图 6）。从图 6 中可以看到，中心化的数据库被去中心化的区块链所取代。</p>
+<h1 id="EOS、比特币、以太坊"><a href="#EOS、比特币、以太坊" class="headerlink" title="EOS、比特币、以太坊"></a>EOS、比特币、以太坊</h1><ol>
+<li><p>EOS 是一款企业操作系统（区块链软件系统）,其目的是将一切去中心化。</p>
+<p> 从 2017 年年中开始，经过一年的代币众筹后，它于 2018 年 6 月 15 通过由数十个区块生产者（block producer，BP，又称超级节点）组成的社区上线了主网，EOS 主网这条主要的区块链开始正式运转。</p>
+</li>
+<li><p>EOS包括三个部分：</p>
+<ol>
+<li>EOSIO软件，一共社区开发 的开源软件，任何人都可以参与开发、提交代码。</li>
+<li>EOS币（EOS通证）</li>
+<li>EOS主网：通过竞选，一批区块生产者被选出来，它们启动EOS主网。</li>
+</ol>
+</li>
+<li><p>EOS账户：</p>
+<ol>
+<li>外部账户：由私钥控制</li>
+<li>合约账户</li>
+<li>与账户相关的概念：<ol>
+<li>钱包：保存密钥的客户端；</li>
+<li>权限：包裹owner和active，用户可自定义各种权限。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>EOS的智能合约：<br> 其含义非常接近与linux的后台应用，节点在启动时包括缺省合约。</p>
+<ol>
+<li>调用方法：用户命令调用；EOSIO的send方法调用</li>
+</ol>
+</li>
+</ol>
+<h2 id="EOS-VS-以太坊"><a href="#EOS-VS-以太坊" class="headerlink" title="EOS VS 以太坊"></a>EOS VS 以太坊</h2><img src="/区块链_img/46.png" style="zoom:80%">
+
+<ol>
+<li>以太坊是比特币的改进，EOS是以太坊的改进（进化到应用）</li>
+<li>以太坊的设计思路类似于高速公路。在这条收费高速公路上，车辆行驶需要付费。它早期募集资金，建设“高速公路”，早期投资者享有“高速公路”的主要权益。之后，一起建设与维护“高速公路”的挖矿节点也可以获得挖矿奖励与交易费收益。在以太坊网络中，由于各类项目已经基于它生成了大量的通证，以太坊网络的交易量相对较多，挖矿节点获得的交易费收益占比高于比特币。</li>
+<li>EOS 的设计思路则类似于房地产开发。Block.one 公司在将土地售卖出去之后，逻辑上它用获得的资金进行基础的开发，此后每年再以类似填海造田的方式增加 5% 的土地出来。</li>
+<li>EOS 网络要依靠超级节点（即区块生产者）来各自建设、共同运营，按现在的设计，这些节点共同获得每年 1% 新增发的 EOS 作为回报。其繁荣程度主要取决于超级节点能否建设号自己的地盘。</li>
+<li>实际上，EOS的实际情况是：BlockOne公司募集资金开发一个名为EOSIO的开源软件。EOS社区通过这个软件运行EOS主网。EOS是对以太坊的改进，各中由EOSIO运行起来的区块链网络，也可以做以太坊能做的事。</li>
+</ol>
+<h2 id="EOS的超级节点竞选"><a href="#EOS的超级节点竞选" class="headerlink" title="EOS的超级节点竞选"></a>EOS的超级节点竞选</h2><ol>
+<li>EOS采用的共识机制是DPOS（委托权益证明），即一些节点在获得足够多的投票后，成为见证人节点或EOS中所说的区块链生产者，<strong>负责区块的生成</strong>。</li>
+<li>基于区块链的思路开发的软件系统的关键要求：<ol>
+<li>一是性能：它的去中心化网络的整体性能能否支撑大量应用。</li>
+<li>二是网络：它的共识机制、经济激励和社区运营能否吸引足够多的节点加入，形成安全可靠的去中心网络。</li>
+<li>三是功能：无论目标是通用类，功能类还是行业类，它是否提供了应用开发所需要的必备功能。</li>
+</ol>
+</li>
+<li>超级节点竞选（DPOS）是一种激励。通过DPOS来刺激形成一个活跃的去中心网络，并且，超级节点竞选时与其共识机制DPOS高度匹配的。区块生产则时动态的，时刻根据投票动态调整。<blockquote>
+<p>EOS 的区块链生产者的收益分配机制是，区块生产者一共可获得每年新增出来的 1% 的 EOS 通证作为回报，其中 0.25% 按每个区块来进行奖励，0.75% 按所获投票来进行分配。可参见 2018 年 5 月 12 日项目发布的信息。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="EOS-的共识机制"><a href="#EOS-的共识机制" class="headerlink" title="EOS 的共识机制"></a>EOS 的共识机制</h2><p>所有的出块者都要对所有区块签名，以确保在同一时间戳或者同一区块高度上，没有区块生产者能够同时在两个区块上签名。一旦一个区块有了 15 个区块生产者的签名，该区块就被认为是不可逆的。任一区块生产者如果想在同一时间戳或者同一区块高度的两个区块上签名，就会留下密码学证据。在这一模式下，一秒之内就可以达成不可逆的共识。</p>
+<ol>
+<li>EOSIO 设定每0.5秒产生一个区块，每126个区块为一个周期（每个出块者6个区块，乘以21个出块者）。在每个出块周期开始时，软件会根据通证持有人投票选出21个区块生产者。每个生产的区块要获得15个以上的区块生产者的签名即变成不可逆的交易。</li>
+<li>如果在计划的时间内没有成功出块，则跳过该块，产生0.5秒的空白。如果出块者错过了一个区块，并且在最近24小时内都没有产生任何区块，则这个出块者将被踢出考虑范围，直至他们通知区块链可以重新开始产生区块。这确保了网络的顺利运行。</li>
+</ol>
+<h1 id="区块链的不可能三角"><a href="#区块链的不可能三角" class="headerlink" title="区块链的不可能三角"></a>区块链的不可能三角</h1><img src="/区块链_img/47.png" style="zoom:80%">
+
+
+<p>对比一下比特币和 EOS：比特币系统看重的是去中心化和安全，而牺牲了可扩展性；EOS 在一定程度上牺牲了去中心化，而去追求可扩展性与安全。</p>
+<h1 id="去中心化的应用"><a href="#去中心化的应用" class="headerlink" title="去中心化的应用"></a>去中心化的应用</h1><ol>
+<li><p>EOS白皮书中给出了区块链应用的六个条件：</p>
+<ol>
+<li>支持百万级别的用户，需要能够处理数千万日活跃用户的区块链技术。</li>
+<li>使用免费，应用开发人员需要具备灵活性，能够为用户提供免费服务；用户不必为了使用平台或从平台的服务中受益而付费。</li>
+<li>轻松升级和故障修复，区块链平台必须对软件和智能合约的升级提供支持。</li>
+<li>延迟低，及时地反馈是良好用户体验的基础。</li>
+<li>串行性能，有些应用程序由于必须顺序执行命令，无法用并行算法进行实现。区块链需要提供强大的串行性能支持。</li>
+<li>并行性能，大型应用程序需要在多个CPU和计算机之间分配工作负载。</li>
+</ol>
+</li>
+<li><p>早期的应用:将会在区块链上出现原生的区块链应用或去中心化应用。</p>
+</li>
+<li><p>如果单独看一条区块链的应用，情形可能如图 2 所示。</p>
+<ol>
+<li>这条区块链是分布式账本与去中心网络，它提供着一系列与价值相关的数据和功能。</li>
+<li>多个应用接入区块链网络。在这些应用中，有的可能是普通用户可以使用的，是网站/移动 App 与区块链应用的组合；有的可能是纯粹的区块链应用。<pre><code>&lt;img src=&quot;/区块链_img/48.png&quot; style=&quot;zoom:80%&quot;&gt;</code></pre></li>
+</ol>
+</li>
+<li><p>有的应用可能接入多个区块链，比如现在常见的应用交易所、钱包就接入多个区块链。</p>
+</li>
+<li><p>去中心化应用可以从去财富中心化和去计算中心化入手。</p>
+</li>
+<li><p>区块链3.0的先驱者EOS为应用而做的三件事：用户免费、账户与权限体系、存储系统。 </p>
+</li>
+</ol>
+<h2 id="区块链应用实例—Steemit博客"><a href="#区块链应用实例—Steemit博客" class="headerlink" title="区块链应用实例—Steemit博客"></a>区块链应用实例—Steemit博客</h2><ol>
+<li>基于Steem区块链上存储价值，并按照内容贡献进行分配。</li>
+<li>基于这条区块链建有多个应用：普通用户可用的 Steemit 博客平台、视频平台 DTube 等；常备的应用如区块链浏览器 steemd.com 网站。它的社区算是较为活跃的，还有其他的很多应用。</li>
+</ol>
+<h2 id="用户免费"><a href="#用户免费" class="headerlink" title="用户免费"></a>用户免费</h2><p>—-用户不必为了使用平台或从平台的服务中收益而付费。</p>
+<ol>
+<li><p>使用一个区块链应用需要三种资源，均由维护这个去中心网络的计算机提供。分别是：</p>
+<ol>
+<li>带宽资源：带宽和日志存储。(磁盘)</li>
+<li>计算资源：计算和计算积压。（CPU）</li>
+<li>状态资源：状态存储。（RAM）</li>
+</ol>
+</li>
+<li><p>关于状态：区块链账本中存储的是状态，比如交易账本、账户余额等，按其名字缩写为 RAM，它的性质大约相当于内存。EOS 还特别举例说明，什么应该存入状态，什么不应该存入状态。例如，一个区块链应用程序的逻辑不需要读取博客文章的内容和评论，因此它们不应该存储在区块链的状态中。但是，博客文章或评论是否存在、投票数以及其他属性，需要存在区块链的状态之中。</p>
+<p> <strong>简单的说，区块链是用于交易的，区块链的状态是交易账本，那么，与交易相关的信息应该存入交易账本，而与交易无关的信息不应存入交易账本。</strong></p>
+</li>
+<li><p>EOS中的三种资源的消耗机制：区块生产者（BP）公布可用的带宽（bandwidth）、计算（computation）和状态（state）的容量。EOSIO 系统允许每个账户消耗一定比例的可用资源，这个比例是根据账户将自己持有的通证存入“三天抵押合约”的数量决定的。</p>
+</li>
+<li><p>关于交易费：</p>
+<ol>
+<li>以太币和比特币中都需要交易的发起方设定一个交易费，付给区块链网络，从而使网络能够处理这一交易。</li>
+<li>EOS的逻辑是去中心化应用程序不应该强迫它的用户为使用区块链而支付费用。具体实现是由应用自己决定采用什么方式，通常为了用户使用，应用会自行解决，从而使得用户看上去是免费的。</li>
+</ol>
+</li>
+<li><p>交易成本与通证价值分开</p>
+<ol>
+<li><p>在以太坊的网络中，我们交易支付以太币，随着以太币价格的涨跌，交易成本也随之变化。</p>
+</li>
+<li><p>EOS的逻辑是使交易成本与通证价值无关。EOS的做法是，一个应用拥有的带宽、计算、状态等资源，是与其持有的通证数量有关的，但由于不需要消耗，因此一定程度上与通证价值无关。</p>
+</li>
+<li><p>如果应用开发者不持有足够多的通证，则EOS网络还有一种“将资源能力授权出去”的机制，通证持有人可以不立刻消耗可用带宽或全部资源，可以将未消耗的带宽委托或租赁给其他人。</p>
+<blockquote>
+<p>根据 EOSIO 文档，这里的状态可认为指的是一个应用所占用的区块链网络的 RAM 存储空间。原文为：Storage of application state will require an application developer to hold tokens until that state is deleted.If state is never deleted,then the tokens are effectively removed from circulation.</p>
+</blockquote>
+<blockquote>
+<p>对比以太坊和 EOS 我们可以看到，在以太坊中进行交易，个人用户需要支付交易费，而在 EOS 中进行交易，则是应用提供者需要承担成本，现在看来其中主要的成本是与 RAM 存储空间相关的。</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="账户与权限体系"><a href="#账户与权限体系" class="headerlink" title="账户与权限体系"></a>账户与权限体系</h2><ol>
+<li>比特币：没有账户，所有比特币交易都是地址见的交换。</li>
+<li>以太坊：引入了账户。每个账户包括四个信息：一个随机数、账户的余额、合约代码（如果有的话）、存储（通常为空）。分为外部账户和合约账户。这里的合约代码相当于以太坊中的自治代理。</li>
+</ol>
+<h3 id="EOS账户"><a href="#EOS账户" class="headerlink" title="EOS账户"></a>EOS账户</h3><ol>
+<li>一个EOS账户可以发送动作给另一个账户，而每个账户都可以设定一个处理器来自动处理发给自己的动作。动作与处理器的结合就是智能合约。</li>
+<li>EOS系统提供了一个标准的基于角色的权限系统。允许每个用户持有者定义自己的权限层次结构以及动作的分组。</li>
+<li>其账户系统包含两个缺省的权限组：最高级别的缺省是owner，第二个缺省权限组是active，其他的权限组都可以由active派生出来</li>
+</ol>
+<h2 id="存储系统"><a href="#存储系统" class="headerlink" title="存储系统"></a>存储系统</h2><p>—与交易相关的数据被存储在区块链中，那么应用相关数据放在哪呢？</p>
+<ol>
+<li>目前EOS的想法是存储在基于IPFS的EOS存储中。</li>
+</ol>
+<h2 id="总结-区块链的定义七-八"><a href="#总结-区块链的定义七-八" class="headerlink" title="总结 区块链的定义七 八"></a>总结 区块链的定义七 八</h2><img src="/区块链_img/49.png" style="zoom:80%">
+
+<img src="/区块链_img/50.png" style="zoom:80%">
+
+<h1 id="EOS账户的密钥被盗找回"><a href="#EOS账户的密钥被盗找回" class="headerlink" title="EOS账户的密钥被盗找回"></a>EOS账户的密钥被盗找回</h1><ol>
+<li>基于它的用户权限机制</li>
+<li>在这种情况下，你可以用过去 30 天中有效的 owner 权限对应的私钥，和你预先设定的账户恢复合作伙伴（account recovery partner）重置账户的私钥。这样你可能夺回了账户的所有权。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/hide/" rel="tag"># hide</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/20/%E5%8C%97%E5%A4%A7%E7%BD%91%E8%AF%BE/" rel="prev" title="北大网课">
+      <i class="fa fa-chevron-left"></i> 北大网课
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/" rel="next" title="区块链技术">
+      区块链技术 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#比特币的诞生"><span class="nav-number">1.</span> <span class="nav-text">比特币的诞生</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区块链"><span class="nav-number">2.</span> <span class="nav-text">区块链</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加密数字货币前传"><span class="nav-number">3.</span> <span class="nav-text">加密数字货币前传</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#中心化"><span class="nav-number">4.</span> <span class="nav-text">中心化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数字世界中的货币有三种形式"><span class="nav-number">4.1.</span> <span class="nav-text">数字世界中的货币有三种形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比特币实现了极致的去中心化"><span class="nav-number">4.2.</span> <span class="nav-text">比特币实现了极致的去中心化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比特币系统设计的五个要点："><span class="nav-number">4.3.</span> <span class="nav-text">比特币系统设计的五个要点：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比特币是如何转账的"><span class="nav-number">5.</span> <span class="nav-text">比特币是如何转账的</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式账本和去中心网络"><span class="nav-number">5.1.</span> <span class="nav-text">分布式账本和去中心网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UTXO-未使用的交易输出"><span class="nav-number">5.2.</span> <span class="nav-text">UTXO:未使用的交易输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比特币区块的数据结构"><span class="nav-number">5.3.</span> <span class="nav-text">比特币区块的数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作量证明共识机制"><span class="nav-number">5.4.</span> <span class="nav-text">工作量证明共识机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比特币的挖矿机制"><span class="nav-number">5.5.</span> <span class="nav-text">比特币的挖矿机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比特币转账过程"><span class="nav-number">5.6.</span> <span class="nav-text">比特币转账过程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区块链的应用"><span class="nav-number">6.</span> <span class="nav-text">区块链的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#价值表示"><span class="nav-number">6.1.</span> <span class="nav-text">价值表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#价值转移"><span class="nav-number">6.2.</span> <span class="nav-text">价值转移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#价值表示物：数字世界中表示价值的通证"><span class="nav-number">6.3.</span> <span class="nav-text">价值表示物：数字世界中表示价值的通证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链的第三第四定义"><span class="nav-number">6.4.</span> <span class="nav-text">区块链的第三第四定义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区块链将成为互联网基础协议"><span class="nav-number">7.</span> <span class="nav-text">区块链将成为互联网基础协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#以太坊"><span class="nav-number">8.</span> <span class="nav-text">以太坊</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#智能合约与去中心化的平台"><span class="nav-number">8.1.</span> <span class="nav-text">智能合约与去中心化的平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用智能合约管理数字资产与ERC20通证标准"><span class="nav-number">8.2.</span> <span class="nav-text">用智能合约管理数字资产与ERC20通证标准</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#智能合约"><span class="nav-number">9.</span> <span class="nav-text">智能合约</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#智能资产：用智能合约来控制实体资产"><span class="nav-number">9.1.</span> <span class="nav-text">智能资产：用智能合约来控制实体资产</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#以太坊的智能合约"><span class="nav-number">9.2.</span> <span class="nav-text">以太坊的智能合约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#以太坊的智能合约有什么用"><span class="nav-number">9.3.</span> <span class="nav-text">以太坊的智能合约有什么用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#令牌系统-token-systems"><span class="nav-number">10.</span> <span class="nav-text">令牌系统 token systems</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通证有什么用：机器比人更需要通证"><span class="nav-number">11.</span> <span class="nav-text">通证有什么用：机器比人更需要通证</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在机器视角看通证"><span class="nav-number">11.1.</span> <span class="nav-text">在机器视角看通证</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ERC20通证标准"><span class="nav-number">12.</span> <span class="nav-text">ERC20通证标准</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-DAO众筹事件与以太坊分叉"><span class="nav-number">13.</span> <span class="nav-text">The DAO众筹事件与以太坊分叉</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分叉的存在：比特币共识机制"><span class="nav-number">13.1.</span> <span class="nav-text">分叉的存在：比特币共识机制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计通证：用通证表示资产"><span class="nav-number">14.</span> <span class="nav-text">设计通证：用通证表示资产</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用通证将资产表示为链上的“数字资产”"><span class="nav-number">14.1.</span> <span class="nav-text">用通证将资产表示为链上的“数字资产”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字资产系统的去中心化交易场景"><span class="nav-number">14.2.</span> <span class="nav-text">数字资产系统的去中心化交易场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通证的四个特征"><span class="nav-number">14.3.</span> <span class="nav-text">通证的四个特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过经济系统设计和通证的发行与分配"><span class="nav-number">14.4.</span> <span class="nav-text">通过经济系统设计和通证的发行与分配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#以太坊：数字资产的基础设施"><span class="nav-number">14.5.</span> <span class="nav-text">以太坊：数字资产的基础设施</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#以太坊只能合约的技术与组件"><span class="nav-number">15.</span> <span class="nav-text">以太坊只能合约的技术与组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ERC721标准与加密猫"><span class="nav-number">16.</span> <span class="nav-text">ERC721标准与加密猫</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#以太坊的账户"><span class="nav-number">17.</span> <span class="nav-text">以太坊的账户</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#合约账户"><span class="nav-number">17.1.</span> <span class="nav-text">合约账户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外部账户"><span class="nav-number">17.2.</span> <span class="nav-text">外部账户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#以太坊的区块"><span class="nav-number">17.3.</span> <span class="nav-text">以太坊的区块</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区块链的四大特征—区块链有什么用"><span class="nav-number">18.</span> <span class="nav-text">区块链的四大特征—区块链有什么用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-不可篡改"><span class="nav-number">18.1.</span> <span class="nav-text">一 不可篡改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-表示价值所需要的唯一性"><span class="nav-number">18.2.</span> <span class="nav-text">二 表示价值所需要的唯一性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-智能合约"><span class="nav-number">18.3.</span> <span class="nav-text">三 智能合约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-去中心自组织"><span class="nav-number">18.4.</span> <span class="nav-text">四 去中心自组织</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区块链3-0"><span class="nav-number">19.</span> <span class="nav-text">区块链3.0</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类比理解"><span class="nav-number">19.1.</span> <span class="nav-text">类比理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作为云服务的区块链3-0"><span class="nav-number">19.2.</span> <span class="nav-text">作为云服务的区块链3.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#走向应用的五条路径"><span class="nav-number">19.3.</span> <span class="nav-text">走向应用的五条路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从多个网到多条链"><span class="nav-number">19.4.</span> <span class="nav-text">从多个网到多条链</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EOS、比特币、以太坊"><span class="nav-number">20.</span> <span class="nav-text">EOS、比特币、以太坊</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#EOS-VS-以太坊"><span class="nav-number">20.1.</span> <span class="nav-text">EOS VS 以太坊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EOS的超级节点竞选"><span class="nav-number">20.2.</span> <span class="nav-text">EOS的超级节点竞选</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EOS-的共识机制"><span class="nav-number">20.3.</span> <span class="nav-text">EOS 的共识机制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区块链的不可能三角"><span class="nav-number">21.</span> <span class="nav-text">区块链的不可能三角</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#去中心化的应用"><span class="nav-number">22.</span> <span class="nav-text">去中心化的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链应用实例—Steemit博客"><span class="nav-number">22.1.</span> <span class="nav-text">区块链应用实例—Steemit博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户免费"><span class="nav-number">22.2.</span> <span class="nav-text">用户免费</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#账户与权限体系"><span class="nav-number">22.3.</span> <span class="nav-text">账户与权限体系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EOS账户"><span class="nav-number">22.3.1.</span> <span class="nav-text">EOS账户</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储系统"><span class="nav-number">22.4.</span> <span class="nav-text">存储系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结-区块链的定义七-八"><span class="nav-number">22.5.</span> <span class="nav-text">总结 区块链的定义七 八</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EOS账户的密钥被盗找回"><span class="nav-number">23.</span> <span class="nav-text">EOS账户的密钥被盗找回</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ceb</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ceb</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>
