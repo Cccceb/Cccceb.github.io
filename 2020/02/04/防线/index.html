@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://github.com/Cccceb/Cccceb.github.io').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="UVA 1471 防线给一个长度为 n(n≤200000)的序列，你的任务是删除一个连续子序列，使得剩下的序列中有一个长度最大的连续递增子序列。例如，将序列{5,3,4,9,2,8,6,7,1}中的{9,2,8}删除，得到的序列{5,3,4,6,7,1}中包含一个长度为4的连续递增子序列{3,4,6,7}。序列中每个数均为不超过 10^9的正整数。 思路 最直观的，枚举i和j，对于所有满足A[j]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="防线">
+<meta property="og:url" content="https://github.com/Cccceb/Cccceb.github.io/2020/02/04/%E9%98%B2%E7%BA%BF/index.html">
+<meta property="og:site_name" content="Ceb">
+<meta property="og:description" content="UVA 1471 防线给一个长度为 n(n≤200000)的序列，你的任务是删除一个连续子序列，使得剩下的序列中有一个长度最大的连续递增子序列。例如，将序列{5,3,4,9,2,8,6,7,1}中的{9,2,8}删除，得到的序列{5,3,4,6,7,1}中包含一个长度为4的连续递增子序列{3,4,6,7}。序列中每个数均为不超过 10^9的正整数。 思路 最直观的，枚举i和j，对于所有满足A[j]">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-04T15:37:25.612Z">
+<meta property="article:modified_time" content="2020-02-04T15:33:20.386Z">
+<meta property="article:author" content="Cuienbo">
+<meta property="article:tag" content="hide">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://github.com/Cccceb/Cccceb.github.io/2020/02/04/%E9%98%B2%E7%BA%BF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>防线 | Ceb</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a href="https://github.com/you"><img style="position:absolute;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_gray_6d6d6d.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>  
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ceb</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/02/04/%E9%98%B2%E7%BA%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Cuienbo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ceb">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          防线
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-02-04 23:37:25 / Modified: 23:33:20" itemprop="dateCreated datePublished" datetime="2020-02-04T23:37:25+08:00">2020-02-04</time>
+            </span>
+
+          
+          <div>
+            
+                
+            
+          </div>
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="UVA-1471-防线"><a href="#UVA-1471-防线" class="headerlink" title="UVA 1471 防线"></a>UVA 1471 防线</h1><p>给一个长度为 n(n≤200000)的序列，你的任务是删除一个连续子序列，使得剩下的序列中有一个长度最大的连续递增子序列。例如，将序列{5,3,4,9,2,8,6,7,1}中的{9,2,8}删除，得到的序列{5,3,4,6,7,1}中包含一个长度为4的连续递增子序列{3,4,6,7}。序列中每个数均为不超过 10^9的正整数。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+<li>最直观的，枚举i和j，对于所有满足A[j]&lt;A[i]的分别向左右扩展，统计有序序列能扩展多长，复杂度O(n<sup>3</sup>)</li>
+<li>可以预先计算出以第i个元素为起点的最长序列长f(i)以及以第i个元素为终点的最长序列长g(i)。然后枚举i,j，对于满足A[j]&lt;A[i]的ij，答案为g[j]+f[i]。复杂度O(n<sup>2</sup>)，可惜仍然超时了…</li>
+<li>枚举i是必须的。但是随着i的向后移动，不是所有的j都是有用的了。所以可以首先排除一些肯定不是最优值的j。例如，若有j’满足A[j’]&lt;=A[j]且g(j’)&gt;g(j)，则j不是最优的，因为j’不仅是一个更长的序列的末尾，而且它还更容易插入。因此，操作涉及动态维护一个有序表，涉及大量插入删除，所以不能用排序加二分查找，而选择使用set。</li>
+<li>具体实现时，应该首先找到这个元素的插入位置，根据插入位置前一个元素判断是否需要保留。如果需要保留，还要将插入位置后面的不可能成为最优解的元素删除掉。插入删除查询都是set的操作，复杂度都为O(logn)，总的时间复杂度为O(nlogn)。</li>
+</ol>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="get-fg-填充f-g数组"><a href="#get-fg-填充f-g数组" class="headerlink" title="get_fg 填充f g数组"></a>get_fg 填充f g数组</h2><h3 id="迭代写法-更快-440ms"><a href="#迭代写法-更快-440ms" class="headerlink" title="迭代写法(更快) 440ms"></a>迭代写法(更快) 440ms</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void get_fg() &#123;</span><br><span class="line">	g[0] &#x3D; 1;</span><br><span class="line">	for (int i &#x3D; 1; i &lt; n; i++)</span><br><span class="line">		if (in[i - 1] &lt; in[i]) g[i] &#x3D; g[i - 1] + 1;</span><br><span class="line">		else g[i] &#x3D; 1;</span><br><span class="line"></span><br><span class="line">	&#x2F;&#x2F; f[i] is the length of longest increasing continuous subsequence starting from i</span><br><span class="line">	f[n - 1] &#x3D; 1;</span><br><span class="line">	for (int i &#x3D; n - 2; i &gt;&#x3D; 0; i--)</span><br><span class="line">		if (in[i] &lt; in[i + 1]) f[i] &#x3D; f[i + 1] + 1;</span><br><span class="line">		else f[i] &#x3D; 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="直接写的-460ms"><a href="#直接写的-460ms" class="headerlink" title="直接写的 460ms"></a>直接写的 460ms</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void get_fg() &#123;</span><br><span class="line">memset(f, 0, sizeof(f));</span><br><span class="line">memset(g, 0, sizeof(g));</span><br><span class="line">int beg &#x3D; 0;</span><br><span class="line">for (int last &#x3D; 1; last &lt; n; last++) &#123;</span><br><span class="line">	g[last - 1] &#x3D; last - beg;</span><br><span class="line">	if (in[last] &lt;&#x3D; in[last - 1]) &#123;</span><br><span class="line">		for (; beg &lt; last; beg++)</span><br><span class="line">			f[beg] &#x3D; last - beg;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (!g[n - 1]) g[n - 1] &#x3D; n - beg;</span><br><span class="line">for (; beg &lt; n; beg++)</span><br><span class="line">	f[beg] &#x3D; n - beg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="solve-枚举i动态修改有序表计算j"><a href="#solve-枚举i动态修改有序表计算j" class="headerlink" title="solve 枚举i动态修改有序表计算j"></a>solve 枚举i动态修改有序表计算j</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int solve() &#123;</span><br><span class="line">	get_fg();</span><br><span class="line">	int ans &#x3D; 1;</span><br><span class="line">	s.clear();</span><br><span class="line">	s.insert(node(in[0], g[0]));</span><br><span class="line">	for (int i &#x3D; 1; i &lt; n; i++) &#123;</span><br><span class="line">		node c (in[i], g[i]);</span><br><span class="line">		set&lt;node&gt; ::iterator it &#x3D; s.lower_bound(c);</span><br><span class="line">		bool keep &#x3D; true;</span><br><span class="line">		if (it !&#x3D; s.begin()) &#123;</span><br><span class="line">			node last &#x3D; *(--it);</span><br><span class="line">			int len &#x3D; f[i] + last.v;</span><br><span class="line">			ans &#x3D; max(ans, len);</span><br><span class="line">			if (c.v &lt;&#x3D; last.v) keep &#x3D; false;</span><br><span class="line">		&#125;</span><br><span class="line">		if (keep) &#123;</span><br><span class="line">			s.erase(c);</span><br><span class="line">			s.insert(c);</span><br><span class="line">			it &#x3D; s.find(c);</span><br><span class="line">			it++;</span><br><span class="line">			while (it !&#x3D; s.end() &amp;&amp; it-&gt;num &gt; c.num&amp;&amp;it-&gt;v &lt;&#x3D; c.v)</span><br><span class="line">				s.erase(it++);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	return ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="main"><a href="#main" class="headerlink" title="main"></a>main</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">const int maxn &#x3D; 200005;</span><br><span class="line">int in[maxn];</span><br><span class="line">int g[maxn], f[maxn];&#x2F;&#x2F;g(i)表示以第i个元素结尾的最长序列长度，f(i)表示以第i个元素开始最长序列长度</span><br><span class="line">struct node &#123;</span><br><span class="line">	int v, num;</span><br><span class="line">	node(int num, int v) :num(num), v(v) &#123;&#125;</span><br><span class="line">	bool operator &lt; (const node&amp;a) const &#123; return num &lt; a.num; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">int n;</span><br><span class="line">set&lt;node&gt; s;</span><br><span class="line"></span><br><span class="line">inline void get_fg();</span><br><span class="line">inline int solve();</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	int T;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;T);</span><br><span class="line">	while (T--)</span><br><span class="line">	&#123;</span><br><span class="line">		scanf(&quot;%d&quot;, &amp;n);</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			scanf(&quot;%d&quot;, &amp;in[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		if (n &#x3D;&#x3D; 1) &#123; printf(&quot;1\n&quot;); continue; &#125;</span><br><span class="line">		printf(&quot;%d\n&quot;, solve());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/hide/" rel="tag"># hide</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/04/%E6%8A%84%E4%B9%A6/" rel="prev" title="抄书">
+      <i class="fa fa-chevron-left"></i> 抄书
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/04/%E7%8E%AF%E5%BD%A2%E8%B7%91%E9%81%93/" rel="next" title="环形跑道">
+      环形跑道 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UVA-1471-防线"><span class="nav-number">1.</span> <span class="nav-text">UVA 1471 防线</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#get-fg-填充f-g数组"><span class="nav-number">3.1.</span> <span class="nav-text">get_fg 填充f g数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代写法-更快-440ms"><span class="nav-number">3.1.1.</span> <span class="nav-text">迭代写法(更快) 440ms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接写的-460ms"><span class="nav-number">3.1.2.</span> <span class="nav-text">直接写的 460ms</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#solve-枚举i动态修改有序表计算j"><span class="nav-number">3.2.</span> <span class="nav-text">solve 枚举i动态修改有序表计算j</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main"><span class="nav-number">3.3.</span> <span class="nav-text">main</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cuienbo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">159</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cuienbo</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.0
+  </div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>

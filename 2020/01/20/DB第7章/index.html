@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://github.com/Cccceb/Cccceb.github.io').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="数据库的设计方法 新奥尔良法:将数据库设计分为四个阶段：需求分析、概念设计、逻辑设计和物理设计。 基于ER模型的设计方法：使用ER模型来设计数据库的概念模型。 3NF的设计方法：用关系数据理论指导逻辑模型的设计。 ODL方法：用面向对象的概念和属于来说明数据库结构。  数据库设计中的各级模式  需求分析需求分析的重点是调查、收集与分析用户在数据管理中的信息要求、处理要求、安全性与完整性要求。 需求">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DB第7章">
+<meta property="og:url" content="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/DB%E7%AC%AC7%E7%AB%A0/index.html">
+<meta property="og:site_name" content="Ceb">
+<meta property="og:description" content="数据库的设计方法 新奥尔良法:将数据库设计分为四个阶段：需求分析、概念设计、逻辑设计和物理设计。 基于ER模型的设计方法：使用ER模型来设计数据库的概念模型。 3NF的设计方法：用关系数据理论指导逻辑模型的设计。 ODL方法：用面向对象的概念和属于来说明数据库结构。  数据库设计中的各级模式  需求分析需求分析的重点是调查、收集与分析用户在数据管理中的信息要求、处理要求、安全性与完整性要求。 需求">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/DB_img/U7/1.png">
+<meta property="og:image" content="https://github.com/DB_img/U7/2.png">
+<meta property="og:image" content="https://github.com/DB_img/U7/4.png">
+<meta property="article:published_time" content="2020-01-20T13:23:04.931Z">
+<meta property="article:modified_time" content="2020-01-20T13:25:52.629Z">
+<meta property="article:author" content="Cuienbo">
+<meta property="article:tag" content="hide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/DB_img/U7/1.png">
+
+<link rel="canonical" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/DB%E7%AC%AC7%E7%AB%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>DB第7章 | Ceb</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a href="https://github.com/you"><img style="position:absolute;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_gray_6d6d6d.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>  
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ceb</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/DB%E7%AC%AC7%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Cuienbo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ceb">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DB第7章
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-20 21:23:04 / Modified: 21:25:52" itemprop="dateCreated datePublished" datetime="2020-01-20T21:23:04+08:00">2020-01-20</time>
+            </span>
+
+          
+          <div>
+            
+                
+            
+          </div>
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="数据库的设计方法"><a href="#数据库的设计方法" class="headerlink" title="数据库的设计方法"></a>数据库的设计方法</h1><ol>
+<li>新奥尔良法:将数据库设计分为四个阶段：需求分析、概念设计、逻辑设计和物理设计。</li>
+<li>基于ER模型的设计方法：使用ER模型来设计数据库的概念模型。</li>
+<li>3NF的设计方法：用关系数据理论指导逻辑模型的设计。</li>
+<li>ODL方法：用面向对象的概念和属于来说明数据库结构。</li>
+</ol>
+<h2 id="数据库设计中的各级模式"><a href="#数据库设计中的各级模式" class="headerlink" title="数据库设计中的各级模式"></a>数据库设计中的各级模式</h2><img src="/DB_img/U7/1.png">
+
+<h1 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h1><p>需求分析的重点是调查、收集与分析用户在数据管理中的信息要求、处理要求、安全性与完整性要求。</p>
+<h2 id="需求信息的收集"><a href="#需求信息的收集" class="headerlink" title="需求信息的收集"></a>需求信息的收集</h2><p>即了解用户的组织机构设置、主要业务活动和职能及对新系统的要求。</p>
+<h2 id="需求信息的分析"><a href="#需求信息的分析" class="headerlink" title="需求信息的分析"></a>需求信息的分析</h2><p>步骤</p>
+<h3 id="确定系统边界"><a href="#确定系统边界" class="headerlink" title="确定系统边界"></a>确定系统边界</h3><h3 id="业务流程分析"><a href="#业务流程分析" class="headerlink" title="业务流程分析"></a>业务流程分析</h3><p>使用数据流图</p>
+<ol>
+<li><p>表达方式</p>
+<ol>
+<li><p>圆圈：表示一次处理过程</p>
+</li>
+<li><p>有向线：表示数据流</p>
+</li>
+<li><p>双线段：表示存储的信息</p>
+<img src="/DB_img/U7/2.png">
+</li>
+</ol>
+</li>
+<li><p>分析方法</p>
+<ol>
+<li>自顶向下，逐层分解</li>
+<li>先主干后分支</li>
+</ol>
+</li>
+<li><p>建立<strong>数据字典</strong></p>
+<ol>
+<li>数据字典是各类数据描述的集合，通常以表格的形式详细地描述业务处理过程中用到的各类数据</li>
+<li>数据字典的内容包括数据项、数据结构、数据流、数据存储、处理过程等五部分。</li>
+<li>数据流：可以是数据项，也可以是数据结构，表示数据的来源和去向。</li>
+<li>数据存储：xx表。包括数据存储名、说明、输入数据流、输出数据流、组成成份、数据量、存取方式、存取频度等。</li>
+<li>处理过程：加工处理过程定义和说明。</li>
+</ol>
+</li>
+</ol>
+<h1 id="概念结构设计"><a href="#概念结构设计" class="headerlink" title="概念结构设计"></a>概念结构设计</h1><p>概念结构设计就是将现实事物以不依赖于任何数据模<br>型的方式加以描述，目的在于以符号化的形式正确地反映<br>现实事物及事物与事物间的联系。概念结构设计的内容就<br>是建立概念模型。</p>
+<h2 id="概念结构设计四种策略"><a href="#概念结构设计四种策略" class="headerlink" title="概念结构设计四种策略"></a>概念结构设计四种策略</h2><h3 id="自顶向下"><a href="#自顶向下" class="headerlink" title="自顶向下"></a>自顶向下</h3><p>即首先定义全局概念结构的框架，然后逐步细化。</p>
+<h3 id="自底向上"><a href="#自底向上" class="headerlink" title="自底向上"></a>自底向上</h3><p>即首先定义各局部应用的概念结构，然后将它们集成起来，得到全局概念结构。</p>
+<h3 id="逐步扩张"><a href="#逐步扩张" class="headerlink" title="逐步扩张"></a>逐步扩张</h3><p>即首先确定核心业务的概念结构，然后以此为中心向外扩张，最终实现全局概念结构。</p>
+<h3 id="混合策略"><a href="#混合策略" class="headerlink" title="混合策略"></a>混合策略</h3><p>即将自顶向下和自底向上两种策略结合使用，首先确定全局框架，划分为若干个局部概念模型，再采取自底向上的策略实现各局部概念模型，加以合并实现全局概念模型。</p>
+<h2 id="抽象现实事物的三种方法"><a href="#抽象现实事物的三种方法" class="headerlink" title="抽象现实事物的三种方法"></a>抽象现实事物的三种方法</h2><p>分类；聚集；概括</p>
+<h2 id="设计局部视图"><a href="#设计局部视图" class="headerlink" title="设计局部视图"></a>设计局部视图</h2><p>步骤</p>
+<h3 id="选择局部应用"><a href="#选择局部应用" class="headerlink" title="选择局部应用"></a>选择局部应用</h3><h3 id="设计分E-R图"><a href="#设计分E-R图" class="headerlink" title="设计分E-R图"></a>设计分E-R图</h3><h2 id="确定实体与属性的两条准则"><a href="#确定实体与属性的两条准则" class="headerlink" title="确定实体与属性的两条准则"></a>确定实体与属性的两条准则</h2><ol>
+<li>属性是不可再分的数据项，属性不可以再有属性</li>
+<li>属性不能与其他实体发生联系，联系只能存在于实体与<br>实体之间</li>
+<li>例如职工(职工号，姓名，年龄，职称)，其中的职称如果<br>与工资、住房和福利挂勾(即有联系)，则应该单独作为<br>实体，而职工与职称间构成联系</li>
+</ol>
+<h2 id="视图集成"><a href="#视图集成" class="headerlink" title="视图集成"></a>视图集成</h2><img src="/DB_img/U7/4.png">
+
+<p>选择两个具有相同实体的E-R图，通过相同实体将两个ER图连结起来构成一个E-R图，然后再与其它E-R图连结直到将<br>所有的局部E-R图全部连结成一个E-R图，称为全局E-R图</p>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ol>
+<li>可以完整地描述企业的信息及其联系</li>
+<li>另一方面在集成过程中可以解决冲突和消除冗余。</li>
+</ol>
+<h3 id="分E-R图之间的三类冲突"><a href="#分E-R图之间的三类冲突" class="headerlink" title="分E-R图之间的三类冲突"></a>分E-R图之间的三类冲突</h3><ol>
+<li>属性冲突</li>
+<li>命名冲突</li>
+<li>结构冲突：同一对象在某一分E-R图中被抽象为实体而在另一分E-R图中又被抽象为属性，需要统一。</li>
+</ol>
+<h3 id="冗余"><a href="#冗余" class="headerlink" title="冗余"></a>冗余</h3><p>注意从一个实体到另一个实体存在多条路的情况，要检查能否消除冗余。</p>
+<h1 id="逻辑结构设计"><a href="#逻辑结构设计" class="headerlink" title="逻辑结构设计"></a>逻辑结构设计</h1>
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/hide/" rel="tag"># hide</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/20/DB%E7%AC%AC6%E7%AB%A0/" rel="prev" title="DB第6章">
+      <i class="fa fa-chevron-left"></i> DB第6章
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/20/DB%E7%AC%AC4%E7%AB%A0/" rel="next" title="DB第4章">
+      DB第4章 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库的设计方法"><span class="nav-number">1.</span> <span class="nav-text">数据库的设计方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计中的各级模式"><span class="nav-number">1.1.</span> <span class="nav-text">数据库设计中的各级模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#需求分析"><span class="nav-number">2.</span> <span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求信息的收集"><span class="nav-number">2.1.</span> <span class="nav-text">需求信息的收集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求信息的分析"><span class="nav-number">2.2.</span> <span class="nav-text">需求信息的分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#确定系统边界"><span class="nav-number">2.2.1.</span> <span class="nav-text">确定系统边界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#业务流程分析"><span class="nav-number">2.2.2.</span> <span class="nav-text">业务流程分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#概念结构设计"><span class="nav-number">3.</span> <span class="nav-text">概念结构设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念结构设计四种策略"><span class="nav-number">3.1.</span> <span class="nav-text">概念结构设计四种策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自顶向下"><span class="nav-number">3.1.1.</span> <span class="nav-text">自顶向下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自底向上"><span class="nav-number">3.1.2.</span> <span class="nav-text">自底向上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逐步扩张"><span class="nav-number">3.1.3.</span> <span class="nav-text">逐步扩张</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混合策略"><span class="nav-number">3.1.4.</span> <span class="nav-text">混合策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象现实事物的三种方法"><span class="nav-number">3.2.</span> <span class="nav-text">抽象现实事物的三种方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计局部视图"><span class="nav-number">3.3.</span> <span class="nav-text">设计局部视图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择局部应用"><span class="nav-number">3.3.1.</span> <span class="nav-text">选择局部应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计分E-R图"><span class="nav-number">3.3.2.</span> <span class="nav-text">设计分E-R图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#确定实体与属性的两条准则"><span class="nav-number">3.4.</span> <span class="nav-text">确定实体与属性的两条准则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图集成"><span class="nav-number">3.5.</span> <span class="nav-text">视图集成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#作用"><span class="nav-number">3.5.1.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分E-R图之间的三类冲突"><span class="nav-number">3.5.2.</span> <span class="nav-text">分E-R图之间的三类冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冗余"><span class="nav-number">3.5.3.</span> <span class="nav-text">冗余</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑结构设计"><span class="nav-number">4.</span> <span class="nav-text">逻辑结构设计</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cuienbo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">159</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cuienbo</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.0
+  </div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>

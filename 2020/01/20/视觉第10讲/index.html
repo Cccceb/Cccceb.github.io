@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://github.com/Cccceb/Cccceb.github.io').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="相机成像原理 为什么不使光圈尽可能小? （1）使光线减少 （2）衍射影响  人的眼睛：瞳孔相当于光圈；视网膜上的感光细胞相当于胶片。 相机模型 投影建模    1. 将相机近似为针孔模型  2. 把小孔的位置设在原点  3. 将图像平面放在投影中心COP的前面(为了得到正立的相)  4. 相机向负z轴看去(右手坐标系下) 投影方程     不是线性变换—-&gt;采用3D齐次坐标。     透视投">
+<meta property="og:type" content="article">
+<meta property="og:title" content="视觉第10讲">
+<meta property="og:url" content="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC10%E8%AE%B2/index.html">
+<meta property="og:site_name" content="Ceb">
+<meta property="og:description" content="相机成像原理 为什么不使光圈尽可能小? （1）使光线减少 （2）衍射影响  人的眼睛：瞳孔相当于光圈；视网膜上的感光细胞相当于胶片。 相机模型 投影建模    1. 将相机近似为针孔模型  2. 把小孔的位置设在原点  3. 将图像平面放在投影中心COP的前面(为了得到正立的相)  4. 相机向负z轴看去(右手坐标系下) 投影方程     不是线性变换—-&gt;采用3D齐次坐标。     透视投">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/CV_img/10_1.png">
+<meta property="og:image" content="https://github.com/CV_img/10_2.png">
+<meta property="og:image" content="https://github.com/CV_img/10_3.png">
+<meta property="og:image" content="https://github.com/CV_img/10_4.png">
+<meta property="og:image" content="https://github.com/CV_img/10_5.png">
+<meta property="og:image" content="https://github.com/CV_img/10_6.png">
+<meta property="og:image" content="https://github.com/CV_img/10_7.png">
+<meta property="og:image" content="https://github.com/CV_img/10_8.png">
+<meta property="og:image" content="https://github.com/CV_img/10_9.png">
+<meta property="og:image" content="https://github.com/CV_img/10_10.png">
+<meta property="og:image" content="https://github.com/CV_img/10_11.png">
+<meta property="og:image" content="https://github.com/CV_img/10_12.png">
+<meta property="og:image" content="https://github.com/CV_img/10_15.png">
+<meta property="og:image" content="https://github.com/CV_img/10_16.png">
+<meta property="og:image" content="https://github.com/CV_img/10_17.png">
+<meta property="og:image" content="https://github.com/CV_img/10_18.png">
+<meta property="og:image" content="https://github.com/CV_img/10_19.png">
+<meta property="og:image" content="https://github.com/CV_img/10_13.png">
+<meta property="og:image" content="https://github.com/CV_img/10_14.png">
+<meta property="article:published_time" content="2020-01-20T07:22:50.887Z">
+<meta property="article:modified_time" content="2020-01-20T13:21:58.408Z">
+<meta property="article:author" content="Cuienbo">
+<meta property="article:tag" content="hide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/CV_img/10_1.png">
+
+<link rel="canonical" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC10%E8%AE%B2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>视觉第10讲 | Ceb</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a href="https://github.com/you"><img style="position:absolute;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_gray_6d6d6d.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>  
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ceb</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC10%E8%AE%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Cuienbo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ceb">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          视觉第10讲
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-20 15:22:50 / Modified: 21:21:58" itemprop="dateCreated datePublished" datetime="2020-01-20T15:22:50+08:00">2020-01-20</time>
+            </span>
+
+          
+          <div>
+            
+                
+            
+          </div>
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="相机成像原理"><a href="#相机成像原理" class="headerlink" title="相机成像原理"></a>相机成像原理</h1><ol>
+<li><p>为什么不使光圈尽可能小?<br> （1）使光线减少 （2）衍射影响</p>
+</li>
+<li><p>人的眼睛：瞳孔相当于光圈；视网膜上的感光细胞相当于胶片。</p>
+<h2 id="相机模型"><a href="#相机模型" class="headerlink" title="相机模型"></a>相机模型</h2></li>
+<li><p>投影建模</p>
+ <img src="/CV_img/10_1.png" style="zoom:80%">
+ 1. 将相机近似为针孔模型
+ 2. 把小孔的位置设在原点
+ 3. 将图像平面放在投影中心COP的前面(为了得到正立的相)
+ 4. 相机向负z轴看去(右手坐标系下)</li>
+<li><p>投影方程</p>
+ <img src="/CV_img/10_2.png" style="zoom:80%">
+
+<ol>
+<li><p>不是线性变换—-&gt;采用3D齐次坐标。</p>
+ <img src="/CV_img/10_3.png" style="zoom:80%"></li>
+</ol>
+</li>
+<li><p>透视投影</p>
+<ol>
+<li><p>投影是使用齐次坐标的矩阵乘法：</p>
+ <img src="/CV_img/10_4.png" style="zoom:80%">
+</li>
+<li><p>改变投影变换的吃尺度对变换没有影响</p>
+ <img src="/CV_img/10_5.png" style="zoom:80%"></li>
+</ol>
+</li>
+<li><p>正交投影（平行投影）</p>
+<ol>
+<li><p>是透视投影的特殊情况：当光学中心COP到投影平面PP的距离是无限的时候。（1/d = 0）</p>
+ <img src="/CV_img/10_6.png" style="zoom:80%">
+##  正交投影的变体</li>
+</ol>
+</li>
+<li><p>缩放正交（弱透视）</p>
+<p> 相当于在物体聚焦到角点前就将图像截获。</p>
+ <img src="/CV_img/10_7.png" style="zoom:80%">
+
+<p> 分两步: </p>
+<ol>
+<li>第一步：整个物体按平行于光轴的方向正交投影到经过物体质心并与图像平面平行的平面上。</li>
+<li>第二步：再按透视模型投影到图像平面上，这一步实际是全局的缩放。</li>
+</ol>
+</li>
+<li><p>仿射投影</p>
+ <img src="/CV_img/10_8.png" style="zoom:80%">
+
+<p> 分两步：</p>
+<ol>
+<li>仍把物体平行投影到过质心且与图象平面平行的平面上，不过这次的投影线不是平行于光轴，而是平行于光心C和物体质心G的连线CG；</li>
+<li>再按透视模型投影到图象平面上。</li>
+</ol>
+</li>
+<li><p>总结</p>
+</li>
+</ol>
+<img src="/CV_img/10_9.png" style="zoom:80%">
+
+<h2 id="降维"><a href="#降维" class="headerlink" title="降维"></a>降维</h2><ol>
+<li><p>投影属性</p>
+<ol>
+<li><p>多对一：同一光线上的所有点映射到图像中的同一点。</p>
+</li>
+<li><p>点-&gt;点，线-&gt;线（通过角点的线变成一个点）</p>
+</li>
+<li><p>平面-&gt;平面（通过角点的平面变成一条线）</p>
+</li>
+<li><p>平行线在消失点汇合</p>
+<ol>
+<li>每个方向在空间中都有他自己的消失点，但平行于图像平面的平行线保持平行。</li>
+</ol>
+<img src="/CV_img/10_10.png" style="zoom:80%">
+##  相机参数
+现在我们要将世界坐标系中的一个点投影到相机坐标系中。我们需要知道相机在世界坐标系中的位置和方向。然后透视投影到图像平面上以获得像素坐标。
+</li>
+</ol>
+</li>
+<li><p>相机内参数</p>
+<ol>
+<li>从世界坐标系原点到光心COP的平移变换T</li>
+<li>描述相机方向的旋转变换R</li>
+<li>焦距f、主点(x,y)、像素大小（sx,sy）</li>
+</ol>
+</li>
+<li> <img src="/CV_img/10_11.png" style="zoom:80%">
+
+<p> ·</p>
+<p> ·</p>
+ <img src="/CV_img/10_12.png" style="zoom:80%">
+
+<p> 这个公式要从右向左看</p>
+<ol>
+<li>平移矩阵即是将相机原点与世界原点重合。</li>
+<li>第二步旋转，是将相机坐标系的三个轴旋转到与世界坐标系坐标轴平行。</li>
+<li>第三步是将世界坐标系中的三维点透过光心进行投影。</li>
+<li>第四步是使用相机内参数将图像变成离散的坐标。</li>
+<li><strong>注意</strong> 该公式中对投影变换进行了拆分，，一部分与内参数乘在了一起。</li>
+</ol>
+</li>
+</ol>
+<h2 id="外参数—让相机规范化"><a href="#外参数—让相机规范化" class="headerlink" title="外参数—让相机规范化"></a>外参数—让相机规范化</h2><ol>
+<li><p>第一步 平移-c，将相机坐标系原点与世界坐标系原点重合。</p>
+ <img src="/CV_img/10_15.png" style="zoom:80%">
+
+<p> 其中c为相机坐标原点在世界坐标系中的坐标[[tx,ty,tz]].T</p>
+</li>
+<li><p>第二步 旋转R， 将相机坐标系的轴旋转到与世界坐标系轴平行。</p>
+ <img src="/CV_img/10_16.png" style="zoom:80%">
+
+</li>
+</ol>
+<h2 id="透视投影"><a href="#透视投影" class="headerlink" title="透视投影"></a>透视投影</h2><img src="/CV_img/10_17.png" style="zoom:80%">
+
+<h2 id="投影矩阵"><a href="#投影矩阵" class="headerlink" title="投影矩阵"></a>投影矩阵</h2><img src="/CV_img/10_18.png" style="zoom:80%">
+
+<p><strong>注：</strong></p>
+<ol>
+<li><p>平移的三个参数是相机原点在世界坐标系中的坐标。</p>
+</li>
+<li><p>旋转的三个参数是相机坐标系的坐标轴在用世界坐标系的方向向量来表达的向量坐标的转置。</p>
+</li>
+<li><p><strong>将投影矩阵乘开</strong></p>
+</li>
+</ol>
+<img src="/CV_img/10_19.png" style="zoom:80%">
+
+<img src="/CV_img/10_13.png" style="zoom:80%">
+
+<h2 id="透视失真"><a href="#透视失真" class="headerlink" title="透视失真"></a>透视失真</h2><ol>
+<li>梯形失真</li>
+<li>仰拍导致。解决：移轴镜头</li>
+<li>外侧列更大</li>
+<li>镜头失真：枕型，桶型–&gt;由不完美镜头引起</li>
+<li><strong>修正径向畸变</strong><img src="/CV_img/10_14.png" style="zoom:80%"></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/hide/" rel="tag"># hide</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC11%E8%AE%B2/" rel="prev" title="视觉第11讲">
+      <i class="fa fa-chevron-left"></i> 视觉第11讲
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/20/%E8%A7%86%E8%A7%89%E7%AC%AC16%E8%AE%B2/" rel="next" title="视觉第16讲">
+      视觉第16讲 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#相机成像原理"><span class="nav-number">1.</span> <span class="nav-text">相机成像原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#相机模型"><span class="nav-number">1.1.</span> <span class="nav-text">相机模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#降维"><span class="nav-number">1.2.</span> <span class="nav-text">降维</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外参数—让相机规范化"><span class="nav-number">1.3.</span> <span class="nav-text">外参数—让相机规范化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#透视投影"><span class="nav-number">1.4.</span> <span class="nav-text">透视投影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#投影矩阵"><span class="nav-number">1.5.</span> <span class="nav-text">投影矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#透视失真"><span class="nav-number">1.6.</span> <span class="nav-text">透视失真</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cuienbo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">159</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cuienbo</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.0
+  </div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>

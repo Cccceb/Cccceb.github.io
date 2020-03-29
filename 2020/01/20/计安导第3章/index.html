@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://github.com/Cccceb/Cccceb.github.io').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="计算机系统 包括计算机硬件系统和计算机软件系统。 硬件系统包括：运算器，控制器，存储器，输入设备，输出设备。 软件系统：操作系统   操作系统：提供计算机用户和该计算机硬件之间的接口，管理应用程序访问计算机资源的方式。 内核：操作系统的核心组件，处理对底层硬件资源的管理。   系统调用：是一种机制，通过这种机制，应用程序可以委托内核来执行与硬件相关的操作。  进程： 进程进程是正在执行的程序的一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计安导第3章">
+<meta property="og:url" content="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC3%E7%AB%A0/index.html">
+<meta property="og:site_name" content="Ceb">
+<meta property="og:description" content="计算机系统 包括计算机硬件系统和计算机软件系统。 硬件系统包括：运算器，控制器，存储器，输入设备，输出设备。 软件系统：操作系统   操作系统：提供计算机用户和该计算机硬件之间的接口，管理应用程序访问计算机资源的方式。 内核：操作系统的核心组件，处理对底层硬件资源的管理。   系统调用：是一种机制，通过这种机制，应用程序可以委托内核来执行与硬件相关的操作。  进程： 进程进程是正在执行的程序的一个">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-20T07:40:37.312Z">
+<meta property="article:modified_time" content="2020-01-20T08:24:14.664Z">
+<meta property="article:author" content="Cuienbo">
+<meta property="article:tag" content="hide">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC3%E7%AB%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>计安导第3章 | Ceb</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a href="https://github.com/you"><img style="position:absolute;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_gray_6d6d6d.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>  
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ceb</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Cccceb/Cccceb.github.io/2020/01/20/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC3%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Cuienbo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ceb">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计安导第3章
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-20 15:40:37 / Modified: 16:24:14" itemprop="dateCreated datePublished" datetime="2020-01-20T15:40:37+08:00">2020-01-20</time>
+            </span>
+
+          
+          <div>
+            
+                
+            
+          </div>
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="计算机系统"><a href="#计算机系统" class="headerlink" title="计算机系统"></a>计算机系统</h1><ol>
+<li>包括计算机硬件系统和计算机软件系统。<ol>
+<li>硬件系统包括：运算器，控制器，存储器，输入设备，输出设备。</li>
+<li>软件系统：操作系统</li>
+</ol>
+</li>
+<li>操作系统：提供计算机用户和该计算机硬件之间的接口，管理应用程序访问计算机资源的方式。<ol>
+<li>内核：操作系统的核心组件，处理对底层硬件资源的管理。</li>
+</ol>
+</li>
+<li>系统调用：是一种机制，通过这种机制，应用程序可以委托内核来执行与硬件相关的操作。</li>
+</ol>
+<h1 id="进程："><a href="#进程：" class="headerlink" title="进程："></a>进程：</h1><ol>
+<li>进程进程是正在执行的程序的一个实例。</li>
+<li>进程树：新的进程由其父进程产生，构成一颗进程树。树的根是init进程，在加载和运行内核后开始执行，并创建登陆会话和系统任务等其他子进程。</li>
+<li>进程ID：每个进程都通过唯一的非负整数进行标识。</li>
+<li>进程间通信<ol>
+<li>读写文件进行方式<ol>
+<li>通过硬盘，速度较慢。</li>
+<li>不便于进行私密通信。</li>
+</ol>
+</li>
+<li>共享内存方式<ol>
+<li>只有内核能管理共享内存区。</li>
+</ol>
+</li>
+<li>管道和套接字：提供进程与进程间通信的通道，通信双方共享管道和套接字。</li>
+<li>信号量机制</li>
+</ol>
+</li>
+<li>远程过程调用RPC：允许一个进程调用另一个进程中的子例程。</li>
+<li>守护进程和服务<ol>
+<li>守护进程（后台进程）（Windows下称为服务）：运行权限高于任何用户，并在登陆会话结束前就一直存在。如Web服务器，远程登陆</li>
+</ol>
+</li>
+</ol>
+<h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><ol>
+<li><p>文件系统是如何组织计算机的外部、非易失性存储的一种抽象。</p>
+</li>
+<li><p>文件权限</p>
+<p> 关键在于界定哪些用户可以访问哪些资源。</p>
+</li>
+<li><p>Unix文件权限</p>
+<ol>
+<li>包括三类用户：<ol>
+<li>owner类</li>
+<li>group类：决定了相同组中的用户的文件权限。</li>
+<li>others类</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><ol>
+<li>内存管理是指如何组织和分配计算机的内存。</li>
+<li>进程的地址空间<ol>
+<li>代码段</li>
+<li>数据段</li>
+<li>BSS：符号起始区块，包含未初始化的静态变量。</li>
+<li>堆：动态段，存储运行时产生的数据。</li>
+<li>栈：记录函数调用和他们的参数。</li>
+</ol>
+</li>
+<li>内存访问权限<ol>
+<li>五段都有各自的访问权限。通常代码段只读，其他段可以写入</li>
+<li><strong>不允许进程访问其他进程的地址空间</strong></li>
+</ol>
+</li>
+<li>虚拟内存<ol>
+<li>每个进程都有一个虚拟地址空间，虚拟内存系统将每个虚拟地址映射为实际内存地址。</li>
+<li>由MMU来进行地址转换。</li>
+<li>在进程看来，它的虚拟地址空间是连续的，但是实际内存却未必。</li>
+<li>优点：允许进程的地址空间大于内存。</li>
+<li>缺点：访问硬盘速度慢。 </li>
+<li><strong>问题</strong>：不正常关机的时候，虚拟页面可能未被删除。攻击者可以通过外部介质引导另一个操作系统，查看并重建部分内存，导致信息泄漏。</li>
+<li><strong>解决</strong>：对硬盘内容进行加密。</li>
+</ol>
+</li>
+<li>缺页</li>
+<li>虚拟机<ol>
+<li>不直接接触底层硬件就允许操作系统的运行。</li>
+<li>在虚拟机中运行的操作系统称为客户机，本地的操作系统称为主机。</li>
+<li>虚拟机的实现：<ol>
+<li>模拟：主机系统翻译接口的通信，传给硬件。其优点是增加了硬件的灵活性，缺点是使性能下降。</li>
+<li>虚拟化：失去硬件灵活性，但是性能提升了。</li>
+</ol>
+</li>
+<li>虚拟机的优点<ol>
+<li>提高了硬件效率：在一台机器上托管多个操作系统。</li>
+<li>可移植性</li>
+<li>安全：沙箱</li>
+<li>便于管理</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="进程安全"><a href="#进程安全" class="headerlink" title="进程安全"></a>进程安全</h1><h2 id="引导顺序及安全"><a href="#引导顺序及安全" class="headerlink" title="引导顺序及安全"></a>引导顺序及安全</h2><ol>
+<li>引导：从关机状态到将操作系统加载到内存。</li>
+<li>加载分两阶段：首先加载BIOS固件中的代码，然后这程序会假爱国操作系统其余部分加载到内存，然后将控制权交给操作系统。</li>
+<li><strong>问题</strong>：恶意用户可以利用引导过程的一些脆弱点来控制计算机的执行。</li>
+<li><strong>解决</strong>：设置BIOS密码。</li>
+</ol>
+<h2 id="引导设备的层次"><a href="#引导设备的层次" class="headerlink" title="引导设备的层次"></a>引导设备的层次</h2><ol>
+<li>第二阶段引导程序允许用户指定使用哪个设备来加载操作系统。</li>
+<li><strong>问题</strong>：攻击者可以绕过运行的计算机上的安全机制，从外部介质引导其他操作系统。</li>
+<li><strong>解决</strong>：对第二阶段引导程序启动密码保护。</li>
+</ol>
+<h2 id="休眠"><a href="#休眠" class="headerlink" title="休眠"></a>休眠</h2><ol>
+<li>休眠：电源关闭的状态。当进入休眠时，操作系统将计算机内存的全部内容存储到硬盘中的休眠文件中；系统通电后，再迅速恢复计算机状态。</li>
+<li><strong>问题</strong>：<ol>
+<li>攻击者可以从休眠文件中获取一些敏感信息。Windows的休眠文件目录C:/hiberfil.sys</li>
+<li>攻击者可以修改休眠文件，改变计算机上执行的程序。</li>
+<li>即使计算机重启后，也不会删除休眠文件。</li>
+</ol>
+</li>
+<li><strong>解决</strong>：使用硬盘加密来保护休眠文件。</li>
+</ol>
+<h2 id="监控、管理和日志"><a href="#监控、管理和日志" class="headerlink" title="监控、管理和日志"></a>监控、管理和日志</h2><p>操作系统可以根据留下的线索解决常见的问题，还能确定出现安全漏洞的原因。</p>
+<ol>
+<li>事件日志：<ol>
+<li>由操作系统进行管理</li>
+<li>Windows中定义了三种日记 源：系统、应用程序和安全。其中系统日志只有操作系统才能写入；应用程序日志只由应用程序写入；安全日志由操作系统提供的本地安全授予子系统服务才能写入。  </li>
+</ol>
+</li>
+<li>进程监控：查看正在运行的进程</li>
+<li>进程查看器：提供进程监控和管理的大量信息。<ol>
+<li>提高进程的映像，即运行进程的代码所在的磁盘位置。</li>
+<li><strong>问题</strong>：攻击者可以通过替换合法程序的映像来掩饰自身。</li>
+<li><strong>解决</strong>：可以对映像使用数字签名来保证磁盘上存储的应用程序不被替换。</li>
+</ol>
+</li>
+</ol>
+<h1 id="基于密码的身份认证"><a href="#基于密码的身份认证" class="headerlink" title="基于密码的身份认证"></a>基于密码的身份认证</h1><ol>
+<li>密码盐—反字典攻击：是一种加密技术，使用随机位作为散列函数的输入或加密算法的部分输入，从而增加随机性。<br> (U,S,h(S||P))其中S为U的盐，h是散列函数。</li>
+<li>加盐的原理：增大字典攻击的搜索空间。2<sup>B×D，其中B是随机数位数，D是字典攻击单词列表。</li>
+</ol>
+<h1 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h1><h2 id="Linux的权限"><a href="#Linux的权限" class="headerlink" title="Linux的权限"></a>Linux的权限</h2><ol>
+<li>使用文件权限矩阵</li>
+<li>对于未明确授权的都默认拒绝</li>
+<li>为了访问文件，在文件系统树中的每个祖先文件夹都必须有执行权限。</li>
+<li>文件所有者具有自主访问控制权，可以修改文件权限。</li>
+<li>可以使用chattr设置权限，lsattr查看。</li>
+<li>目前开始支持ACL方案</li>
+<li>对owner, group和other主体，每个文件都有基本的ACE(<strong>访问控制项</strong>)；对于命名用户和命名组可创建额外的ACE；还有掩码ACE,即规定主体允许的最大权限</li>
+</ol>
+<h2 id="Linux的ACL权限方案"><a href="#Linux的ACL权限方案" class="headerlink" title="Linux的ACL权限方案"></a>Linux的ACL权限方案</h2><ol>
+<li>设U是进程的euid，具有一定的请求权限，视图访问文件或文件夹</li>
+<li>为确定是否授权，操作系统将进行匹配：<ol>
+<li>U是文件所有者的ID</li>
+<li>U是命名组之一</li>
+<li>U的一个组是所有组，该组的ACE包含请求权限。</li>
+<li>U的一个组是命名组，该组的ACE包含请求权限。</li>
+<li>对于U所在的每个组，该组的ACE都不包含请求权限。</li>
+<li>检查other的ACE</li>
+</ol>
+</li>
+</ol>
+<h2 id="Windows权限基础"><a href="#Windows权限基础" class="headerlink" title="Windows权限基础"></a>Windows权限基础</h2><ol>
+<li>Windows使用访问控制列表，允许用户创建访问控制规则。</li>
+<li>默认是拒绝</li>
+<li>标准权限包裹：读、写、修改、读和执行、完全控制。</li>
+<li>读相关的高级属性：读取数据、读取属性、读取扩展属性和读取权限。</li>
+<li>文件夹权限包括<ol>
+<li>读权限：可以列出文件夹内容。</li>
+<li>写权限：允许用户创建新文件夹。</li>
+<li>Windows下可以禁止用户访问文件夹，但允许用户访问该文件夹下的特定文件。</li>
+</ol>
+</li>
+<li>ACE<ol>
+<li>继承ACE：文件夹的任何ACE可用于该文件夹内的子文件夹和文件。</li>
+<li>显式ACE：针对文件或者文件夹专门设置的ACE。</li>
+<li>ACE优先级：拒绝ACE&gt;允许ACE、显示ACE&gt;继承ACE、继承ACE优先级 由祖先与对象之间的距离决定，越近优先级越高。</li>
+</ol>
+</li>
+</ol>
+<h2 id="Windows文件权限"><a href="#Windows文件权限" class="headerlink" title="Windows文件权限"></a>Windows文件权限</h2><ol>
+<li><p>SetUID操作：程序由普通用户运行，但期望允许程序改变普通用户无法改变的文件。</p>
+<p> 例如：在早期UNIX系统中，用户登录信息存储在/etc/passwd中。普通用户 不能编辑这个文件，但允许该用户更改自己的密码是合理的要求</p>
+<ol>
+<li>设置了setuid位，使得程序以其所有者的有效ID来运行，而不是以正在执行程序的进程ID。</li>
+<li><strong>问题</strong>  <ol>
+<li>攻击者可以强制setuid程序执行任意代码，如缓冲区溢出攻击。</li>
+<li>权限升级：攻击者可以通过setuid机制来运用程序的所有者权限。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>文件描述符：存储在文件描述符表中的索引值，用来索引特定文件</p>
+<ol>
+<li>当程序需要访问文件时，访问open系统调用，该调用使内核创建一个文件 描述符表中的新项并将其返回给程序，该项映射到文件的磁盘位置。程序可以使用文件描述符发送读或者写命令。内核在接到读、写系统调用时， 在文件描述符表中查找相关的表项，并在磁盘适当位置执行读、写操作。完成操作后，要用close系统调用删除打开的文件描述符。</li>
+<li><strong>漏洞</strong> 当进程创建子进程时，子进程会集成父进程打开的所有文 件描述符副本。当程序以高权限打开文件描述符，但未关闭，然后又创建了 低权限的进程，那么新进程就能够读写相关文件，但子进程本身不具有打开 该文件的权限。</li>
+<li><strong>原因</strong> 在创建文件描述符项的时刻，操作 系统只检查进程是否具有读写权限；在实际读写文件操作时，只根据文件描 述符被打开时的权限来确认是否允许请求的操作。</li>
+</ol>
+</li>
+<li><p>符号链接与快捷方式</p>
+<ol>
+<li><strong>问题</strong> 攻击者可以利用符号链接来诱使应用程序执行不良操作。</li>
+<li><strong>解决</strong> 程序检查文件名是否指向符号链接，以确定打开的实际文件名。</li>
+<li>Windows的快捷方式&amp;Linux的符号链接：符号链接由操作系统处 理，使用透明；而快捷方式是普通文件。</li>
+</ol>
+</li>
+</ol>
+<h1 id="应用程序安全"><a href="#应用程序安全" class="headerlink" title="应用程序安全"></a>应用程序安全</h1><h2 id="编译和链接"><a href="#编译和链接" class="headerlink" title="编译和链接"></a>编译和链接</h2><ol>
+<li>编译：将源代码转换为处理器能够执行的机器代码的过程</li>
+<li>静态链接：程序执行时所需的共享库需要复制到编译程序中。一般比较安全， 但重复代码会占用额外的空间。</li>
+<li>动态链接：程序真正运行时，才会加载共享库。加载程序确定待运行程序需 要哪些共享库，然后在磁盘上找到这些库，并将它们导入进程的地址空间。<ol>
+<li><strong>DDL注入</strong>：通过共享库向程序注入任意代码的过程。<strong>优点</strong> 是便于调试，<strong>缺点</strong> 是潜在的安全风险，恶意用户能向合法程序注入自己的代码。</li>
+</ol>
+</li>
+</ol>
+<h2 id="简单的缓冲区溢出攻击"><a href="#简单的缓冲区溢出攻击" class="headerlink" title="简单的缓冲区溢出攻击"></a>简单的缓冲区溢出攻击</h2><ol>
+<li>缓冲区：进程为程序在内存中分配固定大小的存储空间。</li>
+<li>缓冲区溢出：如果不进行边界检查，攻击者提供的输入数据可能会超出缓冲 区的大小。此时，内存缓冲区之外的数据可能会被覆盖。</li>
+<li><strong>问题</strong> 攻击者利用缓冲区溢出获得进程的控制权，执行任意恶意代码。</li>
+</ol>
+<h2 id="基于栈的缓冲区溢出"><a href="#基于栈的缓冲区溢出" class="headerlink" title="基于栈的缓冲区溢出"></a>基于栈的缓冲区溢出</h2><ol>
+<li>进程地址空间中栈由帧组成，每一帧存储局部变量、调用参数和返回地址。</li>
+<li><strong>问题</strong> 如果攻击者提供的输入大于调用函数中缓冲区的大小，会导致溢出，从而导致栈缓冲区之外 的内存空间被覆盖。</li>
+<li>缓冲区溢出攻击：当缓冲区是局部变量 或帧的参数时，用户的输入 可能覆盖返回地址，改变程 序的执行。<ol>
+<li><strong>问题</strong> 攻击者利用栈缓冲区的脆弱 性，在栈中注入恶意代码， 覆盖当前调用的返回地址， 从而将执行权限传递给攻击 者的恶意代码。</li>
+<li>实际攻击中，攻击者需要猜测缓冲区返回地址的位置，并确定用什么地址覆盖返回地址。难点在于：<ol>
+<li>进程不能访问其他进程的地址空间，因此恶意代码必须驻留在被攻击进 程的地址空间内。一般驻留在缓冲区中或者在用户的Shell环境中。</li>
+<li>给定进程的地址空间是不可预测的，程序在不同计算机上执行时，地址 空间可能发生改变。</li>
+<li>为了克服以上困难，攻击者可以采取的相关技术有：NOP指令滑动(NOP sledding)、返回到libc(return-to-libc)、跳转到寄存器(jump-to-register)或蹦 床(Trampolining)技术</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="缓冲区溢出攻击相关技术"><a href="#缓冲区溢出攻击相关技术" class="headerlink" title="缓冲区溢出攻击相关技术"></a>缓冲区溢出攻击相关技术</h2><ol>
+<li><p>NOP指令滑动:通过命中一串连续的NOP指令，从而使CPU指令执行流一直滑动到特定位 置来执行恶意代码。</p>
+<ol>
+<li>由于进程地址空间难以预测，所以通过一连串的NOP指令，只要有一个命中就能执行恶意代码。</li>
+</ol>
+</li>
+<li><p>跳转到寄存器：在初始化时，大多数进程需要将外部库的内容加载到自己的地址空间。操作 系统一般将这些外部库加载到内存预留段的进程地址空间中。因此，外部库 在内存中的位置是可预测的。攻击者利用这些外部库的知识进行跳转攻击：</p>
+<ol>
+<li>攻击者找到特定代码集中 的跳转指令，如jump ESP；</li>
+<li>攻击者设法把恶意代码放在ESP寄存器指定 的内存地址上；</li>
+<li>攻击者将当前函数的返回地址重写为jump指令的地址； </li>
+<li>函数返回时将执行jump指令，并跳转执行恶意代码；</li>
+</ol>
+</li>
+<li><p>返回到libc攻击：攻击者确定脆弱进程的地址空间内C库函数的地址，如system()或execv的 地址，并使用这些信息强制进程调用该函数。</p>
+<ol>
+<li>攻击者首先让缓冲区溢出，并用所需库函数的地址覆盖返回地址，并传递重 新设定好的参数使其能够按攻击者的期望运行。</li>
+<li>这种攻击方式在实现攻击的同时，也避开了数据执行保护策略中对攻击代码 的注入和执行所采取的的防护措施。Return-to-libc 攻击不需要注入新的恶意代码，而是重用漏洞程序中已有的 函数完成攻击，让漏洞程序跳转到已有的代码序列。</li>
+</ol>
+</li>
+</ol>
+<h2 id="防止基于栈的缓冲区溢出攻击"><a href="#防止基于栈的缓冲区溢出攻击" class="headerlink" title="防止基于栈的缓冲区溢出攻击"></a>防止基于栈的缓冲区溢出攻击</h2><ol>
+<li>规范C语言编程</li>
+<li>使用更安全的函数</li>
+<li>操作系统也提供保护措施，如防止攻击者覆盖返回地址；使用金丝雀技术。</li>
+</ol>
+<h3 id="防止攻击者覆盖返回值地址"><a href="#防止攻击者覆盖返回值地址" class="headerlink" title="防止攻击者覆盖返回值地址"></a>防止攻击者覆盖返回值地址</h3><ol>
+<li>在所有指针使用前后都进行异或编码</li>
+<li>将内存的栈空间设置为非执行权限</li>
+<li>地址空间布局随机化，随机地重新安排地址空间的数据，使得攻击者难以预测。</li>
+</ol>
+<h3 id="金丝雀预警技术"><a href="#金丝雀预警技术" class="headerlink" title="金丝雀预警技术"></a>金丝雀预警技术</h3><p>重新组织分配程序的堆栈数据，使用一个canary值，并将此值放在缓冲区和 控制数据之间。系统定期检查canary值的完整性。如果此值被更改，表明缓 冲区溢出，就要防止恶意代码的执行。</p>
+<h2 id="基于堆的缓冲区溢出"><a href="#基于堆的缓冲区溢出" class="headerlink" title="基于堆的缓冲区溢出"></a>基于堆的缓冲区溢出</h2><p><strong>问题</strong> 如果在堆上显示分配了内存，但没有释放，会导致内存泄漏问题。</p>
+<p><strong>攻击</strong> 攻击者一般通过修改堆中的数据 或者滥用管理堆内存的函数和宏 来执行恶意代码。</p>
+<ol>
+<li>如果攻击者向程序提供输入，而程序以不安全的方式将其复制到堆中的内存 块中。那么攻击者可以使数据溢出块的边界，并覆盖下一个内存块。通过精心设计，攻击者会覆盖下一个内存块的链表指针，并将该内存块标记 为空闲。此时，unlink例程可以向内存地址空间中的任意地址写入数据。如 果写入的数据是恶意代码的存储位置，会导致程序跳转并执行恶意代码。</li>
+</ol>
+<h2 id="防御基于堆的缓冲区溢出"><a href="#防御基于堆的缓冲区溢出" class="headerlink" title="防御基于堆的缓冲区溢出"></a>防御基于堆的缓冲区溢出</h2><p>如安全编程、地址空间随机化、设置堆数据不可执 行、将存储堆内存的指针数据和存储堆中的实际数据相分离。</p>
+<h1 id="格式化字符串攻击"><a href="#格式化字符串攻击" class="headerlink" title="格式化字符串攻击"></a>格式化字符串攻击</h1><p><strong>攻击</strong> 攻击者可以精心指定所使用的格式化字符串作为输入，并可以将输入写入内 存的任意位置。如果写入的位置正好覆盖了返回地址、函数指针等，则攻击 者能够取得控制权，并在程序的上下文中执行任意代码。</p>
+
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/hide/" rel="tag"># hide</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/20/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC7%E7%AB%A0/" rel="prev" title="计安导第7章">
+      <i class="fa fa-chevron-left"></i> 计安导第7章
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/20/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC6%E7%AB%A0/" rel="next" title="计安导第6章">
+      计安导第6章 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机系统"><span class="nav-number">1.</span> <span class="nav-text">计算机系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进程："><span class="nav-number">2.</span> <span class="nav-text">进程：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件系统"><span class="nav-number">3.</span> <span class="nav-text">文件系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内存管理"><span class="nav-number">4.</span> <span class="nav-text">内存管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进程安全"><span class="nav-number">5.</span> <span class="nav-text">进程安全</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引导顺序及安全"><span class="nav-number">5.1.</span> <span class="nav-text">引导顺序及安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引导设备的层次"><span class="nav-number">5.2.</span> <span class="nav-text">引导设备的层次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#休眠"><span class="nav-number">5.3.</span> <span class="nav-text">休眠</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监控、管理和日志"><span class="nav-number">5.4.</span> <span class="nav-text">监控、管理和日志</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于密码的身份认证"><span class="nav-number">6.</span> <span class="nav-text">基于密码的身份认证</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#访问控制"><span class="nav-number">7.</span> <span class="nav-text">访问控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux的权限"><span class="nav-number">7.1.</span> <span class="nav-text">Linux的权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux的ACL权限方案"><span class="nav-number">7.2.</span> <span class="nav-text">Linux的ACL权限方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows权限基础"><span class="nav-number">7.3.</span> <span class="nav-text">Windows权限基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows文件权限"><span class="nav-number">7.4.</span> <span class="nav-text">Windows文件权限</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用程序安全"><span class="nav-number">8.</span> <span class="nav-text">应用程序安全</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编译和链接"><span class="nav-number">8.1.</span> <span class="nav-text">编译和链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的缓冲区溢出攻击"><span class="nav-number">8.2.</span> <span class="nav-text">简单的缓冲区溢出攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于栈的缓冲区溢出"><span class="nav-number">8.3.</span> <span class="nav-text">基于栈的缓冲区溢出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓冲区溢出攻击相关技术"><span class="nav-number">8.4.</span> <span class="nav-text">缓冲区溢出攻击相关技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防止基于栈的缓冲区溢出攻击"><span class="nav-number">8.5.</span> <span class="nav-text">防止基于栈的缓冲区溢出攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#防止攻击者覆盖返回值地址"><span class="nav-number">8.5.1.</span> <span class="nav-text">防止攻击者覆盖返回值地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#金丝雀预警技术"><span class="nav-number">8.5.2.</span> <span class="nav-text">金丝雀预警技术</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于堆的缓冲区溢出"><span class="nav-number">8.6.</span> <span class="nav-text">基于堆的缓冲区溢出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防御基于堆的缓冲区溢出"><span class="nav-number">8.7.</span> <span class="nav-text">防御基于堆的缓冲区溢出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#格式化字符串攻击"><span class="nav-number">9.</span> <span class="nav-text">格式化字符串攻击</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cuienbo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">159</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cuienbo</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.0
+  </div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>
