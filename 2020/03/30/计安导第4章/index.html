@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    计安导第4章 |  Hexo
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-计安导第4章" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  计安导第4章
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC4%E7%AB%A0/" class="article-date">
+  <time datetime="2020-03-30T02:29:18.494Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.2k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">7分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="内部攻击"><a href="#内部攻击" class="headerlink" title="内部攻击"></a>内部攻击</h1><ol start="2">
+<li>内部攻击：指控制和保护资产的内部人员利用安全漏洞进行的攻击</li>
+</ol>
+<h2 id="后门"><a href="#后门" class="headerlink" title="后门"></a>后门</h2><ol start="3">
+<li>后门：是程序中隐藏的功能或命令，有时也称为活门，它允许用户执行一些正常情况下不允许用户执行的操作。通常这些操作会违反安全策略，如执行特权升级。<ol>
+<li>为调试有时也会插入后门</li>
+<li>为了紧急情况也可能留后门</li>
+<li>恶意的后门：直接留后门；在程序中引入脆弱性，如缓冲区溢出。</li>
+<li>彩蛋</li>
+</ol>
+</li>
+</ol>
+<h2 id="逻辑炸弹"><a href="#逻辑炸弹" class="headerlink" title="逻辑炸弹"></a>逻辑炸弹</h2><ol start="4">
+<li>逻辑炸弹：是一种程序，它根据一定的逻辑条件执行恶意操作。</li>
+<li>千年虫问题：具有和逻辑炸弹类似的效果，但是不视为逻辑炸弹</li>
+</ol>
+<h2 id="内部攻击的防御"><a href="#内部攻击的防御" class="headerlink" title="内部攻击的防御"></a>内部攻击的防御</h2><ol>
+<li>避免单点故障：不能只让一个人创建备份或管理重要系统。</li>
+<li>使用代码走查</li>
+<li>使用归档和报告工具</li>
+<li>限制授权和权限：使用最小权限原则；在保证每个员工能正常工作的情况下，授予他们最小权限。</li>
+<li>重要系统的物理安全</li>
+<li>监控员工行为</li>
+<li>控制软件的安装</li>
+</ol>
+<h1 id="计算机病毒"><a href="#计算机病毒" class="headerlink" title="计算机病毒"></a>计算机病毒</h1><ol>
+<li>计算机病毒：是一种能自我复制的计算机指令或程序代码，它通过修改其他文件与程序来插入代码，且能进一步自我复制；<ol>
+<li>这种自我复制的特性是计算机病毒与其他类型恶意软件（如逻辑炸弹）的不同之处；</li>
+<li>病毒的另一个特性是其复制需要某种类型的用户协助，如打开电子邮件附件或共享USB驱动器；</li>
+</ol>
+</li>
+<li>恶意软件分类：<ol>
+<li>按传播特性分：<ol>
+<li>病毒：人工辅助传播</li>
+<li>蠕虫：自动传播</li>
+</ol>
+</li>
+<li>按隐藏特性分：<ol>
+<li>Rootkit：修改操作系统以隐藏其存在</li>
+<li>特洛伊木马：提供理想的功能但是隐藏恶意操作。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>隐藏方式<ol>
+<li>加密病毒：<ol>
+<li>病毒包括解密引擎+病毒代码主体，随机生成加密密钥</li>
+<li>检测：通过查找解密引擎</li>
+</ol>
+</li>
+<li>多态病毒<ol>
+<li>具有随机变体的解密引擎的加密病毒</li>
+<li>检测：使用CPU仿真器</li>
+</ol>
+</li>
+<li>变形病毒<ol>
+<li>不同的病毒体；方法包括代码排列和指令替换</li>
+<li>具有挑战性的检测</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="病毒的分类"><a href="#病毒的分类" class="headerlink" title="病毒的分类"></a>病毒的分类</h2><ol start="3">
+<li>病毒执行的四个阶段<ol>
+<li>潜伏阶段</li>
+<li>繁殖阶段：病毒进行自我复制，归纳然新系统中的新文件。</li>
+<li>触发阶段</li>
+<li>行动阶段：此阶段，病毒会执行恶意操作。</li>
+</ol>
+</li>
+<li>病毒的类型<ol>
+<li>程序病毒（文件病毒）：通过修改文件包含的对象代码感染文件。</li>
+<li>宏病毒（文档病毒）：打开文档时，启动病毒，此时，病毒搜索其他要感染的文件。此外，宏病毒还可以将自己插入到模板中，使得每次新建的文档都含有此病毒。另外，还可以通过电子邮件传播。</li>
+<li>引导区病毒：感染驱动器引导区的代码，每次启动计算机或重启时，都会运行引导区的代码。</li>
+</ol>
+</li>
+<li>病毒的特征<ol>
+<li>传染性</li>
+<li>隐蔽性</li>
+<li>潜伏性：只有当触发条件满足时才破坏，否则只传染</li>
+<li>多态性：不断变种</li>
+<li>破坏性</li>
+</ol>
+</li>
+<li>病毒注入：（1）在程序开始处简单注入（2）将病毒代码分成两部分，并将这两部分分别注入到程序的不同位置，使用跳转指令来执行。</li>
+</ol>
+<h2 id="病毒的防御"><a href="#病毒的防御" class="headerlink" title="病毒的防御"></a>病毒的防御</h2><ol>
+<li>病毒的特征码：<ol>
+<li>通过病毒样本找到病毒的特征指令集，产检唯一标识这类病毒的特征字符串。<strong>一般将特征字符串称为病毒的特征码</strong>。它是病毒的一种数字指纹</li>
+</ol>
+</li>
+<li>病毒的检测与隔离<ol>
+<li>可以定期扫描整个文件系统</li>
+<li>可以实时的分析每个新创建的文件，每个修改的文件和收到的电子邮件。一旦文件中有一部分包含与病毒特征码匹配的代码，就会被放入隔离区。</li>
+</ol>
+</li>
+</ol>
+<h2 id="加密病毒"><a href="#加密病毒" class="headerlink" title="加密病毒"></a>加密病毒</h2><ol>
+<li>加密病毒：通过加密病毒代码的主体，以隐藏其自身的特征码。<ol>
+<li>包括解密代码、密钥和加密病毒代码（解密代码一般用暴力破解代替）。</li>
+<li>对病毒主体的解密代码本身时未加密的代码，此结构本身就构成了一种病毒的特征码。</li>
+</ol>
+</li>
+</ol>
+<h2 id="多变体病毒和变形病毒"><a href="#多变体病毒和变形病毒" class="headerlink" title="多变体病毒和变形病毒"></a>多变体病毒和变形病毒</h2><ol>
+<li><p>多变体：变异的病毒。</p>
+<ol>
+<li>一方面，多变体病毒通过加密使自身呈现出多种形式。</li>
+<li>另一方面，多变体病毒采用非加密的混淆技术，如指令重排和包含无用指令技术。</li>
+</ol>
+</li>
+<li><p>检测多变体病毒：单个字符串不可能检测变形病毒的特征码，可以采用</p>
+<ol>
+<li>联合特征码：由在被感染文件中必须出现的字符串集组成。</li>
+<li>序列特征码：由在被感染文件中必须出现的有序字符串列表组成</li>
+<li>概率特征码：由阈值和字符串-评分对组成。如果文件中存在的字符串的评分总和大于阈值，则认为被感染。</li>
+</ol>
+</li>
+</ol>
+<h1 id="恶意软件攻击"><a href="#恶意软件攻击" class="headerlink" title="恶意软件攻击"></a>恶意软件攻击</h1><h2 id="特洛伊木马"><a href="#特洛伊木马" class="headerlink" title="特洛伊木马"></a>特洛伊木马</h2><ol start="2">
+<li><p>特洛伊木马：是一种恶意程序，表面上，它会执行一些有用的任务，但同时会隐形的执行具有负面后果的任务。</p>
+<ol>
+<li><p>组成：</p>
+<ol>
+<li>硬件部分：包括控制端、服务端、因特网；</li>
+<li>软件部分：控制端程序、木马程序、木马配置程序；</li>
+<li>具体连接部分：控制端IP、服务端IP、控制端端口、木马端口；</li>
+</ol>
+</li>
+<li><p>木马入侵步骤：</p>
+<p> 1.配置木马  2.传播木马  3.运行木马  </p>
+<p> 4.信息反馈  5.建立连接  6.远程控制 </p>
+</li>
+</ol>
+</li>
+<li><p>计算机蠕虫：是一种恶意程序，不需要将自己注入其他程序就能传播自己的副本，并且不需要与人交互。</p>
+<ol>
+<li><p>蠕虫可以自我复制传播，但它不属于计算机病毒，因为他们不会感染其他程序。</p>
+</li>
+<li><p>大多数情况下，蠕虫用来删除文件或者安装后门</p>
+</li>
+<li><p>蠕虫的结构</p>
+<img src="/计安导_img/第四章1.png" style="zoom:30%"/></li>
+<li><p>设计蠕虫</p>
+<img src="/计安导_img/第四章2.png" style="zoom:70%"/></li>
+<li><p>蠕虫传播</p>
+<ol>
+<li><p>传播理论</p>
+<p>经典的传播病模型</p>
+<img src="/计安导_img/第四章3.png" style="zoom:70%"/>   
+
+</li>
+</ol>
+<p>N: 易受感染的主机总数; I(t)：在t时刻被感染的主机数<br>S(t)：在t时刻，易被感染的主机数;I(t)+S(t)=N;β：感染率;I(t)的微分方程 ：dI/dt=βI(t)S(t);    </p>
+<ol start="2">
+<li>蠕虫可以利用正在运行应用程序的脆弱性（如缓冲区溢出）来进行自我传播。</li>
+<li>一般通过修改注册表来隐藏自身。(同时杀毒软件也会观察一些注册表项)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Rootkits</p>
+<ol>
+<li>Rootkits最早是一组用于UNIX操作系统的工具集，黑客使用它们隐藏入侵活 动的痕迹，它能在操作系统中隐藏恶意程序。这些程序在植入系统后，rootkits 会将它们 隐藏起来，它能隐藏任何恶意程序过程、文件夹、注册码。</li>
+<li>一般通过修改系统是实用程序或操作系统本身来防止检测。</li>
+<li>通常使用Rootkits来隐藏其他恶意软件的恶意行为（在进程控制器中删除进程的显示，删除文件浏览器中文件的显示）</li>
+</ol>
+</li>
+<li><p>恶意软件僵尸</p>
+<ol>
+<li>僵尸是一种外部控制以执行恶意攻击的计算机，通常作为僵尸网络的一部分。</li>
+</ol>
+</li>
+</ol>
+<h2 id="入侵隐私软件"><a href="#入侵隐私软件" class="headerlink" title="入侵隐私软件"></a>入侵隐私软件</h2><ol>
+<li>包括广告软件、间谍软件</li>
+</ol>
+<h2 id="对策"><a href="#对策" class="headerlink" title="对策"></a>对策</h2><ol>
+<li><p>病毒签名：一个签名是一个病毒指纹</p>
+<ol>
+<li>扫描将分析的对象与签名数据库进行比较。如果文件中包含签名，则文件被感染。</li>
+</ol>
+</li>
+<li><p>黑/白名单</p>
+<ol>
+<li>维护加密哈希数据库<br> （1）操作系统文件 （2）热门应用程序<br> （3）已知被感染的文件</li>
+<li>需要保护数据库的完整性</li>
+</ol>
+</li>
+<li><p>启发式分析</p>
+<ol>
+<li>用于识别新的和“零日”恶意软件 </li>
+<li>步骤<ol>
+<li>代码分析：根据说明防病毒软件可以确定该程序是否是恶意的。</li>
+<li>执行仿真：在隔离的仿真环境中执行代码，并监控目标文件所采取的操作，如果操作有害，则认为其为病毒。</li>
+<li>启发式方法可以触发错误警报</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>隔离：将可疑文件隔离在隔离文件夹中。</p>
+<ol>
+<li>可疑文件未被删除，最终可以由用户决定何使删除</li>
+<li>只能通过防病毒程序与隔离区中的文件交互。</li>
+<li>隔离区的文件是无害的，因为它是加密的</li>
+<li>隔离技术的细节是保密的</li>
+</ol>
+</li>
+<li><p>静态分析与动态分析</p>
+ <img src="/计安导_img/第四章4.png" style="zoom:70%"/>
+</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC4%E7%AB%A0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC3%E7%AB%A0/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            计安导第3章
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC5%E7%AB%A0/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">计安导第5章</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        John Doe
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

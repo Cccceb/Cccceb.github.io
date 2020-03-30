@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    图论 |  Hexo
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-图论" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  图论
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E5%9B%BE%E8%AE%BA/" class="article-date">
+  <time datetime="2020-03-30T03:55:19.552Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">4.6k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">24分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="图论基础"><a href="#图论基础" class="headerlink" title="图论基础"></a>图论基础</h1><ol>
+<li>邻接矩阵：适用于稠密图和需要频繁判断某特定的结点对是否相邻的情况</li>
+<li>邻接链表：适用于需要大量遍历邻接节点而较少判断两个节点间关系时使用</li>
+</ol>
+<h1 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">const int maxn &#x3D; 10000000 + 5;</span><br><span class="line">int Tree[maxn];</span><br><span class="line">int setRank[maxn];</span><br><span class="line">int findRoot(int x) &#123;</span><br><span class="line">	if (Tree[x] &#x3D;&#x3D; -1) return x;</span><br><span class="line">	else &#123;</span><br><span class="line">		int tmp &#x3D; findRoot(Tree[x]);</span><br><span class="line">		Tree[x] &#x3D; tmp;</span><br><span class="line">		return tmp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void union_(int p, int q) &#123;</span><br><span class="line">	p &#x3D; findRoot(p);</span><br><span class="line">	q &#x3D; findRoot(q);</span><br><span class="line">	if (p !&#x3D; q)</span><br><span class="line">	&#123;</span><br><span class="line">		Tree[p] &#x3D; q;</span><br><span class="line">		setRank[q] +&#x3D; setRank[p];</span><br><span class="line">	&#125;</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Head-of-a-Gang"><a href="#Head-of-a-Gang" class="headerlink" title="Head of a Gang"></a>Head of a Gang</h2><p>每次输入两个人的名字和通话时长，有联系的两个人属于同一个组织。总的通话时长大于k且总人数大于2的组织称为一个团伙，其中权重最大的那个人是头目。现在要输出团伙总数，及每个团伙的头目，并要求按头目名字降序输出。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>需要计算每个集合的总权重，所以每次都将小树连到大树上，之后统计大树的根所包含的权重是否满足要求。</li>
+<li><strong>注意</strong> memset只对0和-1有效。可使用fill实现</li>
+</ol>
+<blockquote>
+<p>memset是一个字节一个字节设置的，取要赋的值的后8位二进制进行赋值。<br>1的二进制是（00000000 00000000 00000000 00000001），取后8位（00000001），int型占4个字节，当初始化为1时，它把一个int的每个字节都设置为1，也就是0x01010101,二进制是00000001 00000001 00000001 00000001，十进制就是16843009。<br>之所以输入0,-1时正确，纯属巧合。<br>0，二进制是（00000000 00000000 00000000 00000000），取后8位（00000000），初始化后00000000 00000000 00000000 00000000结果是0<br>-1，负数在计算机中以补码存储，二进制是（11111111 11111111 11111111 11111111），取后8位（11111111），则是11111111 11111111 11111111 11111111结果也是-1</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 1000 + 5;</span><br><span class="line">int Tree[maxn];&#x2F;&#x2F;记录根</span><br><span class="line">int setRank[maxn];&#x2F;&#x2F;记录树的大小</span><br><span class="line">int tot[maxn];&#x2F;&#x2F;记录树的权重和</span><br><span class="line">map&lt;int, string&gt; id;&#x2F;&#x2F;记录编号对应的名字</span><br><span class="line">map&lt;string, int&gt; name;&#x2F;&#x2F;记录名字对应的编号</span><br><span class="line">int g[maxn][maxn];&#x2F;&#x2F;记录两点之间的距离，不必要，可以每次union时作为参数传入</span><br><span class="line">int weight[maxn];&#x2F;&#x2F;记录每个节点的权重，每提到一次就加一次</span><br><span class="line"></span><br><span class="line">int findRoot(int x) &#123;</span><br><span class="line">	if (Tree[x] &#x3D;&#x3D; -1) return x;</span><br><span class="line">	else &#123;</span><br><span class="line">		int tmp &#x3D; findRoot(Tree[x]);</span><br><span class="line">		Tree[x] &#x3D; tmp;</span><br><span class="line">		return tmp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void union_(int p, int q) &#123;</span><br><span class="line">	int rootp &#x3D; findRoot(p);</span><br><span class="line">	int rootq &#x3D; findRoot(q);</span><br><span class="line">	if (rootp !&#x3D; rootq)</span><br><span class="line">	&#123;</span><br><span class="line">		if (tot[rootp] &lt; tot[rootq])&#x2F;&#x2F;每次都将小树加在大树上</span><br><span class="line">			swap(rootp, rootq);</span><br><span class="line">		Tree[rootq] &#x3D; rootp;</span><br><span class="line">		tot[rootp] +&#x3D; tot[rootq] + g[p][q];&#x2F;&#x2F;g[p][q]可以通过参数传入</span><br><span class="line">		setRank[rootp] +&#x3D; setRank[rootq];</span><br><span class="line">	&#125;</span><br><span class="line">	else tot[rootp] +&#x3D; g[q][p];&#x2F;&#x2F;即使已经在一颗树上也要加上内部联系的权重</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, a, b, m, k;</span><br><span class="line">	while (scanf(&quot;%d%d&quot;, &amp;n, &amp;k) &#x3D;&#x3D; 2)</span><br><span class="line">	&#123;</span><br><span class="line">		memset(Tree, -1, sizeof(Tree));</span><br><span class="line">		memset(tot, 0, sizeof(tot));</span><br><span class="line">		memset(weight, 0, sizeof(weight));</span><br><span class="line">		fill(setRank, setRank + maxn, 1);</span><br><span class="line">		name.clear();</span><br><span class="line">		string n1, n2;</span><br><span class="line">		int t;</span><br><span class="line">		int num &#x3D; 0;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			cin &gt;&gt; n1 &gt;&gt; n2 &gt;&gt; t;</span><br><span class="line">			if (!name.count(n1)) &#123;</span><br><span class="line">				name[n1] &#x3D; ++num;</span><br><span class="line">				id[num] &#x3D; n1;</span><br><span class="line">			&#125;</span><br><span class="line">			if (!name.count(n2)) &#123;</span><br><span class="line">				name[n2] &#x3D; ++num;</span><br><span class="line">				id[num] &#x3D; n2;</span><br><span class="line">			&#125;</span><br><span class="line">			int s1 &#x3D; name[n1], s2 &#x3D; name[n2];</span><br><span class="line">			g[s1][s2] &#x3D; g[s2][s1] &#x3D; t;</span><br><span class="line">			weight[s1] +&#x3D; t;</span><br><span class="line">			weight[s2] +&#x3D; t;</span><br><span class="line">			union_(name[n1], name[n2]);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		vector&lt;int&gt; ans;&#x2F;&#x2F;存满足条件的集合的根节点</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; num; i++) &#123;</span><br><span class="line">			if (Tree[i] &#x3D;&#x3D; -1 &amp;&amp; tot[i] &gt; k&amp;&amp;setRank[i] &gt; 2) &#123;</span><br><span class="line">				ans.push_back(i);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; ans.size() &lt;&lt; endl;</span><br><span class="line">		map&lt;string, int&gt; gang;&#x2F;&#x2F;存满足条件集合的头目名字和集合的大小</span><br><span class="line">		for (int i &#x3D; 0; i &lt; ans.size(); i++) &#123;</span><br><span class="line">			int t &#x3D; ans[i];</span><br><span class="line">			int w &#x3D; 0;</span><br><span class="line">			int iw &#x3D; 0;</span><br><span class="line">			for (int j &#x3D; 1; j &lt;&#x3D; n; j++)</span><br><span class="line">				if ((Tree[j] &#x3D;&#x3D; t||j&#x3D;&#x3D;t) &amp;&amp; weight[j] &gt; w) &#123;</span><br><span class="line">					w &#x3D; weight[j];</span><br><span class="line">					iw &#x3D; j;</span><br><span class="line">				&#125;</span><br><span class="line">			gang[id[iw]] &#x3D; setRank[t];</span><br><span class="line">		&#125;</span><br><span class="line">		for (auto i &#x3D; gang.begin(); i !&#x3D; gang.end(); i++) </span><br><span class="line">			cout &lt;&lt; i-&gt;first &lt;&lt; &quot; &quot; &lt;&lt; i-&gt;second &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h1><h2 id="Kruskal-又是畅通工程"><a href="#Kruskal-又是畅通工程" class="headerlink" title="Kruskal (又是畅通工程)"></a>Kruskal (又是畅通工程)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 100 + 5;</span><br><span class="line">int Tree[maxn];&#x2F;&#x2F;记录根</span><br><span class="line">struct node &#123;</span><br><span class="line">	int a, b;</span><br><span class="line">	int w;</span><br><span class="line"></span><br><span class="line">	bool operator &lt; (const node&amp;a)const &#123; return w &lt; a.w; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">int findRoot(int x) &#123;</span><br><span class="line">	if (Tree[x] &#x3D;&#x3D; -1) return x;</span><br><span class="line">	else &#123;</span><br><span class="line">		int tmp &#x3D; findRoot(Tree[x]);</span><br><span class="line">		Tree[x] &#x3D; tmp;</span><br><span class="line">		return tmp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">bool union_(int p, int q) &#123;</span><br><span class="line">	int rootp &#x3D; findRoot(p);</span><br><span class="line">	int rootq &#x3D; findRoot(q);</span><br><span class="line">	if (rootp !&#x3D; rootq)</span><br><span class="line">	&#123;</span><br><span class="line">		Tree[rootq] &#x3D; rootp;</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line">	return false;</span><br><span class="line">&#125;</span><br><span class="line">node g[maxn*maxn];</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n;</span><br><span class="line">	while (scanf(&quot;%d&quot;, &amp;n) &#x3D;&#x3D; 1 &amp;&amp; n)</span><br><span class="line">	&#123;</span><br><span class="line">		int m &#x3D; n * (n - 1) &#x2F; 2;</span><br><span class="line">		memset(Tree, -1, sizeof(Tree));</span><br><span class="line">		for (int i &#x3D; 0; i &lt; m; i++)</span><br><span class="line">			scanf(&quot;%d%d%d&quot;, &amp;g[i].a, &amp;g[i].b, &amp;g[i].w);</span><br><span class="line">		sort(g, g + m);</span><br><span class="line"></span><br><span class="line">		int ans &#x3D; 0;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">			int a &#x3D; g[i].a;</span><br><span class="line">			int b &#x3D; g[i].b;</span><br><span class="line">			if (union_(a, b))</span><br><span class="line">				ans +&#x3D; g[i].w;</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;%d\n&quot;, ans);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="POJ-2560"><a href="#POJ-2560" class="headerlink" title="POJ 2560"></a>POJ 2560</h2><p>不直接给出边，而是给出点的坐标，实际也是最小生成树问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 100 + 5;</span><br><span class="line">int Tree[maxn];&#x2F;&#x2F;记录根</span><br><span class="line">struct point &#123;</span><br><span class="line">	double x, y;</span><br><span class="line">	point()&#123;&#125;</span><br><span class="line">	point(double x, double y) :x(x), y(y) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">struct node &#123;</span><br><span class="line">	int a, b;</span><br><span class="line">	double w;</span><br><span class="line">	node() &#123;&#125;;</span><br><span class="line">	node(int a, int b, double w) :a(a), b(b), w(w) &#123;&#125;</span><br><span class="line">	bool operator &lt; (const node&amp;a)const &#123; return w &lt; a.w; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">int findRoot(int x) &#123;</span><br><span class="line">	if (Tree[x] &#x3D;&#x3D; -1) return x;</span><br><span class="line">	else &#123;</span><br><span class="line">		int tmp &#x3D; findRoot(Tree[x]);</span><br><span class="line">		Tree[x] &#x3D; tmp;</span><br><span class="line">		return tmp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">bool union_(int p, int q) &#123;</span><br><span class="line">	int rootp &#x3D; findRoot(p);</span><br><span class="line">	int rootq &#x3D; findRoot(q);</span><br><span class="line">	if (rootp !&#x3D; rootq)</span><br><span class="line">	&#123;</span><br><span class="line">		Tree[rootq] &#x3D; rootp;</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line">	return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">inline double getDis(point a, point b) &#123;</span><br><span class="line">	return sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y));</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n;</span><br><span class="line">	while (scanf(&quot;%d&quot;, &amp;n) &#x3D;&#x3D; 1 &amp;&amp; n)</span><br><span class="line">	&#123;</span><br><span class="line">		memset(Tree, -1, sizeof(Tree));	</span><br><span class="line">		node g[maxn*maxn];</span><br><span class="line">		point p[maxn];</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			scanf(&quot;%lf%lf&quot;, &amp;p[i].x, &amp;p[i].y);</span><br><span class="line">		&#125;</span><br><span class="line">		int m &#x3D; 0;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			for (int j &#x3D; i + 1; j &lt; n; j++) &#123;</span><br><span class="line">				g[m++] &#x3D; node(i, j, getDis(p[i], p[j]));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		sort(g, g + m);</span><br><span class="line">		double ans &#x3D; 0;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">			int a &#x3D; g[i].a;</span><br><span class="line">			int b &#x3D; g[i].b;</span><br><span class="line">			if (union_(a, b))</span><br><span class="line">				ans +&#x3D; g[i].w;</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;%.2lf\n&quot;, ans);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h1><h2 id="Flyod"><a href="#Flyod" class="headerlink" title="Flyod"></a>Flyod</h2><h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><ol>
+<li>每次加入一个节点，并分析对于每一对点，能否使二者间距离变短(不通变通)</li>
+<li>使用邻接矩阵存储图</li>
+<li>时间复杂度O(n<sup>3</sup>)</li>
+<li>一次Floyd之后，图中所有点之间的最短路径都被确定，所以适用于多组查询的情况</li>
+<li>注意初始化函数中定义自己到自己的距离为0</li>
+</ol>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">void init(int n) &#123;</span><br><span class="line">	for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">		for (int j &#x3D; 1; j &lt;&#x3D; n; j++)</span><br><span class="line">			ans[i][j] &#x3D; -1;</span><br><span class="line">		ans[i][i] &#x3D; 0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void Floyd(int n) &#123;</span><br><span class="line"></span><br><span class="line">	for (int k &#x3D; 1; k &lt;&#x3D; n; k++) &#123;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">			for (int j &#x3D; 1; j &lt;&#x3D; n; j++) &#123;</span><br><span class="line">				if (ans[i][k] &#x3D;&#x3D; -1 || ans[k][j] &#x3D;&#x3D; -1) continue;</span><br><span class="line">				if (ans[i][j] &#x3D;&#x3D; -1 || ans[i][j] &gt; ans[i][k] + ans[k][j])</span><br><span class="line">					ans[i][j] &#x3D; ans[i][k] + ans[k][j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Dijkstra-单源最短路"><a href="#Dijkstra-单源最短路" class="headerlink" title="Dijkstra 单源最短路"></a>Dijkstra 单源最短路</h2><h3 id="基本思想-1"><a href="#基本思想-1" class="headerlink" title="基本思想"></a>基本思想</h3><ol>
+<li>按照最短路径长度递增的顺序确定每一个节点的最短路径长度，即先确定的结点的最短路径长度不大于后确定的最短路径长度。这样，当确定一个节点的最短路径长度时，该最短路径上所有中间结点的最短路径长度必然已经确定。</li>
+<li>用优先级队列优化后，时间复杂度O(nlogn)</li>
+<li>关于实现，由于优先级队列默认调用less，即&lt;号得到递减序列。为了简化代码(其实是懒)，所以将结构体中’&lt;’重载为’&gt;’。当然也可以priority_queue&lt;edge,vector<edge>,greater<edge>&gt;;</li>
+</ol>
+<h3 id="最短路径问题-浙大"><a href="#最短路径问题-浙大" class="headerlink" title="最短路径问题(浙大)"></a>最短路径问题(浙大)</h3><p>除路长度外增加了一个花费，优先取路径长度最小，对于相同长度的取花费最小。思想一致，只需在板子外再加一个cost数组。与dis数组同理即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 1000 + 5;</span><br><span class="line">struct edge &#123;</span><br><span class="line">	int to;</span><br><span class="line">	int w;</span><br><span class="line">	int c;</span><br><span class="line">	edge() &#123;&#125;</span><br><span class="line">	edge(int to, int w, int c) :to(to), w(w), c(c) &#123;&#125;</span><br><span class="line">	bool operator &lt;(const edge a) const &#123; return w &gt; a.w; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;edge&gt;g[maxn];</span><br><span class="line">int cost[maxn];</span><br><span class="line">int dis[maxn];</span><br><span class="line">bool vis[maxn];</span><br><span class="line">void Dij(int beg, int goal, int n) &#123;</span><br><span class="line">	memset(dis, -1, sizeof(dis));</span><br><span class="line">	memset(vis, 0, sizeof(vis));</span><br><span class="line">	memset(cost, 0, sizeof(cost));</span><br><span class="line">	dis[beg] &#x3D; 0;</span><br><span class="line">	priority_queue&lt;edge&gt; pq;</span><br><span class="line">	pq.push(edge(beg, 0, 0));</span><br><span class="line">	while (!pq.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		edge u &#x3D; pq.top(); pq.pop();</span><br><span class="line">		if (u.to &#x3D;&#x3D; goal) return;</span><br><span class="line">		if (vis[u.to]) continue;</span><br><span class="line">		vis[u.to] &#x3D; 1;</span><br><span class="line">		for (edge e : g[u.to]) &#123;</span><br><span class="line">			if (!vis[e.to]) &#123;</span><br><span class="line">				int d1 &#x3D; dis[e.to];</span><br><span class="line">				int d2 &#x3D; dis[u.to];</span><br><span class="line">				if (d1 &#x3D;&#x3D; -1 </span><br><span class="line">					||d1 &gt; d2 + e.w</span><br><span class="line">					|| (d1&#x3D;&#x3D; d2 + e.w &amp;&amp; cost[e.to] &gt; cost[u.to] + e.c)) </span><br><span class="line">				&#123;</span><br><span class="line">					dis[e.to] &#x3D; dis[u.to] + e.w;</span><br><span class="line">					cost[e.to] &#x3D; cost[u.to] + e.c;</span><br><span class="line">					pq.push(edge(e.to, dis[e.to], cost[e.to]));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, m;</span><br><span class="line">	int a, b, w, c;</span><br><span class="line">	int s, t;</span><br><span class="line">	while (scanf(&quot;%d%d&quot;, &amp;n, &amp;m) &#x3D;&#x3D; 2)</span><br><span class="line">	&#123;</span><br><span class="line">		if (m &#x3D;&#x3D; 0 &amp;&amp; n &#x3D;&#x3D; 0) break;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++)	g[i].clear();</span><br><span class="line">		for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">			scanf(&quot;%d%d%d%d&quot;, &amp;a, &amp;b, &amp;w, &amp;c);</span><br><span class="line">			g[a].push_back(edge(b, w, c));</span><br><span class="line">			g[b].push_back(edge(a, w, c));</span><br><span class="line">		&#125;</span><br><span class="line">		scanf(&quot;%d%d&quot;, &amp;s, &amp;t);</span><br><span class="line">		Dij(s, t, n);</span><br><span class="line">		printf(&quot;%d %d\n&quot;, dis[t], cost[t]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="最短路径-上交"><a href="#最短路径-上交" class="headerlink" title="最短路径(上交)"></a>最短路径(上交)</h2><p>N个城市，标号从0到N-1，M条道路，第K条道路（K从0开始）的长度为2^K，求编号为0的城市到其他城市的最短距离<br>输入：第一行两个正整数N（2&lt;=N&lt;=100）M(M&lt;=500),表示有N个城市，M条道路。接下来M行两个整数，表示相连的两个城市的编号<br>输出：N-1行，表示0号城市到其他城市的最短路，如果无法到达，输出-1，数值太大的以MOD 100000 的结果输出。</p>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>本题是高精度整数和迪杰斯特拉算法的结合，作为综合练习。</li>
+<li>主要注意一下细节问题，主要是% 运算符的重载，一开始写错了。</li>
+<li>出现死循环别忘了检查输入的循环，比如是否忘了写scanf()==2<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">class BigInteger &#123;</span><br><span class="line">private:</span><br><span class="line">	const static int maxn &#x3D; 1000 + 5;</span><br><span class="line">	void init() &#123;</span><br><span class="line">		memset(digit, 0, sizeof(digit));</span><br><span class="line">		size &#x3D; 0;</span><br><span class="line">	&#125;</span><br><span class="line">public:</span><br><span class="line">	int digit[maxn];</span><br><span class="line">	int size;</span><br><span class="line">	void set(char str[]) &#123;</span><br><span class="line">		int len &#x3D; strlen(str);</span><br><span class="line">		init();</span><br><span class="line">		for (int i &#x3D; len - 1, j &#x3D; 0, t &#x3D; 0, c &#x3D; 1; i &gt;&#x3D; 0; i--) &#123;</span><br><span class="line">			t +&#x3D; (str[i] - &#39;0&#39;)*c;</span><br><span class="line">			j++;</span><br><span class="line">			c *&#x3D; 10;</span><br><span class="line">			if (j &#x3D;&#x3D; 4 || i &#x3D;&#x3D; 0) &#123;</span><br><span class="line">				digit[size++] &#x3D; t;</span><br><span class="line">				t &#x3D; 0;</span><br><span class="line">				j &#x3D; 0;</span><br><span class="line">				c &#x3D; 1;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	void output() &#123;</span><br><span class="line">		for (int i &#x3D; size - 1; i &gt;&#x3D; 0; i--) &#123;</span><br><span class="line">			if (i !&#x3D; size - 1)</span><br><span class="line">				printf(&quot;%04d&quot;, digit[i]);</span><br><span class="line">			else if (digit[i])</span><br><span class="line">				printf(&quot;%d&quot;, digit[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	int operator % (int x) const &#123;</span><br><span class="line">		int remain &#x3D; 0;</span><br><span class="line">		for (int i &#x3D; size - 1; i &gt;&#x3D; 0; i--) </span><br><span class="line">			remain &#x3D; (remain * 10000 + digit[i]) % x;</span><br><span class="line">		return remain;</span><br><span class="line">	&#125;</span><br><span class="line">	BigInteger operator * (const int &amp;a) const &#123;</span><br><span class="line">		int cf &#x3D; 0;</span><br><span class="line">		BigInteger ret;</span><br><span class="line">		ret.init();</span><br><span class="line">		for (int i &#x3D; 0; i &lt; size; i++) &#123;</span><br><span class="line">			int t &#x3D; digit[i] * a + cf;</span><br><span class="line">			ret.digit[ret.size++] &#x3D; t % 10000;</span><br><span class="line">			cf &#x3D; t &#x2F; 10000;</span><br><span class="line">		&#125;</span><br><span class="line">		if (cf)</span><br><span class="line">			ret.digit[ret.size++] &#x3D; cf;</span><br><span class="line">		return ret;</span><br><span class="line">	&#125;</span><br><span class="line">	BigInteger operator + (const  BigInteger &amp;A) const &#123;</span><br><span class="line">		int cf &#x3D; 0;</span><br><span class="line">		BigInteger ret;</span><br><span class="line">		ret.init();</span><br><span class="line">		for (int i &#x3D; 0; i &lt; size || i &lt; A.size; i++) &#123;</span><br><span class="line">			int t &#x3D; digit[i] + A.digit[i] + cf;</span><br><span class="line">			ret.digit[ret.size++] &#x3D; t % 10000;</span><br><span class="line">			cf &#x3D; t &#x2F; 10000;</span><br><span class="line">		&#125;</span><br><span class="line">		if (cf)</span><br><span class="line">			ret.digit[ret.size++] &#x3D; cf;</span><br><span class="line">		return ret;</span><br><span class="line">	&#125;</span><br><span class="line">	bool operator &lt;(const BigInteger A) const &#123;</span><br><span class="line">		if (A.size !&#x3D; size) return size &lt; A.size;</span><br><span class="line">		for (int i &#x3D; size - 1; i &gt;&#x3D; 0; i--)</span><br><span class="line">			if (digit[i] !&#x3D; A.digit[i])</span><br><span class="line">				return digit[i] &lt; A.digit[i];</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">struct edge &#123;</span><br><span class="line">	int to;</span><br><span class="line">	BigInteger w;</span><br><span class="line">	edge(int to, BigInteger w) :to(to), w(w) &#123;&#125;</span><br><span class="line">	bool operator &lt; (const edge&amp;a) const &#123; return a.w &lt; w; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;edge&gt; g[105];</span><br><span class="line">BigInteger dis[105]&#123;&#125;;</span><br><span class="line">void dij(int beg) &#123;</span><br><span class="line">	priority_queue&lt;edge&gt; pq;</span><br><span class="line">	int vis[105]&#123;&#125;;</span><br><span class="line">	memset(dis, 0, sizeof(dis));</span><br><span class="line">	char s[] &#x3D; &quot;0&quot;;</span><br><span class="line">	BigInteger ss; ss.set(s);</span><br><span class="line">	dis[beg] &#x3D; ss;</span><br><span class="line">	pq.push(edge(beg, dis[beg]));</span><br><span class="line">	while (!pq.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		edge u &#x3D; pq.top(); pq.pop();</span><br><span class="line">		if (vis[u.to]) continue;</span><br><span class="line">		vis[u.to] &#x3D; 1;</span><br><span class="line">		for (edge e : g[u.to]) &#123;</span><br><span class="line">			if (vis[e.to]) continue;</span><br><span class="line">			if (dis[e.to].size &#x3D;&#x3D; 0 || dis[u.to] + e.w &lt; dis[e.to]) &#123;</span><br><span class="line">				dis[e.to] &#x3D; dis[u.to] + e.w;</span><br><span class="line">				pq.push(edge(e.to, dis[e.to]));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, m;</span><br><span class="line">	while (scanf(&quot;%d%d&quot;, &amp;n, &amp;m) &#x3D;&#x3D; 2)</span><br><span class="line">	&#123;</span><br><span class="line">		char s[] &#x3D; &quot;1&quot;;</span><br><span class="line">		BigInteger c;</span><br><span class="line">		c.set(s);</span><br><span class="line">		int a, b;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">			scanf(&quot;%d%d&quot;, &amp;a, &amp;b);</span><br><span class="line">			g[a].push_back(edge(b, c));</span><br><span class="line">			g[b].push_back(edge(a, c));</span><br><span class="line">			c &#x3D; c * 2;</span><br><span class="line">		&#125;</span><br><span class="line">		dij(0);</span><br><span class="line">		for (int i &#x3D; 1; i &lt; n; i++) &#123;</span><br><span class="line">			if (dis[i].size)</span><br><span class="line">				printf(&quot;%d\n&quot;, dis[i] % 100000);</span><br><span class="line">			else printf(&quot;-1\n&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="I-wanna-go-home-POJ-3767"><a href="#I-wanna-go-home-POJ-3767" class="headerlink" title="I wanna go home POJ 3767"></a>I wanna go home POJ 3767</h2>某国出现政治分裂，其中的城市分裂成两派，一派支持领导1，一派支持领导2。你是一名商人，在城市1，想走最短路径回到城市2，要求路径中包含至多一条跨过两个阵营的路径，求最短路径长度。</li>
+</ol>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>首先用dij分别求两个阵营内部，从源点1和2出发的最短距离。</li>
+<li>然后枚举连接两个阵营的边，对于贯穿两个阵营的路径，尝试更新答案为d1[i]+t[i][j]+d2[j]。</li>
+</ol>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 600 + 5;</span><br><span class="line">struct edge &#123;</span><br><span class="line">	int to;</span><br><span class="line">	int w;</span><br><span class="line">	edge() &#123;&#125;</span><br><span class="line">	edge(int to, int w) :to(to), w(w) &#123;&#125;</span><br><span class="line">	bool operator &lt;(const edge a) const &#123; return w &gt; a.w; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;edge&gt;g[maxn];</span><br><span class="line">bool vis[maxn];</span><br><span class="line">int t[maxn][maxn];</span><br><span class="line">int flag[maxn];</span><br><span class="line"></span><br><span class="line">void Dij(int beg, int n, int f, int *dis) &#123;</span><br><span class="line">	memset(vis, 0, sizeof(vis));</span><br><span class="line">	dis[beg] &#x3D; 0;</span><br><span class="line">	priority_queue&lt;edge&gt; pq;</span><br><span class="line">	pq.push(edge(beg, 0));</span><br><span class="line">	while (!pq.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		edge u &#x3D; pq.top(); pq.pop();</span><br><span class="line">		if (vis[u.to]) continue;</span><br><span class="line">		vis[u.to] &#x3D; 1;</span><br><span class="line">		for (edge e : g[u.to]) &#123;</span><br><span class="line">			if (flag[e.to] !&#x3D; f) continue;</span><br><span class="line">			if (!vis[e.to]) &#123;</span><br><span class="line">				if (dis[e.to] &#x3D;&#x3D; -1 || dis[e.to] &gt; dis[u.to] + e.w)</span><br><span class="line">				&#123;</span><br><span class="line">					dis[e.to] &#x3D; dis[u.to] + e.w;</span><br><span class="line">					pq.push(edge(e.to, dis[e.to]));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, m;</span><br><span class="line">	int a, b, w;</span><br><span class="line">	while (scanf(&quot;%d&quot;, &amp;n) &#x3D;&#x3D; 1 &amp;&amp; n)</span><br><span class="line">	&#123;</span><br><span class="line">		scanf(&quot;%d&quot;, &amp;m);</span><br><span class="line">		memset(t, -1, sizeof(t));</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++) g[i].clear();</span><br><span class="line"></span><br><span class="line">		for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">			scanf(&quot;%d%d%d&quot;, &amp;a, &amp;b, &amp;w);</span><br><span class="line">			if (t[a][b] &#x3D;&#x3D; -1 || w &lt; t[a][b])</span><br><span class="line">				t[a][b] &#x3D; t[b][a] &#x3D; w;</span><br><span class="line">		&#125;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++)</span><br><span class="line">			scanf(&quot;%d&quot;, &amp;flag[i]);</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++)</span><br><span class="line">			for (int j &#x3D; 1; j &lt;&#x3D; i; j++) &#123;</span><br><span class="line">				if (t[i][j] !&#x3D; -1) &#123;</span><br><span class="line">					g[i].push_back(edge(j, t[i][j]));</span><br><span class="line">					g[j].push_back(edge(i, t[i][j]));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		int d1[maxn];</span><br><span class="line">		int d2[maxn];</span><br><span class="line">		memset(d1, -1, sizeof(d1));</span><br><span class="line">		memset(d2, -1, sizeof(d2));</span><br><span class="line">		Dij(1, n, 1, d1);</span><br><span class="line">		Dij(2, n, 2, d2);</span><br><span class="line">		int ans &#x3D; d1[2];</span><br><span class="line">		if (ans &#x3D;&#x3D; -1)</span><br><span class="line">			for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">				if (flag[i] &#x3D;&#x3D; 2 || d1[i] &#x3D;&#x3D; -1) continue;</span><br><span class="line">				for (int j &#x3D; 1; j &lt;&#x3D; n; j++) &#123;</span><br><span class="line">					if (flag[j] &#x3D;&#x3D; 1 || d2[j] &#x3D;&#x3D; -1) continue;</span><br><span class="line">					if (t[i][j] !&#x3D; -1) &#123;</span><br><span class="line">						if (ans &#x3D;&#x3D; -1 || d1[i] + t[i][j] + d2[j] &lt; ans)</span><br><span class="line">							ans &#x3D; d1[i] + t[i][j] + d2[j];</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		printf(&quot;%d\n&quot;, ans);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h1><h2 id="基本思想-2"><a href="#基本思想-2" class="headerlink" title="基本思想"></a>基本思想</h2><ol>
+<li>每次取入度为0的点，并删除之，修改它所连接的点的入读，反复入队入度为0的点。记录总的出队点数。如果等于n说明无环，能构成拓扑序列；否则，不能构成拓扑序列。</li>
+<li>时间复杂度O(N+M),其中N为顶点数，M为边数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">const int maxn &#x3D; 500 + 5;</span><br><span class="line">int indegree[maxn];</span><br><span class="line">vector&lt;int&gt; g[maxn];</span><br><span class="line">bool topo(int n) &#123;</span><br><span class="line">	queue&lt;int&gt; q;</span><br><span class="line">	vector&lt;int&gt; ans;</span><br><span class="line">	for (int i &#x3D; 1; i &lt;&#x3D; n; i++) </span><br><span class="line">		if (indegree[i] &#x3D;&#x3D; 0) q.push(i);</span><br><span class="line"></span><br><span class="line">	while (!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		int u &#x3D; q.front(); q.pop();</span><br><span class="line">		ans.push_back(u);</span><br><span class="line"></span><br><span class="line">		for (int i : g[u]) &#123;</span><br><span class="line">			indegree[i]--;</span><br><span class="line">			if (indegree[i] &#x3D;&#x3D; 0)</span><br><span class="line">				q.push(i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	if (ans.size() &#x3D;&#x3D; n) return true;</span><br><span class="line">	else return false;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, m;</span><br><span class="line">	int a, b;</span><br><span class="line">	while (scanf(&quot;%d%d&quot;, &amp;n, &amp;m) &#x3D;&#x3D; 2)</span><br><span class="line">	&#123;</span><br><span class="line">		memset(indegree, 0, sizeof(indegree));</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++)  g[i].clear();</span><br><span class="line">		for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">			scanf(&quot;%d%d&quot;, &amp;a, &amp;b);</span><br><span class="line">			g[a].push_back(b);</span><br><span class="line">			indegree[b]++;</span><br><span class="line">		&#125;</span><br><span class="line">		bool flag  &#x3D; topo(n);</span><br><span class="line">		if (flag)</span><br><span class="line">			printf(&quot;YES\n&quot;);</span><br><span class="line">		else printf(&quot;NO\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="产生冠军-HDU-2094"><a href="#产生冠军-HDU-2094" class="headerlink" title="产生冠军 HDU 2094"></a>产生冠军 HDU 2094</h2><p>有一群人，打乒乓球比赛，两两捉对撕杀，每两个人之间最多打一场比赛。<br>球赛的规则如下：<br>如果A打败了B，B又打败了C，而A与C之间没有进行过比赛，那么就认定，A一定能打败C。<br>如果A打败了B，B又打败了C，而且，C又打败了A，那么A、B、C三者都不可能成为冠军。<br>根据这个规则，无需循环较量，或许就能确定冠军。你的任务就是面对一群比赛选手，在经过了若干场撕杀之后，确定是否已经实际上产生了冠军。 </p>
+<p>输入含有一些选手群，每群选手都以一个整数n(n&lt;1000)开头，后跟n对选手的比赛结果，比赛结果以一对选手名字（中间隔一空格）表示，前者战胜后者。如果n为0，则表示输入结束。 </p>
+<p>对于每个选手群，若你判断出产生了冠军，则在一行中输出“Yes”，否则在一行中输出“No”。 </p>
+<h3 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>本题技巧在于只需判断初始状态下，入度为0的点是否为1个即可。</li>
+</ol>
+<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 1000 + 5;</span><br><span class="line">int indegree[maxn];</span><br><span class="line">vector&lt;int&gt; g[maxn];</span><br><span class="line">bool topo(int n) &#123;</span><br><span class="line">	int tmp[maxn];</span><br><span class="line">	int tot &#x3D; 0;</span><br><span class="line">	memcpy(tmp, indegree, sizeof(tmp));</span><br><span class="line">	for (int i &#x3D; 1; i &lt;&#x3D; n; i++) </span><br><span class="line">		if (indegree[i] &#x3D;&#x3D; 0) tot++;</span><br><span class="line">	return tot&#x3D;&#x3D;1;</span><br><span class="line">&#125;</span><br><span class="line">map&lt;string, int&gt; id;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, m;</span><br><span class="line">	int a, b;</span><br><span class="line">	while (cin &gt;&gt; m &amp;&amp; m)</span><br><span class="line">	&#123;</span><br><span class="line">		string s, y;</span><br><span class="line">		memset(indegree, 0, sizeof(indegree));</span><br><span class="line">		for (int i &#x3D; 1; i &lt; maxn; i++)  g[i].clear();</span><br><span class="line">		int num &#x3D; 1;</span><br><span class="line">		id.clear();</span><br><span class="line">		for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">			cin &gt;&gt; s &gt;&gt; y;</span><br><span class="line">			if (!id.count(s))</span><br><span class="line">				id[s] &#x3D; num++;</span><br><span class="line">			if (!id.count(y))</span><br><span class="line">				id[y] &#x3D; num++;</span><br><span class="line">			a &#x3D; id[s];</span><br><span class="line">			b &#x3D; id[y];</span><br><span class="line">			g[a].push_back(b);</span><br><span class="line">			indegree[b]++;</span><br><span class="line">		&#125;</span><br><span class="line">		bool flag &#x3D; topo(num - 1);</span><br><span class="line"></span><br><span class="line">		if (flag)cout &lt;&lt; &quot;Yes&quot;;</span><br><span class="line">		else cout &lt;&lt; &quot;No&quot;;</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/03/30/%E5%9B%BE%E8%AE%BA/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/03/30/201503-4/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            201503-4
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/30/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">动态规划</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        John Doe
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

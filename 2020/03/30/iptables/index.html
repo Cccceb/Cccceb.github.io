@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    iptables |  Hexo
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-iptables" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  iptables
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/iptables/" class="article-date">
+  <time datetime="2020-03-30T02:51:26.428Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.5k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">13分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="iptables-基础"><a href="#iptables-基础" class="headerlink" title="iptables 基础"></a>iptables 基础</h1><p>iptables本身不是防火墙，可以理解为一个客户端代理，通过iptables来设定规则，最终运行在netfilter框架下。</p>
+<h2 id="通信过程"><a href="#通信过程" class="headerlink" title="通信过程"></a>通信过程</h2><p>当客户端访问服务器的时候，客户端发送报文到网卡，通过内核的TCP协议传输到用户空间的web服务器中，而此时，客户端报文的目标终点为web服务所监听的套接字。当web服务需要相应客户端请求时，web服务发出的响应报文的目标终点为客户端。netfilter作为内核的一部分，所有进出的报文都要通过这些关卡。于是，就有了input和output关卡，在iptables中，这些关卡称为链。除了通往本机的链，还有PREROURING(路由前)、FORWARD(转发)、POSTROUTING(路由后)。</p>
+<img src="/Iptables_img/29.png" style="zoom:80%">
+
+<h2 id="链"><a href="#链" class="headerlink" title="链"></a>链</h2><ol>
+<li>防火墙的功能是对经过的报文匹配规则，然后执行对应的动作。对于每个关卡，都不止一条规则，故称为链。</li>
+</ol>
+<h2 id="表"><a href="#表" class="headerlink" title="表"></a>表</h2><ol>
+<li>表：我们把具有相同功能的规则的集合叫做表。</li>
+<li>iptables预定义了四种表<ol>
+<li>filter表：负责过滤功能，防火墙；内核模块：iptables_filter</li>
+<li>nat表：负责网络地址转换功能。内核模块：iptable_nat</li>
+<li>mangle表：拆解报文，做出修改，并重新封装的功能；iptables_mangle</li>
+<li>raw表：关闭nat表上启用的连接追踪机制；iptable_raw<br>也就是说，我们自定义的所有规则都是这四种分类中的规则。</li>
+</ol>
+</li>
+</ol>
+<h2 id="表链关系"><a href="#表链关系" class="headerlink" title="表链关系"></a>表链关系</h2><ol>
+<li>prerouting：规则存在于raw,mangle,nat.</li>
+<li>INPUT:规则存在于mangle,filter.</li>
+<li>FORWARD:规则存在于mangle,filter.</li>
+<li>OUTPUT:规则存在于raw,mangle,nat,filter.</li>
+<li>POSTROUTING:规则存在于mangle,nat.</li>
+<li>实际使用中，往往以表为入口，对规则进行定义。</li>
+<li>表链关系：<img src="/Iptables_img/31.png" style="zoom:80%"></li>
+<li>表的优先级：raw&gt;mangle&gt;nat&gt;filter</li>
+<li>我们也可以在某个表中创建自定义链，将针对某个应用程序所设置的规则放置在这个自定义链中，但是自定义链接不能直接使用，之恶能被某个默认的链当作动作去调用才能起作用。</li>
+</ol>
+<h2 id="数据经过防火墙的流程"><a href="#数据经过防火墙的流程" class="headerlink" title="数据经过防火墙的流程"></a>数据经过防火墙的流程</h2><img src="/Iptables_img/32.png" style="zoom:80%">
+
+<h2 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h2><ol>
+<li>规则：根据指定的匹配条件来尝试匹配每个流经此处的报文，一旦匹配成功，则由规则后面指定的处理动作进行处理。</li>
+</ol>
+<h1 id="iptables实际操作之规则查询"><a href="#iptables实际操作之规则查询" class="headerlink" title="iptables实际操作之规则查询"></a>iptables实际操作之规则查询</h1><ol>
+<li><strong>命令</strong> iptables -t filter -L<ol>
+<li>-t指定要操作的表</li>
+<li>-L列出规则</li>
+</ol>
+</li>
+<li>如果我们要定义过滤规则，那么我们会在filter中定义，但是具体在那条链上实现，取决于我们的工作场景。</li>
+<li>举例：<ol>
+<li>我们需要禁止某个IP地址访问我们的主机，我们则需要在INPUT链上定义规则</li>
+</ol>
+</li>
+<li><strong>命令</strong> iptables -t filter -vL INPUT 查看详细信息<ol>
+<li>pkts 对应规则匹配到的报文的个数</li>
+<li>bytes 对应匹配到的报文包的大小总和。</li>
+<li>target 往往表示规则对应的动作，即匹配成功后需要采取的措施。</li>
+<li>prot 表示规则对应的协议，是否只针对某些协议应用次规则。</li>
+<li>opt 表示规则对应的选项。</li>
+<li>in 表示数据包由哪个接口流入，我们可以设置通过哪块网卡流入的报文需要匹配当前规则。</li>
+<li>out 表示数据包由哪个接口流出，我们可以设置通过哪块网卡流出的报文需要匹配当前规则。</li>
+<li>source 表示规则对应的源地址，可以时一个IP，也可以是一个网段。</li>
+<li>destination 表示规则对应的目的地址。可以是一个IP也可以是一个网段。</li>
+</ol>
+</li>
+<li><strong>命令</strong> iptables -nvl INPUT不进行名称反解。</li>
+<li><strong>命令</strong> iptables –line-number -nvL INPUT</li>
+<li>命令小节<img src="/Iptables_img/33.png" style="zoom:80%">
+
+</li>
+</ol>
+<img src="/Iptables_img/34.png" style="zoom:80%">
+
+<h1 id="iptables规则管理"><a href="#iptables规则管理" class="headerlink" title="iptables规则管理"></a>iptables规则管理</h1><ol>
+<li><strong>命令</strong> iptables -F INPUT 清空规则</li>
+<li><strong>如果报文已经被前面的规则匹配到，iptables则会对报文执行相应动作，即使后面的规则也能匹配到当前报文，也没有机会对报文执行修改</strong></li>
+<li>使用修改指令的时候，如果我拒绝某个源地址发来的包，但是修改时又没有指定对应的源地址，那么源地址会自动编程0.0.0.0，如果是为远程服务器配置iptables，那么正在使用的链接也会和中断。</li>
+<li>REGECT&amp;DROP<ol>
+<li>DROP丢弃而不返回，ping命令所在机器永远得不到回应</li>
+<li>REGECT 返回拒绝，通知目的端不可达。</li>
+</ol>
+</li>
+<li><img src="/Iptables_img/35.png" style="zoom:80%">
+
+</li>
+</ol>
+<img src="/Iptables_img/36.png" style="zoom:80%">
+
+<img src="/Iptables_img/37.png" style="zoom:80%">
+
+<img src="/Iptables_img/38.png" style="zoom:80%">
+
+<h1 id="匹配条件总结"><a href="#匹配条件总结" class="headerlink" title="匹配条件总结"></a>匹配条件总结</h1><h2 id="s参数：匹配源地址"><a href="#s参数：匹配源地址" class="headerlink" title="-s参数：匹配源地址"></a>-s参数：匹配源地址</h2><ol>
+<li>可以是由逗号隔开的多个参数</li>
+<li>可以通过指定子网掩码来指定某个网段</li>
+<li>可以对某个地址取反，达到白（黑）名单的目的。但是存在问题，比如链上规则设定为不是某个源即进行-j操作；如果是，则继续匹配其他条件（都不匹配，则执行默认操作）。</li>
+</ol>
+<h2 id="d参数：匹配目的地址"><a href="#d参数：匹配目的地址" class="headerlink" title="-d参数：匹配目的地址"></a>-d参数：匹配目的地址</h2><p><strong>取反操作与同时指定多个IP的操作不能同时使用</strong></p>
+<h2 id="p参数：匹配协议类型"><a href="#p参数：匹配协议类型" class="headerlink" title="-p参数：匹配协议类型"></a>-p参数：匹配协议类型</h2><ol>
+<li><p>例如拒绝tcp请求 </p>
+<p> iptables -I INPUT -s 192.168.1.146 -d 192.168.1.156 -p tcp -j REJECT</p>
+<p> 使用ssh链接测试</p>
+</li>
+<li><p>-p支持的协议类型：</p>
+<ol>
+<li>tcp,udp,udplite,icmp,icmpv6,esp,ah,sctp,mh</li>
+<li>缺省形况下，默认为-p all</li>
+</ol>
+</li>
+</ol>
+<h2 id="i参数：匹配流入的网卡-o匹配流出的网卡"><a href="#i参数：匹配流入的网卡-o匹配流出的网卡" class="headerlink" title="-i参数：匹配流入的网卡 -o匹配流出的网卡"></a>-i参数：匹配流入的网卡 -o匹配流出的网卡</h2><ol>
+<li>通过ifconfig查询</li>
+<li>-i 网卡名 来指定匹配</li>
+<li>只能用来判断流入的包，故用于<ol>
+<li>ROUTING 链</li>
+<li>INPUT 链</li>
+<li><strong>FORWARD 链</strong></li>
+</ol>
+</li>
+<li>-o 用于匹配报文从哪个网卡流出，用于<ol>
+<li>OUTPUT 链</li>
+<li><strong>FORWARD 链</strong></li>
+<li>POSTROUTING 链</li>
+</ol>
+</li>
+</ol>
+<h2 id="dport-扩展目的端口"><a href="#dport-扩展目的端口" class="headerlink" title="-dport 扩展目的端口"></a>-dport 扩展目的端口</h2><ol>
+<li>dport(destination-port)<ol>
+<li><strong>使用dport之前必须先使用-p选项</strong></li>
+<li>之后使用-m指定扩展模块，缺省情况下，默认为于-p指定的协议同名。</li>
+<li>最后，使用-dport指定目标端口</li>
+</ol>
+</li>
+</ol>
+<h2 id="sport-匹配源端口"><a href="#sport-匹配源端口" class="headerlink" title="-sport:匹配源端口"></a>-sport:匹配源端口</h2><ol>
+<li>不管是sport还是dport都可以指定端口范围，如22：25</li>
+<li>multiport模块：<ol>
+<li>若要指定离散的端口，需要借助multiport模块。端口号间以逗号隔开。并且，这些端口中可以包含连续端口号。</li>
+<li><strong>只有tcp,udp可以使用</strong></li>
+</ol>
+</li>
+</ol>
+<p>##<a href=""http://www.zsythink.net/archives/1544"">基本匹配条件总结</a></p>
+<p>#<a href=""http://www.zsythink.net/archives/1564"">常用扩展模块</a></p>
+<h2 id="iprange-扩展模块"><a href="#iprange-扩展模块" class="headerlink" title="iprange 扩展模块"></a>iprange 扩展模块</h2><ol>
+<li>用于指定一系列连续的ip。包括–src-range,–dst-range。</li>
+</ol>
+<h2 id="string-扩展模块"><a href="#string-扩展模块" class="headerlink" title="string 扩展模块"></a>string 扩展模块</h2><ol>
+<li><p>用于匹配含有某一个字符串的报文。</p>
+<p> iptables -t filter -I INPUT -m string –algo bm –string “OOXX” -j REJECT</p>
+<ol>
+<li>-m 用于指定模块</li>
+<li>–algo bm 表示用bm算法匹配。</li>
+</ol>
+</li>
+</ol>
+<h2 id="time-扩展模块"><a href="#time-扩展模块" class="headerlink" title="time 扩展模块"></a>time 扩展模块</h2><ol>
+<li><p>用于限制时间</p>
+<p> iptables -t filter -I OUTPUT -p tcp -dport 80 -m time –timestart 09:00:00 –timestop 18:00:00 -j REJECT</p>
+<ol>
+<li>可以使用timestart 和timestop 来指定起止时间。也可以通过weekdays 来指定某一天,多个天之间通过逗号隔开。也可以结合使用。</li>
+<li>此外还有monthdays,datestart和datestop</li>
+</ol>
+</li>
+</ol>
+<h2 id="connlimit-扩展模块"><a href="#connlimit-扩展模块" class="headerlink" title="connlimit 扩展模块"></a>connlimit 扩展模块</h2><ol>
+<li><p>用于限制每个IP地址同时连接到server的数量。</p>
+<p> iptables -I INPUT -p tcp –dport 803 -m connlimit –connlimit-above 2 -j REJECT</p>
+<ol>
+<li>限制每个IP最多只能让两个ssh连接到server。</li>
+</ol>
+</li>
+<li><p>其实还可以配合–connlimit-mask去限制某类网段的链接数量</p>
+<p> iptables -I INPUT -p tcp –dport 22 -m conlimit –connlimit-above 2 –connlimit-mask 24 -j REJECT</p>
+</li>
+</ol>
+<h2 id="limit-扩展模块"><a href="#limit-扩展模块" class="headerlink" title="limit 扩展模块"></a>limit 扩展模块</h2><p>对报文到达速率进行限制，即限制单位时间内流入的包的数量。</p>
+<ol>
+<li>iptables -t filter -I INPUT -p icmp -m limit –limit 10/minute -j ACCEPT</li>
+</ol>
+<p>表示每分钟最多放10个包，相当于每6秒最多放一个包。<br>然而这样遂率并没有变，是因为第六秒的报文确实被策略匹配到了，于是执行了放行操作，但是6秒钱的报文没有被匹配到，于是自动执行默认策略，也是放行。<br><strong>修改</strong>：iptables -t filter -A INPUT -p icmp -j REJECT</p>
+<ol start="2">
+<li><p>–limit-burst 选项用于指明空闲时放行包的数量，默认为5.</p>
+</li>
+<li><p>limit模块工作原理：令牌桶算法<br> 想象有一个木桶，里面放了5块令牌，且目前这个桶中最多只能存放5个令牌。所有报文想要出关入关，都必须持有木桶中的令牌，这个木桶可以每6秒生成一个新的令牌。此时，如果桶已经满了，那么新生成的令牌就被丢弃。假设现在有五个报文想要进入，那么这5个报文就会去桶中找令牌，正好一人一个。此时，如果再有令牌想要进入，则没有对应的令牌可以使用。如果长时间没有人使用令牌，令牌桶中又出现了5枚令牌，也就是所谓的空闲。</p>
+</li>
+</ol>
+<p>#<a href=""http://www.zsythink.net/archives/1578"">iptables 扩展匹配条件 -tcp-flags</a></p>
+<p>用于匹配tcp头部的标志位，然后根据标识位的实时情况进行实时访问控制功能。</p>
+<ol>
+<li><p>iptables -t filter -I INPUT -p tcp -m tcp –dport 22 –tcp-flags SYN,ACK,FIN,RST,URG,PSH SYN -j REJECT</p>
+<ol>
+<li>SYN,ACK,FIN,RST,URG,PSH 表示需要匹配报文tcp头部的标志位列表</li>
+<li>第二个SYN处表示，要求为1的标志位列表。不出现的标志位必须为0。</li>
+<li>这条命令是拒绝tcp第一次链接。</li>
+<li>可以使用-syn代替这一段。</li>
+</ol>
+</li>
+<li><p>iptables -t filter -I INPUT -p tcp -m tcp –dport 22 –tcp-flags SYN,ACK,FIN,RST,URG,PSH SYN，ACK -j REJECT</p>
+</li>
+</ol>
+<p>#<a href=""http://www.zsythink.net/archives/1588"">iptables udp扩展与icmp扩展</a></p>
+<h2 id="udp-扩展"><a href="#udp-扩展" class="headerlink" title="udp 扩展"></a>udp 扩展</h2><ol>
+<li>iptables -t filter -I INPUT -p udp -m udp –dport 137 -j ACCEPT<ol>
+<li>137为端口号，samba服务的端口为137，138</li>
+<li>可以指定连续的端口号 137:157</li>
+</ol>
+</li>
+</ol>
+<h2 id="icmp-扩展"><a href="#icmp-扩展" class="headerlink" title="icmp 扩展"></a>icmp 扩展</h2><img src="/Iptables_img/51.png" style="zoom:80%">
+
+<ol>
+<li><p>可以指定匹配的类型和code</p>
+<p> iptables -t filter -I INPUT -p icmp -m icmp –icmp-type3/1 -j REJECT</p>
+<p> 表示拒绝主机不可达报文</p>
+</li>
+<li><p>还可以用icmp报文的描述名称去匹配对应类型的报文</p>
+<p> iptables -t filter -I INPUT -p icmp –icmp-type “echo-request” -j REJECT</p>
+</li>
+</ol>
+<p>#<a href=""http://www.zsythink.net/archives/1597"">iptables 扩展模块 state</a></p>
+<p>当我们访问http时，需要放行80端口以便能够与服务端进行通信。进行ssh链接时，需要打开22端口。然而，这样并不安全，攻击者可以利用这些端口主动和我建立链接。使用state可以实现链接追踪功能。</p>
+<h2 id="state基本概念"><a href="#state基本概念" class="headerlink" title="state基本概念"></a>state基本概念</h2><ol>
+<li>连接：在state模块中，认为两台机器在你来我往的通信就算建立了连接。</li>
+<li>连接状态包括：NEW,ESTABLISHED,RELATED,INVALID,UNTRACKED</li>
+</ol>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><ol>
+<li>iptables -t filter -I INPUT -m state –state RELATED,ESTABLISHED -j ACCEPT<ol>
+<li>只有回应我们的报文能够通过防火墙。</li>
+</ol>
+</li>
+</ol>
+<p>#<a href=""http://www.zsythink.net/archives/1604"">iptables的黑白名单机制</a></p>
+<ol>
+<li>黑名单：链中设置规则的动作为drop或reject，默认动作是ACCEPT，那么匹配到规则的报文会被拒绝。</li>
+<li>白名单：默认规则是DROP，链中规则的动作是ACCEPT，则被匹配到的报文才会放行，即白名单机制。<h2 id="白名单"><a href="#白名单" class="headerlink" title="白名单"></a>白名单</h2></li>
+</ol>
+<p>#iptables -P INPUT DROP</p>
+<p>#iptables -I INPUT -p tcp –dport 22 -j ACCEPT</p>
+<p>#iptables -I INPUT -p tcp<br>–dport 80 -j ACCEPT</p>
+<ol>
+<li>注意-F选项只是将链中规则情况，此处修改了默认规则，所以即使-F也会DROP；</li>
+<li><strong>改进</strong>：将链的设置保持为ACCEPT，然后将拒绝所有请求的规则放在链尾，将放行规则放在签名，这样既实现了白名单，又保证规则清空时，管理员能够连接到主机。</li>
+</ol>
+<p>#iptables -I INPUT -p tcp –dport 22 -j ACCEPT</p>
+<p>#iptables -I INPUT -p tcp –dport 80 -j ACCEPT</p>
+<p># iptables -A INPUT -j REJECT</p>
+<p>#<a href=""http://www.zsythink.net/archives/1625"">iptables 自定义链</a></p>
+<p>由于默认链的规则非常 多，不便于管理，所以引入自定义链。</p>
+<h2 id="创建自定义链"><a href="#创建自定义链" class="headerlink" title="创建自定义链"></a>创建自定义链</h2><ol>
+<li>iptables -t filter -N IN_WEB<h2 id="使用自定义链"><a href="#使用自定义链" class="headerlink" title="使用自定义链"></a>使用自定义链</h2></li>
+<li>必须被默认链引用</li>
+<li>iptables -I INPUT -p tcp –dport 80 -j IN WEB</li>
+<li>自定义链也可以引用其他的自定义链</li>
+</ol>
+<h2 id="自定义链重命名"><a href="#自定义链重命名" class="headerlink" title="自定义链重命名"></a>自定义链重命名</h2><p>iptables -E IN_WEB WEB</p>
+<h2 id="删除自定义链"><a href="#删除自定义链" class="headerlink" title="删除自定义链"></a>删除自定义链</h2><ol>
+<li>如果被引用，则要iptables -D INPUT 1</li>
+<li>如果链种含有规则，则要Iptables -t filter -F WEB</li>
+<li>iptables -X WEB</li>
+</ol>
+<p>#<a href=""http://www.zsythink.net/archives/1663"">网络防火墙</a></p>
+<ol>
+<li><p>定义：处于网络入口或边缘，针对于网络入口进行防护，服务于防火墙背后的本地局域网。主要任务时过滤并转发。</p>
+</li>
+<li><p>涉及：INPUT,OUTPUT,FORWARD</p>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2></li>
+<li><p>PC1：</p>
+<ol>
+<li>192.18.33.33</li>
+<li>route add -net 192.18.22.0/24 gw 192.18.33.251</li>
+</ol>
+</li>
+<li><p>PC2:</p>
+<ol>
+<li>192.18.22.22</li>
+<li>route add -net 192.18.33.0/24 gw 192.18.22.251</li>
+</ol>
+</li>
+<li><p>r1:</p>
+<ol>
+<li>ens33:192.18.33.251</li>
+<li>ens37:192.18.22.251    <ol start="3">
+<li>cat /proc/sys/net/ipv4/ip_forward 来查看是否支持转发功能。</li>
+<li>每次需要echo 1 &gt; /proc/sys/net/ipv4/ip_forward来开启转发功能</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>#<a href=""http://www.zsythink.net/archives/1684"">iptables 动作总结</a></p>
+<h2 id="REJECT"><a href="#REJECT" class="headerlink" title="REJECT"></a>REJECT</h2><ol>
+<li>–reject-with :提示拒绝原因。包括：<ol>
+<li>icmp-net-unreachable</li>
+<li>icmp-host-unreachable</li>
+<li>icmp-port-unreachable</li>
+<li>icmp-proto-unreachable(默认)</li>
+<li>icmp-net-prohibited</li>
+<li>icmp-host-pro-hibited</li>
+<li>icmp-admin-prohibited</li>
+</ol>
+</li>
+</ol>
+<h2 id="LOG"><a href="#LOG" class="headerlink" title="LOG"></a>LOG</h2><ol>
+<li><p>LOG 可以将符合条件的报文的相关信息记录到日志中。可以在后面设置具体规则对报文进一步处理。</p>
+</li>
+<li><p>可以通过tail -f /var/log/messages 来查看。</p>
+</li>
+<li><p>–log-level 来指定日志的日志级别。包括</p>
+<ol>
+<li>emerg</li>
+<li>alert</li>
+<li>crit</li>
+<li>error</li>
+<li>warning</li>
+<li>notice</li>
+<li>info</li>
+<li>debug</li>
+</ol>
+</li>
+<li><p>–log-prefix 来给记录到的相关信息添加标签之类的信息，以区分各种记录到的报文。</p>
+</li>
+</ol>
+<p>iptables -I INPUT -p tcp –dport 80 -m state –state NEW -j LOG –log-prefix “want-in-from-22”<br>#<a href=""http://www.zsythink.net/archives/1764"">iptables 动作总结2</a></p>
+<h2 id="SNAT"><a href="#SNAT" class="headerlink" title="SNAT"></a>SNAT</h2><p>iptables -t nat -A POSTROUTING -s 192.18.0.0/16 -j SNAT –to-source 192.18.33.251</p>
+<ol>
+<li>其中-A 标识将snat规则添加到POSTROUTING链的末尾。POSTROUTING可以认为是报文发出的最后一个关卡。</li>
+<li>-j SNAT表示对匹配到的报文进行源地址转换。</li>
+<li>–to-source表示转换成这个源</li>
+</ol>
+<h2 id="DNAT"><a href="#DNAT" class="headerlink" title="DNAT"></a>DNAT</h2><p>按端口进行转发</p>
+<ol>
+<li><p>iptables -t nat -I PREROUTING -d 192.18.33.251 -p tcp –dport 801 -j DNAT –to-destination 192.18.22.22:80</p>
+</li>
+<li><p>注：开启端口/sbin/iptables -I INPUT -p tcp –dport 80 -j ACCEPT</p>
+</li>
+</ol>
+<h2 id="MASQUERADE"><a href="#MASQUERADE" class="headerlink" title="MASQUERADE"></a>MASQUERADE</h2><p>动态的将源地址转换为可用的IP地址。类似于SNAT而无需指明修改成哪个IP，可以适应动态变化。</p>
+<ol>
+<li>iptables -t nat -I POSTROUTING -s 192.18.0.0/16 -o ens33 -j MASQUERADE</li>
+</ol>
+<h2 id="REDIRECT"><a href="#REDIRECT" class="headerlink" title="REDIRECT"></a>REDIRECT</h2><p>可以将本机端口进行映射。</p>
+<ol>
+<li>iptables -t nat -A PREROUTING -p tcp –dport 80 -j REDIRECT –to-ports 801</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/03/30/iptables/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/03/30/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9B%AE%E5%BD%95/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            区块链目录
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/30/Iptables%E5%AE%9E%E9%AA%8C%E7%9B%AE%E5%BD%95/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Iptables实验目录</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        John Doe
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    在Web中搜索 |  Hexo
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-在Web中搜索" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  在Web中搜索
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E5%9C%A8Web%E4%B8%AD%E6%90%9C%E7%B4%A2/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.732Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.4k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">7分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva-1597-在web中搜索"><a href="#uva-1597-在web中搜索" class="headerlink" title="uva 1597 在web中搜索"></a>uva 1597 在web中搜索</h1><p>输入nnn篇文章和mmm个请求（n&lt;100，m≤50000n &lt; 100\text{，}m \leq 50000n&lt;100，m≤50000），每个请求都是444种格式之一。</p>
+<p>A: 找包含关键字A的文章。</p>
+<p>A AND B 找同时包含关键字A和B的文章。</p>
+<p>A OR B 找包含关键字A或B的文章。</p>
+<p>NOT A 找不包含关键字A的文章。</p>
+<p>处理询问时需要对每篇文章输出证据。前3种询问输出所有至少包含一个关键字的行。第4种询问输出不包含A的整篇文章。关键字只由小写字母组成，查找时忽略大小写。每行不超过不超过80字符，一共不超过1500行。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+<li>主要的STL是一个map&lt;string,set<Node>&gt; 用来存储每个单词出现的段号和行号。vector<string> txt[i]来存储第i段的若干句子，一句一句的存。</li>
+<li>对于AND指令，需要n2次查找两个单词出现的段落和行号，只有当两个单词出现的段落一致的时候，才输出</li>
+<li>OR指令同理</li>
+<li>NOT需要循环所有的段落，对于A出现的段落集合中不包括的段，将它防在答案集合中<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line"># pragma warning(disable:4996)</span><br><span class="line"># define LOCAL</span><br><span class="line"># ifdef LOCAL</span><br><span class="line">FILE *fin &#x3D; freopen(&quot;习题5-10in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">FILE *fout &#x3D; freopen(&quot;习题5-10out.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line"># endif </span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">vector&lt;string&gt; txt[105];</span><br><span class="line">map&lt;string, set&lt;int&gt;&gt; which_pa;</span><br><span class="line">struct node &#123;</span><br><span class="line">	int p;</span><br><span class="line">	int r;</span><br><span class="line">	node(int p, int r) :p(p), r(r) &#123;&#125;</span><br><span class="line">	bool operator &lt;(const node&amp;a) const &#123;</span><br><span class="line">		return p &lt; a.p || p &#x3D;&#x3D; a.p&amp;&amp;r &lt; a.r;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">map&lt;string, set&lt;node&gt;&gt; words_in_where;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, m;</span><br><span class="line">	string s;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;n); getchar();</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line"></span><br><span class="line">		while (getline(cin, s) &amp;&amp; s !&#x3D; &quot;**********&quot;) &#123;</span><br><span class="line">			txt[i].push_back(s);</span><br><span class="line">			string r;</span><br><span class="line">			for (int j &#x3D; 0; j &lt; s.length(); j++) &#123;</span><br><span class="line">				if (isalpha(s[j])) r +&#x3D; tolower(s[j]);</span><br><span class="line">				else &#123;</span><br><span class="line">					if (!r.empty()) &#123;</span><br><span class="line">						words_in_where[r].insert(node(i, txt[i].size() - 1));</span><br><span class="line">						which_pa[r].insert(i);</span><br><span class="line">					&#125;</span><br><span class="line">					r.clear();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	scanf(&quot;%d&quot;, &amp;m); getchar();</span><br><span class="line">	for (int ff &#x3D; 0; ff &lt; m; ff++) &#123;</span><br><span class="line">		getline(cin, s);</span><br><span class="line">		int orx;</span><br><span class="line">		&#x2F;&#x2F;cout &lt;&lt; endl &lt;&lt; s &lt;&lt; endl &lt;&lt; endl;</span><br><span class="line">		if ((orx &#x3D; s.find(&quot; AND &quot;)) !&#x3D; string::npos) &#123;</span><br><span class="line">			string a &#x3D; s.substr(0, orx);</span><br><span class="line">			string b &#x3D; s.substr(orx + 5);</span><br><span class="line">			&#x2F;&#x2F;	cout &lt;&lt; a &lt;&lt; &quot; &quot; &lt;&lt; b &lt;&lt; endl;</span><br><span class="line">			set&lt;node&gt; aw &#x3D; words_in_where[a];</span><br><span class="line">			set&lt;node&gt; bw &#x3D; words_in_where[b];</span><br><span class="line">			set&lt;node&gt; ans;</span><br><span class="line">			ans.clear();</span><br><span class="line">			if (a &#x3D;&#x3D; b) &#123;</span><br><span class="line">				for (set&lt;node&gt;::iterator it &#x3D; aw.begin(); it !&#x3D; aw.end(); it++)</span><br><span class="line">					ans.insert(*it);</span><br><span class="line">			&#125;</span><br><span class="line">			else &#123;</span><br><span class="line">				for (set&lt;node&gt;::iterator it &#x3D; aw.begin(); it !&#x3D; aw.end(); it++)</span><br><span class="line">					for (set&lt;node&gt;::iterator id &#x3D; bw.begin(); id !&#x3D; bw.end(); id++)</span><br><span class="line">						if ((*it).p &#x3D;&#x3D; (*id).p) &#123;</span><br><span class="line">							ans.insert(*it);</span><br><span class="line">							ans.insert(*id);</span><br><span class="line">						&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			if (ans.empty()) &#123;</span><br><span class="line">				cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">				continue;</span><br><span class="line">			&#125;</span><br><span class="line">			int k &#x3D; ans.begin()-&gt;p;</span><br><span class="line">			for (set&lt;node&gt;::iterator it &#x3D; ans.begin(); it !&#x3D; ans.end(); it++)</span><br><span class="line">			&#123;</span><br><span class="line">				int p &#x3D; (*it).p;</span><br><span class="line">				int r &#x3D; (*it).r;</span><br><span class="line">				if (k !&#x3D; p) &#123;</span><br><span class="line">					cout &lt;&lt; &quot;----------&quot; &lt;&lt; endl;</span><br><span class="line">					k &#x3D; p;</span><br><span class="line">				&#125;</span><br><span class="line">				cout &lt;&lt; txt[p][r] &lt;&lt; endl;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			cout &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		else if ((orx &#x3D; s.find(&quot; OR &quot;)) !&#x3D; string::npos) &#123;</span><br><span class="line">			string a &#x3D; s.substr(0, orx);</span><br><span class="line">			string b &#x3D; s.substr(orx + 4);</span><br><span class="line">			&#x2F;&#x2F;cout &lt;&lt; a &lt;&lt; &quot; &quot; &lt;&lt; b &lt;&lt; endl;</span><br><span class="line">			set&lt;node&gt; aw &#x3D; words_in_where[a];</span><br><span class="line">			set&lt;node&gt; bw &#x3D; words_in_where[b];</span><br><span class="line">			set&lt;node&gt; ans;</span><br><span class="line">			ans.clear();</span><br><span class="line">			if (a &#x3D;&#x3D; b) &#123;</span><br><span class="line">				for (set&lt;node&gt;::iterator it &#x3D; aw.begin(); it !&#x3D; aw.end(); it++) &#123;</span><br><span class="line">					ans.insert(*it);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			else &#123;</span><br><span class="line">				for (set&lt;node&gt;::iterator it &#x3D; aw.begin(); it !&#x3D; aw.end(); it++)</span><br><span class="line">					ans.insert(*it);</span><br><span class="line">				for (set&lt;node&gt;::iterator id &#x3D; bw.begin(); id !&#x3D; bw.end(); id++)</span><br><span class="line">					ans.insert(*id);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			if (ans.empty()) &#123;</span><br><span class="line">				cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">				continue;</span><br><span class="line">			&#125;</span><br><span class="line">			int k &#x3D; ans.begin()-&gt;p;</span><br><span class="line">			for (set&lt;node&gt;::iterator it &#x3D; ans.begin(); it !&#x3D; ans.end(); it++)</span><br><span class="line">			&#123;</span><br><span class="line">				int p &#x3D; (*it).p;</span><br><span class="line">				int r &#x3D; (*it).r;</span><br><span class="line">				if (k !&#x3D; p) &#123;</span><br><span class="line">					cout &lt;&lt; &quot;----------&quot; &lt;&lt; endl;</span><br><span class="line">					k &#x3D; p;</span><br><span class="line">				&#125;</span><br><span class="line">				cout &lt;&lt; txt[p][r] &lt;&lt; endl;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			cout &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		else if (s[0]&#x3D;&#x3D;&#39;N&#39;) &#123;</span><br><span class="line">			string no &#x3D; s.substr(4);</span><br><span class="line">			&#x2F;&#x2F;cout &lt;&lt; no &lt;&lt; endl;</span><br><span class="line">			bool flag &#x3D; false;</span><br><span class="line">			bool first &#x3D; true;</span><br><span class="line">			for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">				if (!which_pa[no].count(i)) &#123;</span><br><span class="line">					if (first) first &#x3D; false; else cout &lt;&lt; &quot;----------&quot; &lt;&lt; endl;</span><br><span class="line">					for (int j &#x3D; 0; j &lt; txt[i].size(); j++)</span><br><span class="line">						cout &lt;&lt; txt[i][j] &lt;&lt; endl;</span><br><span class="line">					flag &#x3D; true;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			if (flag) cout &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">			else cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			&#x2F;&#x2F;cout &lt;&lt; s &lt;&lt; endl;</span><br><span class="line">			if (!words_in_where.count(s)) &#123;</span><br><span class="line">				cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">				continue;</span><br><span class="line">			&#125;##    ##  </span><br><span class="line">			int k &#x3D; words_in_where[s].begin()-&gt;p;</span><br><span class="line">			for (set&lt;node&gt;::iterator it &#x3D; words_in_where[s].begin(); it !&#x3D; words_in_where[s].end(); it++) &#123;</span><br><span class="line">				int p &#x3D; (*it).p;</span><br><span class="line">				int r &#x3D; (*it).r;</span><br><span class="line">				if (k !&#x3D; p) &#123;</span><br><span class="line">					cout &lt;&lt; &quot;----------&quot; &lt;&lt; endl;</span><br><span class="line">					k &#x3D; p;</span><br><span class="line">				&#125;</span><br><span class="line">				cout &lt;&lt; txt[p][r] &lt;&lt; endl;</span><br><span class="line">			&#125;</span><br><span class="line">			&#x2F;&#x2F;if (first) cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl;</span><br><span class="line">			cout &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/03/30/%E5%9C%A8Web%E4%B8%AD%E6%90%9C%E7%B4%A2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/03/30/%E4%B8%8E%E9%9D%9E%E9%97%A8%E7%94%B5%E8%B7%AF/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            与非门电路
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/30/%E5%BE%AA%E7%8E%AF%E5%B0%8F%E6%95%B0/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">循环小数</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        John Doe
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

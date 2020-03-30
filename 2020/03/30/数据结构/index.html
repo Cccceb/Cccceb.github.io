@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    数据结构 |  Hexo
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-数据结构" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  数据结构
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="article-date">
+  <time datetime="2020-03-30T03:55:19.536Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">10分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><h2 id="括号匹配问题"><a href="#括号匹配问题" class="headerlink" title="括号匹配问题"></a>括号匹配问题</h2><p>在某个字符串（长度不超过100）中有左括号、右括号和大小写字母；规定（与常见的算数式子一样）任何一个左括号都从内到外与在它右边且距离最近的右括号匹配。写一个程序，找到无法匹配的左括号和右括号，输出原来字符串，并在下一行标出不能匹配的括号。不能匹配的左括号用”$”标注,不能匹配的右括号用”?”标注。 </p>
+<h3 id="栈中存索引"><a href="#栈中存索引" class="headerlink" title="栈中存索引"></a>栈中存索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 100 + 5;</span><br><span class="line">char s[maxn];</span><br><span class="line">int main() &#123;</span><br><span class="line">	while (scanf(&quot;%s&quot;, s) &#x3D;&#x3D; 1) &#123;</span><br><span class="line">		printf(&quot;%s\n&quot;, s);</span><br><span class="line">		stack&lt;int&gt; st;</span><br><span class="line">		char ans[maxn];</span><br><span class="line">		for (int i &#x3D; 0;i&lt;strlen(s);i++) &#123;</span><br><span class="line">			if (s[i] &#x3D;&#x3D; &#39;(&#39;) &#123;</span><br><span class="line">				ans[i] &#x3D; &#39; &#39;;</span><br><span class="line">				st.push(i);</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">			else if (s[i] &#x3D;&#x3D; &#39;)&#39;) &#123;</span><br><span class="line">				if (!st.empty()&amp;&amp;s[st.top()] &#x3D;&#x3D; &#39;(&#39;) &#123;</span><br><span class="line">					ans[i] &#x3D; &#39; &#39;;</span><br><span class="line">					st.pop();</span><br><span class="line">				&#125;</span><br><span class="line">				else </span><br><span class="line">					ans[i] &#x3D; &#39;?&#39;;</span><br><span class="line">			&#125;</span><br><span class="line">			else ans[i] &#x3D; &#39; &#39;;</span><br><span class="line">		&#125;</span><br><span class="line">		while (!st.empty())</span><br><span class="line">		&#123;</span><br><span class="line">			ans[st.top()] &#x3D; &#39;$&#39;;</span><br><span class="line">			st.pop();</span><br><span class="line">		&#125;</span><br><span class="line">		ans[strlen(s)] &#x3D; &#39;\0&#39;;</span><br><span class="line">		printf(&quot;%s\n&quot;, ans);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="简单计算器"><a href="#简单计算器" class="headerlink" title="简单计算器"></a>简单计算器</h2><p> 读入一个只包含 +, -, *, / 的非负整数计算表达式，计算该表达式的值。测试输入包含若干测试用例，每个测试用例占一行，每行不超过200个字符，整数和运算符之间用一个空格分隔。</p>
+<p>没有非法表达式。当一行中只有0时输入结束，相应的结果不要输出。</p>
+<p> 对每个测试用例输出1行，即该表达式的值，精确到小数点后2位。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>开一个运算符栈一个操作数栈。主要在于判断各符号间的优先级，当当前读取的符号优先级低于栈顶的时候，应该先把栈顶运算符用了。其他都是小的细节问题。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 200 + 5;</span><br><span class="line">char s[maxn];</span><br><span class="line">bool is_op(char c) &#123; return c &#x3D;&#x3D; &#39;+&#39; || c &#x3D;&#x3D; &#39;-&#39; || c &#x3D;&#x3D; &#39;*&#39; || c &#x3D;&#x3D; &#39;&#x2F;&#39;; &#125;</span><br><span class="line">bool first(char a, char b) &#123;</span><br><span class="line">	if (a &#x3D;&#x3D; &#39;*&#39; || a &#x3D;&#x3D; &#39;&#x2F;&#39;)</span><br><span class="line">		return true;</span><br><span class="line">	else if (a &#x3D;&#x3D; &#39;-&#39; || a &#x3D;&#x3D; &#39;+&#39;) &#123;</span><br><span class="line">		if (b !&#x3D; &#39;*&#39; &amp;&amp; b !&#x3D; &#39;&#x2F;&#39;)</span><br><span class="line">			return true;</span><br><span class="line">		else return false;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">double calu(double a, double b, char op) &#123;</span><br><span class="line">	switch (op) &#123;</span><br><span class="line">	case &#39;+&#39;:return a + b; break;</span><br><span class="line">	case &#39;-&#39;:return a - b; break;</span><br><span class="line">	case &#39;*&#39;:return a * b; break;</span><br><span class="line">	case &#39;&#x2F;&#39;:return a &#x2F; b; break;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	while (cin.getline(s, 201) &amp;&amp; s[0] !&#x3D; &#39;0&#39;) &#123;</span><br><span class="line">		stack&lt;double&gt; num;</span><br><span class="line">		stack&lt;char&gt; op;</span><br><span class="line">		int index &#x3D; 0;</span><br><span class="line">		while (index &lt; strlen(s)) &#123;</span><br><span class="line">			if (s[index] &#x3D;&#x3D; &#39; &#39;) index++;</span><br><span class="line">			int n &#x3D; 0;</span><br><span class="line">			while (isdigit(s[index]))</span><br><span class="line">			&#123;</span><br><span class="line">				n *&#x3D; 10;</span><br><span class="line">				n +&#x3D; s[index++] - &#39;0&#39;;</span><br><span class="line">			&#125;</span><br><span class="line">			if (n) num.push(n);</span><br><span class="line">			else &#123;</span><br><span class="line">				if (op.empty()) op.push(s[index]);</span><br><span class="line">				else &#123;</span><br><span class="line"></span><br><span class="line">					while (!op.empty() &amp;&amp; first(op.top(), s[index]))</span><br><span class="line">					&#123;</span><br><span class="line">						double a &#x3D; num.top(); num.pop();</span><br><span class="line">						double b &#x3D; num.top(); num.pop();</span><br><span class="line">						char oper;</span><br><span class="line">						oper &#x3D; op.top(); op.pop();</span><br><span class="line">						num.push(calu(b, a, oper));</span><br><span class="line">					&#125;</span><br><span class="line">					op.push(s[index]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">				&#125;</span><br><span class="line">				index++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		while (!op.empty())</span><br><span class="line">		&#123;</span><br><span class="line">			char oper &#x3D; op.top(); op.pop();</span><br><span class="line">			double a &#x3D; num.top(); num.pop();</span><br><span class="line">			double b &#x3D; num.top(); num.pop();</span><br><span class="line">			double ans &#x3D; calu(b, a, oper);</span><br><span class="line">			num.push(ans);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		printf(&quot;%.2lf\n&quot;, num.top());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="哈夫曼树"><a href="#哈夫曼树" class="headerlink" title="哈夫曼树"></a>哈夫曼树</h1><h2 id="哈夫曼编码"><a href="#哈夫曼编码" class="headerlink" title="哈夫曼编码"></a>哈夫曼编码</h2><p>使用递减的优先级队列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;搬水果</span><br><span class="line">using namespace std;</span><br><span class="line">int main() &#123;</span><br><span class="line">	priority_queue&lt;int,vector&lt;int&gt;,greater&lt;int&gt;&gt; pq;</span><br><span class="line"></span><br><span class="line">	int n;</span><br><span class="line">	while (scanf(&quot;%d&quot;, &amp;n)&#x3D;&#x3D;1 &amp;&amp;n) &#123;</span><br><span class="line">		int x;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			scanf(&quot;%d&quot;, &amp;x);</span><br><span class="line">			pq.push(x);</span><br><span class="line">		&#125;</span><br><span class="line">		int ans &#x3D; 0;</span><br><span class="line">		while (pq.size()&gt;1) &#123;</span><br><span class="line">			int a &#x3D; pq.top(); pq.pop();</span><br><span class="line">			int b &#x3D; pq.top(); pq.pop();</span><br><span class="line">			ans +&#x3D; a + b;</span><br><span class="line">			pq.push(a + b);</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;%d\n&quot;, ans);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><h2 id="二叉树遍历-华科"><a href="#二叉树遍历-华科" class="headerlink" title="二叉树遍历 华科"></a>二叉树遍历 华科</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 26 + 1;</span><br><span class="line">char pre[maxn], in[maxn];</span><br><span class="line"></span><br><span class="line">typedef struct node &#123;</span><br><span class="line">	struct node *lchild, *rchild;</span><br><span class="line">	char data;</span><br><span class="line">&#125;node, *ptr;</span><br><span class="line"></span><br><span class="line">ptr create(char *pre, char *in, int n) &#123;</span><br><span class="line">	ptr s;</span><br><span class="line">	if (n &#x3D;&#x3D; 1) &#123;</span><br><span class="line">		s &#x3D; (ptr)malloc(sizeof(node));</span><br><span class="line">		s-&gt;data &#x3D; *pre;</span><br><span class="line">		s-&gt;rchild &#x3D; s-&gt;lchild &#x3D; NULL;</span><br><span class="line">		return s;</span><br><span class="line">	&#125;</span><br><span class="line">	char *p;</span><br><span class="line">	for (p &#x3D; in; p &lt; in + n; p++)</span><br><span class="line">		if (*p &#x3D;&#x3D; *pre) break;</span><br><span class="line">	int k &#x3D; p - in;</span><br><span class="line"></span><br><span class="line">	s &#x3D; (ptr)malloc(sizeof(node));</span><br><span class="line">	s-&gt;data &#x3D; *p;</span><br><span class="line">	s-&gt;rchild &#x3D; s-&gt;lchild &#x3D; NULL;</span><br><span class="line">	if (k) s-&gt;lchild &#x3D; create(pre + 1, in, k);</span><br><span class="line">	if (n - k - 1) s-&gt;rchild &#x3D; create(pre + k + 1, p + 1, n - k - 1);</span><br><span class="line">	return s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void post_order(ptr T) &#123;</span><br><span class="line">	if (T-&gt;lchild) post_order(T-&gt;lchild);</span><br><span class="line">	if (T-&gt;rchild)post_order(T-&gt;rchild);</span><br><span class="line">	printf(&quot;%c&quot;, T-&gt;data);</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	while (scanf(&quot;%s&quot;, pre) &#x3D;&#x3D; 1) &#123;</span><br><span class="line">		scanf(&quot;%s&quot;, in);</span><br><span class="line">		ptr T &#x3D; create(&amp;pre[0], &amp;in[0], strlen(pre));</span><br><span class="line">		post_order(T);</span><br><span class="line">		printf(&quot;\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二叉树遍历-清华"><a href="#二叉树遍历-清华" class="headerlink" title="二叉树遍历 清华"></a>二叉树遍历 清华</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 100 + 1;</span><br><span class="line">char pre[maxn];</span><br><span class="line">typedef struct node &#123;</span><br><span class="line">	struct node *lchild, *rchild;</span><br><span class="line">	char data;</span><br><span class="line">&#125;node, *ptr;</span><br><span class="line">ptr create(int &amp;cur, const char * pre, int n) &#123;</span><br><span class="line">	if (cur &#x3D;&#x3D; n || pre[cur] &#x3D;&#x3D; &#39;#&#39;) return NULL;</span><br><span class="line"></span><br><span class="line">	ptr s &#x3D; (ptr)malloc(sizeof(node));</span><br><span class="line">	s-&gt;data &#x3D; pre[cur];</span><br><span class="line">	cur++;</span><br><span class="line">	s-&gt;lchild &#x3D; create(cur, pre, n);</span><br><span class="line">	cur++;</span><br><span class="line">	s-&gt;rchild &#x3D; create(cur, pre, n);</span><br><span class="line">	return s;</span><br><span class="line">&#125;</span><br><span class="line">void in_order(ptr T) &#123;</span><br><span class="line">	if (T-&gt;lchild !&#x3D; NULL) in_order(T-&gt;lchild);</span><br><span class="line">	printf(&quot;%c &quot;, T-&gt;data);</span><br><span class="line">	if (T-&gt;rchild !&#x3D; NULL) in_order(T-&gt;rchild);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	while (scanf(&quot;%s&quot;, pre) &#x3D;&#x3D; 1)</span><br><span class="line">	&#123;</span><br><span class="line">		int a &#x3D; 0;</span><br><span class="line">		ptr T &#x3D; create(a, pre, strlen(pre));</span><br><span class="line">		in_order(T);</span><br><span class="line">		printf(&quot;\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二叉排序树"><a href="#二叉排序树" class="headerlink" title="二叉排序树"></a>二叉排序树</h1><h2 id="创建二叉排序树"><a href="#创建二叉排序树" class="headerlink" title="创建二叉排序树"></a>创建二叉排序树</h2><p><strong>此处是递归的逐个节点比较。由于二叉排序树的特殊性，也可以使用前中序遍历序列或中后序遍历序列比较</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">typedef struct node &#123;</span><br><span class="line">	struct node *lchild, *rchild;</span><br><span class="line">	int data;</span><br><span class="line">&#125;node, *ptr;</span><br><span class="line"></span><br><span class="line">ptr insert(ptr T, int x) &#123;</span><br><span class="line">	if (T &#x3D;&#x3D; NULL) &#123;</span><br><span class="line">		T &#x3D; (ptr)malloc(sizeof(node));</span><br><span class="line">		T-&gt;data &#x3D; x;</span><br><span class="line">		T-&gt;lchild &#x3D; T-&gt;rchild &#x3D; NULL;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		if (x &gt; T-&gt;data)</span><br><span class="line">			T-&gt;rchild &#x3D; insert(T-&gt;rchild, x);</span><br><span class="line">		else if (x &lt; T-&gt;data)</span><br><span class="line">			T-&gt;lchild &#x3D; insert(T-&gt;lchild, x);</span><br><span class="line">	&#125;</span><br><span class="line">	return T;</span><br><span class="line">&#125;</span><br><span class="line">void pre_order(ptr T) &#123;</span><br><span class="line">	printf(&quot;%d &quot;, T-&gt;data);</span><br><span class="line">	if (T-&gt;lchild !&#x3D; NULL) pre_order(T-&gt;lchild);</span><br><span class="line">	if (T-&gt;rchild !&#x3D; NULL)pre_order(T-&gt;rchild);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void in_order(ptr T) &#123;</span><br><span class="line">	if (T-&gt;lchild !&#x3D; NULL)	in_order(T-&gt;lchild);</span><br><span class="line">	printf(&quot;%d &quot;, T-&gt;data);</span><br><span class="line">	if (T-&gt;rchild !&#x3D; NULL) in_order(T-&gt;rchild);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void post_order(ptr T) &#123;</span><br><span class="line">	if (T-&gt;lchild !&#x3D; NULL) post_order(T-&gt;lchild);</span><br><span class="line">	if (T-&gt;rchild !&#x3D; NULL) post_order(T-&gt;rchild);</span><br><span class="line">	printf(&quot;%d &quot;, T-&gt;data);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n;</span><br><span class="line">	while (scanf(&quot;%d&quot;,&amp;n)&#x3D;&#x3D;1)</span><br><span class="line">	&#123;</span><br><span class="line">		ptr T &#x3D; NULL;</span><br><span class="line">		int x;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			scanf(&quot;%d&quot;, &amp;x);</span><br><span class="line">			T &#x3D; insert(T, x);</span><br><span class="line">		&#125;</span><br><span class="line">		pre_order(T);</span><br><span class="line">		printf(&quot;\n&quot;);</span><br><span class="line">		in_order(T);</span><br><span class="line">		printf(&quot;\n&quot;);</span><br><span class="line">		post_order(T);</span><br><span class="line">		printf(&quot;\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二叉树搜索-判断树同构"><a href="#二叉树搜索-判断树同构" class="headerlink" title="二叉树搜索(判断树同构)"></a>二叉树搜索(判断树同构)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">typedef struct node &#123;</span><br><span class="line">	struct node *lchild, *rchild;</span><br><span class="line">	int data;</span><br><span class="line">&#125;node, *ptr;</span><br><span class="line"></span><br><span class="line">ptr insert(ptr T, int x) &#123;</span><br><span class="line">	if (T &#x3D;&#x3D; NULL) &#123;</span><br><span class="line">		T &#x3D; (ptr)malloc(sizeof(node));</span><br><span class="line">		T-&gt;data &#x3D; x;</span><br><span class="line">		T-&gt;lchild &#x3D; T-&gt;rchild &#x3D; NULL;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		if (x &gt; T-&gt;data)</span><br><span class="line">			T-&gt;rchild &#x3D; insert(T-&gt;rchild, x);</span><br><span class="line">		else if (x &lt; T-&gt;data)</span><br><span class="line">			T-&gt;lchild &#x3D; insert(T-&gt;lchild, x);</span><br><span class="line">	&#125;</span><br><span class="line">	return T;</span><br><span class="line">&#125;</span><br><span class="line">bool equal(ptr  T1, ptr T2) &#123;</span><br><span class="line">	if (T1 &#x3D;&#x3D; NULL) &#123;</span><br><span class="line">		if (T2 &#x3D;&#x3D; NULL) return true;</span><br><span class="line">		else return false;</span><br><span class="line">	&#125;</span><br><span class="line">	else if (T1-&gt;data &#x3D;&#x3D; T2-&gt;data)</span><br><span class="line">		return equal(T1-&gt;lchild, T2-&gt;lchild) &amp;&amp;</span><br><span class="line">		equal(T1-&gt;rchild, T2-&gt;rchild);</span><br><span class="line"></span><br><span class="line">	return false;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n;</span><br><span class="line">	while (scanf(&quot;%d&quot;, &amp;n) &#x3D;&#x3D; 1 &amp;&amp; n)</span><br><span class="line">	&#123;</span><br><span class="line">		ptr T &#x3D; NULL;</span><br><span class="line">		char x;</span><br><span class="line">		getchar();</span><br><span class="line">		while (scanf(&quot;%c&quot;, &amp;x) &#x3D;&#x3D; 1 &amp;&amp; x !&#x3D; &#39;\n&#39;)</span><br><span class="line">			T &#x3D; insert(T, x - &#39;0&#39;);</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			ptr T2 &#x3D; NULL;</span><br><span class="line">			while (scanf(&quot;%c&quot;, &amp;x) &#x3D;&#x3D; 1 &amp;&amp; x !&#x3D; &#39;\n&#39;)</span><br><span class="line">				T2 &#x3D; insert(T2, x - &#39;0&#39;);</span><br><span class="line">			if (equal(T, T2))</span><br><span class="line">				printf(&quot;YES\n&quot;);</span><br><span class="line">			else printf(&quot;NO\n&quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="删除二叉排序树上的节点"><a href="#删除二叉排序树上的节点" class="headerlink" title="删除二叉排序树上的节点"></a>删除二叉排序树上的节点</h2><ol>
+<li>找到这个节点</li>
+<li>若该节点为叶子节点，则直接删除，即将其父节点指向其的指针置为空</li>
+<li>若该节点仅不存在右子树，那么直接将左子树的根节点替代其位置后，删除该节点。</li>
+<li>若该节点存在右子树，那么用其右子树最右下节点(即右子树中序遍历的第一个点)替换，并删除最右下节点。</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/03/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/03/30/%E6%95%B0%E5%AD%A6%E7%90%86%E8%AE%BA/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            数学理论
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/30/%E6%90%9C%E7%B4%A2/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">搜索</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        John Doe
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

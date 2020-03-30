@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    第3章数据探索kt |  Hexo
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-第3章数据探索kt" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  第3章数据探索kt
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E7%AC%AC3%E7%AB%A0%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2kt/" class="article-date">
+  <time datetime="2020-03-30T04:35:21.939Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.3k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">7分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="汇总统计"><a href="#汇总统计" class="headerlink" title="汇总统计"></a>汇总统计</h1><p>用量化的方法捕捉值集合的特征</p>
+<h2 id="频率和众数"><a href="#频率和众数" class="headerlink" title="频率和众数"></a>频率和众数</h2><ol>
+<li>用于<strong>无序的，分类的值</strong>集合</li>
+<li>对于连续数据，众数<strong>通常</strong>没用；但是可能提供关于值的性质或者关于出现遗漏值的重要信息。如果使用唯一的值表示遗漏值,则该值常常表现为众数。</li>
+</ol>
+<h2 id="百分位数"><a href="#百分位数" class="headerlink" title="百分位数"></a>百分位数</h2><ol>
+<li>对于<strong>有序</strong>数据，考虑值集的百分位数。</li>
+<li><strong>百分位数</strong> 给定一个有序的或连续的属性x和0与100之间的数p,第p个百分位数Xp是一个x值。使碍x的p%观测值小于Xp.</li>
+</ol>
+<h2 id="位置度量：均值和中位数"><a href="#位置度量：均值和中位数" class="headerlink" title="位置度量：均值和中位数"></a>位置度量：均值和中位数</h2><ol>
+<li><p>对于<strong>连续数据</strong>，广泛应用均值和中位数</p>
+<p><img src="/KDDkt_img/15.png" alt=""></p>
+</li>
+<li><p>均值对于离群点很敏感；对于包含离群点的数据，中位数可以更稳健的提供值集合中间的估计</p>
+</li>
+</ol>
+<h3 id="截断均值"><a href="#截断均值" class="headerlink" title="截断均值"></a>截断均值</h3><p>指定0和100之间的百分位数p.丢<strong>弃高端和低端(p/2)%数据</strong>,然后用常规的方法计算均值.所得的结果即是<strong>截断均值</strong>。中位数是p=100??的截断均值,而标准均值是对应于p=0??截断均值。</p>
+<h2 id="散布度量：极差和方差"><a href="#散布度量：极差和方差" class="headerlink" title="散布度量：极差和方差"></a>散布度量：极差和方差</h2><p>连续数据的另一组常用的汇总统计是值集的弥的或散布度量。<strong>这种度量表明属性值是否散布很宽,或者是否相对集中在单个点（如均值)附近。</strong></p>
+<h3 id="极差"><a href="#极差" class="headerlink" title="极差"></a>极差</h3><ol>
+<li>range(x) = max(x) - min(x)</li>
+<li>极差对离群点敏感</li>
+</ol>
+<h3 id="方差"><a href="#方差" class="headerlink" title="方差"></a>方差</h3><p><img src="/KDDkt_img/14.png" alt=""></p>
+<ol>
+<li>因为均值可能被离群点扭曲，并且由于方差用均值计算，因此它也对离群点敏感。</li>
+</ol>
+<h3 id="其他三种度量定义"><a href="#其他三种度量定义" class="headerlink" title="其他三种度量定义"></a>其他三种度量定义</h3><p>力图减少离群点的影响</p>
+<p><img src="/KDDkt_img/16.png" alt=""></p>
+<ol>
+<li>AAD 绝对平均偏差</li>
+<li>MAD 中位数绝对偏差</li>
+<li>IQR 四分位数极差</li>
+</ol>
+<h2 id="多元汇总统计"><a href="#多元汇总统计" class="headerlink" title="多元汇总统计"></a>多元汇总统计</h2><ol>
+<li>如果每个属性的散布可以独立于其他属性，可用上一小节的方法计算</li>
+<li>对于具有连续变量的数据，数据的分布更多的用<strong>协方差矩阵</strong>表示。</li>
+</ol>
+<h3 id="协方差矩阵-S"><a href="#协方差矩阵-S" class="headerlink" title="协方差矩阵 S"></a>协方差矩阵 S</h3><ol>
+<li><p>其中S的第ij个元素Sij表示第i个属性和第j个属性的协方差。</p>
+<p><img src="/KDDkt_img/17.png" alt=""></p>
+</li>
+<li><p>属性的协方差是两个属性<strong>一起变化</strong>并<strong>依赖于变量大小</strong>的度量.协方差的值<strong>接近于0表明 两个变量不具有（线性)关系</strong>,但是不能仅靠观察协方差的值来确定两个变量之间的关联程度</p>
+</li>
+</ol>
+<h3 id="相关矩阵-R"><a href="#相关矩阵-R" class="headerlink" title="相关矩阵 R"></a>相关矩阵 R</h3><ol>
+<li><p>R的第ij个元素是数据的第i个和第j个属性之间的相关性。</p>
+<p><img src="/KDDkt_img/18.png" alt=""></p>
+<ol>
+<li>Si，Sj分别是xi和xj的方差。R的对角线上的元素是correlation(,t)=1,而其他元素在-1和1之间。</li>
+</ol>
+</li>
+</ol>
+<h2 id="汇总数据的其他方法"><a href="#汇总数据的其他方法" class="headerlink" title="汇总数据的其他方法"></a>汇总数据的其他方法</h2><ol>
+<li>值集的倾斜度（skewness）)度量值对称地分布在均值附近的程度.</li>
+<li>另外还有一些其他数据特征,很难定量地度量,例如,值的分布是否是多模态的（mulimodal),即数据具有多个”肿块”,大部分值集中在那里,</li>
+<li>然而,在许多情况下,理解关于属性值如何分布的更复杂、更微妙的方面,最有效的方法是通过直方图观察这些值。</li>
+</ol>
+<h1 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h1><h2 id="可视化的动机"><a href="#可视化的动机" class="headerlink" title="可视化的动机"></a>可视化的动机</h2><ol>
+<li>动机是人们能够快速吸取大量可视化信息,并发现其中的模式</li>
+<li>另一个动机是利用”镇在人脑袋中”的领域知识。</li>
+</ol>
+<h2 id="一般概念"><a href="#一般概念" class="headerlink" title="一般概念"></a>一般概念</h2><h3 id="表示：讲数据映射到图形元素"><a href="#表示：讲数据映射到图形元素" class="headerlink" title="表示：讲数据映射到图形元素"></a>表示：讲数据映射到图形元素</h3><ol>
+<li>对象通常用三类方法表示<ol>
+<li>如果只考虑对象的单个分类属性，则通常根据该属性的值将兑现聚类，并把这些类作为表的项或屏幕的区域显示</li>
+<li>如果对象具有多个属性，则可以将对象显示为表的一行或显示为图的一条线</li>
+<li>对象常常解释为二维或三维空间中的点</li>
+</ol>
+</li>
+<li><strong>对于序数和连续的属性，可以映射成连续的，有序的图形特征</strong></li>
+<li><strong>对于分类属性，每个类别可以映射到不同的列</strong></li>
+<li>对于标称数据，由于值是无序的，要特别小心</li>
+<li>通常将对象和属性映射到图形元素，隐含的将数据中的联系映射到图形对象之间的联系</li>
+</ol>
+<h3 id="安排"><a href="#安排" class="headerlink" title="安排"></a>安排</h3><p>项的排列十分重要</p>
+<p><img src="/KDDkt_img/19.png" alt=""></p>
+<h3 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h3><p>删除或不突出某些对象和属性</p>
+<h2 id="少量属性的可视化"><a href="#少量属性的可视化" class="headerlink" title="少量属性的可视化"></a>少量属性的可视化</h2><h3 id="茎叶图："><a href="#茎叶图：" class="headerlink" title="茎叶图："></a><strong>茎叶图</strong>：</h3><ol>
+<li><p>可以用来观测一维整型或连续数据的分布。</p>
+</li>
+<li><p>对于简单的一类茎叶图，将值分组，其中每组包含的值除最后一位外相同。每一组是茎，而组中最后一位数字是叶。垂直画茎，水平画叶可得茎叶图</p>
+<p>   <img src="/KDDkt_img/20.png" alt=""></p>
+</li>
+</ol>
+<h3 id="直方图："><a href="#直方图：" class="headerlink" title="直方图："></a>直方图：</h3><ol>
+<li>该图通过将可能的值分散到箱中,并<strong>显示落入每个箱中的对象数</strong>,显示<strong>属性值的分布</strong>。</li>
+<li>如果值过多，则进行合并</li>
+<li>如果是连续属性，则将值域划分成箱。</li>
+</ol>
+<h3 id="二维直方图"><a href="#二维直方图" class="headerlink" title="二维直方图"></a><strong>二维直方图</strong></h3><p>将每个属性划分成区间，而两个区间定义值的二维长方体</p>
+<h3 id="盒装图"><a href="#盒装图" class="headerlink" title="盒装图"></a><strong>盒装图</strong></h3><p>是另一种一维数值属性值分布的方法。<br><img src="/KDDkt_img/21.png" alt=""></p>
+<h3 id="饼状图"><a href="#饼状图" class="headerlink" title="饼状图"></a><strong>饼状图</strong></h3><ol>
+<li>通常用于具有相对较少的值的分类属性。</li>
+</ol>
+<h3 id="百分位数图盒经验积累分布函数"><a href="#百分位数图盒经验积累分布函数" class="headerlink" title="百分位数图盒经验积累分布函数"></a><strong>百分位数图盒经验积累分布函数</strong></h3><p>对于统计分布的每个值,<strong>一个累计分布函数显示点小于该值的概率</strong>。对于每个观测值,一个经验累计分布函数显示小于该值的点的百分比。由于点的个数是有限的<strong>,经验累计分布函数是一个阶梯函数。</strong></p>
+<h3 id="散布图"><a href="#散布图" class="headerlink" title="散布图"></a><strong>散布图</strong></h3><p>图中使用数据对象的两个属性作为x和y的值。其主要用途有</p>
+<ol>
+<li>图形化的显示两个属性之间的关系</li>
+<li>可以用散点图考察两个属性将类分开的程度</li>
+</ol>
+<h2 id="可视化时间空间数据"><a href="#可视化时间空间数据" class="headerlink" title="可视化时间空间数据"></a>可视化时间空间数据</h2><h3 id="等高线图"><a href="#等高线图" class="headerlink" title="等高线图"></a><strong>等高线图</strong></h3><p>等高线图将平面划分成一些区域,区城中的第三个属性（温度或海拔高度）的值粗略地相等。等高线图的常见例子是显示地面位置海拔高度的等高线图</p>
+<h3 id="曲面图"><a href="#曲面图" class="headerlink" title="曲面图"></a><strong>曲面图</strong></h3><p>曲面图中第三个属性用来指示高出前两个属性定义的平面的高度</p>
+<h3 id="矢量场图"><a href="#矢量场图" class="headerlink" title="矢量场图"></a><strong>矢量场图</strong></h3><p>适用于同时需要指示方向和大小的图</p>
+<h3 id="低维切片"><a href="#低维切片" class="headerlink" title="低维切片"></a><strong>低维切片</strong></h3><p>比如每个月份单独成图，降低维度</p>
+<h2 id="可视化高维数据"><a href="#可视化高维数据" class="headerlink" title="可视化高维数据"></a>可视化高维数据</h2><h3 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h3><ol>
+<li><strong>如果类标号已知</strong>，则重新排列数据矩阵的次序，使得某个类的所有对象聚在一起。这样可以很容易的检查某个类的所有对象是否在某些属性熵具有相似的属性值。</li>
+<li>矩阵中，由于不同属性可能具有不同的值域，<strong>则可以对属性标准化</strong></li>
+</ol>
+<h3 id="平行坐标系"><a href="#平行坐标系" class="headerlink" title="平行坐标系"></a>平行坐标系</h3><ol>
+<li><p><strong>每个属性</strong>对应一个坐标轴，但是坐标轴是平行的。</p>
+</li>
+<li><p><strong>每个对象</strong>用线而不是点来表示</p>
+</li>
+<li><p>对于数据对象不太多的情况，平行坐标图可以揭示有意义的模式。</p>
+</li>
+<li><p>举例</p>
+<p><img src="/KDDkt_img/24.png" alt=""></p>
+</li>
+<li><p>缺点：在这种图中模式的检测可能取决于坐标轴的序。如果线交叉太多，则图形可能变得模糊不清</p>
+</li>
+</ol>
+<h3 id="星形坐标和chemoff脸"><a href="#星形坐标和chemoff脸" class="headerlink" title="星形坐标和chemoff脸"></a>星形坐标和chemoff脸</h3><ol>
+<li><p><strong>星形坐标</strong>：对于高维数据，将对象的每个属性映射到图示符的一个特征，使得属性的值决定特征的准确性质。</p>
+</li>
+<li><p>举例</p>
+<p><img src="/KDDkt_img/25.png" alt=""></p>
+<ol>
+<li>每个属性对应一个坐标轴，每个对象构成一个多边形</li>
+</ol>
+</li>
+</ol>
+<h1 id="OLAP和多维数据分析"><a href="#OLAP和多维数据分析" class="headerlink" title="OLAP和多维数据分析"></a>OLAP和多维数据分析</h1><h2 id="多维数据：一般情况"><a href="#多维数据：一般情况" class="headerlink" title="多维数据：一般情况"></a>多维数据：一般情况</h2><ol>
+<li>多维数据分析的关键目标是观察聚集量，如总和或平均值</li>
+</ol>
+<h3 id="多维数组表示数据两步骤"><a href="#多维数组表示数据两步骤" class="headerlink" title="多维数组表示数据两步骤"></a>多维数组表示数据两步骤</h3><ol>
+<li>维的识别：一个对象对应于多维数组的一个单元</li>
+<li>分析所关注的属性的识别：每个单元内容单表一个关心的目标量</li>
+</ol>
+<h2 id="分析多维数据"><a href="#分析多维数据" class="headerlink" title="分析多维数据"></a>分析多维数据</h2><h3 id="数据立方体：计算聚集量"><a href="#数据立方体：计算聚集量" class="headerlink" title="数据立方体：计算聚集量"></a>数据立方体：计算聚集量</h3><ol>
+<li>数据的多维表示，连同所有可能的总和(聚集)称作数据立方体</li>
+<li>每个维的大小(属性的个数)不必相等</li>
+<li>数据立方体可能多于或少于三个维</li>
+</ol>
+<h3 id="维归约和转轴"><a href="#维归约和转轴" class="headerlink" title="维归约和转轴"></a>维归约和转轴</h3><ol>
+<li><p><strong>转轴</strong> 是指在除两个维之外的所有维上的聚集。结果是一个二维交叉表，只有两个指定的维作为留下的维</p>
+<p><img src="/KDDkt_img/26.png" alt=""></p>
+<p>这是一个在日期和产品上转轴的例子</p>
+</li>
+</ol>
+<h3 id="切片和切块"><a href="#切片和切块" class="headerlink" title="切片和切块"></a>切片和切块</h3><ol>
+<li><strong>切片</strong>：通过对一个或多个维指定特定的值，从整个多维数组中选择一组单元</li>
+<li><strong>切块</strong>：通过指定属性值区间选择单元子集，等价于由整个数组定义子数组</li>
+</ol>
+<h3 id="上卷和下钻"><a href="#上卷和下钻" class="headerlink" title="上卷和下钻"></a>上卷和下钻</h3><ol>
+<li>针对层次结果</li>
+<li>对于每天的销售数据，可以按月统计，<strong>称为上卷</strong>，反过来，给定时间划分成月份的数据表示，称为下钻</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/03/30/%E7%AC%AC3%E7%AB%A0%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2kt/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/03/30/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E8%AF%BE%E5%A0%82%E7%9B%AE%E5%BD%95/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            数据挖掘课堂目录
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/30/%E7%AC%AC1%E7%AB%A0%E7%BB%AA%E8%AE%BA/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">第1章绪论</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        John Doe
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

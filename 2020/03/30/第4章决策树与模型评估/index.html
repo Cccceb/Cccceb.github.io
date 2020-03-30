@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    第4章决策树与模型评估 |  Hexo
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-第4章决策树与模型评估" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  第4章决策树与模型评估
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E7%AC%AC4%E7%AB%A0%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/" class="article-date">
+  <time datetime="2020-03-30T04:34:52.955Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.3k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">8分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h1><ol>
+<li><strong>分类</strong>：分类任务就是通过学习得到一个<strong>目标函数(分类模型)</strong>f，把每个属性集x映射到一个预先定义的类标号y</li>
+</ol>
+<h2 id="分类模型用途"><a href="#分类模型用途" class="headerlink" title="分类模型用途"></a>分类模型用途</h2><ol>
+<li>描述性建模：分类模型可作为解释性工具，区分vu同类中的对象</li>
+<li>预测性建模：还可用于预测未知记录的类标号。<strong>分类技术非常适合预测或描述二元或标称类型的数据集</strong></li>
+</ol>
+<h1 id="解决分类问题的一般方法"><a href="#解决分类问题的一般方法" class="headerlink" title="解决分类问题的一般方法"></a>解决分类问题的一般方法</h1><ol>
+<li>分类法的例子包括决策树分类法、基于规则的分类法、神经网络、支持向量机和朴素贝叶斯分类法。</li>
+<li>算法的主要目标就是建立具有很好的泛化能力模型,即建立能够准确地预测未知样本类标号的模型。</li>
+</ol>
+<h2 id="分割训练集和检验集"><a href="#分割训练集和检验集" class="headerlink" title="分割训练集和检验集"></a>分割训练集和检验集</h2><ol>
+<li>训练集：由类标号已知的记录组成，用于建立分类模型</li>
+<li>检验集：由类标号未知的记录组成</li>
+</ol>
+<h2 id="混淆矩阵与性能度量"><a href="#混淆矩阵与性能度量" class="headerlink" title="混淆矩阵与性能度量"></a>混淆矩阵与性能度量</h2><h3 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h3><p><img src="/KDDkt_img/27.png" alt=""></p>
+<h3 id="性能度量"><a href="#性能度量" class="headerlink" title="性能度量"></a>性能度量</h3><p><img src="/KDDkt_img/28.png" alt=""></p>
+<p><img src="/KDDkt_img/29.png" alt=""></p>
+<h1 id="决策树归纳"><a href="#决策树归纳" class="headerlink" title="决策树归纳"></a>决策树归纳</h1><h2 id="决策树的工作原理"><a href="#决策树的工作原理" class="headerlink" title="决策树的工作原理"></a>决策树的工作原理</h2><h3 id="决策树组成"><a href="#决策树组成" class="headerlink" title="决策树组成"></a>决策树组成</h3><ol>
+<li>决策树是一种由结点和有向边组成的层次结构</li>
+<li>树中包含三种结点<ol>
+<li>根结点</li>
+<li>内部结点</li>
+<li>叶结点：每个叶结点都赋予一个类标号</li>
+</ol>
+</li>
+<li>非叶节点：包含属性测试条件，用以分开具有不同特性的记录</li>
+</ol>
+<h2 id="如何建立决策树"><a href="#如何建立决策树" class="headerlink" title="如何建立决策树"></a>如何建立决策树</h2><p>找出最佳决策树在计算上是不可行的。通常使用贪心策略，在选择划分数据的属性时，采取一系列局部最优决策来构造决策树。</p>
+<h3 id="Hunt算法"><a href="#Hunt算法" class="headerlink" title="Hunt算法"></a>Hunt算法</h3><ol>
+<li>通常将训练记录划分成较纯的子集，以递归方式建立决策树</li>
+<li>设D<del>i</del>是与结点t相关联的训练记录集,而 y={y<del>1</del>,y<del>2</del>,y<del>3</del>,…,y<del>c</del>}是类标号，Humt算法的递归定义如下.<ol>
+<li>如果D<del>t</del>中所有记录都属于同一个类y<del>t</del>,则t是叶结点,用y<del>t</del>标记</li>
+<li>否则，<strong>则选择一个属性测试条件</strong>，将记录划分成较小的子集。对于测试条件的每个输出，创建一个子女结点，并根据测试结果将记录分布到子女结点中，再递归调用算法</li>
+</ol>
+</li>
+<li>如果属性值的每种组合都在训练数据中出现，并且每种组合都具有唯一的类标号，则Hunt算法是有效的。</li>
+</ol>
+<h3 id="决策树归纳的设计问题"><a href="#决策树归纳的设计问题" class="headerlink" title="决策树归纳的设计问题"></a>决策树归纳的设计问题</h3><ol>
+<li>如何分裂训练记录：由于在每个非叶结点，都需要选择也给属性测试条件，将记录划分成较小的子集。因此，算法必须要能为不同类型的属性提供测试条件</li>
+<li>如何停止分裂过程：需要设计一个结束条件。一般策略是直到所有的记录都属于同一个类，或者所有记录都有相同的属性值。</li>
+</ol>
+<h2 id="表示属性测试条件的方法"><a href="#表示属性测试条件的方法" class="headerlink" title="表示属性测试条件的方法"></a>表示属性测试条件的方法</h2><h3 id="二元属性"><a href="#二元属性" class="headerlink" title="二元属性"></a>二元属性</h3><p>二元属性的测试条件产生两个可能的输出。表示可以直接二路划分</p>
+<h3 id="标称属性"><a href="#标称属性" class="headerlink" title="标称属性"></a>标称属性</h3><p>由于标称属性具有多个不同的属性值</p>
+<ol>
+<li>使用多路划分</li>
+<li>创建k个属性值的二元划分的所有2^k-1^-1种方法</li>
+</ol>
+<h3 id="序数属性"><a href="#序数属性" class="headerlink" title="序数属性"></a>序数属性</h3><p>主要注意要维持有序性</p>
+<ol>
+<li>可以使用二元或多路划分，只要不违背属性值的有序性就可以对属性值进行分组。</li>
+<li><img src="/KDDkt_img/30.png" alt=""><ol>
+<li>a.b可以，而c不行</li>
+</ol>
+</li>
+</ol>
+<h3 id="连续属性"><a href="#连续属性" class="headerlink" title="连续属性"></a>连续属性</h3><ol>
+<li>可以是以单个值分割的二元输出</li>
+<li>可以是区间形式的多路输出</li>
+</ol>
+<h2 id="选择最佳划分的度量"><a href="#选择最佳划分的度量" class="headerlink" title="选择最佳划分的度量"></a>选择最佳划分的度量</h2><ol>
+<li>用p(i|t) 表示给定结点t中属于类i的记录所占的比例，有时省略t。</li>
+<li>对于二分类问题，任意结点的分布都可以记作(p<del>0</del>,p<del>1</del>)</li>
+<li>选择最佳划分的度量通常是<strong>根据划分后子女结点不纯性的程度</strong>。不纯的程度越低，类分布越倾斜</li>
+</ol>
+<h3 id="度量不纯性"><a href="#度量不纯性" class="headerlink" title="度量不纯性"></a>度量不纯性</h3><p><img src="/KDDkt_img/31.png" alt=""></p>
+<ol>
+<li><p>举例</p>
+<p><img src="/KDDkt_img/32.png" alt=""></p>
+</li>
+<li><p>比较</p>
+<p><img src="/KDDkt_img/33.png" alt=""></p>
+<ol>
+<li>可以看出，不同的度量的结果是一样的</li>
+<li><strong>但是作为测试条件的属性选择仍然因不纯性对量的选择而异</strong></li>
+</ol>
+</li>
+</ol>
+<h3 id="衡量测试条件的划分效果："><a href="#衡量测试条件的划分效果：" class="headerlink" title="衡量测试条件的划分效果："></a>衡量测试条件的划分效果：</h3><ol>
+<li><p>比较父节点的不纯度和子女结点的不纯度。二者的差越大，测试条件效果越好。</p>
+</li>
+<li><p>增益Δ</p>
+<p><img src="/KDDkt_img/34.png" alt=""></p>
+<ol>
+<li>I(x)是给定结点的不纯性度量，N是父节点上记录总数，k是属性值的个数，N(vj)是与子女结点Vj相关联的记录个数</li>
+<li>对所有测试条件来说，I(parent)是一个不变的值，所以最大化增益就是最小化子女结点的不纯性度量的加权平均值</li>
+<li>如果I(parent)是用信息熵来度量，那么熵的差就称为<strong>信息增益</strong></li>
+</ol>
+</li>
+</ol>
+<h3 id="二元属性的划分"><a href="#二元属性的划分" class="headerlink" title="二元属性的划分"></a>二元属性的划分</h3><p>举例</p>
+<ol start="2">
+<li><p>若使用多路划分，需要计算每个属性的Gini指标，然后加权平均</p>
+<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C16.png" alt=""></p>
+</li>
+</ol>
+<h3 id="连续属性的划分"><a href="#连续属性的划分" class="headerlink" title="连续属性的划分"></a>连续属性的划分</h3><ol>
+<li><p>如果穷举v，并将记录划分再计算Gini值，那么时间复杂度为O(N^2^)</p>
+</li>
+<li><p>如果将训练数据排序，再从两个相邻的排过序的属性值中<strong>选择中间值（平均下取整）</strong>最为候选结点；若下图，最终选择Gini最小的97作为划分点</p>
+<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C17.png" alt=""></p>
+</li>
+<li><p><strong>优化</strong> 排序之后，前三个同属一个类，所以划分肯定不会出现在60到75间(如果这样分会把已经聚类的分割开)；同理，也不会出现在100到200间</p>
+</li>
+</ol>
+<h3 id="增益率"><a href="#增益率" class="headerlink" title="增益率"></a>增益率</h3><ol>
+<li><p>现在的<strong>问题</strong>是，我们得到的划分属性可能是一个没有预测性的属性，比顾客ID(因为这种划分方法更倾向于属性取值多的属性)。这时因为与该划分相关联的记录太少，以至于不能做出可靠的判断</p>
+</li>
+<li><p><strong>解决</strong></p>
+<ol>
+<li>限制测试条件只能是二元划分</li>
+<li>修改评估划分的标准，把属性测试条件产生的输出数也考虑进去例如使用<strong>增益率</strong></li>
+</ol>
+</li>
+<li><p><strong>增益率</strong><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C18.png" alt=""></p>
+<p>其中划分信息Split Info =$$-\sum_{i=1}^kP(v_i)log_2^P(v_i)$$即属性取值的熵</p>
+<p>k是划分的总数</p>
+<ol>
+<li>考虑极端情况，划分之后，每个属性具有相同的记录数，则每个P(v<del>i</del>)=1/k，则划分信息等于log<del>2</del>^k^；这表明，如果某个个属性产生了大量的划分，那么他的划分信息将会很大，从而降低增益率</li>
+</ol>
+</li>
+</ol>
+<h2 id="决策树的归纳算法"><a href="#决策树的归纳算法" class="headerlink" title="决策树的归纳算法"></a>决策树的归纳算法</h2><ol>
+<li>输入是训练集E和属性集F</li>
+<li>步骤：递归的选择最优的属性来划分数据并扩展叶结点</li>
+</ol>
+<h2 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h2><p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C19.png" alt=""></p>
+<h3 id="createNode"><a href="#createNode" class="headerlink" title="createNode"></a>createNode</h3><p>为决策树建立结点。结点可能是划分条件node.test_cond，也可能是一个类标号node.label</p>
+<h3 id="find-best-split"><a href="#find-best-split" class="headerlink" title="find_best_split"></a>find_best_split</h3><p>通过不纯性度量来评估划分，比如使用熵，Gini</p>
+<h3 id="Classify"><a href="#Classify" class="headerlink" title="Classify"></a>Classify</h3><p>为叶结点确定类标号。通常将叶结点指派到具有多数记录的类</p>
+<h3 id="stopping-cond"><a href="#stopping-cond" class="headerlink" title="stopping_cond"></a>stopping_cond</h3><ol>
+<li>检查是否所有记录都属于同一个类，或者具有相同的属性值，以决定石头终止决策树的增长。</li>
+<li>或者检查记录数是否小于某个最小的阈值</li>
+</ol>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p><strong>决策树过大可能导致过拟合</strong>，可以通过剪枝，增强决策树的泛化能力</p>
+<h2 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h2><h3 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h3><ol>
+<li><p>信息熵</p>
+<p>$$Info(D)=-\sum _{i=1}^{m}p_i log_2^{(p_i)}$$</p>
+<ol>
+<li>m是标签取值数</li>
+</ol>
+</li>
+<li><p>属性的熵</p>
+<p>是这个属性所有可能取值的熵的加权平均</p>
+<p>$$Info_A(D)=\sum_{j=1}^v\frac{D_j}{|D|}×Info(D_j)$$</p>
+</li>
+<li><p>信息增益</p>
+<p>$$Gain(A) = info(D)-info_A(D)$$</p>
+<ol>
+<li>info(D)是识别样本中一个标签，所需要的平均信息量</li>
+<li>Info<del>A</del>(D)用属性A对数据集D进行分割所需要的信息量</li>
+</ol>
+</li>
+</ol>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C40.png" alt=""></p>
+<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C41.png" alt=""></p>
+<h3 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h3><ol>
+<li>对于连续值，要进行划分</li>
+<li>缺点：更加偏好属性取值多的属性</li>
+</ol>
+<h2 id="C4-5"><a href="#C4-5" class="headerlink" title="C4.5"></a>C4.5</h2><h3 id="将ID3的gain改成gainratio"><a href="#将ID3的gain改成gainratio" class="headerlink" title="将ID3的gain改成gainratio"></a>将ID3的gain改成gainratio</h3><p>$$<br>split info_A(D)=-\sum _{j=1}^v\frac{|D_j|}{D}×log_2({\frac {|D_j|}{|D|}})\<br>gainratiO(A)=\frac {gain(A)}{splitinfo(A)}<br>$$</p>
+<p>以gainratio最大的为划分属性</p>
+<h3 id="举例-1"><a href="#举例-1" class="headerlink" title="举例"></a>举例</h3><p>如上例中</p>
+<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C42.png" alt=""></p>
+<p>gain_ratio(income) = 0.029/0.926 = 0.031</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ol>
+<li>简单易行</li>
+<li>在每个结点对连续属性排序</li>
+<li>需要在内存中加载全部数据</li>
+<li>不适合大数据集(需要外部排序)</li>
+</ol>
+<h2 id="CART-分类和回归树"><a href="#CART-分类和回归树" class="headerlink" title="CART 分类和回归树"></a>CART 分类和回归树</h2><h3 id="Gini系数"><a href="#Gini系数" class="headerlink" title="Gini系数"></a>Gini系数</h3><ol>
+<li><p>$$gini(D)=1-\sum _{i=1}^mp_i^2$$其中P<del>i</del>是D中类i的出现的频率。</p>
+</li>
+<li><p>如果A将数据集D划分成D1和D2，那么D的gini系数是二者的加权平均</p>
+<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C43.png" alt=""></p>
+</li>
+<li><p>gini增益：表示不确定性减少的程度。我们希望gini增益越大越好。</p>
+<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C44.png" alt=""></p>
+</li>
+</ol>
+<h3 id="举例-2"><a href="#举例-2" class="headerlink" title="举例"></a>举例</h3><p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C45.png" alt=""></p>
+<h3 id="构建树的思想"><a href="#构建树的思想" class="headerlink" title="构建树的思想"></a>构建树的思想</h3><ol>
+<li>通过递归，不断的构建二分叉的树</li>
+</ol>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ol>
+<li>所有属性都被假设为连续值</li>
+<li>存在多种可能的分组方法</li>
+<li>可能需要其他工具，如集群，以获得可能的分割值</li>
+</ol>
+<h2 id="三种衡量比较"><a href="#三种衡量比较" class="headerlink" title="三种衡量比较"></a>三种衡量比较</h2><ol>
+<li>熵增益<ul>
+<li>趋向于多值的属性</li>
+</ul>
+</li>
+<li>增益率<ul>
+<li>趋向于不平衡的样本</li>
+</ul>
+</li>
+<li>Gini 系数<ul>
+<li>缺陷是趋向于多值属性</li>
+<li>如果类别数多的时候，时间复杂度大</li>
+<li>偏好各类样本基本相等的数据集</li>
+</ul>
+</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/03/30/%E7%AC%AC4%E7%AB%A0%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/03/30/%E7%AC%AC2%E7%AB%A0%E6%95%B0%E6%8D%AE/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            第2章数据
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/30/%E7%AC%AC2%E7%AB%A0%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">第2章知识表示方法</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        John Doe
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

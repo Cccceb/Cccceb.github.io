@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    第3章经典逻辑推理 |  Hexo
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-第3章经典逻辑推理" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  第3章经典逻辑推理
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E7%AC%AC3%E7%AB%A0%E7%BB%8F%E5%85%B8%E9%80%BB%E8%BE%91%E6%8E%A8%E7%90%86/" class="article-date">
+  <time datetime="2020-03-30T04:31:22.757Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">4.4k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">15分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="推理"><a href="#推理" class="headerlink" title="推理"></a>推理</h2><ol>
+<li>所谓<strong>推理</strong>就是按某种<strong>策略</strong>由<strong>已知判断</strong>推出<strong>另一个判断</strong>的思维过程。</li>
+</ol>
+<p>将事实与规则借助一些符号来表示，推理过程就可以被形式化</p>
+<h2 id="推理方式及其分类"><a href="#推理方式及其分类" class="headerlink" title="推理方式及其分类"></a>推理方式及其分类</h2><h3 id="演绎推理、归纳推理、默认推理"><a href="#演绎推理、归纳推理、默认推理" class="headerlink" title="演绎推理、归纳推理、默认推理"></a>演绎推理、归纳推理、默认推理</h3><ol>
+<li><p>演绎推理：从一般到特殊。例如三段论。</p>
+</li>
+<li><p>归纳推理：从个体到一般。    </p>
+</li>
+<li><p>默认推理：缺省推理，在知识不完全的情况下假设某些条已经具备所进行的推理。</p>
+</li>
+</ol>
+<h3 id="确定性、不确定性推理"><a href="#确定性、不确定性推理" class="headerlink" title="确定性、不确定性推理"></a>确定性、不确定性推理</h3><h3 id="单调推理、非单调推理"><a href="#单调推理、非单调推理" class="headerlink" title="单调推理、非单调推理"></a>单调推理、非单调推理</h3><p>推出的结论是否单调增加</p>
+<h3 id="启发式、非启发式推理"><a href="#启发式、非启发式推理" class="headerlink" title="启发式、非启发式推理"></a>启发式、非启发式推理</h3><p>所谓启发性知识是指与问题有关且能加快推理进程、求得问题最优解的知识。</p>
+<h3 id="基于知识的推理（专家系统）-、统计推理、直觉推理（常识性推理）"><a href="#基于知识的推理（专家系统）-、统计推理、直觉推理（常识性推理）" class="headerlink" title="基于知识的推理（专家系统） 、统计推理、直觉推理（常识性推理）"></a>基于知识的推理（专家系统） 、统计推理、直觉推理（常识性推理）</h3><h2 id="推理的控制策略"><a href="#推理的控制策略" class="headerlink" title="推理的控制策略"></a>推理的控制策略</h2><h3 id="正向推理-数据驱动推理"><a href="#正向推理-数据驱动推理" class="headerlink" title="正向推理 (数据驱动推理)"></a>正向推理 (数据驱动推理)</h3><ol>
+<li>基本思想：从用户提供的初始已知事实出发，在<strong>知识库KB</strong>中找出当前可适用的知识，构成<strong>可适用的知识集KS</strong>，然后按某种冲突消解策略从KS中选出一条知识进行推理，并将推出的新事实加入到数据库DB中，作为下一步推理的已知事实。在此之后，再在知识库中选取可适用的知识进行推理。如此重复进行这一过程，直到求得所要求的解。</li>
+<li>DB中存的是所有已知的知识，反复判断是否能通过DB中的知识推出结论</li>
+<li>示意图<img src="/AI_img/16.png" alt="16"></li>
+</ol>
+<h3 id="逆向推理"><a href="#逆向推理" class="headerlink" title="逆向推理"></a>逆向推理</h3><p><img src="/AI_img/17.png" alt=""></p>
+<ol>
+<li>不需要别的事实推出的，即为一个证据</li>
+</ol>
+<h3 id="混合推理"><a href="#混合推理" class="headerlink" title="混合推理"></a>混合推理</h3><p>先正向推理后逆向推理 或 先逆向推理后正向推理</p>
+<h3 id="双向推理"><a href="#双向推理" class="headerlink" title="双向推理"></a>双向推理</h3><p>正向推理与逆向推理<strong>同时</strong>进行，且在推理过程中的某一步上“碰头”。</p>
+<h3 id="求解策略"><a href="#求解策略" class="headerlink" title="求解策略"></a>求解策略</h3><p>只求一个解，还是求所有解以及最优解</p>
+<h3 id="限制策略"><a href="#限制策略" class="headerlink" title="限制策略"></a>限制策略</h3><p>限制搜索的深度、宽度、时间、空间等等</p>
+<h2 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h2><h3 id="代换的复合"><a href="#代换的复合" class="headerlink" title="代换的复合"></a>代换的复合</h3><ol>
+<li><p>合并</p>
+<p><img src="/AI_img/18.png" alt=""></p>
+</li>
+<li><p>删除</p>
+<p><img src="/AI_img/19.png" alt=""></p>
+</li>
+<li><p>例</p>
+<p><img src="/AI_img/20.png" alt=""></p>
+</li>
+</ol>
+<h3 id="公式集的合一"><a href="#公式集的合一" class="headerlink" title="公式集的合一"></a>公式集的合一</h3><ol>
+<li><p>定义 设有公式集F={F1,F2,…,Fn}，若存在一个代换λ使得<br><strong>F<del>1</del>λ=F<del>2</del>λ=…=F<del>n</del>λ</strong>则称λ为公式集F的一个合一，且称F1,F2,…,Fn是可合一的。<strong>公式集的合一一般不唯一</strong></p>
+</li>
+<li><p>举例</p>
+<p><img src="/AI_img/21.png" alt=""></p>
+<p><strong>置换的时候一般令分母是变量</strong>，用分子换掉分母,用项换掉变量（项包括变量，常量和函数）</p>
+</li>
+</ol>
+<h3 id="最一般的合一"><a href="#最一般的合一" class="headerlink" title="最一般的合一"></a>最一般的合一</h3><ol>
+<li><p>定义 设σ是公式集F的一个合一，如果对任一个合一θ都存在一个代换λ，使得θ=σ°λ则称σ是一个最一般的合一。<strong>最一般合一是唯一的</strong></p>
+</li>
+<li><p>差异集：两个公式中相同位置处不同符号的集合</p>
+<p><strong>例如</strong>：F1:P(x,y,z), F2:P(x,f(a),h(b))<br>则D1={y,f(a)}, D2={z,h(b)}</p>
+</li>
+<li><p><strong>求解最一般合一</strong></p>
+<ol>
+<li>令k=0,Fk=F, σk=ε。 ε是空代换。</li>
+<li>若Fk只含一个表达式，则算法停止，σk就是最一般合一。</li>
+<li>找出Fk的差异集Dk。</li>
+<li>若Dk中存在元素xk和tk，其中xk是变元，tk是项，且xk不在tk中出现，则置：<br>Fk+1=Fk{tk/xk}<br>σK+1=σk°{tk/xk}<br>k=k+1<br>然后转(2)。若不存在这样的xk和tk则算法停止。</li>
+<li>算法终止，F的最一般合一不存在。</li>
+</ol>
+</li>
+<li><p><strong>举例</strong></p>
+<p><img src="/AI_img/22.png" alt=""></p>
+</li>
+</ol>
+<h1 id="自然演绎推理"><a href="#自然演绎推理" class="headerlink" title="自然演绎推理"></a>自然演绎推理</h1><p>从一组已知为真的事实出发，直接运用经典逻辑的推理规则推出结论的过程，称为自然演绎推理。其中，基本的推理规则是P规则、T规则、假言推理、拒取式推理等。</p>
+<h2 id="一般形式"><a href="#一般形式" class="headerlink" title="一般形式"></a>一般形式</h2><p><img src="/AI_img/23.png" alt=""></p>
+<h2 id="P-T规则"><a href="#P-T规则" class="headerlink" title="P/T规则"></a>P/T规则</h2><ol>
+<li>P规则：在推理的任何步骤都可以引入前提。</li>
+<li>T规则：推理时，如果前面步骤中有一个或者多个公式永真蕴含公式S，则可把S引入推理过程中。</li>
+</ol>
+<h1 id="归结演绎推理-必考"><a href="#归结演绎推理-必考" class="headerlink" title="归结演绎推理  (必考)"></a>归结演绎推理  (必考)</h1><h2 id="子句"><a href="#子句" class="headerlink" title="子句"></a>子句</h2><ol>
+<li><p><strong>文字</strong> 在谓词逻辑中，把原子谓词公式及其否定统称为文字。如：P(x)， ¬P(x,f(x))， Q(x,g(x))</p>
+</li>
+<li><p><strong>子句</strong> 任何文字的析取式称为子句</p>
+<ol>
+<li>不包含任何文字的子句称为<strong>空子句；空子句恒为假</strong></li>
+</ol>
+</li>
+</ol>
+<h3 id="子句集"><a href="#子句集" class="headerlink" title="子句集"></a>子句集</h3><ol>
+<li>合取范式：C1 ∧C2 ∧C3… ∧Cn</li>
+<li>子句集:     S= {C1 ,C2 ,C3… ,Cn}</li>
+<li><strong>任何谓词公式F都可通过等价关系及推理规则化为相应的子句集S。</strong></li>
+</ol>
+<h3 id="把谓词公式化成子句集的步骤"><a href="#把谓词公式化成子句集的步骤" class="headerlink" title="把谓词公式化成子句集的步骤"></a>把谓词公式化成子句集的步骤</h3><p>消去蕴含关系和量词符号</p>
+<p><img src="/AI_img/24.png" alt=""></p>
+<p><img src="/AI_img/25.png" alt=""></p>
+<p><img src="/AI_img/26.png" alt=""></p>
+<h3 id="子句集的性质"><a href="#子句集的性质" class="headerlink" title="子句集的性质"></a>子句集的性质</h3><ol>
+<li><p>句集中子句之间是合取关系。</p>
+</li>
+<li><p>子句集中的变元受全称量词的约束</p>
+</li>
+</ol>
+<h3 id="子句集的意义"><a href="#子句集的意义" class="headerlink" title="子句集的意义"></a>子句集的意义</h3><ol>
+<li><strong>子句集S的不可满足性</strong>：对于任意论域中的任意<br>一个解释，S中的子句不能同时取得真值T。</li>
+<li><strong>定理</strong> 设有谓词公式F，其子句集为S，则F不可满足的充要条件是S不可满足。要证明P→Q永真，只需证明公式F=(P∧¬Q)永假，即S不可满足。</li>
+</ol>
+<h2 id="Herbrand理论-了解"><a href="#Herbrand理论-了解" class="headerlink" title="Herbrand理论(了解)"></a>Herbrand理论(了解)</h2><p>海伯伦构造了一个特殊的论域(海伯伦域)，并证明只要对这个特殊域上的一切解释进行判定，就可知子句集是否不可满足。</p>
+<h3 id="海伯伦域"><a href="#海伯伦域" class="headerlink" title="海伯伦域"></a>海伯伦域</h3><p><img src="/AI_img/27.png" alt=""></p>
+<h2 id="鲁滨逊归结原理"><a href="#鲁滨逊归结原理" class="headerlink" title="鲁滨逊归结原理"></a>鲁滨逊归结原理</h2><p>鲁滨逊归结原理的基本思想：检查子句集S中是否包含空子句。若包含，则S不可满足；若不包含，就在子句集中选择合适的子句进行归结，一旦通过归结能推出空子句，就说明子句集S是不可满足的。</p>
+<h3 id="命题逻辑中的归结原理"><a href="#命题逻辑中的归结原理" class="headerlink" title="命题逻辑中的归结原理"></a>命题逻辑中的归结原理</h3><ol>
+<li><p>若P是原子谓词公式，则称P与¬P为互补文字。在命题逻辑中，P为命题。</p>
+</li>
+<li><p>设C1与C2是子句集中的任意两个子句。如果C1中的文字L1与C2中文字L2互补，那么从C1和C2中分别消去L1和L2，并将两个子句中余下的部分析取，构成一个新子句C12，则称这一过程为<strong>归结</strong>。称C12为C1和C2的<strong>归结式</strong>，C1和C2为C12的<strong>亲本子句。</strong></p>
+</li>
+<li><p><strong>定理</strong> C12是其亲本子句C1与C2的逻辑结论。</p>
+<p><img src="/AI_img/28.png" alt=""></p>
+</li>
+<li><p><strong>推论1</strong>：设C1与C2是子句集S中的两个子句，C12是它们的归结式。若用C12代替C1和C2后得到新子句集S1，则由S1的不可满足性可推出原子句集S的不可满足性，即</p>
+<p>​         <strong>S1的不可满足性＝&gt;S的不可满足性</strong></p>
+</li>
+<li><p><strong>推论2</strong> 设C1与C2是子句集S中的两个子句，C12是它们的归结式。若把C12加入S中得到新子句集S2，则S与S2在不可满足的意义上是等价的，即</p>
+<p>​        <strong>S2的不可满足性&lt;＝&gt;S的不可满足性</strong></p>
+</li>
+</ol>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p><img src="/AI_img/29.png" alt=""></p>
+<h3 id="二元归结式的定义"><a href="#二元归结式的定义" class="headerlink" title="二元归结式的定义"></a>二元归结式的定义</h3><ol>
+<li><p>设C1与C2是两个没有相同变元的子句，L1和L2分别是C1和C2中的文字。若σ是L1和¬L2的最一般合一，则称</p>
+<pre><code>**C12=(C1σ-{L1σ})∨(C2σ-{L2σ})**为C1和C2的**二元归结式**，L1和L2称为**归结式上的文字**。</code></pre></li>
+<li><p><strong>举例</strong></p>
+<p><img src="/AI_img/30.png" alt=""></p>
+<ol>
+<li><strong>P 和 Q不能同时约掉，因为我们要选的是互补文字</strong></li>
+</ol>
+</li>
+<li><p>子句C1和C2的归结式是下列二元归结式之一：</p>
+<ol>
+<li>C1与C2的二元归结式；</li>
+<li>C1与C2的因子C2σ2的二元归结式；</li>
+<li>C1的因子C1σ1与C2的二元归结式；</li>
+<li>C1的因子C1σ1与C2的因子C2σ2的二元归结式。</li>
+</ol>
+</li>
+<li><p><strong>结论：</strong>对于一阶谓词逻辑归结原理也是完备的。即，若子句集S不可满足，则必然存在一个从S到空子句的归结演绎；<strong>若存在一个从S到空子句的归结演绎，则S一定是不可满足的。</strong></p>
+</li>
+</ol>
+<h2 id="归结反演"><a href="#归结反演" class="headerlink" title="归结反演"></a>归结反演</h2><h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><ol>
+<li>应用归结原理证明定理的过程称为归结反演。</li>
+<li>设P为已知前提的公式集，Q为目标公式(结论)，用归结反演证明Q为真的步骤是：<ol>
+<li>否定Q，得到¬Q；</li>
+<li>把¬Q并入到公式集P中，得到{P, ¬Q};</li>
+<li>把公式集{P, ¬Q}化为子句集S；</li>
+<li>应用归结原理对子句集S中的子句进行归结，并把每次归结得到的归结式都并入S中。如此反复进行，若出现了空子句，则停止归结，此时就证明了Q为真。</li>
+</ol>
+</li>
+</ol>
+<h3 id="举例-1"><a href="#举例-1" class="headerlink" title="举例"></a>举例</h3><p><img src="/AI_img/31.png" alt=""></p>
+<p><img src="/AI_img/32.png" alt=""></p>
+<p><img src="/AI_img/33.png" alt=""></p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
+<li>归结时，并不要求把子句集中所有的子句都用到。</li>
+<li>在归结过程中，一个子句可以多次被用来进行归结。</li>
+</ul>
+<h2 id="归结策略"><a href="#归结策略" class="headerlink" title="归结策略"></a>归结策略</h2><h3 id="归结的一般过程"><a href="#归结的一般过程" class="headerlink" title="归结的一般过程"></a>归结的一般过程</h3><ol>
+<li><p>S内任意子句两两逐一进行归结，得到一组归结式，称为第一级归结式，记为S1。</p>
+</li>
+<li><p>把S与S1内的任意子句两两逐一进行归结，得到一组归结式，称为第二级归结式，记为S2。</p>
+</li>
+<li><p>S和S1内的子句与S2内的任意子句两两逐一进行归结，得到一组归结式，称为第三级归结式，记为S3。</p>
+</li>
+<li><p>如此继续，直到出现了空子句或者不能再继续归结为止。</p>
+</li>
+<li><p>举例</p>
+<p><img src="/AI_img/34.png" alt=""></p>
+</li>
+</ol>
+<h2 id="删除策略"><a href="#删除策略" class="headerlink" title="删除策略"></a>删除策略</h2><ol>
+<li>纯文字删除法<pre><code>如果某文字L在子句集中不存在可与之互补的文字¬L，则称该文字为纯文字。包含纯文字的子句可以删除。</code></pre></li>
+<li>重言式删除法<pre><code>如果一个子句中同时包含互补文字对，则该字句称为重言式。重言式是永远为真的子句，可以删除。</code></pre></li>
+</ol>
+<h2 id="支持集策略"><a href="#支持集策略" class="headerlink" title="支持集策略"></a>支持集策略</h2><ol>
+<li><p>对参加归结的子句提出如下限制：</p>
+<ol>
+<li>每一次归结时，亲本子句中至少有一个是由目标公式的否定所得到的子句，</li>
+<li>或者是它的后裔。可以证明，支持集策略是完备的。</li>
+</ol>
+</li>
+<li><p>举例</p>
+<p><img src="/AI_img/35.png" alt=""></p>
+<ol>
+<li>s1是 1-2，1-3，1-4得到，支持集策略主要减少的就是s1的数量</li>
+<li>s2开始，就是1-5,1-6,2-5,2-6,,,</li>
+</ol>
+<p><img src="/AI_img/36.png" alt=""></p>
+</li>
+</ol>
+<h2 id="线性输入策略"><a href="#线性输入策略" class="headerlink" title="线性输入策略"></a>线性输入策略</h2><ol>
+<li>参加归结的两个子句中必须至少有一个是初始子句集中的子句。线性输入策略可限制生成归结式的数量，具有简单、高效的优点。<strong>但是它是不完备的。</strong></li>
+</ol>
+<h2 id="单文字子句策略"><a href="#单文字子句策略" class="headerlink" title="单文字子句策略"></a>单文字子句策略</h2><p>如果一个子句只包含一个文字，则称它为单文字子句。</p>
+<h3 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h3><ol>
+<li>参加归结的两个子句中必须至少有一个是单文字子句</li>
+<li>用单文字子句策略归结时，归结式比亲本子句含有较少的文字，这有利于朝着空子句的方向前进，因此它有较高的归结效率。但是，<strong>这种归结策略是不完备的</strong>。当初始子句集中不包含单文字子句时，归结就无法进行</li>
+</ol>
+<h2 id="祖先过滤策略"><a href="#祖先过滤策略" class="headerlink" title="祖先过滤策略"></a>祖先过滤策略</h2><p>当对两个子句C1和C2进行归结时，只要它们满足下述任一个条件就可以归结。</p>
+<ol>
+<li>C1和C2中至少有一个是初始子句集中的子句。</li>
+<li>C1和C2中一个是另外一个的祖先子句。<br>祖先过滤策略是完备的。</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>优点：<br>简单，便于在计算机上实现。</li>
+<li>缺点：<ul>
+<li>必须把逻辑公式化成子句集。</li>
+<li>不便于阅读与理解。<br>¬P(x)∨Q(x)没有P(x)→Q(x)直观。</li>
+<li>可能丢失控制信息。<br>下列逻辑公式：<br>(¬A∧¬B)→C     ¬A→(B∨C)<br>(¬A∧¬C)→B     ¬B→(A∨C)<br>(¬C∧¬B)→A     ¬C→(B∨A)<br>化成子句后都是: A∨B∨C</li>
+</ul>
+</li>
+</ol>
+<h1 id="冲突消解策略"><a href="#冲突消解策略" class="headerlink" title="冲突消解策略"></a>冲突消解策略</h1><h2 id="冲突"><a href="#冲突" class="headerlink" title="冲突"></a>冲突</h2><ol>
+<li>冲突：多个知识都匹配成功。</li>
+<li>对于正向推理：多条产生式前件都与已知事实匹配成功</li>
+<li>对于逆向推理：多条规则后件都和同一个假设匹配成功<br><strong>冲突消解的基本思想都是对知识进行排序</strong></li>
+</ol>
+<h2 id="几种冲突消解策略-排序策略"><a href="#几种冲突消解策略-排序策略" class="headerlink" title="几种冲突消解策略(排序策略)"></a>几种冲突消解策略(排序策略)</h2><ol>
+<li>按针对性排序<pre><code>优先选用针对性强的产生式规则。</code></pre></li>
+<li>按已知事实的新鲜性排序<pre><code>优先选用与较多新事实匹配的规则。</code></pre></li>
+<li>按匹配度排序<pre><code>在不确定性匹配中，计算两个知识模式的相似度(匹配度)，并对其排序，相似度高的规则先推。</code></pre></li>
+<li>按领域问题特点排序</li>
+<li>按上下文限制排序<pre><code>把规则按照下上文分组，并只能选取组中的规则。</code></pre></li>
+<li>按冗余限制排序<pre><code>冗余知识越少的规则先推。</code></pre></li>
+<li>按条件个数排序<pre><code>条件少的规则先推。</code></pre></li>
+</ol>
+<h1 id="与或形演绎推理"><a href="#与或形演绎推理" class="headerlink" title="与或形演绎推理"></a>与或形演绎推理</h1><h2 id="基于规则的演绎推理"><a href="#基于规则的演绎推理" class="headerlink" title="基于规则的演绎推理"></a>基于规则的演绎推理</h2><h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><ol>
+<li>规则是一种比较接近于人们习惯的问题描述方式，用蕴含式（“If →Then”规则）按照这种问题描述方式进行求解的系统称为基于规则的系统，或者叫做规则演绎系统。</li>
+<li>规则演绎系统按照推理方式可分为：<ul>
+<li>规则正向演绎系统</li>
+<li>规则逆向演绎系统</li>
+<li>规则双向演绎系统</li>
+</ul>
+</li>
+</ol>
+<h3 id="规则正向演绎系统"><a href="#规则正向演绎系统" class="headerlink" title="规则正向演绎系统"></a>规则正向演绎系统</h3><ol>
+<li><p>规则正向演绎系统是从已知事实出发，正向使用规则（蕴含式）直接进行演绎，直至到达目标为止。</p>
+<ul>
+<li>在规则正向演绎系统中，对已知事实和规则都有一定的要求，如果不是所要求的形式，需要进行变换。</li>
+</ul>
+</li>
+<li><p>把事实表达式化为非蕴含形式的与/或形的步骤如下：</p>
+<ol>
+<li>利用 “P→Q⇔﹁P∨Q”，消去蕴含符号； </li>
+<li>利用狄.摩根定律及量词转换率把“﹁”移到紧靠谓词的位置，直到否定符号的辖域最多只含一个谓词为止；</li>
+<li>重新命名变元，使不同量词约束的变元有不同的名字；</li>
+<li>对存在量词量化的变量用skolem函数代替；</li>
+<li>消去全称量词，且使各主要合取式中的变元具有不同的变量名。</li>
+</ol>
+<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C20.png" alt=""></p>
+</li>
+<li><p>与或图</p>
+<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C21.png" alt=""></p>
+<ol>
+<li>与或图的根节点就是整个事实表达式，叶结点均为事实表达式中的一个文字</li>
+<li>解树集中的每个解树都对应着子句集中的一个子句。解树集中每个解树的端节点上的文字的析取就是子句集中的一个子句。</li>
+<li>上图所示的与/或图有3个解树，分别对应这以下3个子句：<ul>
+<li>Q(z, a)  </li>
+<li>﹁R(y)∨ ﹁ S(a, y) </li>
+<li>﹁P(y)∨ ﹁ S(a, y)</li>
+</ul>
+</li>
+<li><strong>在第二章问题归约表示中所描述的与/或图表示方法与这里与/或形的与/或图表示有着不同的目的和含义</strong>，因此应用时应加以区分。 </li>
+</ol>
+</li>
+</ol>
+<h3 id="规则的表示"><a href="#规则的表示" class="headerlink" title="规则的表示"></a>规则的表示</h3><ol>
+<li><p>通常要求规则具有如下形式   L→W ，其中L为单文字，W为与/或形公式。不是的要进行转换</p>
+</li>
+<li><p>将规则转换为要求形式的步骤</p>
+<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C22.png" alt=""></p>
+<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C23.png" alt=""></p>
+</li>
+</ol>
+<h3 id="谓词逻辑的规则正向演绎过程"><a href="#谓词逻辑的规则正向演绎过程" class="headerlink" title="谓词逻辑的规则正向演绎过程"></a>谓词逻辑的规则正向演绎过程</h3><ol>
+<li><p>已知事实的与/或形表示：P(x, y)∨(Q(z)∧R(v, y))</p>
+</li>
+<li><p>规则： P(u, v)→(S(u)∨N(v)) </p>
+</li>
+<li><p>目标公式： S(a)∨N(b)∨Q(c)</p>
+</li>
+<li><p>证明：</p>
+<ul>
+<li>在谓词逻辑情况下，由于事实、规则及目标中均含有变元，因此，其规则演绎过程还需要用最一般合一对变进行置换。</li>
+<li>证明过程可用下图表示。</li>
+</ul>
+<p><img src="/AI_img/37.png" alt=""></p>
+</li>
+</ol>
+<h2 id="规则逆向演绎系统"><a href="#规则逆向演绎系统" class="headerlink" title="规则逆向演绎系统"></a>规则逆向演绎系统</h2><h3 id="规则逆向演绎推理过程"><a href="#规则逆向演绎推理过程" class="headerlink" title="规则逆向演绎推理过程"></a>规则逆向演绎推理过程</h3><p>规则逆向演绎推理过程是从待证明的问题，即目标公式的与/或树出发，通过逆向地使用蕴含式（B规则），对目标公式的与/或树进行变换，直到得出包含已知事实的终止条件为止</p>
+<h3 id="目标公式的与-或形变换"><a href="#目标公式的与-或形变换" class="headerlink" title="目标公式的与/或形变换"></a>目标公式的与/或形变换</h3><ol>
+<li><p>在与/或形逆向演绎推理中，要求目标公式采用与/或形表示，其化简采用与正向系统中对事实表达式处理的对偶形式。</p>
+</li>
+<li><p><strong>步骤</strong></p>
+<ol>
+<li>要用<strong>存在量词</strong>约束变元的Skolem函数来替换由<strong>全称量词</strong>约束的相应变元，消去全称量词。（隐含着变量受存在量词的约束 ）</li>
+<li>再消去<strong>存在量词，</strong>并进行变元换名，使主析取元之间具有不同的变元名。</li>
+</ol>
+</li>
+<li><p>举例</p>
+<p><img src="/AI_img/38.png" alt=""></p>
+<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C59.png" alt=""></p>
+</li>
+</ol>
+<h3 id="B规则的表示形式"><a href="#B规则的表示形式" class="headerlink" title="B规则的表示形式"></a>B规则的表示形式</h3><p>$$<br>W\to L<br>$$</p>
+<ol>
+<li>其中前项W为任一与/或形公式，后项L为一单文字</li>
+</ol>
+<h3 id="已知事实的表示形式"><a href="#已知事实的表示形式" class="headerlink" title="已知事实的表示形式"></a>已知事实的表示形式</h3><ol>
+<li><p>反向演绎系统的事实表达式限制为<strong>文字合取</strong>形式</p>
+<p>$$F_1\land F_2\land …\land F_n$$</p>
+<p>其中每个F<del>i</del>都为单文字，且能单独起作用</p>
+</li>
+</ol>
+<h3 id="推理过程"><a href="#推理过程" class="headerlink" title="推理过程"></a>推理过程</h3><ol>
+<li>首先用与/或树把目标公式表示出来；</li>
+<li>用B规则的右部和与/或树的叶节点进行匹配，并将匹配成功的B规则加入到与/或树中；</li>
+<li>重复进行步骤2，直到产生某个终止在事实节点上的一致解图为止。这里的“一致解图”是指在推理过程中所用到的代换应该是一致的。</li>
+</ol>
+<h3 id="举例-2"><a href="#举例-2" class="headerlink" title="举例"></a>举例</h3><ol>
+<li><p>已知事实</p>
+<ul>
+<li><p>f1:  DOG(Fido)                       Fido是一只狗</p>
+</li>
+<li><p>f 2: ¬ BARKS(Fido)                 Fido是不叫的</p>
+</li>
+<li><p>f 3:  WAGS-TAIL(Fido)            Fido摇尾巴</p>
+</li>
+<li><p>f 4:  MEOWS(Myrtle)             Myrtle喵喵叫</p>
+</li>
+</ul>
+</li>
+<li><p>已知规则</p>
+<ul>
+<li>r1:  (WAGS-TAIL(x1)∧DOG(x1))→ FRIENDLY(x1)<pre><code>摇尾巴的狗是温顺的狗</code></pre></li>
+<li>r2:  (FRIENDLY(x2)∧ ¬ BARKS(x2))→ ¬ AFRAID(y2, x2)<pre><code>温顺又不叫的东西是不值得害怕的</code></pre></li>
+<li>r3:  DOG(x3)→ANIMAL(x3) ：狗为动物 </li>
+<li>r4:  CAT(x4)→ANIMAL(x4)：猫为动物</li>
+<li>r5:  MEOWS(x5)→CAT(x5)：喵喵叫的动物是猫</li>
+</ul>
+</li>
+<li><p>问题：是否存在这样的一只猫和一条狗，使得这只猫不害怕这只狗？</p>
+<ul>
+<li><p>即目标公式为<strong>(∃x) (∃y) (CAT(x)∧DOG(y)∧¬AFRAID(x, y))</strong></p>
+</li>
+<li><p>变换得到</p>
+<p><strong>CAT(x)∧DOG(y)∧ ¬ AFRAID(x, y)</strong></p>
+</li>
+</ul>
+</li>
+<li><p>逆向求解</p>
+<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C60.png" alt="s"></p>
+</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/03/30/%E7%AC%AC3%E7%AB%A0%E7%BB%8F%E5%85%B8%E9%80%BB%E8%BE%91%E6%8E%A8%E7%90%86/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/03/30/%E7%AC%AC2%E7%AB%A0%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            第2章知识表示方法
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/30/%E7%AC%AC5%E7%AB%A0%E4%B8%8D%E7%A1%AE%E8%AE%A4%E6%8E%A8%E7%90%86/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">第5章不确认推理</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        John Doe
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

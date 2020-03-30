@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    201703-3 |  Hexo
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-201703-3" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  201703-3
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/201703-3/" class="article-date">
+  <time datetime="2020-03-30T04:00:17.085Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.3k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">5分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h1><p>问题描述</p>
+<p>　　Markdown 是一种很流行的轻量级标记语言（lightweight markup language），广泛用于撰写带格式的文档。例如以下这段文本就是用 Markdown 的语法写成的：　　这些用 Markdown 写成的文本，尽管本身是纯文本格式，然而读者可以很容易地看出它的文档结构。同时，还有很多工具可以自动把 Markdown 文本转换成 HTML 甚至 Word、PDF 等格式，取得更好的排版效果。例如上面这段文本通过转化得到的 HTML 代码如下所示：　　本题要求由你来编写一个 Markdown 的转换工具，完成 Markdown 文本到 HTML 代码的转换工作。简化起见，本题定义的 Markdown 语法规则和转换规则描述如下：　　●区块：区块是文档的顶级结构。本题的 Markdown 语法有 3 种区块格式。在输入中，相邻两个区块之间用一个或多个空行分隔。输出时删除所有分隔区块的空行。　　○段落：一般情况下，连续多行输入构成一个段落。段落的转换规则是在段落的第一行行首插入 <code>&lt;p&gt;</code>，在最后一行行末插入 <code>&lt;/p&gt;</code>。　　○标题：每个标题区块只有一行，由若干个 <code>#</code> 开头，接着一个或多个空格，然后是标题内容，直到行末。<code>#</code> 的个数决定了标题的等级。转换时，<code># Heading</code> 转换为 <code>&lt;h1&gt;Heading&lt;/h1&gt;</code>，<code>## Heading</code> 转换为 <code>&lt;h2&gt;Heading&lt;/h2&gt;</code>，以此类推。标题等级最深为 6。　　○无序列表：无序列表由若干行组成，每行由 <code>*</code> 开头，接着一个或多个空格，然后是列表项目的文字，直到行末。转换时，在最开始插入一行 <code>&lt;ul&gt;</code>，最后插入一行 <code>&lt;/ul&gt;</code>；对于每行，<code>* Item</code> 转换为 <code>&lt;li&gt;Item&lt;/li&gt;</code>。本题中的无序列表只有一层，不会出现缩进的情况。　　●行内：对于区块中的内容，有以下两种行内结构。　　○强调：<code>_Text_</code> 转换为 <code>&lt;em&gt;Text&lt;/em&gt;</code>。强调不会出现嵌套，每行中 <code>_</code> 的个数一定是偶数，且不会连续相邻。注意 <code>_Text_</code> 的前后不一定是空格字符。　　○超级链接：<code>[Text](Link)</code> 转换为 <code>&lt;a href=&quot;Link&quot;&gt;Text&lt;/a&gt;</code>。超级链接和强调可以相互嵌套，但每种格式不会超过一层。</p>
+<p>输入格式</p>
+<p>　　输入由若干行组成，表示一个用本题规定的 Markdown 语法撰写的文档。</p>
+<p>输出格式</p>
+<p>　　输出由若干行组成，表示输入的 Markdown 文档转换成产生的 HTML 代码。</p>
+<p>样例输入</p>
+<p># Hello</p>
+<p>Hello, world!</p>
+<p>样例输出</p>
+<p>&lt;h1&gt;Hello&lt;/h1&gt;</p>
+<p>&lt;p&gt;Hello, world!&lt;/p&gt;</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+<li>直观的是本题分为两部分，一本分处理区块，一部分处理句内</li>
+<li>需要注意的是，连接和强调是可以嵌套的，所以两个功能要分开写到不同的函数中</li>
+</ol>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">p2</span><span class="params">(<span class="built_in">string</span> s, <span class="keyword">int</span> &amp;idx, <span class="keyword">bool</span> flag)</span></span>;<span class="comment">//flag为真，则在函数内输出结果，适用于print直接调用的情况</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">p1</span><span class="params">(<span class="built_in">string</span> s, <span class="keyword">int</span> &amp;idx, <span class="keyword">bool</span> flag)</span> </span>&#123;<span class="comment">//处理强调</span></span><br><span class="line">	<span class="keyword">int</span> len = s.length();</span><br><span class="line">	<span class="built_in">string</span> ans;</span><br><span class="line">	<span class="keyword">while</span> (idx &lt; len)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (s[idx] == <span class="string">'_'</span>) &#123;</span><br><span class="line">			<span class="comment">//强调</span></span><br><span class="line">			ans += <span class="string">"&lt;em&gt;"</span>;</span><br><span class="line">			idx++;</span><br><span class="line">			<span class="keyword">while</span> (s[idx] != <span class="string">'_'</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span> (s[idx] == <span class="string">'['</span>)</span><br><span class="line">					ans += p2(s, idx, <span class="number">0</span>);</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					ans += s[idx++];</span><br><span class="line">			&#125;</span><br><span class="line">			ans += <span class="string">"&lt;/em&gt;"</span>;</span><br><span class="line">			idx++;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (flag)</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ans;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">p2</span><span class="params">(<span class="built_in">string</span> s, <span class="keyword">int</span> &amp;idx, <span class="keyword">bool</span> flag)</span> </span>&#123;<span class="comment">//处理链接</span></span><br><span class="line">	<span class="keyword">int</span> len = s.length();</span><br><span class="line">	<span class="built_in">string</span> ans;</span><br><span class="line">	<span class="keyword">while</span> (idx &lt; len)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (s[idx] == <span class="string">'['</span>) &#123;</span><br><span class="line">			<span class="keyword">int</span> tmp = idx + <span class="number">1</span>;</span><br><span class="line">			<span class="built_in">string</span> <span class="built_in">text</span>;</span><br><span class="line">			<span class="keyword">while</span> (s[idx] != <span class="string">']'</span>&amp;&amp;idx &lt; len) &#123;</span><br><span class="line">				<span class="keyword">if</span> (s[idx] == <span class="string">'_'</span>) &#123;</span><br><span class="line">					<span class="built_in">text</span> += s.substr(tmp, idx - tmp);</span><br><span class="line">					<span class="built_in">text</span> += p1(s, idx, <span class="number">0</span>);</span><br><span class="line">					tmp = idx;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> idx++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">text</span> += s.substr(tmp, idx - tmp);</span><br><span class="line">			idx += <span class="number">2</span>;</span><br><span class="line">			tmp = idx;</span><br><span class="line">			<span class="built_in">string</span> link;</span><br><span class="line">			<span class="keyword">while</span> (s[idx] != <span class="string">')'</span>&amp;&amp;idx &lt; len) &#123;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span> (s[idx] == <span class="string">'_'</span>) &#123;</span><br><span class="line">					link += s.substr(tmp, idx - tmp);</span><br><span class="line">					link += p1(s, idx, <span class="number">0</span>);</span><br><span class="line">					tmp = idx;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> idx++;</span><br><span class="line">			&#125;</span><br><span class="line">			link += s.substr(tmp, idx - tmp);</span><br><span class="line">			ans += <span class="string">"&lt;a href=\""</span> + link + <span class="string">"\"&gt;"</span> + <span class="built_in">text</span> + <span class="string">"&lt;/a&gt;"</span>;</span><br><span class="line">			idx++;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (flag)</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ans;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="built_in">string</span> s, <span class="keyword">int</span> idx)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len = s.length();</span><br><span class="line">	<span class="keyword">while</span> (idx &lt; len)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (s[idx] == <span class="string">'_'</span>) &#123;</span><br><span class="line">			<span class="comment">//强调</span></span><br><span class="line">			p1(s, idx, <span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (s[idx] == <span class="string">'['</span>) &#123;</span><br><span class="line">			p2(s, idx, <span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; s[idx];</span><br><span class="line">			idx++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="comment">//string line = "[_Text_](Link)";</span></span><br><span class="line">	<span class="comment">//print(line, 0);</span></span><br><span class="line">	<span class="built_in">string</span> <span class="built_in">line</span>;</span><br><span class="line">	<span class="keyword">bool</span> p = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">bool</span> ul = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">while</span> (getline(<span class="built_in">cin</span>, <span class="built_in">line</span>)) &#123;</span><br><span class="line">		<span class="keyword">int</span> idx = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> len = <span class="built_in">line</span>.length();</span><br><span class="line">		<span class="keyword">if</span> (len == <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (p) &#123;</span><br><span class="line">				p = <span class="literal">false</span>;</span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; <span class="string">"&lt;/p&gt;\n"</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (ul) &#123;</span><br><span class="line">				ul = <span class="literal">false</span>;</span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; <span class="string">"&lt;/ul&gt;\n"</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">line</span>[idx] == <span class="string">'#'</span>) &#123;</span><br><span class="line">			<span class="comment">//标题</span></span><br><span class="line">			<span class="keyword">while</span> (<span class="built_in">line</span>[idx] == <span class="string">'#'</span>) idx++;</span><br><span class="line">			<span class="keyword">int</span> level = idx;</span><br><span class="line">			<span class="keyword">while</span> (<span class="built_in">line</span>[idx] == <span class="string">' '</span>&amp;&amp;idx &lt; len)</span><br><span class="line">			&#123;</span><br><span class="line">				idx++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"&lt;h"</span> &lt;&lt; level &lt;&lt; <span class="string">"&gt;"</span>;</span><br><span class="line">			<span class="built_in">print</span>(<span class="built_in">line</span>, idx);</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"&lt;/h"</span> &lt;&lt; level &lt;&lt; <span class="string">"&gt;\n"</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">line</span>[idx] == <span class="string">'*'</span>) &#123;</span><br><span class="line">			<span class="comment">//无序列表</span></span><br><span class="line">			idx++;</span><br><span class="line">			<span class="keyword">while</span> (<span class="built_in">line</span>[idx] == <span class="string">' '</span>&amp;&amp;idx &lt; len)</span><br><span class="line">			&#123;</span><br><span class="line">				idx++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (ul == <span class="literal">false</span>) &#123;</span><br><span class="line">				ul = <span class="literal">true</span>;</span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; <span class="string">"&lt;ul&gt;\n"</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"&lt;li&gt;"</span>;</span><br><span class="line">			<span class="built_in">print</span>(<span class="built_in">line</span>, idx);</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"&lt;/li&gt;\n"</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (p == <span class="literal">false</span>) &#123;</span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; <span class="string">"&lt;p&gt;"</span>;</span><br><span class="line">				p = <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">			<span class="built_in">print</span>(<span class="built_in">line</span>, idx);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (p)</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"&lt;/p&gt;\n"</span>;</span><br><span class="line">	<span class="keyword">if</span> (ul)</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"&lt;/ul&gt;\n"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/03/30/201703-3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/03/30/201612-4/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            201612-4
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/30/201703-4/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">201703-4</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        John Doe
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

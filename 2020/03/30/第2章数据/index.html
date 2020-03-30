@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    第2章数据 |  Hexo
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-第2章数据" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  第2章数据
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E7%AC%AC2%E7%AB%A0%E6%95%B0%E6%8D%AE/" class="article-date">
+  <time datetime="2020-03-30T04:34:52.970Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.8k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">13分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="属性与度量"><a href="#属性与度量" class="headerlink" title="属性与度量"></a>属性与度量</h2><h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><ol>
+<li><strong>属性</strong>：是对象的性质或特性,它因对象而异,或随时间而变</li>
+<li><strong>属性的值</strong>：分配给属性的数值或符号。相同属性可能有不同的值，不同属性可能映射到相同的值。</li>
+<li><strong>测量标度</strong>：将数值或符号值与对象的属性相关联的规则（函数）。</li>
+</ol>
+<h3 id="属性类型"><a href="#属性类型" class="headerlink" title="属性类型"></a>属性类型</h3><p> <strong>属性的类型</strong>告诉我们,属性的哪些性质反映在用于测量它的值中。注意,通常将属性的类型称作<strong>测量标度的类型</strong>。</p>
+<h3 id="属性的不同类型"><a href="#属性的不同类型" class="headerlink" title="属性的不同类型"></a>属性的不同类型</h3><ol>
+<li><p>定性的</p>
+<ol>
+<li><strong>标称型</strong> 是一个标记，比如学号</li>
+<li><strong>序数型</strong> 比如排名</li>
+</ol>
+</li>
+<li><p>定量的</p>
+<ol>
+<li><strong>区间型</strong> 比如天气预报</li>
+<li><strong>比率型</strong> 比如温度以长度/时间/计数方式给出</li>
+</ol>
+</li>
+<li><p>每种属性类型拥有其上方属性类型上的所有性质和操作。因此,对于标称、序数和区间属性合法的任何性质或操作,对于比率属性也合法。换句话说,<strong>属性类型的定义是累积的</strong></p>
+</li>
+<li><p> <img src="/KDDkt_img/3.png" alt=""></p>
+<ol>
+<li>定性的属性不具有数的大部分性质，即便使用整数表示，也应该像对待符号一样。</li>
+<li>定量属性用数表示，离散或连续</li>
+</ol>
+</li>
+</ol>
+<h3 id="属性的变换"><a href="#属性的变换" class="headerlink" title="属性的变换"></a>属性的变换</h3><p><img src="/KDDkt_img/4.png" alt=""></p>
+<h3 id="用值的个数描述属性"><a href="#用值的个数描述属性" class="headerlink" title="用值的个数描述属性"></a>用值的个数描述属性</h3><ol>
+<li><strong>离散的</strong>：属性具有有限个值或无限可数个值。</li>
+<li><strong>连续的</strong>：连续属性是取实数值的属性。</li>
+<li>通常,标称和序数属性是二元的或离散的,而区间和比率属性是连续的。然而,<strong>计数属性</strong>（count attribute）是<strong>离教的,</strong>也是<strong>比率属性。</strong></li>
+</ol>
+<h3 id="非对称的属性"><a href="#非对称的属性" class="headerlink" title="非对称的属性"></a>非对称的属性</h3><p>只有<strong>非零值才重要</strong>的二元属性是<strong>非对称的二元属性</strong>。这类属性 对于关联分析特别重要。例如，如果记录每门误程的学分,则结果数漏集将包含非对称的离歆属性或连续属性。</p>
+<h2 id="数据集的类型"><a href="#数据集的类型" class="headerlink" title="数据集的类型"></a>数据集的类型</h2><h3 id="数据集的一般特性"><a href="#数据集的一般特性" class="headerlink" title="数据集的一般特性"></a>数据集的一般特性</h3><ol>
+<li>维度：指数据集中的对象具有的属性数目</li>
+<li>稀疏性</li>
+<li>分辨率</li>
+</ol>
+<h3 id="记录型数据"><a href="#记录型数据" class="headerlink" title="记录型数据"></a>记录型数据</h3><ol>
+<li><strong>事务数据或购物篮数据</strong>：是一种特殊类型的记录数据<ol>
+<li>考患一个杂货店。顾客一次购物所购买的<strong>商品的集合</strong>就构成一个<strong>事务</strong>,而购买的商品是项。这种类型的数据称作购物篮数据</li>
+</ol>
+</li>
+<li><strong>数据矩阵</strong>：如果一个数据集中的所有数据对象都具有相同的数值属性集，则数据集可以看作一个矩阵。</li>
+<li><strong>稀疏数据矩阵</strong>：是数据矩阵的一种特殊情况，其中的属性的类型相同并且<strong>是非对称的</strong>。</li>
+</ol>
+<h3 id="基于图形的数据"><a href="#基于图形的数据" class="headerlink" title="基于图形的数据"></a>基于图形的数据</h3><ol>
+<li><strong>带有对象之间连续的数据</strong>：对象之间有联系</li>
+<li><strong>具有图形对象的数据</strong>：对象本身具有结构，对象包含具有联系的子对象</li>
+</ol>
+<h3 id="有序数据"><a href="#有序数据" class="headerlink" title="有序数据"></a>有序数据</h3><p>对于某些数据类型，属性具有涉及时间或空间序的联系。</p>
+<ol>
+<li><strong>时序数据</strong></li>
+<li><strong>序列数据</strong>：如核苷酸序列</li>
+<li><strong>时间序列数据</strong>：如1982到1994年间的月平均气温的时间序列。重要的是考虑<strong>时间自相关</strong>，即如果两个测量的时间很接近,则这些测量的值通常非常相似。</li>
+<li><strong>空间数据</strong>：空间数据的一个重要特点是<strong>空间自相关性</strong>（spatial autocorelatio）,即物理上靠近的对象趋向于在其他方面也相似</li>
+</ol>
+<h3 id="处理非记录型数据"><a href="#处理非记录型数据" class="headerlink" title="处理非记录型数据"></a>处理非记录型数据</h3><ol>
+<li>尝试转换成记录型数据</li>
+<li>记录型也存在弊端，应综合考量</li>
+</ol>
+<h1 id="数据质量"><a href="#数据质量" class="headerlink" title="数据质量"></a>数据质量</h1><h2 id="数据质量度量"><a href="#数据质量度量" class="headerlink" title="数据质量度量"></a>数据质量度量</h2><ol>
+<li>准确性</li>
+<li>完整性</li>
+<li>一致性</li>
+<li>可信程度</li>
+<li>可解释性</li>
+<li>获取难度</li>
+</ol>
+<h2 id="测量和数据收集问题"><a href="#测量和数据收集问题" class="headerlink" title="测量和数据收集问题"></a>测量和数据收集问题</h2><h3 id="测量误差和数据收集错误"><a href="#测量误差和数据收集错误" class="headerlink" title="测量误差和数据收集错误"></a>测量误差和数据收集错误</h3><ol>
+<li><strong>测量误差</strong>：是测量过程导致的。如连续值和真实值之间的误差</li>
+<li><strong>数据收集错误</strong>：遗漏数据对象或属性值导致的。</li>
+</ol>
+<h3 id="噪声和伪像"><a href="#噪声和伪像" class="headerlink" title="噪声和伪像"></a>噪声和伪像</h3><ol>
+<li><strong>噪声</strong>：是测量误差的随机部分</li>
+</ol>
+<h3 id="精度、偏倚和准确率"><a href="#精度、偏倚和准确率" class="headerlink" title="精度、偏倚和准确率"></a>精度、偏倚和准确率</h3><ol>
+<li><strong>精度</strong>：同一个量的重复测量值之间的接近程度。常用<strong>标准差</strong>度量。</li>
+<li><strong>偏倚</strong>：测量值于被测量之间的系统偏差。用<strong>值集合的均值与测出的已知值之间的差度量</strong></li>
+<li><strong>准确率</strong>：被测量的测量值与实际值之间的接近度。</li>
+</ol>
+<h3 id="离群点"><a href="#离群点" class="headerlink" title="离群点"></a>离群点</h3><ol>
+<li><strong>离群点</strong>：偏离大部分数据对象的特征或者相对于该属性的典型值来说是不寻常的值。<strong>但也是真实数据</strong></li>
+</ol>
+<h3 id="遗漏值"><a href="#遗漏值" class="headerlink" title="遗漏值"></a>遗漏值</h3><p>处理</p>
+<ol>
+<li><strong>删除数据对象或属性</strong></li>
+<li><strong>估计遗漏值</strong>：插值</li>
+<li><strong>忽略遗漏值</strong>：比如聚类的时候</li>
+</ol>
+<h3 id="不一致的值"><a href="#不一致的值" class="headerlink" title="不一致的值"></a>不一致的值</h3><h3 id="重复数据"><a href="#重复数据" class="headerlink" title="重复数据"></a>重复数据</h3><p>删除即可</p>
+<h2 id="关于应用的问题"><a href="#关于应用的问题" class="headerlink" title="关于应用的问题"></a>关于应用的问题</h2><p>从应用的角度考虑数据的质量</p>
+<ol>
+<li><strong>时效性</strong></li>
+<li><strong>相关性</strong></li>
+<li><strong>关于数据的知识</strong></li>
+</ol>
+<h1 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h1><p>为了让数据更适合挖掘，可以使用</p>
+<ol>
+<li>数据清洗</li>
+<li>聚集</li>
+<li>抽样</li>
+<li>维归约</li>
+<li>特征子集选择</li>
+<li>特征创建</li>
+<li>离散化和二元化</li>
+<li>变量变换</li>
+</ol>
+<h2 id="数据清洗"><a href="#数据清洗" class="headerlink" title="数据清洗"></a>数据清洗</h2><p>针对噪声，孤立点，缺失值，不连续数据</p>
+<h3 id="对于缺失值"><a href="#对于缺失值" class="headerlink" title="对于缺失值"></a>对于缺失值</h3><ol>
+<li>主要是通过推理的方法</li>
+</ol>
+<h3 id="对于噪声"><a href="#对于噪声" class="headerlink" title="对于噪声"></a>对于噪声</h3><ol>
+<li><strong>起因</strong> 测量误差/测量手段</li>
+<li><strong>解决</strong><ol>
+<li>分箱：让数据平滑(可能用力过猛)</li>
+<li>聚类：聚类可能产生孤立点</li>
+<li>回归：建立回归模型</li>
+<li>计算机和人工相结合</li>
+</ol>
+</li>
+</ol>
+<h2 id="聚集"><a href="#聚集" class="headerlink" title="聚集"></a>聚集</h2><p><strong>聚集</strong>：将两个或多个对象合并成的那个对象。比如，同一个地区合并，等等</p>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ol>
+<li><strong>简化数据</strong>：减少数据的属性</li>
+<li><strong>改变维数</strong>：理解为改变粒度</li>
+<li><strong>稳定数据</strong></li>
+<li><strong>去除冗余数据</strong></li>
+</ol>
+<h2 id="抽样"><a href="#抽样" class="headerlink" title="抽样"></a>抽样</h2><h3 id="抽样方法"><a href="#抽样方法" class="headerlink" title="抽样方法"></a>抽样方法</h3><ol>
+<li>简单随机抽样<ol>
+<li>无放回抽样  样本数很大的时候使用</li>
+<li>有放回抽样</li>
+</ol>
+</li>
+<li>分层抽样：当总体由不同类型的对象组成,每种类型的对象数量差别很大时,简单随机抽样不能充分地代表不太顾繁出现的对象类型。</li>
+<li>渐进抽样</li>
+</ol>
+<h3 id="渐进抽样"><a href="#渐进抽样" class="headerlink" title="渐进抽样"></a>渐进抽样</h3><ol>
+<li><strong>方法</strong>：这些方法从一个小样本开始,然后增加样本容量直至得到足够容量的样本。</li>
+</ol>
+<h2 id="维归约"><a href="#维归约" class="headerlink" title="维归约"></a>维归约</h2><h3 id="目的-1"><a href="#目的-1" class="headerlink" title="目的"></a>目的</h3><ol>
+<li>避免维灾难</li>
+<li>减少挖掘时的算法开销</li>
+<li>为了可视化，也使模型更容易理解</li>
+<li>去除冗余特征和消除噪声</li>
+</ol>
+<h3 id="维灾难"><a href="#维灾难" class="headerlink" title="维灾难"></a>维灾难</h3><ol>
+<li>随着数据维度的增加,许多数据分析变得非常困难。特别是随着维度增加,数据在它所占据的空间中<strong>越来越稀疏</strong>。<ol>
+<li>对于分类,这可能意味没有足够的数据对象来创建模型,将所有可能的对象可靠地指派到一个类。</li>
+<li>对于聚类,点之间的密度和距离的定义失去了意义。</li>
+</ol>
+</li>
+<li>结果是分类准确率降低，聚类质量下降</li>
+</ol>
+<h3 id="维归约的线性代数技术"><a href="#维归约的线性代数技术" class="headerlink" title="维归约的线性代数技术"></a>维归约的线性代数技术</h3><ol>
+<li><strong>主成分分析 PCA</strong>: 是一种用于连续属性的线性代数技术,它找出新的属性（主成分),这些属性是原属性的线性组合,是相互正交的,并且捕获了数据的最大变差.</li>
+<li>步骤<ol>
+<li>求协方差矩阵的特征向量</li>
+<li>用特征向量定义新的空间</li>
+</ol>
+</li>
+</ol>
+<h2 id="子特征选择-降维的另一种方法"><a href="#子特征选择-降维的另一种方法" class="headerlink" title="子特征选择-降维的另一种方法"></a>子特征选择-降维的另一种方法</h2><h3 id="目的-2"><a href="#目的-2" class="headerlink" title="目的"></a>目的</h3><p>去除冗余和不相关的特征</p>
+<h3 id="特征选择方法"><a href="#特征选择方法" class="headerlink" title="特征选择方法"></a>特征选择方法</h3><ol>
+<li><strong>Brute-force approch</strong> 尝试各种组合，选择最好结果的组合</li>
+<li><strong>Embedded approaches</strong> 嵌入式的方法，下游算法可能自然具有降维功能</li>
+<li><strong>Filter approaches</strong> 过滤方法</li>
+<li>*<em>Wrapper approaches *</em>包装方法</li>
+</ol>
+<h3 id="特征子集选择体系结构"><a href="#特征子集选择体系结构" class="headerlink" title="特征子集选择体系结构"></a>特征子集选择体系结构</h3><ol>
+<li><p>特征选择过程可以看作由四部分组成：</p>
+<ol>
+<li>子集评估度量</li>
+<li>控制新的特征子集产生的搜索策略</li>
+<li>停止搜索判断</li>
+<li>验证过程</li>
+</ol>
+<p><img src="/KDDkt_img/8.png" alt=""></p>
+</li>
+<li><p><strong>子集的数量可能很大</strong>,考察所有的子集可能不现实,因比需要某种停止搜索判断。其策略<strong>通常基于如下一个或多个条件:迭代次数,</strong>子集评估的度量值是否最优或超过给定的阈值,一个特定大小的子集是否已经得到,大小和评估标准是否同时达到,使用搜索策略得到的选择是否可以实现改进。</p>
+</li>
+</ol>
+<h3 id="特征加权"><a href="#特征加权" class="headerlink" title="特征加权"></a>特征加权</h3><ol>
+<li>特征越重要，权值越大。</li>
+<li>可人为设定，也可自动确定。比如<strong>支持向量机</strong>产生分类模型，其中每个特征都赋予一个权值。在<strong>计算余弦相似度时进行的对象规范化</strong>也可看作义类特征加权。</li>
+</ol>
+<h2 id="特征创建"><a href="#特征创建" class="headerlink" title="特征创建"></a>特征创建</h2><p>由原来的属性创建新的属性集，更有效的捕捉数据集中的重要信息。</p>
+<h3 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h3><ol>
+<li><strong>定义</strong> 由原始数据创建新的特征集称为特征提取</li>
+</ol>
+<h3 id="映射数据到新的空间"><a href="#映射数据到新的空间" class="headerlink" title="映射数据到新的空间"></a>映射数据到新的空间</h3><p>从不同的时间挖掘数据</p>
+<ol>
+<li>如果只有单个周期模式,并且噪声不多,则容易检测到该模式:另一方面,如果有大量周期模式,并且存在大量噪声,则很难检测这些模式。</li>
+<li><strong>使用傅里叶变换</strong></li>
+<li><strong>小波变换</strong></li>
+</ol>
+<h3 id="特征构造"><a href="#特征构造" class="headerlink" title="特征构造"></a>特征构造</h3><p>将原始数据集的特征转换成适合挖掘的形式</p>
+<ol>
+<li>例如，对包含质量和体积的数据集可能需要构造密度</li>
+</ol>
+<h2 id="离散化和二元化"><a href="#离散化和二元化" class="headerlink" title="离散化和二元化"></a>离散化和二元化</h2><h3 id="目的-3"><a href="#目的-3" class="headerlink" title="目的"></a>目的</h3><p>根据不同下游需求选择</p>
+<ol>
+<li><p>将连续属性划分成区间</p>
+</li>
+<li><p>有些算法只接收属性数据(categorical attributes),categorical attributes是标称和序数的统称。关注属性，而非值。</p>
+</li>
+<li><p>通过离散化减少数据大小</p>
+</li>
+<li><p>为后续分析做准备</p>
+</li>
+</ol>
+<h3 id="三类属性"><a href="#三类属性" class="headerlink" title="三类属性"></a>三类属性</h3><ol>
+<li>标称</li>
+<li>序数</li>
+<li>连续数据</li>
+</ol>
+<h3 id="二元化"><a href="#二元化" class="headerlink" title="二元化"></a>二元化</h3><ol>
+<li><p>要使用n=log2<sup>m</sup>上取整个二进制数表示m个属性值</p>
+</li>
+<li><p><strong>注意</strong> 原来有序的数据，赋值后仍要保持有序</p>
+</li>
+<li><p>可能导致复杂化，如无意中建立了转换后的属性之间的联系。</p>
+</li>
+</ol>
+<h3 id="对无标签数据的离散化"><a href="#对无标签数据的离散化" class="headerlink" title="对无标签数据的离散化"></a>对无标签数据的离散化</h3><ol>
+<li>按数据</li>
+<li>频率</li>
+<li>K-means</li>
+<li>按区间</li>
+</ol>
+<h3 id="有标签数据的离散化"><a href="#有标签数据的离散化" class="headerlink" title="有标签数据的离散化"></a>有标签数据的离散化</h3><ol>
+<li><p><strong>基于熵的方法</strong></p>
+<ol>
+<li>熵的定义</li>
+</ol>
+<p><img src="/KDDkt_img/5.png" alt=""></p>
+<p>,Py= m/m是第i个区间中类j的概率（值的比例）。</p>
+<ol start="2">
+<li>该划分的总嫡e是每个区间的嫡的加权平均,即<img src="/KDDkt_img/9.png" alt=""></li>
+</ol>
+</li>
+</ol>
+<h3 id="具有过多值的分类属性"><a href="#具有过多值的分类属性" class="headerlink" title="具有过多值的分类属性"></a>具有过多值的分类属性</h3><p>对于标称的数据，比如大学的专业，可以利用领域知识合并成大的组，比如工程学，社会科学，或生物科学</p>
+<h2 id="变量转换"><a href="#变量转换" class="headerlink" title="变量转换"></a>变量转换</h2><p>变量变换是指用于变量的所有值的变换，目的是使数据更适合挖掘。两种重要的变量变换类型：简单函数变换和规范化</p>
+<h3 id="简单函数"><a href="#简单函数" class="headerlink" title="简单函数"></a>简单函数</h3><ol>
+<li>使用如x<sup>k</sup>,log<sup>x</sup>,e<sup>x</sup>,1/x,sinx，|x|,x<sup>1/2</sup>等形式</li>
+<li>平方根、对数和倒数变换，常用来将不具有高斯(正态）分布的数据变换成具有高斯(正态)分布的数据。</li>
+<li>对数变换用于压缩</li>
+<li><strong>注意</strong> 变换前后的序是否变化</li>
+</ol>
+<h3 id="正规化或标准化"><a href="#正规化或标准化" class="headerlink" title="正规化或标准化"></a>正规化或标准化</h3><ol>
+<li><p>如果要以某种方法组合不同的变量,则<strong>为了避免具有较大值域的变量左右计算结果</strong>,这种变换常常是必要的</p>
+</li>
+<li><p>由于均值和标准差受离群点的影响很大，因此通常用<strong>中位数</strong>取代均值，用<strong>绝对标准差</strong>，取代标准差</p>
+<p><img src="/KDDkt_img/10.png" alt=""></p>
+</li>
+</ol>
+<p><img src="/KDDkt_img/6.png" alt=""></p>
+<h1 id="共性和差异"><a href="#共性和差异" class="headerlink" title="共性和差异"></a>共性和差异</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ol>
+<li><strong>相似度</strong>：通常,相似度是非负的,并常常在0(不相似）和1(完全相似)之间取值。</li>
+<li><strong>相异度</strong>：通常,术语距离（distance)用作相异度的同义词,正如我们将介绍的,距离常常用来表示特定类型的相异度。有时,相异度在区间[0.1]中取值,但是相异度在0和∞之间取值也很常见</li>
+</ol>
+<h3 id="变换"><a href="#变换" class="headerlink" title="变换"></a>变换</h3><p>现在要将相似度转化到特定区间。或在相似度和相异度之间转换。</p>
+<ol>
+<li><p>对于具有有限值域的相异度也能用d=(d-mind)/(mac_d-min_d)映射到[0,1]区间。</p>
+</li>
+<li><p>如果原来的值域在[0,∞]上，那么需要使用非线性变换，井且在新的尺度上,值之间不再具有相同的联系。<strong>例如</strong>对于从0变化到∞的相异度度量,考虑变换d=d/(1+d),相异度0、0.5、2、10、100和1000分别被变换到0、0.33、067、090、0.99和0999.</p>
+</li>
+<li><p><strong>相似度与相异度间转换</strong> </p>
+<ol>
+<li><p>如果相似度（相异度）落在[0,1]区间,则相异度（相似度）可以定义为<strong>d=1-s（或s=1-d)</strong>。另一种简单的方法是定义<strong>相似度为负的相异度</strong>（或相反)。</p>
+</li>
+<li><p>一般来说，<strong>任何单调减函数</strong>都可以用来将相异度转换到相似度</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="简单属性之间的相似度和相异度"><a href="#简单属性之间的相似度和相异度" class="headerlink" title="简单属性之间的相似度和相异度"></a>简单属性之间的相似度和相异度</h2><h3 id="对于单个标称属性"><a href="#对于单个标称属性" class="headerlink" title="对于单个标称属性"></a>对于单个标称属性</h3><p><strong>由于标称属性只携帝了对象的相异性信息</strong>,因此我们只能说两个对象有相同的值,或者没有。因面在这种情况下,如果属性值匹配,则<strong>相似度定义为1.否则为0;</strong> 相异度用相反的方法定义:如果属性值匹配,相异度为0,否则为1。</p>
+<h3 id="对于单个序数属性"><a href="#对于单个序数属性" class="headerlink" title="对于单个序数属性"></a>对于单个序数属性</h3><ol>
+<li>量化时，必须考虑序信息</li>
+<li>有时需要考虑区间或比率属性。区间或比率属性的相似度通常转换成相异度。</li>
+<li><img src="/KDDkt_img/7.png" alt=""></li>
+</ol>
+<h2 id="数据对象之间的相异度"><a href="#数据对象之间的相异度" class="headerlink" title="数据对象之间的相异度"></a>数据对象之间的相异度</h2><h3 id="距离"><a href="#距离" class="headerlink" title="距离"></a>距离</h3><ol>
+<li><p>欧几里得距离</p>
+<p><img src="/KDDkt_img/11.png" alt=""></p>
+</li>
+<li><p>闵可夫斯基据距离</p>
+<p><img src="/KDDkt_img/12.png" alt=""></p>
+<p>其中r是参数</p>
+<ol>
+<li><p>r=1时，代表汉明距离。时两个具有二元属性的对象之间不同的二进制位的个数</p>
+</li>
+<li><p>r=2代表欧几里得距离</p>
+</li>
+<li><p>r=∞代表对象属性之间的最大距离</p>
+<p><img src="/KDDkt_img/13.png" alt=""></p>
+</li>
+</ol>
+</li>
+<li><p>距离矩阵都是对称的</p>
+<h3 id="相异度性质"><a href="#相异度性质" class="headerlink" title="相异度性质"></a>相异度性质</h3></li>
+<li><p>非负性</p>
+</li>
+<li><p>对称性</p>
+</li>
+<li><p>三角不等式 d(x,z)&lt;=d(x,y)+d(y,z)</p>
+</li>
+<li><p><strong>注意</strong> 不是所有相异度满足上面所有性质</p>
+</li>
+</ol>
+<h2 id="数据对象之间的相似度"><a href="#数据对象之间的相似度" class="headerlink" title="数据对象之间的相似度"></a>数据对象之间的相似度</h2><p>对于相似度，<strong>三角不等式通常不成立</strong>。</p>
+<h3 id="相似度性质"><a href="#相似度性质" class="headerlink" title="相似度性质"></a>相似度性质</h3><ol>
+<li>仅当x=y时，s(x,y)=1.（0≤s≤1）</li>
+<li>对于所有x和y,s(x,y)=s(y,x)（对称性）</li>
+</ol>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p>称相似性度量考虑一个实验,实验中要求人们对屏幕上快速闪过的一小组字符进行分类。该实验的混淆矩阵（confusion marx）记录每个字符被分类为自己的次数和被分类 为另一个字符的次数.例如,假定”0”出现了200次,它被分类为”0”160次,而被分类为”o”40次。类似地,”o”出现200次并且分类为”o”170次,但是分类为”0”只有30 次。如果取这些计数作为两个字符之间相似性的度量,则得到一种相似性度量,但这种相似性度量不是对称的。在这种情况下,通过选取s(xy)=s’(y,x)=(s(K.,y)+a(,x)2,相似性度量可以转换成对称的.其中s是新的相似性度量。 </p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/03/30/%E7%AC%AC2%E7%AB%A0%E6%95%B0%E6%8D%AE/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/03/30/%E7%AC%AC1%E7%AB%A0%E7%BB%AA%E8%AE%BA/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            第1章绪论
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/30/%E7%AC%AC4%E7%AB%A0%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">第4章决策树与模型评估</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        John Doe
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>
