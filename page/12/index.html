@@ -78,308 +78,6 @@
     
     
     
-    <article id="post-旋转游戏" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E6%97%8B%E8%BD%AC%E6%B8%B8%E6%88%8F/"
-    >旋转游戏</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E6%97%8B%E8%BD%AC%E6%B8%B8%E6%88%8F/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.717Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="UVA-1343-旋转游戏"><a href="#UVA-1343-旋转游戏" class="headerlink" title="UVA 1343 旋转游戏"></a>UVA 1343 旋转游戏</h1><img src="/计安导_img/1.png">
-
-<p>现给定一个初始状态，请使用最少的操作次数，使 “# ” 形棋盘最中间的 888 个格子里的数字相同。输入包括不超过 303030 组测试数据。每个测试数据只包括一行，包含 242424 个整数，每相邻两个整数之间用 111 个空格隔开，表示这个 “# ” 形棋盘的初始状态。（这些整数的排列顺序是从上至下，同一行的从左至右。例如 1 1 1 1 3 2 3 2 3 1 3 2 2 3 1 2 2 2 3 1 2 1 3 3\text{1 1 1 1 3 2 3 2 3 1 3 2 2 3 1 2 2 2 3 1 2 1 3 3}1 1 1 1 3 2 3 2 3 1 3 2 2 3 1 2 2 2 3 1 2 1 3 3 表示图 111 最左边的状态。）每两组测试数据之间没有换行符。输入文件以一行 000 结束。对于每组测试数据，输出两行。第一行用字符 A∼H\text{A}\sim \text{H}A∼H 输出操作的方法，每两个操作字符之间没有空格分开，如果不需要任何步数，输出 No moves needed。第二行输出最终状态中最中间的 888 个格子里的数字。如果有多组解，输出操作次数最少的一组解；如果仍有多组解，输出字典序最小的一组。任意相邻两组测试数据的输出之间不需输出换行符。</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
-<li><p>典型的状态空间搜索，采用迭代加深搜的方法。</p>
-</li>
-<li><p><strong>IDA*模板题</strong></p>
-</li>
-<li><p>本题中要求中间8个数是相同的，而出现的数字又限定在1，2，3中。所以可以分三次求解，这样可以减少搜素空间。以目标为1为例，这时，将元素看作为1和非1的元素，那么状态总数就变成了8个1，16个非1的全排列，即24!/(8!*16!)。</p>
-</li>
-<li><p>其实本题中的state可以定义为bool型，因为只关心比如1和非1</p>
-</li>
-<li><p>关于剪枝</p>
-<ol>
-<li>最直接的，由于A-F/B-E/H-C/G-D相对，所以不能回滚上一层的操作。<strong>实现时使用op数组记录对应关系</strong></li>
-<li>每次旋转至多引入一个新的元素，也就是说每次回滚只能增加一个相同的元素。所以如果当前的层数d加上中间8个数字中非当前目标的数字个数大于最大个数maxd时，需要进行剪枝。</li>
-</ol>
-</li>
-<li><p>关于旋转：由于输入方式比较特殊，旋转的次序固定，所以把A-H中每个元素在输入串中出现的位置手动写出。旋转时只需要模7加即可。</p>
-</li>
-<li><p>相同的思路，将中间8个格出现的位置预先写出也可简化代码。</p>
-</li>
-<li><p>与编辑书稿有相似之处</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="dfs"><a href="#dfs" class="headerlink" title="dfs"></a>dfs</h3><p> bool dfs(int d) {<br> if (d == maxd) {</p>
-<pre><code>if (not_equal(d) == 0) return true;
-else return false;</code></pre><p> }<br> int next = d + 1;<br> if (d + not_equal(d) &gt; maxd) return false;<br> for (int i = 0; i &lt; 8; i++) {</p>
-<pre><code>if (d &gt; 0 &amp;&amp; op[v[d-1]]== i) continue;
-
-v[d] = i;
-memcpy(state[next], state[d], 24 * sizeof(int));
-for (int j = 0; j &lt; 7; j++)
-    state[next][move[i][j]] = state[d][move[i][(j + 1) % 7]];
-if (dfs(next)) return true;</code></pre><p> }<br> return false;<br> }</p>
-</li>
-</ol>
-<h3 id="update-判断是否字典序更小"><a href="#update-判断是否字典序更小" class="headerlink" title="update 判断是否字典序更小"></a>update 判断是否字典序更小</h3><pre><code>bool update() {
-if (ans[0] != -1)
-    for (int i = 0; i &lt; maxd; i++)
-        if (v[i] &gt; ans[i]) return false;
-        else if (v[i] &lt; ans[i]) break;
-memcpy(ans, v, sizeof(int)*maxd);
-return true;
-}</code></pre><h3 id="not-equla-统计中间八格中与当前目标不等的元素个数"><a href="#not-equla-统计中间八格中与当前目标不等的元素个数" class="headerlink" title="not_equla 统计中间八格中与当前目标不等的元素个数"></a>not_equla 统计中间八格中与当前目标不等的元素个数</h3><pre><code>int not_equal(int d) {
-int ans = 0;
-for (int i = 0; i &lt; 8; i++)
-    if (state[d][mid[i]] != cur_nm)    ans++;
-return ans;
-}</code></pre><h3 id="main"><a href="#main" class="headerlink" title="main"></a>main</h3><pre><code>int maxd;
-int move[8][7] = {
-{0,2,6,11,15,20,22},
-{1,3,8,12,17,21,23},
-{10,9,8,7,6,5,4},
-{19,18,17,16,15,14,13},
-{23,21,17,12,8,3,1},
-{22,20,15,11,6,2,0},
-{13,14,15,16,17,18,19},
-{4,5,6,7,8,9,10}
-};
-int mid[8] = { 6,7,8,11,12,15,16,17 };
-int op[8] = { 5,4,7,6,1,0,3,2 };
-int state[50][24];
-int ans[50], v[50];
-int table[24];
-inline int not_equal(int d);
-bool dfs(int d);
-inline bool update();
-int cur_nm;
-int main() {
-while (true)
-{
-    memset(ans, -1, sizeof(ans));
-    scanf(&quot;%d&quot;, &amp;table[0]);
-    if (!table[0]) break;
-    for (int i = 1; i &lt; 24; i++)
-        scanf(&quot;%d&quot;, &amp;table[i]);
-    int p = 0;
-    for (maxd = 0;; maxd++) {
-        for (cur_nm = 1; cur_nm &lt;= 3; cur_nm++) {
-            memcpy(state[0], table, 24 * sizeof(int));
-            if (dfs(0) &amp;&amp; update()) 
-                p = cur_nm;
-        }
-        if (p) break;
-    }
-    if (maxd)
-        for (int i = 0; i &lt; maxd; i++) printf(&quot;%c&quot;, ans[i] + &apos;A&apos;);
-    else printf(&quot;No moves needed&quot;);
-    printf(&quot;\n%d\n&quot;, p);
-}
-}</code></pre>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-消防车" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E6%B6%88%E9%98%B2%E8%BD%A6/"
-    >消防车</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E6%B6%88%E9%98%B2%E8%BD%A6/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.717Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="UVA-208-消防车"><a href="#UVA-208-消防车" class="headerlink" title="UVA 208 消防车"></a>UVA 208 消防车</h1><p>给你一张图，输入x，y表示xy见有一条边。输出从1到z所有的遍历方案（字典序）。每个节点从1到N标号。 有多组数据，每组数据以0 0结束。 （注意，刚开始的输入不是节点或边的数目） 输入输出格式可以参考样例. 数据范围（节点总数N&lt;21）</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
-<li>本题要求输出所有的完整的路径，即要沿着一条路走到头，所以使用dfs</li>
-<li>辅助用bfs判断依次是否存在路径，否则会超时</li>
-<li>本题中各层的path之间不会影响，因为递归是走到头再返回的。</li>
-</ol>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#include&lt;bits/stdc++.h&gt;
-# pragma warning(disable:4996)
-FILE *fin = freopen(&quot;习题7-1in.txt&quot;, &quot;r&quot;, stdin);
-FILE *fout = freopen(&quot;习题7-1out.txt&quot;, &quot;w&quot;, stdout);
-using namespace std;
-const int maxn = 20+5;
-map&lt;int, vector&lt;int&gt;&gt; g;
-bool bfs();
-void dfs(int u,int step);
-int goal, cnt,kase = 0;
-bool vis[maxn];
-int path[maxn];
-struct edge {
-int x, y;
-edge(int x, int y) :x(x), y(y) {}
-bool operator &lt; (const edge&amp;a) const { return x &lt; a.x; }
-};
-int main() {
-int a, b;
-while (scanf(&quot;%d&quot;, &amp;goal) == 1) {
-    g.clear();
-    printf(&quot;CASE %d:\n&quot;, ++kase);
-    while (scanf(&quot;%d %d&quot;, &amp;a, &amp;b) &amp;&amp; a) {
-        g[a].push_back(b);
-        g[b].push_back(a);
-    }
-    for (int i = 0; i &lt; maxn; i++)
-        sort(g[i].begin(), g[i].end());
-    cnt = 0;
-    memset(vis, 0, sizeof(0));
-    if (!bfs()) {//优化，否则会T
-        cnt = 0;
-    }
-    else {
-        vis[1] = 1;
-        dfs(1,0);
-    }
-    printf(&quot;There are %d routes from the firestation to streetcorner %d.\n&quot;, cnt,goal);
-}
-}
-bool bfs() {
-queue&lt;int&gt; q;
-q.push(1);
-while (!q.empty()) {
-    int u = q.front(); q.pop();
-    if (u == goal) {
-        memset(vis, 0, sizeof(vis));
-        return true;
-    }
-    for (int i = 0; i &lt; g[u].size(); i++) {
-        int v = g[u][i];
-        if (!vis[v])
-        {
-            vis[v] = 1;
-            q.push(v);
-        }
-    }
-}
-memset(vis, 0, sizeof(vis));
-return false;
-}
-void dfs(int u,int step) {
-path[step] = u;
-if (u == goal) {
-    printf(&quot;%d&quot;, path[0]);
-    for (int i =1; i &lt;= step; i++)
-        printf(&quot; %d&quot;, path[i]);
-    printf(&quot;\n&quot;);
-    cnt++;
-}
-for (int i = 0; i &lt; g[u].size(); i++) {
-    int v = g[u][i];
-    if (vis[v]) continue;
-    vis[v] = 1;
-    dfs(v,step+1);
-    vis[v] = 0;
-}
-}</code></pre>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
     <article id="post-万圣节后的早晨" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -1299,13 +997,170 @@ if(右孩子不为空) dfs（右孩子）
 
 </article>
     
+    <article id="post-素数环" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E7%B4%A0%E6%95%B0%E7%8E%AF/"
+    >素数环</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E7%B4%A0%E6%95%B0%E7%8E%AF/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.685Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="UVA-524-素数环"><a href="#UVA-524-素数环" class="headerlink" title="UVA 524 素数环"></a>UVA 524 素数环</h1><p>输入正整数n，把1，2，3，···，n组成一个环，使得相邻两个整数之和均为素数。输出时从整数1开始逆时针排列。同一个环应恰好输出一次。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+<li>直观的考虑，答案应该是1-n的某种排列，但是16！太大了，如果生成排列再测试会导致超时。</li>
+<li>因为前面能构成素数也未必能构成素数环，有点局部最优未必是整体最优的感觉。所以考虑回溯法，在当前位置处枚举没用过的数，判断能否与上一位构成素数。</li>
+<li>加速：实现打印出素数表，后面直接判断。</li>
+</ol>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="dfs-每一层都在寻找cur位置处能放的数，别忘了回溯"><a href="#dfs-每一层都在寻找cur位置处能放的数，别忘了回溯" class="headerlink" title="dfs 每一层都在寻找cur位置处能放的数，别忘了回溯"></a>dfs 每一层都在寻找cur位置处能放的数，别忘了回溯</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void dfs(int cur) &#123;</span><br><span class="line">if (cur &#x3D;&#x3D; n &amp;&amp; isp[A[0] + A[n - 1]]) &#123;</span><br><span class="line">	cout &lt;&lt; A[0];</span><br><span class="line">	for (int i &#x3D; 1; i &lt; n; i++) cout &lt;&lt; &quot; &quot; &lt;&lt; A[i];</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">	for (int j &#x3D; 2; j &lt;&#x3D; n; j++) &#123;</span><br><span class="line">		if (!vis[j] &amp;&amp; isp[j + A[cur - 1]]) &#123;</span><br><span class="line">			A[cur] &#x3D; j;</span><br><span class="line">			&#x2F;&#x2F;回溯法</span><br><span class="line">			vis[j] &#x3D; 1;</span><br><span class="line">			dfs(cur + 1);</span><br><span class="line">			vis[j] &#x3D; 0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="is-prime-判断i是否是素数，固定的"><a href="#is-prime-判断i是否是素数，固定的" class="headerlink" title="is_prime 判断i是否是素数，固定的"></a>is_prime 判断i是否是素数，固定的</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int is_prime(int a) &#123;</span><br><span class="line">for (int i &#x3D; 2; i &lt; a; i++)</span><br><span class="line">	if (a%i &#x3D;&#x3D; 0) return 0;</span><br><span class="line">return 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int n, vis[1000000];</span><br><span class="line">int A[1000000];</span><br><span class="line">int isp[100000];</span><br><span class="line">int main() &#123;</span><br><span class="line">int kase &#x3D; 0;</span><br><span class="line">while (cin &gt;&gt; n) &#123;</span><br><span class="line">	if (kase) cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; &quot;Case &quot; &lt;&lt; ++kase &lt;&lt; &quot;:&quot; &lt;&lt; endl;</span><br><span class="line">	memset(isp, 0, 2 * n * sizeof(int));</span><br><span class="line">	memset(vis, 0, 2 * n * sizeof(int));</span><br><span class="line">	for (int i &#x3D; 2; i &lt;&#x3D; 2 * n; i++)</span><br><span class="line">		isp[i] &#x3D; is_prime(i);</span><br><span class="line">	isp[1] &#x3D; 1;&#x2F;&#x2F;先构造出素数表，以后方便</span><br><span class="line">	A[0] &#x3D; 1;&#x2F;&#x2F;题干要求从1开始逆序输出</span><br><span class="line">	dfs(1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-缩点" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E7%BC%A9%E7%82%B9/"
+    >缩点</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E7%BC%A9%E7%82%B9/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.685Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="缩点"><a href="#缩点" class="headerlink" title="缩点"></a>缩点</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个 n个点 m 条边有向图，每个点有一个权值，求一条路径，使路径经过的点权值之和最大。你只需要求出这个权值和。</p>
+<p>允许多次经过一条边或者一个点，但是，重复经过的点，权值只计算一次。</p>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行两个正整数 n,m</p>
+<p>第二行 n 个整数，依次代表点权</p>
+<p>第三至 m+2 行，每行两个整数 u,v*，表示一条 u-&gt;v 的有向边。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>共一行，最大的点权之和。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+<li>由于经过相同的点的权值只计算一次。一方面，在一个环中反复走没有意义。另一方面，一旦选定环中一个点，就应该选择所有的点。</li>
+<li>使用Tarjan算法对原图进行缩点，将强连通分量中的点合并成一个。</li>
+<li>之后使用dp求得最优解即可。实现时，还加入了拓扑排序，其实没屁用。</li>
+</ol>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="tarjan"><a href="#tarjan" class="headerlink" title="tarjan"></a>tarjan</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 10000 + 5;</span><br><span class="line">int dfn[maxn], instack[maxn], low[maxn],st[maxn];</span><br><span class="line">int Tree[maxn], indegree[maxn],dp[maxn];</span><br><span class="line">int w[maxn];</span><br><span class="line">int sum;</span><br><span class="line">int head[maxn],h[maxn];</span><br><span class="line">struct EDGE</span><br><span class="line">&#123;</span><br><span class="line">	int to; int next; int from;</span><br><span class="line">&#125;edge[maxn * 10], ed[maxn * 10];</span><br><span class="line">int n, m;</span><br><span class="line">int clk &#x3D; 0;</span><br><span class="line">int top;</span><br><span class="line">void tarjan(int u) &#123;</span><br><span class="line">	dfn[u] &#x3D; low[u] &#x3D; ++clk;</span><br><span class="line">	st[++top] &#x3D; u;</span><br><span class="line">	instack[u] &#x3D; 1;</span><br><span class="line"></span><br><span class="line">	for (int i &#x3D; head[u]; i; i &#x3D; edge[i].next)</span><br><span class="line">	&#123;</span><br><span class="line">		int v &#x3D; edge[i].to;</span><br><span class="line">		if (!dfn[v]) &#123;</span><br><span class="line">			tarjan(v);</span><br><span class="line">			low[u] &#x3D; min(low[u], low[v]);</span><br><span class="line">		&#125;</span><br><span class="line">		else if (instack[v])</span><br><span class="line">			low[u] &#x3D; min(low[u], dfn[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	if (low[u] &#x3D;&#x3D; dfn[u]) &#123;</span><br><span class="line">		int tp;</span><br><span class="line">		while (tp &#x3D; st[top--])&#123;</span><br><span class="line">			Tree[tp] &#x3D; u;</span><br><span class="line">			instack[tp] &#x3D; 0;</span><br><span class="line">			if (tp &#x3D;&#x3D; u) break;</span><br><span class="line">			w[u] +&#x3D; w[tp];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="dp过程"><a href="#dp过程" class="headerlink" title="dp过程"></a>dp过程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">int topo()</span><br><span class="line">&#123;</span><br><span class="line">	queue &lt;int&gt; q;</span><br><span class="line">	int tot &#x3D; 0;</span><br><span class="line">	for (int i &#x3D; 1; i &lt;&#x3D; n; i++)</span><br><span class="line">		if (Tree[i] &#x3D;&#x3D; i &amp;&amp; !indegree[i])</span><br><span class="line">		&#123;</span><br><span class="line"></span><br><span class="line">			q.push(i);</span><br><span class="line">			dp[i] &#x3D; w[i];</span><br><span class="line">		&#125;</span><br><span class="line">	while (!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		int k &#x3D; q.front(); q.pop();</span><br><span class="line">		for (int i &#x3D; h[k]; i; i &#x3D; ed[i].next)</span><br><span class="line">		&#123;</span><br><span class="line">			int v &#x3D; ed[i].to;</span><br><span class="line">			dp[v] &#x3D; max(dp[v], dp[k] + w[v]);</span><br><span class="line">			indegree[v]--;</span><br><span class="line">			if (indegree[v] &#x3D;&#x3D; 0) q.push(v);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	int ans &#x3D; 0;</span><br><span class="line">	for (int i &#x3D; 1; i &lt;&#x3D; n; i++)</span><br><span class="line">		ans &#x3D; max(ans, dp[i]);</span><br><span class="line">	return ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="main"><a href="#main" class="headerlink" title="main"></a>main</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void add(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">	edge[++sum].next &#x3D; head[x];</span><br><span class="line">	edge[sum].from &#x3D; x;</span><br><span class="line">	edge[sum].to &#x3D; y;</span><br><span class="line">	head[x] &#x3D; sum;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);</span><br><span class="line">	int a, b;</span><br><span class="line">	for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">		scanf(&quot;%d&quot;, &amp;w[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">		scanf(&quot;%d%d&quot;, &amp;a, &amp;b);</span><br><span class="line">		add(a, b);</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i &#x3D; 1; i &lt;&#x3D; n; i++)</span><br><span class="line">		if (!dfn[i]) &#123;</span><br><span class="line">			tarjan(i);</span><br><span class="line">		&#125;</span><br><span class="line">	int s &#x3D; 0;</span><br><span class="line">	for (int i &#x3D; 1; i &lt;&#x3D; m; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int x &#x3D; Tree[edge[i].from], y &#x3D; Tree[edge[i].to];</span><br><span class="line">		if (x !&#x3D; y)</span><br><span class="line">		&#123;</span><br><span class="line">			ed[++s].next &#x3D; h[x];</span><br><span class="line">			ed[s].to &#x3D; y;</span><br><span class="line">			ed[s].from &#x3D; x;</span><br><span class="line">			h[x] &#x3D; s;</span><br><span class="line">			indegree[y]++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;%d&quot;, topo());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="重写的前向列表法"><a href="#重写的前向列表法" class="headerlink" title="重写的前向列表法"></a>重写的前向列表法</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">10000</span> + <span class="number">15</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> a, b;</span><br><span class="line">	<span class="keyword">int</span> next;</span><br><span class="line">&#125;;</span><br><span class="line">Edge edge[maxn * <span class="number">10</span>], ed[maxn * <span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> head[maxn], st[maxn], low[maxn], dfn[maxn], Tree[maxn], w[maxn], indegree[maxn];</span><br><span class="line"><span class="keyword">int</span> instack[maxn];</span><br><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>, clk = <span class="number">0</span>, top = <span class="number">0</span>, n, m;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add_edge</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	edge[++sum].next = head[a];</span><br><span class="line">	edge[sum].a = a;</span><br><span class="line">	edge[sum].b = b;</span><br><span class="line">	head[a] = sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> u)</span> </span>&#123;</span><br><span class="line">	low[u] = dfn[u] = ++clk;</span><br><span class="line">	st[++top] = u;</span><br><span class="line">	instack[u] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; i; i = edge[i].next) &#123;</span><br><span class="line">		<span class="keyword">int</span> v = edge[i].b;</span><br><span class="line">		<span class="keyword">if</span> (!dfn[v]) &#123;</span><br><span class="line">			tarjan(v);</span><br><span class="line">			low[u] = <span class="built_in">min</span>(low[u], low[v]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (instack[v])</span><br><span class="line">			low[u] = <span class="built_in">min</span>(low[u], dfn[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (dfn[u] == low[u]) &#123;</span><br><span class="line">		<span class="keyword">int</span> tp;</span><br><span class="line">		<span class="keyword">while</span> (tp = st[top--]) &#123;</span><br><span class="line">			Tree[tp] = u;</span><br><span class="line">			instack[tp] = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">if</span> (tp == u) <span class="keyword">break</span>;</span><br><span class="line">			w[u] += w[tp];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> dp[maxn]&#123;&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">topo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (Tree[i] == i &amp;&amp; indegree[i] == <span class="number">0</span>) &#123;</span><br><span class="line">			dp[i] = w[i];</span><br><span class="line">			q.push(i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">		<span class="keyword">int</span> u = q.front(); q.pop();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; i; i = edge[i].next) &#123;</span><br><span class="line">			<span class="keyword">int</span> v = edge[i].b;</span><br><span class="line">			dp[v] = <span class="built_in">max</span>(dp[v], dp[u] + w[v]);</span><br><span class="line">			indegree[v]--;</span><br><span class="line">			<span class="keyword">if</span> (indegree[v] == <span class="number">0</span>)</span><br><span class="line">				q.push(v);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">		<span class="keyword">if</span> (dp[i] &gt; ans)</span><br><span class="line">			ans = dp[i];</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a, b;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;w[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;b);</span><br><span class="line">		add_edge(a, b);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">		<span class="keyword">if</span> (!dfn[i])</span><br><span class="line">			tarjan(i);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)</span><br><span class="line">		ed[i] = edge[i];</span><br><span class="line">	<span class="built_in">memset</span>(head, <span class="number">0</span>, <span class="keyword">sizeof</span>(head));</span><br><span class="line">	<span class="comment">//memset(edge, 0, sizeof(edge));</span></span><br><span class="line">	sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> ta = Tree[ed[i].a];</span><br><span class="line">		<span class="keyword">int</span> tb = Tree[ed[i].b];</span><br><span class="line">		<span class="keyword">if</span> (ta != tb) &#123;</span><br><span class="line">			add_edge(ta, tb);</span><br><span class="line">			indegree[tb]++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>, topo());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/11/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/13/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/11/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/13/">下一页</a>
   </nav>
   
 </section>
