@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    第5章不确定性推理 |  Hexo
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-第5章不确定性推理" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  第5章不确定性推理
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/04/10/%E7%AC%AC5%E7%AB%A0%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%8E%A8%E7%90%86/" class="article-date">
+  <time datetime="2020-04-10T03:57:36.904Z" itemprop="datePublished">2020-04-10</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">7.7k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">34分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="基本概念"><a class="markdownIt-Anchor" href="#基本概念"></a> 基本概念</h1>
+<h2 id="不确定性推理"><a class="markdownIt-Anchor" href="#不确定性推理"></a> 不确定性推理</h2>
+<ol>
+<li>是对不确定性知识的运用和处理</li>
+<li>从不确定性的初始证据出发，运用不确定性的知识，最终推出具有一定程度不确定性的结论</li>
+</ol>
+<h2 id="不确定性推理中的基本问题"><a class="markdownIt-Anchor" href="#不确定性推理中的基本问题"></a> 不确定性推理中的基本问题</h2>
+<ol>
+<li>
+<p>不确定性的表示</p>
+</li>
+<li>
+<p>不确定性的匹配</p>
+</li>
+<li>
+<p>组合证据的不确定性的计算</p>
+<ul>
+<li>
+<p>最大最小法：T(E1 AND E2)=min{T(E1),T(E2)}<br />
+T(E1 OR E2)=max{T(E1),T(E2)}</p>
+</li>
+<li>
+<p>概率法：</p>
+<p>T(E1 AND E2)=T(E1)×T(E2)<br />
+T(E1 OR E2)=T(E1)＋T(E2)－T(E1)×T(E2)</p>
+</li>
+<li>
+<p>有界法</p>
+<p>T(E1 AND E2)=max{0,T(E1)＋T(E2)－1}<br />
+T(E1 OR E2)=min{1,T(E1)＋T(E2)}</p>
+<p>其中T(E)表示证据E为真的程度</p>
+</li>
+</ul>
+</li>
+<li>
+<p>不确定性的更新(计算结论的不确定性)</p>
+</li>
+<li>
+<p>结论不确定性的合成</p>
+</li>
+</ol>
+<h2 id="不确定性推理方法的分类"><a class="markdownIt-Anchor" href="#不确定性推理方法的分类"></a> 不确定性推理方法的分类</h2>
+<img src="/MyImages/1.png" style="zoom: 50%;" />
+<h1 id="概率推理"><a class="markdownIt-Anchor" href="#概率推理"></a> 概率推理</h1>
+<h2 id="概率论基础"><a class="markdownIt-Anchor" href="#概率论基础"></a> 概率论基础</h2>
+<h3 id="样本"><a class="markdownIt-Anchor" href="#样本"></a> 样本</h3>
+<ol>
+<li>样本空间：在概率论中，把试验中每一个可能出现的结果称为试验的一个样本点，由全体样本点构成的集合称为样本空间。通常，用D表示样本空间。</li>
+<li>随机事件：由样本点构成的集合称为随机事件。</li>
+<li>运算：
+<ul>
+<li>
+<p>并事件：事件A与事件B至少有一个发生  记为A∪B</p>
+</li>
+<li>
+<p>交事件：事件A与事件B同时发生 记为A∩B</p>
+</li>
+<li>
+<p>互逆事件：事件A与B之间满足A∩B=Φ, A∪B=D</p>
+</li>
+</ul>
+</li>
+<li>统计概率：在同一组条件下所进行大量重复试验时，如果事件A出现的频率总是在区间[0,1]上的一个确定常数p附近摆动，并且稳定于p，则称p为事件A的统计概率，记为P(A)。</li>
+<li>条件概率：设A与B是两个随机事件，P(B)&gt;0，则称：<br />
+P(A|B)=P(A∩B)/P(B)<br />
+为在事件B发生的条件下事件A 的条件概率 。</li>
+</ol>
+<h3 id="全概率公式"><a class="markdownIt-Anchor" href="#全概率公式"></a> 全概率公式</h3>
+<p>任意两个事件都互不相容，即当i≠j时，有</p>
+<ul>
+<li>Ai∩Aj=Φ</li>
+<li>P(Ai)&gt;0 (i=1, 2, … ,n);</li>
+<li>D = $$U_{i=1}^nA_i$$</li>
+</ul>
+<p>则对任何时间B：$$P(B)=\sum _{i=1}^nP(A_i)×P(B|A_i)$$</p>
+<h3 id="贝叶斯公式"><a class="markdownIt-Anchor" href="#贝叶斯公式"></a> 贝叶斯公式</h3>
+<p>设事件A1, A2,…, An满足全概率公式的条件，则对任何事件B有下式成立：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><msub><mi>A</mi><mi>i</mi></msub><mi mathvariant="normal">∣</mi><mi>B</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>B</mi><mi mathvariant="normal">∣</mi><msub><mi>A</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mi>P</mi><mo stretchy="false">(</mo><msub><mi>A</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></mfrac><mspace linebreak="newline"></mspace><mo>=</mo><mfrac><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>B</mi><mi mathvariant="normal">∣</mi><msub><mi>A</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mi>P</mi><mo stretchy="false">(</mo><msub><mi>A</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><mrow><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mi>P</mi><mo stretchy="false">(</mo><mi>B</mi><mi mathvariant="normal">∣</mi><msub><mi>A</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mi>P</mi><mo stretchy="false">(</mo><msub><mi>A</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">P(A_i|B) = \frac {P(B|A_i)P(A_i)}{P(B)}\\
+=\frac {P(B|A_i)P(A_i)}{\sum _{j=1}^nP(B|A_j)P(A_j)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.55711em;vertical-align:-1.1301100000000002em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.305708em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.43581800000000004em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1301100000000002em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<ol>
+<li>
+<p>举例</p>
+<p><img src="/MyImages/2.png" alt="" /></p>
+</li>
+</ol>
+<h2 id="概率推理方法"><a class="markdownIt-Anchor" href="#概率推理方法"></a> 概率推理方法</h2>
+<ol>
+<li>用P(H|E)来衡量证据E的出现对结论H的确定性程度，即规则的静态强度。</li>
+</ol>
+<h3 id="基本思想"><a class="markdownIt-Anchor" href="#基本思想"></a> 基本思想</h3>
+<ol>
+<li>
+<p>已知前提E的概率P(E)和结论H的先验概率P(H)</p>
+<p>已知H成立时E出现的条件概率P(E|H)</p>
+</li>
+<li>
+<p>利用规则推出H在E出现的条件下的后验概率</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>H</mi><mi mathvariant="normal">∣</mi><mi>E</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>E</mi><mi mathvariant="normal">∣</mi><mi>H</mi><mo stretchy="false">)</mo><mi>P</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">P(H|E)=\frac {P(E|H)P(H)}{P(E)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+</li>
+<li>
+<p>如果一个前提E支持多个结论Hi，则</p>
+<img src="/MyImages/3.png" style="zoom: 50%;" />
+</li>
+<li>
+<p>如果有多个证据E<sub>i</sub>和多个结论H<sub>j</sub>，则上式可扩展为</p>
+<img src="/MyImages/4.png" style="zoom: 50%;" />
+</li>
+</ol>
+<h3 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h3>
+<ol>
+<li>
+<p><strong>一个条件支持多个结论</strong></p>
+<p>设H1,H2,H3分别是三个结论，E是支持这些结论的证据。已知：<br />
+P(H1)=0.3；    P(H2)=0.4；     P(H3)=0.5<br />
+P(E|H1)=0.5； P(E|H2)=0.3； P(E|H3)=0.4</p>
+<p>求P(H1|E),P(H2|E)及P(H3|E)</p>
+<img src="/MyImages/5.png" style="zoom: 50%;" />
+<p>同理可得P(H<sub>2</sub>|E)=0.26;P(H<sub>3</sub>|E)=0.43</p>
+<p><strong>结论</strong>因为P(H1)=0.3；P(H1|E)=0.32，所以E的出现支持了H1成立，其他同理</p>
+</li>
+<li>
+<p><strong>多个条件支持多个结论</strong></p>
+<p>设H1,H2,H3分别是三个结论，E1,E2是支持这些结论的证据。已知：<br />
+P(H1)=0.4； P(H2)=0.3； P(H3)=0.3<br />
+P(E1|H1)=0.5； P(E1|H2)=0.6； P(E1|H3)=0.3.<br />
+P(E2|H1)=0.7； P(E2|H2)=0.9； P(E2|H3)=0.1</p>
+<p>求P(H1|E1E2),P(H2|E1E2)及P(H3|E1E2)的值各是多少？</p>
+<p><img src="/MyImages/6.png" alt="" /></p>
+<p>同理可得P(E1)=0.47, P(E2)=0.58</p>
+<p><strong>结论</strong>同上分析，可知E1和E2的出现，H1和H2成立的可能性不同程<br />
+度的增加，H3成立的可能性下降。</p>
+</li>
+</ol>
+<h3 id="特点"><a class="markdownIt-Anchor" href="#特点"></a> 特点</h3>
+<ol>
+<li>优点：概率推理方法有较强的理论背景和良好的数学特性，<strong>当证据彼此独立时</strong>计算的复杂度比较低。</li>
+<li>缺点：概率推理方法要求给出结论Hi的先验概率 P(Hi)及条件概率 P(Ej|Hi)。</li>
+</ol>
+<h1 id="主观bayes方法"><a class="markdownIt-Anchor" href="#主观bayes方法"></a> 主观Bayes方法</h1>
+<p>PROSPECTOR的不确定性推理过程，就是根据证据的概率P(E)或P(E|S)，利用LS或LN，把结论H的先验概率P(H)更新为后验概率P(H|E)的过程。</p>
+<h3 id="知识不确定的表示"><a class="markdownIt-Anchor" href="#知识不确定的表示"></a> 知识不确定的表示</h3>
+<ol>
+<li>
+<p>知识是用产生式表示的</p>
+<p><strong>IF E THEN (LS,LN) H</strong></p>
+</li>
+<li>
+<p>其中E是前提，H是结论</p>
+</li>
+<li>
+<p>LS是规则的充分性度量。用于指出<strong>E对H的支持程度</strong>，取值范围为[0,+∞)，其定义为：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mi>S</mi><mo>=</mo><mfrac><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>E</mi><mi mathvariant="normal">∣</mi><mi>H</mi><mo stretchy="false">)</mo></mrow><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>E</mi><mi mathvariant="normal">∣</mi><mi mathvariant="normal">¬</mi><mi>H</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">LS=\frac {P(E|H)}{P(E|\lnot H)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">∣</span><span class="mord">¬</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+</li>
+<li>
+<p>LN是规则的必要性度量。用于指出E对H为真的必要程度，即﹁E对H的支持程度。取值范围为[0,+∞)，其定义为：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mi>N</mi><mo>=</mo><mfrac><mrow><mi>P</mi><mo stretchy="false">(</mo><mi mathvariant="normal">¬</mi><mi>E</mi><mi mathvariant="normal">∣</mi><mi>H</mi><mo stretchy="false">)</mo></mrow><mrow><mi>P</mi><mo stretchy="false">(</mo><mi mathvariant="normal">¬</mi><mi>E</mi><mi mathvariant="normal">∣</mi><mi mathvariant="normal">¬</mi><mi>H</mi><mo stretchy="false">)</mo></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>1</mn><mo>−</mo><mi>P</mi><mo stretchy="false">(</mo><mi>E</mi><mi mathvariant="normal">∣</mi><mi>H</mi><mo stretchy="false">)</mo></mrow><mrow><mn>1</mn><mo>−</mo><mi>P</mi><mo stretchy="false">(</mo><mi>E</mi><mi mathvariant="normal">∣</mi><mi mathvariant="normal">¬</mi><mi>H</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">LN=\frac {P(\lnot E|H)}{P(\lnot E|\lnot H)}=\frac {1-P(E|H)}{1-P(E|\lnot H)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord">¬</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">∣</span><span class="mord">¬</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord">¬</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">∣</span><span class="mord">¬</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+</li>
+<li>
+<p>讨论LS和LN的含义</p>
+<ol>
+<li>由贝叶斯公式可得</li>
+</ol>
+   <img src="/MyImages/7.png" style="zoom:50%;" />
+<p>两式相除得</p>
+   <img src="/MyImages/8.png" style="zoom:50%;" />
+<ol start="2">
+<li>
+<p>几率函数</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><mrow><mi>P</mi><mo stretchy="false">(</mo><mi mathvariant="normal">¬</mi><mi>X</mi><mo stretchy="false">)</mo></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><mrow><mn>1</mn><mo>−</mo><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">O(X)=\frac {P(X)}{P(\lnot X)}=\frac {P(X)}{1-P(X)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord">¬</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>O(X)与P(X)变化一致，取值范围从[0,1]放大到[0,+∞]</p>
+</li>
+<li>
+<p>因此</p>
+<img src="/MyImages/9.png" style="zoom:50%;" />
+ <img src="/MyImages/0.png" style="zoom:50%;" />
+</li>
+</ol>
+</li>
+<li>
+<p>LS的含义</p>
+<ul>
+<li>
+<p>当LS&gt;1时，O(H|E)&gt;O(H)，说明E支持H。 LS越大，E对H的支持越充分。</p>
+</li>
+<li>
+<p>当LS=1时，O(H|E)=O(H)，说明E对H没有影响。</p>
+</li>
+<li>
+<p>当LS&lt;1时，O(H|E)&lt;O(H)，说明E不支持H。</p>
+</li>
+<li>
+<p>当LS=0时，O(H|E)=0，说明E的存在使H为假。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>LN的含义</p>
+<ul>
+<li>当LN&gt;1时，O(H|﹁E)&gt;O(H)，说明﹁E支持H。LN越大，﹁E对H为真的支持就越强。</li>
+<li>当LN=1时，O(H|﹁E)=O(H)，说明﹁E对H没有影响。</li>
+<li>当LN&lt;1时，O(H|﹁E)&lt;O(H)，说明﹁E不支持H，即由于E不存在，将反对H为真。 LN越小，E的不出现就越反对H为真，这说明H越需要E的出现。</li>
+<li>当LN=0时，O(H|﹁E)=0，说明E不存在将导致H为假。</li>
+</ul>
+</li>
+<li>
+<p>LS和LN的三种关系(可利用LS和LN的定义式来互推)</p>
+<ul>
+<li>LS&gt;1且LN&lt;1</li>
+<li>LS&lt;1且LN&gt;1</li>
+<li>LS=LN=1</li>
+</ul>
+</li>
+</ol>
+<h3 id="证据不确定性表示"><a class="markdownIt-Anchor" href="#证据不确定性表示"></a> 证据不确定性表示</h3>
+<ol>
+<li>实际应用中，如果证据E不是直接观测到的，则需要由用户根据<strong>观察S</strong>给出P(E|S) 来描述E的不确定性；但实际中P(E|S)难以给定，<strong>所以用C(E|S)代替P(E|S)</strong></li>
+<li>C(E|S) 取值为[-5,5]的整数
+<ul>
+<li>C(E|S)=-5表示在观测S下证据E肯定不存在P(E|S)=0</li>
+<li>C(E|S)= 5表示在观测S下证据E肯定存在P(E|S)=1</li>
+<li>C(E|S)= 0表示S与E无关,即:P(E|S)= P(E)</li>
+</ul>
+</li>
+</ol>
+<h3 id="组合证据不确定性"><a class="markdownIt-Anchor" href="#组合证据不确定性"></a> 组合证据不确定性</h3>
+<ol>
+<li>
+<p>当组合证据是多个单一证据的<strong>合取</strong>：</p>
+<p>P(E|S)=min{ P(E1|S), P(E2|S), … ,P(En|S)}</p>
+</li>
+<li>
+<p>当组合证据是多个单一证据的<strong>析取</strong>：</p>
+<p>P(E|S)=max{P(E1|S),P(E2|S),…,P(En|S)}</p>
+</li>
+</ol>
+<h3 id="不确定性的更新"><a class="markdownIt-Anchor" href="#不确定性的更新"></a> 不确定性的更新</h3>
+<ol>
+<li>
+<p>根据证据E在观察S下的条件概率P(E|S) 以及LS和LN的值，把H的先验几率O(H)或先验概率P(H)更新为后验几率O(H|S)或后验概率P(H|S)</p>
+</li>
+<li>
+<p><strong>计算后验概率</strong></p>
+<p><strong>P(H|S) = P(H|E)×P(E|S)+P(H|﹁E)×P(﹁E|S)</strong></p>
+<ol>
+<li>
+<p>若E肯定为真</p>
+<p>即P(E|S)=1，则 P(﹁E|S)=0， P(H|S) = P(H|E)</p>
+</li>
+<li>
+<p>证据E肯定为假</p>
+<p>即P(E|S)=0， 则P(﹁E|S)=1， P(H|S) = P(H|﹁E)</p>
+</li>
+<li>
+<p>证据E既非为真又非为假0&lt;P(E|S)&lt;1</p>
+<ol>
+<li>P(E|S)=P(E)，P(H|S) = P(H)</li>
+<li>P(E|S)为其他值</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="若e肯定为真"><a class="markdownIt-Anchor" href="#若e肯定为真"></a> 若E肯定为真</h3>
+<ol>
+<li>
+<p>有P(H|S)=P(H|E)</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>E</mi><mi mathvariant="normal">∣</mi><mi>S</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mi mathvariant="normal">则</mi><mi>P</mi><mo stretchy="false">(</mo><mi mathvariant="normal">¬</mi><mi>E</mi><mi mathvariant="normal">∣</mi><mi>S</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn><mi mathvariant="normal">，</mi><mi>P</mi><mo stretchy="false">(</mo><mi>H</mi><mi mathvariant="normal">∣</mi><mi>S</mi><mo stretchy="false">)</mo><mo>=</mo><mi>P</mi><mo stretchy="false">(</mo><mi>H</mi><mi mathvariant="normal">∣</mi><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(E|S)=1 则P(\lnot E|S)=0，P(H|S)=P(H|E)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord cjk_fallback">则</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord">¬</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord cjk_fallback">，</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span></span></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">则</mi><mi>O</mi><mo stretchy="false">(</mo><mi>H</mi><mi mathvariant="normal">∣</mi><mi>S</mi><mo stretchy="false">)</mo><mo>=</mo><mi>O</mi><mo stretchy="false">(</mo><mi>H</mi><mi mathvariant="normal">∣</mi><mi>E</mi><mo stretchy="false">)</mo><mo>=</mo><mi>L</mi><mi>S</mi><mo>×</mo><mi>O</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">则O(H|S)=O(H|E)=LS×O(H)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">则</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+<li>
+<p>已知</p>
+<img src="/MyImages/10.png" style="zoom:50%;" />
+</li>
+<li>
+<p>后两个式子移项合并有</p>
+<img src="/MyImages/11.png" style="zoom:50%;" />
+</li>
+</ol>
+<h3 id="若e肯定为假"><a class="markdownIt-Anchor" href="#若e肯定为假"></a> 若E肯定为假</h3>
+<ol>
+<li>
+<p>有P(H|S) = P(H|﹁E)，且已知</p>
+<img src="/MyImages/12.png" style="zoom:50%;" />
+</li>
+<li>
+<p>后两个式子移项合并有</p>
+<img src="/MyImages/13.png" style="zoom:50%;" />
+</li>
+</ol>
+<h3 id="证据既非为真又非为假时"><a class="markdownIt-Anchor" href="#证据既非为真又非为假时"></a> 证据既非为真又非为假时:</h3>
+<p>0&lt;P(E|S)&lt;1</p>
+<ol>
+<li>
+<p>当 P(E|S)=P(E)时， 表示E与S无关，此时：</p>
+<img src="/MyImages/14.png" style="zoom:33%;" />
+</li>
+<li>
+<p>当 P(E|S) ≠ P(E)时，表示E与S相关…</p>
+</li>
+<li>
+<p>由三个特殊值可以读构造分段线性插值函数</p>
+<img src="/MyImages/15.png" style="zoom:50%;" />
+</li>
+</ol>
+<h3 id="eh公式"><a class="markdownIt-Anchor" href="#eh公式"></a> EH公式</h3>
+<ul>
+<li>
+<p>分段线性插值函数的解析式为（点斜式）<strong>EH公式</strong></p>
+<img src="/MyImages/27.png" style="zoom:50%;" />
+</li>
+<li>
+<p>用C(E|S) 代替EH公式中的P(E|S)，可得到等价的CP公式</p>
+<img src="/MyImages/29.png" style="zoom:50%;" />
+</li>
+</ul>
+<h3 id="主观贝叶斯方法的推理过程"><a class="markdownIt-Anchor" href="#主观贝叶斯方法的推理过程"></a> 主观贝叶斯方法的推理过程</h3>
+<h4 id="基本方法"><a class="markdownIt-Anchor" href="#基本方法"></a> 基本方法</h4>
+<ul>
+<li>
+<p>当采用初始证据进行推理时，用户提供C(E|S) ，通过CP公式就可以求出P(H|S)</p>
+</li>
+<li>
+<p>当采用推理过程中得到的中间结论作为证据进行推理时，通过EH公式就可以求出P(H|S)</p>
+</li>
+<li>
+<p>结论不确定性的合成</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>H</mi><mi mathvariant="normal">∣</mi><msub><mi>S</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>S</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>S</mi><mi>n</mi></msub><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mo>=</mo><mfrac><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>H</mi><mi mathvariant="normal">∣</mi><msub><mi>S</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow></mfrac><mo>×</mo><mfrac><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>H</mi><mi mathvariant="normal">∣</mi><msub><mi>S</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow></mfrac><mo>×</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>×</mo><mfrac><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>H</mi><mi mathvariant="normal">∣</mi><msub><mi>S</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow></mfrac><mo>×</mo><mi>O</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(H|S_1,S_2,...,S_n)\\
+=\frac {O(H|S_1)}{O(H)}×\frac {O(H|S_2)}{O(H)}×...×\frac {O(H|S_n)}{O(H)} × O(H)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+</ul>
+<h3 id="主观贝叶斯方法举例"><a class="markdownIt-Anchor" href="#主观贝叶斯方法举例"></a> 主观贝叶斯方法举例</h3>
+<h4 id="已知"><a class="markdownIt-Anchor" href="#已知"></a> 已知</h4>
+<ul>
+<li>设有规则<br />
+r1: IF  E1 THEN  (2,  0.001)  H1<br />
+r2: IF  E1 AND  E2 THEN (100, 0.001) H1<br />
+r3: IF  H1  THEN  (200, 0.01) H2</li>
+<li>已知：<br />
+P(E1) = P(E2) = 0.6，P(H1) = 0.091，P(H2) = 0.01</li>
+<li>用户回答:<br />
+P(E1|S1) = 0.76， P(E2|S2) = 0.68</li>
+<li>求：P(H2|S1,S2) = ?</li>
+</ul>
+<h4 id="解"><a class="markdownIt-Anchor" href="#解"></a> 解</h4>
+<ul>
+<li>
+<p>由已知得到的推理网络</p>
+<img src="/MyImages/32.png" style="zoom:33%;" />
+</li>
+<li>
+<p>由推理网络得到求解过程</p>
+<img src="/MyImages/33.png" style="zoom:50%;" />
+<ol>
+<li>计算P (H1 | S1)</li>
+<li>计算P (H1 | (S1  AND  S2))</li>
+<li>计算P (H1 | S1, S2)</li>
+<li>计算P (H2 | S1,S2)</li>
+</ol>
+</li>
+<li>
+<p>根据EH公式计算P(H1|S1)</p>
+<p>由于P(E1|S1)=0.76， P(E1)=0.6，此时P(E1|S1) &gt;P(E1)，使用EH式的后半部分，得P(H1|S1)为：</p>
+<img src="/MyImages/34.png" style="zoom: 67%;" />
+</li>
+<li>
+<p>根据EH公式计算P(H1|(S1 AND S2))</p>
+<p>根据合取取最小的原则，因为P(E2|S2)&lt;P(E1|S1) ，所以令P(H1|(S1 AND S2)) = P(H1|S2)</p>
+<p>再用EH公式求解P(H1|S2)</p>
+<p><img src="/MyImages/35.png" alt="" /></p>
+</li>
+<li>
+<p>计算P(H1|S1,S2)</p>
+<ul>
+<li>
+<p>先计算O(H1|S1,S2)</p>
+<img src="/MyImages/36.png" style="zoom:67%;" />
+</li>
+<li>
+<p>根据几率函数公式计算概率</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><msub><mi>H</mi><mn>1</mn></msub><mi mathvariant="normal">∣</mi><msub><mi>S</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>S</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>O</mi><mo stretchy="false">(</mo><msub><mi>H</mi><mn>1</mn></msub><mi mathvariant="normal">∣</mi><msub><mi>S</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>S</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow><mrow><mn>1</mn><mo>+</mo><mi>O</mi><mo stretchy="false">(</mo><msub><mi>H</mi><mn>1</mn></msub><mi mathvariant="normal">∣</mi><msub><mi>S</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>S</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mfrac><mo>=</mo><mfrac><mn>0.472</mn><mrow><mn>1</mn><mo>+</mo><mn>0.472</mn></mrow></mfrac><mo>=</mo><mn>0.32</mn></mrow><annotation encoding="application/x-tex">P(H_1|S_1,S_2)=\frac {O(H_1|S_1,S_2)}{1+O(H_1|S_1,S_2)}=\frac {0.472}{1+0.472}=0.32
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.08125em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.08125em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.08125em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">4</span><span class="mord">7</span><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mord">.</span><span class="mord">4</span><span class="mord">7</span><span class="mord">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span><span class="mord">2</span></span></span></span></span></p>
+</li>
+</ul>
+</li>
+<li>
+<p>计算P(H2|S1,S2)</p>
+<p>由于P(H1|S1,S2) =0.321&gt; P(H1)，使用EH式的后半部分，得到在当前观察S1、S2下H2的后验概率P(H2|S1,S2):</p>
+<img src="/MyImages/37.png" style="zoom: 67%;" />
+</li>
+</ul>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
+<h3 id="主观贝叶斯方法的优点"><a class="markdownIt-Anchor" href="#主观贝叶斯方法的优点"></a> 主观贝叶斯方法的优点</h3>
+<ul>
+<li>主观Bayes方法中的计算公式大多是在概率论的基础上推导出来的，<strong>具有较坚实的理论基础</strong>。</li>
+<li>知识的静态强度LS及LN是由领域专家给出，<strong>避免了大量的数据统计工作</strong>。</li>
+<li>主观Bayes方法不仅给出了证据肯定存在、肯定不存在时更新后验概率的方法，还<strong>给出了证据不确定时的更新方法</strong>，实现了不确定性的逐级传递。</li>
+</ul>
+<h3 id="主观贝叶斯方法的缺点"><a class="markdownIt-Anchor" href="#主观贝叶斯方法的缺点"></a> 主观贝叶斯方法的缺点</h3>
+<ul>
+<li>它要求领域专家在给出知识时，同时给出H的先验概率P(H)，这比较困难。</li>
+<li>Bayes定理要求事件间独立，使其应用受限制。</li>
+</ul>
+<h1 id="可信度方法"><a class="markdownIt-Anchor" href="#可信度方法"></a> 可信度方法</h1>
+<h2 id="可信度概念"><a class="markdownIt-Anchor" href="#可信度概念"></a> 可信度概念</h2>
+<ul>
+<li>根据经验对一个事物和现象为真的相信程度称为<strong>可信度</strong>。</li>
+<li>在可信度方法中，由专家给出规则或知识的可信度，从而可避免对先验概率、或条件概率的要求。</li>
+</ul>
+<h2 id="c-f模型"><a class="markdownIt-Anchor" href="#c-f模型"></a> C-F模型</h2>
+<ul>
+<li>
+<p>一般形式</p>
+<p>IF		E	THEN		H	(CF(H,E))</p>
+</li>
+<li>
+<p>其中CF(H,E)∈[-1,1] 表示该知识的可信度</p>
+<ul>
+<li>CF(H,E)&gt;0对应于P(H|E)&gt;P(H);</li>
+<li>CF(H,E)&lt;0对应于P(H|E)&lt;P(H);</li>
+<li>CF(H,E)=0对应于P(H|E)=P(H);</li>
+</ul>
+</li>
+</ul>
+<h3 id="知识的不确定性"><a class="markdownIt-Anchor" href="#知识的不确定性"></a> 知识的不确定性</h3>
+<p>​			<strong>$$CF(H,E)=MB(H,E)-MD(H,E)$$</strong></p>
+<ul>
+<li>
+<p>MB为信任增长度，反映了证据对结论有利的一面</p>
+<img src="/MyImages/30.png" style="zoom: 33%;" />
+</li>
+<li>
+<p>MD为不信任增长度，反映了证据对结论不利的一面</p>
+<img src="/MyImages/31.png" style="zoom:33%;" />
+</li>
+<li>
+<p>讨论</p>
+<ul>
+<li>当P(H|E)&gt;P(H)时：<br />
+信任增长度MB(H,E)&gt;0，<br />
+不信任增长度MD(H,E)=0 。</li>
+<li>当P(H|E)&lt;P(H)时，<br />
+不信任增长度MD(H,E)&gt;0，<br />
+信任增长度MB(H,E) =0。</li>
+<li><strong>MB(H,E)与MD(H,E)是互斥的：</strong><br />
+当MB(H,E)&gt;0时，MD(H,E)＝0<br />
+当MD(H,E)&gt;0时，MB(H,E)＝0</li>
+</ul>
+</li>
+</ul>
+<h4 id="cfhe的计算公式"><a class="markdownIt-Anchor" href="#cfhe的计算公式"></a> CF(H,E)的计算公式</h4>
+<img src="/MyImages/41.png" style="zoom:50%;" />
+<ul>
+<li>当且仅当P(H|E)=1时,  CF(H,E)=1</li>
+<li>当且仅当P(H|E)=0时,  CF(H,E)=-1</li>
+<li><strong>CF(H,E)定性地反映了P(H|E)的大小,因此可以用CF(H,E)近似表示P(H|E)的大小,从而描述了规则的可信度。</strong></li>
+</ul>
+<h3 id="证据的不确定性的表示"><a class="markdownIt-Anchor" href="#证据的不确定性的表示"></a> 证据的不确定性的表示</h3>
+<ol>
+<li>
+<p>证据的不确定性也用可信度因子表示。如： CF(E)=0.6；<strong>CF(E)表示证据的强度，即动态强度，取值范围[-1，+1]</strong></p>
+<ul>
+<li>CF(E)&gt;0:表示证据以某种程度为真</li>
+<li>CF(E)&lt;0:表示证据以某种程度为假</li>
+</ul>
+</li>
+<li>
+<p><strong>组合证据的不确定性</strong>----最大最小原则</p>
+<ul>
+<li>若E=E1 AND E2 AND…AND En,则<br />
+CF(E)=min{CF(E1),CF(E2),…,CF(En)}</li>
+<li>若E=E1 OR E2 OR…OR En,则<br />
+CF(E)=max{CF(E1),CF(E2),…,CF(En)}</li>
+</ul>
+</li>
+</ol>
+<h3 id="结论的不确定性表示"><a class="markdownIt-Anchor" href="#结论的不确定性表示"></a> 结论的不确定性表示</h3>
+<ol>
+<li>
+<p>结论H的可信度由下式计算：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mi>F</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo>=</mo><mi>C</mi><mi>F</mi><mo stretchy="false">(</mo><mi>H</mi><mo separator="true">,</mo><mi>E</mi><mo stretchy="false">)</mo><mo>×</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">{</mo><mn>0</mn><mo separator="true">,</mo><mi>C</mi><mi>F</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">CF(H)=CF(H,E)×max\{0,CF(E)\}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">{</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span><span class="mclose">}</span></span></span></span></span></p>
+<ul>
+<li>CF(H)的取值范围：[-1，+1]。</li>
+<li>CF(H)&gt;0:表示结论以某种程度为真</li>
+<li>CF(H)&lt;0:表示结论以某种程度为假</li>
+</ul>
+</li>
+<li>
+<p><strong>结论不确定性的合成</strong></p>
+<ul>
+<li>
+<p>若由多条不同知识推出了相同的结论，但可信度不同，则用合成算法求出综合可信度</p>
+</li>
+<li>
+<p>假设有</p>
+<p>IF		E1	THEN		H	(CF(H,E1))<br />
+IF		E2	THEN		H	(CF(H,E2))</p>
+</li>
+<li>
+<p>计算时，首先计算CF1(H)、CF2(H)，然后带入公式计算综合可信度</p>
+<img src="/MyImages/42.png" style="zoom:50%;" />
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="c-f模型推理示例"><a class="markdownIt-Anchor" href="#c-f模型推理示例"></a> C-F模型推理示例</h3>
+<h4 id="设已知"><a class="markdownIt-Anchor" href="#设已知"></a> 设已知</h4>
+<p>R1: IF	E1	THEN		H	(0.8)<br />
+R2: IF	E2	THEN		H	(0.6)<br />
+R3: IF	E3	THEN		H	(-0.5)<br />
+R4: IF	E4 AND (E5 OR E6)	THEN		E1	(0.7)<br />
+R5: IF	E7 AND E8 THEN		E3	(0.9)<br />
+已知：CF(E2)=0.8, CF(E4)=0.5, CF(E5)=0.6，CF(E6)=0.7, CF(E7)=0.6, CF(E8)=0.9<br />
+求：CF(H)=？</p>
+<h4 id="求解"><a class="markdownIt-Anchor" href="#求解"></a> 求解</h4>
+<ul>
+<li>求H的三个证据的不确定性
+<ul>
+<li>由R4得到：<br />
+CF(E1)=0.7×max{0,CF[E4 AND (E5 OR E6)]}<br />
+=0.7×max{0,min{CF(E4),CF(E5 OR E6)}}<br />
+=0.35</li>
+<li>由R5得到：<br />
+CF(E3)=0.9×max{0,CF[E7 AND E8]}<br />
+=0.54</li>
+</ul>
+</li>
+<li>求三个证据独立对结论的支持程度
+<ul>
+<li>由R1得到：<br />
+CF1(H)=0.8×max{0,CF(E1)}=0.28</li>
+<li>由R2得到：<br />
+CF2(H)=0.6×max{0,CF(E2)}=0.48</li>
+<li>由R2得到：<br />
+CF2(H)=0.6×max{0,CF(E2)}=0.48</li>
+</ul>
+</li>
+<li>代入不确定性合成算法
+<ul>
+<li>CF12(H)=CF1(H)+CF2(H)-CF1(H)×CF2(H)=0.63</li>
+<li>CF123(H)=[CF12(H)+CF3(H)]/[1-min{|CF12(H)|,|CF3(H)|}]<br />
+=0.49</li>
+</ul>
+</li>
+</ul>
+<h2 id="带有阈值限度的不确定性推理"><a class="markdownIt-Anchor" href="#带有阈值限度的不确定性推理"></a> 带有阈值限度的不确定性推理</h2>
+<ul>
+<li>一般形式 IF		E	THEN		H	(CF(H,E),λ)</li>
+<li>λ是阈值，明确规定了知识运用的条件：只有当CF(E)≥λ时，该知识才能够被应用。λ的取值范围为(0,1]。</li>
+</ul>
+<h3 id="知识的不确定性表示"><a class="markdownIt-Anchor" href="#知识的不确定性表示"></a> 知识的不确定性表示</h3>
+<p>CF(H,E)为知识的可信度，取值范围为[0,1]。</p>
+<ul>
+<li>CF(H,E)=0 对应于 P(H|E)=0 (证据绝对否定结论)</li>
+<li>CF(H,E)=1 对应于 P(H|E)=1 (证据绝对支持结论)</li>
+</ul>
+<h3 id="证据不确定性的表示"><a class="markdownIt-Anchor" href="#证据不确定性的表示"></a> 证据不确定性的表示</h3>
+<p>证据E的可信度仍为CF(E)，但其取值范围为：[0，1]</p>
+<ul>
+<li>CF(E)=1  对应于 P(E)=1   (证据绝对存在) ;</li>
+<li>CF(E)=0  对应于 P(E)=0;  (证据绝对不存在)</li>
+</ul>
+<h3 id="结论的不确定性"><a class="markdownIt-Anchor" href="#结论的不确定性"></a> 结论的不确定性</h3>
+<ol>
+<li>
+<p>单个规则：当CF(E)≥λ时，CF(H)=CF(H,E)×CF(E)</p>
+</li>
+<li>
+<p>多条规则有相同的结论</p>
+<p>则对满足CF(Ei)≥λi的带入公式求综合可信度</p>
+</li>
+</ol>
+<h4 id="求综合可信的几种方法"><a class="markdownIt-Anchor" href="#求综合可信的几种方法"></a> 求综合可信的几种方法</h4>
+<img src="/MyImages/43.png" style="zoom: 67%;" />
+<h2 id="加权的不确定性推理"><a class="markdownIt-Anchor" href="#加权的不确定性推理"></a> 加权的不确定性推理</h2>
+<p><strong>针对具有组合条件的知识不确定性的表示</strong></p>
+<p>IF	E1(ω1) AND E2(ω2) AND…AND En(ωn)    THEN   H	 (CF(H,E),λ)</p>
+<h3 id="知识不确定性的表示"><a class="markdownIt-Anchor" href="#知识不确定性的表示"></a> 知识不确定性的表示</h3>
+<p>加权因子的取值范围一般为[0,1],且应满足归一条件，即$$0\leq w_i\leq 1,i=1,2,…,n\sum _{i=1}^nw_i=1$$</p>
+<h3 id="组合证据不确定性的表示"><a class="markdownIt-Anchor" href="#组合证据不确定性的表示"></a> 组合证据不确定性的表示</h3>
+<p>若有CF(E1)，CF(E2)，…，CF( En)，则组合证据的可信度为：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mi>F</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>w</mi><mi>i</mi></msub></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mo stretchy="false">(</mo><msub><mi>w</mi><mi>i</mi></msub><mo>×</mo><mi>C</mi><mi>F</mi><mo stretchy="false">(</mo><msub><mi>E</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">CF(E)=\frac {1}{\sum _{i=1}^nw_i}\sum _{i=1}^{n}(w_i×CF(E_i))
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.305708em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.994002em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></span></p>
+<h3 id="结论不确定性的表示"><a class="markdownIt-Anchor" href="#结论不确定性的表示"></a> 结论不确定性的表示</h3>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mi>F</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>=</mo><mo>∑</mo><msub><mi>w</mi><mi>i</mi></msub><mi>C</mi><mi>F</mi><mo stretchy="false">(</mo><msub><mi>E</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">CF(E) = \sum w_iCF(E_i)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.6000100000000002em;vertical-align:-0.55001em;"></span><span class="mop op-symbol large-op" style="position:relative;top:-0.000004999999999977245em;">∑</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<p>当CF(E)≥λ时，该知识就可被应用。结论H的可信度为<strong>CF(H)=CF(H,E)×CF(E)</strong></p>
+<h3 id="加权不确定性推理举例"><a class="markdownIt-Anchor" href="#加权不确定性推理举例"></a> 加权不确定性推理举例</h3>
+<h4 id="已知-2"><a class="markdownIt-Anchor" href="#已知-2"></a> 已知</h4>
+<p>R1: IF E1(0.6) AND E2(0.4) THEN E6(0.8,0.75)<br />
+R2: IF E3(0.5) AND E4(0.3) AND E5(0.2)<br />
+THEN E7(0.7,0.6)<br />
+R3: IF E6(0.7) AND E7(0.3) THEN H(0.75,0.6)<br />
+已知：CF(E1)=0.9, CF(E2)=0.8, CF(E3)=0.7,CF(E4)=0.6, CF(E5)=0.5<br />
+求：CF(H)=?</p>
+<h4 id="求解-2"><a class="markdownIt-Anchor" href="#求解-2"></a> 求解</h4>
+<ul>
+<li>
+<p>由R1得到：<br />
+CF(E1(0.6) AND E2(0.4))</p>
+<p>​		=0.6×0.9+0.4×0.8</p>
+<p>​		=0.86&gt;λ1=0.75<br />
+∴R1可被应用。</p>
+</li>
+<li>
+<p>由R2得到：<br />
+CF(E3(0.5) AND E4(0.3) AND E5(0.2))＝0.63&gt;λ2 =0.6<br />
+∴R2可被应用。</p>
+</li>
+<li>
+<p>CF(E1(0.6) AND E2(0.4))&gt;CF(E3(0.5) AND E4(0.3) AND E5(0.2))<br />
+∴R1先被应用。</p>
+</li>
+<li>
+<p>由R1得到：CF(E6)=0.86×0.8 = 0.69</p>
+</li>
+<li>
+<p>由R2得到：CF(E7)=0.44</p>
+</li>
+<li>
+<p>由R3得到：<br />
+CF(E6(0.7) AND E7(0.3))=0.615&gt;λ3 =0.6</p>
+<p>∴R3可被应用,得到：</p>
+<p>CF(H)=0.46</p>
+</li>
+</ul>
+<h2 id="前提条件中带有可信度因子的不确定性推理"><a class="markdownIt-Anchor" href="#前提条件中带有可信度因子的不确定性推理"></a> 前提条件中带有可信度因子的不确定性推理</h2>
+<p>IF	E1(cf1) AND E2(cf2) AND…AND En(cfn)    THEN   H (CF(H,E),λ)</p>
+<ul>
+<li>知识的前提条件不一定为真，只要前提条件满足一定的可信度，或具备一定的为真的可能性，就可以推出结论H。</li>
+</ul>
+<h3 id="知识不确定性的表示-2"><a class="markdownIt-Anchor" href="#知识不确定性的表示-2"></a> 知识不确定性的表示</h3>
+<p>其中，cfi子条件Ei(i=1,2,…,n）的可信度。cfi在[0,1]上取值，其值由专家给出。</p>
+<h3 id="证据不确定性的表示-2"><a class="markdownIt-Anchor" href="#证据不确定性的表示-2"></a> 证据不确定性的表示</h3>
+<p>证据Ei的可信度记为cf’i,其取值范围在[0,1]上</p>
+<h3 id="不确定性匹配算法"><a class="markdownIt-Anchor" href="#不确定性匹配算法"></a> 不确定性匹配算法</h3>
+<h4 id="不带加权因子的不确定性匹配算法"><a class="markdownIt-Anchor" href="#不带加权因子的不确定性匹配算法"></a> 不带加权因子的不确定性匹配算法</h4>
+<ul>
+<li>知识：IF	E1(cf1) AND E2(cf2) AND…AND En(cfn)<br />
+THEN   H	 (CF(H,E),λ)</li>
+<li>条件：E1(cf’1)，E2(cf’2)，…， En(cf’n)</li>
+<li>匹配算法：<br />
+$$      max{0,cf_1-cf’_1}+max{0,cf_2-cf’_2}+…+ max{0,cf_n-cf’_n}≤λ$$
+<ul>
+<li>注意此处是小于等于，即$$cf_i-fc_i’\leq 0$$，即证据的实际可信度大于要求的可信度</li>
+</ul>
+</li>
+</ul>
+<h4 id="带加权因子的不确定性匹配算法"><a class="markdownIt-Anchor" href="#带加权因子的不确定性匹配算法"></a> 带加权因子的不确定性匹配算法</h4>
+<ul>
+<li>知识：IF	E1(cf1,ω1) AND E2(cf2,ω2) AND…AND En(cfn,ωn)<br />
+THEN   H	 (CF(H,E),λ)</li>
+<li>匹配算法：<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><msub><mi>ω</mi><mn>1</mn></msub><mo>×</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">{</mo><mn>0</mn><mo separator="true">,</mo><mi>c</mi><msub><mi>f</mi><mn>1</mn></msub><mo>−</mo><mi>c</mi><mi>f</mi><msub><mi mathvariant="normal">’</mi><mn>1</mn></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><msub><mi>ω</mi><mn>1</mn></msub><mo>×</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">{</mo><mn>0</mn><mo separator="true">,</mo><mi>c</mi><msub><mi>f</mi><mn>2</mn></msub><mo>−</mo><mi>c</mi><mi>f</mi><msub><mi mathvariant="normal">’</mi><mn>2</mn></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo>+</mo><mo>…</mo><mo>+</mo><mo stretchy="false">(</mo><msub><mi>ω</mi><mi>n</mi></msub><mo>×</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">{</mo><mn>0</mn><mo separator="true">,</mo><mi>c</mi><msub><mi>f</mi><mi>n</mi></msub><mo>−</mo><mi>c</mi><mi>f</mi><msub><mi mathvariant="normal">’</mi><mi>n</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo>≤</mo><mi>λ</mi></mrow><annotation encoding="application/x-tex">(ω_1×max\{0,cf_1-cf’_1\})+(ω_1×max\{0,cf_2-cf’_2\})+…+(ω_n×max\{0,cf_n-cf’_n\}) ≤λ
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">{</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord">’</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">{</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord">’</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">{</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord">’</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span></span></p>
+</li>
+</ul>
+<h3 id="结论不确定性的表示-2"><a class="markdownIt-Anchor" href="#结论不确定性的表示-2"></a> 结论不确定性的表示</h3>
+<h4 id="不带加权因子时"><a class="markdownIt-Anchor" href="#不带加权因子时"></a> 不带加权因子时：</h4>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mi>F</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">{</mo><mn>0</mn><mo separator="true">,</mo><mi>c</mi><msub><mi>f</mi><mn>1</mn></msub><mo>−</mo><mi>c</mi><mi>f</mi><msub><mi mathvariant="normal">’</mi><mn>1</mn></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo>×</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">{</mo><mn>0</mn><mo separator="true">,</mo><mi>c</mi><msub><mi>f</mi><mn>2</mn></msub><mo>−</mo><mi>c</mi><mi>f</mi><msub><mi mathvariant="normal">’</mi><mn>2</mn></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo>×</mo><mo>…</mo><mo>×</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">{</mo><mn>0</mn><mo separator="true">,</mo><mi>c</mi><msub><mi>f</mi><mi>n</mi></msub><mo>−</mo><mi>c</mi><mi>f</mi><msub><mi mathvariant="normal">’</mi><mi>n</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>×</mo><mi>C</mi><mi>F</mi><mo stretchy="false">(</mo><mi>H</mi><mo separator="true">,</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">CF(H)=[(1-max\{0,cf_1-cf’_1\})×(1-max\{0,cf_2-cf’_2\})×…×(1-max\{0,cf_n-cf’_n\})]×CF(H,E)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">{</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord">’</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">{</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord">’</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">{</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord">’</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span><span class="mclose">)</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span></span></p>
+<h4 id="带加权因子时"><a class="markdownIt-Anchor" href="#带加权因子时"></a> 带加权因子时：</h4>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mi>F</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">[</mo><mo stretchy="false">(</mo><msub><mi>ω</mi><mn>1</mn></msub><mo>×</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">{</mo><mn>0</mn><mo separator="true">,</mo><mi>c</mi><msub><mi>f</mi><mn>1</mn></msub><mo>−</mo><mi>c</mi><mi>f</mi><msub><mi mathvariant="normal">’</mi><mn>1</mn></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>×</mo><mo stretchy="false">(</mo><msub><mi>ω</mi><mn>2</mn></msub><mo>×</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">{</mo><mn>0</mn><mo separator="true">,</mo><mi>c</mi><msub><mi>f</mi><mn>2</mn></msub><mo>−</mo><mi>c</mi><mi>f</mi><msub><mi mathvariant="normal">’</mi><mn>2</mn></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>×</mo><mo>…</mo><mo>×</mo><mo stretchy="false">(</mo><msub><mi>ω</mi><mi>n</mi></msub><mo>×</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">{</mo><mn>0</mn><mo separator="true">,</mo><mi>c</mi><msub><mi>f</mi><mi>n</mi></msub><mo>−</mo><mi>c</mi><mi>f</mi><msub><mi mathvariant="normal">’</mi><mi>n</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>×</mo><mi>C</mi><mi>F</mi><mo stretchy="false">(</mo><mi>H</mi><mo separator="true">,</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">CF(H)=[(ω_1×(1-max\{0,cf_1-cf’_1\}))×(ω_2×(1-max\{0,cf_2-cf’_2\}))×…×(ω_n×(1-max\{0,cf_n-cf’_n\}))]×CF(H,E)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">{</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord">’</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">{</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord">’</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">{</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord">’</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span><span class="mclose">)</span><span class="mclose">)</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span></span></p>
+<h2 id="特点-2"><a class="markdownIt-Anchor" href="#特点-2"></a> 特点</h2>
+<h3 id="优点"><a class="markdownIt-Anchor" href="#优点"></a> 优点</h3>
+<p>简单、直观。</p>
+<h3 id="缺点"><a class="markdownIt-Anchor" href="#缺点"></a> 缺点</h3>
+<ul>
+<li>可信度因子依赖于专家主观指定，没有统一、客观的尺度，容易产生片面性。</li>
+<li>随着推理延伸，可信度越来越不可靠，误差越来越大。当推理深度达到一定深度时，有可能出现推出的结论不再可信的情况。</li>
+</ul>
+<h1 id="模糊理论"><a class="markdownIt-Anchor" href="#模糊理论"></a> 模糊理论</h1>
+<h2 id="模糊性"><a class="markdownIt-Anchor" href="#模糊性"></a> 模糊性</h2>
+<ul>
+<li>随机性：事物本身含义明确，但条件不明而不可预知。</li>
+<li>模糊性：事物本身是模糊的。例如：青年、老年；高低；</li>
+</ul>
+<h2 id="集合与特征函数"><a class="markdownIt-Anchor" href="#集合与特征函数"></a> 集合与特征函数</h2>
+<p>设A是论域U上的一个集合，对于任意u∈U，令</p>
+<img src="/MyImages/image-20200402092804213.png" alt="image-20200402092804213" style="zoom:50%;" />
+<p>则称C<sub>A</sub>(u)为集合A的<strong>特征函数</strong>。特征函数C<sub>A</sub>(u)在u=u<sub>0</sub>处的取值C<sub>A</sub>(u<sub>0</sub>)称为u<sub>0</sub>对A的隶属度。$$A={u|C_A(u)=1}$$</p>
+<h2 id="模糊集与隶属函数"><a class="markdownIt-Anchor" href="#模糊集与隶属函数"></a> 模糊集与隶属函数</h2>
+<h3 id="定义"><a class="markdownIt-Anchor" href="#定义"></a> 定义</h3>
+<ul>
+<li>
+<p>设U是论域，μA是把任意u∈U映射为[0,1]上某个值的函数，即</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>μ</mi><mi>A</mi><mo>:</mo><mi>U</mi><mo>→</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo><mi mathvariant="normal">或</mi><mi mathvariant="normal">者</mi><mi>u</mi><mo>→</mo><mi>μ</mi><mi>A</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">μA :U→[0,1]或者u→μA(u)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mord cjk_fallback">或</span><span class="mord cjk_fallback">者</span><span class="mord mathdefault">u</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault">A</span><span class="mopen">(</span><span class="mord mathdefault">u</span><span class="mclose">)</span></span></span></span></span></p>
+<p>则称μA为定义在U上的一个隶属函数，由μA(u)(u∈U)所构成的集合A称为U上的一个<strong>模糊集</strong>，μA(u)称为u对A的隶属度</p>
+<p>模糊集刻画了每个元素隶属于A的程度</p>
+</li>
+</ul>
+<h3 id="举例-2"><a class="markdownIt-Anchor" href="#举例-2"></a> 举例</h3>
+<ul>
+<li>论域U={1,2,3,4,5}，用模糊集表示“大”和“小”
+<ul>
+<li>设A、B分别表示“大”与“小”的模糊集，μA ，μB分别为相应的隶属函数。<br />
+A={0, 0, 0.1, 0.6, 1}<br />
+B={1, 0.5, 0.01, 0,0}<br />
+其中：μA(1)=0,μA(2)=0 ,μA(3)=0.1 ,μA(4)=0.6 ,μA(5)=1<br />
+μB(1)=1,μB(2)=0.5 ,μB(3)=0.01 ,μB(4)=0,μB(5)=0</li>
+</ul>
+</li>
+<li>论域U={高山，刘水，秦声}，用模糊集A表示“学习好”这个概念。
+<ul>
+<li>解：先给出三人的平均成绩：<br />
+高山：98分，刘水：90分，秦声：86分</li>
+<li>上述成绩除以100后，就分别得到了各自对“学习好”的隶属度：<br />
+μA(高山)=0.98,μA(刘水)=0.90 ,μA(秦声)=0.86<br />
+则模糊集A为：<br />
+A={0.98, 0.90, 0.86}</li>
+</ul>
+</li>
+</ul>
+<h2 id="模糊集的表示方法"><a class="markdownIt-Anchor" href="#模糊集的表示方法"></a> 模糊集的表示方法</h2>
+<ul>
+<li>
+<p>一般表示形式为 $$A=\int_{u\in U}\mu_A(u)/u $$</p>
+<p>U上的全体模糊集为$$F(U){A|\mu_A:U\to[0,1]}$$</p>
+</li>
+<li>
+<p>用隶属度的集合表示</p>
+<p>​	$$A={μA(u1),μA(u2),…,μA(un)}$$</p>
+</li>
+<li>
+<p>分子表示隶属度，分母是元素</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mi>μ</mi><mi>A</mi><mo stretchy="false">(</mo><mi>u</mi><mn>1</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>u</mi><mn>1</mn><mo>+</mo><mi>μ</mi><mi>A</mi><mo stretchy="false">(</mo><mi>u</mi><mn>2</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>u</mi><mn>2</mn><mo>+</mo><mo>…</mo><mo>+</mo><mi>μ</mi><mi>A</mi><mo stretchy="false">(</mo><mi>u</mi><mi>n</mi><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>u</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">A=μA(u1)/u1+μA(u2)/u2+…+μA(un)/un
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault">A</span><span class="mopen">(</span><span class="mord mathdefault">u</span><span class="mord">1</span><span class="mclose">)</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault">A</span><span class="mopen">(</span><span class="mord mathdefault">u</span><span class="mord">2</span><span class="mclose">)</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault">A</span><span class="mopen">(</span><span class="mord mathdefault">u</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord mathdefault">n</span></span></span></span></span></p>
+<ul>
+<li>隶属度为0可以不写</li>
+</ul>
+</li>
+<li>
+<p>若论域是连续的，可以用实函数表示。例如</p>
+<img src="/MyImages/image-20200406113637829.png" alt="image-20200406113637829" style="zoom: 33%;" />
+</li>
+</ul>
+<h2 id="模糊集的运算"><a class="markdownIt-Anchor" href="#模糊集的运算"></a> 模糊集的运算</h2>
+<h3 id="包含运算"><a class="markdownIt-Anchor" href="#包含运算"></a> 包含运算</h3>
+<p>设A，B∈F(U)，若对任意u∈U，都有$$μ_B(u)≤μ_A(u)$$<br />
+成立，则称A包含B，记为$$B\subset A$$</p>
+<h3 id="交-并-补运算"><a class="markdownIt-Anchor" href="#交-并-补运算"></a> 交、并、补运算</h3>
+<p>设A，B∈F(U)，以下为扎德算子</p>
+<img src="/MyImages/image-20200406114749647.png" alt="image-20200406114749647" style="zoom: 50%;" />
+<h3 id="其他模糊集运算"><a class="markdownIt-Anchor" href="#其他模糊集运算"></a> 其他模糊集运算</h3>
+<img src="/MyImages/54.png" style="zoom:50%;" />
+<h3 id="举例-3"><a class="markdownIt-Anchor" href="#举例-3"></a> 举例</h3>
+<ul>
+<li>设U={u1,u2,u3}，A=0.3/u1+0.8/u2+0.6/u3,B=0.6/u1+0.4/u2+0.7/u3<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">则</mi><mi>A</mi><mo>∩</mo><mi>B</mi><mo>=</mo><mo stretchy="false">(</mo><mn>0.3</mn><mo>∧</mo><mn>0.6</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>u</mi><mn>1</mn><mo>+</mo><mo stretchy="false">(</mo><mn>0.8</mn><mo>∧</mo><mn>0.4</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>u</mi><mn>2</mn><mo>+</mo><mo stretchy="false">(</mo><mn>0.6</mn><mo>∧</mo><mn>0.7</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>u</mi><mn>3</mn><mspace linebreak="newline"></mspace><mo>=</mo><mn>0.3</mn><mi mathvariant="normal">/</mi><mi>u</mi><mn>1</mn><mo>+</mo><mn>0.4</mn><mi mathvariant="normal">/</mi><mi>u</mi><mn>2</mn><mo>+</mo><mn>0.6</mn><mi mathvariant="normal">/</mi><mi>u</mi><mn>3</mn><mspace linebreak="newline"></mspace><mi>A</mi><mo>∪</mo><mi>B</mi><mo>=</mo><mo stretchy="false">(</mo><mn>0.3</mn><mo>∨</mo><mn>0.6</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>u</mi><mn>1</mn><mo>+</mo><mo stretchy="false">(</mo><mn>0.8</mn><mo>∨</mo><mn>0.4</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>u</mi><mn>2</mn><mo>+</mo><mo stretchy="false">(</mo><mn>0.6</mn><mo>∨</mo><mn>0.7</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>u</mi><mn>3</mn><mspace linebreak="newline"></mspace><mo>=</mo><mn>0.6</mn><mi mathvariant="normal">/</mi><mi>u</mi><mn>1</mn><mo>+</mo><mn>0.8</mn><mi mathvariant="normal">/</mi><mi>u</mi><mn>2</mn><mo>+</mo><mn>0.7</mn><mi mathvariant="normal">/</mi><mi>u</mi><mn>3</mn><mspace linebreak="newline"></mspace><mi mathvariant="normal">¬</mi><mi>A</mi><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mn>0.3</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>u</mi><mn>1</mn><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mn>0.8</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>u</mi><mn>2</mn><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mn>0.6</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>u</mi><mn>3</mn><mspace linebreak="newline"></mspace><mo>=</mo><mn>0.7</mn><mi mathvariant="normal">/</mi><mi>u</mi><mn>1</mn><mo>+</mo><mn>0.2</mn><mi mathvariant="normal">/</mi><mi>u</mi><mn>2</mn><mo>+</mo><mn>0.4</mn><mi mathvariant="normal">/</mi><mi>u</mi><mn>3</mn><mspace linebreak="newline"></mspace></mrow><annotation encoding="application/x-tex">则A∩B=(0.3∧0.6)/u1+(0.8∧0.4)/u2+(0.6∧0.7)/u3\\
+	   =0.3/u1+0.4/u2+0.6/u3\\
+A∪B=(0.3∨0.6)/u1+(0.8∨0.4)/u2+(0.6∨0.7)/u3\\
+	   =0.6/u1+0.8/u2+0.7/u3\\
+¬A=(1-0.3)/u1+(1-0.8)/u2+(1-0.6)/u3\\
+	=0.7/u1+0.2/u2+0.4/u3\\
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">则</span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">6</span><span class="mclose">)</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mord">.</span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">4</span><span class="mclose">)</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mord">.</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">7</span><span class="mclose">)</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">4</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">6</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">3</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">6</span><span class="mclose">)</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mord">.</span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">4</span><span class="mclose">)</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mord">.</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">7</span><span class="mclose">)</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">6</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">8</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">7</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">3</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">¬</span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span><span class="mclose">)</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">8</span><span class="mclose">)</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">6</span><span class="mclose">)</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">7</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">2</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">4</span><span class="mord">/</span><span class="mord mathdefault">u</span><span class="mord">3</span></span><span class="mspace newline"></span></span></span></span></p>
+</li>
+</ul>
+<h2 id="模糊集的水平截集"><a class="markdownIt-Anchor" href="#模糊集的水平截集"></a> 模糊集的水平截集</h2>
+<h3 id="定义-2"><a class="markdownIt-Anchor" href="#定义-2"></a> 定义</h3>
+<h4 id="水平截集"><a class="markdownIt-Anchor" href="#水平截集"></a> 水平截集</h4>
+<p>λ水平截集是把模糊集合转化成普通集合的一个重要概念。</p>
+<p>设A∈F(U),λ∈[0,1]，则称普通集合$$A_λ={u|u∈U,μ_A(u)≥λ}$$为A的一个λ水平截集， λ称为阈值或置信水平。</p>
+<h4 id="核及支集"><a class="markdownIt-Anchor" href="#核及支集"></a> 核及支集</h4>
+<ul>
+<li>
+<p>设A∈F(U) ，则称</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>K</mi><mi>e</mi><mi>r</mi><mi>A</mi><mo>=</mo><mo stretchy="false">{</mo><mi>u</mi><mi mathvariant="normal">∣</mi><mi>u</mi><mo>∈</mo><mi>U</mi><mo separator="true">,</mo><msub><mi>μ</mi><mi>A</mi></msub><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo stretchy="false">}</mo><mi mathvariant="normal">为</mi><mi mathvariant="normal">核</mi></mrow><annotation encoding="application/x-tex">Ker A=\{u|u∈U, μ_A(u)=1\}为核
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathdefault">u</span><span class="mord">∣</span><span class="mord mathdefault">u</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">μ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">u</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">}</span><span class="mord cjk_fallback">为</span><span class="mord cjk_fallback">核</span></span></span></span></span></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>u</mi><mi>p</mi><mi>p</mi><mi>A</mi><mo>=</mo><mo stretchy="false">{</mo><mi>u</mi><mi mathvariant="normal">∣</mi><mi>u</mi><mo>∈</mo><mi>U</mi><mo separator="true">,</mo><msub><mi>μ</mi><mi>A</mi></msub><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>&gt;</mo><mn>0</mn><mo stretchy="false">}</mo><mi mathvariant="normal">为</mi><mi mathvariant="normal">支</mi><mi mathvariant="normal">集</mi></mrow><annotation encoding="application/x-tex">Supp A=\{u|u∈U, μ_A(u)&gt;0\}为支集
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault">u</span><span class="mord mathdefault">p</span><span class="mord mathdefault">p</span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathdefault">u</span><span class="mord">∣</span><span class="mord mathdefault">u</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">μ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">u</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mclose">}</span><span class="mord cjk_fallback">为</span><span class="mord cjk_fallback">支</span><span class="mord cjk_fallback">集</span></span></span></span></span></p>
+<p>当KerA≠Φ时，称A为<strong>正规模糊集</strong></p>
+</li>
+</ul>
+<h3 id="性质"><a class="markdownIt-Anchor" href="#性质"></a> 性质</h3>
+<ul>
+<li>
+<p>设A，B ∈F(U)，则：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>∪</mo><mi>B</mi><mo stretchy="false">)</mo><mi>λ</mi><mo>=</mo><msub><mi>A</mi><mi>λ</mi></msub><mo>∪</mo><msub><mi>B</mi><mi>λ</mi></msub></mrow><annotation encoding="application/x-tex">(A∪B)λ=A_λ∪B_λ
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">)</span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">λ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.05017em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">λ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo stretchy="false">)</mo><mi>λ</mi><mo>=</mo><msub><mi>A</mi><mi>λ</mi></msub><mo>∩</mo><msub><mi>B</mi><mi>λ</mi></msub></mrow><annotation encoding="application/x-tex">(A∩B)λ=A_λ∩B_λ
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">)</span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">λ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.05017em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">λ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+</li>
+<li>
+<p>若λ1, λ2∈[0,1]，且λ1&lt;λ2 ，则：</p>
+<ul>
+<li>阈值λ越大，其水平截集Aλ越小，当λ＝1时，Aλ最小，称它为<strong>模糊集的核</strong>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="举例-4"><a class="markdownIt-Anchor" href="#举例-4"></a> 举例</h3>
+<img src="/MyImages/image-20200406123053635.png" alt="image-20200406123053635" style="zoom:50%;" />
+<h2 id="模糊度"><a class="markdownIt-Anchor" href="#模糊度"></a> 模糊度</h2>
+<p>模糊度是模糊集的模糊程度的一种度量</p>
+<h3 id="定义-3"><a class="markdownIt-Anchor" href="#定义-3"></a> 定义</h3>
+<ul>
+<li>设A∈F(U)，d是定义在F(U)上的一个实函数，如果它满足以下条件：
+<ul>
+<li>对任意A∈F(U)，有d(A)∈[0,1];</li>
+<li>当且仅当A是一个普通集合时，d(A)=0；</li>
+<li>若A的隶属函数μA(u)≡0.5，则d(A)=1;</li>
+<li>若A,B∈F(U),且对任意u∈U,满足μB(u)≤μA(u)≤0.5或者μB(u)≥μA(u)≥0.5则有d(B)≤d(A)</li>
+<li>对任意A∈F(U) ，有<strong>d(A)=d(¬A)则称d为定义在F(U)上的一个模糊度</strong>，d(A)称为A的模糊度。</li>
+</ul>
+</li>
+</ul>
+<h3 id="直观含义"><a class="markdownIt-Anchor" href="#直观含义"></a> 直观含义</h3>
+<ul>
+<li>是[0,1]上一个数；</li>
+<li>普通集合的模糊度是0，表示所刻画的概念不模糊；</li>
+<li>越靠近0.5就越模糊，当μA(u)＝0.5时最模糊；</li>
+<li>模糊集A与其补集¬A有相同的模糊度。</li>
+</ul>
+<h3 id="计算方法"><a class="markdownIt-Anchor" href="#计算方法"></a> 计算方法</h3>
+<ul>
+<li>
+<p>海明模糊度</p>
+<img src="/MyImages/image-20200406123425562.png" alt="image-20200406123425562" style="zoom:33%;" />
+</li>
+<li>
+<p>欧几里得模糊度</p>
+<img src="/MyImages/image-20200406123535043.png" alt="image-20200406123535043" style="zoom:33%;" />
+</li>
+<li>
+<p>明可夫斯基模糊度</p>
+<img src="/MyImages/image-20200406123555807.png" alt="image-20200406123555807" style="zoom:50%;" />
+</li>
+<li>
+<p>香农模糊度</p>
+<img src="/MyImages/image-20200406123627009.png" alt="image-20200406123627009" style="zoom:50%;" />
+<p>其中S(x)是定义在[0,1]上的香农函数，即</p>
+<img src="/MyImages/image-20200406123654375.png" alt="image-20200406123654375" style="zoom: 50%;" />
+</li>
+</ul>
+<h3 id="举例-5"><a class="markdownIt-Anchor" href="#举例-5"></a> 举例</h3>
+<img src="/MyImages/55.png" style="zoom:50%;" />
+<h2 id="模糊数"><a class="markdownIt-Anchor" href="#模糊数"></a> 模糊数</h2>
+<h3 id="定义-4"><a class="markdownIt-Anchor" href="#定义-4"></a> 定义</h3>
+<ul>
+<li>
+<p>如果实数域R上的模糊集A的隶属函数μA(u)在R上连续且具有如下性质：</p>
+<ul>
+<li>A是凸模糊集，即对任意λ∈[0,1], A<sub>λ</sub>是闭区间；</li>
+<li>A是正规模糊集，即存在u∈R，使μA(u)＝1</li>
+</ul>
+<p>则称A为一个模糊数</p>
+</li>
+<li>
+<p>直观上模糊数的隶属函数是单峰的，且峰顶使隶属度为1</p>
+<img src="/MyImages/image-20200406124050636.png" alt="image-20200406124050636" style="zoom:50%;" />
+</li>
+</ul>
+<h4 id="举例-6"><a class="markdownIt-Anchor" href="#举例-6"></a> 举例</h4>
+<ul>
+<li>
+<p>6左右 可表示为</p>
+<img src="/MyImages/image-20200406124132462.png" alt="image-20200406124132462" style="zoom: 50%;" />
+</li>
+</ul>
+<h3 id="模糊数的运算"><a class="markdownIt-Anchor" href="#模糊数的运算"></a> 模糊数的运算</h3>
+<ul>
+<li>
+<p>设θ是实数域R上的一种二元运算，A和B为任意的模糊数，则模糊数间的运算定义为</p>
+<img src="/MyImages/image-20200406124314724.png" alt="image-20200406124314724" style="zoom:50%;" />
+</li>
+<li>
+<p>两个模糊数之间的运算，实际上是对应元素的隶属度先取极小，再取极大</p>
+</li>
+<li>
+<p><strong>模糊数乘或者除的结果可能不是一个模糊数</strong></p>
+</li>
+</ul>
+<h4 id="举例-7"><a class="markdownIt-Anchor" href="#举例-7"></a> 举例</h4>
+<ul>
+<li>
+<p>设有<br />
+3左右=0.5/2+1/3+0.6/4<br />
+2左右=0.4/1+1/2+0.7/3</p>
+</li>
+<li>
+<img src="/MyImages/image-20200406124451302.png" alt="image-20200406124451302" style="zoom:33%;" />
+</li>
+<li>
+<img src="/MyImages/image-20200406124522874.png" alt="image-20200406124522874" style="zoom:33%;" />
+</li>
+</ul>
+<h2 id="模糊关系及其合成"><a class="markdownIt-Anchor" href="#模糊关系及其合成"></a> 模糊关系及其合成</h2>
+<h3 id="模糊关系"><a class="markdownIt-Anchor" href="#模糊关系"></a> 模糊关系</h3>
+<ul>
+<li>
+<p>Ai是Ui(i=1,2,…,n)上的模糊集，则称</p>
+<img src="/MyImages/image-20200406125029088.png" alt="image-20200406125029088" style="zoom:50%;" />
+<p>为A1,A2,…,An的<strong>笛卡儿乘积</strong>，它是U1×U2×…×Un上的一个模糊集。</p>
+</li>
+<li>
+<p>在U1×U2×…×Un上一个n元模糊关系R是指以U1×U2×…×Un为论域的一个模糊集，记为</p>
+<img src="/MyImages/image-20200406125055086.png" alt="image-20200406125055086" style="zoom:50%;" />
+</li>
+</ul>
+<h3 id="模糊矩阵"><a class="markdownIt-Anchor" href="#模糊矩阵"></a> 模糊矩阵</h3>
+<p>一般地说，当U和V都是有限论域时，其模糊关系R可用一个模糊矩阵表示。<br />
+U={u1,u2,…,um}<br />
+V={v1,v2,…,vn}<br />
+则U×V上的模糊关系为</p>
+<img src="/MyImages/image-20200406125208806.png" alt="image-20200406125208806" style="zoom:50%;" />
+<h3 id="模糊关系的合成"><a class="markdownIt-Anchor" href="#模糊关系的合成"></a> 模糊关系的合成</h3>
+<img src="/MyImages/image-20200408122253743.png" alt="image-20200408122253743" style="zoom:50%;" />
+<h3 id="举例-8"><a class="markdownIt-Anchor" href="#举例-8"></a> 举例</h3>
+<img src="/MyImages/56.png" style="zoom:67%;" />
+<h2 id="模糊变换"><a class="markdownIt-Anchor" href="#模糊变换"></a> 模糊变换</h2>
+<ul>
+<li>定义2.24 设A={μA(u1),μA(u2),…,μA(un)}是论域U上的模糊集，R是U×V上的模糊关系，则A°R=B称为模糊变换</li>
+</ul>
+<h3 id="举例-9"><a class="markdownIt-Anchor" href="#举例-9"></a> 举例</h3>
+<img src="/MyImages/57.png" style="zoom:67%;" />
+<h2 id="常见隶属函数"><a class="markdownIt-Anchor" href="#常见隶属函数"></a> 常见隶属函数</h2>
+<h3 id="正态分布"><a class="markdownIt-Anchor" href="#正态分布"></a> 正态分布</h3>
+<img src="/MyImages/image-20200408122715676.png" alt="image-20200408122715676" style="zoom: 50%;" />
+<h3 id="升正态分布"><a class="markdownIt-Anchor" href="#升正态分布"></a> 升正态分布</h3>
+<img src="/MyImages/image-20200408122741696.png" alt="image-20200408122741696" style="zoom: 50%;" />
+<h3 id="降正态分布"><a class="markdownIt-Anchor" href="#降正态分布"></a> 降正态分布</h3>
+<img src="/MyImages/image-20200408122756735.png" alt="image-20200408122756735" style="zoom: 50%;" />
+<img src="/MyImages/58.png" style="zoom:67%;" />
+<h2 id="建立隶属函数"><a class="markdownIt-Anchor" href="#建立隶属函数"></a> 建立隶属函数</h2>
+<img src="/MyImages/image-20200408122945179.png" alt="image-20200408122945179" style="zoom:67%;" />
+<h1 id="模糊推理"><a class="markdownIt-Anchor" href="#模糊推理"></a> 模糊推理</h1>
+<h2 id="模糊命题"><a class="markdownIt-Anchor" href="#模糊命题"></a> 模糊命题</h2>
+<ul>
+<li>
+<p>含有模糊概念、模糊数据的语句称为<strong>模糊命题</strong></p>
+</li>
+<li>
+<p>一般形式为</p>
+<ul>
+<li>
+<p>x		is 	A</p>
+</li>
+<li>
+<p>或 x	    is	    A	(CF)</p>
+</li>
+<li>
+<p>其中<strong>A是模糊概念或者模糊数</strong>，用相应的模糊集及隶属函数刻画；</p>
+<p><strong>x是论域上的变量</strong>，用以代表所论述对象的属性；</p>
+<p><strong>CF是该模糊命题的可信度</strong>，它既可以是一个确定的数，也可以是一个模糊数或者模糊语言值。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="模糊知识的表示"><a class="markdownIt-Anchor" href="#模糊知识的表示"></a> 模糊知识的表示</h2>
+<ul>
+<li>
+<p>模糊产生式 IF		E	THEN		H	(CF,λ)</p>
+<ul>
+<li>E是用模糊命题表示的模糊条件；</li>
+<li>H是用模糊命题表示的模糊结论；</li>
+<li>CF是知识的可信度因子，它既可以是一个确定的数，也可以是一个模糊数或模糊语言值。</li>
+<li>λ是匹配度的阈值，用以指出知识被运用的条件</li>
+<li>例如IF	x  is  A  THEN  y is B  (CF,λ)</li>
+</ul>
+</li>
+<li>
+<p>证据H也可以用模糊命题表示</p>
+<p>例如 x 		is 			A’</p>
+</li>
+</ul>
+<h2 id="模糊匹配与冲突消解"><a class="markdownIt-Anchor" href="#模糊匹配与冲突消解"></a> 模糊匹配与冲突消解</h2>
+<ul>
+<li>知识的前提条件中的A与证据中的A’不一定完全相同，因此首先必须考虑匹配问题。</li>
+<li>常用的计算两个模糊集或模糊概念的相似程度（<strong>匹配度</strong>)的方法主要有贴近度、语义距离及相似度等</li>
+</ul>
+<h3 id="模糊匹配"><a class="markdownIt-Anchor" href="#模糊匹配"></a> 模糊匹配</h3>
+<h4 id="贴近度"><a class="markdownIt-Anchor" href="#贴近度"></a> 贴近度</h4>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">[</mo><mi>A</mi><mi mathvariant="normal">∙</mi><mi>B</mi><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>A</mi><mo>⊙</mo><mi>B</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">(A,B)= [A∙B+(1-A⊙B)] /2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault">A</span><span class="mord">∙</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊙</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">)</span><span class="mclose">]</span><span class="mord">/</span><span class="mord">2</span></span></span></span></span></p>
+<p>其中<img src="/MyImages/image-20200409092941920.png" alt="image-20200409092941920" style="zoom:50%;" /></p>
+<h4 id="语义距离"><a class="markdownIt-Anchor" href="#语义距离"></a> 语义距离</h4>
+<p><img src="/MyImages/59.png" alt="" /></p>
+<h4 id="相似度"><a class="markdownIt-Anchor" href="#相似度"></a> 相似度</h4>
+<img src="/MyImages/60.png" style="zoom:67%;" />
+<img src="/MyImages/61.png" style="zoom:67%;" />
+<h4 id="举例-10"><a class="markdownIt-Anchor" href="#举例-10"></a> 举例</h4>
+<img src="/MyImages/image-20200409093854661.png" alt="image-20200409093854661" style="zoom:67%;" />
+<h4 id="复合条件的模糊匹配"><a class="markdownIt-Anchor" href="#复合条件的模糊匹配"></a> 复合条件的模糊匹配</h4>
+<ul>
+<li>
+<p>例如对复合条件<br />
+E=x1 is A1 AND x2 is A2 AND x3 is A3<br />
+及相应证据E’:<br />
+x1 is A’1 , x2 is A’2 , x3 is A’3</p>
+<p>分别算出Ai与A’i的匹配度δmatch(Ai,A’i),i=1,2,3</p>
+</li>
+</ul>
+<h4 id="方法"><a class="markdownIt-Anchor" href="#方法"></a> 方法</h4>
+<p>目前常用的方法有“取极小”和“相乘”等</p>
+<ul>
+<li>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>δ</mi><mi>m</mi><mi>a</mi><mi>t</mi><mi>c</mi><mi>h</mi><mo stretchy="false">(</mo><mi>E</mi><mo separator="true">,</mo><mi>E</mi><mi mathvariant="normal">’</mi><mo stretchy="false">)</mo><mo>=</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo stretchy="false">{</mo><mi>δ</mi><mi>m</mi><mi>a</mi><mi>t</mi><mi>c</mi><mi>h</mi><mo stretchy="false">(</mo><mi>A</mi><mn>1</mn><mo separator="true">,</mo><mi>A</mi><mi mathvariant="normal">’</mi><mn>1</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>δ</mi><mi>m</mi><mi>a</mi><mi>t</mi><mi>c</mi><mi>h</mi><mo stretchy="false">(</mo><mi>A</mi><mn>2</mn><mo separator="true">,</mo><mi>A</mi><mi mathvariant="normal">’</mi><mn>2</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>δ</mi><mi>m</mi><mi>a</mi><mi>t</mi><mi>c</mi><mi>h</mi><mo stretchy="false">(</mo><mi>A</mi><mn>3</mn><mo separator="true">,</mo><mi>A</mi><mi mathvariant="normal">’</mi><mn>3</mn><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">δmatch(E,E’)=min\{δmatch(A1,A’1),δmatch(A2,A’2), δmatch(A3,A’3)\}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">’</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">{</span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mord">’</span><span class="mord">1</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mord">’</span><span class="mord">2</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mord">’</span><span class="mord">3</span><span class="mclose">)</span><span class="mclose">}</span></span></span></span></span></p>
+</li>
+<li>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>δ</mi><mi>m</mi><mi>a</mi><mi>t</mi><mi>c</mi><mi>h</mi><mo stretchy="false">(</mo><mi>E</mi><mo separator="true">,</mo><mi>E</mi><mi mathvariant="normal">’</mi><mo stretchy="false">)</mo><mo>=</mo><mi>δ</mi><mi>m</mi><mi>a</mi><mi>t</mi><mi>c</mi><mi>h</mi><mo stretchy="false">(</mo><mi>A</mi><mn>1</mn><mo separator="true">,</mo><mi>A</mi><mi mathvariant="normal">’</mi><mn>1</mn><mo stretchy="false">)</mo><mo>×</mo><mi>δ</mi><mi>m</mi><mi>a</mi><mi>t</mi><mi>c</mi><mi>h</mi><mo stretchy="false">(</mo><mi>A</mi><mn>2</mn><mo separator="true">,</mo><mi>A</mi><mi mathvariant="normal">’</mi><mn>2</mn><mo stretchy="false">)</mo><mo>×</mo><mi>δ</mi><mi>m</mi><mi>a</mi><mi>t</mi><mi>c</mi><mi>h</mi><mo stretchy="false">(</mo><mi>A</mi><mn>3</mn><mo separator="true">,</mo><mi>A</mi><mi mathvariant="normal">’</mi><mn>3</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">δmatch(E,E’)=δmatch(A1,A’1)×δmatch(A2,A’2)×δmatch(A3,A’3)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">’</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mord">’</span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mord">’</span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mord">’</span><span class="mord">3</span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+<li>
+<p>检查总匹配度是否满足阈值条件，如果满足就可以匹配，否则为不可匹配</p>
+</li>
+</ul>
+<h3 id="冲突消解"><a class="markdownIt-Anchor" href="#冲突消解"></a> 冲突消解</h3>
+<p><img src="/MyImages/image-20200409094534772.png" alt="image-20200409094534772" style="zoom: 67%;" /><img src="/MyImages/image-20200409095555144.png" alt="image-20200409095555144" /><img src="/MyImages/image-20200409094548468.png" alt="image-20200409094548468" style="zoom:50%;" /></p>
+<p><img src="/MyImages/image-20200409095623809.png" alt="image-20200409095623809" style="zoom:50%;" /><img src="/MyImages/image-20200409095639862.png" alt="image-20200409095639862" /></p>
+<p><img src="/MyImages/image-20200409095639862.png" alt="image-20200409095639862" /></p>
+<h2 id="模糊推理的基本模式"><a class="markdownIt-Anchor" href="#模糊推理的基本模式"></a> 模糊推理的基本模式</h2>
+<h3 id="模糊假言推理"><a class="markdownIt-Anchor" href="#模糊假言推理"></a> 模糊假言推理</h3>
+<img src="/MyImages/image-20200409095802098.png" alt="image-20200409095802098" style="zoom:50%;" />
+<h3 id="模糊拒取式推理"><a class="markdownIt-Anchor" href="#模糊拒取式推理"></a> 模糊拒取式推理</h3>
+<img src="/MyImages/image-20200409095908272.png" alt="image-20200409095908272" style="zoom:50%;" />
+<h2 id="简单模糊推理"><a class="markdownIt-Anchor" href="#简单模糊推理"></a> 简单模糊推理</h2>
+<ul>
+<li>知识中只含有简单条件，且不带可信度因子的模糊推理称为<strong>简单模糊推理</strong>。</li>
+</ul>
+<h3 id="合成推理规则"><a class="markdownIt-Anchor" href="#合成推理规则"></a> 合成推理规则</h3>
+<img src="/MyImages/image-20200409100141443.png" alt="image-20200409100141443" style="zoom:50%;" />
+<h3 id="构造模糊关系r的方法"><a class="markdownIt-Anchor" href="#构造模糊关系r的方法"></a> 构造模糊关系R的方法</h3>
+<h4 id="img-srcmyimages62png-stylezoom-67"><a class="markdownIt-Anchor" href="#img-srcmyimages62png-stylezoom-67"></a> <img src="/MyImages/62.png" style="zoom: 67%;" /></h4>
+<img src="/MyImages/image-20200409100915608.png" alt="image-20200409100915608" style="zoom:50%;" />
+<h4 id="举例-11"><a class="markdownIt-Anchor" href="#举例-11"></a> 举例</h4>
+<img src="/MyImages/image-20200409101021989.png" alt="image-20200409101021989" style="zoom:50%;" />
+<ul>
+<li>
+<img src="/MyImages/image-20200409101040426.png" alt="image-20200409101040426" style="zoom:50%;" />
+<p>​	$$R_m(U_1V_3)=max(min(1,0.4),(1-1))=0.4$$</p>
+<p>​	$$R_a(U_2,V_3) = min(1,(1-U_2+V_3)) = 0.9$$</p>
+</li>
+<li>
+<img src="/MyImages/63.png" style="zoom:50%;" /></li>
+</ul>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/04/10/%E7%AC%AC5%E7%AB%A0%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%8E%A8%E7%90%86/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/03/30/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E8%AF%BE%E5%A0%82%E7%9B%AE%E5%BD%95/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">数据挖掘课堂目录</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        John Doe
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>
