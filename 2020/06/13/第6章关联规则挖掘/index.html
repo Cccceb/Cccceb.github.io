@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    第6章关联规则挖掘 |  Hexo
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-第6章关联规则挖掘" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  第6章关联规则挖掘
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/13/%E7%AC%AC6%E7%AB%A0%E5%85%B3%E8%81%94%E8%A7%84%E5%88%99%E6%8C%96%E6%8E%98/" class="article-date">
+  <time datetime="2020-06-13T05:07:43.405Z" itemprop="datePublished">2020-06-13</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">4.2k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">15分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="问题定义"><a class="markdownIt-Anchor" href="#问题定义"></a> 问题定义</h1>
+<h2 id="二元表示"><a class="markdownIt-Anchor" href="#二元表示"></a> 二元表示</h2>
+<img src="/MyImages/image-20200418182019162.png" alt="image-20200418182019162" style="zoom:67%;" />
+<ul>
+<li><strong>每一行称为一个事务</strong></li>
+<li>每一列称为一个项，项可以用<strong>二元变量</strong>表示，如果在事物中出现，则它的值为1，否则为0.因通常关系出现的事物，所以是<strong>非对称的二元变量</strong></li>
+</ul>
+<h2 id="项集和支持度计数"><a class="markdownIt-Anchor" href="#项集和支持度计数"></a> 项集和支持度计数</h2>
+<ul>
+<li><strong>项集</strong>是包含0个或多个项的集合</li>
+<li>设<strong>I是所有项的集合</strong></li>
+<li><strong>设T是所有事务的集合</strong>，每个事务ti包含的项集都是I的子集</li>
+<li><strong>事务的宽度</strong>：定义为事务中出现的项的个数</li>
+</ul>
+<h3 id="项集的支持度计数"><a class="markdownIt-Anchor" href="#项集的支持度计数"></a> 项集的支持度计数</h3>
+<ul>
+<li>
+<p><strong>包含特定项集的事务个数</strong></p>
+</li>
+<li>
+<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 42: …t_i,t_i\in T\}|$̲$,其中||表示取元素个数
+
+'>\sigma(X)=|\{t_i|X\subset t_i,t_i\in T\}|$$,其中||表示取元素个数
+
+</p>
+</li>
+<li>
+<p><strong>关联规则是型如X-&gt;Y的蕴含表达式</strong>，其中X和Y是不相交的项集，即$$X\and Y=\empty$$.</p>
+</li>
+<li>
+<p>关联规则的强度可以用它的<strong>支持度</strong>和<strong>置信度</strong>衡量。</p>
+</li>
+<li>
+<p><strong>支持度确定规则可以用于给定数据集的频繁程度</strong>*</p>
+<ul>
+<li>
+<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \or at position 25: …=\frac{\sigma(X\̲o̲r̲ ̲Y)}{N}
+'>s(X\to Y)=\frac{\sigma(X\or Y)}{N}
+</p>
+</li>
+<li>支持度很低的规则可能只是偶然出现，因此支持度常用来删去无用的规则</li>
+</ul>
+</li>
+<li>
+<p><strong>置信度确定Y在包含X的事务中出现的频繁程度</strong></p>
+<ul>
+<li>
+<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \or at position 25: …=\frac{\sigma(X\̲o̲r̲ ̲Y)}{\sigma(X)}
+'>c(X\to Y)=\frac{\sigma(X\or Y)}{\sigma(X)}
+</p>
+</li>
+<li>置信度衡量通过规则进行推理的可靠性</li>
+<li>对于给定规则X→Y，置信度越高，Y在包含X的事务中出现的可能性就越大</li>
+</ul>
+</li>
+</ul>
+<h3 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h3>
+<img src="/MyImages/image-20200418191330794.png" alt="image-20200418191330794" style="zoom:80%;" />
+<h2 id="关联规则挖掘问题的形式描述"><a class="markdownIt-Anchor" href="#关联规则挖掘问题的形式描述"></a> 关联规则挖掘问题的形式描述</h2>
+<h3 id="关联规则的发现"><a class="markdownIt-Anchor" href="#关联规则的发现"></a> 关联规则的发现</h3>
+<ul>
+<li>指定事务的集合T,关联规则发现是指找出支持度大于等于minsup并且置信度大于等于minconf的所有规则,其中 minrup和 mincorf是对应的支持度和置信度阈值。</li>
+</ul>
+<h3 id="关联规则的挖掘算法"><a class="markdownIt-Anchor" href="#关联规则的挖掘算法"></a> 关联规则的挖掘算法</h3>
+<ul>
+<li>
+<p>如果枚举所有规则，计算其支持度和置信度，代价太高</p>
+<ul>
+<li><strong>包含d个项的数据集提取的可能规则的总数为$$R=3<sup>d-2</sup>{d+1}+1$$</strong></li>
+</ul>
+</li>
+<li>
+<p>考虑进行剪枝，首先减去包含不频繁项集的规则</p>
+<ul>
+<li>
+<p>例如对于项集{啤酒,尿布,牛奶}，存在规则</p>
+<p>{啤酒,尿布}→{午奶}，{啤源,牛奶}一{尿布},</p>
+<p>{尿布,牛奶}→{啤酒}，{啤酒→{尿布,牛奶},</p>
+<p>{牛奶}→{啤酒.尿布}，{尿布}→{酒,牛奶}</p>
+</li>
+<li>
+<p>如果{啤酒,尿布,牛奶}非频繁，则立即剪掉6个候选规则</p>
+</li>
+</ul>
+</li>
+<li>
+<p>因此，将关联规则挖掘分解成两个子任务</p>
+<ul>
+<li><strong>频繁项集产生</strong>：目标是发现满足最小支持度阈值的所有项集,这些项集称作频繁项集</li>
+<li><strong>规则的产生</strong>：目标是从上一步发现的频繁项集中提取所有高置信度的规则,这些规则称作强规则</li>
+</ul>
+</li>
+</ul>
+<h1 id="频繁项集的产生"><a class="markdownIt-Anchor" href="#频繁项集的产生"></a> 频繁项集的产生</h1>
+<h2 id="先验原理"><a class="markdownIt-Anchor" href="#先验原理"></a> 先验原理</h2>
+<h3 id="定理如果一个项集是频繁的那么他的所有子集一定也是频繁的"><a class="markdownIt-Anchor" href="#定理如果一个项集是频繁的那么他的所有子集一定也是频繁的"></a> 定理：如果一个项集是频繁的，那么他的所有子集一定也是频繁的</h3>
+<ul>
+<li>剪枝：一旦发现一个项集是非频繁的，那么它的所有超集也一定是非频繁的。</li>
+<li>这个剪枝依赖于：<strong>一个项集的支持度绝不会超过它的子集的支持度</strong> (支持度的反单调性)</li>
+</ul>
+<h3 id="单调性"><a class="markdownIt-Anchor" href="#单调性"></a> 单调性</h3>
+<ul>
+<li>令I是项的集合，$$J=2^I$$是I的幂集。度量f是单调的
+<ul>
+<li>若$$\forall X,Y\in J:(X\subset Y)\to f(X)\leq f(Y)$$，则称f是单调的</li>
+<li>若$$\forall X,Y\in J:(X\subset Y)\to f(Y)\leq f(X)$$，则称f是反单调的</li>
+</ul>
+</li>
+<li><strong>任何具有反单调性的度量都能够直接结合到挖掘算法中</strong></li>
+</ul>
+<img src="/MyImages/image-20200425141506188.png" alt="image-20200425141506188" style="zoom: 33%;" />
+<h2 id="apriori-算法的频繁项集的产生"><a class="markdownIt-Anchor" href="#apriori-算法的频繁项集的产生"></a> Apriori 算法的频繁项集的产生</h2>
+<ul>
+<li>使用基于支持度的剪枝技术，控制候选项集的指数增长</li>
+</ul>
+<img src="/MyImages/image-20200425125637999.png" alt="image-20200425125637999" style="zoom: 50%;" />
+<h3 id="算法"><a class="markdownIt-Anchor" href="#算法"></a> 算法</h3>
+<ul>
+<li>初始通过单遍扫描数据集，确定每个项的支持度。一旦完成这一步，就得到所有频繁1-项集的集合F<sub>1</sub></li>
+<li>接下来，该算法使用上一次迭代发现的频繁(k-1)项集，产生新的候选k-项集。候选的产生使用apriori-gen函数实现</li>
+<li>为了对候选项的支持度计数，算法需要再次扫描一遍数据集。使用子集函数确定包含在每一个事务t中的C<sub>k</sub>中的所有候选k-项集。</li>
+<li>计算候选项的支持度计数后，算法将删去支持度计数小于minsup的所有候选项集</li>
+<li>当没有新的频繁项集产生，即$$F_k=\empty$$，算法结束</li>
+</ul>
+<h3 id="特点"><a class="markdownIt-Anchor" href="#特点"></a> 特点</h3>
+<ul>
+<li>逐层进行，从频繁1-项集到最长的频繁项集，每次遍历项集格中的一层</li>
+<li>使用产生-测试策略来发现频繁项集</li>
+<li>该算法总迭代次数是k<sub>max</sub>+1，其中k<sub>max</sub>是频繁项集的最大长度</li>
+</ul>
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
+<ul>
+<li>
+<p>如何产生候选集</p>
+<ol>
+<li>自合并(仿照自连接，必须有相同的部分)</li>
+<li>修剪pruning：如果一个候选集是频繁的，那么他的所有非空子集也要求是频繁的，否则删除</li>
+</ol>
+</li>
+<li>
+<p>举例</p>
+<p>L3={abc, abd, acd, ace, bcd}<br />
+Self-joining: L3*L3<br />
+abcd from abc and abd<br />
+acde from acd and ace<br />
+Pruning:  <strong>acde is removed because ade is not in L3</strong><br />
+C4={abcd}</p>
+</li>
+<li>
+<p>存在O(NMw)次比较，其中N是事务数，M=2<sup>k</sup>-1是候选项集数，而w是事务的最大宽度</p>
+</li>
+<li>
+<p><strong>关于修剪</strong></p>
+<ul>
+<li>满足规则$$\forall X,Y:(X\sub Y)\to s(X)\geq (Y)$$项集的支持度一定小于任意子集的支持度</li>
+</ul>
+</li>
+<li>
+<p>降低产生频繁项集的计算复杂度</p>
+<ul>
+<li>减少候选项集的数目</li>
+<li>减少比较次数
+<ul>
+<li>可以使用高级的数据结构</li>
+<li>压缩数据集</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="候选的产生与剪枝"><a class="markdownIt-Anchor" href="#候选的产生与剪枝"></a> 候选的产生与剪枝</h2>
+<ul>
+<li>对于候选k-项集，我们并不需要检查给定候选项集的所有k格子集。如果k个子集中的m个用来产生候选项集，则再候选项集剪枝时只需要检查剩下的k-m个子集</li>
+</ul>
+<h3 id="蛮力法"><a class="markdownIt-Anchor" href="#蛮力法"></a> 蛮力法</h3>
+<ul>
+<li>如果要产生k项集，那么先拿出$$C_d^k$$个，其中d是项的总数。之后再剪枝</li>
+</ul>
+<h3 id="fk-1f1法"><a class="markdownIt-Anchor" href="#fk-1f1法"></a> F<sub>k-1</sub>×F<sub>1</sub>法</h3>
+<ul>
+<li><strong>问题</strong>是不可避免产生重复的候选项</li>
+<li><strong>解决</strong>：确保每个频繁项集中的项以字典序存储，每个频繁(k-1)-项集X只用字典序比X中所有的项都大的频繁项进行扩展。例如,项集(面包,尿布)可以用项集(牛奶)扩展,因为&quot;牛奶&quot;（Mik）在字典序下比&quot;面包&quot;（Bread)和&quot;尿布&quot;(Dapers)都大．然而,不应当用(面包]扩展(尿布,牛奶|或用(尿布)扩展(面包,牛奶),因为它们违反了字典序条件。</li>
+</ul>
+<h3 id="fk-1fk-1法"><a class="markdownIt-Anchor" href="#fk-1fk-1法"></a> F<sub>k-1</sub>×F<sub>k-1</sub>法</h3>
+<ul>
+<li>候选产生过程是合并一对频繁(k-1)-项集，仅当他们的前k-2项都相同</li>
+</ul>
+<h2 id="支持度计数"><a class="markdownIt-Anchor" href="#支持度计数"></a> 支持度计数</h2>
+<h3 id="枚举事务t的所有3个项的子集"><a class="markdownIt-Anchor" href="#枚举事务t的所有3个项的子集"></a> 枚举事务t的所有3个项的子集</h3>
+<img src="/MyImages/image-20200425175458505.png" alt="image-20200425175458505" style="zoom:50%;" />
+<ul>
+<li>所有3-项集一定以项1、2和3开始，不必构造以5和6开始的3-项集。因为事务t中只有两个项的标号大于等于5</li>
+</ul>
+<h3 id="使用hash树进行支持度计数"><a class="markdownIt-Anchor" href="#使用hash树进行支持度计数"></a> 使用Hash树进行支持度计数</h3>
+<ul>
+<li>
+<p>在Apriori算法中，候选项集划分为不同的捅，并存放在Hash树种。在支持度计数期间，包含在事务种的项集也散列到相应的桶中。这种方法不是将事务中的每个项集与所有的候选项集进行比较，而是将它与同一个桶内的候选项集纪念性比较</p>
+<img src="/MyImages/image-20200425180039465.png" alt="image-20200425180039465" style="zoom: 50%;" />
+</li>
+<li>
+<p><img src="/MyImages/image-20200425181055739.png" alt="image-20200425181055739" style="zoom:67%;" />以$$h§=pMod3$$来确定应该沿着哪个分支向下</p>
+</li>
+<li>
+<p><strong>更新候选项集的支持度计数，遍历Hash树</strong>：例如对事务t={1,2,3,5,6}进行更新，所有包含属于t的候选3-项集的叶结点都至少访问一次（<strong>包含在t中的候选3-项集必然以1，2，或3开始</strong>）</p>
+<img src="/MyImages/image-20200425183055736.png" alt="image-20200425183055736" style="zoom: 67%;" />
+<ul>
+<li>本小节中第一图的第一层前缀结构所示。这样,在Hash 树的根结点,事务中的项1.2和3将分别散列,项 1被散列到根结点的左千女,项2被散列到中间子女,而项3被散列到右子女。在树的下一层,事务根据图6-9中的第二层结构列出的第二项进行散列。例如,在根结点散列项1之后,散列事务的项2、3和5.项2和5散列到中间子女,而3散列到右子女,|如上图所示。维续该过程,直至到达 Hash 树的叶结点。存放在被访闻的叶结点中的候选项集与事务进行比较,如果候选项集是该事务的子集,则增加它的支持度计数</li>
+</ul>
+</li>
+<li>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>查找一个候选的花费是O(k)</li>
+<li>将候选项集散列到Hash树的开销为$$O(\sum_{k=2}^wk|C_k|)$$</li>
+<li>剪枝过程中需要检验每个候选k-项集的k-2个子集是否频繁，所以复杂度为$$O(\sum_{k=2}^wk(k-2)|C_k|)$$</li>
+<li>支持度计数的开销为$$O(N\sum_kC_w^k\alpha_k)$$其中w是事务的最大宽度，$$\alpha_k$$是更新Hash树中一个候选k-项集的支持度计数的开销</li>
+</ul>
+</li>
+</ul>
+<h1 id="规则产生"><a class="markdownIt-Anchor" href="#规则产生"></a> 规则产生</h1>
+<h2 id="基于置信度的剪枝"><a class="markdownIt-Anchor" href="#基于置信度的剪枝"></a> 基于置信度的剪枝</h2>
+<h3 id="定理"><a class="markdownIt-Anchor" href="#定理"></a> 定理</h3>
+<p><strong>如果规则X→ Y-X不满足置信度阖值,则形如X’→Y-X’的规则一定也不满足置信度阈值,其中X’是X的子集。</strong></p>
+<h2 id="apriori算法中规则的产生"><a class="markdownIt-Anchor" href="#apriori算法中规则的产生"></a> Apriori算法中规则的产生</h2>
+<ul>
+<li>使用逐层方法产生关联规则，其中每层对应于规则后件中的项数。</li>
+</ul>
+<img src="/MyImages/image-20200425190441649.png" alt="image-20200425190441649" style="zoom: 67%;" />
+<ul>
+<li>初始，提取规则后件只含一个项的所有高置信度规则。例如$${acd}\to{b}和{abd}\to{c}$$</li>
+<li>合并后后件得到{ad}-&gt;{bc}</li>
+<li>对于低置信度规则，比如{bcd}-&gt;{a}，则可以丢弃后件包含a的所有规则，包括{ed}→{ab},{bd}→{ac},{bc}→{ad}和{d}→{abc}</li>
+</ul>
+<h2 id="举例-2"><a class="markdownIt-Anchor" href="#举例-2"></a> 举例</h2>
+<img src="/MyImages/image-20200425134410506.png" alt="image-20200425134410506" style="zoom: 50%;" />
+<h2 id="挑战"><a class="markdownIt-Anchor" href="#挑战"></a> 挑战</h2>
+<ul>
+<li>需要多次扫描数据库</li>
+<li>对候选集的每个非空子集都要扫描数据库计算置信度</li>
+</ul>
+<h2 id="改进方法"><a class="markdownIt-Anchor" href="#改进方法"></a> 改进方法</h2>
+<ul>
+<li>减少扫描次数
+<ul>
+<li>动态调整数据库的大小</li>
+</ul>
+</li>
+<li>减少候选集
+<ul>
+<li>使用剪枝pruning</li>
+</ul>
+</li>
+<li>加速置信度的计算
+<ul>
+<li>减少比较次数
+<ul>
+<li>使用特殊的数据结构存储候选集和数据库（比如哈希存储）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="频繁项集的紧凑表示"><a class="markdownIt-Anchor" href="#频繁项集的紧凑表示"></a> 频繁项集的紧凑表示</h1>
+<h2 id="极大频繁项集"><a class="markdownIt-Anchor" href="#极大频繁项集"></a> 极大频繁项集</h2>
+<ul>
+<li><strong>极大频繁项集</strong>：本身是频繁项集，但是他的直接超集都不是频繁的</li>
+<li>其他的频繁项集都是他们的子集，但是要确定子集的支持度仍然需要扫描数据库</li>
+</ul>
+<h2 id="闭频繁项集"><a class="markdownIt-Anchor" href="#闭频繁项集"></a> 闭频繁项集</h2>
+<ul>
+<li>提供频繁项集的一种最小表示，不丢失支持度信息</li>
+<li><strong>闭项集</strong> 项集X是闭的，如果他的直接超集都不具有和它相同的支持度计数</li>
+<li><strong>闭频繁项集</strong> 一个项集是频繁项集，如果它是闭的，并且它的支持度大于或等于最小支持度阈值</li>
+<li><strong>结论</strong>非闭频繁项集的支持度一定等于它的超集的最大支持度</li>
+<li><strong>结论</strong>。关联规则X→Y是冗余的,如果存在另一个关联规则X→Y使得两个规则的支持度和置信度都相同,其中,X’是 X的子集,并且Y‘是Y的子集。</li>
+<li><strong>结论</strong>极大频繁项集都是闭的，因为任何极大频繁项集都不可能与它的直接超集具有相同的支持度计数</li>
+</ul>
+<h1 id="产生频繁项集的其他方法"><a class="markdownIt-Anchor" href="#产生频繁项集的其他方法"></a> 产生频繁项集的其他方法</h1>
+<h2 id="apriori算法"><a class="markdownIt-Anchor" href="#apriori算法"></a> Apriori算法</h2>
+<ul>
+<li>使用先验原理对指数搜索空间进行剪枝，解决组合爆炸问题</li>
+<li>仍有不可低估的I/O开销，因为需要多次扫描数据库。如果事务数据宽度很大，那么Apriori算法的性能会显著下降</li>
+</ul>
+<h2 id="项集格的遍历"><a class="markdownIt-Anchor" href="#项集格的遍历"></a> 项集格的遍历</h2>
+<h3 id="一般到特殊与特殊到一般"><a class="markdownIt-Anchor" href="#一般到特殊与特殊到一般"></a> 一般到特殊与特殊到一般</h3>
+<ul>
+<li>Apriori算法使用一般到特殊的搜索策略，合并两个频繁(k-1)项集得到k-项集</li>
+<li><strong>特殊到一般</strong>：是寻找更特殊的频繁项集，这样利于发现稠密事务种的极大频繁项集
+<ul>
+<li>可以利用先验原理剪掉极大频繁项集的任意k-1项子集</li>
+<li>如果k-项集是非频繁的，那么要考察所有k-1项集</li>
+</ul>
+</li>
+</ul>
+<h3 id="等价类"><a class="markdownIt-Anchor" href="#等价类"></a> 等价类</h3>
+<ul>
+<li>
+<p>方法是先将格划分为两个不相交的结点组（或等价类）。频繁项集产生算法依次在每个等价类内搜索频繁项集。</p>
+</li>
+<li>
+<p>可以组成前缀树或后缀树</p>
+<img src="/MyImages/image-20200505162758331.png" alt="image-20200505162758331" style="zoom:50%;" />
+</li>
+</ul>
+<h3 id="宽度优先和深度优先"><a class="markdownIt-Anchor" href="#宽度优先和深度优先"></a> 宽度优先和深度优先</h3>
+<ul>
+<li>Apriori算法采用<strong>宽度优先</strong>的方法遍历格</li>
+<li><strong>深度优先</strong>的话，可以逐渐向下扩展直到到达一个非频繁结点
+<ul>
+<li>深度优先搜索用于寻找极大频繁项集，如果bcde是极大频繁项集，那么算法不必访问bd,be,c,d和e为根的子树了</li>
+</ul>
+</li>
+</ul>
+<h2 id="事务数据集的表示"><a class="markdownIt-Anchor" href="#事务数据集的表示"></a> 事务数据集的表示</h2>
+<img src="/MyImages/image-20200505164822195.png" alt="image-20200505164822195" style="zoom:50%;" />
+<h1 id="fp增长算法"><a class="markdownIt-Anchor" href="#fp增长算法"></a> FP增长算法</h1>
+<ul>
+<li>是一种输入数据的压缩表示，通过逐个读入事务，并把每个事务映射到FP树中的一条路径来构造，他们的枯井可能部分重叠，所以有压缩的效果。</li>
+<li>如果FP树足够小，能放在内存中，就可以加速扫描过程</li>
+</ul>
+<h2 id="fp树表示法"><a class="markdownIt-Anchor" href="#fp树表示法"></a> FP树表示法</h2>
+<img src="/MyImages/image-20200505170421773.png" alt="image-20200505170421773" style="zoom: 67%;" />
+<h3 id="方法"><a class="markdownIt-Anchor" href="#方法"></a> 方法</h3>
+<img src="/MyImages/image-20200505165945063.png" alt="image-20200505165945063" style="zoom: 67%;" />
+<ul>
+<li>
+<p>最好情况下：所有的事务都具有相同的项集,FP树只包含一条结点路径</p>
+</li>
+<li>
+<p>最坏情况下：当每个事务都具有唯一项集时,导致最坏情况发生,由于事务不包含任何共同项,FP树的大小实际上与原数据的大小一样。由于附加的存储空间导致FP树的存储需求更大</p>
+</li>
+<li>
+<p>树的大小与支持度排序方向也有关</p>
+</li>
+</ul>
+<h2 id="fp增长算法的频繁项集产生"><a class="markdownIt-Anchor" href="#fp增长算法的频繁项集产生"></a> FP增长算法的频繁项集产生</h2>
+<img src="/MyImages/image-20200505171055366.png" alt="image-20200505171055366" style="zoom:67%;" />
+<ul>
+<li>
+<img src="/MyImages/image-20200505171251980.png" alt="image-20200505171251980" style="zoom:67%;" />
+</li>
+<li>假设对发现所有以e结尾的频繁项集感兴趣。为了实现这个目的,必须首先检查项集[e)本身是否频繁。如果它是频繁的,则考虑发现以de结尾的频繁项集子问题,接下来是ce和ae.依次,每一个子问题可以迷一步划分为更小的子问题。通过合并这些子闻题得到的结果,就可以找到所有以e结尾的频繁项集。这种分治策略是FP增长算法采用的关键策略。</li>
+</ul>
+<h3 id="算法过程"><a class="markdownIt-Anchor" href="#算法过程"></a> 算法过程</h3>
+<ol>
+<li>
+<p>第一步收集包含e结点的所有路径。这些初始的路径称为前缀路径</p>
+</li>
+<li>
+<p>根据前缀路径，通过把与结点e相关联的支持度计数相加得到e的支持度计数。假定最小支持度为2，因为e的支持度为3所以他是频繁项集</p>
+</li>
+<li>
+<p>由于e是频繁的，因此需要发现以de,ce,be和ae结尾的频繁项集的子问题。为了解决这些子问题，必须将前缀路径转化为条件FP树，获取 condition FP-tree</p>
+<ol>
+<li>
+<p>首先，更新前缀路径上的支持度计数，因为某些计数包括那些不含项e的事务。例如，上图a中最右边路径$$null\to b:2\to c:2\to e:1$$，包含并不含项e的事务{b,c}。因此，必须将该前缀路径上的计数调整为1，以反应包含{b,c,e}的事务的实际个数</p>
+</li>
+<li>
+<p>删除e的结点，修剪前缀路径。删除这些结点是因为，沿这些前缀路径的支持度计数已经更新，以反应包含e的那些事务，并发现以de,ce,be和ae结尾的频繁项集的子问题不再需要结点e的信息。</p>
+</li>
+<li>
+<p>更新沿前缀路径上的支持度计数后，某些项可能不再是频繁的。例如，结点b只出现了1次，它的支持度计数等于1，这就意味着只有一个事务同时包含b和e。因为所有以be结尾的项集一定都是非频繁的，所以在其后的分析中可以安全的忽略b。</p>
+<img src="/MyImages/image-20200512111855130.png" alt="image-20200512111855130" style="zoom:67%;" />
+</li>
+</ol>
+</li>
+<li>
+<p>使用e的条件FP树来发现以de,ce,be和ae解为的频繁项集的子问题。为了发现以de结尾的频繁项集，从e的条件FP树收集d的所有前缀路径。通过将与结点d相关联的频度计数求和，得到项集{d,e}的支持度计数，为2。接下来，再构建de的条件FP树，更新支持度计数并删除非频繁项集c之后，de的条件FP树为d图。因为该条件FP树只包含一个支持度等于最小支持度的项a，算法提取出频繁项集{a,d,e}并转到下一个子问题，产生以ce结尾的频繁项集。处理c的前缀路径后，只发现项集{c,e}是频繁的。接下来，算法继续解决下一个子问题并发现项集{a,e}是剩下唯一的频繁项集。</p>
+</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/06/13/%E7%AC%AC6%E7%AB%A0%E5%85%B3%E8%81%94%E8%A7%84%E5%88%99%E6%8C%96%E6%8E%98/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/06/13/%E7%AC%AC5%E7%AB%A0%E5%85%B6%E4%BB%96%E5%88%86%E7%B1%BB%E6%8A%80%E6%9C%AF/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            第5章其他分类技术
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/06/13/%E7%AC%AC1%E7%AB%A0%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%85%B6%E5%8F%91%E5%B1%95/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">第1章人工智能的定义及其发展</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        John Doe
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

@@ -78,6 +78,1184 @@
     
     
     
+    <article id="post-DB3" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/DB3/"
+    >DB3</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/DB3/" class="article-date">
+  <time datetime="2020-03-30T03:41:31.616Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <img src="/DB3_img/1.png" style="zoom:80%">
+<img src="/DB3_img/2.png" style="zoom:80%">
+<img src="/DB3_img/3.png" style="zoom:80%">
+<img src="/DB3_img/4.png" style="zoom:80%">
+<img src="/DB3_img/5.png" style="zoom:80%">
+
+<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><h2 id="索引分类"><a href="#索引分类" class="headerlink" title="索引分类"></a>索引分类</h2><ol>
+<li><p>普通索引：索引表的Search-key项中的<strong>每一索引值对应全部取该值的基本表中的记录</strong>。普通索引通过索引<br>表的指针项指向一个单链表来实现，该链表的每个结点的数<br>据项指向一条物理记录。</p>
+</li>
+<li><p>单一索引：<strong>每一个索引值只对应唯一的数据记录</strong>。当建立单一索引后，索引项不可以再插入已有值，但可<br>以插入多个空值，这等同于在建表时对索引列增加一个<br>UNIQUE约束；同样，当建立单一索引时，如果待索引项存<br>在相同值则不能建立。</p>
+</li>
+<li><p>聚簇索引：<strong>索引项顺序与表中数据记录的物理顺序一致。</strong>即基本表是按照索引表的Search-key项的排列次序<br>组织存储的，因此，一个基本表只能建立一个聚簇索引。<br>注：聚簇索引适应于很少对基本表进行增删操作和对变长列<br>进行修改操作的情况(?)。</p>
+</li>
+</ol>
+<img src="/DB3_img/6.png" style="zoom:80%">
+
+<img src="/DB3_img/7.png" style="zoom:80%">
+
+<img src="/DB3_img/8.png" style="zoom:80%">
+
+<img src="/DB3_img/9.png" style="zoom:80%">
+
+<img src="/DB3_img/10.png" style="zoom:80%">
+
+<img src="/DB3_img/11.png" style="zoom:80%">
+
+<img src="/DB3_img/12.png" style="zoom:80%">
+
+<img src="/DB3_img/13.png" style="zoom:80%">
+
+<img src="/DB3_img/14.png" style="zoom:80%">
+
+<img src="/DB3_img/15.png" style="zoom:80%">
+
+<img src="/DB3_img/16.png" style="zoom:80%">
+
+<img src="/DB3_img/17.png" style="zoom:80%">
+
+<img src="/DB3_img/18.png" style="zoom:80%">
+
+<img src="/DB3_img/19.png" style="zoom:80%">
+
+<img src="/DB3_img/20.png" style="zoom:80%">
+
+<img src="/DB3_img/21.png" style="zoom:80%">
+
+<img src="/DB3_img/22.png" style="zoom:80%">
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-DB6" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/DB6/"
+    >DB6</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/DB6/" class="article-date">
+  <time datetime="2020-03-30T03:41:31.616Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="关系模式设计引论"><a href="#关系模式设计引论" class="headerlink" title="关系模式设计引论"></a>关系模式设计引论</h1><h2 id="关系的外延和内涵"><a href="#关系的外延和内涵" class="headerlink" title="关系的外延和内涵"></a>关系的外延和内涵</h2><ol>
+<li>外延：关系模型的值，即关系模型中的数据，是动态的。</li>
+<li>内涵：对关系、属性、域的定义和说明，即关系模型的定义。</li>
+</ol>
+<img src="/DB6_img/1.png" style="zoom:1%">
+
+<h2 id="关系模式的存储异常"><a href="#关系模式的存储异常" class="headerlink" title="关系模式的存储异常"></a>关系模式的存储异常</h2><p>例：描述学校的数据库有如下属性：<br>学生的学号(Sno)、所在系(Sdept)、系主任姓名(Mname)、课<br>程名(Cname)、成绩(Grade)<br>关系模式 ：Student ( Sno, Sdept, Mname, Cname, Grade )</p>
+<ol>
+<li><strong>问题</strong>：<ol>
+<li>数据冗余太大：每行中系主任的姓名重复出现。</li>
+<li>更新异常：假如某系更换主任后，系统必须修改所有与该系相关的学生。</li>
+<li>插入异常：对于新成立的系中没有学生，也无法把主任存入。</li>
+<li>删除异常：如果某个系学生全部毕业了，删除学生的同时，该系主任也没了。</li>
+</ol>
+</li>
+<li><strong>原因</strong> 由于各属性见存在某些依赖关系</li>
+<li><strong>解决</strong> 通过模式分解，分解为两个关系模式Student ( Sno, Sdept,<br>Cname, Grade )和 Dept ( Sdept, Mname ) 。</li>
+</ol>
+<h1 id="规范化（函数依赖"><a href="#规范化（函数依赖" class="headerlink" title="规范化（函数依赖)"></a>规范化（函数依赖)</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li><p>函数依赖（简称FD）<br> 设R(U)是一个属性集U上的关系模式，X和Y是U的<br> 子集。若对于R(U)的任意一个可能的关系r，r中不可能<br> 存在两个元组在X上的属性值相等， 而在Y上的属性值<br> 不等， 则称 “X函数确定Y” 或 “Y函数依赖于X”，记<br> 作X→Y(读作X决定Y)。X称为这个函数依赖的决定因素<br> (Determinant)。</p>
+<p> 说明：</p>
+<pre><code>1. 函数依赖不是指关系模式R的某个或某些关系实例满足的约束条件，而是指R的所有关系实例均要满足的约束条件。
+2. 函数依赖是语义范畴的概念。只能根据数据的语义来确定函数依赖。</code></pre></li>
+<li><p><strong>几种特殊的函数依赖</strong>：在关系模式R(U)中，对于U的子集X和Y</p>
+<ol>
+<li>若X→Y，但Y X，则称X→Y是非平凡的函数依赖</li>
+<li>若X→Y，但Y  X，则称X→Y是平凡的函数依赖</li>
+<li>若X→Y，并且Y→X，则记为X←→Y。(X与Y相互决定)</li>
+<li>若Y不函数依赖于X，则记为X→Y。</li>
+</ol>
+</li>
+<li><p><strong>完全函数依赖</strong></p>
+ <img src="/DB6_img/2.png" style="zoom:1%"></li>
+<li><p><strong>传递函数依赖</strong></p>
+ <img src="/DB6_img/3.png" style="zoom:1%">
+</li>
+<li><p><strong>候选码</strong>：设K为关系模式R&lt;U, F&gt;中的属性或属性组。若K F<br>U，则K称为R的一个候选码(Candidate Key)。若关系模<br>式R有多个候选码，则选定其中的一个做为主码(Primary<br>key)。候选码常常简称为码。</p>
+<ol>
+<li>具有决定性和最小性。</li>
+<li>主属性：<strong>所有</strong>候选码中出现的属性。</li>
+<li>非主属性：不出现在候选码中的属性</li>
+<li>全码：由关系模式的所有属性构成的码</li>
+</ol>
+</li>
+<li><p><strong>外码</strong>：关系模式 R 中属性或属性组X 并非R 的码，但 X 是<br>另一个关系模式的码，则称 X 是R 的外部码(Foreign key),<br>也称外码。</p>
+<h2 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h2><h3 id="一范式-保持列的原子性"><a href="#一范式-保持列的原子性" class="headerlink" title="一范式 保持列的原子性"></a>一范式 保持列的原子性</h3><p>如果一个关系模式R的所有属性都是不可分的基本<br>数据项，则称关系R为第一范式的关系模式(First Normal<br>Form)，简称关系R属于一范式，记为：R∈1NF。</p>
+<h3 id="二范式-非主属性都完全依赖于-R-的候选键"><a href="#二范式-非主属性都完全依赖于-R-的候选键" class="headerlink" title="二范式 非主属性都完全依赖于 R 的候选键"></a>二范式 非主属性都完全依赖于 R 的候选键</h3><p>若关系模式R∈1NF，并且每一个非主属性都完全函数依赖于R的码，则R∈2NF。</p>
+<h3 id="三范式-非主属性都不传递依赖于-R-的候选键"><a href="#三范式-非主属性都不传递依赖于-R-的候选键" class="headerlink" title="三范式 非主属性都不传递依赖于 R 的候选键"></a>三范式 非主属性都不传递依赖于 R 的候选键</h3></li>
+</ol>
+<p>属性不依赖于其它非主属性</p>
+<p>主键和其他列有直接的联系</p>
+<img src="/DB6_img/4.png" style="zoom:1%">
+
+<ol>
+<li><p>定理：满足三范式，则一定满足二范式。</p>
+</li>
+<li><p>证明</p>
+ <img src="/DB6_img/5.png" style="zoom:1%">
+###  BCNF 每个属性都不传递依赖于 R 的候选键
+所有函数依赖关系中，自变量皆含有一个及以上的候选键
+</li>
+<li><p>多值依赖：在关系模式R(X,Y,Z)的任一关系r中，如果存在元组t,s，使得t[X]=s[X]，就必然存在元组w,v∈r，使得w[X]=v[X]=t[X] (=s[X])，而 w[Y]=t[Y], w[Z]=s[Z]; v[Y]=s[Y], v[Z]=t[Z] (即交换t,s在Y上的分量构成的新元组必然在r中)，则称Y多值依赖于X，记为X→→Y。 这里，X、Y、Z是U的子集，且Z=U-X-Y。</p>
+<p> <strong>没有直接联系、但有间接的联系称为多值依赖的数据依赖。</strong></p>
+<ol>
+<li>类似于部分函数依赖，但是函数就是唯一确定的关系；多值依赖却不能唯一确定。</li>
+<li>若X→→Y，而Z＝Ф，则称X→→Y为平凡的多值依赖，否则称X→→Y为非平凡的多值依赖。</li>
+<li><strong>非平凡函数依赖，平凡多值依赖比较好</strong></li>
+</ol>
+</li>
+</ol>
+<ol start="2">
+<li><p>多值依赖的性质：</p>
+ <img src="/DB6_img/6.png" style="zoom:1%">
+
+ <img src="/DB6_img/7.png" style="zoom:1%"></li>
+<li><p>多值依赖 &amp; 函数依赖</p>
+ <img src="/DB6_img/8.png" style="zoom:1%">
+
+ <img src="/DB6_img/9.png" style="zoom:1%">
+
+</li>
+</ol>
+<p><a href=""https://blog.csdn.net/w2011212787/article/details/52351668"">函数依赖与多值依赖</a></p>
+<img src="/DB6_img/11.png" style="zoom:1%">
+
+<ol start="4">
+<li>BCNF </li>
+</ol>
+<p>不存在任何字段对任一候选关键字段的传递函数依赖</p>
+<p>如果有不依赖于候选码的其他函数依赖，则不满足BCNF</p>
+<img src="/DB6_img/21.png" style="zoom:1%">
+
+<h3 id="四范式-完全的一一对应"><a href="#四范式-完全的一一对应" class="headerlink" title="四范式 完全的一一对应"></a>四范式 完全的一一对应</h3><ol start="5">
+<li>四范式是BCNF的子集</li>
+</ol>
+<img src="/DB6_img/10.png" style="zoom:1%">
+
+<h1 id="公理系统"><a href="#公理系统" class="headerlink" title="公理系统"></a>公理系统</h1><h2 id="Armstrong-公理系统"><a href="#Armstrong-公理系统" class="headerlink" title="Armstrong 公理系统"></a>Armstrong 公理系统</h2><ol>
+<li><p>公理系统</p>
+ <img src="/DB6_img/12.png" style="zoom:1%">
+</li>
+<li><p>定律</p>
+<ol>
+<li>自反律：X能决定他的子集</li>
+<li>增广律：若X-&gt;Y,那么XZ-&gt;YZ</li>
+<li>传递律：若X-&gt;Y,Y-&gt;Z，则X-&gt;Z</li>
+</ol>
+</li>
+<li><p>推理规则</p>
+<ol>
+<li>合并规则：若X-&gt;Y,X-&gt;，则X-&gt;YZ</li>
+<li>分解规则：若X-&gt;Y,Z是Y的子集，那么X-&gt;Z</li>
+<li>伪传递规则：若X-&gt;Y,WY-&gt;Z,则WX-&gt;Z</li>
+</ol>
+</li>
+<li><p>定理：X-&gt;A1A2…Ak成立的充分必要条件是X-&gt;Ai成立(i=1,2,…,k)</p>
+</li>
+</ol>
+<h2 id="函数依赖集的闭包"><a href="#函数依赖集的闭包" class="headerlink" title="函数依赖集的闭包"></a>函数依赖集的闭包</h2><ol>
+<li>定义：在关系模式R&lt;U，F&gt;中为F所逻辑蕴含的函数依<br>赖的全体叫作 F的闭包(Closure)，记为F<sup>+</sup>。</li>
+<li>F<sup>+</sup>的意义：包含了给定函数依赖集F(部分)所蕴含的属性集U上的全部函数依赖。但是依赖信息太多，难于利用。</li>
+</ol>
+<h2 id="属性集的闭包"><a href="#属性集的闭包" class="headerlink" title="属性集的闭包"></a>属性集的闭包</h2><ol>
+<li><p>定义：设F为属性集U上的一组函数依赖，X是U的子集， X关于<br>函数依赖集F 的闭包(Closure of X under F ) X<sub>F</sub><sup>+</sup> ={ A |<br>X→A能由F 根据Armstrong公理导出}。</p>
+</li>
+<li><p>X<sub>F</sub><sup>+</sup>的求法</p>
+ <img src="/DB6_img/13.png" style="zoom:1%">
+</li>
+<li><p>定理1：设F为属性集U上的一组函数依赖，X，Y 是U的子集， X→Y能由F 根据Armstrong公理导出的充分必要条件是Y 是X<sub>F</sub><sup>+</sup>的子集。</p>
+</li>
+<li><p>定理2：Armstrong公理系统是有效的、完备的。</p>
+</li>
+</ol>
+<h2 id="最小函数依赖集"><a href="#最小函数依赖集" class="headerlink" title="最小函数依赖集"></a>最小函数依赖集</h2><ol>
+<li><p>定义：假设在关系模式R&lt;U, F&gt;上有两个函数依赖集F和 G。如果F＋=G+，则称<strong>F和G是等价的，或称F与G相互覆盖。</strong></p>
+</li>
+<li><p>定理：F<sup>+</sup>=G<sup>+</sup>，当且仅当F是G<sup>+</sup>的子集且G是F<sup>+</sup>的子集。</p>
+</li>
+<li><p>如果函数依赖集F满足下列条件，则称F为一个<strong>极小函数依赖集</strong>。亦称为最小依赖集或最小覆盖。</p>
+<ol>
+<li>F中任一函数依赖的右部仅含有一个属性；</li>
+<li>F中不存在这样的函数依赖X→A，使得F与F－{X→A}等价；(去除多余的函数依赖)</li>
+<li>F中不存在这样的函数依赖X→A，X有真子集Z使得 (F－{X→A} )∪{Z→A}与F等价。（去除左部的冗余属性）</li>
+</ol>
+</li>
+<li><p>最小函数依赖集的求解算法</p>
+ <img src="/DB6_img/14.png" style="zoom:1%"></li>
+<li><p>一个给定的函数依赖集F的最小函数集不是唯一的。</p>
+</li>
+</ol>
+<h2 id="候选码求解算法"><a href="#候选码求解算法" class="headerlink" title="候选码求解算法"></a>候选码求解算法</h2><ol>
+<li><p>注意</p>
+<ol>
+<li>码是可以确定一个元组的所有信息的属性名或属性名组，差不多理解为主键，并且主键加其他任意属性名也是码。</li>
+<li>候选码的真子集中不存在码。</li>
+<li>主码就是主键的意思，主码是任意一个候选码，注意是任意的一个。而且主码也可能是一个属性名组。</li>
+</ol>
+</li>
+<li><p>对于给定的关系模式R&lt;U, F&gt;，依照函数依赖集F将U中的属性分为以下四类：</p>
+<ol>
+<li><p><strong>L类属性</strong>: 在F中只出现在函数依赖的左部的属性；</p>
+</li>
+<li><p><strong>R类属性</strong>: 在F中只出现在函数依赖的右部的属性；</p>
+</li>
+<li><p><strong>LR类属性</strong>: 分别出现在F中的函数依赖左部和右部的属性；</p>
+</li>
+<li><p><strong>N类属性</strong>: 不在F中的函数依赖中出现的属性。</p>
+<p>有<strong>结论</strong></p>
+</li>
+<li><p>L类属性和N类属性必包含于任何候选码中；</p>
+</li>
+<li><p>R类属性必不包含于任何候选码中；</p>
+</li>
+<li><p>LR类属性不能确定是否在候选码中。</p>
+</li>
+</ol>
+</li>
+<li><p>算法</p>
+ <img src="/DB6_img/15.png" style="zoom:1%">
+
+ <img src="/DB6_img/16.png" style="zoom:1%">
+
+ <img src="/DB6_img/17.png" style="zoom:1%">
+
+ <img src="/DB6_img/18.png" style="zoom:1%">
+
+</li>
+</ol>
+<h1 id="模式分解"><a href="#模式分解" class="headerlink" title="模式分解"></a>模式分解</h1><ol>
+<li>目的：未来更好的存储，在使用中通过自然连接还原为分解前的关系模式。</li>
+</ol>
+<h2 id="无损连接性"><a href="#无损连接性" class="headerlink" title="无损连接性"></a>无损连接性</h2><p>要求自然连接后与原模式相同。</p>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>就好像在模拟自然连接</p>
+<p>过程见本。</p>
+<h3 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h3><p>用于一分为二判定</p>
+<ol>
+<li><p>R分成R1和R2，具有无损连结性的充要条件是：U1∩U2-&gt;U1-U2属于F<sup>+</sup>或U1∩U2-&gt;U2-U1属于F<sup>+</sup>。</p>
+</li>
+<li><p>关系模式R&lt;U, D&gt;中，D为R中的函数依赖FD和多<br>值依赖MVD的集合。则X→→Y成立的充要条件是R的<br>分解ρ={ R1&lt;XY, F1&gt;，R2 &lt;XZ, F2&gt; }具有无损连接性，<br>其中Z=U－X－Y。</p>
+</li>
+</ol>
+<h2 id="函数依赖性"><a href="#函数依赖性" class="headerlink" title="函数依赖性"></a>函数依赖性</h2><p>若原函数依赖的闭包和分解后函数依赖的闭包的和相等，那么就保持函数依赖性。</p>
+<p>例题见本。</p>
+<h2 id="模式分解结论"><a href="#模式分解结论" class="headerlink" title="模式分解结论"></a>模式分解结论</h2><ol>
+<li>无损连结性和函数依赖性互不包含，可能只能满足其中一个。</li>
+<li>无损连结性分解能达到4NF</li>
+<li>函数依赖性分解可达到3NF，未必达到BCNF</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-DB7" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/DB7/"
+    >DB7</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/DB7/" class="article-date">
+  <time datetime="2020-03-30T03:41:31.616Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="数据库的设计方法"><a href="#数据库的设计方法" class="headerlink" title="数据库的设计方法"></a>数据库的设计方法</h1><ol>
+<li>新奥尔良法:将数据库设计分为四个阶段：需求分析、概念设计、逻辑设计和物理设计。</li>
+<li>基于ER模型的设计方法：使用ER模型来设计数据库的概念模型。</li>
+<li>3NF的设计方法：用关系数据理论指导逻辑模型的设计。</li>
+<li>ODL方法：用面向对象的概念和属于来说明数据库结构。</li>
+</ol>
+<h2 id="数据库设计中的各级模式"><a href="#数据库设计中的各级模式" class="headerlink" title="数据库设计中的各级模式"></a>数据库设计中的各级模式</h2><img src="/DB7_img/1.png">
+
+<h1 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h1><p>需求分析的重点是调查、收集与分析用户在数据管理中的信息要求、处理要求、安全性与完整性要求。</p>
+<h2 id="需求信息的收集"><a href="#需求信息的收集" class="headerlink" title="需求信息的收集"></a>需求信息的收集</h2><p>即了解用户的组织机构设置、主要业务活动和职能及对新系统的要求。</p>
+<h2 id="需求信息的分析"><a href="#需求信息的分析" class="headerlink" title="需求信息的分析"></a>需求信息的分析</h2><p>步骤</p>
+<h3 id="确定系统边界"><a href="#确定系统边界" class="headerlink" title="确定系统边界"></a>确定系统边界</h3><h3 id="业务流程分析"><a href="#业务流程分析" class="headerlink" title="业务流程分析"></a>业务流程分析</h3><p>使用数据流图</p>
+<ol>
+<li><p>表达方式</p>
+<ol>
+<li><p>圆圈：表示一次处理过程</p>
+</li>
+<li><p>有向线：表示数据流</p>
+</li>
+<li><p>双线段：表示存储的信息</p>
+<img src="/DB7_img/2.png">
+</li>
+</ol>
+</li>
+<li><p>分析方法</p>
+<ol>
+<li>自顶向下，逐层分解</li>
+<li>先主干后分支</li>
+</ol>
+</li>
+<li><p>建立<strong>数据字典</strong></p>
+<ol>
+<li>数据字典是各类数据描述的集合，通常以表格的形式详细地描述业务处理过程中用到的各类数据</li>
+<li>数据字典的内容包括数据项、数据结构、数据流、数据存储、处理过程等五部分。</li>
+<li>数据流：可以是数据项，也可以是数据结构，表示数据的来源和去向。</li>
+<li>数据存储：xx表。包括数据存储名、说明、输入数据流、输出数据流、组成成份、数据量、存取方式、存取频度等。</li>
+<li>处理过程：加工处理过程定义和说明。</li>
+</ol>
+</li>
+</ol>
+<h1 id="概念结构设计"><a href="#概念结构设计" class="headerlink" title="概念结构设计"></a>概念结构设计</h1><p>概念结构设计就是将现实事物以不依赖于任何数据模<br>型的方式加以描述，目的在于以符号化的形式正确地反映<br>现实事物及事物与事物间的联系。概念结构设计的内容就<br>是建立概念模型。</p>
+<h2 id="概念结构设计四种策略"><a href="#概念结构设计四种策略" class="headerlink" title="概念结构设计四种策略"></a>概念结构设计四种策略</h2><h3 id="自顶向下"><a href="#自顶向下" class="headerlink" title="自顶向下"></a>自顶向下</h3><p>即首先定义全局概念结构的框架，然后逐步细化。</p>
+<h3 id="自底向上"><a href="#自底向上" class="headerlink" title="自底向上"></a>自底向上</h3><p>即首先定义各局部应用的概念结构，然后将它们集成起来，得到全局概念结构。</p>
+<h3 id="逐步扩张"><a href="#逐步扩张" class="headerlink" title="逐步扩张"></a>逐步扩张</h3><p>即首先确定核心业务的概念结构，然后以此为中心向外扩张，最终实现全局概念结构。</p>
+<h3 id="混合策略"><a href="#混合策略" class="headerlink" title="混合策略"></a>混合策略</h3><p>即将自顶向下和自底向上两种策略结合使用，首先确定全局框架，划分为若干个局部概念模型，再采取自底向上的策略实现各局部概念模型，加以合并实现全局概念模型。</p>
+<h2 id="抽象现实事物的三种方法"><a href="#抽象现实事物的三种方法" class="headerlink" title="抽象现实事物的三种方法"></a>抽象现实事物的三种方法</h2><p>分类；聚集；概括</p>
+<h2 id="设计局部视图"><a href="#设计局部视图" class="headerlink" title="设计局部视图"></a>设计局部视图</h2><p>步骤</p>
+<h3 id="选择局部应用"><a href="#选择局部应用" class="headerlink" title="选择局部应用"></a>选择局部应用</h3><h3 id="设计分E-R图"><a href="#设计分E-R图" class="headerlink" title="设计分E-R图"></a>设计分E-R图</h3><h2 id="确定实体与属性的两条准则"><a href="#确定实体与属性的两条准则" class="headerlink" title="确定实体与属性的两条准则"></a>确定实体与属性的两条准则</h2><ol>
+<li>属性是不可再分的数据项，属性不可以再有属性</li>
+<li>属性不能与其他实体发生联系，联系只能存在于实体与<br>实体之间</li>
+<li>例如职工(职工号，姓名，年龄，职称)，其中的职称如果<br>与工资、住房和福利挂勾(即有联系)，则应该单独作为<br>实体，而职工与职称间构成联系</li>
+</ol>
+<h2 id="视图集成"><a href="#视图集成" class="headerlink" title="视图集成"></a>视图集成</h2><img src="/DB7_img/4.png">
+
+<p>选择两个具有相同实体的E-R图，通过相同实体将两个ER图连结起来构成一个E-R图，然后再与其它E-R图连结直到将<br>所有的局部E-R图全部连结成一个E-R图，称为全局E-R图</p>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ol>
+<li>可以完整地描述企业的信息及其联系</li>
+<li>另一方面在集成过程中可以解决冲突和消除冗余。</li>
+</ol>
+<h3 id="分E-R图之间的三类冲突"><a href="#分E-R图之间的三类冲突" class="headerlink" title="分E-R图之间的三类冲突"></a>分E-R图之间的三类冲突</h3><ol>
+<li>属性冲突</li>
+<li>命名冲突</li>
+<li>结构冲突：同一对象在某一分E-R图中被抽象为实体而在另一分E-R图中又被抽象为属性，需要统一。</li>
+</ol>
+<h3 id="冗余"><a href="#冗余" class="headerlink" title="冗余"></a>冗余</h3><p>注意从一个实体到另一个实体存在多条路的情况，要检查能否消除冗余。</p>
+<h1 id="逻辑结构设计"><a href="#逻辑结构设计" class="headerlink" title="逻辑结构设计"></a>逻辑结构设计</h1>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-DB4" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/DB4/"
+    >DB4</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/DB4/" class="article-date">
+  <time datetime="2020-03-30T03:41:31.600Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>数据库的安全性是指保护数据库，防止因用户非法使用数据库造成数据泄漏、更改或破坏。</p>
+<p>数据库系统的安全：包括计算机安全和数据库安全。</p>
+<h1 id="数据库安全性控制"><a href="#数据库安全性控制" class="headerlink" title="数据库安全性控制"></a>数据库安全性控制</h1><p>数据库安全性控制的常用方法：用户标识和鉴定、存取控制、视图、审计、数据加密。</p>
+<h2 id="用户标识与鉴别"><a href="#用户标识与鉴别" class="headerlink" title="用户标识与鉴别"></a>用户标识与鉴别</h2><ol>
+<li><p>用户标识与鉴别是系统提供的最外层安全保护措施。</p>
+</li>
+<li><p>基本方法：系统通过一定方式让用户标识自己的身份或名字。</p>
+<h2 id="自主存取控制-授权与回收"><a href="#自主存取控制-授权与回收" class="headerlink" title="自主存取控制-授权与回收"></a>自主存取控制-授权与回收</h2><h3 id="存取控制机制的功能"><a href="#存取控制机制的功能" class="headerlink" title="存取控制机制的功能"></a>存取控制机制的功能</h3></li>
+<li><p>存取控制机制的组成：</p>
+<ol>
+<li>定义存取权限</li>
+<li>检查存取权限</li>
+</ol>
+</li>
+<li><p>用户权限定义和合法权检查机制一起组成了DBMS的安全子系统</p>
+<h3 id="常用存取控制方法"><a href="#常用存取控制方法" class="headerlink" title="常用存取控制方法"></a>常用存取控制方法</h3></li>
+<li><p>自主存取控制：</p>
+<ol>
+<li>同一用户对不同对象有不同的存储权限。</li>
+<li>不同用户对同一对象也有不同的存储权限。</li>
+<li>用户还可以将其拥有的存储权限转授给其他用户。</li>
+<li><strong>优点</strong>：能够通过授权机制有效的控制其他用户对敏感数据的存取。</li>
+<li><strong>缺点</strong>：<ol>
+<li>可能存在数据的无意泄漏。</li>
+<li><strong>原因</strong>：这种机制仅仅通过对数据的存取权限来进行安全控制，而对数据本身并无安全性标记。</li>
+<li><strong>解决</strong>：对系统控制下的所有主客体实施强制存取控制。<h3 id="授权与回收"><a href="#授权与回收" class="headerlink" title="授权与回收"></a>授权与回收</h3></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>授权语法：见本</p>
+</li>
+<li><p>注意：</p>
+<ol>
+<li>DBA拥有数据库操作的所有权限，可以将权限赋给其他用户。</li>
+<li>建立数据库对象的的用户称为该对象的属主，他拥有该对象的所有操作权限。</li>
+<li>授权给全体用户是PUBLIC。</li>
+<li>若指定了WITH GRANT OPTION子句，则获得某种权限的用户还可以把这种权限再授予别的用户。否则，不能传播该权限。</li>
+</ol>
+</li>
+<li><p>回收权限REVOKE</p>
+</li>
+<li><p>授权图：用户拥有授权当且仅当存在从授权图的根到代表该用户的节点的路径。</p>
+<h3 id="数据库角色：被命名的一组与数据库操作相关的权限。"><a href="#数据库角色：被命名的一组与数据库操作相关的权限。" class="headerlink" title="数据库角色：被命名的一组与数据库操作相关的权限。"></a>数据库角色：被命名的一组与数据库操作相关的权限。</h3></li>
+<li><p>数据库角色</p>
+<ol>
+<li>角色是权限的集合。</li>
+<li>可以为一组具有相同权限的用户创建一个角色。</li>
+</ol>
+</li>
+<li><p>相关语法：见本</p>
+<h3 id="权限总结"><a href="#权限总结" class="headerlink" title="权限总结"></a>权限总结</h3></li>
+<li><p>DBA拥有对数据库中所有对象的所有权限，并可以根据应用<br>的需要将不同的权限授予不同的用户；</p>
+</li>
+<li><p>用户对自己建立的基本表和视图拥有全部的操作权限，并且<br>可以用GRANT语句把其中某些权限授予其他用户；</p>
+</li>
+<li><p>被授权的用户如果有“继续授权”的许可，还可以把获得的<br>权限再授予其他用户；</p>
+</li>
+<li><p>所有授予出去的权力在必要时可以用REVOKE语句收回；</p>
+</li>
+<li><p>使用角色管理数据库可以简化授权的过程；</p>
+<h2 id="强制存取控制"><a href="#强制存取控制" class="headerlink" title="强制存取控制"></a>强制存取控制</h2></li>
+<li><p>强制存取控制：</p>
+<ol>
+<li>对每一个数据对象都标以一定的密级。</li>
+<li>对每一个用户都授予一个级别的许可证。</li>
+<li>对于任意的一个对象，只有具有合法许可证的用户才能存取。</li>
+</ol>
+</li>
+<li><p>敏感度标记： 绝密（Top Secret、机密（Secret）、秘密（Confidential）、公开（Public）。</p>
+</li>
+<li><p>强制存取控制规则</p>
+<ol>
+<li>仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体。</li>
+<li>仅当主体的许可证级别等于客体的密级时，主体才能写相应客体。</li>
+</ol>
+</li>
+<li><p>DAC和MAC关系</p>
+<ol>
+<li>二者共同构成DBMS的安全机制。因为较高安全性级别提供的安全保护要包含较低级别的所有保护。</li>
+<li>安全性检查，要先进行DAC检查，通过DAC检查的数据对象再由系统进行MAC检查，只有都通过的才能进行存取。<h2 id="视图机制"><a href="#视图机制" class="headerlink" title="视图机制"></a>视图机制</h2></li>
+</ol>
+</li>
+<li><p>视图机制与授权机制配合使用共同提供安全性。</p>
+<ol>
+<li>先用视图屏蔽掉一部分保密数据。</li>
+<li>再进一步在视图上定义存取权限。</li>
+<li>间接实现了支持存取谓词的用户权限定义。<h2 id="审计"><a href="#审计" class="headerlink" title="审计"></a>审计</h2></li>
+</ol>
+</li>
+<li><p>审计：将用户对数据库的所有操作记录在上面。</p>
+<h2 id="数据加密"><a href="#数据加密" class="headerlink" title="数据加密"></a>数据加密</h2></li>
+<li><p>加密方法</p>
+<ol>
+<li>替换方法：将明文中的每一个字符都转换维密文中的每一个字符。</li>
+<li>置换方法：将明文的字符按不同的顺序重新排列。</li>
+<li>混合方法<h1 id="统计数据库安全性"><a href="#统计数据库安全性" class="headerlink" title="统计数据库安全性"></a>统计数据库安全性</h1></li>
+</ol>
+</li>
+<li><p>统计数据库的特点</p>
+<ol>
+<li>允许用户查询聚集类型信息。</li>
+<li>不允许查询单个记录信息。</li>
+</ol>
+</li>
+<li><p>统计数据库的问题</p>
+<ol>
+<li>隐藏的信息通道</li>
+<li>从合法的查询中推导出不合法的信息。</li>
+</ol>
+</li>
+<li><p>统计数据库的规则</p>
+<ol>
+<li>任何查询至少要涉及N（N足够大）个以上的记录。</li>
+<li>任意两个查询的相交数据项不能超过M个。</li>
+<li>任一用户的查询次数不能超过1+(N-2)/M次。</li>
+</ol>
+</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-DB5" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/DB5/"
+    >DB5</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/DB5/" class="article-date">
+  <time datetime="2020-03-30T03:41:31.600Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <ol>
+<li>数据库的完整性：防止数据库中出现不合语义数据。</li>
+<li>完整性控制机制：<ol>
+<li>完整性约束条件定义机制。</li>
+<li>完整性检查机</li>
+<li>违约处理.</li>
+</ol>
+</li>
+<li>关系型数据库的三类完整性约束：实体完整性、参照完整性、用户定义完整性。<h1 id="实体完整性"><a href="#实体完整性" class="headerlink" title="实体完整性"></a>实体完整性</h1></li>
+<li>实体完整性定义：<ol>
+<li>单属性构成的码：定义为列级或表级约束条件。</li>
+<li>多属性构成的码：只可定义为表级约束条件。</li>
+</ol>
+</li>
+<li>实体完整性检查和违约处理<ol>
+<li>检查主码是否唯一；检查主码的各个属性值是否为空。<h1 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h1></li>
+</ol>
+</li>
+<li>参照完整性定义：若属性F是基本关系R的外码，它与基本关系S的码Ks相对应，则对于R中每个元组在F上的取值必须满足<ol>
+<li>参照关系R和被参照关系S不一定是不同的关系。</li>
+<li>外码中若有多个属性，若其一为NULL，则需全NULL。<h1 id="用户定义完整性"><a href="#用户定义完整性" class="headerlink" title="用户定义完整性"></a>用户定义完整性</h1></li>
+</ol>
+</li>
+<li>使用CHECK见本。</li>
+</ol>
+<h1 id="完整性约束命名子句"><a href="#完整性约束命名子句" class="headerlink" title="完整性约束命名子句"></a>完整性约束命名子句</h1><ol>
+<li>CONSTRAINT</li>
+</ol>
+<h1 id="域中的完整性限制"><a href="#域中的完整性限制" class="headerlink" title="域中的完整性限制"></a>域中的完整性限制</h1><p>CREATE DOMAIN,DOMAIN相当于一个自定义的数据类型。</p>
+<h1 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h1><ol>
+<li><p>触发器：用户定义在关系表上的 一类由事件驱动的特殊存储过程</p>
+ <img src="/DB5_img/1.png" style="zoom:80%"></li>
+<li><p>注</p>
+<ol>
+<li>触发器可以在触发事件之前或之后执行。</li>
+<li>触发事件为INSERT/DELETE/UPDATE（SELECT不触发）</li>
+<li>分为行级触发器和语句级触发器</li>
+<li>触发器被激活时，执行触发体。</li>
+<li>同一个表上的触发器，先执行BEFORE触发器，再执行SQL，再执行AFTER触发器。</li>
+</ol>
+</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-数据库目录" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%AE%E5%BD%95/"
+    >数据库目录</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%AE%E5%BD%95/" class="article-date">
+  <time datetime="2020-03-30T03:41:23.740Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="第三章基本语法"><a href="#第三章基本语法" class="headerlink" title="第三章基本语法"></a><a href="/2020/03/30/DB3">第三章基本语法</a></h2><h2 id="第四章数据库安全"><a href="#第四章数据库安全" class="headerlink" title="第四章数据库安全"></a><a href="/2020/03/30/DB4">第四章数据库安全</a></h2><h2 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a><a href="/2020/03/30/DB5/">第五章</a></h2><h2 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a><a href="/2020/03/30/DB6/">第六章</a></h2><h2 id="第七章"><a href="#第七章" class="headerlink" title="第七章"></a><a href="/2020/03/30/DB7/">第七章</a></h2><h2 id="Mysql基本语法"><a href="#Mysql基本语法" class="headerlink" title="Mysql基本语法"></a><a href="/2020/03/30/Mysql基本语法">Mysql基本语法</a></h2>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-视觉实验目录" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E5%AE%9E%E9%AA%8C%E7%9B%AE%E5%BD%95/"
+    >视觉实验目录</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E5%AE%9E%E9%AA%8C%E7%9B%AE%E5%BD%95/" class="article-date">
+  <time datetime="2020-03-30T03:25:51.816Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="高斯混合图像"><a class="markdownIt-Anchor" href="#高斯混合图像"></a> <a href="https://github.com/Cccceb/BTF/tree/master/CV_Exp1">高斯混合图像</a></h2>
+<p>将两张图片通过高斯核进行滤波得到一幅图片的高通(left)和另一幅图片的低通部分(right)，然后按照混合比例将两张图片混合得到混合图像</p>
+<p><img src="/MyImages/%5Cimage-20200407103221556.png" alt="image-20200407103221556" /></p>
+<h2 id="基于harris的角点检测及特征匹配"><a class="markdownIt-Anchor" href="#基于harris的角点检测及特征匹配"></a> <a href="https://github.com/Cccceb/BTF/tree/master/CV_Exp2">基于Harris的角点检测及特征匹配</a></h2>
+<p>本次实验包括三大部分：特征检测，特征描述，特征匹配</p>
+<ul>
+<li>
+<p>特征检测：本次实验中实现了 Harris 算子，Harris 算子的实现分为三小部分</p>
+<ul>
+<li>计算每个像素处的角点响应强度大小及方向。首先通过Sobel 算子求得 x 方向和 y 方向上的导数。根据 MOPS 论文中所述，为了防止混叠，在较高的高斯金字塔上进行采样，本实验中使用σ=0.5 的高斯核处理，求得 H 矩阵的四个参数，带入公式得到每一点的角点响应强度。方向由该点处的梯度近似给出，注意要转为角度才能通过 <a href="http://test.py" target="_blank" rel="noopener">test.py</a>。</li>
+<li>检测每个点是否是局部最大值，针对 TODO2 采用了简化处理，只判断每个点是否是 7*7 窗口的极大值即可。后续我实现了非 极大值抑制，性能提高 27</li>
+<li>将 特 征 点 的 角 点 响 应 强 度 ， 方 向 ， 坐 标 等 信 息 放 进 cv2.KeyPoint 对象列表中，返回特征点列表。</li>
+</ul>
+</li>
+<li>
+<p>特征描述：本次实验中分别实现了 SimpleFeatureDescriptor 和 MOPS 特征描述。</p>
+<ul>
+<li>
+<p>SimpleFeatureDescriptor：先给矩阵加一圈 2*2 的白边，以防越界，然后取每个点周围 5*5 的区域，并以行序为主序构成描述向量。</p>
+</li>
+<li>
+<p>MOPS 实现需要用到 cv2 的仿射变换函数，仿射变换用到的 矩 阵 由 四 部 分 矩 阵 乘 法 得 到 ： 分 别 是</p>
+<p>平 移 到 原 点 的 矩$$ T1 =np.array([[1,0,-x],[0,1,-y],[0,0,1]]) $$</p>
+</li>
+<li>
+<p>旋 转 到 水 平 的 矩 阵</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi><mo>=</mo><mi>n</mi><mi>p</mi><mi mathvariant="normal">.</mi><mi>a</mi><mi>r</mi><mi>r</mi><mi>a</mi><mi>y</mi><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>m</mi><mi>a</mi><mi>t</mi><mi>h</mi><mi mathvariant="normal">.</mi><mi>c</mi><mi>o</mi><mi>s</mi><mo stretchy="false">(</mo><mi>a</mi><mi>n</mi><mi>g</mi><mi>l</mi><mi>e</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mo>−</mo><mi>m</mi><mi>a</mi><mi>t</mi><mi>h</mi><mi mathvariant="normal">.</mi><mi>s</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>a</mi><mi>n</mi><mi>g</mi><mi>l</mi><mi>e</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">]</mo><mo separator="true">,</mo><mo stretchy="false">[</mo><mi>m</mi><mi>a</mi><mi>t</mi><mi>h</mi><mi mathvariant="normal">.</mi><mi>s</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>a</mi><mi>n</mi><mi>g</mi><mi>l</mi><mi>e</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>m</mi><mi>a</mi><mi>t</mi><mi>h</mi><mi mathvariant="normal">.</mi><mi>c</mi><mi>o</mi><mi>s</mi><mo stretchy="false">(</mo><mi>a</mi><mi>n</mi><mi>g</mi><mi>l</mi><mi>e</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">]</mo><mo separator="true">,</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R = np.array([[math.cos(angle),-math.sin(angle),0],[math.sin(angle),math.co s(angle),0],[0,0,1]])
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">p</span><span class="mord">.</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mopen">(</span><span class="mopen">[</span><span class="mopen">[</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mord">.</span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">−</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mord">.</span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mopen">[</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mord">.</span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mord">.</span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mclose">]</span><span class="mclose">)</span></span></span></span></span></p>
+<p>缩放的矩阵 $$S = np.array([[1/5,0,0],[0,1/5,0],[0,0,1]]) $$</p>
+<p>平移到中心的矩阵 $$T2 = np.array([[1,0,4],[0,1,4],[0,0,1]])$$</p>
+<p>这四部分进行矩阵乘法的结果作为仿射变换的矩阵，将变换的结果按行序为主序展成列表，得到特征描述符。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>特征匹配：本次实验中实现了两种特征匹配 SSD 和 RatioTest，二者的区别是 SSD 是求到其他特征点距离的平方和，二 RatioTest 是选择其中最大的两个距离的平均值。</p>
+</li>
+</ul>
+<p><img src="/MyImages/%5Cimage-20200407104149788.png" alt="image-20200407104149788" /></p>
+<p><img src="/MyImages/\image-20200407104106565.png" alt="image-20200407104106565" style="zoom: 33%;" /><img src="/MyImages/\image-20200407104121516.png" alt="image-20200407104121516" style="zoom: 67%;" /></p>
+<ul>
+<li>
+<p>优化：非极大值抑制</p>
+<p>实现了自适应非极大值抑制，在选择区域内最大点的时候，从半径等于图像大小开始，枚举半径，将半径最大的 1250(论文中是 500，实测出来 1500 左右的 AUC 比较好)点选出来，作为基础的特征点。通过在yosemite 数据集上的测试，性能提升 27%。</p>
+</li>
+</ul>
+<h2 id="全景图拼接orbransac拉普拉斯融合"><a class="markdownIt-Anchor" href="#全景图拼接orbransac拉普拉斯融合"></a> <a href="https://github.com/Cccceb/BTF/tree/master/CV_Exp3">全景图拼接(ORB+RANSAC+拉普拉斯融合)</a></h2>
+<ul>
+<li>实现了将一系列水平重叠的照片合成成一张全景图。</li>
+<li>通过ORB进行特征检测，得到特征匹配集</li>
+<li>通过特征匹配集来估计单应映射，其中使用了 SVD 来计算最佳拟合单应映射</li>
+<li>利用 RANSAC 求一个最佳匹配</li>
+<li>对图像进行融合，使用了羽化和拉普拉斯融合</li>
+<li>实现 360 度全景图</li>
+</ul>
+<p><img src="/MyImages/campus_pano_blendwidth200_360degree.png" alt="" /></p>
+<h2 id="立体视觉"><a class="markdownIt-Anchor" href="#立体视觉"></a> <a href="https://github.com/Cccceb/BTF/tree/master/CV_Exp4">立体视觉</a></h2>
+<p>本实验将运用平面扫描立体视觉与光度测量立体视觉的方法，来恢复图像深度，并建立立体图。实验包含三个部分：</p>
+<ul>
+<li>光度测量立体视觉：给定在不同的已知光照方向下从相同视角拍摄的一组图像，从中恢复物体表面的反照率(albedo)和法线方向(normals)。</li>
+<li>平面扫描立体视觉：给定同一场景从不同的视角拍摄的两幅校准图像，从中恢复出粗略的深度图。</li>
+<li>基于泊松方程重建深度图：根据法线图及粗略深 度图，恢复出物体每个点的深度，并重建 3D 网格。</li>
+</ul>
+<p><img src="/MyImages/%5Cimage-20200407104421416.png" alt="image-20200407104421416" /></p>
+<p><img src="/MyImages/%5Cimage-20200407104435407.png" alt="image-20200407104435407" /></p>
+<p><img src="/MyImages/%5Cimage-20200407104457098.png" alt="image-20200407104457098" /></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-计算机视觉目录" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%9B%AE%E5%BD%95/"
+    >计算机视觉目录</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%9B%AE%E5%BD%95/" class="article-date">
+  <time datetime="2020-03-30T03:17:15.384Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="视觉第1讲"><a href="#视觉第1讲" class="headerlink" title="视觉第1讲"></a><a href="/2020/03/30/视觉第1讲/">视觉第1讲</a></h2><h2 id="视觉第2讲"><a href="#视觉第2讲" class="headerlink" title="视觉第2讲"></a><a href="/2020/03/30/视觉第2讲/">视觉第2讲</a></h2><h2 id="视觉第3讲"><a href="#视觉第3讲" class="headerlink" title="视觉第3讲"></a><a href="/2020/03/30/视觉第3讲/">视觉第3讲</a></h2><h2 id="视觉第4讲"><a href="#视觉第4讲" class="headerlink" title="视觉第4讲"></a><a href="/2020/03/30/视觉第4讲/">视觉第4讲</a></h2><h2 id="视觉第5讲"><a href="#视觉第5讲" class="headerlink" title="视觉第5讲"></a><a href="/2020/03/30/视觉第5讲/">视觉第5讲</a></h2><h2 id="视觉第6讲"><a href="#视觉第6讲" class="headerlink" title="视觉第6讲"></a><a href="/2020/03/30/视觉第6讲/">视觉第6讲</a></h2><h2 id="视觉第7讲"><a href="#视觉第7讲" class="headerlink" title="视觉第7讲"></a><a href="/2020/03/30/视觉第7讲/">视觉第7讲</a></h2><h2 id="视觉第8讲"><a href="#视觉第8讲" class="headerlink" title="视觉第8讲"></a><a href="/2020/03/30/视觉第8讲/">视觉第8讲</a></h2><h2 id="视觉第9讲"><a href="#视觉第9讲" class="headerlink" title="视觉第9讲"></a><a href="/2020/03/30/视觉第9讲/">视觉第9讲</a></h2><h2 id="视觉第10讲"><a href="#视觉第10讲" class="headerlink" title="视觉第10讲"></a><a href="/2020/03/30/视觉第10讲/">视觉第10讲</a></h2><h2 id="视觉第11讲"><a href="#视觉第11讲" class="headerlink" title="视觉第11讲"></a><a href="/2020/03/30/视觉第11讲/">视觉第11讲</a></h2><h2 id="视觉第12讲"><a href="#视觉第12讲" class="headerlink" title="视觉第12讲"></a><a href="/2020/03/30/视觉第12讲/">视觉第12讲</a></h2><h2 id="视觉第13讲"><a href="#视觉第13讲" class="headerlink" title="视觉第13讲"></a><a href="/2020/03/30/视觉第13讲/">视觉第13讲</a></h2><h2 id="视觉第14讲"><a href="#视觉第14讲" class="headerlink" title="视觉第14讲"></a><a href="/2020/03/30/视觉第14讲/">视觉第14讲</a></h2><h2 id="视觉第15讲"><a href="#视觉第15讲" class="headerlink" title="视觉第15讲"></a><a href="/2020/03/30/视觉第15讲/">视觉第15讲</a></h2><h2 id="视觉第16讲"><a href="#视觉第16讲" class="headerlink" title="视觉第16讲"></a><a href="/2020/03/30/视觉第16讲/">视觉第16讲</a></h2><h2 id="视觉第17讲"><a href="#视觉第17讲" class="headerlink" title="视觉第17讲"></a><a href="/2020/03/30/视觉第17讲/">视觉第17讲</a></h2><h2 id="视觉第18讲"><a href="#视觉第18讲" class="headerlink" title="视觉第18讲"></a><a href="/2020/03/30/视觉第18讲/">视觉第18讲</a></h2><h2 id="视觉第19讲"><a href="#视觉第19讲" class="headerlink" title="视觉第19讲"></a><a href="/2020/03/30/视觉第19讲/">视觉第19讲</a></h2>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-视觉第1讲" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC1%E8%AE%B2/"
+    >视觉第1讲</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC1%E8%AE%B2/" class="article-date">
+  <time datetime="2020-03-30T03:17:13.915Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="滤波器"><a href="#滤波器" class="headerlink" title="滤波器"></a>滤波器</h1><ol>
+<li><strong>滤波</strong>：形成一个新的图像，其像素是原始像素的组合。</li>
+<li>用途：<ol>
+<li>提取边缘或轮廓</li>
+<li>消除噪音</li>
+<li>锐化和增强形象</li>
+</ol>
+</li>
+</ol>
+<h1 id="线性滤波"><a href="#线性滤波" class="headerlink" title="线性滤波"></a>线性滤波</h1><ol>
+<li>线性滤波：用相邻的线性组合(加权和)替换每个像素</li>
+</ol>
+<p>–&gt;互相关，卷积</p>
+<h2 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h2><img src="/视觉_img/1-1.png" style="zoom:1%">
+
+<ol>
+<li>将图像记为,以H表示权重核（大小为(2K+1)x(2K+1)),并记G为输出图像</li>
+<li>G=H×F<h2 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h2></li>
+</ol>
+<img src="/视觉_img/1-2.png" style="zoom:1%">
+
+<ol>
+<li>与相关相同，只是将权重核在水平和竖直方向翻转。</li>
+<li>妈祖交换律、分配律和结合律</li>
+</ol>
+<h2 id="平均滤波"><a href="#平均滤波" class="headerlink" title="平均滤波"></a>平均滤波</h2><ol>
+<li>H 全为1/k，其中k为权重核边长。</li>
+</ol>
+<h2 id="锐化-增强图像-平均滤波"><a href="#锐化-增强图像-平均滤波" class="headerlink" title="锐化 = 增强图像-平均滤波"></a>锐化 = 增强图像-平均滤波</h2><img src="/视觉_img/1-3.png" style="zoom:1%">
+
+<img src="/视觉_img/1-5.png" style="zoom:1%">
+
+<h2 id="高斯滤波"><a href="#高斯滤波" class="headerlink" title="高斯滤波"></a>高斯滤波</h2><ol>
+<li><p>高斯核</p>
+ <img src="/视觉_img/1-4.png" style="zoom:1%">
+
+<ol>
+<li>σ作用：σ越大，带通越大，高斯核函数的局部影响的范围就越大。中心亮点也越大，卷积后的图像越模糊。</li>
+</ol>
+</li>
+<li><p>高斯滤波器（低通滤波器）</p>
+<ol>
+<li>用宽度为σ的核卷积两次=以宽度为&radic;2σ的核卷积一次。</li>
+</ol>
+</li>
+</ol>
+<h2 id="阈值滤波器"><a href="#阈值滤波器" class="headerlink" title="阈值滤波器"></a>阈值滤波器</h2><p><strong>不是线性滤波器</strong></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-视觉第19讲" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -248,1198 +1426,13 @@
 
 </article>
     
-    <article id="post-视觉第18讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC18%E8%AE%B2/"
-    >视觉第18讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC18%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.909Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="光度测量立体视觉"><a href="#光度测量立体视觉" class="headerlink" title="光度测量立体视觉"></a>光度测量立体视觉</h1><p>基于<strong>朗伯漫反射</strong></p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="求光照方向"><a href="#求光照方向" class="headerlink" title="求光照方向"></a>求光照方向</h3><p>利用铬球的镜面反射</p>
-<img src="/视觉_img/18-2.png">
-### 求法线方向
-
-<p>假设已知三个点</p>
-<ol>
-<li><img src="/视觉_img/18-3.png"></li>
-<li><p>写成矩阵形式</p>
-</li>
-<li> <img src="/视觉_img/18-4.png">
-</li>
-<li><p>求解N</p>
- <img src="/视觉_img/18-5.png"></li>
-<li><p>对每个像素求解可以获得该像素的表面法线方向</p>
-</li>
-<li><p>超过三个光源</p>
- <img src="/视觉_img/18-1.png">
-
-</li>
-</ol>
-<h3 id="从法线计算深度-泊松方程"><a href="#从法线计算深度-泊松方程" class="headerlink" title="从法线计算深度(泊松方程)"></a>从法线计算深度(泊松方程)</h3><p>将相邻的连个点的连线看成是曲面的切面向量，那么这条线与法线垂直。</p>
-<img src="/视觉_img/18-6.png">
-
-<h3 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h3><p>对于有反射，折射，阴影等情况不起效</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-视觉第17讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC17%E8%AE%B2/"
-    >视觉第17讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC17%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.906Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="光"><a href="#光" class="headerlink" title="光"></a>光</h1><h2 id="辐射"><a href="#辐射" class="headerlink" title="辐射"></a>辐射</h2><ol>
-<li>像素亮度决定因素<ol>
-<li>光源属性</li>
-<li>表面特性<h2 id="光谱"><a href="#光谱" class="headerlink" title="光谱"></a>光谱</h2>可见光为400nm-700nm的电磁辐射</li>
-</ol>
-</li>
-</ol>
-<h2 id="颜色知觉"><a href="#颜色知觉" class="headerlink" title="颜色知觉"></a>颜色知觉</h2><img src="/视觉_img/17-1.png">
-
-
-<img src="/视觉_img/17-2.png">
-
-<ol>
-<li>视锥细胞和视杆细胞在光谱上充当滤波器。<h2 id="亮度对比度和恒常"><a href="#亮度对比度和恒常" class="headerlink" title="亮度对比度和恒常"></a>亮度对比度和恒常</h2></li>
-<li>亮度对比度：恒定的有色区域根据周围的强度看起来更亮或更暗。</li>
-<li>明度恒常性：当照明条件改变时，人知觉到的物体的相对明度保持不变。</li>
-</ol>
-<h2 id="光照"><a href="#光照" class="headerlink" title="光照"></a>光照</h2><h3 id="定向照明："><a href="#定向照明：" class="headerlink" title="定向照明："></a>定向照明：</h3><ol>
-<li>所有射线都是平行的</li>
-<li>等价于无穷远的点光源</li>
-</ol>
-<h3 id="漫反射"><a href="#漫反射" class="headerlink" title="漫反射"></a>漫反射</h3><img src="/视觉_img/17-3.png">
-
-<p>I = N·L</p>
-<ol>
-<li>漫反射反射到各个角度得到的光强一样，与视角无关</li>
-<li>正比于夹角余弦<h3 id="三种材料"><a href="#三种材料" class="headerlink" title="三种材料"></a>三种材料</h3></li>
-<li>理想漫反射：哑光表面</li>
-<li><h1 id="图像形成模型"><a href="#图像形成模型" class="headerlink" title="图像形成模型"></a>图像形成模型</h1></li>
-</ol>
-<img src="/视觉_img/17-4.png">
-
-<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><ol>
-<li>Kd：表示入射光反射的比例</li>
-<li>I：光强度，表示有多少光射进来</li>
-<li>相机相应函数：假设像素值与传入光的能量成线性比例关系。<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2>测量光的方向以辨别真假照片。</li>
-</ol>
-<p>需要增加假设</p>
-<ol>
-<li>反照率恒定</li>
-<li>已知一些法线</li>
-<li>已知法线的平滑度</li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-视觉第16讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC16%E8%AE%B2/"
-    >视觉第16讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC16%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.904Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="立体视觉"><a href="#立体视觉" class="headerlink" title="立体视觉"></a>立体视觉</h1><p>通过多个角度拍摄的标定过 的图像，进行3D对象建模。###</p>
-<h1 id="多视图立体视觉"><a href="#多视图立体视觉" class="headerlink" title="多视图立体视觉"></a>多视图立体视觉</h1><ol>
-<li>需要多视图原因<ol>
-<li>可能有某些区域的特写</li>
-<li>某些表面在某些视图中缩小了</li>
-<li>某些点可能在某些视图中完全消失。</li>
-<li>多次测量同一个点可以减小误差。</li>
-</ol>
-</li>
-</ol>
-<h1 id="多基线立体视觉"><a href="#多基线立体视觉" class="headerlink" title="多基线立体视觉"></a>多基线立体视觉</h1><p>将几台相机矫正到同一共同平面上。可能有宽基线和扭曲问题。</p>
-<h2 id="选择立体视图基线"><a href="#选择立体视图基线" class="headerlink" title="选择立体视图基线"></a>选择立体视图基线</h2><img src="/视觉_img/16-1.png" height="5%" width="%5">
-
-<img src="/视觉_img/16-2.png" height="5%" width="%5">
-
-<ol>
-<li>基线太小导致深度误差大</li>
-<li>基线太大大致搜索范围大，计算复杂度提高。</li>
-</ol>
-<h2 id="基本方法"><a href="#基本方法" class="headerlink" title="基本方法"></a>基本方法</h2><ol>
-<li>选择参考视图</li>
-<li>使用立体视图算法，但将其中双视图SSD换成SSSD(SUM SSD)</li>
-</ol>
-<h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><ol>
-<li>只能给出深度图，不能给出对象模型</li>
-<li>不适用于广泛分布的视图</li>
-</ol>
-<h1 id="照片一致性评分"><a href="#照片一致性评分" class="headerlink" title="照片一致性评分"></a>照片一致性评分</h1><h2 id="衡量函数"><a href="#衡量函数" class="headerlink" title="衡量函数"></a>衡量函数</h2><ol>
-<li><p>SSD</p>
- <img src="/视觉_img/16-3.png" height="5%" width="%5">
-</li>
-<li><p>SAD</p>
- <img src="/视觉_img/16-4.png" height="5%" width="%5">
-</li>
-<li><p>ZNCC</p>
- <img src="/视觉_img/16-5.png" height="5%" width="%5">
-
-</li>
-</ol>
-<h1 id="平面扫描立体视觉"><a href="#平面扫描立体视觉" class="headerlink" title="平面扫描立体视觉"></a>平面扫描立体视觉</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><img src="/视觉_img/16-6.png" height="5%" width="%5">
-
-<ol>
-<li><p>相机1系即世界坐标系，相机1为参考相机</p>
-</li>
-<li><p>深度平面</p>
- <img src="/视觉_img/16-7.png" height="5%" width="%5">
-
-<ol>
-<li>其中n<sub>m</sub>为深度平面的法向量</li>
-<li>平面表示为ax+by+cz+d=0</li>
-<li>点到平面距离dm=&radic;a<sup>2</sup>+b<sup>2</sup>+c<sup>2</sup>?</li>
-</ol>
-</li>
-<li><p>从参考相机Pref映射到深度平<br>面Πm，再映射到相机Pk的单应<br>映射为</p>
- <img src="/视觉_img/16-8.png" height="5%" width="%5">
-
-</li>
-</ol>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><img src="/视觉_img/16-9.png" height="5%" width="%5">
-
-<h3 id="参考平面"><a href="#参考平面" class="headerlink" title="参考平面"></a>参考平面</h3><ol>
-<li><p>与成像平面平行</p>
- <img src="/视觉_img/16-10.png" height="5%" width="%5">
-</li>
-<li><p>其他方向</p>
- <img src="/视觉_img/16-11.png" height="5%" width="%5">
-
-</li>
-</ol>
-<h1 id="深度图融合"><a href="#深度图融合" class="headerlink" title="深度图融合"></a>深度图融合</h1><p>方法</p>
-<ol>
-<li>使用多基线方法计算一个深度图</li>
-<li>体积融合</li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-视觉第15讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC15%E8%AE%B2/"
-    >视觉第15讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC15%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.901Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="运动恢复结构-SFM"><a href="#运动恢复结构-SFM" class="headerlink" title="运动恢复结构 SFM"></a>运动恢复结构 SFM</h1><ol>
-<li>目的：输入一对匹配点的图像坐标，输出这个点的三维坐标及相机内外参数(可能的话)。同时使得目标函数具有最小化重投影误差。</li>
-<li>过程：<ol>
-<li>特征检测与匹配</li>
-<li>匹配每对图像之间的特征</li>
-<li>用 RANSAC 优化匹配以估计各对之间的基本矩阵</li>
-</ol>
-</li>
-</ol>
-<h2 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h2><img src="/视觉_img/15-1.png" style="zoom:80%">
-
-<ol>
-<li>目标是使重投影误差平方和最小</li>
-<li>P(xi,Rj,tj)表示把Xi这个点投影到第j个相机。</li>
-<li>Wij：=1代表三维点在图像中出现了；=0代表没出现。</li>
-<li>解不唯一。</li>
-</ol>
-<h2 id="重复结构问题的解决"><a href="#重复结构问题的解决" class="headerlink" title="重复结构问题的解决"></a>重复结构问题的解决</h2><ol>
-<li>预处理：删除不一致的场景图边缘</li>
-<li>后处理：识别和更正重复的结构</li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-视觉第14讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC14%E8%AE%B2/"
-    >视觉第14讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC14%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.898Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="极线"><a href="#极线" class="headerlink" title="极线"></a>极线</h1><img src="/视觉_img/14_2.png" style="zoom:1%">
-
-<ol>
-<li>极线：极面与成像平面的交线<h1 id="基本矩阵"><a href="#基本矩阵" class="headerlink" title="基本矩阵"></a>基本矩阵</h1><h2 id="基本矩阵性质"><a href="#基本矩阵性质" class="headerlink" title="基本矩阵性质"></a>基本矩阵性质</h2></li>
-<li>F将图像1中的点映射到图像2中的极线</li>
-<li>Fp是与p对应的极线</li>
-<li>F<sup>T</sup>q是与q对应的极线</li>
-<li>Fe1=0，F<sup>T</sup>e2=0<ol>
-<li><strong>证明</strong> 比如极线恒过e1，则对于任意的q，e1<sup>T</sup>F1<sup>T</sup>q=0，则e1<sup>T</sup>F1<sup>T</sup>=0</li>
-</ol>
-</li>
-<li>F的秩是2，行列式为0</li>
-<li>点p在图2中的极线是:Fp</li>
-<li>对应点间<strong>极线约束</strong>为q<sup>T</sup>Fp=0,即匹配点必须在极线上</li>
-<li>特殊点e1和e2(极点)：是相机在另一个相机成像平面上的投影。(两个相机互相拍照)</li>
-<li>所有极线都通过极点</li>
-</ol>
-<h2 id="求解基本矩阵-已标定时"><a href="#求解基本矩阵-已标定时" class="headerlink" title="求解基本矩阵-已标定时"></a>求解基本矩阵-已标定时</h2><img src="/视觉_img/14_3.png" style="zoom:1%">    
-
-<p>其中</p>
-<ol>
-<li>ot为baseline</li>
-<li>相机1坐标系即世界坐标系</li>
-<li>p,q为齐次坐标</li>
-<li>旋转矩阵R<sup>-1</sup>=R<sup>T</sup><img src="/视觉_img/14_4.png" style="zoom:1%">
-
-</li>
-</ol>
-<img src="/视觉_img/14_5.png" style="zoom:1%">
-
-<ol start="3">
-<li>与t的叉积可表示为</li>
-</ol>
-<img src="/视觉_img/14_6.png" style="zoom:1%">
-
-<img src="/视觉_img/14_7.png" style="zoom:1%">
-
-<ol start="4">
-<li>求得本质矩阵E</li>
-</ol>
-<img src="/视觉_img/14_8.png" style="zoom:1%">
-
-<ol start="5">
-<li>求得基本矩阵F</li>
-</ol>
-<img src="/视觉_img/14_9.png" style="zoom:1%">    
-
-<h2 id="估计基本矩阵"><a href="#估计基本矩阵" class="headerlink" title="估计基本矩阵"></a>估计基本矩阵</h2><p>在不知道K1,K2,R或t的情况下估计F</p>
-<h3 id="8点算法"><a href="#8点算法" class="headerlink" title="8点算法"></a>8点算法</h3><ol>
-<li>求解思路<br> 对于每对匹配点，由x’<sup>T</sup>Fx=0</li>
-</ol>
-<pre><code>&lt;img src=&quot;/视觉_img/14_10.png&quot; style=&quot;zoom:1%&quot;&gt;    
-
-将问题转换成求解让det(Af)最小化的f,其解为A&lt;sup&gt;T&lt;/sup&gt;A的最小特征向量。</code></pre><ol start="2">
-<li>问题<ol>
-<li>不能保证F的秩是2</li>
-</ol>
-</li>
-<li>解决<ol>
-<li>因此应将F换成F’，F’的秩为2，且是|F-F’|最小化</li>
-</ol>
-</li>
-</ol>
-<pre><code>&lt;img src=&quot;/视觉_img/14_11.png&quot; style=&quot;zoom:1%&quot;&gt;</code></pre><ol start="4">
-<li>8点算法：<ol>
-<li><strong>优点</strong> 是线性的，易于实现且速度快</li>
-<li><strong>缺点</strong> 易受噪声影响，当各列间数量级差别较大的时候，最小二乘法得到不良解。</li>
-</ol>
-</li>
-</ol>
-<h2 id="归一化的8点算法"><a href="#归一化的8点算法" class="headerlink" title="归一化的8点算法"></a>归一化的8点算法</h2><p>将图像变换到[-1,1]×[-1,1]</p>
-<img src="/视觉_img/14_12.png" style="zoom:1%">
-
-<img src="/视觉_img/14_13.png" style="zoom:1%">
-
-<p>其中T为归一化矩阵</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-视觉第13讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC13%E8%AE%B2/"
-    >视觉第13讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC13%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.895Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="极几何"><a href="#极几何" class="headerlink" title="极几何"></a>极几何</h1><h2 id="基本的立体图算法"><a href="#基本的立体图算法" class="headerlink" title="基本的立体图算法"></a>基本的立体图算法</h2><img src="/视觉_img/13_1.png" style="zoom:1%">
-
-<p>对于左图中每个像素，在右图同一个极线上选择最小匹配成本的像素。</p>
-<ol>
-<li>用SSD衡量成本</li>
-<li>匹配窗口：大窗口粒度粗，小窗口更加精细，但是噪声多。</li>
-</ol>
-<h2 id="能量最小化求解立体视觉"><a href="#能量最小化求解立体视觉" class="headerlink" title="能量最小化求解立体视觉"></a>能量最小化求解立体视觉</h2><ol>
-<li><p>目标</p>
-<ol>
-<li>匹配质量：希望每个像素在其他图像中找到一个好的匹配项</li>
-<li>平滑：如果两个像素相邻，他们的应该平移大约相同的量<h3 id="贪心匹配"><a href="#贪心匹配" class="headerlink" title="贪心匹配"></a>贪心匹配</h3></li>
-</ol>
-</li>
-<li><p>定义能量函数E(d)</p>
- <img src="/视觉_img/13_2.png" style="zoom:1%">
-
-<ol>
-<li>现在要找一个平移量映射D，最大限度的减少一个能量函数E(d)</li>
-<li>独立的选择每一列的最小值d(x,y)=argmin C(x,y,d’)<h3 id="改进目标函数"><a href="#改进目标函数" class="headerlink" title="改进目标函数"></a>改进目标函数</h3></li>
-</ol>
-</li>
-</ol>
-<img src="/视觉_img/13_3.png" style="zoom:1%">
-
-<p>其中</p>
-<img src="/视觉_img/13_4.png" style="zoom:1%">
-
-<p>对于平滑成本，v的选择很多</p>
-<img src="/视觉_img/13_5.png" style="zoom:1%">
-
-<ol>
-<li><p>一维动态规划</p>
-<ol>
-<li><p>对每条扫描线使用动态规划方法独立求解</p>
-</li>
-<li><p>以增量方式构建成本函数D</p>
- <img src="/视觉_img/13_6.png" style="zoom:1%">
-</li>
-</ol>
-</li>
-<li><p>二维动态规划</p>
- <img src="/视觉_img/13_7.png" style="zoom:1%">
-
-<ol>
-<li>不能用二维动态规划求解，因为dx,y-1和 dx-1,y可能取决于 dx-1,y-1 的不同值</li>
-<li>2D有许多局部极小值</li>
-<li>以及一个大的搜索群空间</li>
-<li>好的方法是马尔可夫随机场</li>
-</ol>
-</li>
-</ol>
-<h1 id="通过视差求深度"><a href="#通过视差求深度" class="headerlink" title="通过视差求深度"></a>通过视差求深度</h1><img src="/视觉_img/13_8.png" style="zoom:1%">
-
-<ol>
-<li>baseline 极线，平行于成像平面</li>
-<li>X是物体</li>
-<li>x和x’是向量</li>
-<li>(baseline-(x-x’))/baseline=z-f/z</li>
-<li>z为深度<h1 id="立体重建"><a href="#立体重建" class="headerlink" title="立体重建"></a>立体重建</h1></li>
-</ol>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ol>
-<li>标定摄像机：标定内外参数</li>
-<li>校正图像：将两个图像放到同一个平面上，且平行于baseline</li>
-<li>计算平移量</li>
-<li>估计深度</li>
-</ol>
-<h2 id="由结构光主动获得立体图"><a href="#由结构光主动获得立体图" class="headerlink" title="由结构光主动获得立体图"></a>由结构光主动获得立体图</h2>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-视觉第12讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC12%E8%AE%B2/"
-    >视觉第12讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC12%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.893Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="点和线"><a href="#点和线" class="headerlink" title="点和线"></a>点和线</h1><h2 id="点和线的对偶性"><a href="#点和线的对偶性" class="headerlink" title="点和线的对偶性"></a>点和线的对偶性</h2><img src="/视觉_img/12_1.png" style="zoom:70%">
-
-<ol>
-<li>对于线上的每一点P,有I·P=0    （面上一点同理）</li>
-<li>由射线P1和P2决定的线I,有I=P1×P2</li>
-<li>两条线I1和I2的交点P，有P=I1×I2</li>
-</ol>
-<h2 id="理想的点和线"><a href="#理想的点和线" class="headerlink" title="理想的点和线"></a>理想的点和线</h2><img src="/视觉_img/12_2.png" style="zoom:70%">
-
-<ol>
-<li><p>理想点（无穷远点）</p>
-<ol>
-<li>P(x,y,0)平行于图像平面</li>
-<li>有无限的图像坐标</li>
-</ol>
-</li>
-<li><p>理想线</p>
-<ol>
-<li>I(a,b,0)平行于图像平面</li>
-<li>对应于图像平面过主点的一条线</li>
-<li>由ax+by=0组成的线</li>
-</ol>
-</li>
-</ol>
-<h2 id="面和点的对偶性"><a href="#面和点的对偶性" class="headerlink" title="面和点的对偶性"></a>面和点的对偶性</h2><ol>
-<li>一个平面可以用四维向量表示</li>
-<li>点和平面是对偶的：N·P=0</li>
-<li>三点定义一个平面，三个平面定义一个点</li>
-</ol>
-<h1 id="透视投影"><a href="#透视投影" class="headerlink" title="透视投影"></a>透视投影</h1><img src="/视觉_img/12_3.png" style="zoom:40%">
-
-<h2 id="消失点-1D"><a href="#消失点-1D" class="headerlink" title="消失点 1D"></a>消失点 1D</h2><img src="/视觉_img/12_4.png" style="zoom:40%">
-
-<ol>
-<li>消失点：<ol>
-<li>是无穷处一个点的投影</li>
-<li>通常投影到图像中的一个有限点</li>
-</ol>
-</li>
-</ol>
-<h2 id="消失点-2D"><a href="#消失点-2D" class="headerlink" title="消失点 2D"></a>消失点 2D</h2><img src="/视觉_img/12_5.png" style="zoom:40%">
-## 消失点 3D
-<img src="/视觉_img/12_6.png" style="zoom:40%">
-
-<ol>
-<li>特性<ol>
-<li>任意两条平行线都有相同的消失点V</li>
-<li>从光心C通过消失点V的射线与那些平行线平行</li>
-<li>图像可能有多个消失点</li>
-</ol>
-</li>
-</ol>
-<h2 id="消失线"><a href="#消失线" class="headerlink" title="消失线"></a>消失线</h2><img src="/视觉_img/12_7.png" style="zoom:40%">
-
-<ol>
-<li>平面上任意一组平行线都定义一个消失点</li>
-<li>消失点的联合就是消失线(地平线)</li>
-<li>不同平面可以定义不同的消失线</li>
-</ol>
-<h2 id="计算消失点"><a href="#计算消失点" class="headerlink" title="计算消失点"></a>计算消失点</h2><img src="/视觉_img/12_8.png" style="zoom:40%">
-
-<p>v = ΠP<sub>∞</sub></p>
-<ol>
-<li><p>解释：</p>
-<ol>
-<li>先得到一条射线Px，其中t是一个自由变化的系数，D是方向向量</li>
-<li>将t-&gt;∞代入，得到P<sub>∞</sub></li>
-<li>将P<sub>∞</sub>投影到成像平面</li>
-</ol>
-</li>
-<li><p>特性：</p>
-<ol>
-<li>P<sub>∞</sub> 是无穷远处的一个点，v是其投影</li>
-<li>仅取决于线的方向</li>
-<li>平行线P<sub>0</sub>+tD和P<sub>1</sub>+tD相交于P<sub>∞</sub></li>
-</ol>
-</li>
-</ol>
-<ol start="2">
-<li><img src="/视觉_img/12_10.png" style="zoom:40%">
-## 计算消失线
-
-
-</li>
-</ol>
-<img src="/视觉_img/12_9.png" style="zoom:40%">
-
-<p>作平行于地面平面且过C的平面与投影平面的交线。</p>
-<ol>
-<li>特性<ol>
-<li>I是通过C的水平平面与图像平面的交集</li>
-<li>可以通过地面平面上的两组平行线计算I</li>
-<li>所有与光心C同样高度的点投影到I上</li>
-<li>提供了比较场景中对象高度的方法</li>
-</ol>
-</li>
-</ol>
-<h1 id="通过参照物测量高度"><a href="#通过参照物测量高度" class="headerlink" title="通过参照物测量高度"></a>通过参照物测量高度</h1><ol>
-<li><p>交叉比—射影不变量</p>
- <img src="/视觉_img/12_11.png" style="zoom:40%">
-</li>
-<li><p>测量高度</p>
- <img src="/视觉_img/12_12.png" style="zoom:40%">
-</li>
-<li><p>实际</p>
- <img src="/视觉_img/12_13.png" style="zoom:40%"></li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-视觉第11讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC11%E8%AE%B2/"
-    >视觉第11讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC11%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.890Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="创建全景图"><a href="#创建全景图" class="headerlink" title="创建全景图"></a>创建全景图</h1><h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><ol>
-<li>从同一位置拍摄一系列图像。<strong>光心不动</strong></li>
-<li>计算第二个图像与第一个映像之间的变换。</li>
-<li>变换第二个图像与第一个图像部分重合</li>
-<li>将二者融合在一起创建拼图。</li>
-<li>多个图像重复上述过程</li>
-</ol>
-<img src="/视觉_img/11_1.png" style="zoom:80%">
-## 变换矩阵
-
-<img src="/视觉_img/11_2.png" style="zoom:80%">
-
-<img src="/视觉_img/11_3.png" style="zoom:80%">
-
-<p>注：</p>
-<ol>
-<li>图像平面一般以主点为圆心。</li>
-<li>相机1的坐标系为世界坐标系。<h2 id="360°全景图"><a href="#360°全景图" class="headerlink" title="360°全景图"></a>360°全景图</h2>使用拼图投影球</li>
-</ol>
-<img src="/视觉_img/11_4.png" style="zoom:80%">
-
-<p>注：</p>
-<ol>
-<li>球面坐标：弧长</li>
-<li>s为投影球半径<h2 id="装配全景图"><a href="#装配全景图" class="headerlink" title="装配全景图"></a>装配全景图</h2></li>
-<li>过程：拼接，融合，裁剪</li>
-<li>问题：出现漂移</li>
-<li>解决</li>
-</ol>
-<img src="/视觉_img/11_5.png" style="zoom:80%">
-
-<h2 id="图像融合"><a href="#图像融合" class="headerlink" title="图像融合"></a>图像融合</h2><ol>
-<li><p>使用羽化</p>
-<ol>
-<li>窗口大小影响羽化效果。<ol>
-<li>窗口大小为0和直接拼接一样</li>
-<li>良好的窗口应该是平滑且没有虚影的。</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>金字塔混合<br> 使用拉普拉斯金子塔在各层次上融合，最终叠加。</p>
-<p> 拉普拉斯金字塔</p>
- <img src="/视觉_img/11_6.png" style="zoom:80%">
-</li>
-<li><p>Alpha混合</p>
-<img src="/视觉_img/11_7.png" style="zoom:80%">
-</li>
-<li><p>泊松图像编辑</p>
-</li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-视觉第10讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC10%E8%AE%B2/"
-    >视觉第10讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC10%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.887Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="相机成像原理"><a href="#相机成像原理" class="headerlink" title="相机成像原理"></a>相机成像原理</h1><ol>
-<li><p>为什么不使光圈尽可能小?<br> （1）使光线减少 （2）衍射影响</p>
-</li>
-<li><p>人的眼睛：瞳孔相当于光圈；视网膜上的感光细胞相当于胶片。</p>
-<h2 id="相机模型"><a href="#相机模型" class="headerlink" title="相机模型"></a>相机模型</h2></li>
-<li><p>投影建模</p>
- <img src="/视觉_img/10_1.png" style="zoom:80%">
- 1. 将相机近似为针孔模型
- 2. 把小孔的位置设在原点
- 3. 将图像平面放在投影中心COP的前面(为了得到正立的相)
- 4. 相机向负z轴看去(右手坐标系下)</li>
-<li><p>投影方程</p>
- <img src="/视觉_img/10_2.png" style="zoom:80%">
-
-<ol>
-<li><p>不是线性变换—-&gt;采用3D齐次坐标。</p>
- <img src="/视觉_img/10_3.png" style="zoom:80%"></li>
-</ol>
-</li>
-<li><p>透视投影</p>
-<ol>
-<li><p>投影是使用齐次坐标的矩阵乘法：</p>
- <img src="/视觉_img/10_4.png" style="zoom:80%">
-</li>
-<li><p>改变投影变换的吃尺度对变换没有影响</p>
- <img src="/视觉_img/10_5.png" style="zoom:80%"></li>
-</ol>
-</li>
-<li><p>正交投影（平行投影）</p>
-<ol>
-<li><p>是透视投影的特殊情况：当光学中心COP到投影平面PP的距离是无限的时候。（1/d = 0）</p>
- <img src="/视觉_img/10_6.png" style="zoom:80%">
-## 正交投影的变体</li>
-</ol>
-</li>
-<li><p>缩放正交（弱透视）</p>
-<p> 相当于在物体聚焦到角点前就将图像截获。</p>
- <img src="/视觉_img/10_7.png" style="zoom:80%">
-
-<p> 分两步: </p>
-<ol>
-<li>第一步：整个物体按平行于光轴的方向正交投影到经过物体质心并与图像平面平行的平面上。</li>
-<li>第二步：再按透视模型投影到图像平面上，这一步实际是全局的缩放。</li>
-</ol>
-</li>
-<li><p>仿射投影</p>
- <img src="/视觉_img/10_8.png" style="zoom:80%">
-
-<p> 分两步：</p>
-<ol>
-<li>仍把物体平行投影到过质心且与图象平面平行的平面上，不过这次的投影线不是平行于光轴，而是平行于光心C和物体质心G的连线CG；</li>
-<li>再按透视模型投影到图象平面上。</li>
-</ol>
-</li>
-<li><p>总结</p>
-</li>
-</ol>
-<img src="/视觉_img/10_9.png" style="zoom:80%">
-
-<h2 id="降维"><a href="#降维" class="headerlink" title="降维"></a>降维</h2><ol>
-<li><p>投影属性</p>
-<ol>
-<li><p>多对一：同一光线上的所有点映射到图像中的同一点。</p>
-</li>
-<li><p>点-&gt;点，线-&gt;线（通过角点的线变成一个点）</p>
-</li>
-<li><p>平面-&gt;平面（通过角点的平面变成一条线）</p>
-</li>
-<li><p>平行线在消失点汇合</p>
-<ol>
-<li>每个方向在空间中都有他自己的消失点，但平行于图像平面的平行线保持平行。</li>
-</ol>
-<img src="/视觉_img/10_10.png" style="zoom:80%">
-## 相机参数
-现在我们要将世界坐标系中的一个点投影到相机坐标系中。我们需要知道相机在世界坐标系中的位置和方向。然后透视投影到图像平面上以获得像素坐标。
-</li>
-</ol>
-</li>
-<li><p>相机内参数</p>
-<ol>
-<li>从世界坐标系原点到光心COP的平移变换T</li>
-<li>描述相机方向的旋转变换R</li>
-<li>焦距f、主点(x,y)、像素大小（sx,sy）</li>
-</ol>
-</li>
-<li> <img src="/视觉_img/10_11.png" style="zoom:80%">
-
-<p> ·</p>
-<p> ·</p>
- <img src="/视觉_img/10_12.png" style="zoom:80%">
-
-<p> 这个公式要从右向左看</p>
-<ol>
-<li>平移矩阵即是将相机原点与世界原点重合。</li>
-<li>第二步旋转，是将相机坐标系的三个轴旋转到与世界坐标系坐标轴平行。</li>
-<li>第三步是将世界坐标系中的三维点透过光心进行投影。</li>
-<li>第四步是使用相机内参数将图像变成离散的坐标。</li>
-<li><strong>注意</strong> 该公式中对投影变换进行了拆分，，一部分与内参数乘在了一起。</li>
-</ol>
-</li>
-</ol>
-<h2 id="外参数—让相机规范化"><a href="#外参数—让相机规范化" class="headerlink" title="外参数—让相机规范化"></a>外参数—让相机规范化</h2><ol>
-<li><p>第一步 平移-c，将相机坐标系原点与世界坐标系原点重合。</p>
- <img src="/视觉_img/10_15.png" style="zoom:80%">
-
-<p> 其中c为相机坐标原点在世界坐标系中的坐标[[tx,ty,tz]].T</p>
-</li>
-<li><p>第二步 旋转R， 将相机坐标系的轴旋转到与世界坐标系轴平行。</p>
- <img src="/视觉_img/10_16.png" style="zoom:80%">
-
-</li>
-</ol>
-<h2 id="透视投影"><a href="#透视投影" class="headerlink" title="透视投影"></a>透视投影</h2><img src="/视觉_img/10_17.png" style="zoom:80%">
-
-<h2 id="投影矩阵"><a href="#投影矩阵" class="headerlink" title="投影矩阵"></a>投影矩阵</h2><img src="/视觉_img/10_18.png" style="zoom:80%">
-
-<p><strong>注：</strong></p>
-<ol>
-<li><p>平移的三个参数是相机原点在世界坐标系中的坐标。</p>
-</li>
-<li><p>旋转的三个参数是相机坐标系的坐标轴在用世界坐标系的方向向量来表达的向量坐标的转置。</p>
-</li>
-<li><p><strong>将投影矩阵乘开</strong></p>
-</li>
-</ol>
-<img src="/视觉_img/10_19.png" style="zoom:80%">
-
-<img src="/视觉_img/10_13.png" style="zoom:80%">
-
-<h2 id="透视失真"><a href="#透视失真" class="headerlink" title="透视失真"></a>透视失真</h2><ol>
-<li>梯形失真</li>
-<li>仰拍导致。解决：移轴镜头</li>
-<li>外侧列更大</li>
-<li>镜头失真：枕型，桶型–&gt;由不完美镜头引起</li>
-<li><strong>修正径向畸变</strong><img src="/视觉_img/10_14.png" style="zoom:80%"></li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/6/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/8/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/6/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/8/">下一页</a>
   </nav>
   
 </section>

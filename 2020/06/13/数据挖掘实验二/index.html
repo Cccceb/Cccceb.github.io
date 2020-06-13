@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    数据挖掘实验二 |  Hexo
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-数据挖掘实验二" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  数据挖掘实验二
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/13/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%AE%9E%E9%AA%8C%E4%BA%8C/" class="article-date">
+  <time datetime="2020-06-13T07:26:10.985Z" itemprop="datePublished">2020-06-13</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.6k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">6分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p><a href="https://github.com/Cccceb/No3.second.git">源码:https://github.com/Cccceb/No3.second.git</a></p>
+<h1 id="实验内容"><a class="markdownIt-Anchor" href="#实验内容"></a> 实验内容</h1>
+<p>1、 数据来源 <a href="http://archive.ics.uci.edu/ml/datasets/Congressional+Voting+Records" target="_blank" rel="noopener">http://archive.ics.uci.edu/ml/datasets/Congressional+Voting+Records</a></p>
+<p>2、使用 Apriori算法，支持度设为 30%，置信度为 90%，挖掘高置信度的规则</p>
+<h1 id="分析及设计"><a class="markdownIt-Anchor" href="#分析及设计"></a> 分析及设计</h1>
+<h2 id="转换数据集"><a class="markdownIt-Anchor" href="#转换数据集"></a> 转换数据集</h2>
+<p>首先将数据集转换为课堂常见的形式，每一条记录中如果为赞同，那么记录该列的正索引，否则记录负索引，忽略?。其中第1列，将‘republican’标记为正索引</p>
+<h2 id="获取频繁项集"><a class="markdownIt-Anchor" href="#获取频繁项集"></a> 获取频繁项集</h2>
+<ol>
+<li>实现计算支持度的函数caluSupp，该函数通过遍历整个数据库和候选项集列表，累加每个候选集的出现次数。然后计算其支持度与支持度阈值比较，返回频繁项集和所有候选项集的支持度计数</li>
+<li>[-17,-1],[1,17]构成了候选1-项集，利用上述函数计算频繁1-项集。</li>
+<li>将频繁1-项集中元素进行两两合并，得到候选2-项集，再利用1中函数计算得到频繁2-项集。同时扩展所有候选项集的支持度计数</li>
+<li>将频繁k-项集中元素前k-2个元素相同的项集进行两两合并得到候选k+1-项集，以支持度阈值过滤得到频繁k+1项集</li>
+<li>重复步骤4直到频繁k-项集为空</li>
+</ol>
+<h2 id="推导关联规则"><a class="markdownIt-Anchor" href="#推导关联规则"></a> 推导关联规则</h2>
+<ol>
+<li>从频繁2-项集开始挖掘关联规则。对于频繁2-项集，只需要判断两两之间是否有关联关系，即对于集合{a,b}只需要计算S(a,b)/S(a)以及S(a,b)/S(b)即可</li>
+<li>对于其他频繁k-项集(k&gt;2)，则需要递归判断。对于规则$$A\to B$$，其中A,B为集合，首先判断B大小为1的情况计算其置信度，并通过置信度阈值过滤。然后逐步增大B的大小(利用计算频繁项集中的合并函数)，再次计算置信度，并用阈值过滤。重复上述步骤直到B的大小=频繁k-项集大小-1时停止。返回得到的规则</li>
+</ol>
+<h1 id="详细实现"><a class="markdownIt-Anchor" href="#详细实现"></a> 详细实现</h1>
+<h2 id="转换数据集-2"><a class="markdownIt-Anchor" href="#转换数据集-2"></a> 转换数据集</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> joblib</span><br><span class="line">dataset = pd.read_table(<span class="string">"./house-votes-84.data"</span>,sep=<span class="string">','</span>,header = <span class="literal">None</span>).values</span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(dataset)):</span><br><span class="line">    tmp = []</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(dataset[i])):</span><br><span class="line">        <span class="keyword">if</span> dataset[i,j] == <span class="string">'y'</span> <span class="keyword">or</span> dataset[i,j] == <span class="string">'republican'</span>:</span><br><span class="line">            tmp.append(j)</span><br><span class="line">        <span class="keyword">elif</span> dataset[i,j] == <span class="string">'n'</span> <span class="keyword">or</span> dataset[i,j] == <span class="string">'democrat'</span>:</span><br><span class="line">            tmp.append(-(j+<span class="number">1</span>))</span><br><span class="line">    a.append(tmp)</span><br><span class="line">joblib.dump(a,<span class="string">"MyDataset"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="获取频繁项集-2"><a class="markdownIt-Anchor" href="#获取频繁项集-2"></a> 获取频繁项集</h2>
+<h3 id="计算支持度"><a class="markdownIt-Anchor" href="#计算支持度"></a> 计算支持度</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">caluSupp</span><span class="params">(dataset, Ck, minSupport)</span>:</span></span><br><span class="line">    total = <span class="number">435</span></span><br><span class="line">    Ck = list(Ck)</span><br><span class="line">    tmp = &#123;&#125;<span class="comment"># tmp用来暂存支持度计数</span></span><br><span class="line">    <span class="keyword">for</span> tid <span class="keyword">in</span> dataset:</span><br><span class="line">        <span class="keyword">for</span> can <span class="keyword">in</span> Ck:</span><br><span class="line">            <span class="keyword">if</span> can.issubset(tid): <span class="comment"># can是一个集合类型</span></span><br><span class="line">                <span class="keyword">if</span> can <span class="keyword">not</span> <span class="keyword">in</span> tmp.keys():<span class="comment"># 第一次加入初始化为1</span></span><br><span class="line">                    tmp[can] = <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:	<span class="comment"># 之后每次+1</span></span><br><span class="line">                    tmp[can] += <span class="number">1</span></span><br><span class="line">    frequency = []</span><br><span class="line">    supportData = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> tmp:</span><br><span class="line">        <span class="comment"># 计算支持度</span></span><br><span class="line">        support = tmp[key] / total</span><br><span class="line">        <span class="keyword">if</span> support &gt;= minSupport:</span><br><span class="line">            <span class="comment"># 将满足阈值的放入频繁项集中</span></span><br><span class="line">            frequency.append(key)</span><br><span class="line">        <span class="comment"># 记录所有的支持度</span></span><br><span class="line">        supportData[key] = support</span><br><span class="line">    <span class="keyword">return</span> frequency, supportData</span><br></pre></td></tr></table></figure>
+<h3 id="apriori算法生成频繁项集"><a class="markdownIt-Anchor" href="#apriori算法生成频繁项集"></a> Apriori算法生成频繁项集</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">apriori</span><span class="params">(dataSet, minSupport)</span>:</span></span><br><span class="line">    C1 = map(frozenset,[[i] <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">17</span>)])</span><br><span class="line">    <span class="comment"># 对每一行进行 set 转换，然后存放到集合中</span></span><br><span class="line">    dataSet = list(map(set, dataSet))</span><br><span class="line">    <span class="comment"># print 'dataSet=', dataSet</span></span><br><span class="line">    <span class="comment"># 计算候选数据集 C1 在数据集 dataSet 中的支持度，并返回支持度大于 minSupport 的数据</span></span><br><span class="line">    L1, supportData = caluSupp(dataSet, C1, minSupport)</span><br><span class="line"></span><br><span class="line">    frequency = [L1] <span class="comment"># frequency为所有频繁项集</span></span><br><span class="line">    k = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> (len(frequency[k - <span class="number">2</span>]) &gt; <span class="number">0</span>):</span><br><span class="line">        <span class="comment"># 从候选2-项集开始计算，直到</span></span><br><span class="line">        Ck = aprioriGen(frequency[k - <span class="number">2</span>],k) <span class="comment"># 合并得到候选k项集</span></span><br><span class="line"></span><br><span class="line">        Lk, supK = caluSupp(dataSet, Ck, minSupport)  <span class="comment"># 计算频繁k-项集</span></span><br><span class="line">        <span class="comment"># 将新产生的项集的支持度计数加入到集合中</span></span><br><span class="line">        supportData.update(supK)</span><br><span class="line">        <span class="keyword">if</span> len(Lk) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        frequency.append(Lk)</span><br><span class="line">        k += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> frequency, supportData</span><br></pre></td></tr></table></figure>
+<h3 id="上面用到的合并得到k项集函数"><a class="markdownIt-Anchor" href="#上面用到的合并得到k项集函数"></a> 上面用到的合并得到k项集函数</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">aprioriGen</span><span class="params">(Lk, k)</span>:</span></span><br><span class="line">    retList = []</span><br><span class="line">    lenLk = len(Lk)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(lenLk):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>, lenLk):</span><br><span class="line">            L1 = list(Lk[i])[: k - <span class="number">2</span>]</span><br><span class="line">            L2 = list(Lk[j])[: k - <span class="number">2</span>]</span><br><span class="line">            L1.sort()</span><br><span class="line">            L2.sort()</span><br><span class="line">            <span class="comment"># 对于前k-2项相同的两个集合进行合并，计入到k项集中</span></span><br><span class="line">            <span class="keyword">if</span> L1 == L2:</span><br><span class="line">                <span class="comment"># print(Lk[i] | Lk[j], Lk[i], Lk[j])</span></span><br><span class="line">                retList.append(Lk[i] | Lk[j])</span><br><span class="line">    <span class="keyword">return</span> retList</span><br></pre></td></tr></table></figure>
+<h2 id="推导关联规则-2"><a class="markdownIt-Anchor" href="#推导关联规则-2"></a> 推导关联规则</h2>
+<h3 id="计算置信度"><a class="markdownIt-Anchor" href="#计算置信度"></a> 计算置信度</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calcConf</span><span class="params">(freqSet, subSet, supportData, brl, minConf)</span>:</span></span><br><span class="line">    <span class="comment"># subSet 是集合的列表，包含本次要判断的规则的右部集合</span></span><br><span class="line">    retList = []</span><br><span class="line">    <span class="keyword">for</span> conseq <span class="keyword">in</span> subSet:</span><br><span class="line">        conf = supportData[freqSet] / supportData[freqSet - conseq]</span><br><span class="line">        <span class="comment"># 支持度定义: a -&gt; b = support(a | b) / support(a).</span></span><br><span class="line">        <span class="keyword">if</span> conf &gt;= minConf:</span><br><span class="line">            print(freqSet - conseq, <span class="string">'-&gt;'</span>, conseq, <span class="string">'confidence:'</span>, conf)</span><br><span class="line">            brl.append((freqSet - conseq, conseq, conf))</span><br><span class="line">            retList.append(conseq)</span><br><span class="line">    <span class="keyword">return</span> retList</span><br></pre></td></tr></table></figure>
+<h3 id="生成关联规则"><a class="markdownIt-Anchor" href="#生成关联规则"></a> 生成关联规则</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generateRules</span><span class="params">(L, supportData, minConf)</span>:</span></span><br><span class="line">    ruleList = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(L)):<span class="comment"># L[i]为所有i-1项集构成的列表</span></span><br><span class="line">        <span class="keyword">for</span> freqSet <span class="keyword">in</span> L[i]:</span><br><span class="line">            H1 = [frozenset([item]) <span class="keyword">for</span> item <span class="keyword">in</span> freqSet] <span class="comment"># 频繁项集中所有元素形成的列表</span></span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">1</span>:<span class="comment"># 2以上的项集，还需要递归的扩大关联规则的右部</span></span><br><span class="line">                rulesFromConseq(freqSet, H1, supportData, ruleList, minConf)</span><br><span class="line">            <span class="keyword">else</span>:<span class="comment"># 频繁2-项集，只需要计算两个置信度，所以单拿出来</span></span><br><span class="line">                calcConf(freqSet, H1, supportData, ruleList, minConf)</span><br><span class="line">    <span class="keyword">return</span> ruleList</span><br></pre></td></tr></table></figure>
+<h3 id="递归的合并规则"><a class="markdownIt-Anchor" href="#递归的合并规则"></a> 递归的合并规则</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rulesFromConseq</span><span class="params">(freqSet, H, supportData, brl, minConf)</span>:</span></span><br><span class="line">    Hmp1 = calcConf(freqSet, H, supportData, brl, minConf)  <span class="comment"># 利用阈值进行过滤，返回可信度大于阈值的集合</span></span><br><span class="line">    <span class="keyword">if</span> (len(Hmp1) &gt;= <span class="number">1</span>):</span><br><span class="line">        m = len(H[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">if</span> m &lt; len(freqSet)<span class="number">-1</span>: <span class="comment"># 当关联规则的右部小于频繁项集的长度时</span></span><br><span class="line">            Hmp1 = aprioriGen(H, m+<span class="number">1</span>) <span class="comment"># 利用合并函数将规则右部扩展一位</span></span><br><span class="line">            <span class="comment"># 如果仍有满足阈值的规则，那么递归的合并规则，并进行过滤，直到没有满足阈值要求的规则</span></span><br><span class="line">            rulesFromConseq(freqSet, Hmp1, supportData, brl, minConf)</span><br></pre></td></tr></table></figure>
+<h1 id="实验结果"><a class="markdownIt-Anchor" href="#实验结果"></a> 实验结果</h1>
+<ul>
+<li>
+<p>具体输出内容见<a href="./out.txt">out.txt</a></p>
+</li>
+<li>
+<p>在支持度阈值0.3，置信度阈值0.9的情况下，共计挖掘到2990条规则。</p>
+</li>
+<li>
+<p>结果文件的集合中数字为每个属性的索引，索引从1开始</p>
+</li>
+</ul>
+<h1 id="心得体会"><a class="markdownIt-Anchor" href="#心得体会"></a> 心得体会</h1>
+<ul>
+<li>本次实验实现了Apriori算法生成频繁项集，以及关联规则的产生，并且利用置信度进行了剪枝。通过本次实验，我更加了解算法的流程，对于一些边界处的处理也有了实际体会。</li>
+<li>起初忘记用set了，还在考虑将下标转字符串作为键。后来参考了《机器学习实战》慢慢理清了思路，以后还要多多看书，才能少走弯路。</li>
+</ul>
+<p>​																																								<strong>17069130005</strong></p>
+<p>​																																											<strong>崔恩博</strong></p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/06/13/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%AE%9E%E9%AA%8C%E4%BA%8C/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/06/13/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%AE%9E%E9%AA%8C%E4%B8%89/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            数据挖掘实验三
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/06/13/%E7%AC%AC8%E7%AB%A0%E8%81%9A%E7%B1%BB%E5%88%86%E6%9E%90/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">第8章聚类分析</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        John Doe
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

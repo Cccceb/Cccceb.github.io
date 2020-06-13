@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">3.8k字</span>
+            <span class="post-count">4.2k字</span>
         </span>
     </span>
 
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">13分钟</span>
+            <span class="post-count">14分钟</span>
         </span>
     </span>
 </div>
@@ -101,70 +101,107 @@
       
 
       
-      <h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="属性与度量"><a href="#属性与度量" class="headerlink" title="属性与度量"></a>属性与度量</h2><h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><ol>
+      <h1 id="数据类型"><a class="markdownIt-Anchor" href="#数据类型"></a> 数据类型</h1>
+<ul>
+<li>数据：对象和其属性的集合</li>
+</ul>
+<h2 id="属性与度量"><a class="markdownIt-Anchor" href="#属性与度量"></a> 属性与度量</h2>
+<h3 id="属性"><a class="markdownIt-Anchor" href="#属性"></a> 属性</h3>
+<ol>
 <li><strong>属性</strong>：是对象的性质或特性,它因对象而异,或随时间而变</li>
 <li><strong>属性的值</strong>：分配给属性的数值或符号。相同属性可能有不同的值，不同属性可能映射到相同的值。</li>
 <li><strong>测量标度</strong>：将数值或符号值与对象的属性相关联的规则（函数）。</li>
 </ol>
-<h3 id="属性类型"><a href="#属性类型" class="headerlink" title="属性类型"></a>属性类型</h3><p> <strong>属性的类型</strong>告诉我们,属性的哪些性质反映在用于测量它的值中。注意,通常将属性的类型称作<strong>测量标度的类型</strong>。</p>
-<h3 id="属性的不同类型"><a href="#属性的不同类型" class="headerlink" title="属性的不同类型"></a>属性的不同类型</h3><ol>
-<li><p>定性的</p>
+<h3 id="属性类型"><a class="markdownIt-Anchor" href="#属性类型"></a> 属性类型</h3>
+<p><strong>属性的类型</strong>告诉我们,属性的哪些性质反映在用于测量它的值中。注意,通常将属性的类型称作<strong>测量标度的类型</strong>。</p>
+<h3 id="属性的不同类型"><a class="markdownIt-Anchor" href="#属性的不同类型"></a> 属性的不同类型</h3>
+<ol>
+<li>
+<p>定性的</p>
 <ol>
 <li><strong>标称型</strong> 是一个标记，比如学号</li>
 <li><strong>序数型</strong> 比如排名</li>
 </ol>
 </li>
-<li><p>定量的</p>
+<li>
+<p>定量的</p>
 <ol>
 <li><strong>区间型</strong> 比如天气预报</li>
 <li><strong>比率型</strong> 比如温度以长度/时间/计数方式给出</li>
 </ol>
 </li>
-<li><p>每种属性类型拥有其上方属性类型上的所有性质和操作。因此,对于标称、序数和区间属性合法的任何性质或操作,对于比率属性也合法。换句话说,<strong>属性类型的定义是累积的</strong></p>
+<li>
+<p>每种属性类型拥有其上方属性类型上的所有性质和操作。因此,对于标称、序数和区间属性合法的任何性质或操作,对于比率属性也合法。换句话说,<strong>属性类型的定义是累积的</strong></p>
 </li>
-<li><p> <img src="/KDDkt_img/3.png" alt=""></p>
+<li>
+<p><img src="C:%5CUsers%5C%E5%B4%94%E6%81%A9%E5%8D%9A%5CDesktop%5C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%5CKDD_img%5C3.png" alt="" /></p>
 <ol>
 <li>定性的属性不具有数的大部分性质，即便使用整数表示，也应该像对待符号一样。</li>
 <li>定量属性用数表示，离散或连续</li>
 </ol>
 </li>
 </ol>
-<h3 id="属性的变换"><a href="#属性的变换" class="headerlink" title="属性的变换"></a>属性的变换</h3><p><img src="/KDDkt_img/4.png" alt=""></p>
-<h3 id="用值的个数描述属性"><a href="#用值的个数描述属性" class="headerlink" title="用值的个数描述属性"></a>用值的个数描述属性</h3><ol>
+<h3 id="属性的变换"><a class="markdownIt-Anchor" href="#属性的变换"></a> 属性的变换</h3>
+<p><img src="C:%5CUsers%5C%E5%B4%94%E6%81%A9%E5%8D%9A%5CDesktop%5C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%5CKDD_img%5C4.png" alt="" /></p>
+<h3 id="用值的个数描述属性"><a class="markdownIt-Anchor" href="#用值的个数描述属性"></a> 用值的个数描述属性</h3>
+<ol>
 <li><strong>离散的</strong>：属性具有有限个值或无限可数个值。</li>
 <li><strong>连续的</strong>：连续属性是取实数值的属性。</li>
-<li>通常,标称和序数属性是二元的或离散的,而区间和比率属性是连续的。然而,<strong>计数属性</strong>（count attribute）是<strong>离教的,</strong>也是<strong>比率属性。</strong></li>
+<li>通常,标称和序数属性是二元的或离散的,而区间和比率属性是连续的。然而,<strong>计数属性</strong>（count attribute）是<strong>离教的,<strong>也是</strong>比率属性。</strong></li>
 </ol>
-<h3 id="非对称的属性"><a href="#非对称的属性" class="headerlink" title="非对称的属性"></a>非对称的属性</h3><p>只有<strong>非零值才重要</strong>的二元属性是<strong>非对称的二元属性</strong>。这类属性 对于关联分析特别重要。例如，如果记录每门误程的学分,则结果数漏集将包含非对称的离歆属性或连续属性。</p>
-<h2 id="数据集的类型"><a href="#数据集的类型" class="headerlink" title="数据集的类型"></a>数据集的类型</h2><h3 id="数据集的一般特性"><a href="#数据集的一般特性" class="headerlink" title="数据集的一般特性"></a>数据集的一般特性</h3><ol>
+<h3 id="非对称的属性"><a class="markdownIt-Anchor" href="#非对称的属性"></a> 非对称的属性</h3>
+<p>只有<strong>非零值才重要</strong>的二元属性是<strong>非对称的二元属性</strong>。这类属性 对于关联分析特别重要。例如，如果记录每门误程的学分,则结果数漏集将包含非对称的离歆属性或连续属性。</p>
+<h2 id="数据集的类型"><a class="markdownIt-Anchor" href="#数据集的类型"></a> 数据集的类型</h2>
+<h3 id="结构化数据的重要性"><a class="markdownIt-Anchor" href="#结构化数据的重要性"></a> 结构化数据的重要性</h3>
+<ol>
 <li>维度：指数据集中的对象具有的属性数目</li>
 <li>稀疏性</li>
 <li>分辨率</li>
 </ol>
-<h3 id="记录型数据"><a href="#记录型数据" class="headerlink" title="记录型数据"></a>记录型数据</h3><ol>
-<li><strong>事务数据或购物篮数据</strong>：是一种特殊类型的记录数据<ol>
+<h3 id="记录型数据"><a class="markdownIt-Anchor" href="#记录型数据"></a> 记录型数据</h3>
+<ul>
+<li>数据由一组记录构成，每条记录包含一组属性</li>
+</ul>
+<h4 id="文件数据"><a class="markdownIt-Anchor" href="#文件数据"></a> 文件数据</h4>
+<img src="/MyImages/image-20200426190316000.png" alt="image-20200426190316000" style="zoom:50%;" />
+<ul>
+<li>每一项都是向量的一个属性</li>
+<li>值是每个属性出现的次数</li>
+</ul>
+<h4 id="事务数据"><a class="markdownIt-Anchor" href="#事务数据"></a> 事务数据</h4>
+<ul>
+<li>每条记录由一组项构成</li>
+</ul>
+<ol>
+<li><strong>事务数据或购物篮数据</strong>：是一种特殊类型的记录数据
+<ol>
 <li>考患一个杂货店。顾客一次购物所购买的<strong>商品的集合</strong>就构成一个<strong>事务</strong>,而购买的商品是项。这种类型的数据称作购物篮数据</li>
 </ol>
 </li>
 <li><strong>数据矩阵</strong>：如果一个数据集中的所有数据对象都具有相同的数值属性集，则数据集可以看作一个矩阵。</li>
 <li><strong>稀疏数据矩阵</strong>：是数据矩阵的一种特殊情况，其中的属性的类型相同并且<strong>是非对称的</strong>。</li>
 </ol>
-<h3 id="基于图形的数据"><a href="#基于图形的数据" class="headerlink" title="基于图形的数据"></a>基于图形的数据</h3><ol>
+<h3 id="基于图形的数据"><a class="markdownIt-Anchor" href="#基于图形的数据"></a> 基于图形的数据</h3>
+<ol>
 <li><strong>带有对象之间连续的数据</strong>：对象之间有联系</li>
 <li><strong>具有图形对象的数据</strong>：对象本身具有结构，对象包含具有联系的子对象</li>
 </ol>
-<h3 id="有序数据"><a href="#有序数据" class="headerlink" title="有序数据"></a>有序数据</h3><p>对于某些数据类型，属性具有涉及时间或空间序的联系。</p>
+<h3 id="有序数据"><a class="markdownIt-Anchor" href="#有序数据"></a> 有序数据</h3>
+<p>对于某些数据类型，属性具有涉及时间或空间序的联系。</p>
 <ol>
 <li><strong>时序数据</strong></li>
 <li><strong>序列数据</strong>：如核苷酸序列</li>
 <li><strong>时间序列数据</strong>：如1982到1994年间的月平均气温的时间序列。重要的是考虑<strong>时间自相关</strong>，即如果两个测量的时间很接近,则这些测量的值通常非常相似。</li>
 <li><strong>空间数据</strong>：空间数据的一个重要特点是<strong>空间自相关性</strong>（spatial autocorelatio）,即物理上靠近的对象趋向于在其他方面也相似</li>
 </ol>
-<h3 id="处理非记录型数据"><a href="#处理非记录型数据" class="headerlink" title="处理非记录型数据"></a>处理非记录型数据</h3><ol>
+<h3 id="处理非记录型数据"><a class="markdownIt-Anchor" href="#处理非记录型数据"></a> 处理非记录型数据</h3>
+<ol>
 <li>尝试转换成记录型数据</li>
 <li>记录型也存在弊端，应综合考量</li>
 </ol>
-<h1 id="数据质量"><a href="#数据质量" class="headerlink" title="数据质量"></a>数据质量</h1><h2 id="数据质量度量"><a href="#数据质量度量" class="headerlink" title="数据质量度量"></a>数据质量度量</h2><ol>
+<h1 id="数据质量"><a class="markdownIt-Anchor" href="#数据质量"></a> 数据质量</h1>
+<h2 id="数据质量度量"><a class="markdownIt-Anchor" href="#数据质量度量"></a> 数据质量度量</h2>
+<ol>
 <li>准确性</li>
 <li>完整性</li>
 <li>一致性</li>
@@ -172,35 +209,51 @@
 <li>可解释性</li>
 <li>获取难度</li>
 </ol>
-<h2 id="测量和数据收集问题"><a href="#测量和数据收集问题" class="headerlink" title="测量和数据收集问题"></a>测量和数据收集问题</h2><h3 id="测量误差和数据收集错误"><a href="#测量误差和数据收集错误" class="headerlink" title="测量误差和数据收集错误"></a>测量误差和数据收集错误</h3><ol>
+<h2 id="测量和数据收集问题"><a class="markdownIt-Anchor" href="#测量和数据收集问题"></a> 测量和数据收集问题</h2>
+<h3 id="测量误差和数据收集错误"><a class="markdownIt-Anchor" href="#测量误差和数据收集错误"></a> 测量误差和数据收集错误</h3>
+<ol>
 <li><strong>测量误差</strong>：是测量过程导致的。如连续值和真实值之间的误差</li>
 <li><strong>数据收集错误</strong>：遗漏数据对象或属性值导致的。</li>
 </ol>
-<h3 id="噪声和伪像"><a href="#噪声和伪像" class="headerlink" title="噪声和伪像"></a>噪声和伪像</h3><ol>
-<li><strong>噪声</strong>：是测量误差的随机部分</li>
+<h3 id="噪声和伪像"><a class="markdownIt-Anchor" href="#噪声和伪像"></a> 噪声和伪像</h3>
+<ol>
+<li><strong>噪声</strong>：是测量误差的随机部分；</li>
 </ol>
-<h3 id="精度、偏倚和准确率"><a href="#精度、偏倚和准确率" class="headerlink" title="精度、偏倚和准确率"></a>精度、偏倚和准确率</h3><ol>
-<li><strong>精度</strong>：同一个量的重复测量值之间的接近程度。常用<strong>标准差</strong>度量。</li>
+<h3 id="精度-偏倚和准确率"><a class="markdownIt-Anchor" href="#精度-偏倚和准确率"></a> 精度、偏倚和准确率</h3>
+<ol>
+<li><strong>精度</strong>：同一个量的<strong>重复测量值</strong>之间的接近程度。常用<strong>标准差</strong>度量。</li>
 <li><strong>偏倚</strong>：测量值于被测量之间的系统偏差。用<strong>值集合的均值与测出的已知值之间的差度量</strong></li>
 <li><strong>准确率</strong>：被测量的测量值与实际值之间的接近度。</li>
 </ol>
-<h3 id="离群点"><a href="#离群点" class="headerlink" title="离群点"></a>离群点</h3><ol>
+<h3 id="离群点"><a class="markdownIt-Anchor" href="#离群点"></a> 离群点</h3>
+<ol>
 <li><strong>离群点</strong>：偏离大部分数据对象的特征或者相对于该属性的典型值来说是不寻常的值。<strong>但也是真实数据</strong></li>
 </ol>
-<h3 id="遗漏值"><a href="#遗漏值" class="headerlink" title="遗漏值"></a>遗漏值</h3><p>处理</p>
+<h3 id="遗漏值"><a class="markdownIt-Anchor" href="#遗漏值"></a> 遗漏值</h3>
+<h4 id="原因"><a class="markdownIt-Anchor" href="#原因"></a> 原因</h4>
+<ol>
+<li>没有收集信息</li>
+<li>该属性不适用于此类对象(比如年收入之于儿童)</li>
+</ol>
+<h4 id="处理"><a class="markdownIt-Anchor" href="#处理"></a> 处理</h4>
 <ol>
 <li><strong>删除数据对象或属性</strong></li>
 <li><strong>估计遗漏值</strong>：插值</li>
 <li><strong>忽略遗漏值</strong>：比如聚类的时候</li>
+<li><strong>用合适的统计量代替</strong></li>
 </ol>
-<h3 id="不一致的值"><a href="#不一致的值" class="headerlink" title="不一致的值"></a>不一致的值</h3><h3 id="重复数据"><a href="#重复数据" class="headerlink" title="重复数据"></a>重复数据</h3><p>删除即可</p>
-<h2 id="关于应用的问题"><a href="#关于应用的问题" class="headerlink" title="关于应用的问题"></a>关于应用的问题</h2><p>从应用的角度考虑数据的质量</p>
+<h3 id="不一致的值"><a class="markdownIt-Anchor" href="#不一致的值"></a> 不一致的值</h3>
+<h3 id="重复数据"><a class="markdownIt-Anchor" href="#重复数据"></a> 重复数据</h3>
+<p>删除即可</p>
+<h2 id="关于应用的问题"><a class="markdownIt-Anchor" href="#关于应用的问题"></a> 关于应用的问题</h2>
+<p>从应用的角度考虑数据的质量</p>
 <ol>
 <li><strong>时效性</strong></li>
 <li><strong>相关性</strong></li>
 <li><strong>关于数据的知识</strong></li>
 </ol>
-<h1 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h1><p>为了让数据更适合挖掘，可以使用</p>
+<h1 id="数据预处理"><a class="markdownIt-Anchor" href="#数据预处理"></a> 数据预处理</h1>
+<p>为了让数据更适合挖掘，可以使用</p>
 <ol>
 <li>数据清洗</li>
 <li>聚集</li>
@@ -211,29 +264,64 @@
 <li>离散化和二元化</li>
 <li>变量变换</li>
 </ol>
-<h2 id="数据清洗"><a href="#数据清洗" class="headerlink" title="数据清洗"></a>数据清洗</h2><p>针对噪声，孤立点，缺失值，不连续数据</p>
-<h3 id="对于缺失值"><a href="#对于缺失值" class="headerlink" title="对于缺失值"></a>对于缺失值</h3><ol>
-<li>主要是通过推理的方法</li>
+<h2 id="数据清洗"><a class="markdownIt-Anchor" href="#数据清洗"></a> 数据清洗</h2>
+<p>针对噪声，孤立点，缺失值，不连续数据</p>
+<h3 id="对于缺失值"><a class="markdownIt-Anchor" href="#对于缺失值"></a> 对于缺失值</h3>
+<h4 id="原因-2"><a class="markdownIt-Anchor" href="#原因-2"></a> 原因</h4>
+<ol>
+<li>设备失灵</li>
+<li>与其他记录不一致而被删除</li>
+<li>由于误解而为输入数据</li>
+<li>收集数据时，某些数据没有被重视</li>
+<li>有些数据可能涉及隐私等问题，收集不到</li>
 </ol>
-<h3 id="对于噪声"><a href="#对于噪声" class="headerlink" title="对于噪声"></a>对于噪声</h3><ol>
-<li><strong>起因</strong> 测量误差/测量手段</li>
-<li><strong>解决</strong><ol>
+<h4 id="处理-2"><a class="markdownIt-Anchor" href="#处理-2"></a> 处理</h4>
+<ol>
+<li>忽略这个数据(通常用于标签丢失的情况)</li>
+<li>手动填写缺失值</li>
+<li>自动填充比如：unknown,均值，基于推理的可能值</li>
+</ol>
+<h3 id="对于噪声"><a class="markdownIt-Anchor" href="#对于噪声"></a> 对于噪声</h3>
+<ul>
+<li>指被测量量的随机误差或方差</li>
+</ul>
+<h4 id="起因"><a class="markdownIt-Anchor" href="#起因"></a> 起因</h4>
+<ul>
+<li>测量的手段，录入方法，传输过程等导致</li>
+<li>也可能是由于技术的限制</li>
+<li>命名不一致</li>
+</ul>
+<h4 id="解决"><a class="markdownIt-Anchor" href="#解决"></a> 解决</h4>
+<ol>
 <li>分箱：让数据平滑(可能用力过猛)</li>
-<li>聚类：聚类可能产生孤立点</li>
+<li>聚类：聚类可以分离孤立点</li>
 <li>回归：建立回归模型</li>
 <li>计算机和人工相结合</li>
 </ol>
-</li>
-</ol>
-<h2 id="聚集"><a href="#聚集" class="headerlink" title="聚集"></a>聚集</h2><p><strong>聚集</strong>：将两个或多个对象合并成的那个对象。比如，同一个地区合并，等等</p>
-<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ol>
+<h2 id="聚集"><a class="markdownIt-Anchor" href="#聚集"></a> 聚集</h2>
+<p><strong>聚集</strong>：将两个或多个对象合并成的那个对象。比如，同一个地区合并，等等</p>
+<h3 id="目的"><a class="markdownIt-Anchor" href="#目的"></a> 目的</h3>
+<ol>
 <li><strong>简化数据</strong>：减少数据的属性</li>
-<li><strong>改变维数</strong>：理解为改变粒度</li>
+<li><strong>改变维度</strong>：理解为改变粒度，上钻和下钻</li>
 <li><strong>稳定数据</strong></li>
-<li><strong>去除冗余数据</strong></li>
+<li><strong>检测和解决数据值冲突</strong></li>
+<li><strong>模式集成</strong>：聚合来自多个源的数据</li>
 </ol>
-<h2 id="抽样"><a href="#抽样" class="headerlink" title="抽样"></a>抽样</h2><h3 id="抽样方法"><a href="#抽样方法" class="headerlink" title="抽样方法"></a>抽样方法</h3><ol>
-<li>简单随机抽样<ol>
+<h2 id="抽样"><a class="markdownIt-Anchor" href="#抽样"></a> 抽样</h2>
+<ul>
+<li>因为处理整个相关的数据集非常耗费时间，所以使用抽样</li>
+<li><strong>抽样定理</strong>
+<ul>
+<li>如果样本具有代表性，则使用样本与使用整个数据集几乎一样有效</li>
+<li>如果样本具有与原始数据集大致相同的(感兴趣的)属性，则该样本具有代表性</li>
+</ul>
+</li>
+</ul>
+<h3 id="抽样方法"><a class="markdownIt-Anchor" href="#抽样方法"></a> 抽样方法</h3>
+<ol>
+<li>简单随机抽样
+<ol>
 <li>无放回抽样  样本数很大的时候使用</li>
 <li>有放回抽样</li>
 </ol>
@@ -241,186 +329,307 @@
 <li>分层抽样：当总体由不同类型的对象组成,每种类型的对象数量差别很大时,简单随机抽样不能充分地代表不太顾繁出现的对象类型。</li>
 <li>渐进抽样</li>
 </ol>
-<h3 id="渐进抽样"><a href="#渐进抽样" class="headerlink" title="渐进抽样"></a>渐进抽样</h3><ol>
+<h3 id="渐进抽样"><a class="markdownIt-Anchor" href="#渐进抽样"></a> 渐进抽样</h3>
+<ol>
 <li><strong>方法</strong>：这些方法从一个小样本开始,然后增加样本容量直至得到足够容量的样本。</li>
 </ol>
-<h2 id="维归约"><a href="#维归约" class="headerlink" title="维归约"></a>维归约</h2><h3 id="目的-1"><a href="#目的-1" class="headerlink" title="目的"></a>目的</h3><ol>
+<h2 id="降维"><a class="markdownIt-Anchor" href="#降维"></a> 降维</h2>
+<h3 id="目的-2"><a class="markdownIt-Anchor" href="#目的-2"></a> 目的</h3>
+<ol>
 <li>避免维灾难</li>
 <li>减少挖掘时的算法开销</li>
 <li>为了可视化，也使模型更容易理解</li>
 <li>去除冗余特征和消除噪声</li>
 </ol>
-<h3 id="维灾难"><a href="#维灾难" class="headerlink" title="维灾难"></a>维灾难</h3><ol>
-<li>随着数据维度的增加,许多数据分析变得非常困难。特别是随着维度增加,数据在它所占据的空间中<strong>越来越稀疏</strong>。<ol>
+<h3 id="维灾难"><a class="markdownIt-Anchor" href="#维灾难"></a> 维灾难</h3>
+<ol>
+<li>随着数据维度的增加,许多数据分析变得非常困难。特别是<strong>随着维度增加,数据在它所占据的空间中越来越稀疏</strong>。
+<ol>
 <li>对于分类,这可能意味没有足够的数据对象来创建模型,将所有可能的对象可靠地指派到一个类。</li>
 <li>对于聚类,点之间的密度和距离的定义失去了意义。</li>
 </ol>
 </li>
 <li>结果是分类准确率降低，聚类质量下降</li>
 </ol>
-<h3 id="维归约的线性代数技术"><a href="#维归约的线性代数技术" class="headerlink" title="维归约的线性代数技术"></a>维归约的线性代数技术</h3><ol>
+<h3 id="维归约的线性代数技术"><a class="markdownIt-Anchor" href="#维归约的线性代数技术"></a> 维归约的线性代数技术</h3>
+<ol>
 <li><strong>主成分分析 PCA</strong>: 是一种用于连续属性的线性代数技术,它找出新的属性（主成分),这些属性是原属性的线性组合,是相互正交的,并且捕获了数据的最大变差.</li>
-<li>步骤<ol>
+<li>步骤
+<ol>
 <li>求协方差矩阵的特征向量</li>
 <li>用特征向量定义新的空间</li>
 </ol>
 </li>
+<li>还有SVD</li>
 </ol>
-<h2 id="子特征选择-降维的另一种方法"><a href="#子特征选择-降维的另一种方法" class="headerlink" title="子特征选择-降维的另一种方法"></a>子特征选择-降维的另一种方法</h2><h3 id="目的-2"><a href="#目的-2" class="headerlink" title="目的"></a>目的</h3><p>去除冗余和不相关的特征</p>
-<h3 id="特征选择方法"><a href="#特征选择方法" class="headerlink" title="特征选择方法"></a>特征选择方法</h3><ol>
+<h2 id="子特征选择-降维的另一种方法"><a class="markdownIt-Anchor" href="#子特征选择-降维的另一种方法"></a> 子特征选择-降维的另一种方法</h2>
+<h3 id="目的-3"><a class="markdownIt-Anchor" href="#目的-3"></a> 目的</h3>
+<p>去除冗余和不相关的特征</p>
+<h3 id="特征选择方法"><a class="markdownIt-Anchor" href="#特征选择方法"></a> 特征选择方法</h3>
+<ol>
 <li><strong>Brute-force approch</strong> 尝试各种组合，选择最好结果的组合</li>
 <li><strong>Embedded approaches</strong> 嵌入式的方法，下游算法可能自然具有降维功能</li>
 <li><strong>Filter approaches</strong> 过滤方法</li>
-<li>*<em>Wrapper approaches *</em>包装方法</li>
+<li>**Wrapper approaches **包装方法</li>
 </ol>
-<h3 id="特征子集选择体系结构"><a href="#特征子集选择体系结构" class="headerlink" title="特征子集选择体系结构"></a>特征子集选择体系结构</h3><ol>
-<li><p>特征选择过程可以看作由四部分组成：</p>
+<h3 id="特征子集选择体系结构"><a class="markdownIt-Anchor" href="#特征子集选择体系结构"></a> 特征子集选择体系结构</h3>
+<ol>
+<li>
+<p>特征选择过程可以看作由四部分组成：</p>
 <ol>
 <li>子集评估度量</li>
 <li>控制新的特征子集产生的搜索策略</li>
 <li>停止搜索判断</li>
 <li>验证过程</li>
 </ol>
-<p><img src="/KDDkt_img/8.png" alt=""></p>
+<p><img src="C:%5CUsers%5C%E5%B4%94%E6%81%A9%E5%8D%9A%5CDesktop%5C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%5CKDD_img%5C8.png" alt="" /></p>
 </li>
-<li><p><strong>子集的数量可能很大</strong>,考察所有的子集可能不现实,因比需要某种停止搜索判断。其策略<strong>通常基于如下一个或多个条件:迭代次数,</strong>子集评估的度量值是否最优或超过给定的阈值,一个特定大小的子集是否已经得到,大小和评估标准是否同时达到,使用搜索策略得到的选择是否可以实现改进。</p>
+<li>
+<p><strong>子集的数量可能很大</strong>,考察所有的子集可能不现实,因比需要某种停止搜索判断。其策略**通常基于如下一个或多个条件:迭代次数,**子集评估的度量值是否最优或超过给定的阈值,一个特定大小的子集是否已经得到,大小和评估标准是否同时达到,使用搜索策略得到的选择是否可以实现改进。</p>
 </li>
 </ol>
-<h3 id="特征加权"><a href="#特征加权" class="headerlink" title="特征加权"></a>特征加权</h3><ol>
+<h3 id="特征加权"><a class="markdownIt-Anchor" href="#特征加权"></a> 特征加权</h3>
+<ol>
 <li>特征越重要，权值越大。</li>
 <li>可人为设定，也可自动确定。比如<strong>支持向量机</strong>产生分类模型，其中每个特征都赋予一个权值。在<strong>计算余弦相似度时进行的对象规范化</strong>也可看作义类特征加权。</li>
 </ol>
-<h2 id="特征创建"><a href="#特征创建" class="headerlink" title="特征创建"></a>特征创建</h2><p>由原来的属性创建新的属性集，更有效的捕捉数据集中的重要信息。</p>
-<h3 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h3><ol>
+<h2 id="特征创建"><a class="markdownIt-Anchor" href="#特征创建"></a> 特征创建</h2>
+<p>由原来的属性创建新的属性集，更有效的捕捉数据集中的重要信息。</p>
+<h3 id="特征提取"><a class="markdownIt-Anchor" href="#特征提取"></a> 特征提取</h3>
+<ol>
 <li><strong>定义</strong> 由原始数据创建新的特征集称为特征提取</li>
 </ol>
-<h3 id="映射数据到新的空间"><a href="#映射数据到新的空间" class="headerlink" title="映射数据到新的空间"></a>映射数据到新的空间</h3><p>从不同的时间挖掘数据</p>
+<h3 id="映射数据到新的空间"><a class="markdownIt-Anchor" href="#映射数据到新的空间"></a> 映射数据到新的空间</h3>
+<p>从不同的时间挖掘数据</p>
 <ol>
 <li>如果只有单个周期模式,并且噪声不多,则容易检测到该模式:另一方面,如果有大量周期模式,并且存在大量噪声,则很难检测这些模式。</li>
 <li><strong>使用傅里叶变换</strong></li>
 <li><strong>小波变换</strong></li>
 </ol>
-<h3 id="特征构造"><a href="#特征构造" class="headerlink" title="特征构造"></a>特征构造</h3><p>将原始数据集的特征转换成适合挖掘的形式</p>
+<h3 id="特征构造"><a class="markdownIt-Anchor" href="#特征构造"></a> 特征构造</h3>
+<p>将原始数据集的特征转换成适合挖掘的形式</p>
 <ol>
 <li>例如，对包含质量和体积的数据集可能需要构造密度</li>
 </ol>
-<h2 id="离散化和二元化"><a href="#离散化和二元化" class="headerlink" title="离散化和二元化"></a>离散化和二元化</h2><h3 id="目的-3"><a href="#目的-3" class="headerlink" title="目的"></a>目的</h3><p>根据不同下游需求选择</p>
+<h2 id="离散化和二元化"><a class="markdownIt-Anchor" href="#离散化和二元化"></a> 离散化和二元化</h2>
+<h3 id="目的-4"><a class="markdownIt-Anchor" href="#目的-4"></a> 目的</h3>
+<p>根据不同下游需求选择</p>
 <ol>
-<li><p>将连续属性划分成区间</p>
+<li>
+<p>将连续属性划分成区间</p>
 </li>
-<li><p>有些算法只接收属性数据(categorical attributes),categorical attributes是标称和序数的统称。关注属性，而非值。</p>
+<li>
+<p>有些算法只接收属性数据(categorical attributes),categorical attributes是标称和序数的统称。关注属性，而非值。</p>
 </li>
-<li><p>通过离散化减少数据大小</p>
+<li>
+<p>通过离散化减少数据大小</p>
 </li>
-<li><p>为后续分析做准备</p>
+<li>
+<p>为后续分析做准备</p>
 </li>
 </ol>
-<h3 id="三类属性"><a href="#三类属性" class="headerlink" title="三类属性"></a>三类属性</h3><ol>
-<li>标称</li>
-<li>序数</li>
+<h3 id="针对三类属性"><a class="markdownIt-Anchor" href="#针对三类属性"></a> 针对三类属性</h3>
+<ol>
+<li>标称型</li>
+<li>序数型</li>
 <li>连续数据</li>
 </ol>
-<h3 id="二元化"><a href="#二元化" class="headerlink" title="二元化"></a>二元化</h3><ol>
-<li><p>要使用n=log2<sup>m</sup>上取整个二进制数表示m个属性值</p>
+<h3 id="二元化"><a class="markdownIt-Anchor" href="#二元化"></a> 二元化</h3>
+<ol>
+<li>
+<p>要使用n=log2<sup>m</sup>上取整个二进制数表示m个属性值</p>
 </li>
-<li><p><strong>注意</strong> 原来有序的数据，赋值后仍要保持有序</p>
+<li>
+<p><strong>注意</strong> 原来有序的数据，赋值后仍要保持有序</p>
 </li>
-<li><p>可能导致复杂化，如无意中建立了转换后的属性之间的联系。</p>
+<li>
+<p>可能导致复杂化，如无意中建立了转换后的属性之间的联系。</p>
 </li>
 </ol>
-<h3 id="对无标签数据的离散化"><a href="#对无标签数据的离散化" class="headerlink" title="对无标签数据的离散化"></a>对无标签数据的离散化</h3><ol>
+<h3 id="对无标签数据的离散化"><a class="markdownIt-Anchor" href="#对无标签数据的离散化"></a> 对无标签数据的离散化</h3>
+<ol>
 <li>按数据</li>
 <li>频率</li>
 <li>K-means</li>
 <li>按区间</li>
 </ol>
-<h3 id="有标签数据的离散化"><a href="#有标签数据的离散化" class="headerlink" title="有标签数据的离散化"></a>有标签数据的离散化</h3><ol>
-<li><p><strong>基于熵的方法</strong></p>
+<h3 id="有标签数据的离散化"><a class="markdownIt-Anchor" href="#有标签数据的离散化"></a> 有标签数据的离散化</h3>
+<ol>
+<li>
+<p><strong>基于熵的方法</strong></p>
 <ol>
 <li>熵的定义</li>
 </ol>
-<p><img src="/KDDkt_img/5.png" alt=""></p>
-<p>,Py= m/m是第i个区间中类j的概率（值的比例）。</p>
+<img src="C:\Users\崔恩博\Desktop\数据挖掘\KDD_img\5.png" style="zoom:50%;" />
+<p>​			Py= m/m是第i个区间中类j的概率（值的比例）。</p>
 <ol start="2">
-<li>该划分的总嫡e是每个区间的嫡的加权平均,即<img src="/KDDkt_img/9.png" alt=""></li>
+<li>该划分的总熵e是每个区间的嫡的加权平均,即<img src="C:%5CUsers%5C%E5%B4%94%E6%81%A9%E5%8D%9A%5CDesktop%5C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%5CKDD_img%5C9.png" alt="" /></li>
 </ol>
 </li>
 </ol>
-<h3 id="具有过多值的分类属性"><a href="#具有过多值的分类属性" class="headerlink" title="具有过多值的分类属性"></a>具有过多值的分类属性</h3><p>对于标称的数据，比如大学的专业，可以利用领域知识合并成大的组，比如工程学，社会科学，或生物科学</p>
-<h2 id="变量转换"><a href="#变量转换" class="headerlink" title="变量转换"></a>变量转换</h2><p>变量变换是指用于变量的所有值的变换，目的是使数据更适合挖掘。两种重要的变量变换类型：简单函数变换和规范化</p>
-<h3 id="简单函数"><a href="#简单函数" class="headerlink" title="简单函数"></a>简单函数</h3><ol>
+<h3 id="具有过多值的分类属性"><a class="markdownIt-Anchor" href="#具有过多值的分类属性"></a> 具有过多值的分类属性</h3>
+<p>对于标称的数据，比如大学的专业，可以利用领域知识合并成大的组，比如工程学，社会科学，或生物科学</p>
+<h2 id="数据转换"><a class="markdownIt-Anchor" href="#数据转换"></a> 数据转换</h2>
+<p>变量变换是指用于变量的所有值的变换，目的是<strong>使数据更适合挖掘</strong>。两种重要的变量变换类型：简单函数变换和规范化</p>
+<h3 id="简单函数"><a class="markdownIt-Anchor" href="#简单函数"></a> 简单函数</h3>
+<ol>
 <li>使用如x<sup>k</sup>,log<sup>x</sup>,e<sup>x</sup>,1/x,sinx，|x|,x<sup>1/2</sup>等形式</li>
 <li>平方根、对数和倒数变换，常用来将不具有高斯(正态）分布的数据变换成具有高斯(正态)分布的数据。</li>
 <li>对数变换用于压缩</li>
 <li><strong>注意</strong> 变换前后的序是否变化</li>
 </ol>
-<h3 id="正规化或标准化"><a href="#正规化或标准化" class="headerlink" title="正规化或标准化"></a>正规化或标准化</h3><ol>
-<li><p>如果要以某种方法组合不同的变量,则<strong>为了避免具有较大值域的变量左右计算结果</strong>,这种变换常常是必要的</p>
+<h3 id="正规化或标准化"><a class="markdownIt-Anchor" href="#正规化或标准化"></a> 正规化或标准化</h3>
+<ul>
+<li>将数据缩小到一定的范围</li>
+</ul>
+<ol>
+<li>
+<p>如果要以某种方法组合不同的变量,则<strong>为了避免具有较大值域的变量左右计算结果</strong>,这种变换常常是必要的</p>
 </li>
-<li><p>由于均值和标准差受离群点的影响很大，因此通常用<strong>中位数</strong>取代均值，用<strong>绝对标准差</strong>，取代标准差</p>
-<p><img src="/KDDkt_img/10.png" alt=""></p>
+<li>
+<p>由于均值和标准差受离群点的影响很大，因此通常用<strong>中位数</strong>取代均值，用<strong>绝对标准差</strong>，取代标准差</p>
+<p><img src="C:%5CUsers%5C%E5%B4%94%E6%81%A9%E5%8D%9A%5CDesktop%5C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%5CKDD_img%5C10.png" alt="" /></p>
 </li>
 </ol>
-<p><img src="/KDDkt_img/6.png" alt=""></p>
-<h1 id="共性和差异"><a href="#共性和差异" class="headerlink" title="共性和差异"></a>共性和差异</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ol>
+<img src="C:\Users\崔恩博\Desktop\数据挖掘\KDD_img\6.png" style="zoom:50%;" />
+<h3 id="属性创建"><a class="markdownIt-Anchor" href="#属性创建"></a> 属性创建</h3>
+<h1 id="共性和差异"><a class="markdownIt-Anchor" href="#共性和差异"></a> 共性和差异</h1>
+<h2 id="基础"><a class="markdownIt-Anchor" href="#基础"></a> 基础</h2>
+<h3 id="定义"><a class="markdownIt-Anchor" href="#定义"></a> 定义</h3>
+<ol>
 <li><strong>相似度</strong>：通常,相似度是非负的,并常常在0(不相似）和1(完全相似)之间取值。</li>
 <li><strong>相异度</strong>：通常,术语距离（distance)用作相异度的同义词,正如我们将介绍的,距离常常用来表示特定类型的相异度。有时,相异度在区间[0.1]中取值,但是相异度在0和∞之间取值也很常见</li>
 </ol>
-<h3 id="变换"><a href="#变换" class="headerlink" title="变换"></a>变换</h3><p>现在要将相似度转化到特定区间。或在相似度和相异度之间转换。</p>
+<h3 id="变换"><a class="markdownIt-Anchor" href="#变换"></a> 变换</h3>
+<p>现在要将相似度转化到特定区间。或在相似度和相异度之间转换。</p>
 <ol>
-<li><p>对于具有有限值域的相异度也能用d=(d-mind)/(mac_d-min_d)映射到[0,1]区间。</p>
+<li>
+<p>对于具有有限值域的相异度也能用d=(d-mind)/(mac_d-min_d)映射到[0,1]区间。</p>
 </li>
-<li><p>如果原来的值域在[0,∞]上，那么需要使用非线性变换，井且在新的尺度上,值之间不再具有相同的联系。<strong>例如</strong>对于从0变化到∞的相异度度量,考虑变换d=d/(1+d),相异度0、0.5、2、10、100和1000分别被变换到0、0.33、067、090、0.99和0999.</p>
+<li>
+<p>如果原来的值域在[0,∞]上，那么需要使用非线性变换，井且在新的尺度上,值之间不再具有相同的联系。<strong>例如</strong>对于从0变化到∞的相异度度量,考虑变换d=d/(1+d),相异度0、0.5、2、10、100和1000分别被变换到0、0.33、067、090、0.99和0999.</p>
 </li>
-<li><p><strong>相似度与相异度间转换</strong> </p>
+<li>
+<p><strong>相似度与相异度间转换</strong></p>
 <ol>
-<li><p>如果相似度（相异度）落在[0,1]区间,则相异度（相似度）可以定义为<strong>d=1-s（或s=1-d)</strong>。另一种简单的方法是定义<strong>相似度为负的相异度</strong>（或相反)。</p>
+<li>
+<p>如果相似度（相异度）落在[0,1]区间,则相异度（相似度）可以定义为<strong>d=1-s（或s=1-d)</strong>。另一种简单的方法是定义<strong>相似度为负的相异度</strong>（或相反)。</p>
 </li>
-<li><p>一般来说，<strong>任何单调减函数</strong>都可以用来将相异度转换到相似度</p>
+<li>
+<p>一般来说，<strong>任何单调减函数</strong>都可以用来将相异度转换到相似度</p>
 </li>
 </ol>
 </li>
 </ol>
-<h2 id="简单属性之间的相似度和相异度"><a href="#简单属性之间的相似度和相异度" class="headerlink" title="简单属性之间的相似度和相异度"></a>简单属性之间的相似度和相异度</h2><h3 id="对于单个标称属性"><a href="#对于单个标称属性" class="headerlink" title="对于单个标称属性"></a>对于单个标称属性</h3><p><strong>由于标称属性只携帝了对象的相异性信息</strong>,因此我们只能说两个对象有相同的值,或者没有。因面在这种情况下,如果属性值匹配,则<strong>相似度定义为1.否则为0;</strong> 相异度用相反的方法定义:如果属性值匹配,相异度为0,否则为1。</p>
-<h3 id="对于单个序数属性"><a href="#对于单个序数属性" class="headerlink" title="对于单个序数属性"></a>对于单个序数属性</h3><ol>
+<h2 id="简单属性之间的相似度和相异度"><a class="markdownIt-Anchor" href="#简单属性之间的相似度和相异度"></a> 简单属性之间的相似度和相异度</h2>
+<h3 id="对于单个标称属性"><a class="markdownIt-Anchor" href="#对于单个标称属性"></a> 对于单个标称属性</h3>
+<p><strong>由于标称属性只携带了对象的相异性信息</strong>,因此我们只能说两个对象有相同的值,或者没有。因面在这种情况下,如果属性值匹配,则<strong>相似度定义为1.否则为0;</strong> 相异度用相反的方法定义:如果属性值匹配,相异度为0,否则为1。</p>
+<h3 id="对于单个序数属性"><a class="markdownIt-Anchor" href="#对于单个序数属性"></a> 对于单个序数属性</h3>
+<ol>
 <li>量化时，必须考虑序信息</li>
 <li>有时需要考虑区间或比率属性。区间或比率属性的相似度通常转换成相异度。</li>
-<li><img src="/KDDkt_img/7.png" alt=""></li>
+<li><img src="C:%5CUsers%5C%E5%B4%94%E6%81%A9%E5%8D%9A%5CDesktop%5C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%5CKDD_img%5C7.png" alt="" /></li>
 </ol>
-<h2 id="数据对象之间的相异度"><a href="#数据对象之间的相异度" class="headerlink" title="数据对象之间的相异度"></a>数据对象之间的相异度</h2><h3 id="距离"><a href="#距离" class="headerlink" title="距离"></a>距离</h3><ol>
-<li><p>欧几里得距离</p>
-<p><img src="/KDDkt_img/11.png" alt=""></p>
+<h2 id="数据对象之间的相异度"><a class="markdownIt-Anchor" href="#数据对象之间的相异度"></a> 数据对象之间的相异度</h2>
+<h3 id="距离"><a class="markdownIt-Anchor" href="#距离"></a> 距离</h3>
+<ol>
+<li>
+<p>欧几里得距离</p>
+<p><img src="C:%5CUsers%5C%E5%B4%94%E6%81%A9%E5%8D%9A%5CDesktop%5C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%5CKDD_img%5C11.png" alt="" /></p>
 </li>
-<li><p>闵可夫斯基据距离</p>
-<p><img src="/KDDkt_img/12.png" alt=""></p>
+<li>
+<p>闵可夫斯基据距离</p>
+<p><img src="C:%5CUsers%5C%E5%B4%94%E6%81%A9%E5%8D%9A%5CDesktop%5C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%5CKDD_img%5C12.png" alt="" /></p>
 <p>其中r是参数</p>
 <ol>
-<li><p>r=1时，代表汉明距离。时两个具有二元属性的对象之间不同的二进制位的个数</p>
+<li>
+<p>r=1时，代表汉明距离。时两个具有二元属性的对象之间不同的二进制位的个数</p>
 </li>
-<li><p>r=2代表欧几里得距离</p>
+<li>
+<p>r=2代表欧几里得距离</p>
 </li>
-<li><p>r=∞代表对象属性之间的最大距离</p>
-<p><img src="/KDDkt_img/13.png" alt=""></p>
-</li>
-</ol>
-</li>
-<li><p>距离矩阵都是对称的</p>
-<h3 id="相异度性质"><a href="#相异度性质" class="headerlink" title="相异度性质"></a>相异度性质</h3></li>
-<li><p>非负性</p>
-</li>
-<li><p>对称性</p>
-</li>
-<li><p>三角不等式 d(x,z)&lt;=d(x,y)+d(y,z)</p>
-</li>
-<li><p><strong>注意</strong> 不是所有相异度满足上面所有性质</p>
+<li>
+<p>r=∞代表对象属性之间的最大距离</p>
+<p><img src="C:%5CUsers%5C%E5%B4%94%E6%81%A9%E5%8D%9A%5CDesktop%5C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%5CKDD_img%5C13.png" alt="" /></p>
 </li>
 </ol>
-<h2 id="数据对象之间的相似度"><a href="#数据对象之间的相似度" class="headerlink" title="数据对象之间的相似度"></a>数据对象之间的相似度</h2><p>对于相似度，<strong>三角不等式通常不成立</strong>。</p>
-<h3 id="相似度性质"><a href="#相似度性质" class="headerlink" title="相似度性质"></a>相似度性质</h3><ol>
+</li>
+<li>
+<p>距离矩阵都是对称的</p>
+</li>
+</ol>
+<h3 id="相异度性质"><a class="markdownIt-Anchor" href="#相异度性质"></a> 相异度性质</h3>
+<ol>
+<li>非负性</li>
+<li>对称性</li>
+<li>三角不等式 d(x,z)&lt;=d(x,y)+d(y,z)</li>
+<li><strong>注意</strong> 不是所有相异度满足上面所有性质</li>
+</ol>
+<h2 id="数据对象之间的相似度"><a class="markdownIt-Anchor" href="#数据对象之间的相似度"></a> 数据对象之间的相似度</h2>
+<p>对于相似度，<strong>三角不等式通常不成立</strong>。</p>
+<h3 id="相似度性质"><a class="markdownIt-Anchor" href="#相似度性质"></a> 相似度性质</h3>
+<ol>
 <li>仅当x=y时，s(x,y)=1.（0≤s≤1）</li>
 <li>对于所有x和y,s(x,y)=s(y,x)（对称性）</li>
 </ol>
-<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p>称相似性度量考虑一个实验,实验中要求人们对屏幕上快速闪过的一小组字符进行分类。该实验的混淆矩阵（confusion marx）记录每个字符被分类为自己的次数和被分类 为另一个字符的次数.例如,假定”0”出现了200次,它被分类为”0”160次,而被分类为”o”40次。类似地,”o”出现200次并且分类为”o”170次,但是分类为”0”只有30 次。如果取这些计数作为两个字符之间相似性的度量,则得到一种相似性度量,但这种相似性度量不是对称的。在这种情况下,通过选取s(xy)=s’(y,x)=(s(K.,y)+a(,x)2,相似性度量可以转换成对称的.其中s是新的相似性度量。 </p>
+<h3 id="二进制向量间的相似性"><a class="markdownIt-Anchor" href="#二进制向量间的相似性"></a> 二进制向量间的相似性</h3>
+<ul>
+<li>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>M</mi><mi>C</mi><mo>=</mo><mfrac><mrow><msub><mi>M</mi><mn>00</mn></msub><mo>+</mo><msub><mi>M</mi><mn>11</mn></msub></mrow><mrow><msub><mi>M</mi><mn>01</mn></msub><mo>+</mo><msub><mi>M</mi><mn>10</mn></msub><mo>+</mo><msub><mi>M</mi><mn>11</mn></msub><mo>+</mo><msub><mi>M</mi><mn>00</mn></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">SMC = \frac{M_{00}+M_{11}}{M_{01}+M_{10}+M_{11}+M_{00}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.19633em;vertical-align:-0.8360000000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+</li>
+<li>
+<p><strong>Jaccard系数</strong> = $$\frac{M_{11}}{M_{01}+M_{10}+M_{11}}$$</p>
+</li>
+<li>
+<p>注：M01表示p中为0，q中为1的位数</p>
+</li>
+<li>
+<p>举例</p>
+<img src="/MyImages/image-20200426234653454.png" alt="image-20200426234653454" style="zoom: 33%;" />
+</li>
+<li>
+<p><strong>余弦相似度</strong>$$cos(d_1,d_2)=\frac{d_1gd_2}{||d_1||||d_2||}$$其中||d||表示d向量的长度</p>
+</li>
+<li>
+<p><strong>举例</strong></p>
+<img src="/MyImages/image-20200426235103418.png" alt="image-20200426235103418" style="zoom:50%;" />
+</li>
+<li>
+<p><strong>扩展的Jaccard系数</strong>：可用于连续或计数属性</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mi>J</mi><mo stretchy="false">(</mo><msub><mi>d</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>d</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><msub><mi>d</mi><mn>1</mn></msub><mi>g</mi><msub><mi>d</mi><mn>2</mn></msub></mrow><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><msub><mi>d</mi><mn>1</mn></msub><mi mathvariant="normal">∣</mi><msup><mi mathvariant="normal">∣</mi><mn>2</mn></msup><mo>+</mo><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><msub><mi>d</mi><mn>2</mn></msub><mi mathvariant="normal">∣</mi><msup><mi mathvariant="normal">∣</mi><mn>2</mn></msup><mo>−</mo><msub><mi>d</mi><mn>1</mn></msub><mi>g</mi><msub><mi>d</mi><mn>2</mn></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">EJ(d_1,d_2)=\frac{d_1gd_2}{||d_1||^2+||d_2||^2-d_1gd_2}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.3074399999999997em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714399999999998em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∣</span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord">∣</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">∣</span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord">∣</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+</li>
+</ul>
+<h2 id="属性对象之间的相关性度量"><a class="markdownIt-Anchor" href="#属性对象之间的相关性度量"></a> 属性对象之间的相关性度量</h2>
+<ul>
+<li>首先要对对象进行标准化</li>
+<li>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>p</mi><mi>k</mi><mo mathvariant="normal">′</mo></msubsup><mo>=</mo><mfrac><mrow><msub><mi>p</mi><mi>k</mi></msub><mo>−</mo><mi>m</mi><mi>e</mi><mi>a</mi><mi>n</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mrow><mi>s</mi><mi>t</mi><mi>d</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">p&#x27;_k=\frac{p_k-mean(p)}{std(p)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.048892em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8018919999999999em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span class="mord mathdefault">d</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+</li>
+<li>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>q</mi><mi>k</mi><mo mathvariant="normal">′</mo></msubsup><mo>=</mo><mfrac><mrow><msub><mi>q</mi><mi>k</mi></msub><mo>−</mo><mi>m</mi><mi>e</mi><mi>a</mi><mi>n</mi><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><mrow><mi>s</mi><mi>t</mi><mi>d</mi><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">q&#x27;_k=\frac{q_k-mean(q)}{std(q)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.048892em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8018919999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span class="mord mathdefault">d</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+</li>
+<li>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mi>o</mi><mi>r</mi><mi>r</mi><mi>e</mi><mi>l</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo stretchy="false">(</mo><mi>p</mi><mo separator="true">,</mo><mi>q</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>p</mi><mo mathvariant="normal">′</mo></msup><mo separator="true">⋅</mo><msup><mi>q</mi><mo mathvariant="normal">′</mo></msup></mrow><annotation encoding="application/x-tex">correlation(p,q)=p&#x27;·q&#x27;
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">i</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.996332em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.801892em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.801892em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+</li>
+</ul>
+<h2 id="整体的相似性度量"><a class="markdownIt-Anchor" href="#整体的相似性度量"></a> 整体的相似性度量</h2>
+<h3 id="法一忽略全零的二值属性"><a class="markdownIt-Anchor" href="#法一忽略全零的二值属性"></a> 法一：忽略全零的二值属性</h3>
+<img src="/MyImages/image-20200427165248345.png" alt="image-20200427165248345" style="zoom:50%;" />
+<h3 id="法二加权求和"><a class="markdownIt-Anchor" href="#法二加权求和"></a> 法二：加权求和</h3>
+<img src="/MyImages/70.png" style="zoom:50%;" />
+<h1 id="相关性度量"><a class="markdownIt-Anchor" href="#相关性度量"></a> 相关性度量</h1>
+<img src="/MyImages/image-20200527224849508.png" alt="image-20200527224849508" style="zoom:50%;" />
+<h1 id="密度"><a class="markdownIt-Anchor" href="#密度"></a> 密度</h1>
+<h2 id="欧几里得密度"><a class="markdownIt-Anchor" href="#欧几里得密度"></a> 欧几里得密度</h2>
+<ul>
+<li>最简单的方法是将区域划分为许多等体积的矩形单元，并将密度定义为单元包含的点的数量</li>
+</ul>
+<img src="/MyImages/image-20200427165716411.png" alt="image-20200427165716411" style="zoom: 50%;" />
 
       
       <!-- reward -->

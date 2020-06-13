@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    数据挖掘实验一 |  Hexo
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-数据挖掘实验一" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  数据挖掘实验一
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/13/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%AE%9E%E9%AA%8C%E4%B8%80/" class="article-date">
+  <time datetime="2020-06-13T07:26:10.988Z" itemprop="datePublished">2020-06-13</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.3k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">13分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p><a href="https://github.com/Cccceb/No3.second.git">源码:https://github.com/Cccceb/No3.second.git</a></p>
+<h1 id="实验内容"><a class="markdownIt-Anchor" href="#实验内容"></a> 实验内容</h1>
+<ol>
+<li>采用二分网络模型，对 ml-1m 文件夹中的“用户—电影”打分数据进行建模，考虑将用户信息、电影详细信息、以及打分分值作为该网络上的边、点的权重；</li>
+<li>根据网络结构特征给出节点相似性度量指标；</li>
+<li>基于相似性在二分网络上进行链路预测；</li>
+<li>采用交叉验证的方法验证预测结果；</li>
+<li>画出 ROC 曲线来度量预测方法的准确性。</li>
+</ol>
+<h1 id="分析与设计"><a class="markdownIt-Anchor" href="#分析与设计"></a> 分析与设计</h1>
+<ul>
+<li>
+<p>首先观察数据，进行数据预处理</p>
+<ul>
+<li>
+<p>通过观察数据，发现大部分人对电影的打分在3分及以下的人数为424918，大于3分的为575268人。所以假设打分&gt;3分为喜欢，&lt;=3分为不喜欢，尽可能减少因为数据比例对分类器准确率的影响。现在的<strong>目标是根据用户过往打分数据预测对于给定样例用户是否会喜欢。</strong></p>
+<img src="D:\MyBlog\source\MyImages\image-20200419200740940.png" alt="image-20200419200740940" style="zoom: 50%;" />
+</li>
+<li>
+<p>将用户性别标签化，0表示女，1表示男</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>转换源数据</strong>，构建用户信息和喜欢的电影类型的特征表。每个数据特征包括用户的年龄，性别，职业，以及18个电影类型的独热码(但是用实际打分代替本应为1的地方)，标签为0表示不喜欢，1表示喜欢</p>
+</li>
+<li>
+<p><strong>分割</strong>转换后的<strong>数据集</strong>，将数据集分成训练集，验证集，和测试集，比例为6:2:2。由于样本数量较多，如果使用KNN则每次判断时间复杂度都较大。观察电影的类别，发现两个类别之间可能存在联系，比如动作类和冒险类，所以二者可能不是相互独立的。因此，选择决策树进行分类。</p>
+</li>
+<li>
+<p>由于样本数量较多，考虑调整分类的最小样本数量，采用枚举方式尝试min_samples_split的值。利用验证集得出较好的一个参数。因此自己<strong>实现决策树算法</strong>时的参数包括(dataSet, labels,min_samples_split=1)，实现时整体思路为</p>
+<ul>
+<li>整体采用递归结构，首部设置的<strong>递归结束条件</strong>包括
+<ul>
+<li>如果待分数据集长度小于min_samples_split，则采用对数票决，多数票决的结果为正例的占比</li>
+<li>如果没有更多的特征可以使用，那么对剩下的数据进行多数票决</li>
+<li>如果所有数据的的标签相同，那么直接返回该标签(若为1，则返回1.0 否则返回0.0 代表是正例的概率)</li>
+</ul>
+</li>
+<li>如果不满足头部条件，则首先<strong>选择一个最优的分类属性</strong>。我使用的是熵增益来衡量不纯度，因为我认为每个特征都是多值属性，熵增益不会产生较大偏差，但是可以减少计算量。
+<ul>
+<li>首先计算数据集整体的熵</li>
+<li>然后循环每一个特征，计算以该特征划分数据集后的熵，计算熵增益</li>
+<li>选择熵增益最大的返回</li>
+</ul>
+</li>
+<li><strong>将数据集以最优属性划分</strong>，保存为字典的形式，递归的用分割后的子集构建子树</li>
+</ul>
+</li>
+<li>
+<p>将训练好的模型在测试集上进行测试</p>
+<ul>
+<li>根据我的设计，分类结果为概率值，我以0.5为分界，将值映射到{0,1}</li>
+<li>之后，与测试集的标签对比得到准确率</li>
+</ul>
+</li>
+</ul>
+<h1 id="详细实现"><a class="markdownIt-Anchor" href="#详细实现"></a> 详细实现</h1>
+<h3 id="数据预处理"><a class="markdownIt-Anchor" href="#数据预处理"></a> 数据预处理</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">users_cols = [<span class="string">"UserID"</span>, <span class="string">"Gender"</span>, <span class="string">"Age"</span>, <span class="string">"Occupation"</span>, <span class="string">"Zip-code"</span>]</span><br><span class="line">    users =pd.read_table(<span class="string">'./ml-1m/users.dat'</span>,sep=<span class="string">"::"</span>,names = users_cols, engine=<span class="string">'python'</span>)</span><br><span class="line">    users.loc[users[<span class="string">"Gender"</span>]==<span class="string">"F"</span>,<span class="string">"Gender"</span>] = <span class="number">0</span> <span class="comment"># 手动进行标签化，0表示F，1表示M</span></span><br><span class="line">    users.loc[users[<span class="string">"Gender"</span>]==<span class="string">"M"</span>,<span class="string">"Gender"</span>] = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="分割数据集"><a class="markdownIt-Anchor" href="#分割数据集"></a> 分割数据集</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">################################### 首先对源数据进行转换 ##################################</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_genre_names</span><span class="params">(movies)</span>:</span></span><br><span class="line">    <span class="comment"># 对每条打分信息的电影进行独热编码，得到电影类型的稀疏矩阵</span></span><br><span class="line">    genres = movies[<span class="string">"Genres"</span>]</span><br><span class="line">    genres_lst = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(genres)):</span><br><span class="line">        genres_lst += genres[i].split(<span class="string">"|"</span>)</span><br><span class="line">    genres_lst =[<span class="string">"MovieID"</span>] + list(set(genres_lst))</span><br><span class="line">    df = pd.DataFrame(columns= genres_lst)</span><br><span class="line">    df[<span class="string">"MovieID"</span>] = movies[<span class="string">"MovieID"</span>].values</span><br><span class="line">    s = pd.Series()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(genres)):</span><br><span class="line">        lst = genres[i].split(<span class="string">"|"</span>)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(lst)):</span><br><span class="line">            df.loc[i,lst[j]]= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> df.fillna(<span class="number">0</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fill_users_gerners</span><span class="params">(users,X_train,path,movies = pd.read_csv<span class="params">(<span class="string">"movies_genres.csv"</span>)</span>)</span>:</span></span><br><span class="line">    <span class="comment"># 将每条打分信息中的用户信息和对电影类型的打分数据构建成新表</span></span><br><span class="line">    movie_name = [<span class="string">'Mystery'</span>, <span class="string">'Film-Noir'</span>, <span class="string">'Fantasy'</span>, <span class="string">'Comedy'</span>, <span class="string">"Children's"</span>, <span class="string">'Drama'</span>,</span><br><span class="line">                  <span class="string">'Romance'</span>, <span class="string">'Horror'</span>, <span class="string">'Thriller'</span>, <span class="string">'Sci-Fi'</span>, <span class="string">'Documentary'</span>, <span class="string">'Action'</span>,</span><br><span class="line">                  <span class="string">'Animation'</span>, <span class="string">'War'</span>, <span class="string">'Crime'</span>, <span class="string">'Musical'</span>, <span class="string">'Adventure'</span>, <span class="string">'Western'</span>]</span><br><span class="line">    feature = pd.DataFrame(np.zeros((len(X_train), <span class="number">22</span>)), columns=list(users.columns.values)+movie_name) <span class="comment"># 构建一个由用户信息和电影分类构成的空df</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(X_train)):</span><br><span class="line">        u_id = X_train.loc[i,<span class="string">"UserID"</span>]</span><br><span class="line">        m_id = X_train.loc[i,<span class="string">"MovieID"</span>]			<span class="comment"># 此处的movies为上一个函数的结果</span></span><br><span class="line">        feature.loc[i,<span class="string">"UserID"</span>:<span class="string">"Occupation"</span>] = users.loc[u_id<span class="number">-1</span>,<span class="string">"UserID"</span>:<span class="string">"Occupation"</span>]</span><br><span class="line">        feature.loc[i, <span class="string">"Mystery"</span>:<span class="string">"Western"</span>] = movies.loc[movies[<span class="string">"MovieID"</span>]==m_id,<span class="string">"Mystery"</span>:<span class="string">"Western"</span>].values</span><br><span class="line">    feature.to_csv(path,encoding=<span class="string">"gbk"</span>,index=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">################################## 按6:2:2 分割训练集，验证集，测试集 ########################</span></span><br><span class="line">	users,movies,ratings= read_data()</span><br><span class="line">	label = ratings[<span class="string">"Rating"</span>]</span><br><span class="line">   	label[label &lt;= <span class="number">3</span>] = <span class="number">0</span>  <span class="comment"># 为了让分割结果尽可能均匀，先进行标签化</span></span><br><span class="line">    label[label &gt; <span class="number">3</span>] = <span class="number">1</span></span><br><span class="line">    feature = pd.read_csv(<span class="string">"./feature2.csv"</span>).drop(<span class="string">"UserID"</span>,axis=<span class="number">1</span>).astype(int)</span><br><span class="line">    X_tt, X_validation, Y_tt, Y_validation = train_test_split(feature, label, test_size=<span class="number">0.2</span>)  <span class="comment"># 返回测试集，验证集，测试集标签，验证集标签</span></span><br><span class="line">    X_train, X_test, Y_train, Y_test = train_test_split(X_tt, Y_tt, test_size=<span class="number">0.25</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="实现决策树"><a class="markdownIt-Anchor" href="#实现决策树"></a> 实现决策树</h3>
+<h4 id="计算熵"><a class="markdownIt-Anchor" href="#计算熵"></a> 计算熵</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc_shannon_ent</span><span class="params">(dataSet)</span>:</span> <span class="comment"># 计算信息熵</span></span><br><span class="line">    num_entries = len(dataSet)  <span class="comment"># 返回数据集的行数</span></span><br><span class="line">    label_counts = &#123;&#125; <span class="comment"># 保存每个标签出现的次数</span></span><br><span class="line">    <span class="comment"># 为所有可能分类创建字典</span></span><br><span class="line">    <span class="keyword">for</span> featVec <span class="keyword">in</span> dataSet:<span class="comment"># 对每组特征向量进行统计</span></span><br><span class="line">        current_label = featVec[<span class="number">-1</span>] <span class="comment"># 提取标签信息</span></span><br><span class="line">        <span class="keyword">if</span> current_label <span class="keyword">not</span> <span class="keyword">in</span> label_counts.keys():<span class="comment"># 如果标签没有放入统计次数的字典，则加入</span></span><br><span class="line">            label_counts[current_label] = <span class="number">0</span></span><br><span class="line">        label_counts[current_label] += <span class="number">1</span><span class="comment"># 标签计数</span></span><br><span class="line">    shannoent = <span class="number">0.0</span></span><br><span class="line">    <span class="comment"># 以二为底求对数</span></span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> label_counts:</span><br><span class="line">        prob = float(label_counts[key])/num_entries</span><br><span class="line">        shannoent -= prob * math.log(prob, <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> shannoent</span><br></pre></td></tr></table></figure>
+<h4 id="取出第axis列等于value的特征"><a class="markdownIt-Anchor" href="#取出第axis列等于value的特征"></a> 取出第axis列等于value的特征</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">split_dataset</span><span class="params">(dataSet, axis, value)</span>:</span><span class="comment"># 取出第axis列等于value的特征</span></span><br><span class="line">    tmp = dataSet[dataSet[:,axis]==value]</span><br><span class="line">    <span class="keyword">return</span> np.delete(tmp,axis,axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="求最优划分属性"><a class="markdownIt-Anchor" href="#求最优划分属性"></a> 求最优划分属性</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">choose_best</span><span class="params">(dataSet)</span>:</span> <span class="comment"># 按照信息增益，计算最好的分类标准</span></span><br><span class="line">    numFeatures = len(dataSet[<span class="number">0</span>]) - <span class="number">1</span> <span class="comment"># 减去标签</span></span><br><span class="line">    baseEntropy = calc_shannon_ent(dataSet) <span class="comment"># 整体的熵</span></span><br><span class="line">    bestInfoGain = <span class="number">0.0</span></span><br><span class="line">    bestFeature = <span class="number">-1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建唯一分类标签</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(numFeatures):</span><br><span class="line">        featList = list(dataSet[:,i])</span><br><span class="line">        uniqueValis = set(featList)</span><br><span class="line">        newEntropy = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 计划每种划分的信息墒</span></span><br><span class="line">        <span class="keyword">for</span> value <span class="keyword">in</span> uniqueValis: <span class="comment"># 循环每种取值</span></span><br><span class="line">            subDataSet = split_dataset(dataSet, i ,value) <span class="comment"># 对于第i类取值为</span></span><br><span class="line">            prob = len(subDataSet)/float(len(dataSet))</span><br><span class="line">            newEntropy += prob * calc_shannon_ent(subDataSet)</span><br><span class="line">            infoGain = baseEntropy - newEntropy</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 计算最好的增益墒</span></span><br><span class="line">            <span class="keyword">if</span> infoGain &gt; bestInfoGain:</span><br><span class="line">                bestInfoGain = infoGain</span><br><span class="line">                bestFeature = i</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> bestFeature</span><br></pre></td></tr></table></figure>
+<h4 id="多数票决过程-返回正例占比"><a class="markdownIt-Anchor" href="#多数票决过程-返回正例占比"></a> 多数票决过程 返回正例占比</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">majoritycnt</span><span class="params">(classList)</span>:</span> <span class="comment"># 实现多数票决函数</span></span><br><span class="line">    classCount = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> vote <span class="keyword">in</span> classList:</span><br><span class="line">        <span class="keyword">if</span> vote <span class="keyword">not</span> <span class="keyword">in</span> classCount.keys():</span><br><span class="line">            classCount[vote] = <span class="number">0</span></span><br><span class="line">        classCount[vote] += <span class="number">1</span></span><br><span class="line">    <span class="comment"># return max(classCount,key=classCount.get)# 返回最大的值对应的键</span></span><br><span class="line">    <span class="keyword">return</span> has_key(classCount,<span class="number">1</span>)/len(classList)</span><br></pre></td></tr></table></figure>
+<h3 id="构建树训练模型-主过程"><a class="markdownIt-Anchor" href="#构建树训练模型-主过程"></a> 构建树/训练模型 (主过程)</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_tree</span><span class="params">(dataSet, labels,min_samples_split=<span class="number">1</span>)</span>:</span> <span class="comment"># 创建决策树</span></span><br><span class="line">    classList = list(dataSet[:,<span class="number">-1</span>]) <span class="comment"># 得到所有的标签</span></span><br><span class="line">    <span class="keyword">if</span> len(dataSet)&lt;=min_samples_split:</span><br><span class="line">        <span class="keyword">return</span> majoritycnt(classList)</span><br><span class="line">    <span class="keyword">if</span> len(dataSet[<span class="number">0</span>]) == <span class="number">1</span>:</span><br><span class="line">        <span class="comment"># 停止分割直至没有更多特征，则多数票决</span></span><br><span class="line">        <span class="keyword">return</span> majoritycnt(classList)</span><br><span class="line">    <span class="keyword">if</span> classList.count(classList[<span class="number">0</span>]) == len(classList):</span><br><span class="line">        <span class="comment"># 停止分类直至所有类别相等,都是classList[0]</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1.0</span> <span class="keyword">if</span> classList[<span class="number">0</span>] == <span class="number">1</span> <span class="keyword">else</span> <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line">    bestfaet = choose_best(dataSet)<span class="comment"># 根据信息熵计算最优标签</span></span><br><span class="line">    <span class="comment"># print(labels,bestfaet)</span></span><br><span class="line">    bestfaetlabel = labels[bestfaet]</span><br><span class="line">    mytree = &#123;bestfaetlabel:&#123;&#125;&#125; <span class="comment"># 根据最有特征的标签生成树</span></span><br><span class="line">    <span class="keyword">del</span>(labels[bestfaet])<span class="comment"># 删除已经使用的标签</span></span><br><span class="line">    <span class="comment"># 得到包含所有属性的列表</span></span><br><span class="line">    featvalues = list(dataSet[:,bestfaet])</span><br><span class="line">    uniquevalues = set(featvalues) <span class="comment"># 去掉重复的属性</span></span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> uniquevalues: <span class="comment"># 遍历特征创建决策树</span></span><br><span class="line">        sublables = labels[:]</span><br><span class="line">        mytree[bestfaetlabel][value] = create_tree(split_dataset(dataSet, bestfaet, value), sublables,min_samples_split)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> mytree</span><br></pre></td></tr></table></figure>
+<ul>
+<li>调用时，我将min_samples_split 设为5，这个值是最开始用sklearn的决策树时候迭代得到的，电脑这两天不太正常，所以没有重新迭代求最优参数</li>
+</ul>
+<h3 id="测试模型"><a class="markdownIt-Anchor" href="#测试模型"></a> 测试模型</h3>
+<h4 id="预测函数"><a class="markdownIt-Anchor" href="#预测函数"></a> 预测函数</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">classify</span><span class="params">(inputtree, featlabels, testvec)</span>:</span><span class="comment"># 这里与构建树类似，也是递归进行，不在赘述</span></span><br><span class="line">    firststr = list(inputtree.keys())[<span class="number">0</span>]</span><br><span class="line">    seconddict = inputtree[firststr]</span><br><span class="line">    featindex = featlabels.index(firststr)</span><br><span class="line">    key = testvec[featindex]</span><br><span class="line">    <span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> seconddict.keys(): <span class="comment"># 如果firststr没有取值为key的，那么随机一个打分</span></span><br><span class="line">        valueoffeat = np.random.rand()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        valueoffeat = seconddict[key]</span><br><span class="line">    <span class="keyword">if</span> isinstance(valueoffeat, dict):<span class="comment"># 没到叶子，继续划分</span></span><br><span class="line">        classlabel = classify(valueoffeat, featlabels, testvec)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        classlabel = valueoffeat<span class="comment"># 叶子结点，返回打分</span></span><br><span class="line">    <span class="keyword">return</span> classlabel</span><br></pre></td></tr></table></figure>
+<h4 id="测试模型画出roc曲线"><a class="markdownIt-Anchor" href="#测试模型画出roc曲线"></a> 测试模型，画出ROC曲线</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_tree</span><span class="params">(inputtree, featlabels, testdata,Y_test)</span>:</span></span><br><span class="line">    prob = np.array([classify(inputtree, featlabels,testdata[i]) <span class="keyword">for</span> i <span class="keyword">in</span> range(len(testdata))]).reshape(<span class="number">-1</span>,<span class="number">1</span>)</span><br><span class="line">    pred =np.array([<span class="number">1</span> <span class="keyword">if</span> i&gt;<span class="number">0.5</span> <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> prob]).reshape(<span class="number">-1</span>,<span class="number">1</span>)</span><br><span class="line">    acc = (pred==Y_test).sum()/len(Y_test)</span><br><span class="line">    print(<span class="string">"-ACC"</span>,acc)</span><br><span class="line">    <span class="keyword">return</span> acc</span><br><span class="line">    print(prob)</span><br><span class="line">    fpr, tpr, threshold = roc_curve(Y_test, prob)  <span class="comment"># 计算真正率和假正率</span></span><br><span class="line">    roc_auc = auc(fpr, tpr)  <span class="comment"># 计算auc的值</span></span><br><span class="line">    plt.figure()</span><br><span class="line">    lw = <span class="number">2</span></span><br><span class="line">    plt.figure(figsize=(<span class="number">10</span>, <span class="number">10</span>))</span><br><span class="line">    plt.plot(fpr, tpr, color=<span class="string">'darkorange'</span>,</span><br><span class="line">             lw=<span class="number">2</span>*lw, label=<span class="string">'ROC curve (area = %0.3f)'</span> % roc_auc)  <span class="comment">###假正率为横坐标，真正率为纵坐标做曲线</span></span><br><span class="line">    plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>], color=<span class="string">'navy'</span>, lw=lw, linestyle=<span class="string">'--'</span>)</span><br><span class="line">    plt.xlim([<span class="number">0.0</span>, <span class="number">1.0</span>])</span><br><span class="line">    plt.ylim([<span class="number">0.0</span>, <span class="number">1.0</span>])</span><br><span class="line">    plt.xlabel(<span class="string">'False Positive Rate'</span>)</span><br><span class="line">    plt.ylabel(<span class="string">'True Positive Rate'</span>)</span><br><span class="line">    plt.title(<span class="string">'Receiver operating characteristic example'</span>)</span><br><span class="line">    plt.legend(loc=<span class="string">"lower right"</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="十折交叉验证"><a class="markdownIt-Anchor" href="#十折交叉验证"></a> 十折交叉验证</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">X = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line">  Y = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line"></span><br><span class="line">  X_tt, X[<span class="number">9</span>], Y_tt, Y[<span class="number">9</span>] = train_test_split(feature, label, test_size=<span class="number">1</span> / <span class="number">10</span>)</span><br><span class="line">  X_tt, X[<span class="number">8</span>], Y_tt, Y[<span class="number">8</span>] = train_test_split(X_tt, Y_tt, test_size=<span class="number">1</span> / <span class="number">9</span>)</span><br><span class="line">  X_tt, X[<span class="number">7</span>], Y_tt, Y[<span class="number">7</span>] = train_test_split(X_tt, Y_tt, test_size=<span class="number">1</span> / <span class="number">8</span>)</span><br><span class="line">  X_tt, X[<span class="number">6</span>], Y_tt, Y[<span class="number">6</span>] = train_test_split(X_tt, Y_tt, test_size=<span class="number">1</span> / <span class="number">7</span>)</span><br><span class="line">  X_tt, X[<span class="number">5</span>], Y_tt, Y[<span class="number">5</span>] = train_test_split(X_tt, Y_tt, test_size=<span class="number">1</span> / <span class="number">6</span>)</span><br><span class="line">  X_tt, X[<span class="number">4</span>], Y_tt, Y[<span class="number">4</span>] = train_test_split(X_tt, Y_tt, test_size=<span class="number">1</span> / <span class="number">5</span>)</span><br><span class="line">  X_tt, X[<span class="number">3</span>], Y_tt, Y[<span class="number">3</span>] = train_test_split(X_tt, Y_tt, test_size=<span class="number">1</span> / <span class="number">4</span>)</span><br><span class="line">  X_tt, X[<span class="number">2</span>], Y_tt, Y[<span class="number">2</span>] = train_test_split(X_tt, Y_tt, test_size=<span class="number">1</span> / <span class="number">3</span>)</span><br><span class="line">  X[<span class="number">0</span>], X[<span class="number">1</span>], Y[<span class="number">0</span>], Y[<span class="number">1</span>] = train_test_split(X_tt, Y_tt, test_size=<span class="number">1</span> / <span class="number">2</span>)</span><br><span class="line">  feature = [<span class="string">'Gender'</span>, <span class="string">'Age'</span>, <span class="string">'Occupation'</span>, <span class="string">'Mystery'</span>, <span class="string">'Film-Noir'</span>,</span><br><span class="line">     <span class="string">'Fantasy'</span>, <span class="string">'Comedy'</span>, <span class="string">"Children's"</span>, <span class="string">'Drama'</span>, <span class="string">'Romance'</span>, <span class="string">'Horror'</span>,</span><br><span class="line">     <span class="string">'Thriller'</span>, <span class="string">'Sci-Fi'</span>, <span class="string">'Documentary'</span>, <span class="string">'Action'</span>, <span class="string">'Animation'</span>, <span class="string">'War'</span>,</span><br><span class="line">     <span class="string">'Crime'</span>, <span class="string">'Musical'</span>, <span class="string">'Adventure'</span>, <span class="string">'Western'</span>]</span><br><span class="line">  ACC = []</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">      columns = feature.copy()</span><br><span class="line">      print(<span class="string">"Round"</span>,i)</span><br><span class="line">      X_train = X_test = pd.DataFrame(columns=columns)</span><br><span class="line">      Y_train = Y_test =  pd.Series()</span><br><span class="line">      <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">          <span class="keyword">if</span> i!=j:</span><br><span class="line">              X_train = X_train.append(X[j])</span><br><span class="line">              Y_train = Y_train.append(Y[j])</span><br><span class="line">          <span class="keyword">else</span>:</span><br><span class="line">              X_test = X[j]</span><br><span class="line">              Y_test = Y[j]</span><br><span class="line">      <span class="comment"># print(X_train.shape,Y_train.shape)</span></span><br><span class="line">      <span class="comment"># print(X_test.shape,Y_test.shape)</span></span><br><span class="line">      <span class="comment"># clf = classifier2(X_train,Y_train)</span></span><br><span class="line">      <span class="comment"># test_model2(clf, X_test, Y_test)</span></span><br><span class="line">      trainSet = np.hstack((X_train.values,Y_train.values.reshape(<span class="number">-1</span>,<span class="number">1</span>)))</span><br><span class="line">      DecTree = create_tree(trainSet, columns, <span class="number">5</span>)</span><br><span class="line">      print(DecTree)</span><br><span class="line">      ACC.append(test_tree(DecTree, feature, X_test.values, Y_test.values.reshape(<span class="number">-1</span>,<span class="number">1</span>)))</span><br><span class="line">  print(<span class="string">"Avg_Acc = "</span>,np.mean(ACC))</span><br></pre></td></tr></table></figure>
+<h1 id="实验结果"><a class="markdownIt-Anchor" href="#实验结果"></a> 实验结果</h1>
+<h3 id="测试集上结果"><a class="markdownIt-Anchor" href="#测试集上结果"></a> 测试集上结果</h3>
+<img src="D:\MyBlog\source\MyImages\X_test_2.png" style="zoom: 33%;" />
+<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5CSnap6.png" alt="" /></p>
+<p><strong>准确率为99.7%</strong></p>
+<h3 id="交叉验证准确率"><a class="markdownIt-Anchor" href="#交叉验证准确率"></a> 交叉验证准确率</h3>
+<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5CSnap4.png" alt="" /></p>
+<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5CSnap5.png" alt="Snap5" /></p>
+<h3 id="结果总结"><a class="markdownIt-Anchor" href="#结果总结"></a> 结果总结</h3>
+<ul>
+<li>经过多次尝试，目前的AUC值达到1，感到很意外。十折交叉验证的准确率为99.8%</li>
+<li>第一次交叉验证时，没有在划分数据集之前就将打分二值化。导致训练集和测试集的样本分布不一致，在第5.6轮开始准确率突然下降。修改之后解决问题</li>
+<li>如果结果没有问题，那么本次实验让我深刻感受到决策树的强大</li>
+<li>我认为我这个树构建之后和KNN的思想比较类似。关于AUC值为1，我认为是因为由于我min_samples_split 设置的比较小，所以分类的概率值取值有限，大多数值聚集在0和1上，所以最终曲线的AUC为1。同时，我也尝试改变min_samples_split ，随着 min_samples_split 的增大，AUC值会变小。而且，我最开始全部使用sklearn库的时候AUC也是1，所以按我理解来看，没有问题。</li>
+</ul>
+<h1 id="心得体会"><a class="markdownIt-Anchor" href="#心得体会"></a> 心得体会</h1>
+<ul>
+<li>
+<p>第一次进行数据挖掘，感觉无从下手。转换源数据集时进行了多次尝试，第一次是将打分数据按照用户编号聚合，计算用户对每个类型的打分平均值。以用户信息为特征，每个类型的打分为标签，训练18个二分类器。对于测试样本，首先得到该电影包含哪些类型，然后对该用户使用相应类型的二分类器，得到若干个0或1表示该用户对该电影中哪些类型喜欢，或不喜欢。最后多数票决判定对该电影整体是否喜欢。但是结果很差</p>
+<ul>
+<li>我认为原因是特征太少，按用户编号聚合后，样本也少，导致模型预测能力很差</li>
+</ul>
+<img src="D:\MyBlog\source\MyImages\X_test_roc.png" style="zoom: 33%;" />
+</li>
+<li>
+<p>还尝试了使用用户信息和电影类型的独热码来训练模型，结果好了一些</p>
+<img src="D:\MyBlog\source\MyImages\X_test_1.png" style="zoom: 33%;" />
+<ul>
+<li>这里使用的特征只能说明用户看了这些电影类型，而没有将是否喜欢(具体打分)考虑进去</li>
+<li>所以最后用用户给每个类型的打分和用户信息为特征来训练模型，得到实验结果中的ROC曲线</li>
+</ul>
+</li>
+<li>
+<p>遇到过的问题：起初，我按照直觉将大于等于3的都认为是正例，导致最后准确率很高(83%),但是AUC很小(0.5)。后来才发现我的准确率高是因为样本分布的问题，实际模型并不可靠。本次实验令我深刻理解了ROC曲线的含义。准确率可能会受到数据分布的影响，但是ROC曲线能较好的反应模型的可信度。</p>
+</li>
+<li>
+<p>我认为准确率高是因为训练样本足够多，比较训练集的结果和交叉验证结果可以看出随着训练样本的增多，准确率还在提高。如果避开所有训练样例中每个属性取值，那么预测结果就是完全随机的打分。这也说明了数据的重要性</p>
+</li>
+</ul>
+<p>​																														<strong>17069130005</strong></p>
+<p>​																														             <strong>崔恩博</strong></p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/06/13/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%AE%9E%E9%AA%8C%E4%B8%80/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/06/13/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%AE%9E%E9%AA%8C%E4%B8%89/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">数据挖掘实验三</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        John Doe
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

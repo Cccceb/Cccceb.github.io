@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">2.3k字</span>
+            <span class="post-count">5.7k字</span>
         </span>
     </span>
 
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">8分钟</span>
+            <span class="post-count">20分钟</span>
         </span>
     </span>
 </div>
@@ -101,27 +101,38 @@
       
 
       
-      <h1 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h1><ol>
-<li><strong>分类</strong>：分类任务就是通过学习得到一个<strong>目标函数(分类模型)</strong>f，把每个属性集x映射到一个预先定义的类标号y</li>
+      <h1 id="预备知识"><a class="markdownIt-Anchor" href="#预备知识"></a> 预备知识</h1>
+<ol>
+<li><strong>分类</strong>：分类任务就是通过学习得到一个**目标函数(分类模型)**f，把每个属性集x映射到一个预先定义的类标号y</li>
 </ol>
-<h2 id="分类模型用途"><a href="#分类模型用途" class="headerlink" title="分类模型用途"></a>分类模型用途</h2><ol>
+<h2 id="分类模型用途"><a class="markdownIt-Anchor" href="#分类模型用途"></a> 分类模型用途</h2>
+<ol>
 <li>描述性建模：分类模型可作为解释性工具，区分vu同类中的对象</li>
 <li>预测性建模：还可用于预测未知记录的类标号。<strong>分类技术非常适合预测或描述二元或标称类型的数据集</strong></li>
 </ol>
-<h1 id="解决分类问题的一般方法"><a href="#解决分类问题的一般方法" class="headerlink" title="解决分类问题的一般方法"></a>解决分类问题的一般方法</h1><ol>
+<h1 id="解决分类问题的一般方法"><a class="markdownIt-Anchor" href="#解决分类问题的一般方法"></a> 解决分类问题的一般方法</h1>
+<ol>
 <li>分类法的例子包括决策树分类法、基于规则的分类法、神经网络、支持向量机和朴素贝叶斯分类法。</li>
 <li>算法的主要目标就是建立具有很好的泛化能力模型,即建立能够准确地预测未知样本类标号的模型。</li>
 </ol>
-<h2 id="分割训练集和检验集"><a href="#分割训练集和检验集" class="headerlink" title="分割训练集和检验集"></a>分割训练集和检验集</h2><ol>
+<h2 id="分割训练集和检验集"><a class="markdownIt-Anchor" href="#分割训练集和检验集"></a> 分割训练集和检验集</h2>
+<ol>
 <li>训练集：由类标号已知的记录组成，用于建立分类模型</li>
 <li>检验集：由类标号未知的记录组成</li>
 </ol>
-<h2 id="混淆矩阵与性能度量"><a href="#混淆矩阵与性能度量" class="headerlink" title="混淆矩阵与性能度量"></a>混淆矩阵与性能度量</h2><h3 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h3><p><img src="/KDDkt_img/27.png" alt=""></p>
-<h3 id="性能度量"><a href="#性能度量" class="headerlink" title="性能度量"></a>性能度量</h3><p><img src="/KDDkt_img/28.png" alt=""></p>
-<p><img src="/KDDkt_img/29.png" alt=""></p>
-<h1 id="决策树归纳"><a href="#决策树归纳" class="headerlink" title="决策树归纳"></a>决策树归纳</h1><h2 id="决策树的工作原理"><a href="#决策树的工作原理" class="headerlink" title="决策树的工作原理"></a>决策树的工作原理</h2><h3 id="决策树组成"><a href="#决策树组成" class="headerlink" title="决策树组成"></a>决策树组成</h3><ol>
+<h2 id="混淆矩阵与性能度量"><a class="markdownIt-Anchor" href="#混淆矩阵与性能度量"></a> 混淆矩阵与性能度量</h2>
+<h3 id="混淆矩阵"><a class="markdownIt-Anchor" href="#混淆矩阵"></a> 混淆矩阵</h3>
+<p><img src="C:%5CUsers%5C%E5%B4%94%E6%81%A9%E5%8D%9A%5CDesktop%5C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%5CKDD_img%5C27.png" alt="" /></p>
+<h3 id="性能度量"><a class="markdownIt-Anchor" href="#性能度量"></a> 性能度量</h3>
+<p><img src="C:%5CUsers%5C%E5%B4%94%E6%81%A9%E5%8D%9A%5CDesktop%5C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%5CKDD_img%5C28.png" alt="" /></p>
+<p><img src="C:%5CUsers%5C%E5%B4%94%E6%81%A9%E5%8D%9A%5CDesktop%5C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%5CKDD_img%5C29.png" alt="" /></p>
+<h1 id="决策树归纳"><a class="markdownIt-Anchor" href="#决策树归纳"></a> 决策树归纳</h1>
+<h2 id="决策树的工作原理"><a class="markdownIt-Anchor" href="#决策树的工作原理"></a> 决策树的工作原理</h2>
+<h3 id="决策树组成"><a class="markdownIt-Anchor" href="#决策树组成"></a> 决策树组成</h3>
+<ol>
 <li>决策树是一种由结点和有向边组成的层次结构</li>
-<li>树中包含三种结点<ol>
+<li>树中包含三种结点
+<ol>
 <li>根结点</li>
 <li>内部结点</li>
 <li>叶结点：每个叶结点都赋予一个类标号</li>
@@ -129,61 +140,77 @@
 </li>
 <li>非叶节点：包含属性测试条件，用以分开具有不同特性的记录</li>
 </ol>
-<h2 id="如何建立决策树"><a href="#如何建立决策树" class="headerlink" title="如何建立决策树"></a>如何建立决策树</h2><p>找出最佳决策树在计算上是不可行的。通常使用贪心策略，在选择划分数据的属性时，采取一系列局部最优决策来构造决策树。</p>
-<h3 id="Hunt算法"><a href="#Hunt算法" class="headerlink" title="Hunt算法"></a>Hunt算法</h3><ol>
+<h2 id="如何建立决策树"><a class="markdownIt-Anchor" href="#如何建立决策树"></a> 如何建立决策树</h2>
+<p>找出最佳决策树在计算上是不可行的。通常使用贪心策略，在选择划分数据的属性时，采取一系列局部最优决策来构造决策树。</p>
+<h3 id="hunt算法"><a class="markdownIt-Anchor" href="#hunt算法"></a> Hunt算法</h3>
+<ol>
 <li>通常将训练记录划分成较纯的子集，以递归方式建立决策树</li>
-<li>设D<del>i</del>是与结点t相关联的训练记录集,而 y={y<del>1</del>,y<del>2</del>,y<del>3</del>,…,y<del>c</del>}是类标号，Humt算法的递归定义如下.<ol>
-<li>如果D<del>t</del>中所有记录都属于同一个类y<del>t</del>,则t是叶结点,用y<del>t</del>标记</li>
+<li>设D<sub>i</sub>是与结点t相关联的训练记录集,而 y={y<sub>1</sub>,y<sub>2</sub>,y<sub>3</sub>,…,y<sub>c</sub>}是类标号，Humt算法的递归定义如下.
+<ol>
+<li>如果D<sub>t</sub>中所有记录都属于同一个类y<sub>t</sub>,则t是叶结点,用y<sub>t</sub>标记</li>
 <li>否则，<strong>则选择一个属性测试条件</strong>，将记录划分成较小的子集。对于测试条件的每个输出，创建一个子女结点，并根据测试结果将记录分布到子女结点中，再递归调用算法</li>
 </ol>
 </li>
 <li>如果属性值的每种组合都在训练数据中出现，并且每种组合都具有唯一的类标号，则Hunt算法是有效的。</li>
 </ol>
-<h3 id="决策树归纳的设计问题"><a href="#决策树归纳的设计问题" class="headerlink" title="决策树归纳的设计问题"></a>决策树归纳的设计问题</h3><ol>
+<h3 id="决策树归纳的设计问题"><a class="markdownIt-Anchor" href="#决策树归纳的设计问题"></a> 决策树归纳的设计问题</h3>
+<ol>
 <li>如何分裂训练记录：由于在每个非叶结点，都需要选择也给属性测试条件，将记录划分成较小的子集。因此，算法必须要能为不同类型的属性提供测试条件</li>
 <li>如何停止分裂过程：需要设计一个结束条件。一般策略是直到所有的记录都属于同一个类，或者所有记录都有相同的属性值。</li>
 </ol>
-<h2 id="表示属性测试条件的方法"><a href="#表示属性测试条件的方法" class="headerlink" title="表示属性测试条件的方法"></a>表示属性测试条件的方法</h2><h3 id="二元属性"><a href="#二元属性" class="headerlink" title="二元属性"></a>二元属性</h3><p>二元属性的测试条件产生两个可能的输出。表示可以直接二路划分</p>
-<h3 id="标称属性"><a href="#标称属性" class="headerlink" title="标称属性"></a>标称属性</h3><p>由于标称属性具有多个不同的属性值</p>
+<h2 id="表示属性测试条件的方法"><a class="markdownIt-Anchor" href="#表示属性测试条件的方法"></a> 表示属性测试条件的方法</h2>
+<h3 id="二元属性"><a class="markdownIt-Anchor" href="#二元属性"></a> 二元属性</h3>
+<p>二元属性的测试条件产生两个可能的输出。表示可以直接二路划分</p>
+<h3 id="标称属性"><a class="markdownIt-Anchor" href="#标称属性"></a> 标称属性</h3>
+<p>由于标称属性具有多个不同的属性值</p>
 <ol>
 <li>使用多路划分</li>
-<li>创建k个属性值的二元划分的所有2^k-1^-1种方法</li>
+<li>创建k个属性值的二元划分的所有2<sup>k-1</sup>-1种方法</li>
 </ol>
-<h3 id="序数属性"><a href="#序数属性" class="headerlink" title="序数属性"></a>序数属性</h3><p>主要注意要维持有序性</p>
+<h3 id="序数属性"><a class="markdownIt-Anchor" href="#序数属性"></a> 序数属性</h3>
+<p>主要注意要维持有序性</p>
 <ol>
 <li>可以使用二元或多路划分，只要不违背属性值的有序性就可以对属性值进行分组。</li>
-<li><img src="/KDDkt_img/30.png" alt=""><ol>
+<li><img src="C:%5CUsers%5C%E5%B4%94%E6%81%A9%E5%8D%9A%5CDesktop%5C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%5CKDD_img%5C30.png" alt="" />
+<ol>
 <li>a.b可以，而c不行</li>
 </ol>
 </li>
 </ol>
-<h3 id="连续属性"><a href="#连续属性" class="headerlink" title="连续属性"></a>连续属性</h3><ol>
+<h3 id="连续属性"><a class="markdownIt-Anchor" href="#连续属性"></a> 连续属性</h3>
+<ol>
 <li>可以是以单个值分割的二元输出</li>
 <li>可以是区间形式的多路输出</li>
 </ol>
-<h2 id="选择最佳划分的度量"><a href="#选择最佳划分的度量" class="headerlink" title="选择最佳划分的度量"></a>选择最佳划分的度量</h2><ol>
+<h2 id="选择最佳划分的度量"><a class="markdownIt-Anchor" href="#选择最佳划分的度量"></a> 选择最佳划分的度量</h2>
+<ol>
 <li>用p(i|t) 表示给定结点t中属于类i的记录所占的比例，有时省略t。</li>
-<li>对于二分类问题，任意结点的分布都可以记作(p<del>0</del>,p<del>1</del>)</li>
+<li>对于二分类问题，任意结点的分布都可以记作(p<sub>0</sub>,p<sub>1</sub>)</li>
 <li>选择最佳划分的度量通常是<strong>根据划分后子女结点不纯性的程度</strong>。不纯的程度越低，类分布越倾斜</li>
 </ol>
-<h3 id="度量不纯性"><a href="#度量不纯性" class="headerlink" title="度量不纯性"></a>度量不纯性</h3><p><img src="/KDDkt_img/31.png" alt=""></p>
+<h3 id="度量不纯性"><a class="markdownIt-Anchor" href="#度量不纯性"></a> 度量不纯性</h3>
+<p><img src="C:%5CUsers%5C%E5%B4%94%E6%81%A9%E5%8D%9A%5CDesktop%5C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%5CKDD_img%5C31.png" alt="" /></p>
 <ol>
-<li><p>举例</p>
-<p><img src="/KDDkt_img/32.png" alt=""></p>
+<li>
+<p>举例</p>
+<p><img src="C:%5CUsers%5C%E5%B4%94%E6%81%A9%E5%8D%9A%5CDesktop%5C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%5CKDD_img%5C32.png" alt="" /></p>
 </li>
-<li><p>比较</p>
-<p><img src="/KDDkt_img/33.png" alt=""></p>
+<li>
+<p>比较</p>
+<p><img src="C:%5CUsers%5C%E5%B4%94%E6%81%A9%E5%8D%9A%5CDesktop%5C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%5CKDD_img%5C33.png" alt="" /></p>
 <ol>
-<li>可以看出，不同的度量的结果是一样的</li>
-<li><strong>但是作为测试条件的属性选择仍然因不纯性对量的选择而异</strong></li>
-</ol>
+<li>
+<p>可以看出，不同的度量的结果是一样的</p>
 </li>
-</ol>
-<h3 id="衡量测试条件的划分效果："><a href="#衡量测试条件的划分效果：" class="headerlink" title="衡量测试条件的划分效果："></a>衡量测试条件的划分效果：</h3><ol>
-<li><p>比较父节点的不纯度和子女结点的不纯度。二者的差越大，测试条件效果越好。</p>
+<li>
+<p><strong>但是作为测试条件的属性选择仍然因不纯性对量的选择而异</strong>衡量测试条件的划分效果：</p>
 </li>
-<li><p>增益Δ</p>
-<p><img src="/KDDkt_img/34.png" alt=""></p>
+<li>
+<p>比较父节点的不纯度和子女结点的不纯度。二者的差越大，测试条件效果越好。</p>
+</li>
+<li>
+<p>增益Δ</p>
+<p><img src="C:%5CUsers%5C%E5%B4%94%E6%81%A9%E5%8D%9A%5CDesktop%5C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%5CKDD_img%5C34.png" alt="" /></p>
 <ol>
 <li>I(x)是给定结点的不纯性度量，N是父节点上记录总数，k是属性值的个数，N(vj)是与子女结点Vj相关联的记录个数</li>
 <li>对所有测试条件来说，I(parent)是一个不变的值，所以最大化增益就是最小化子女结点的不纯性度量的加权平均值</li>
@@ -191,122 +218,555 @@
 </ol>
 </li>
 </ol>
-<h3 id="二元属性的划分"><a href="#二元属性的划分" class="headerlink" title="二元属性的划分"></a>二元属性的划分</h3><p>举例</p>
-<ol start="2">
-<li><p>若使用多路划分，需要计算每个属性的Gini指标，然后加权平均</p>
-<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C16.png" alt=""></p>
 </li>
 </ol>
-<h3 id="连续属性的划分"><a href="#连续属性的划分" class="headerlink" title="连续属性的划分"></a>连续属性的划分</h3><ol>
-<li><p>如果穷举v，并将记录划分再计算Gini值，那么时间复杂度为O(N^2^)</p>
-</li>
-<li><p>如果将训练数据排序，再从两个相邻的排过序的属性值中<strong>选择中间值（平均下取整）</strong>最为候选结点；若下图，最终选择Gini最小的97作为划分点</p>
-<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C17.png" alt=""></p>
-</li>
-<li><p><strong>优化</strong> 排序之后，前三个同属一个类，所以划分肯定不会出现在60到75间(如果这样分会把已经聚类的分割开)；同理，也不会出现在100到200间</p>
+<h3 id="二元属性的划分"><a class="markdownIt-Anchor" href="#二元属性的划分"></a> 二元属性的划分</h3>
+<h4 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h4>
+<ol>
+<li>
+<p>若使用多路划分，需要计算每个属性的Gini指标，然后加权平均</p>
+<img src="/MyImages/46.png" style="zoom: 67%;" />
 </li>
 </ol>
-<h3 id="增益率"><a href="#增益率" class="headerlink" title="增益率"></a>增益率</h3><ol>
-<li><p>现在的<strong>问题</strong>是，我们得到的划分属性可能是一个没有预测性的属性，比顾客ID(因为这种划分方法更倾向于属性取值多的属性)。这时因为与该划分相关联的记录太少，以至于不能做出可靠的判断</p>
+<h3 id="连续属性的划分"><a class="markdownIt-Anchor" href="#连续属性的划分"></a> 连续属性的划分</h3>
+<ol>
+<li>
+<p>如果穷举v，并将记录划分再计算Gini值，那么时间复杂度为O(N<sup>2</sup>)</p>
 </li>
-<li><p><strong>解决</strong></p>
+<li>
+<p>如果将训练数据排序，再从两个相邻的排过序的属性值中**选择中间值（平均下取整）**最为候选结点；若下图，最终选择Gini最小的97作为划分点</p>
+<img src="/MyImages/47.png" style="zoom: 67%;" />
+</li>
+<li>
+<p><strong>优化</strong> 排序之后，前三个同属一个类，所以划分肯定不会出现在60到75间(如果这样分会把已经聚类的分割开)；同理，也不会出现在100到200间</p>
+</li>
+</ol>
+<h3 id="增益率"><a class="markdownIt-Anchor" href="#增益率"></a> 增益率</h3>
+<ol>
+<li>
+<p>现在的<strong>问题</strong>是，我们得到的划分属性可能是一个没有预测性的属性，比顾客ID(因为这种划分方法更倾向于属性取值多的属性)。这时因为与该划分相关联的记录太少，以至于不能做出可靠的判断</p>
+</li>
+<li>
+<p><strong>解决</strong></p>
 <ol>
 <li>限制测试条件只能是二元划分</li>
 <li>修改评估划分的标准，把属性测试条件产生的输出数也考虑进去例如使用<strong>增益率</strong></li>
 </ol>
 </li>
-<li><p><strong>增益率</strong><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C18.png" alt=""></p>
-<p>其中划分信息Split Info =$$-\sum_{i=1}^kP(v_i)log_2^P(v_i)$$即属性取值的熵</p>
+<li>
+<p><strong>增益率</strong></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi><mi>a</mi><mi>i</mi><mi>n</mi><mi>r</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>o</mi><mo>=</mo><mfrac><msub><mi mathvariant="normal">Δ</mi><mrow><mi>i</mi><mi>n</mi><mi>f</mi><mi>o</mi></mrow></msub><mrow><mi>S</mi><mi>p</mi><mi>l</mi><mi>i</mi><mi>t</mi><mi>I</mi><mi>n</mi><mi>f</mi><mi>o</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">Gain ratio=\frac{Δ _{info}}{SplitInfo}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span><span class="mord mathdefault">a</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">i</span><span class="mord mathdefault">o</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.2407700000000004em;vertical-align:-0.8804400000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">o</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">Δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804400000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>其中划分信息Split Info =$$-\sum_{i=1}<sup>kP(v_i)log_2</sup>P(v_i)$$即属性取值的熵</p>
 <p>k是划分的总数</p>
 <ol>
-<li>考虑极端情况，划分之后，每个属性具有相同的记录数，则每个P(v<del>i</del>)=1/k，则划分信息等于log<del>2</del>^k^；这表明，如果某个个属性产生了大量的划分，那么他的划分信息将会很大，从而降低增益率</li>
+<li>考虑极端情况，划分之后，每个属性具有相同的记录数，则每个P(v<sub>i</sub>)=1/k，则划分信息等于log<sub>2</sub><sup>k</sup>；这表明，如果某个个属性产生了大量的划分，那么他的划分信息将会很大，从而降低增益率</li>
 </ol>
 </li>
 </ol>
-<h2 id="决策树的归纳算法"><a href="#决策树的归纳算法" class="headerlink" title="决策树的归纳算法"></a>决策树的归纳算法</h2><ol>
+<h2 id="决策树的归纳算法"><a class="markdownIt-Anchor" href="#决策树的归纳算法"></a> 决策树的归纳算法</h2>
+<ol>
 <li>输入是训练集E和属性集F</li>
 <li>步骤：递归的选择最优的属性来划分数据并扩展叶结点</li>
 </ol>
-<h2 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h2><p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C19.png" alt=""></p>
-<h3 id="createNode"><a href="#createNode" class="headerlink" title="createNode"></a>createNode</h3><p>为决策树建立结点。结点可能是划分条件node.test_cond，也可能是一个类标号node.label</p>
-<h3 id="find-best-split"><a href="#find-best-split" class="headerlink" title="find_best_split"></a>find_best_split</h3><p>通过不纯性度量来评估划分，比如使用熵，Gini</p>
-<h3 id="Classify"><a href="#Classify" class="headerlink" title="Classify"></a>Classify</h3><p>为叶结点确定类标号。通常将叶结点指派到具有多数记录的类</p>
-<h3 id="stopping-cond"><a href="#stopping-cond" class="headerlink" title="stopping_cond"></a>stopping_cond</h3><ol>
+<h2 id="算法流程"><a class="markdownIt-Anchor" href="#算法流程"></a> 算法流程</h2>
+<img src="/MyImages/48.png" style="zoom:67%;" />
+<h3 id="createnode"><a class="markdownIt-Anchor" href="#createnode"></a> createNode</h3>
+<p>为决策树建立结点。结点可能是划分条件node.test_cond，也可能是一个类标号node.label</p>
+<h3 id="find_best_split"><a class="markdownIt-Anchor" href="#find_best_split"></a> find_best_split</h3>
+<p>通过不纯性度量来评估划分，比如使用熵，Gini</p>
+<h3 id="classify"><a class="markdownIt-Anchor" href="#classify"></a> Classify</h3>
+<p>为叶结点确定类标号。通常将叶结点指派到具有多数记录的类</p>
+<h3 id="stopping_cond"><a class="markdownIt-Anchor" href="#stopping_cond"></a> stopping_cond</h3>
+<ol>
 <li>检查是否所有记录都属于同一个类，或者具有相同的属性值，以决定石头终止决策树的增长。</li>
 <li>或者检查记录数是否小于某个最小的阈值</li>
 </ol>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p><strong>决策树过大可能导致过拟合</strong>，可以通过剪枝，增强决策树的泛化能力</p>
-<h2 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h2><h3 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h3><ol>
-<li><p>信息熵</p>
-<p>$$Info(D)=-\sum _{i=1}^{m}p_i log_2^{(p_i)}$$</p>
+<h3 id="注意"><a class="markdownIt-Anchor" href="#注意"></a> 注意</h3>
+<p><strong>决策树过大可能导致过拟合</strong>，可以通过剪枝，增强决策树的泛化能力</p>
+<h2 id="id3"><a class="markdownIt-Anchor" href="#id3"></a> ID3</h2>
+<h3 id="信息增益"><a class="markdownIt-Anchor" href="#信息增益"></a> 信息增益</h3>
+<ol>
+<li>
+<p>信息熵</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi><mi>n</mi><mi>f</mi><mi>o</mi><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><msub><mi>p</mi><mi>i</mi></msub><mi>l</mi><mi>o</mi><msubsup><mi>g</mi><mn>2</mn><mrow><mo stretchy="false">(</mo><msub><mi>p</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">Info(D)=-\sum _{i=1}^{m}p_i log_2^{(p_i)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">o</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.433692em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span><span style="top:-3.2198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.266308em;"><span></span></span></span></span></span></span></span></span></span></span></p>
 <ol>
 <li>m是标签取值数</li>
 </ol>
 </li>
-<li><p>属性的熵</p>
+<li>
+<p>属性的熵</p>
 <p>是这个属性所有可能取值的熵的加权平均</p>
-<p>$$Info_A(D)=\sum_{j=1}^v\frac{D_j}{|D|}×Info(D_j)$$</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi><mi>n</mi><mi>f</mi><msub><mi>o</mi><mi>A</mi></msub><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>v</mi></munderover><mfrac><msub><mi>D</mi><mi>j</mi></msub><mrow><mi mathvariant="normal">∣</mi><mi>D</mi><mi mathvariant="normal">∣</mi></mrow></mfrac><mo>×</mo><mi>I</mi><mi>n</mi><mi>f</mi><mi>o</mi><mo stretchy="false">(</mo><msub><mi>D</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Info_A(D)=\sum_{j=1}^v\frac{D_j}{|D|}×Info(D_j)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord mathdefault">o</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0651740000000007em;vertical-align:-1.4137769999999998em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000007em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4137769999999998em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord">∣</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">o</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
 </li>
-<li><p>信息增益</p>
-<p>$$Gain(A) = info(D)-info_A(D)$$</p>
+<li>
+<p>信息增益</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi><mi>a</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>=</mo><mi>i</mi><mi>n</mi><mi>f</mi><mi>o</mi><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo><mo>−</mo><mi>i</mi><mi>n</mi><mi>f</mi><msub><mi>o</mi><mi>A</mi></msub><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Gain(A) = info(D)-info_A(D)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">G</span><span class="mord mathdefault">a</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">o</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord mathdefault">o</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mclose">)</span></span></span></span></span></p>
 <ol>
 <li>info(D)是识别样本中一个标签，所需要的平均信息量</li>
-<li>Info<del>A</del>(D)用属性A对数据集D进行分割所需要的信息量</li>
+<li>Info<sub>A</sub>(D)用属性A对数据集D进行分割所需要的信息量</li>
 </ol>
 </li>
 </ol>
-<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C40.png" alt=""></p>
-<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C41.png" alt=""></p>
-<h3 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h3><ol>
+<h3 id="举例-2"><a class="markdownIt-Anchor" href="#举例-2"></a> 举例</h3>
+<p><img src="/MyImages/image-20200402120653031.png" alt="image-20200402120653031" /></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi><mi>n</mi><mi>f</mi><mi>o</mi><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><mfrac><mn>9</mn><mn>14</mn></mfrac><mi>l</mi><mi>o</mi><msubsup><mi>g</mi><mn>2</mn><mfrac><mn>9</mn><mn>14</mn></mfrac></msubsup><mo>−</mo><mfrac><mn>5</mn><mn>14</mn></mfrac><mi>l</mi><mi>o</mi><msubsup><mi>g</mi><mn>2</mn><mfrac><mn>5</mn><mn>14</mn></mfrac></msubsup><mo>=</mo><mn>0.940</mn><mi>b</mi><mi>i</mi><mi>t</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">Info(D) = -\frac{9}{14}log_2^{\frac {9}{14}}-\frac{5}{14}log_2^{\frac {5}{14}}=0.940bits
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">o</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord">4</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">9</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.17662em;"><span style="top:-2.733692em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span><span style="top:-3.5856000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443142857142858em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">9</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.266308em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord">4</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.17662em;"><span style="top:-2.733692em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span><span style="top:-3.5856000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443142857142858em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">5</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.266308em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">9</span><span class="mord">4</span><span class="mord">0</span><span class="mord mathdefault">b</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord mathdefault">s</span></span></span></span></span></p>
+<img src="/MyImages/image-20200402120840815.png" alt="image-20200402120840815" style="zoom:67%;" />
+<h3 id="注意-2"><a class="markdownIt-Anchor" href="#注意-2"></a> 注意</h3>
+<ol>
 <li>对于连续值，要进行划分</li>
 <li>缺点：更加偏好属性取值多的属性</li>
 </ol>
-<h2 id="C4-5"><a href="#C4-5" class="headerlink" title="C4.5"></a>C4.5</h2><h3 id="将ID3的gain改成gainratio"><a href="#将ID3的gain改成gainratio" class="headerlink" title="将ID3的gain改成gainratio"></a>将ID3的gain改成gainratio</h3><p>$$<br>split info_A(D)=-\sum _{j=1}^v\frac{|D_j|}{D}×log_2({\frac {|D_j|}{|D|}})\<br>gainratiO(A)=\frac {gain(A)}{splitinfo(A)}<br>$$</p>
+<h2 id="c45"><a class="markdownIt-Anchor" href="#c45"></a> C4.5</h2>
+<h3 id="将id3的gain改成gainratio"><a class="markdownIt-Anchor" href="#将id3的gain改成gainratio"></a> 将ID3的gain改成gainratio</h3>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>p</mi><mi>l</mi><mi>i</mi><mi>t</mi><mi>i</mi><mi>n</mi><mi>f</mi><msub><mi>o</mi><mi>A</mi></msub><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>v</mi></munderover><mfrac><mrow><mi mathvariant="normal">∣</mi><msub><mi>D</mi><mi>j</mi></msub><mi mathvariant="normal">∣</mi></mrow><mi>D</mi></mfrac><mo>×</mo><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mo stretchy="false">(</mo><mfrac><mrow><mi mathvariant="normal">∣</mi><msub><mi>D</mi><mi>j</mi></msub><mi mathvariant="normal">∣</mi></mrow><mrow><mi mathvariant="normal">∣</mi><mi>D</mi><mi mathvariant="normal">∣</mi></mrow></mfrac><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mi>g</mi><mi>a</mi><mi>i</mi><mi>n</mi><mi>r</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>O</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>g</mi><mi>a</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mrow><mi>s</mi><mi>p</mi><mi>l</mi><mi>i</mi><mi>t</mi><mi>i</mi><mi>n</mi><mi>f</mi><mi>o</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">split info_A(D)=-\sum _{j=1}^v\frac{|D_j|}{D}×log_2({\frac {|D_j|}{|D|}})\\
+gainratiO(A)=\frac {gain(A)}{splitinfo(A)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord mathdefault">o</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0651740000000007em;vertical-align:-1.4137769999999998em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000007em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4137769999999998em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord">∣</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord">∣</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord">∣</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">a</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">o</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">a</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
 <p>以gainratio最大的为划分属性</p>
-<h3 id="举例-1"><a href="#举例-1" class="headerlink" title="举例"></a>举例</h3><p>如上例中</p>
-<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C42.png" alt=""></p>
-<p>gain_ratio(income) = 0.029/0.926 = 0.031</p>
-<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ol>
+<h3 id="举例-3"><a class="markdownIt-Anchor" href="#举例-3"></a> 举例</h3>
+<p>如上例中</p>
+<img src="/MyImages/image-20200402120910754.png" alt="image-20200402120910754" style="zoom:50%;" />
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>g</mi><mi>a</mi><mi>i</mi><mi>n</mi><mi mathvariant="normal">_</mi><mi>r</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>o</mi><mo stretchy="false">(</mo><mi>i</mi><mi>n</mi><mi>c</mi><mi>o</mi><mi>m</mi><mi>e</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0.029</mn><mi mathvariant="normal">/</mi><mn>0.926</mn><mo>=</mo><mn>0.031</mn></mrow><annotation encoding="application/x-tex">gain\_ratio(income) = 0.029/0.926 = 0.031
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">a</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">i</span><span class="mord mathdefault">o</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">2</span><span class="mord">9</span><span class="mord">/</span><span class="mord">0</span><span class="mord">.</span><span class="mord">9</span><span class="mord">2</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">3</span><span class="mord">1</span></span></span></span></span></p>
+<h3 id="特点"><a class="markdownIt-Anchor" href="#特点"></a> 特点</h3>
+<ol>
 <li>简单易行</li>
 <li>在每个结点对连续属性排序</li>
 <li>需要在内存中加载全部数据</li>
 <li>不适合大数据集(需要外部排序)</li>
 </ol>
-<h2 id="CART-分类和回归树"><a href="#CART-分类和回归树" class="headerlink" title="CART 分类和回归树"></a>CART 分类和回归树</h2><h3 id="Gini系数"><a href="#Gini系数" class="headerlink" title="Gini系数"></a>Gini系数</h3><ol>
-<li><p>$$gini(D)=1-\sum _{i=1}^mp_i^2$$其中P<del>i</del>是D中类i的出现的频率。</p>
+<h2 id="cart-分类和回归树"><a class="markdownIt-Anchor" href="#cart-分类和回归树"></a> CART 分类和回归树</h2>
+<h3 id="gini系数"><a class="markdownIt-Anchor" href="#gini系数"></a> Gini系数</h3>
+<ol>
+<li>
+<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 29: …m _{i=1}^mp_i^2$̲$其中P~i~是D中类i的出现…'>gini(D)=1-\sum _{i=1}^mp_i^2$$其中P~i~是D中类i的出现的频率。
+
+</p>
+<img src="/MyImages/image-20200402121019254.png" alt="image-20200402121019254" style="zoom:50%;" />
 </li>
-<li><p>如果A将数据集D划分成D1和D2，那么D的gini系数是二者的加权平均</p>
-<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C43.png" alt=""></p>
-</li>
-<li><p>gini增益：表示不确定性减少的程度。我们希望gini增益越大越好。</p>
-<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C44.png" alt=""></p>
+<li>
+<p>gini增益：表示不确定性减少的程度。我们希望gini增益越大越好。</p>
+<img src="/MyImages/image-20200402121026358.png" alt="image-20200402121026358" style="zoom:50%;" />
 </li>
 </ol>
-<h3 id="举例-2"><a href="#举例-2" class="headerlink" title="举例"></a>举例</h3><p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C45.png" alt=""></p>
-<h3 id="构建树的思想"><a href="#构建树的思想" class="headerlink" title="构建树的思想"></a>构建树的思想</h3><ol>
+<h3 id="举例-4"><a class="markdownIt-Anchor" href="#举例-4"></a> 举例</h3>
+<p>D has 9 tuples in buys_computer = “yes” and 5 in “no”</p>
+<ul>
+<li>
+<img src="/MyImages/image-20200402121114871.png" alt="image-20200402121114871" style="zoom: 50%;" />
+</li>
+<li>
+<p>Suppose the attribute income partitions D into 10 in D1: {low, medium} and 4 in D2</p>
+<img src="/MyImages/image-20200402121216503.png" alt="image-20200402121216503" style="zoom:50%;" />
+<img src="/MyImages/image-20200402121225181.png" alt="image-20200402121225181" style="zoom:50%;" />
+</li>
+<li>
+<p>but gini{medium,high} is 0.30 and thus the best since it is the lowest</p>
+</li>
+</ul>
+<h3 id="构建树的思想"><a class="markdownIt-Anchor" href="#构建树的思想"></a> 构建树的思想</h3>
+<ol>
 <li>通过递归，不断的构建二分叉的树</li>
 </ol>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ol>
-<li>所有属性都被假设为连续值</li>
-<li>存在多种可能的分组方法</li>
-<li>可能需要其他工具，如集群，以获得可能的分割值</li>
-</ol>
-<h2 id="三种衡量比较"><a href="#三种衡量比较" class="headerlink" title="三种衡量比较"></a>三种衡量比较</h2><ol>
-<li>熵增益<ul>
+<h2 id="三种衡量比较"><a class="markdownIt-Anchor" href="#三种衡量比较"></a> 三种衡量比较</h2>
+<ol>
+<li>熵增益
+<ul>
 <li>趋向于多值的属性</li>
 </ul>
 </li>
-<li>增益率<ul>
+<li>增益率
+<ul>
 <li>趋向于不平衡的样本</li>
 </ul>
 </li>
-<li>Gini 系数<ul>
+<li>Gini 系数
+<ul>
 <li>缺陷是趋向于多值属性</li>
 <li>如果类别数多的时候，时间复杂度大</li>
 <li>偏好各类样本基本相等的数据集</li>
 </ul>
 </li>
 </ol>
+<h2 id="决策树归纳的特点"><a class="markdownIt-Anchor" href="#决策树归纳的特点"></a> 决策树归纳的特点</h2>
+<ul>
+<li>决策树归纳是一种构建分类模型的非参数方法。也就是说，它<strong>不要求任何先验假设</strong>，不假定类和其他属性服从一定的概率分布</li>
+<li>找到最佳决策树是NP完全问题。许多决策树算法都采取启发式的方法知道对假设空间的搜索</li>
+<li>已开发的决策树技术不需要昂贵的计算代价，即使训练集非常大，也可以<strong>快速建立模型</strong>；决策树一旦建立，<strong>未知样本分类也很快</strong>，最坏情况下的时间复杂度是O(w)，其中w是最大深度</li>
+<li><strong>直观，易于解释，同时准确率也可以和其他算法媲美</strong></li>
+<li>决策树是学习离散值函数的典型代表；然而，<strong>不能很好的推广到某些特定的布尔型问题</strong>。</li>
+<li>对于<strong>噪声</strong>有相当好的<strong>鲁棒性</strong></li>
+<li><strong>冗余属性不会</strong>对决策树的准确率<strong>造成不利影响</strong></li>
+<li><strong>可能产生数据碎片问题</strong>：由于大多数的决策树采用自顶向下的方式建立，因此沿着树向下，记录会越来越少，在叶结点，记录可能太少，对于叶结点代表的类，不能做出具有统计意义的判决，即数据碎片。</li>
+<li><strong>子树可能在决策树中重复多次</strong></li>
+<li><strong>对连续数据之间复杂关系建模的表达能力较弱</strong></li>
+</ul>
+<h1 id="过拟合"><a class="markdownIt-Anchor" href="#过拟合"></a> 过拟合</h1>
+<ul>
+<li>
+<p>误差分为<strong>训练误差</strong>和<strong>泛化误差</strong>；好的分类模型应该具有低训练误差和低泛化误差</p>
+</li>
+<li>
+<p>过拟合：泛化误差较高的模型</p>
+</li>
+<li>
+<p>欠拟合：训练和泛化误差都很大</p>
+<p><img src="/MyImages/49.png" alt="" /></p>
+</li>
+</ul>
+<h2 id="可能的原因"><a class="markdownIt-Anchor" href="#可能的原因"></a> 可能的原因</h2>
+<ul>
+<li>与数据有关：
+<ul>
+<li>可能是噪声和离群点导致树分支过多</li>
+<li><strong>缺少样本</strong>，或样本准确性差</li>
+</ul>
+</li>
+<li>与方法有关：构建模型的算法导致的</li>
+<li>与模型复杂度有关：与模型的复杂性有关，<strong>模型越复杂，也越容易导致过拟合</strong></li>
+</ul>
+<h2 id="噪声导致的过分拟合"><a class="markdownIt-Anchor" href="#噪声导致的过分拟合"></a> 噪声导致的过分拟合</h2>
+<ul>
+<li>
+<p>训练集</p>
+<img src="/MyImages/50.png" style="zoom:67%;" />
+</li>
+<li>
+<p>校验集</p>
+<img src="/MyImages/52.png" style="zoom:67%;" />
+</li>
+</ul>
+<img src="/MyImages/51.png" style="zoom: 67%;" />
+<ul>
+<li>左图为完全拟合，训练误差为0，但是由于人和海豚会因为不是四条腿的哺乳动物而被错分。</li>
+</ul>
+<h2 id="缺乏代表性样本导致的过分拟合"><a class="markdownIt-Anchor" href="#缺乏代表性样本导致的过分拟合"></a> 缺乏代表性样本导致的过分拟合</h2>
+<p>根据少量训练数据做出分类决策的模型也容易收到过分拟合的影响。由于训练数据缺乏具有代表性的样本，<strong>在没有多少训练记录的情况下，学习算法仍然继续细化</strong>模型就会产生这样的模型</p>
+<h2 id="过分拟合与多重比较过程"><a class="markdownIt-Anchor" href="#过分拟合与多重比较过程"></a> 过分拟合与多重比较过程</h2>
+<ul>
+<li>多重比较过程是一种学习算法，容易出现过拟合的情况。</li>
+<li>在决策树增长的过程中，可以进行多种测试，以确定哪个属性能够最好的划分训练数据，只要观察到改进是统计显著的，就选取导致最佳划分的属性来扩展决策树</li>
+<li>在这种情况下，我们是在测试$$\Delta(T_0,T_{Xmax}&gt; \alpha )$$而不是$$Delta(T_0,T_x&gt;\alpha )$$。随着k的增加找到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Δ</mi><mo stretchy="false">(</mo><msub><mi>T</mi><mn>0</mn></msub><mo separator="true">,</mo><msub><mi>T</mi><mrow><mi>X</mi><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub><mo>&gt;</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Delta(T_0,T_{Xmax}&gt; \alpha )</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Δ</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mclose">)</span></span></span></span>$$ 的概率也会增加，导致算法在不经意间增加了一些欺骗性的结点，导致过拟合</li>
+<li>当选择属性x<sub>max</sub>的训练记录很少时，也会产生这种现象。</li>
+</ul>
+<h2 id="泛化误差估计"><a class="markdownIt-Anchor" href="#泛化误差估计"></a> 泛化误差估计</h2>
+<img src="/MyImages/53.png" style="zoom:67%;" />
+<h3 id="使用再代入估计"><a class="markdownIt-Anchor" href="#使用再代入估计"></a> 使用再代入估计</h3>
+<ul>
+<li>假设训练数据集可以很好的代表整体数据，因此可以使用训练误差提供对泛化误差的乐观估计</li>
+<li>然而训练误差通常是泛化误差的一种很差的估计</li>
+</ul>
+<h3 id="结合模型复杂度"><a class="markdownIt-Anchor" href="#结合模型复杂度"></a> 结合模型复杂度</h3>
+<ul>
+<li>
+<p>模型越复杂，出现过拟合的几率就越高</p>
+</li>
+<li>
+<p><strong>奥卡姆剃刀定律</strong></p>
+<p>给定两个具有相同泛化误差的模型，较简单的模型比复杂的模型更可取</p>
+</li>
+<li>
+<p>上图中左决策树的训练误差为4/24-0.167</p>
+</li>
+<li>
+<p>右边决策树的训练误差为4/24</p>
+</li>
+</ul>
+<h4 id="悲观误差评估"><a class="markdownIt-Anchor" href="#悲观误差评估"></a> 悲观误差评估</h4>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>e</mi><mi>g</mi></msub><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>k</mi></munderover><mo stretchy="false">[</mo><mi>e</mi><mo stretchy="false">(</mo><msub><mi>t</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>+</mo><mi mathvariant="normal">Ω</mi><mo stretchy="false">(</mo><msub><mi>t</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>k</mi></munderover><mi>n</mi><mo stretchy="false">(</mo><msub><mi>t</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">e_g(T)=\frac {\sum _{i=1}^k[e(t_i)+\Omega(t_i)]}{\sum_{i=1}^kn(t_i)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.857436em;vertical-align:-1.178718em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.678718em;"><span style="top:-2.120992em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9890079999999999em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6897100000000003em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9890079999999999em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord mathdefault">e</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">Ω</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">]</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.178718em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>​			$$=\frac {e(T)+\Omega(T)}{N_i}$$</p>
+<p>其中n(t)是结点t分类的训练记录数，e(t)是被误分类的记录数。k是决策树的叶结点数，e(T)是决策树的总训练误差，Ni是训练记录数，$$\Omega(t_i)$$是每个结点ti对应的罚项。</p>
+<ul>
+<li>j若设每个结点的罚项为0.5，则
+<ul>
+<li>左侧的悲观误差估计为$$\frac {4+7×0.5}{24} = 0.3125$$</li>
+<li>右侧的悲观误差估计为$$\frac {6+4×0.5}{24} = 0.3333$$</li>
+</ul>
+</li>
+<li><strong>0.5的罚项</strong>：意味着只要至少能够改善一个训练记录的分类，结点就应该扩展，因为扩展一个结点等价于总误差增加0.5，代价比犯一个训练错误小</li>
+<li><strong>如果罚项为1</strong>，那么右侧的决策树比左侧的有更好的悲观错误率，这样，除非能够减少一个以上的训练记录的误分类，否则结点不应当扩展</li>
+</ul>
+<h4 id="最小描述长度原则-mdl"><a class="markdownIt-Anchor" href="#最小描述长度原则-mdl"></a> 最小描述长度原则 MDL</h4>
+<h3 id="估计统计上界"><a class="markdownIt-Anchor" href="#估计统计上界"></a> 估计统计上界</h3>
+<p>利用泛化误差俩修正训练误差</p>
+<h3 id="使用确认集"><a class="markdownIt-Anchor" href="#使用确认集"></a> 使用确认集</h3>
+<ul>
+<li>把训练数据再分成两个较小的子集，一个用于训练，另一个用作确认</li>
+</ul>
+<h2 id="处理决策树归纳中的过分拟合"><a class="markdownIt-Anchor" href="#处理决策树归纳中的过分拟合"></a> 处理决策树归纳中的过分拟合</h2>
+<h3 id="先剪枝"><a class="markdownIt-Anchor" href="#先剪枝"></a> 先剪枝</h3>
+<ul>
+<li>
+<p>在产生完全的决策树之前停止决策树的生长</p>
+</li>
+<li>
+<p>需要<strong>采用更具有限制性的结束条件</strong></p>
+<ul>
+<li>
+<p>观察到不纯性度量的增益(或估计的泛化误差的改进)低于某个阈值时就停止扩展叶结点。这样可以避免产生过于复杂的子树</p>
+<p>然而很难找到合适的阈值。阈值过高导致欠拟合，太低则不能充分解决过拟合</p>
+</li>
+<li>
+<p>所有的样本都属于一个类别时停止</p>
+</li>
+<li>
+<p>所有样本属性值都一样时停止</p>
+</li>
+<li>
+<p>如果划分之后不能提高样本的纯度，那么可以将其剪掉(三种经典方法)</p>
+</li>
+<li>
+<p>当样本数少于给定阈值时停止（适用于样本数很多的时候）</p>
+</li>
+<li>
+<p>在样本中选择具有代表性的样本：机器学习的方法</p>
+</li>
+<li>
+<p>在特征中选择有代表性的特征：去除与目标无关的属性，以此减少内部节点的个数</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="后剪枝"><a class="markdownIt-Anchor" href="#后剪枝"></a> 后剪枝</h3>
+<ul>
+<li>
+<p>在产生完全的决策树之后，则自底向上的修剪</p>
+</li>
+<li>
+<p>原则</p>
+<ul>
+<li>如果删除某个结点，能改进泛化误差，那么可以删除</li>
+<li>如果两个分支的叶子结点的标签相同，那么可以在分支处进行修剪</li>
+<li>MDL 原则</li>
+</ul>
+</li>
+<li>
+<p>主要方法</p>
+<ul>
+<li>用新的叶结点替换子树，该叶结点的标号用多数票决</li>
+<li>用子树中最常用的分支代替子树</li>
+</ul>
+<p>当不能再改进时停止</p>
+</li>
+<li>
+<p>后剪枝的问题是那些被剪掉的子树的计算量被浪费了</p>
+</li>
+</ul>
+<h2 id="决策树构建的其他问题"><a class="markdownIt-Anchor" href="#决策树构建的其他问题"></a> 决策树构建的其他问题</h2>
+<h3 id="如果属性是连续值"><a class="markdownIt-Anchor" href="#如果属性是连续值"></a> 如果属性是连续值</h3>
+<ul>
+<li>因为连续值是不可数的，无法作为分类标准。所以需要采用方法将连续值进行划分</li>
+</ul>
+<h3 id="存在缺省值"><a class="markdownIt-Anchor" href="#存在缺省值"></a> 存在缺省值</h3>
+<ul>
+<li>使用某种统计值弥补缺省值</li>
+<li>使用概率值来填充</li>
+</ul>
+<h3 id="构建属性"><a class="markdownIt-Anchor" href="#构建属性"></a> 构建属性</h3>
+<ul>
+<li>可以基于现有的属性创建新的属性，比如将稀疏的属性重新构建</li>
+<li>可以减少碎片，重复，复制
+<ul>
+<li>碎片：随着构建树，样本的数量越来越少，导致构建的树的分支过多</li>
+<li>重复：某个属性沿着被反复测试</li>
+<li>复制：子树结构在整棵树中大量重复</li>
+</ul>
+</li>
+</ul>
+<h1 id="评估分类器的性能"><a class="markdownIt-Anchor" href="#评估分类器的性能"></a> 评估分类器的性能</h1>
+<h2 id="保持方法"><a class="markdownIt-Anchor" href="#保持方法"></a> 保持方法</h2>
+<ul>
+<li>将原始数据集划分成两个不相交的集合。</li>
+<li>划分比例通常根据分析家的判断。例如50-50，或者2:1的比例。</li>
+<li><strong>分类器的准确率根据模型在校验集上的准确率估计</strong></li>
+</ul>
+<h3 id="局限性"><a class="markdownIt-Anchor" href="#局限性"></a> 局限性</h3>
+<ul>
+<li>用于训练的被<strong>标记样本较少</strong>，因为要保留一部分记录用于校验，因此，<strong>建立的模型不如使用所有被标记样本建立的模型好</strong>。</li>
+<li>模型可能<strong>高度依赖于训练集和校验集的构成</strong>
+<ul>
+<li>训练集越小，模型的方差越大</li>
+<li>训练集太大，根据较小的验证集估计的准确率又不太可靠。这样的估计具有很宽的置信区间。最后,训练集和检验集不再是相互独立的。因为训练集和检验集来源于同一个数据集,在一个子集中超出比例的类在另一个子集就低干比例,反之亦然。</li>
+</ul>
+</li>
+</ul>
+<h2 id="随机二次抽样"><a class="markdownIt-Anchor" href="#随机二次抽样"></a> 随机二次抽样</h2>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">设</mi><mi>a</mi><mi>c</mi><msub><mi>c</mi><mi>i</mi></msub><mi mathvariant="normal">是</mi><mi mathvariant="normal">第</mi><mi>i</mi><mi mathvariant="normal">次</mi><mi mathvariant="normal">迭</mi><mi mathvariant="normal">代</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">模</mi><mi mathvariant="normal">型</mi><mi mathvariant="normal">准</mi><mi mathvariant="normal">确</mi><mi mathvariant="normal">率</mi><mspace linebreak="newline"></mspace><mi mathvariant="normal">总</mi><mi mathvariant="normal">准</mi><mi mathvariant="normal">确</mi><mi mathvariant="normal">率</mi><mi mathvariant="normal">位</mi><mi>a</mi><mi>c</mi><msub><mi>c</mi><mrow><mi>s</mi><mi>u</mi><mi>b</mi></mrow></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>k</mi></munderover><mi>a</mi><mi>c</mi><msub><mi>c</mi><mi>i</mi></msub><mi mathvariant="normal">/</mi><mi>k</mi></mrow><annotation encoding="application/x-tex">设acc_i是第i次迭代的模型准确率\\
+总准确率位acc_{sub}=\sum _{i=1}^kacc_i/k
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord cjk_fallback">设</span><span class="mord mathdefault">a</span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">是</span><span class="mord cjk_fallback">第</span><span class="mord mathdefault">i</span><span class="mord cjk_fallback">次</span><span class="mord cjk_fallback">迭</span><span class="mord cjk_fallback">代</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">模</span><span class="mord cjk_fallback">型</span><span class="mord cjk_fallback">准</span><span class="mord cjk_fallback">确</span><span class="mord cjk_fallback">率</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord cjk_fallback">总</span><span class="mord cjk_fallback">准</span><span class="mord cjk_fallback">确</span><span class="mord cjk_fallback">率</span><span class="mord cjk_fallback">位</span><span class="mord mathdefault">a</span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.1137820000000005em;vertical-align:-1.277669em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8361130000000003em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span></span></p>
+<h3 id="局限性-2"><a class="markdownIt-Anchor" href="#局限性-2"></a> 局限性</h3>
+<ul>
+<li>会遇到与保持方法同样的问题，因为在训练阶段没有利用尽可能多的数据</li>
+<li>没有控制每个记录用于训练和检验的次数，因此，有些用于选练的记录使用的频率可能比其他记录高得多</li>
+</ul>
+<h2 id="交叉抽样"><a class="markdownIt-Anchor" href="#交叉抽样"></a> 交叉抽样</h2>
+<p>在该方法中，每个记录用于训练的次数相同</p>
+<h3 id="二折交叉验证"><a class="markdownIt-Anchor" href="#二折交叉验证"></a> 二折交叉验证</h3>
+<ul>
+<li>将数据分为<strong>相同大小</strong>的两个子集，一个做训练集，另一个做校验集。然后互换角色。</li>
+<li>总误差位两次误差的<strong>和</strong></li>
+</ul>
+<h3 id="k折交叉验证"><a class="markdownIt-Anchor" href="#k折交叉验证"></a> k折交叉验证</h3>
+<ul>
+<li>把数据分为大小<strong>相同的 k份</strong>,在每次运行**,选择其中一份作检验集**,而其余的全作为训练集,该过程<strong>重复k 次</strong>,使得<strong>每份数据都用于检验恰好一次</strong>。</li>
+<li>总误差是所有k次运行的误差之和</li>
+</ul>
+<h4 id="留一法"><a class="markdownIt-Anchor" href="#留一法"></a> 留一法</h4>
+<ul>
+<li>k折法的一种特殊情况，令k=N</li>
+<li>优点是
+<ul>
+<li>尽可能多的利用训练数据，有效覆盖了整个数据集</li>
+<li>校验集之间是互斥的</li>
+</ul>
+</li>
+<li>缺点是
+<ul>
+<li>过程需要重复N次，计算开销大</li>
+<li>每个校验集只有一个记录，性能估计度量的方差偏高</li>
+</ul>
+</li>
+</ul>
+<h2 id="自助法-boot-strap"><a class="markdownIt-Anchor" href="#自助法-boot-strap"></a> 自助法 boot strap</h2>
+<ul>
+<li>
+<p>之前的方法都是不放回抽样，训练集和检验集都不包含重复记录</p>
+</li>
+<li>
+<p><strong>自助法是有放回抽样</strong></p>
+</li>
+<li>
+<p>如果原始数据有N个记录,可以证明,平均来说,大小为N的自助样本大约包合原始数据中**63.2%**的纪录。</p>
+</li>
+<li>
+<p>没有被抽中的样本将称为校验集的一部分，这样每次都会得到自主样本准确率的一个估计$$\epsilon_i$$</p>
+</li>
+<li>
+<p>重复b次，产生b个自助样本</p>
+</li>
+</ul>
+<h3 id="632自助"><a class="markdownIt-Anchor" href="#632自助"></a> .632自助</h3>
+<p>通过组合每个自助样本的准确率（$$\epsilon _i$$）和由包含所有标记样本的训练集计算的准确率(acc<sub>s</sub>)和计算总准确率(acc<sub>bout</sub>)</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>c</mi><msub><mi>c</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub><mo>=</mo><mfrac><mn>1</mn><mi>b</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>b</mi></munderover><mo stretchy="false">(</mo><mn>0.632</mn><mo>×</mo><msub><mi>ϵ</mi><mi>i</mi></msub><mo>+</mo><mn>0.368</mn><mo>×</mo><mi>a</mi><mi>c</mi><msub><mi>c</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">acc_{out}=\frac{1}{b}\sum _{i=1}^b(0.632×\epsilon _i+0.368×acc_i)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.1137820000000005em;vertical-align:-1.277669em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">b</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8361130000000003em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord">0</span><span class="mord">.</span><span class="mord">6</span><span class="mord">3</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">ϵ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span><span class="mord">6</span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<h1 id="模型评价"><a class="markdownIt-Anchor" href="#模型评价"></a> 模型评价</h1>
+<h2 id="模型评估矩阵"><a class="markdownIt-Anchor" href="#模型评估矩阵"></a> 模型评估矩阵</h2>
+<h3 id="混淆矩阵-2"><a class="markdownIt-Anchor" href="#混淆矩阵-2"></a> 混淆矩阵</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Predicted class</strong></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Actual class</strong></td>
+<td>Class=Yes</td>
+<td>Class=No</td>
+</tr>
+<tr>
+<td>Class=Yes</td>
+<td>TP</td>
+<td>FN</td>
+</tr>
+<tr>
+<td>Class=No</td>
+<td>FP</td>
+<td>TN</td>
+</tr>
+</tbody>
+</table>
+<h3 id="acc-正确率"><a class="markdownIt-Anchor" href="#acc-正确率"></a> Acc 正确率</h3>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi>c</mi><mi>c</mi><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>T</mi><mi>N</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>T</mi><mi>N</mi><mo>+</mo><mi>F</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>N</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">Acc(M) = \frac {TP+TN}{TP+TN+FP+FN}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">c</span><span class="mord mathdefault">c</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.1296600000000003em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<ul>
+<li>
+<p><strong>错分率 = 1 - Acc</strong></p>
+</li>
+<li>
+<p><strong>灵敏度/精度 = $$\frac {TP}{TP+FP}$$</strong></p>
+</li>
+<li>
+<p><strong>特效性 =  $$\frac {TN}{TN+FN}$$</strong></p>
+</li>
+</ul>
+<p>通常需要多度量联合使用</p>
+<h3 id="代价矩阵"><a class="markdownIt-Anchor" href="#代价矩阵"></a> 代价矩阵</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Predicted class</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Actualclass</td>
+<td>C(i|j)</td>
+<td><strong>Class=Yes</strong></td>
+<td><strong>Class=No</strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Class=Yes</strong></td>
+<td>C(Yes|Yes)</td>
+<td>C(No|Yes)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Class=No</strong></td>
+<td>C(Yes|No)</td>
+<td>C(No|No)</td>
+</tr>
+</tbody>
+</table>
+<p>用来衡量错分的代价</p>
+<h3 id="四个常用指标"><a class="markdownIt-Anchor" href="#四个常用指标"></a> 四个常用指标</h3>
+<img src="/MyImages/39.png" style="zoom: 33%;" />
+<img src="/MyImages/40.png" style="zoom:50%;" />
+<ul>
+<li>准确率偏向C(Yes|Yes) &amp; C(Yes|No)</li>
+<li>召回率偏向C(Yes|Yes) &amp; C(No|Yes)</li>
+<li>F 偏向于C(No|No)</li>
+</ul>
+<h2 id="模型评估方法"><a class="markdownIt-Anchor" href="#模型评估方法"></a> 模型评估方法</h2>
+<h3 id="roc曲线"><a class="markdownIt-Anchor" href="#roc曲线"></a> ROC曲线</h3>
+<ul>
+<li>用于衡量可靠性</li>
+</ul>
+<h3 id="保持法"><a class="markdownIt-Anchor" href="#保持法"></a> 保持法</h3>
+<ul>
+<li>将数据集划分成两个部分：2份做训练，1份做测试</li>
+<li>可以随机抽样k次，反复使用保持法，准确率为k次的平均值</li>
+</ul>
+<h3 id="k折交叉验证-2"><a class="markdownIt-Anchor" href="#k折交叉验证-2"></a> k折交叉验证</h3>
+<ul>
+<li>将样本进行k次划分，每次以第i份为测试集，剩下k-1个训练样本</li>
+<li><strong>留1交叉验证</strong>：令k等于样本个数，每次只拿出其中的一个作为测试样本；适用于小规模数据</li>
+</ul>
+<h3 id="bootstrap"><a class="markdownIt-Anchor" href="#bootstrap"></a> bootstrap</h3>
+<ul>
+<li>
+<p>针对样本数较少的情况</p>
+</li>
+<li>
+<p>进行有放回抽样来得到测试集</p>
+</li>
+<li>
+<p>将样本进行d次有放回抽样，得到d个样本的数据集，包括训练集和测试集。重复b次，计算准确率</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>c</mi><msub><mi>c</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub><mo>=</mo><mfrac><mn>1</mn><mi>b</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>b</mi></munderover><mo stretchy="false">(</mo><mn>0.632</mn><mo>×</mo><msub><mi>ϵ</mi><mi>i</mi></msub><mo>+</mo><mn>0.368</mn><mo>×</mo><mi>a</mi><mi>c</mi><msub><mi>c</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">acc_{out}=\frac{1}{b}\sum _{i=1}^b(0.632×\epsilon _i+0.368×acc_i)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.1137820000000005em;vertical-align:-1.277669em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">b</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8361130000000003em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord">0</span><span class="mord">.</span><span class="mord">6</span><span class="mord">3</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">ϵ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span><span class="mord">6</span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+</ul>
 
       
       <!-- reward -->
@@ -404,9 +864,9 @@
       </a>
     
     
-      <a href="/2020/03/30/%E7%AC%AC2%E7%AB%A0%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/" class="article-nav-link">
+      <a href="/2020/03/30/Spring%E6%9D%82%E8%AE%B0/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">第2章知识表示方法</div>
+        <div class="article-nav-title">Spring杂记</div>
       </a>
     
   </nav>
