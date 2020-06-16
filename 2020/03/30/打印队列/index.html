@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">740字</span>
+            <span class="post-count">755字</span>
         </span>
     </span>
 
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2分钟</span>
+            <span class="post-count">3分钟</span>
         </span>
     </span>
 </div>
@@ -101,54 +101,75 @@
       
 
       
-      <h1 id="uva12100-打印队列"><a href="#uva12100-打印队列" class="headerlink" title="uva12100 打印队列"></a>uva12100 打印队列</h1><p>&ensp;学生会里只有一台打印机，但是有很多文件需要打印，因此打印任务不可避免地需要等待。有些打印任务比较急，有些不那么急，所以每个任务都有一个1～9间的优先级，优先级越高表示任务越急。</p>
-<p>&ensp;打印机的运作方式如下：首先从打印队列里取出一个任务J，如果队列里有比J更急的任务，则直接把J放到打印队列尾部，否则打印任务J（此时不会把它放回打印队列）。 输入打印队列中各个任务的优先级以及所关注的任务在队列中的位置（队首位置为0），输出该任务完成的时刻。所有任务都需要1分钟打印。例如，打印队列为{1,1,9,1,1,1}，目前处于队首的任务最终完成时刻为5。</p>
-<p>&ensp;输入T 接下来T组数据 每组数据输入N，TOP。接下来N个数，TOP代表队列首</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li><p>通过两个队列实现，一个是优先级队列，其队首即为当前允许出队的优先级；另一个是打印队列</p>
-</li>
-<li><p>只有当优先级队列的队首等于打印队列的队首的时候（当前要打印的任务优先级最高）时，才能打印；否则将打印队列的队首插到队尾</p>
-</li>
-<li><p>由于最终要根据在初始队列中的位置选择输出，所以既要记录优先级又要记录初始位置。</p>
-</li>
-<li><p>优先级队列与元素无关，所以用int型即可</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p> //list存打印请求队列，如果优先级队列pq的队首比list大，说明队列中还有优先级更高的任务，则将list的队首放在队尾<br> //只有当pq的队首等于list的队首的时候，list才输出，pq才出队!!!<br> #include<iostream><br> #include<vector><br> #include<queue></p>
-<h1 id="pragma-warning-disable-4996"><a href="#pragma-warning-disable-4996" class="headerlink" title="pragma warning(disable:4996)"></a>pragma warning(disable:4996)</h1><h1 id="define-LOCAL"><a href="#define-LOCAL" class="headerlink" title="define LOCAL"></a>define LOCAL</h1><h1 id="ifdef-LOCAL"><a href="#ifdef-LOCAL" class="headerlink" title="ifdef LOCAL"></a>ifdef LOCAL</h1><p> FILE *fin = freopen(“习题5-7in.txt”, “r”, stdin);<br> FILE *fout = freopen(“习题5-7out.txt”, “w”, stdout);</p>
-<h1 id="endif"><a href="#endif" class="headerlink" title="endif"></a>endif</h1><p> using namespace std;<br> int n;<br> struct node {</p>
-<pre><code>int f;
-int pos;
-node(int f, int pos) :f(f), pos(pos) {}</code></pre><p> };<br> int main() {<br> cin &gt;&gt; n;<br> while (n–)<br> {</p>
-<pre><code>queue&lt;node&gt; list;
-priority_queue&lt;int&gt; pq;
-int m, pos;
-cin &gt;&gt; m &gt;&gt; pos;</code></pre></li>
+      <h1 id="uva12100-打印队列"><a class="markdownIt-Anchor" href="#uva12100-打印队列"></a> uva12100 打印队列</h1>
+<p> 学生会里只有一台打印机，但是有很多文件需要打印，因此打印任务不可避免地需要等待。有些打印任务比较急，有些不那么急，所以每个任务都有一个1～9间的优先级，优先级越高表示任务越急。</p>
+<p> 打印机的运作方式如下：首先从打印队列里取出一个任务J，如果队列里有比J更急的任务，则直接把J放到打印队列尾部，否则打印任务J（此时不会把它放回打印队列）。 输入打印队列中各个任务的优先级以及所关注的任务在队列中的位置（队首位置为0），输出该任务完成的时刻。所有任务都需要1分钟打印。例如，打印队列为{1,1,9,1,1,1}，目前处于队首的任务最终完成时刻为5。</p>
+<p> 输入T 接下来T组数据 每组数据输入N，TOP。接下来N个数，TOP代表队列首</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>通过两个队列实现，一个是优先级队列，其队首即为当前允许出队的优先级；另一个是打印队列</li>
+<li>只有当优先级队列的队首等于打印队列的队首的时候（当前要打印的任务优先级最高）时，才能打印；否则将打印队列的队首插到队尾</li>
+<li>由于最终要根据在初始队列中的位置选择输出，所以既要记录优先级又要记录初始位置。</li>
+<li>优先级队列与元素无关，所以用int型即可</li>
 </ol>
-<pre><code>    for (int i = 0; i &lt; m; i++) {
-        int x;
-        cin &gt;&gt; x;
-        pq.push(x);
-        list.push(node(x,i));
-    }
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<pre><code>//list存打印请求队列，如果优先级队列pq的队首比list大，说明队列中还有优先级更高的任务，则将list的队首放在队尾
+//只有当pq的队首等于list的队首的时候，list才输出，pq才出队!!!
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+# pragma warning(disable:4996)
+# define LOCAL
+# ifdef LOCAL
+FILE *fin = freopen(&quot;习题5-7in.txt&quot;, &quot;r&quot;, stdin);
+FILE *fout = freopen(&quot;习题5-7out.txt&quot;, &quot;w&quot;, stdout);
+# endif 
+using namespace std;
+int n;
+struct node {
+	int f;
+	int pos;
+	node(int f, int pos) :f(f), pos(pos) {}
+};
+int main() {
+cin &gt;&gt; n;
+while (n--)
+{
+	queue&lt;node&gt; list;
+	priority_queue&lt;int&gt; pq;
+	int m, pos;
+	cin &gt;&gt; m &gt;&gt; pos;
 
-    int time = 0;
-    while(!list.empty()&amp;&amp;!pq.empty()){
-        if (list.front().f &lt; pq.top()) {
-            list.push(list.front());
-            list.pop();
-        }
-        else if (list.front().f == pq.top()) {
-            if (list.front().pos == pos) break;
 
-                list.pop();
-                pq.pop();//！！只有成功打印了，优先级队列才队
-                time++;
+	for (int i = 0; i &lt; m; i++) {
+		int x;
+		cin &gt;&gt; x;
+		pq.push(x);
+		list.push(node(x,i));
+	}
+	
+	int time = 0;
+	while(!list.empty()&amp;&amp;!pq.empty()){
+		if (list.front().f &lt; pq.top()) {
+			list.push(list.front());
+			list.pop();
+		}
+		else if (list.front().f == pq.top()) {
+			if (list.front().pos == pos) break;
+			
+				list.pop();
+				pq.pop();//！！只有成功打印了，优先级队列才队
+				time++;
+			
+		}
 
-        }
-
-    }
-    cout &lt;&lt; time+1 &lt;&lt; endl;
+	}
+	cout &lt;&lt; time+1 &lt;&lt; endl;
 }
-}</code></pre><h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><ol>
+}
+</code></pre>
+<h1 id="心得"><a class="markdownIt-Anchor" href="#心得"></a> 心得</h1>
+<ol>
 <li>首先是学习了优先级队列，优先级队列是每次都挑出优先级最大的，而不是重排队列。</li>
 <li>以后应该明确每个STL应该关注的点，像是这里的优先级队列，只需关注级数数值即可，无需定义为node型</li>
 </ol>
@@ -239,19 +260,19 @@ cin &gt;&gt; m &gt;&gt; pos;</code></pre></li>
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84%E8%BD%A6/" class="article-nav-link">
+      <a href="/2020/03/30/%E5%B8%A6%E5%AE%BD/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            传说中的车
+            带宽
           
         </div>
       </a>
     
     
-      <a href="/2020/03/30/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" class="article-nav-link">
+      <a href="/2020/03/30/%E4%B8%8D%E6%97%A0%E8%81%8A%E7%9A%84%E5%BA%8F%E5%88%97/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">二叉树的层序遍历</div>
+        <div class="article-nav-title">不无聊的序列</div>
       </a>
     
   </nav>

@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">441字</span>
+            <span class="post-count">446字</span>
         </span>
     </span>
 
@@ -101,9 +101,13 @@
       
 
       
-      <h1 id="uav156-反片语"><a href="#uav156-反片语" class="headerlink" title="uav156 反片语"></a>uav156 反片语</h1><p>输入一些单词，找出所有满足如下条件的单词：该单词不能通过字母重排，得到输入文本的另外一个单词。在判断是否满足条件时，字母不分大小写，但在输出时应保留输入中的大小写，按字典序进行排列(所有大写字母在所有小写字母的前面)</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>由于单词可以重拍，所有直接对各单词进行标准化，以便于使用map；map<br>为&lt;string,int&gt;，其中值对应单词出现次数；使用向量word记录原单词，向量ans记录答案序列；</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><pre><code>#include&lt;iostream&gt;
+      <h1 id="uav156-反片语"><a class="markdownIt-Anchor" href="#uav156-反片语"></a> uav156 反片语</h1>
+<p>输入一些单词，找出所有满足如下条件的单词：该单词不能通过字母重排，得到输入文本的另外一个单词。在判断是否满足条件时，字母不分大小写，但在输出时应保留输入中的大小写，按字典序进行排列(所有大写字母在所有小写字母的前面)</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<p>由于单词可以重拍，所有直接对各单词进行标准化，以便于使用map；map<br />
+为&lt;string,int&gt;，其中值对应单词出现次数；使用向量word记录原单词，向量ans记录答案序列；</p>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<pre><code>#include&lt;iostream&gt;
 #include&lt;map&gt;
 #include&lt;string&gt;
 #include&lt;vector&gt;
@@ -114,18 +118,41 @@ map&lt;string, int&gt; cnt;
 string standard(const string &amp;in) {
 string s = in;
 for (int i = 0; i &lt; s.length(); i++) {
-    s[i] = tolower(s[i]);
-}</code></pre><ol>
-<li><p>此处书上是按上述方式给的，如果形参表写成const string s，之后直接操作s，并且返回s也没发现问题。</p>
-</li>
-<li><p>注意此处const的用法，编写该模块前如果认定了in仅作为输入，则加上const防止之后错误的操作。</p>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><p>sort(s.begin(), s.end());<br>return s;<br>}<br>int main() {<br>string s;<br>while (cin &gt;&gt; s) {<br>  if (s[0] == ‘# ‘)    break;<br>  word.push_back(s);<br>  string r = standard(s);<br>  if (!cnt.count(r)) cnt[r] = 0;<br>  cnt[r]++;<br>}<br>vector<string> ans;<br>for (int i = 0; i &lt; word.size(); i++) {<br>  if (cnt[standard(word[i])] == 1) ans.push_back(word[i]);<br>}<br>sort(ans.begin(), ans.end());</p>
-<p>for (int i = 0; i &lt; ans.size(); i++) {<br>  cout &lt;&lt; ans[i] &lt;&lt; endl;<br>}<br>}</p>
-<h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><ol>
-<li>本题主要是map的应用，想要用map，标准化的步骤是关键。</li>
-<li>map提供了”[]”运算符，map[键]=值，使得map可以像数组一样使用。事实上，map也成为”关联数组”。</li>
+	s[i] = tolower(s[i]);
+}
+</code></pre>
+<ol>
+<li>此处书上是按上述方式给的，如果形参表写成const string s，之后直接操作s，并且返回s也没发现问题。</li>
+<li>注意此处const的用法，编写该模块前如果认定了in仅作为输入，则加上const防止之后错误的操作。</li>
 </ol>
-</li>
+<h1 id=""><a class="markdownIt-Anchor" href="#"></a> </h1>
+<pre><code>sort(s.begin(), s.end());
+return s;
+}
+int main() {
+string s;
+while (cin &gt;&gt; s) {
+	if (s[0] == '# ')	break;
+	word.push_back(s);
+	string r = standard(s);
+	if (!cnt.count(r)) cnt[r] = 0;
+	cnt[r]++;
+}
+vector&lt;string&gt; ans;
+for (int i = 0; i &lt; word.size(); i++) {
+	if (cnt[standard(word[i])] == 1) ans.push_back(word[i]);
+}
+sort(ans.begin(), ans.end());
+
+for (int i = 0; i &lt; ans.size(); i++) {
+	cout &lt;&lt; ans[i] &lt;&lt; endl;
+}
+}
+</code></pre>
+<h1 id="心得"><a class="markdownIt-Anchor" href="#心得"></a> 心得</h1>
+<ol>
+<li>本题主要是map的应用，想要用map，标准化的步骤是关键。</li>
+<li>map提供了&quot;[]“运算符，map[键]=值，使得map可以像数组一样使用。事实上，map也成为&quot;关联数组”。</li>
 </ol>
 
       
@@ -224,9 +251,9 @@ for (int i = 0; i &lt; s.length(); i++) {
       </a>
     
     
-      <a href="/2020/03/30/%E5%8F%A4%E4%BB%A3%E8%B1%A1%E5%BD%A2%E7%AC%A6%E5%8F%B7/" class="article-nav-link">
+      <a href="/2020/03/30/%E5%92%8C%E4%B8%BA0%E7%9A%844%E4%B8%AA%E5%80%BC/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">古代象形符号</div>
+        <div class="article-nav-title">和为0的4个值</div>
       </a>
     
   </nav>

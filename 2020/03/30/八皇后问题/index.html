@@ -99,7 +99,9 @@
       
 
       
-      <p>/*<br>恰好每行每列各放置一个皇后，如果用A[x]表示第x行皇后的列号，则问题变成了一个全排列生成问题。<br>*/</p>
+      <p>/*<br />
+恰好每行每列各放置一个皇后，如果用A[x]表示第x行皇后的列号，则问题变成了一个全排列生成问题。<br />
+*/</p>
 <pre><code>#include&lt;bits/stdc++.h&gt;
 # pragma warning(disable:4996)
 # define LOCAL
@@ -116,35 +118,36 @@ int vis[100][100];
 void search(int cur) {
 ios::sync_with_stdio(false);
 if (cur == n) {
-    if (print_num &lt;= 3) {
-        cout &lt;&lt; A[0];
-        for (unsigned int i = 1; i &lt; n; i++)
-            cout &lt;&lt; &quot; &quot;&lt;&lt; A[i] ;
-        cout &lt;&lt; endl;
-        print_num++;
-    }
-    tot++;
+	if (print_num &lt;= 3) {
+		cout &lt;&lt; A[0];
+		for (unsigned int i = 1; i &lt; n; i++)
+			cout &lt;&lt; &quot; &quot;&lt;&lt; A[i] ;
+		cout &lt;&lt; endl;
+		print_num++;
+	}
+	tot++;
 }
 else for (unsigned int i = 0; i &lt; n; i++) {
-    if (!vis[0][i] &amp;&amp; !vis[1][cur + i] &amp;&amp; !vis[2][cur - i + n]) {
-        //对于(i,cur)
-        //以cur+i来标识副对角线，cur-i来标识主对角线，由于主对角线可能为负
-        //所以要加上n
-        A[cur] = i + 1;
-        //对于(cur,i)处要么有子要么无子--&gt;回溯的两种情况
-        vis[0][i] = vis[1][cur + i] = vis[2][cur - i + n] = 1;
-        search(cur + 1);
-        vis[0][i] = vis[1][cur + i] = vis[2][cur - i + n] = 0;//非常关键，回溯法中修改的辅助
-                                                             //局部变量，一定要及时恢复原状
-    }
+	if (!vis[0][i] &amp;&amp; !vis[1][cur + i] &amp;&amp; !vis[2][cur - i + n]) {
+		//对于(i,cur)
+		//以cur+i来标识副对角线，cur-i来标识主对角线，由于主对角线可能为负
+		//所以要加上n
+		A[cur] = i + 1;
+		//对于(cur,i)处要么有子要么无子--&gt;回溯的两种情况
+		vis[0][i] = vis[1][cur + i] = vis[2][cur - i + n] = 1;
+		search(cur + 1);
+		vis[0][i] = vis[1][cur + i] = vis[2][cur - i + n] = 0;//非常关键，回溯法中修改的辅助
+															 //局部变量，一定要及时恢复原状
+	}
 }
 }
 int main() {
-    ios::sync_with_stdio(false);
-    cin &gt;&gt; n;
-    search(0);
-    cout &lt;&lt; tot &lt;&lt; endl;
+	ios::sync_with_stdio(false);
+	cin &gt;&gt; n;
+	search(0);
+	cout &lt;&lt; tot &lt;&lt; endl;
 }</code></pre>
+
       
       <!-- reward -->
       
@@ -231,19 +234,19 @@ int main() {
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/%E7%BC%96%E8%BE%91%E4%B9%A6%E7%A8%BF/" class="article-nav-link">
+      <a href="/2020/03/30/UnixIS%E5%91%BD%E4%BB%A4/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            编辑书稿
+            UnixIS命令
           
         </div>
       </a>
     
     
-      <a href="/2020/03/30/%E5%9F%83%E5%8F%8A%E5%88%86%E6%95%B0/" class="article-nav-link">
+      <a href="/2020/03/30/%E5%85%AB%E6%95%B0%E7%A0%81/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">埃及分数</div>
+        <div class="article-nav-title">八数码</div>
       </a>
     
   </nav>

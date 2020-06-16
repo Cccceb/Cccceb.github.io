@@ -101,8 +101,10 @@
       
 
       
-      <h1 id="边缘"><a href="#边缘" class="headerlink" title="边缘"></a>边缘</h1><ol>
-<li><p>来源：</p>
+      <h1 id="边缘"><a class="markdownIt-Anchor" href="#边缘"></a> 边缘</h1>
+<ol>
+<li>
+<p>来源：</p>
 <ol>
 <li>表面法线不连续</li>
 <li>深度不连续</li>
@@ -110,61 +112,69 @@
 <li>光照不连续</li>
 </ol>
 </li>
-<li><p>特征是图像强度函数中快速变化的地方：    </p>
+<li>
+<p>特征是图像强度函数中快速变化的地方：</p>
 <ol>
 <li>一阶导数的极值点</li>
 <li>二阶导数为0的点</li>
 </ol>
 </li>
 </ol>
-<h2 id="图像导数求解"><a href="#图像导数求解" class="headerlink" title="图像导数求解"></a>图像导数求解</h2><img src="/视觉_img/1-6.png" style="zoom:1%">
-
-<h2 id="图像梯度求解"><a href="#图像梯度求解" class="headerlink" title="图像梯度求解"></a>图像梯度求解</h2><img src="/视觉_img/1-7.png" style="zoom:1%">
-
+<h2 id="图像导数求解"><a class="markdownIt-Anchor" href="#图像导数求解"></a> 图像导数求解</h2>
+<img src="/视觉_img/1-6.png" style="zoom:1%">
+<h2 id="图像梯度求解"><a class="markdownIt-Anchor" href="#图像梯度求解"></a> 图像梯度求解</h2>
+<img src="/视觉_img/1-7.png" style="zoom:1%">
 <ol>
 <li>梯度点在强度增大最快的方向上</li>
 <li>边缘方向与梯度方向垂直</li>
 </ol>
-<h2 id="去噪"><a href="#去噪" class="headerlink" title="去噪"></a>去噪</h2><ol>
-<li><p>问题</p>
+<h2 id="去噪"><a class="markdownIt-Anchor" href="#去噪"></a> 去噪</h2>
+<ol>
+<li>
+<p>问题</p>
  <img src="/视觉_img/1-8.png" style="zoom:1%">
 </li>
-<li><p>解决:先做平滑</p>
+<li>
+<p>解决:先做平滑</p>
  <img src="/视觉_img/1-9.png" style="zoom:1%">
-
 <ol>
 <li>核一般不变，可以先求h的导数，以简化计算。</li>
 </ol>
 </li>
 </ol>
-<h1 id="边缘检测"><a href="#边缘检测" class="headerlink" title="边缘检测"></a>边缘检测</h1><h2 id="高斯一阶导"><a href="#高斯一阶导" class="headerlink" title="高斯一阶导"></a>高斯一阶导</h2><img src="/视觉_img/1-10.png" style="zoom:1%">
-
-<h2 id="Sobel算子"><a href="#Sobel算子" class="headerlink" title="Sobel算子"></a>Sobel算子</h2><img src="/视觉_img/1-11.png" style="zoom:1%">
-
+<h1 id="边缘检测"><a class="markdownIt-Anchor" href="#边缘检测"></a> 边缘检测</h1>
+<h2 id="高斯一阶导"><a class="markdownIt-Anchor" href="#高斯一阶导"></a> 高斯一阶导</h2>
+<img src="/视觉_img/1-10.png" style="zoom:1%">
+<h2 id="sobel算子"><a class="markdownIt-Anchor" href="#sobel算子"></a> Sobel算子</h2>
+<img src="/视觉_img/1-11.png" style="zoom:1%">
 <ol>
 <li>是高斯导数的一般近似</li>
 <li>标准定义中没有1/8，不会影响边缘检测</li>
 <li>如果要得到正确的梯度值，1/8是必须的。</li>
 </ol>
-<h2 id="非最大抑制"><a href="#非最大抑制" class="headerlink" title="非最大抑制"></a>非最大抑制</h2><p>检测像素是否是梯度方向上的局部最大值，一般需要插值。</p>
+<h2 id="非最大抑制"><a class="markdownIt-Anchor" href="#非最大抑制"></a> 非最大抑制</h2>
+<p>检测像素是否是梯度方向上的局部最大值，一般需要插值。</p>
 <img src="/视觉_img/1-12.png" style="zoom:1%">
-
-<h2 id="Canny-边缘检测器"><a href="#Canny-边缘检测器" class="headerlink" title="Canny 边缘检测器"></a>Canny 边缘检测器</h2><p><strong>步骤</strong></p>
+<h2 id="canny-边缘检测器"><a class="markdownIt-Anchor" href="#canny-边缘检测器"></a> Canny 边缘检测器</h2>
+<p><strong>步骤</strong></p>
 <ol>
-<li>用高斯导数做滤波<ol>
+<li>用高斯导数做滤波
+<ol>
 <li>大σ检测大尺度边缘</li>
 <li>小σ检测细微边缘</li>
 </ol>
 </li>
 <li>获得梯度的赋值和方向</li>
 <li>非最大抑制</li>
-<li>连接与滞后 阈值化（两个阈值）<ol>
+<li>连接与滞后 阈值化（两个阈值）
+<ol>
 <li>高阈值寻找边缘曲线的起点</li>
 <li>低阈值确定后继点</li>
 </ol>
 </li>
 </ol>
-<h1 id="尺度空间"><a href="#尺度空间" class="headerlink" title="尺度空间"></a>尺度空间</h1><p><strong>性质</strong></p>
+<h1 id="尺度空间"><a class="markdownIt-Anchor" href="#尺度空间"></a> 尺度空间</h1>
+<p><strong>性质</strong></p>
 <ol>
 <li>边缘位置随尺度(σ) 的增大而变化</li>
 <li>随尺度增加，两条边缘有可能合并</li>

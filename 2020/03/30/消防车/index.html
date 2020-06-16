@@ -101,13 +101,16 @@
       
 
       
-      <h1 id="UVA-208-消防车"><a href="#UVA-208-消防车" class="headerlink" title="UVA 208 消防车"></a>UVA 208 消防车</h1><p>给你一张图，输入x，y表示xy见有一条边。输出从1到z所有的遍历方案（字典序）。每个节点从1到N标号。 有多组数据，每组数据以0 0结束。 （注意，刚开始的输入不是节点或边的数目） 输入输出格式可以参考样例. 数据范围（节点总数N&lt;21）</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
+      <h1 id="uva-208-消防车"><a class="markdownIt-Anchor" href="#uva-208-消防车"></a> UVA 208 消防车</h1>
+<p>给你一张图，输入x，y表示xy见有一条边。输出从1到z所有的遍历方案（字典序）。每个节点从1到N标号。 有多组数据，每组数据以0 0结束。 （注意，刚开始的输入不是节点或边的数目） 输入输出格式可以参考样例. 数据范围（节点总数N&lt;21）</p>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+<ol>
 <li>本题要求输出所有的完整的路径，即要沿着一条路走到头，所以使用dfs</li>
 <li>辅助用bfs判断依次是否存在路径，否则会超时</li>
 <li>本题中各层的path之间不会影响，因为递归是走到头再返回的。</li>
 </ol>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#include&lt;bits/stdc++.h&gt;
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<pre><code>#include&lt;bits/stdc++.h&gt;
 # pragma warning(disable:4996)
 FILE *fin = freopen(&quot;习题7-1in.txt&quot;, &quot;r&quot;, stdin);
 FILE *fout = freopen(&quot;习题7-1out.txt&quot;, &quot;w&quot;, stdout);
@@ -127,43 +130,43 @@ bool operator &lt; (const edge&amp;a) const { return x &lt; a.x; }
 int main() {
 int a, b;
 while (scanf(&quot;%d&quot;, &amp;goal) == 1) {
-    g.clear();
-    printf(&quot;CASE %d:\n&quot;, ++kase);
-    while (scanf(&quot;%d %d&quot;, &amp;a, &amp;b) &amp;&amp; a) {
-        g[a].push_back(b);
-        g[b].push_back(a);
-    }
-    for (int i = 0; i &lt; maxn; i++)
-        sort(g[i].begin(), g[i].end());
-    cnt = 0;
-    memset(vis, 0, sizeof(0));
-    if (!bfs()) {//优化，否则会T
-        cnt = 0;
-    }
-    else {
-        vis[1] = 1;
-        dfs(1,0);
-    }
-    printf(&quot;There are %d routes from the firestation to streetcorner %d.\n&quot;, cnt,goal);
+	g.clear();
+	printf(&quot;CASE %d:\n&quot;, ++kase);
+	while (scanf(&quot;%d %d&quot;, &amp;a, &amp;b) &amp;&amp; a) {
+		g[a].push_back(b);
+		g[b].push_back(a);
+	}
+	for (int i = 0; i &lt; maxn; i++)
+		sort(g[i].begin(), g[i].end());
+	cnt = 0;
+	memset(vis, 0, sizeof(0));
+	if (!bfs()) {//优化，否则会T
+		cnt = 0;
+	}
+	else {
+		vis[1] = 1;
+		dfs(1,0);
+	}
+	printf(&quot;There are %d routes from the firestation to streetcorner %d.\n&quot;, cnt,goal);
 }
 }
 bool bfs() {
 queue&lt;int&gt; q;
 q.push(1);
 while (!q.empty()) {
-    int u = q.front(); q.pop();
-    if (u == goal) {
-        memset(vis, 0, sizeof(vis));
-        return true;
-    }
-    for (int i = 0; i &lt; g[u].size(); i++) {
-        int v = g[u][i];
-        if (!vis[v])
-        {
-            vis[v] = 1;
-            q.push(v);
-        }
-    }
+	int u = q.front(); q.pop();
+	if (u == goal) {
+		memset(vis, 0, sizeof(vis));
+		return true;
+	}
+	for (int i = 0; i &lt; g[u].size(); i++) {
+		int v = g[u][i];
+		if (!vis[v])
+		{
+			vis[v] = 1;
+			q.push(v);
+		}
+	}
 }
 memset(vis, 0, sizeof(vis));
 return false;
@@ -171,20 +174,22 @@ return false;
 void dfs(int u,int step) {
 path[step] = u;
 if (u == goal) {
-    printf(&quot;%d&quot;, path[0]);
-    for (int i =1; i &lt;= step; i++)
-        printf(&quot; %d&quot;, path[i]);
-    printf(&quot;\n&quot;);
-    cnt++;
+	printf(&quot;%d&quot;, path[0]);
+	for (int i =1; i &lt;= step; i++)
+		printf(&quot; %d&quot;, path[i]);
+	printf(&quot;\n&quot;);
+	cnt++;
 }
 for (int i = 0; i &lt; g[u].size(); i++) {
-    int v = g[u][i];
-    if (vis[v]) continue;
-    vis[v] = 1;
-    dfs(v,step+1);
-    vis[v] = 0;
+	int v = g[u][i];
+	if (vis[v]) continue;
+	vis[v] = 1;
+	dfs(v,step+1);
+	vis[v] = 0;
 }
-}</code></pre>
+}
+</code></pre>
+
       
       <!-- reward -->
       
@@ -271,19 +276,19 @@ for (int i = 0; i &lt; g[u].size(); i++) {
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/%E6%97%8B%E8%BD%AC%E6%B8%B8%E6%88%8F/" class="article-nav-link">
+      <a href="/2020/03/30/%E5%B7%A1%E9%80%BB%E6%9C%BA%E5%99%A8%E4%BA%BA/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            旋转游戏
+            巡逻机器人
           
         </div>
       </a>
     
     
-      <a href="/2020/03/30/%E4%B8%87%E5%9C%A3%E8%8A%82%E5%90%8E%E7%9A%84%E6%97%A9%E6%99%A8/" class="article-nav-link">
+      <a href="/2020/03/30/%E6%97%8B%E8%BD%AC%E6%B8%B8%E6%88%8F/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">万圣节后的早晨</div>
+        <div class="article-nav-title">旋转游戏</div>
       </a>
     
   </nav>

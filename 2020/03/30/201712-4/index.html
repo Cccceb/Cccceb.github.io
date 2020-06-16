@@ -101,24 +101,48 @@
       
 
       
-      <h1 id="行车路线"><a href="#行车路线" class="headerlink" title="行车路线"></a>行车路线</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>　　小明和小芳出去乡村玩，小明负责开车，小芳来导航。<br> 　小芳将可能的道路分为大道和小道。大道比较好走，每走1公里小明会增加1的疲劳度。小道不好走，如果连续走小道，小明的疲劳值会快速增加，连续走<em>s</em>公里小明会增加<em>s</em>2的疲劳度。<br> 　例如：有5个路口，1号路口到2号路口为小道，2号路口到3号路口为小道，3号路口到4号路口为大道，4号路口到5号路口为小道，相邻路口之间的距离都是2公里。如果小明从1号路口到5号路口，则总疲劳值为(2+2)2+2+22=16+2+4=22。<br> 　现在小芳拿到了地图，请帮助她规划一个开车的路线，使得按这个路线开车小明的疲劳度最小。</p>
-<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>　　输入的第一行包含两个整数<em>n</em>, <em>m</em>，分别表示路口的数量和道路的数量。路口由1至<em>n</em>编号，小明需要开车从1号路口到<em>n</em>号路口。<br> 　接下来<em>m</em>行描述道路，每行包含四个整数<em>t</em>, <em>a</em>, <em>b</em>, <em>c</em>，表示一条类型为<em>t</em>，连接<em>a</em>与<em>b</em>两个路口，长度为<em>c</em>公里的双向道路。其中<em>t</em>为0表示大道，<em>t</em>为1表示小道。保证1号路口和<em>n</em>号路口是连通的。</p>
-<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>　　输出一个整数，表示最优路线下小明的疲劳度。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>6 7<br> 1 1 2 3<br> 1 2 3 2<br> 0 1 3 30<br> 0 3 4 20<br> 0 4 5 30<br> 1 3 5 6<br> 1 5 6 1</p>
-<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>76</p>
-<h2 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h2><p>　　从1走小道到2，再走小道到3，疲劳度为52=25；然后从3走大道经过4到达5，疲劳度为20+30=50；最后从5走小道到6，疲劳度为1。总共为76。</p>
-<h2 id="数据规模和约定"><a href="#数据规模和约定" class="headerlink" title="数据规模和约定"></a>数据规模和约定</h2><p>　　对于30%的评测用例，1 ≤ <em>n</em> ≤ 8，1 ≤ <em>m</em> ≤ 10；<br> 　对于另外20%的评测用例，不存在小道；<br> 　对于另外20%的评测用例，所有的小道不相交；<br> 　对于所有评测用例，1 ≤ <em>n</em> ≤ 500，1 ≤ <em>m</em> ≤ 105，1 ≤ <em>a</em>, <em>b</em> ≤ <em>n</em>，<em>t</em>是0或1，<em>c</em> ≤ 105。保证答案不超过106。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+      <h1 id="行车路线"><a class="markdownIt-Anchor" href="#行车路线"></a> 行车路线</h1>
+<h2 id="问题描述"><a class="markdownIt-Anchor" href="#问题描述"></a> 问题描述</h2>
+<p>小明和小芳出去乡村玩，小明负责开车，小芳来导航。<br />
+　小芳将可能的道路分为大道和小道。大道比较好走，每走1公里小明会增加1的疲劳度。小道不好走，如果连续走小道，小明的疲劳值会快速增加，连续走<em>s</em>公里小明会增加<em>s</em>2的疲劳度。<br />
+　例如：有5个路口，1号路口到2号路口为小道，2号路口到3号路口为小道，3号路口到4号路口为大道，4号路口到5号路口为小道，相邻路口之间的距离都是2公里。如果小明从1号路口到5号路口，则总疲劳值为(2+2)2+2+22=16+2+4=22。<br />
+　现在小芳拿到了地图，请帮助她规划一个开车的路线，使得按这个路线开车小明的疲劳度最小。</p>
+<h2 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式"></a> 输入格式</h2>
+<p>输入的第一行包含两个整数<em>n</em>, <em>m</em>，分别表示路口的数量和道路的数量。路口由1至<em>n</em>编号，小明需要开车从1号路口到<em>n</em>号路口。<br />
+　接下来<em>m</em>行描述道路，每行包含四个整数<em>t</em>, <em>a</em>, <em>b</em>, <em>c</em>，表示一条类型为<em>t</em>，连接<em>a</em>与<em>b</em>两个路口，长度为<em>c</em>公里的双向道路。其中<em>t</em>为0表示大道，<em>t</em>为1表示小道。保证1号路口和<em>n</em>号路口是连通的。</p>
+<h2 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式"></a> 输出格式</h2>
+<p>输出一个整数，表示最优路线下小明的疲劳度。</p>
+<h2 id="样例输入"><a class="markdownIt-Anchor" href="#样例输入"></a> 样例输入</h2>
+<p>6 7<br />
+1 1 2 3<br />
+1 2 3 2<br />
+0 1 3 30<br />
+0 3 4 20<br />
+0 4 5 30<br />
+1 3 5 6<br />
+1 5 6 1</p>
+<h2 id="样例输出"><a class="markdownIt-Anchor" href="#样例输出"></a> 样例输出</h2>
+<p>76</p>
+<h2 id="样例说明"><a class="markdownIt-Anchor" href="#样例说明"></a> 样例说明</h2>
+<p>从1走小道到2，再走小道到3，疲劳度为52=25；然后从3走大道经过4到达5，疲劳度为20+30=50；最后从5走小道到6，疲劳度为1。总共为76。</p>
+<h2 id="数据规模和约定"><a class="markdownIt-Anchor" href="#数据规模和约定"></a> 数据规模和约定</h2>
+<p>对于30%的评测用例，1 ≤ <em>n</em> ≤ 8，1 ≤ <em>m</em> ≤ 10；<br />
+　对于另外20%的评测用例，不存在小道；<br />
+　对于另外20%的评测用例，所有的小道不相交；<br />
+　对于所有评测用例，1 ≤ <em>n</em> ≤ 500，1 ≤ <em>m</em> ≤ 105，1 ≤ <em>a</em>, <em>b</em> ≤ <em>n</em>，<em>t</em>是0或1，<em>c</em> ≤ 105。保证答案不超过106。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
 <li>基本思路是dij算法，由于小路的存在，花费的计算需要特殊处理</li>
-<li>结构体中xw表示目前累计的小路的疲劳值，如果xw不为0<ol>
+<li>结构体中xw表示目前累计的小路的疲劳值，如果xw不为0
+<ol>
 <li>如果接下来要走的也是小路，那么(a+b+c)<sup>2</sup> = ((a+b)<sup>2</sup>)<sup>2</sup>+c<sup>2</sup>+2(a+b)c</li>
 <li>如果接下来要走的是大路，那么xw=0</li>
 </ol>
 </li>
 <li>由于小路的疲劳值有累积效应，所以相同疲劳值而沿着大路和小路到达同一地点也不是一个情况。因此vis和dis都是二维的</li>
 </ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 500 + 5;</span><br><span class="line">struct node &#123;</span><br><span class="line">	int to;</span><br><span class="line">	int w;</span><br><span class="line">	int t;</span><br><span class="line">	int xw;</span><br><span class="line">	node(int to, int w, int t, int xw &#x3D; 0) :to(to), w(w), t(t), xw(xw) &#123;&#125;</span><br><span class="line">	bool operator &lt; (const node&amp;a) const &#123; return w &gt; a.w; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;node&gt; g[maxn];</span><br><span class="line">int bfs();</span><br><span class="line">int n, m;</span><br><span class="line">int main() &#123;</span><br><span class="line">	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);</span><br><span class="line">	int t, a, b, w;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">		scanf(&quot;%d%d%d%d&quot;, &amp;t, &amp;a, &amp;b, &amp;w);</span><br><span class="line">		g[a].push_back(node(b, w, t));</span><br><span class="line">		g[b].push_back(node(a, w, t));</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;%d&quot;, bfs());</span><br><span class="line">&#125;</span><br><span class="line">int vis[maxn][2];</span><br><span class="line">int dis[maxn][2];</span><br><span class="line">int bfs() &#123;</span><br><span class="line">	memset(vis, 0, sizeof(vis));</span><br><span class="line">	memset(dis, -1, sizeof(dis));</span><br><span class="line">	priority_queue&lt;node&gt; pq;</span><br><span class="line">	node beg(1, 0, 0);</span><br><span class="line">	pq.push(beg);</span><br><span class="line">	dis[1][0] &#x3D; 0;</span><br><span class="line">	dis[1][1] &#x3D; 0;</span><br><span class="line">	while (!pq.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		node u &#x3D; pq.top(); pq.pop();</span><br><span class="line">		int now &#x3D; u.to;</span><br><span class="line">		if (vis[now][u.t]) continue;</span><br><span class="line">		vis[now][u.t] &#x3D; 1;</span><br><span class="line">		for (node i : g[now]) &#123;</span><br><span class="line">			int next &#x3D; i.to;</span><br><span class="line">			int w &#x3D; 0;</span><br><span class="line">			if (!vis[next][i.t]) &#123;</span><br><span class="line">				if (i.t &#x3D;&#x3D; 0)  w &#x3D; i.w;</span><br><span class="line">				else if (i.t &#x3D;&#x3D; 1) &#123;</span><br><span class="line">					if (u.t &#x3D;&#x3D; 1)</span><br><span class="line">						w &#x3D; i.w * i.w + 2 * i.w*sqrt(u.xw);</span><br><span class="line">					else w &#x3D; i.w*i.w;</span><br><span class="line">				&#125;</span><br><span class="line">				if (w &gt; 1e6 || w &lt; 0) continue;</span><br><span class="line">				if (dis[next][i.t] &#x3D;&#x3D; -1 || dis[next][i.t] &gt; dis[now][u.t] + w) &#123;</span><br><span class="line">					dis[next][i.t] &#x3D; dis[now][u.t] + w;</span><br><span class="line">					node nt(next, dis[next][i.t], i.t);</span><br><span class="line">					if (i.t &#x3D;&#x3D; 1)</span><br><span class="line">						nt.xw &#x3D; u.xw + w;</span><br><span class="line">					pq.push(nt);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	if (dis[n][0] &#x3D;&#x3D; -1) return dis[n][1];</span><br><span class="line">	else if (dis[n][1] &#x3D;&#x3D; -1) return dis[n][0];</span><br><span class="line">	else return min(dis[n][1], dis[n][0]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 500 + 5;</span><br><span class="line">struct node &#123;</span><br><span class="line">	int to;</span><br><span class="line">	int w;</span><br><span class="line">	int t;</span><br><span class="line">	int xw;</span><br><span class="line">	node(int to, int w, int t, int xw &#x3D; 0) :to(to), w(w), t(t), xw(xw) &#123;&#125;</span><br><span class="line">	bool operator &lt; (const node&amp;a) const &#123; return w &gt; a.w; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;node&gt; g[maxn];</span><br><span class="line">int bfs();</span><br><span class="line">int n, m;</span><br><span class="line">int main() &#123;</span><br><span class="line">	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);</span><br><span class="line">	int t, a, b, w;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">		scanf(&quot;%d%d%d%d&quot;, &amp;t, &amp;a, &amp;b, &amp;w);</span><br><span class="line">		g[a].push_back(node(b, w, t));</span><br><span class="line">		g[b].push_back(node(a, w, t));</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;%d&quot;, bfs());</span><br><span class="line">&#125;</span><br><span class="line">int vis[maxn][2];</span><br><span class="line">int dis[maxn][2];</span><br><span class="line">int bfs() &#123;</span><br><span class="line">	memset(vis, 0, sizeof(vis));</span><br><span class="line">	memset(dis, -1, sizeof(dis));</span><br><span class="line">	priority_queue&lt;node&gt; pq;</span><br><span class="line">	node beg(1, 0, 0);</span><br><span class="line">	pq.push(beg);</span><br><span class="line">	dis[1][0] &#x3D; 0;</span><br><span class="line">	dis[1][1] &#x3D; 0;</span><br><span class="line">	while (!pq.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		node u &#x3D; pq.top(); pq.pop();</span><br><span class="line">		int now &#x3D; u.to;</span><br><span class="line">		if (vis[now][u.t]) continue;</span><br><span class="line">		vis[now][u.t] &#x3D; 1;</span><br><span class="line">		for (node i : g[now]) &#123;</span><br><span class="line">			int next &#x3D; i.to;</span><br><span class="line">			int w &#x3D; 0;</span><br><span class="line">			if (!vis[next][i.t]) &#123;</span><br><span class="line">				if (i.t &#x3D;&#x3D; 0)  w &#x3D; i.w;</span><br><span class="line">				else if (i.t &#x3D;&#x3D; 1) &#123;</span><br><span class="line">					if (u.t &#x3D;&#x3D; 1)</span><br><span class="line">						w &#x3D; i.w * i.w + 2 * i.w*sqrt(u.xw);</span><br><span class="line">					else w &#x3D; i.w*i.w;</span><br><span class="line">				&#125;</span><br><span class="line">				if (w &gt; 1e6 || w &lt; 0) continue;</span><br><span class="line">				if (dis[next][i.t] &#x3D;&#x3D; -1 || dis[next][i.t] &gt; dis[now][u.t] + w) &#123;</span><br><span class="line">					dis[next][i.t] &#x3D; dis[now][u.t] + w;</span><br><span class="line">					node nt(next, dis[next][i.t], i.t);</span><br><span class="line">					if (i.t &#x3D;&#x3D; 1)</span><br><span class="line">						nt.xw &#x3D; u.xw + w;</span><br><span class="line">					pq.push(nt);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	if (dis[n][0] &#x3D;&#x3D; -1) return dis[n][1];</span><br><span class="line">	else if (dis[n][1] &#x3D;&#x3D; -1) return dis[n][0];</span><br><span class="line">	else return min(dis[n][1], dis[n][0]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
       <!-- reward -->
@@ -206,19 +230,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/201709-4/" class="article-nav-link">
+      <a href="/2020/03/30/201803-3/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            201709-4
+            201803-3
           
         </div>
       </a>
     
     
-      <a href="/2020/03/30/201803-3/" class="article-nav-link">
+      <a href="/2020/03/30/201509-4/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">201803-3</div>
+        <div class="article-nav-title">201509-4</div>
       </a>
     
   </nav>

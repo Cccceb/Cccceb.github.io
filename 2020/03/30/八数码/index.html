@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">398字</span>
+            <span class="post-count">394字</span>
         </span>
     </span>
 
@@ -101,16 +101,20 @@
       
 
       
-      <h1 id="八数码-P1379"><a href="#八数码-P1379" class="headerlink" title="八数码 P1379"></a>八数码 P1379</h1><p>有一个3*3的网格，给定一个初始局面，问至少多少步能到达目标局面.</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>经典的隐式图最短路径问题。</p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ol>
+      <h1 id="八数码-p1379"><a class="markdownIt-Anchor" href="#八数码-p1379"></a> 八数码 P1379</h1>
+<p>有一个3*3的网格，给定一个初始局面，问至少多少步能到达目标局面.</p>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+<p>经典的隐式图最短路径问题。</p>
+<h2 id="注意"><a class="markdownIt-Anchor" href="#注意"></a> 注意</h2>
+<ol>
 <li>sizeof(字符串)会计算结束符。对于二维的字符数组，对某一行用sizeof不会计算结束符，可能产生问题。</li>
 <li>一般的bfs采用队列，但是本题中由于状态是八个元素的信息，所以采用了类似链表的方法近似队列。在编辑书稿中也使用了类似的方式，只不过那个题是dfs，迭代加深搜实现的。</li>
 <li>本题可以使用bfs是因为每一步的状态不是无限的。</li>
-<li>注意rear++和front++的位置</li>
+<li>注意rear<ins>和front</ins>的位置</li>
 <li>dist数组是必要的</li>
 </ol>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>const int maxn = 1000000;
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<pre><code>const int maxn = 1000000;
 bool bfs();
 bool can_insert(int s);
 char st[maxn][9];
@@ -128,33 +132,34 @@ else printf(&quot;-1&quot;);
 bool bfs() {
 front = 1, rear = 2;
 while (front &lt; rear) {
-    if (memcmp(goal,st[front], sizeof(st[front])) == 0) return true;
-    int z = 0;
-    while (st[front][z] != &apos;0&apos;) z++;
-    for (int i = 0; i &lt; 4; i++) {
-        int newx = z / 3 + dx[i];
-        int newy = z % 3 + dy[i];
-        if (newx &lt; 0 || newx &gt;= 3 || newy &lt; 0 || newy &gt;= 3) continue;
-        int newz = newx * 3 + newy;
-        memcpy(st[rear], st[front], sizeof(char)*9);
-        st[rear][newz] = st[front][z];
-        st[rear][z] = st[front][newz];
-        dist[rear] = dist[front] + 1;
-        if(can_insert(rear)) rear++;
-    }
-    front++;
+	if (memcmp(goal,st[front], sizeof(st[front])) == 0) return true;
+	int z = 0;
+	while (st[front][z] != '0') z++;
+	for (int i = 0; i &lt; 4; i++) {
+		int newx = z / 3 + dx[i];
+		int newy = z % 3 + dy[i];
+		if (newx &lt; 0 || newx &gt;= 3 || newy &lt; 0 || newy &gt;= 3) continue;
+		int newz = newx * 3 + newy;
+		memcpy(st[rear], st[front], sizeof(char)*9);
+		st[rear][newz] = st[front][z];
+		st[rear][z] = st[front][newz];
+		dist[rear] = dist[front] + 1;
+		if(can_insert(rear)) rear++;
+	}
+	front++;
 }
-    return false;
+	return false;
 }
 bool can_insert(int s) {
 int v = 0;
-for (int i = 0; i &lt; 9; i++) v = v * 10 + st[s][i] - &apos;0&apos;;
+for (int i = 0; i &lt; 9; i++) v = v * 10 + st[s][i] - '0';
 if (!vis.count(v)) {
-    vis.insert(v);
-    return true;
+	vis.insert(v);
+	return true;
 }
 return false;
 }</code></pre>
+
       
       <!-- reward -->
       
@@ -241,19 +246,19 @@ return false;
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/%E5%9F%83%E5%8F%8A%E5%88%86%E6%95%B0/" class="article-nav-link">
+      <a href="/2020/03/30/%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            埃及分数
+            八皇后问题
           
         </div>
       </a>
     
     
-      <a href="/2020/03/30/%E5%AE%89%E8%BF%AA%E7%9A%84%E7%AC%AC%E4%B8%80%E6%9C%AC%E5%AD%97%E5%85%B8/" class="article-nav-link">
+      <a href="/2020/03/30/%E5%9F%83%E5%8F%8A%E5%88%86%E6%95%B0/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">安迪的第一本字典</div>
+        <div class="article-nav-title">埃及分数</div>
       </a>
     
   </nav>

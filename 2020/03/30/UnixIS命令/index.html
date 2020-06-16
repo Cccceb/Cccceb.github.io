@@ -101,7 +101,8 @@
       
 
       
-      <h1 id="unix-is-命令"><a href="#unix-is-命令" class="headerlink" title="unix is 命令"></a>unix is 命令</h1><p>输入正整数n 以及n个文件名，排序后按列优先的方式左对齐输出。假设最长文件名有M字符，则最右边有M字符，其他列都是M+2 字符。</p>
+      <h1 id="unix-is-命令"><a class="markdownIt-Anchor" href="#unix-is-命令"></a> unix is 命令</h1>
+<p>输入正整数n 以及n个文件名，排序后按列优先的方式左对齐输出。假设最长文件名有M字符，则最右边有M字符，其他列都是M+2 字符。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  #include&lt;bits&#x2F;stdc++.h&gt;</span><br><span class="line">  # pragma warning(disable:4996)</span><br><span class="line">  # define LOCAL</span><br><span class="line">  # ifdef LOCAL</span><br><span class="line">  FILE *fin &#x3D; freopen(&quot;unix命令in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">  FILE *fout &#x3D; freopen(&quot;unix命令out.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line">  # endif &#x2F;&#x2F; LOCAL</span><br><span class="line">  using namespace std;</span><br><span class="line">  void print(const string &amp;in, int len, char extra) &#123;</span><br><span class="line">&#x2F;&#x2F;输出字符串s，长度不足len时补字符extra</span><br><span class="line">  	cout &lt;&lt; in;</span><br><span class="line">  	for (int i &#x3D; 0; i &lt; len - in.length(); i++) cout &lt;&lt; extra;</span><br><span class="line">  &#125;</span><br><span class="line">  int main() &#123;</span><br><span class="line">  	int n;</span><br><span class="line">  </span><br><span class="line">  	while (scanf(&quot;%d&quot;, &amp;n) &#x3D;&#x3D; 1) &#123;</span><br><span class="line">  		int m &#x3D; 0;</span><br><span class="line">  		print(&quot;&quot;, 60, &#39;-&#39;);</span><br><span class="line">  		cout &lt;&lt; endl;</span><br><span class="line">  		vector&lt;string&gt; s;</span><br><span class="line">  		for (int i &#x3D; 0; i &lt; n;i++) &#123;</span><br><span class="line">  			string in;</span><br><span class="line">  			cin &gt;&gt; in;</span><br><span class="line">  			s.push_back(in);</span><br><span class="line">  			m &#x3D; max(m, (int)in.length());</span><br><span class="line">  		&#125;</span><br><span class="line">  		sort(s.begin(), s.end());</span><br><span class="line">  </span><br><span class="line">  		&#x2F;*cout &lt;&lt; &quot;**********************************&quot; &lt;&lt; endl;</span><br><span class="line">  		for (int i &#x3D; 0; i &lt; s.size(); i++) cout &lt;&lt; s[i] &lt;&lt; endl;</span><br><span class="line">  		cout &lt;&lt; &quot;**********************************&quot; &lt;&lt; endl;*&#x2F;</span><br><span class="line">  		int cols &#x3D; (60 - m) &#x2F; (m + 2) + 1;</span><br><span class="line">  		int rows &#x3D; (n - 1) &#x2F; cols + 1;</span><br><span class="line">  		for (int r &#x3D; 0; r &lt; rows; r++) &#123;</span><br><span class="line">  			for (int c &#x3D; 0; c &lt; cols; c++) &#123;</span><br><span class="line">  				int idx &#x3D; c * rows + r;</span><br><span class="line">  				if (idx &lt; n) print(s[idx], c &#x3D;&#x3D; cols - 1 ? m : m + 2, &#39; &#39;);</span><br><span class="line">  			&#125;</span><br><span class="line">  			cout &lt;&lt; endl;</span><br><span class="line">  		&#125;</span><br><span class="line">  	&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
@@ -189,19 +190,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/%E5%B7%B4%E6%AF%94%E4%BC%A6%E5%A1%94/" class="article-nav-link">
+      <a href="/2020/03/30/%E7%BC%96%E8%BE%91%E4%B9%A6%E7%A8%BF/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            巴比伦塔
+            编辑书稿
           
         </div>
       </a>
     
     
-      <a href="/2020/03/30/Gergovia%E7%9A%84%E9%85%92%E4%BA%A4%E6%98%93/" class="article-nav-link">
+      <a href="/2020/03/30/%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Gergovia的酒交易</div>
+        <div class="article-nav-title">八皇后问题</div>
       </a>
     
   </nav>

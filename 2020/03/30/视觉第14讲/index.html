@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">439字</span>
+            <span class="post-count">399字</span>
         </span>
     </span>
 
@@ -101,14 +101,19 @@
       
 
       
-      <h1 id="极线"><a href="#极线" class="headerlink" title="极线"></a>极线</h1><img src="/视觉_img/14_2.png" style="zoom:1%">
-
+      <h1 id="极线"><a class="markdownIt-Anchor" href="#极线"></a> 极线</h1>
+<img src="/视觉_img/14_2.png" style="zoom:1%">
 <ol>
-<li>极线：极面与成像平面的交线<h1 id="基本矩阵"><a href="#基本矩阵" class="headerlink" title="基本矩阵"></a>基本矩阵</h1><h2 id="基本矩阵性质"><a href="#基本矩阵性质" class="headerlink" title="基本矩阵性质"></a>基本矩阵性质</h2></li>
+<li>极线：极面与成像平面的交线</li>
+</ol>
+<h1 id="基本矩阵"><a class="markdownIt-Anchor" href="#基本矩阵"></a> 基本矩阵</h1>
+<h2 id="基本矩阵性质"><a class="markdownIt-Anchor" href="#基本矩阵性质"></a> 基本矩阵性质</h2>
+<ol>
 <li>F将图像1中的点映射到图像2中的极线</li>
 <li>Fp是与p对应的极线</li>
 <li>F<sup>T</sup>q是与q对应的极线</li>
-<li>Fe1=0，F<sup>T</sup>e2=0<ol>
+<li>Fe1=0，F<sup>T</sup>e2=0
+<ol>
 <li><strong>证明</strong> 比如极线恒过e1，则对于任意的q，e1<sup>T</sup>F1<sup>T</sup>q=0，则e1<sup>T</sup>F1<sup>T</sup>=0</li>
 </ol>
 </li>
@@ -118,64 +123,65 @@
 <li>特殊点e1和e2(极点)：是相机在另一个相机成像平面上的投影。(两个相机互相拍照)</li>
 <li>所有极线都通过极点</li>
 </ol>
-<h2 id="求解基本矩阵-已标定时"><a href="#求解基本矩阵-已标定时" class="headerlink" title="求解基本矩阵-已标定时"></a>求解基本矩阵-已标定时</h2><img src="/视觉_img/14_3.png" style="zoom:1%">    
-
+<h2 id="求解基本矩阵-已标定时"><a class="markdownIt-Anchor" href="#求解基本矩阵-已标定时"></a> 求解基本矩阵-已标定时</h2>
+<img src="/视觉_img/14_3.png" style="zoom:1%">	
 <p>其中</p>
 <ol>
 <li>ot为baseline</li>
 <li>相机1坐标系即世界坐标系</li>
 <li>p,q为齐次坐标</li>
-<li>旋转矩阵R<sup>-1</sup>=R<sup>T</sup><img src="/视觉_img/14_4.png" style="zoom:1%">
-
-</li>
+<li>旋转矩阵R<sup>-1</sup>=R<sup>T</sup><br />
+<img src="/视觉_img/14_4.png" style="zoom:1%"></li>
 </ol>
 <img src="/视觉_img/14_5.png" style="zoom:1%">
-
 <ol start="3">
 <li>与t的叉积可表示为</li>
 </ol>
 <img src="/视觉_img/14_6.png" style="zoom:1%">
-
 <img src="/视觉_img/14_7.png" style="zoom:1%">
-
 <ol start="4">
 <li>求得本质矩阵E</li>
 </ol>
 <img src="/视觉_img/14_8.png" style="zoom:1%">
-
 <ol start="5">
 <li>求得基本矩阵F</li>
 </ol>
-<img src="/视觉_img/14_9.png" style="zoom:1%">    
-
-<h2 id="估计基本矩阵"><a href="#估计基本矩阵" class="headerlink" title="估计基本矩阵"></a>估计基本矩阵</h2><p>在不知道K1,K2,R或t的情况下估计F</p>
-<h3 id="8点算法"><a href="#8点算法" class="headerlink" title="8点算法"></a>8点算法</h3><ol>
-<li>求解思路<br> 对于每对匹配点，由x’<sup>T</sup>Fx=0</li>
-</ol>
-<pre><code>&lt;img src=&quot;/视觉_img/14_10.png&quot; style=&quot;zoom:1%&quot;&gt;    
-
-将问题转换成求解让det(Af)最小化的f,其解为A&lt;sup&gt;T&lt;/sup&gt;A的最小特征向量。</code></pre><ol start="2">
-<li>问题<ol>
+<img src="/视觉_img/14_9.png" style="zoom:1%">	
+<h2 id="估计基本矩阵"><a class="markdownIt-Anchor" href="#估计基本矩阵"></a> 估计基本矩阵</h2>
+<p>在不知道K1,K2,R或t的情况下估计F</p>
+<h3 id="8点算法"><a class="markdownIt-Anchor" href="#8点算法"></a> 8点算法</h3>
+<ol>
+<li>
+<p>求解思路<br />
+对于每对匹配点，由x’<sup>T</sup>Fx=0</p>
+ <img src="/视觉_img/14_10.png" style="zoom:1%">	
+<p>将问题转换成求解让det(Af)最小化的f,其解为A<sup>T</sup>A的最小特征向量。</p>
+</li>
+<li>
+<p>问题</p>
+<ol>
 <li>不能保证F的秩是2</li>
 </ol>
 </li>
-<li>解决<ol>
+<li>
+<p>解决</p>
+<ol>
 <li>因此应将F换成F’，F’的秩为2，且是|F-F’|最小化</li>
 </ol>
+ <img src="/视觉_img/14_11.png" style="zoom:1%">
 </li>
-</ol>
-<pre><code>&lt;img src=&quot;/视觉_img/14_11.png&quot; style=&quot;zoom:1%&quot;&gt;</code></pre><ol start="4">
-<li>8点算法：<ol>
+<li>
+<p>8点算法：</p>
+<ol>
 <li><strong>优点</strong> 是线性的，易于实现且速度快</li>
 <li><strong>缺点</strong> 易受噪声影响，当各列间数量级差别较大的时候，最小二乘法得到不良解。</li>
 </ol>
 </li>
 </ol>
-<h2 id="归一化的8点算法"><a href="#归一化的8点算法" class="headerlink" title="归一化的8点算法"></a>归一化的8点算法</h2><p>将图像变换到[-1,1]×[-1,1]</p>
+<h2 id="归一化的8点算法"><a class="markdownIt-Anchor" href="#归一化的8点算法"></a> 归一化的8点算法</h2>
+<p>将图像变换到[-1,1]×[-1,1]</p>
 <img src="/视觉_img/14_12.png" style="zoom:1%">
-
 <img src="/视觉_img/14_13.png" style="zoom:1%">
-
 <p>其中T为归一化矩阵</p>
 
       

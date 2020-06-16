@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">640字</span>
+            <span class="post-count">657字</span>
         </span>
     </span>
 
@@ -101,81 +101,107 @@
       
 
       
-      <h1 id="uva-548-树"><a href="#uva-548-树" class="headerlink" title="uva 548 树"></a>uva 548 树</h1><p>&ensp;输入一个二叉树的中序和后序遍历，请你输出一个叶子节点，该叶子节点到根的数值总和最小，且这个叶子是编号最小的那个。 输入： 您的程序将从输入文件中读取两行(直到文件结尾)。第一行是树的中序遍历值序列,第二行是树的后序遍历值序列。所有值将不同，大于零且小于或等于10000.二叉树的节1&lt;=N&lt;=10000。 输出： 对于每个树描述，您应该输出最小值路径的叶节点的值。存在多路径最小的情况下，您应该选择终端叶子节点上具有最小值的那条路径，且输出那个最小值的终端叶子。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li><p>根据中序和后序序列构造二叉树</p>
-</li>
-<li><p>递归遍历二叉树，每一步走左右子树中权值较小的一个</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p> #include<iostream><br> #include<string><br> #include<sstream></p>
-<h1 id="pragma-warning-disable-4996"><a href="#pragma-warning-disable-4996" class="headerlink" title="pragma warning(disable:4996)"></a>pragma warning(disable:4996)</h1><h1 id="define-LOCAL"><a href="#define-LOCAL" class="headerlink" title="define LOCAL"></a>define LOCAL</h1><h1 id="ifdef-LOCAL"><a href="#ifdef-LOCAL" class="headerlink" title="ifdef LOCAL"></a>ifdef LOCAL</h1><p> FILE *fin = freopen(“树in.txt”, “r”, stdin);<br> FILE *fout = freopen(“树out.txt”, “w”, stdout);</p>
-<h1 id="endif"><a href="#endif" class="headerlink" title="endif"></a>endif</h1><p> using namespace std;</p>
-<h1 id="define-maxn-10000"><a href="#define-maxn-10000" class="headerlink" title="define maxn 10000"></a>define maxn 10000</h1><p> int n = 0;<br> bool read(int *a) {</p>
+      <h1 id="uva-548-树"><a class="markdownIt-Anchor" href="#uva-548-树"></a> uva 548 树</h1>
+<p> 输入一个二叉树的中序和后序遍历，请你输出一个叶子节点，该叶子节点到根的数值总和最小，且这个叶子是编号最小的那个。 输入： 您的程序将从输入文件中读取两行(直到文件结尾)。第一行是树的中序遍历值序列,第二行是树的后序遍历值序列。所有值将不同，大于零且小于或等于10000.二叉树的节1&lt;=N&lt;=10000。 输出： 对于每个树描述，您应该输出最小值路径的叶节点的值。存在多路径最小的情况下，您应该选择终端叶子节点上具有最小值的那条路径，且输出那个最小值的终端叶子。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>根据中序和后序序列构造二叉树</li>
+<li>递归遍历二叉树，每一步走左右子树中权值较小的一个</li>
+</ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;sstream&gt;
+# pragma warning(disable:4996)
+# define LOCAL
+# ifdef LOCAL
+FILE *fin = freopen(&quot;树in.txt&quot;, &quot;r&quot;, stdin);
+FILE *fout = freopen(&quot;树out.txt&quot;, &quot;w&quot;, stdout);
+# endif 
+using namespace std;
+# define maxn 10000
+int n = 0;
+bool read(int *a) {
+</code></pre>
 <blockquote>
 <p>数组为参数的时候可以用指针，传首地址</p>
 </blockquote>
-<pre><code>string s;
-getline(cin, s);
-stringstream ss(s);</code></pre><blockquote>
+<pre><code>	string s;
+	getline(cin, s);
+	stringstream ss(s);
+</code></pre>
+<blockquote>
 <p>注意此处，用ss来读取一行不定数量的以空格分隔的数字</p>
 </blockquote>
-<pre><code>n = 0;
-int x;
-while (ss &gt;&gt; x) a[n++] = x;
-return n &gt; 0;</code></pre><p> }</p>
-<p> int post_order[maxn], in_order[maxn],lch[maxn],rch[maxn];</p>
-</li>
-</ol>
+<pre><code>	n = 0;
+	int x;
+	while (ss &gt;&gt; x) a[n++] = x;
+	return n &gt; 0;
+}
+
+int post_order[maxn], in_order[maxn],lch[maxn],rch[maxn];
+</code></pre>
 <blockquote>
-<p>其中rch[i]表示编号为i的节点的右孩子<br>`<br>    int build(int l1, int r1, int l2, int r2) {<br>        if (l1 &gt; r1) return 0;//空树<br>本题中以权值代表编号，为0表示节点不存在</p>
+<p>其中rch[i]表示编号为i的节点的右孩子<br />
+`<br />
+int build(int l1, int r1, int l2, int r2) {<br />
+if (l1 &gt; r1) return 0;//空树<br />
+本题中以权值代表编号，为0表示节点不存在</p>
 </blockquote>
-<pre><code>    int root = post_order[r2];//后序序列的最后一个
-    int p = l1;
-    while (in_order[p] != root) p++;
-    int cnt = p-l1;//左子树中节点个数
+<pre><code>	int root = post_order[r2];//后序序列的最后一个
+	int p = l1;
+	while (in_order[p] != root) p++;
+	int cnt = p-l1;//左子树中节点个数
+	
 
-
-    //分别在左右子树中递归遍历
-    lch[root] = build(l1, p - 1, l2 , l2 + cnt - 1);
-    rch[root] = build(p + 1, r1, l2 + cnt, r2 - 1);
-    return root;
+	//分别在左右子树中递归遍历
+	lch[root] = build(l1, p - 1, l2 , l2 + cnt - 1);
+	rch[root] = build(p + 1, r1, l2 + cnt, r2 - 1);
+	return root;
 }
 
 int best, best_sum;
 void dfs(int u, int sum) {
-    sum += u;
-    if (!lch[u] &amp;&amp; !rch[u]) {//如果u是叶子节点
-        if (sum &lt; best_sum || (best_sum == sum &amp;&amp; u &lt; best)) 
-        {
-            best = u;
-            best_sum = sum;
-        }
-    }
+	sum += u;
+	if (!lch[u] &amp;&amp; !rch[u]) {//如果u是叶子节点
+		if (sum &lt; best_sum || (best_sum == sum &amp;&amp; u &lt; best)) 
+		{
+			best = u;
+			best_sum = sum;
+		}
+	}
 
-    if (lch[u]) dfs(lch[u], sum);
-    if (rch[u]) dfs(rch[u], sum);
+	if (lch[u]) dfs(lch[u], sum);
+	if (rch[u]) dfs(rch[u], sum);
 
 }
 int main() {
-    while (read(in_order)) {
-        read(post_order);
-        build(0, n - 1, 0, n - 1);
-        best_sum = 1e9;//
-        dfs(post_order[n - 1], 0);
-        cout &lt;&lt; best &lt;&lt; endl;
-    }
-}</code></pre><h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><ol>
-<li><p>输入也可以写成子函数的形式</p>
+	while (read(in_order)) {
+		read(post_order);
+		build(0, n - 1, 0, n - 1);
+		best_sum = 1e9;//
+		dfs(post_order[n - 1], 0);
+		cout &lt;&lt; best &lt;&lt; endl;
+	}
+}
+</code></pre>
+<h1 id="心得"><a class="markdownIt-Anchor" href="#心得"></a> 心得</h1>
+<ol>
+<li>
+<p>输入也可以写成子函数的形式</p>
 </li>
-<li><p>学习中后造树和递归遍历二叉树的方法</p>
-<pre><code>void dfs(树根指针){
-if(左子树为空（为0）&amp;&amp;右子树为空（为0）)
-    {
-
-        return 0;
-    }
-if(左孩子不为空) dfs（左孩子）
-if(右孩子不为空) dfs（右孩子）
-}</code></pre></li>
+<li>
+<p>学习中后造树和递归遍历二叉树的方法</p>
+<pre><code> void dfs(树根指针){
+ if(左子树为空（为0）&amp;&amp;右子树为空（为0）)
+ 	{
+ 						
+ 		return 0;
+ 	}
+ if(左孩子不为空) dfs（左孩子）
+ if(右孩子不为空) dfs（右孩子）
+ }</code></pre>
+</li>
 </ol>
 
       

@@ -103,37 +103,46 @@
       
       <p>数据库的安全性是指保护数据库，防止因用户非法使用数据库造成数据泄漏、更改或破坏。</p>
 <p>数据库系统的安全：包括计算机安全和数据库安全。</p>
-<h1 id="数据库安全性控制"><a href="#数据库安全性控制" class="headerlink" title="数据库安全性控制"></a>数据库安全性控制</h1><p>数据库安全性控制的常用方法：用户标识和鉴定、存取控制、视图、审计、数据加密。</p>
-<h2 id="用户标识与鉴别"><a href="#用户标识与鉴别" class="headerlink" title="用户标识与鉴别"></a>用户标识与鉴别</h2><ol>
-<li><p>用户标识与鉴别是系统提供的最外层安全保护措施。</p>
-</li>
-<li><p>基本方法：系统通过一定方式让用户标识自己的身份或名字。</p>
-<h2 id="自主存取控制-授权与回收"><a href="#自主存取控制-授权与回收" class="headerlink" title="自主存取控制-授权与回收"></a>自主存取控制-授权与回收</h2><h3 id="存取控制机制的功能"><a href="#存取控制机制的功能" class="headerlink" title="存取控制机制的功能"></a>存取控制机制的功能</h3></li>
-<li><p>存取控制机制的组成：</p>
+<h1 id="数据库安全性控制"><a class="markdownIt-Anchor" href="#数据库安全性控制"></a> 数据库安全性控制</h1>
+<p>数据库安全性控制的常用方法：用户标识和鉴定、存取控制、视图、审计、数据加密。</p>
+<h2 id="用户标识与鉴别"><a class="markdownIt-Anchor" href="#用户标识与鉴别"></a> 用户标识与鉴别</h2>
+<ol>
+<li>用户标识与鉴别是系统提供的最外层安全保护措施。</li>
+<li>基本方法：系统通过一定方式让用户标识自己的身份或名字。</li>
+</ol>
+<h2 id="自主存取控制-授权与回收"><a class="markdownIt-Anchor" href="#自主存取控制-授权与回收"></a> 自主存取控制-授权与回收</h2>
+<h3 id="存取控制机制的功能"><a class="markdownIt-Anchor" href="#存取控制机制的功能"></a> 存取控制机制的功能</h3>
+<ol>
+<li>存取控制机制的组成：
 <ol>
 <li>定义存取权限</li>
 <li>检查存取权限</li>
 </ol>
 </li>
-<li><p>用户权限定义和合法权检查机制一起组成了DBMS的安全子系统</p>
-<h3 id="常用存取控制方法"><a href="#常用存取控制方法" class="headerlink" title="常用存取控制方法"></a>常用存取控制方法</h3></li>
-<li><p>自主存取控制：</p>
+<li>用户权限定义和合法权检查机制一起组成了DBMS的安全子系统</li>
+</ol>
+<h3 id="常用存取控制方法"><a class="markdownIt-Anchor" href="#常用存取控制方法"></a> 常用存取控制方法</h3>
+<ol>
+<li>自主存取控制：
 <ol>
 <li>同一用户对不同对象有不同的存储权限。</li>
 <li>不同用户对同一对象也有不同的存储权限。</li>
 <li>用户还可以将其拥有的存储权限转授给其他用户。</li>
 <li><strong>优点</strong>：能够通过授权机制有效的控制其他用户对敏感数据的存取。</li>
-<li><strong>缺点</strong>：<ol>
+<li><strong>缺点</strong>：
+<ol>
 <li>可能存在数据的无意泄漏。</li>
 <li><strong>原因</strong>：这种机制仅仅通过对数据的存取权限来进行安全控制，而对数据本身并无安全性标记。</li>
-<li><strong>解决</strong>：对系统控制下的所有主客体实施强制存取控制。<h3 id="授权与回收"><a href="#授权与回收" class="headerlink" title="授权与回收"></a>授权与回收</h3></li>
+<li><strong>解决</strong>：对系统控制下的所有主客体实施强制存取控制。</li>
 </ol>
 </li>
 </ol>
 </li>
-<li><p>授权语法：见本</p>
-</li>
-<li><p>注意：</p>
+</ol>
+<h3 id="授权与回收"><a class="markdownIt-Anchor" href="#授权与回收"></a> 授权与回收</h3>
+<ol>
+<li>授权语法：见本</li>
+<li>注意：
 <ol>
 <li>DBA拥有数据库操作的所有权限，可以将权限赋给其他用户。</li>
 <li>建立数据库对象的的用户称为该对象的属主，他拥有该对象的所有操作权限。</li>
@@ -141,78 +150,92 @@
 <li>若指定了WITH GRANT OPTION子句，则获得某种权限的用户还可以把这种权限再授予别的用户。否则，不能传播该权限。</li>
 </ol>
 </li>
-<li><p>回收权限REVOKE</p>
-</li>
-<li><p>授权图：用户拥有授权当且仅当存在从授权图的根到代表该用户的节点的路径。</p>
-<h3 id="数据库角色：被命名的一组与数据库操作相关的权限。"><a href="#数据库角色：被命名的一组与数据库操作相关的权限。" class="headerlink" title="数据库角色：被命名的一组与数据库操作相关的权限。"></a>数据库角色：被命名的一组与数据库操作相关的权限。</h3></li>
-<li><p>数据库角色</p>
+<li>回收权限REVOKE</li>
+<li>授权图：用户拥有授权当且仅当存在从授权图的根到代表该用户的节点的路径。</li>
+</ol>
+<h3 id="数据库角色被命名的一组与数据库操作相关的权限"><a class="markdownIt-Anchor" href="#数据库角色被命名的一组与数据库操作相关的权限"></a> 数据库角色：被命名的一组与数据库操作相关的权限。</h3>
+<ol>
+<li>数据库角色
 <ol>
 <li>角色是权限的集合。</li>
 <li>可以为一组具有相同权限的用户创建一个角色。</li>
 </ol>
 </li>
-<li><p>相关语法：见本</p>
-<h3 id="权限总结"><a href="#权限总结" class="headerlink" title="权限总结"></a>权限总结</h3></li>
-<li><p>DBA拥有对数据库中所有对象的所有权限，并可以根据应用<br>的需要将不同的权限授予不同的用户；</p>
-</li>
-<li><p>用户对自己建立的基本表和视图拥有全部的操作权限，并且<br>可以用GRANT语句把其中某些权限授予其他用户；</p>
-</li>
-<li><p>被授权的用户如果有“继续授权”的许可，还可以把获得的<br>权限再授予其他用户；</p>
-</li>
-<li><p>所有授予出去的权力在必要时可以用REVOKE语句收回；</p>
-</li>
-<li><p>使用角色管理数据库可以简化授权的过程；</p>
-<h2 id="强制存取控制"><a href="#强制存取控制" class="headerlink" title="强制存取控制"></a>强制存取控制</h2></li>
-<li><p>强制存取控制：</p>
+<li>相关语法：见本</li>
+</ol>
+<h3 id="权限总结"><a class="markdownIt-Anchor" href="#权限总结"></a> 权限总结</h3>
+<ol>
+<li>DBA拥有对数据库中所有对象的所有权限，并可以根据应用<br />
+的需要将不同的权限授予不同的用户；</li>
+<li>用户对自己建立的基本表和视图拥有全部的操作权限，并且<br />
+可以用GRANT语句把其中某些权限授予其他用户；</li>
+<li>被授权的用户如果有“继续授权”的许可，还可以把获得的<br />
+权限再授予其他用户；</li>
+<li>所有授予出去的权力在必要时可以用REVOKE语句收回；</li>
+<li>使用角色管理数据库可以简化授权的过程；</li>
+</ol>
+<h2 id="强制存取控制"><a class="markdownIt-Anchor" href="#强制存取控制"></a> 强制存取控制</h2>
+<ol>
+<li>强制存取控制：
 <ol>
 <li>对每一个数据对象都标以一定的密级。</li>
 <li>对每一个用户都授予一个级别的许可证。</li>
 <li>对于任意的一个对象，只有具有合法许可证的用户才能存取。</li>
 </ol>
 </li>
-<li><p>敏感度标记： 绝密（Top Secret、机密（Secret）、秘密（Confidential）、公开（Public）。</p>
-</li>
-<li><p>强制存取控制规则</p>
+<li>敏感度标记： 绝密（Top Secret、机密（Secret）、秘密（Confidential）、公开（Public）。</li>
+<li>强制存取控制规则
 <ol>
 <li>仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体。</li>
 <li>仅当主体的许可证级别等于客体的密级时，主体才能写相应客体。</li>
 </ol>
 </li>
-<li><p>DAC和MAC关系</p>
+<li>DAC和MAC关系
 <ol>
 <li>二者共同构成DBMS的安全机制。因为较高安全性级别提供的安全保护要包含较低级别的所有保护。</li>
-<li>安全性检查，要先进行DAC检查，通过DAC检查的数据对象再由系统进行MAC检查，只有都通过的才能进行存取。<h2 id="视图机制"><a href="#视图机制" class="headerlink" title="视图机制"></a>视图机制</h2></li>
+<li>安全性检查，要先进行DAC检查，通过DAC检查的数据对象再由系统进行MAC检查，只有都通过的才能进行存取。</li>
 </ol>
 </li>
-<li><p>视图机制与授权机制配合使用共同提供安全性。</p>
+</ol>
+<h2 id="视图机制"><a class="markdownIt-Anchor" href="#视图机制"></a> 视图机制</h2>
+<ol>
+<li>视图机制与授权机制配合使用共同提供安全性。
 <ol>
 <li>先用视图屏蔽掉一部分保密数据。</li>
 <li>再进一步在视图上定义存取权限。</li>
-<li>间接实现了支持存取谓词的用户权限定义。<h2 id="审计"><a href="#审计" class="headerlink" title="审计"></a>审计</h2></li>
+<li>间接实现了支持存取谓词的用户权限定义。</li>
 </ol>
 </li>
-<li><p>审计：将用户对数据库的所有操作记录在上面。</p>
-<h2 id="数据加密"><a href="#数据加密" class="headerlink" title="数据加密"></a>数据加密</h2></li>
-<li><p>加密方法</p>
+</ol>
+<h2 id="审计"><a class="markdownIt-Anchor" href="#审计"></a> 审计</h2>
+<ol>
+<li>审计：将用户对数据库的所有操作记录在上面。</li>
+</ol>
+<h2 id="数据加密"><a class="markdownIt-Anchor" href="#数据加密"></a> 数据加密</h2>
+<ol>
+<li>加密方法
 <ol>
 <li>替换方法：将明文中的每一个字符都转换维密文中的每一个字符。</li>
 <li>置换方法：将明文的字符按不同的顺序重新排列。</li>
-<li>混合方法<h1 id="统计数据库安全性"><a href="#统计数据库安全性" class="headerlink" title="统计数据库安全性"></a>统计数据库安全性</h1></li>
+<li>混合方法</li>
 </ol>
 </li>
-<li><p>统计数据库的特点</p>
+</ol>
+<h1 id="统计数据库安全性"><a class="markdownIt-Anchor" href="#统计数据库安全性"></a> 统计数据库安全性</h1>
+<ol>
+<li>统计数据库的特点
 <ol>
 <li>允许用户查询聚集类型信息。</li>
 <li>不允许查询单个记录信息。</li>
 </ol>
 </li>
-<li><p>统计数据库的问题</p>
+<li>统计数据库的问题
 <ol>
 <li>隐藏的信息通道</li>
 <li>从合法的查询中推导出不合法的信息。</li>
 </ol>
 </li>
-<li><p>统计数据库的规则</p>
+<li>统计数据库的规则
 <ol>
 <li>任何查询至少要涉及N（N足够大）个以上的记录。</li>
 <li>任意两个查询的相交数据项不能超过M个。</li>
@@ -307,19 +330,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/DB7/" class="article-nav-link">
+      <a href="/2020/03/30/DB5/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            DB7
+            DB5
           
         </div>
       </a>
     
     
-      <a href="/2020/03/30/DB5/" class="article-nav-link">
+      <a href="/2020/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%AE%E5%BD%95/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">DB5</div>
+        <div class="article-nav-title">数据库目录</div>
       </a>
     
   </nav>

@@ -101,27 +101,30 @@
       
 
       
-      <h1 id="子采样"><a href="#子采样" class="headerlink" title="子采样"></a>子采样</h1><ol>
+      <h1 id="子采样"><a class="markdownIt-Anchor" href="#子采样"></a> 子采样</h1>
+<ol>
 <li>每隔一行一列丢弃一行一列</li>
 <li>问题：导致噪声变多</li>
 <li>解决：先滤波，再子采样</li>
 </ol>
-<h2 id="混叠"><a href="#混叠" class="headerlink" title="混叠"></a>混叠</h2><ol>
+<h2 id="混叠"><a class="markdownIt-Anchor" href="#混叠"></a> 混叠</h2>
+<ol>
 <li>定义：当采样频率不够高时，无法捕捉图像中的细节。</li>
 <li>解决：采样率≥2 * 图像中的最大频率&lt;=&gt;每周期至少两个样本</li>
 <li>若原始图像频率太高，则先做高斯预处理，然后子采样。（高斯金字塔）</li>
 </ol>
-<h1 id="上采样"><a href="#上采样" class="headerlink" title="上采样"></a>上采样</h1><h2 id="最简单方法"><a href="#最简单方法" class="headerlink" title="最简单方法"></a>最简单方法</h2><p>重复每行每列n次</p>
-<h2 id="图像插值"><a href="#图像插值" class="headerlink" title="图像插值"></a>图像插值</h2><img src="/视觉_img/3-1.png" style="zoom:80%">
+<h1 id="上采样"><a class="markdownIt-Anchor" href="#上采样"></a> 上采样</h1>
+<h2 id="最简单方法"><a class="markdownIt-Anchor" href="#最简单方法"></a> 最简单方法</h2>
+<p>重复每行每列n次</p>
+<h2 id="图像插值"><a class="markdownIt-Anchor" href="#图像插值"></a> 图像插值</h2>
+<img src="/视觉_img/3-1.png" style="zoom:80%">
 ### 重建滤波器
 1. 目的是重建连续图像f
 2. 步骤
-    1. 将F转换成连续函数：
-        f<sub>F</sub>(x)=F(x/d) 当x/d是整数，否则为0
-    2. 用重建滤波器H来卷积
-        f = h*f<sub>F</sub>
-
-
+	1. 将F转换成连续函数：
+		f<sub>F</sub>(x)=F(x/d) 当x/d是整数，否则为0
+	2. 用重建滤波器H来卷积
+		f = h*f<sub>F</sub>
 
       
       <!-- reward -->

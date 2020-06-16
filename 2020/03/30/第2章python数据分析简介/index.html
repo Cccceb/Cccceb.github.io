@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">308字</span>
+            <span class="post-count">302字</span>
         </span>
     </span>
 
@@ -101,21 +101,25 @@
       
 
       
-      <h1 id="python基础"><a href="#python基础" class="headerlink" title="python基础"></a>python基础</h1><h2 id="列表元组相关函数"><a href="#列表元组相关函数" class="headerlink" title="列表元组相关函数"></a>列表元组相关函数</h2><img src="/DBB_img/1.png">
-
-<h2 id="列表相关方法"><a href="#列表相关方法" class="headerlink" title="列表相关方法"></a>列表相关方法</h2><img src="/DBB_img/2.png">
-
+      <h1 id="python基础"><a class="markdownIt-Anchor" href="#python基础"></a> python基础</h1>
+<h2 id="列表元组相关函数"><a class="markdownIt-Anchor" href="#列表元组相关函数"></a> 列表元组相关函数</h2>
+<img src="/DBB_img/1.png">
+<h2 id="列表相关方法"><a class="markdownIt-Anchor" href="#列表相关方法"></a> 列表相关方法</h2>
+<img src="/DBB_img/2.png">
 <img src="/DBB_img/3.png">
-
-<h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><ol>
-<li>定义:如d = {‘today’:20,’tomorrow’:30};或者通过dict([‘today’,20],[‘tomorrow’,30])</li>
+<h2 id="字典"><a class="markdownIt-Anchor" href="#字典"></a> 字典</h2>
+<ol>
+<li>定义:如d = {‘today’:20,‘tomorrow’:30};或者通过dict([‘today’,20],[‘tomorrow’,30])</li>
 </ol>
-<h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><ol>
+<h2 id="集合"><a class="markdownIt-Anchor" href="#集合"></a> 集合</h2>
+<ol>
 <li>定义：如s={1,2,2,3}//得到{1,2,3}</li>
-<li>集合运算<ol>
+<li>集合运算
+<ol>
 <li>| 并集</li>
 <li>&amp; 交集</li>
-<li><ul>
+<li>
+<ul>
 <li>差集//t-s在t中不在s中</li>
 </ul>
 </li>
@@ -123,60 +127,64 @@
 </ol>
 </li>
 </ol>
-<h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><ol>
-<li><p>map</p>
+<h2 id="函数式编程"><a class="markdownIt-Anchor" href="#函数式编程"></a> 函数式编程</h2>
+<ol>
+<li>
+<p>map</p>
  <img src="/DBB_img/4.png">
 </li>
-<li><p>reduce</p>
+<li>
+<p>reduce</p>
  <img src="/DBB_img/5.png">
 </li>
-<li><p>filter</p>
+<li>
+<p>filter</p>
  <img src="/DBB_img/6.png">
-
 </li>
 </ol>
-<h2 id="导入库"><a href="#导入库" class="headerlink" title="导入库"></a>导入库</h2><ol>
+<h2 id="导入库"><a class="markdownIt-Anchor" href="#导入库"></a> 导入库</h2>
+<ol>
 <li>from 库 import 函数/* as 别名</li>
 </ol>
-<h1 id="Python-数据分析工具"><a href="#Python-数据分析工具" class="headerlink" title="Python 数据分析工具"></a>Python 数据分析工具</h1><h2 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h2><ol>
+<h1 id="python-数据分析工具"><a class="markdownIt-Anchor" href="#python-数据分析工具"></a> Python 数据分析工具</h1>
+<h2 id="numpy"><a class="markdownIt-Anchor" href="#numpy"></a> Numpy</h2>
+<ol>
 <li>提供多维数组</li>
 </ol>
 <img src="/DBB_img/7.png">
 ## Scipy
 1. 提供了真正的矩阵，以及大量基于矩阵运算的对象和函数。
-
-
 <img src="/DBB_img/8.png">
 ## Matplotlib
 1. 主要用于二维绘图，也可以进行简单的三维绘图。
 2. 如果想使用中文标签
-
-<p><code>plt.rcParams[&#39;font.sans-serif&#39;]=[&#39;SimHei&#39;]</code></p>
+<p><code>plt.rcParams['font.sans-serif']=['SimHei']</code></p>
 <ol start="3">
 <li>如果负号不能正常显示</li>
 </ol>
-<p><code>plt.rcParams[&#39;axes.unicode.minus&#39;]=False</code></p>
+<p><code>plt.rcParams['axes.unicode.minus']=False</code></p>
 <img src="/DBB_img/9.png">
-
-<h2 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h2><ol>
+<h2 id="pandas"><a class="markdownIt-Anchor" href="#pandas"></a> Pandas</h2>
+<ol>
 <li>基本数据结构Series和DataFrame。Series是序列，DataFrame类似二维数组，每一列是一个Series。每个Series都带有一个对应的Index，Index可以是字母，中文，数字等</li>
 </ol>
 <img src="/DBB_img/10.png">
-
-<h2 id="StatsModels"><a href="#StatsModels" class="headerlink" title="StatsModels"></a>StatsModels</h2><ol>
+<h2 id="statsmodels"><a class="markdownIt-Anchor" href="#statsmodels"></a> StatsModels</h2>
+<ol>
 <li>用于数据的统计建模分析，与Pandas结合</li>
 </ol>
-<h2 id="Scikit-Learn"><a href="#Scikit-Learn" class="headerlink" title="Scikit-Learn"></a>Scikit-Learn</h2><ol>
+<h2 id="scikit-learn"><a class="markdownIt-Anchor" href="#scikit-learn"></a> Scikit-Learn</h2>
+<ol>
 <li>完善的机器学习工具箱，包括数据预处理，分类，回归，聚类，预测和模型分析。</li>
 </ol>
 <img src="/DBB_img/11.png">
-
-<h2 id="Keras"><a href="#Keras" class="headerlink" title="Keras"></a>Keras</h2><ol>
+<h2 id="keras"><a class="markdownIt-Anchor" href="#keras"></a> Keras</h2>
+<ol>
 <li>Win下速度比Linux慢很多</li>
 </ol>
 <img src="/DBB_img/12.png">
-
-<h2 id="Gnesim"><a href="#Gnesim" class="headerlink" title="Gnesim"></a>Gnesim</h2><img src="/DBB_img/13.png">
+<h2 id="gnesim"><a class="markdownIt-Anchor" href="#gnesim"></a> Gnesim</h2>
+<img src="/DBB_img/13.png">
 
       
       <!-- reward -->
@@ -264,19 +272,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/%E7%AC%AC1%E7%AB%A0%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%9F%BA%E7%A1%80/" class="article-nav-link">
+      <a href="/2020/03/30/%E7%AC%AC3%E7%AB%A0%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            第1章数据挖掘基础
+            第3章数据探索
           
         </div>
       </a>
     
     
-      <a href="/2020/03/30/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%AE%9E%E6%88%98%E7%9B%AE%E5%BD%95/" class="article-nav-link">
+      <a href="/2020/03/30/%E7%AC%AC1%E7%AB%A0%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%9F%BA%E7%A1%80/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">数据挖掘实战目录</div>
+        <div class="article-nav-title">第1章数据挖掘基础</div>
       </a>
     
   </nav>

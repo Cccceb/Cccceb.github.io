@@ -114,160 +114,865 @@
       
 
       
-      <h1 id="Mysql基础"><a href="#Mysql基础" class="headerlink" title="Mysql基础"></a>Mysql基础</h1><h2 id="数据库相关概念"><a href="#数据库相关概念" class="headerlink" title="数据库相关概念"></a>数据库相关概念</h2><p>一、数据库的好处<br>1、可以持久化数据到本地<br>2、结构化查询</p>
-<p>二、数据库的常见概念 ★<br>1、DB：数据库，存储数据的容器<br>2、DBMS：数据库管理系统，又称为数据库软件或数据库产品，用于创建或管理DB<br>3、SQL：结构化查询语言，用于和数据库通信的语言，不是某个数据库软件特有的，而是几乎所有的主流数据库软件通用的语言</p>
-<p>三、数据库存储数据的特点<br>1、数据存放到表中，然后表再放到库中<br>2、一个库中可以有多张表，每张表具有唯一的表名用来标识自己<br>3、表中有一个或多个列，列又称为“字段”，相当于java中“属性”<br>4、表中的每一行数据，相当于java中“对象”</p>
-<p>四、常见的数据库管理系统<br>mysql、oracle、db2、sqlserver</p>
-<h2 id="MySql介绍"><a href="#MySql介绍" class="headerlink" title="MySql介绍"></a>MySql介绍</h2><p>一、MySQL的背景<br>前身属于瑞典的一家公司，MySQL AB<br>08年被sun公司收购<br>09年sun被oracle收购</p>
-<p>二、MySQL的优点<br>1、开源、免费、成本低<br>2、性能高、移植性也好<br>3、体积小，便于安装<br>三、MySQL的安装<br>属于c/s架构的软件，一般来讲安装服务端<br>企业版<br>社区版</p>
-<p>5.5<br>5.6<br>5.7<br>8.0</p>
-<p>四、MySQL服务的启动和停止<br>方式一：通过命令行<br>    net start 服务名<br>    net stop 服务名<br>方式二：计算机——右击——管理——服务</p>
+      <h1 id="mysql基础"><a class="markdownIt-Anchor" href="#mysql基础"></a> Mysql基础</h1>
+<h2 id="数据库相关概念"><a class="markdownIt-Anchor" href="#数据库相关概念"></a> 数据库相关概念</h2>
+<p>一、数据库的好处<br />
+1、可以持久化数据到本地<br />
+2、结构化查询</p>
+<p>二、数据库的常见概念 ★<br />
+1、DB：数据库，存储数据的容器<br />
+2、DBMS：数据库管理系统，又称为数据库软件或数据库产品，用于创建或管理DB<br />
+3、SQL：结构化查询语言，用于和数据库通信的语言，不是某个数据库软件特有的，而是几乎所有的主流数据库软件通用的语言</p>
+<p>三、数据库存储数据的特点<br />
+1、数据存放到表中，然后表再放到库中<br />
+2、一个库中可以有多张表，每张表具有唯一的表名用来标识自己<br />
+3、表中有一个或多个列，列又称为“字段”，相当于java中“属性”<br />
+4、表中的每一行数据，相当于java中“对象”</p>
+<p>四、常见的数据库管理系统<br />
+mysql、oracle、db2、sqlserver</p>
+<h2 id="mysql介绍"><a class="markdownIt-Anchor" href="#mysql介绍"></a> MySql介绍</h2>
+<p>一、MySQL的背景<br />
+前身属于瑞典的一家公司，MySQL AB<br />
+08年被sun公司收购<br />
+09年sun被oracle收购</p>
+<p>二、MySQL的优点<br />
+1、开源、免费、成本低<br />
+2、性能高、移植性也好<br />
+3、体积小，便于安装<br />
+三、MySQL的安装<br />
+属于c/s架构的软件，一般来讲安装服务端<br />
+企业版<br />
+社区版</p>
+<p>5.5<br />
+5.6<br />
+5.7<br />
+8.0</p>
+<p>四、MySQL服务的启动和停止<br />
+方式一：通过命令行<br />
+net start 服务名<br />
+net stop 服务名<br />
+方式二：计算机——右击——管理——服务</p>
 <p>五、MySQL服务的登录和退出</p>
 <p>登录：mysql 【-h 主机名 -P 端口号】 -u 用户名 -p密码</p>
 <p>退出：exit或ctrl+C</p>
-<h1 id="DQL语言"><a href="#DQL语言" class="headerlink" title="DQL语言"></a>DQL语言</h1><h2 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h2><p>一、语法<br>select 查询列表<br>from 表名;<br>二、特点<br>1、查询列表可以是字段、常量、表达式、函数，也可以是多个<br>2、查询结果是一个虚拟表</p>
-<p>三、示例<br>1、查询单个字段<br>select 字段名 from 表名;<br>2、查询多个字段<br>select 字段名，字段名 from 表名;<br>3、查询所有字段<br>select * from 表名<br>4、查询常量<br>select 常量值;<br>注意：字符型和日期型的常量值必须用单引号引起来，数值型不需要<br>5、查询函数<br>select 函数名(实参列表);<br>6、查询表达式<br>select 100/1234;<br>7、起别名<br>①as<br>②空格<br>8、去重<br>select distinct 字段名 from 表名;</p>
-<p>9、+<br>作用：做加法运算<br>select 数值+数值; 直接运算<br>select 字符+数值;先试图将字符转换成数值，如果转换成功，则继续运算；否则转换成0，再做运算<br>select null+值;结果都为null</p>
-<p>10、【补充】concat函数<br>功能：拼接字符<br>select concat(字符1，字符2，字符3,…);</p>
-<p>11、【补充】ifnull函数<br>功能：判断某字段或表达式是否为null，如果为null 返回指定的值，否则返回原本的值<br>select ifnull(commission_pct,0) from employees;</p>
-<p>12、【补充】isnull函数<br>功能：判断某字段或表达式是否为null，如果是，则返回1，否则返回0</p>
-<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><p>一、语法<br>select 查询列表<br>from 表名<br>where 筛选条件</p>
-<p>二、筛选条件的分类<br>1、简单条件运算符</p>
+<h1 id="dql语言"><a class="markdownIt-Anchor" href="#dql语言"></a> DQL语言</h1>
+<h2 id="基础查询"><a class="markdownIt-Anchor" href="#基础查询"></a> 基础查询</h2>
+<p>一、语法<br />
+select 查询列表<br />
+from 表名;<br />
+二、特点<br />
+1、查询列表可以是字段、常量、表达式、函数，也可以是多个<br />
+2、查询结果是一个虚拟表</p>
+<p>三、示例<br />
+1、查询单个字段<br />
+select 字段名 from 表名;<br />
+2、查询多个字段<br />
+select 字段名，字段名 from 表名;<br />
+3、查询所有字段<br />
+select * from 表名<br />
+4、查询常量<br />
+select 常量值;<br />
+注意：字符型和日期型的常量值必须用单引号引起来，数值型不需要<br />
+5、查询函数<br />
+select 函数名(实参列表);<br />
+6、查询表达式<br />
+select 100/1234;<br />
+7、起别名<br />
+①as<br />
+②空格<br />
+8、去重<br />
+select distinct 字段名 from 表名;</p>
+<p>9、+<br />
+作用：做加法运算<br />
+select 数值+数值; 直接运算<br />
+select 字符+数值;先试图将字符转换成数值，如果转换成功，则继续运算；否则转换成0，再做运算<br />
+select null+值;结果都为null</p>
+<p>10、【补充】concat函数<br />
+功能：拼接字符<br />
+select concat(字符1，字符2，字符3,…);</p>
+<p>11、【补充】ifnull函数<br />
+功能：判断某字段或表达式是否为null，如果为null 返回指定的值，否则返回原本的值<br />
+select ifnull(commission_pct,0) from employees;</p>
+<p>12、【补充】isnull函数<br />
+功能：判断某字段或表达式是否为null，如果是，则返回1，否则返回0</p>
+<h2 id="条件查询"><a class="markdownIt-Anchor" href="#条件查询"></a> 条件查询</h2>
+<p>一、语法<br />
+select 查询列表<br />
+from 表名<br />
+where 筛选条件</p>
+<p>二、筛选条件的分类<br />
+1、简单条件运算符</p>
 <blockquote>
-<p>&lt; = &lt;&gt; != &gt;= &lt;=  &lt;=&gt;安全等于<br>2、逻辑运算符<br>&amp;&amp; and<br>|| or<br>!  not<br>3、模糊查询<br>like:一般搭配通配符使用，可以判断字符型或数值型<br>通配符：%任意多个字符，_任意单个字符</p>
+<p>&lt; = &lt;&gt; != &gt;= &lt;=  &lt;=&gt;安全等于<br />
+2、逻辑运算符<br />
+&amp;&amp; and<br />
+|| or<br />
+!  not<br />
+3、模糊查询<br />
+like:一般搭配通配符使用，可以判断字符型或数值型<br />
+通配符：%任意多个字符，_任意单个字符</p>
 </blockquote>
-<p>between and<br>in<br>is null /is not null：用于判断null值</p>
-<p>is null PK &lt;=&gt;<br>            普通类型的数值    null值        可读性<br>is null        ×            √        √<br>&lt;=&gt;        √            √        ×</p>
-<h2 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h2><p>一、语法<br>select 查询列表<br>from 表<br>where 筛选条件<br>order by 排序列表 【asc}desc】</p>
-<p>二、特点<br>1、asc ：升序，如果不写默认升序<br>   desc：降序</p>
+<p>between and<br />
+in<br />
+is null /is not null：用于判断null值</p>
+<p>is null PK &lt;=&gt;<br />
+普通类型的数值	null值		可读性<br />
+is null		×			√		√<br />
+&lt;=&gt;		√			√		×</p>
+<h2 id="排序查询"><a class="markdownIt-Anchor" href="#排序查询"></a> 排序查询</h2>
+<p>一、语法<br />
+select 查询列表<br />
+from 表<br />
+where 筛选条件<br />
+order by 排序列表 【asc}desc】</p>
+<p>二、特点<br />
+1、asc ：升序，如果不写默认升序<br />
+desc：降序</p>
 <p>2、排序列表 支持 单个字段、多个字段、函数、表达式、别名</p>
 <p>3、order by的位置一般放在查询语句的最后（除limit语句之外）</p>
-<h2 id="常见函数"><a href="#常见函数" class="headerlink" title="常见函数"></a>常见函数</h2><p>一、概述<br>功能：类似于java中的方法<br>好处：提高重用性和隐藏实现细节<br>调用：select 函数名(实参列表);<br>二、单行函数<br>1、字符函数<br>concat:连接<br>substr:截取子串<br>upper:变大写<br>lower：变小写<br>replace：替换<br>length：获取字节长度<br>trim:去前后空格<br>lpad：左填充<br>rpad：右填充<br>instr:获取子串第一次出现的索引<br>2、数学函数<br>ceil:向上取整<br>round：四舍五入<br>mod:取模<br>floor：向下取整<br>truncate:截断<br>rand:获取随机数，返回0-1之间的小数</p>
+<h2 id="常见函数"><a class="markdownIt-Anchor" href="#常见函数"></a> 常见函数</h2>
+<p>一、概述<br />
+功能：类似于java中的方法<br />
+好处：提高重用性和隐藏实现细节<br />
+调用：select 函数名(实参列表);<br />
+二、单行函数<br />
+1、字符函数<br />
+concat:连接<br />
+substr:截取子串<br />
+upper:变大写<br />
+lower：变小写<br />
+replace：替换<br />
+length：获取字节长度<br />
+trim:去前后空格<br />
+lpad：左填充<br />
+rpad：右填充<br />
+instr:获取子串第一次出现的索引<br />
+2、数学函数<br />
+ceil:向上取整<br />
+round：四舍五入<br />
+mod:取模<br />
+floor：向下取整<br />
+truncate:截断<br />
+rand:获取随机数，返回0-1之间的小数</p>
 <p>3、日期函数</p>
-<p>now：返回当前日期+时间<br>year:返回年<br>month：返回月<br>day:返回日<br>date_format:将日期转换成字符<br>curdate:返回当前日期<br>str_to_date:将字符转换成日期<br>curtime：返回当前时间<br>hour:小时<br>minute:分钟<br>second：秒<br>datediff:返回两个日期相差的天数<br>monthname:以英文形式返回月</p>
-<p>4、其他函数<br>version 当前数据库服务器的版本<br>database 当前打开的数据库<br>user当前用户<br>password(‘字符’)：返回该字符的密码形式<br>md5(‘字符’):返回该字符的md5加密形式</p>
+<p>now：返回当前日期+时间<br />
+year:返回年<br />
+month：返回月<br />
+day:返回日<br />
+date_format:将日期转换成字符<br />
+curdate:返回当前日期<br />
+str_to_date:将字符转换成日期<br />
+curtime：返回当前时间<br />
+hour:小时<br />
+minute:分钟<br />
+second：秒<br />
+datediff:返回两个日期相差的天数<br />
+monthname:以英文形式返回月</p>
+<p>4、其他函数<br />
+version 当前数据库服务器的版本<br />
+database 当前打开的数据库<br />
+user当前用户<br />
+password(‘字符’)：返回该字符的密码形式<br />
+md5(‘字符’):返回该字符的md5加密形式</p>
 <p>5、流程控制函数</p>
-<p>①if(条件表达式，表达式1，表达式2)：如果条件表达式成立，返回表达式1，否则返回表达式2<br>②case情况1<br>case 变量或表达式或字段<br>when 常量1 then 值1<br>when 常量2 then 值2<br>…<br>else 值n<br>end</p>
-<p>③case情况2<br>case<br>when 条件1 then 值1<br>when 条件2 then 值2<br>…<br>else 值n<br>end</p>
-<p>三、分组函数<br>1、分类<br>max 最大值<br>min 最小值<br>sum 和<br>avg 平均值<br>count 计算个数</p>
+<p>①if(条件表达式，表达式1，表达式2)：如果条件表达式成立，返回表达式1，否则返回表达式2<br />
+②case情况1<br />
+case 变量或表达式或字段<br />
+when 常量1 then 值1<br />
+when 常量2 then 值2<br />
+…<br />
+else 值n<br />
+end</p>
+<p>③case情况2<br />
+case<br />
+when 条件1 then 值1<br />
+when 条件2 then 值2<br />
+…<br />
+else 值n<br />
+end</p>
+<p>三、分组函数<br />
+1、分类<br />
+max 最大值<br />
+min 最小值<br />
+sum 和<br />
+avg 平均值<br />
+count 计算个数</p>
 <p>2、特点</p>
-<p>①语法<br>select max(字段) from 表名;</p>
-<p>②支持的类型<br>sum和avg一般用于处理数值型<br>max、min、count可以处理任何数据类型</p>
-<p>③以上分组函数都忽略null<br>④都可以搭配distinct使用，实现去重的统计<br>select sum(distinct 字段) from 表;<br>⑤count函数<br>count(字段)：统计该字段非空值的个数<br>count(*):统计结果集的行数<br>案例：查询每个部门的员工个数<br>1 xx    10<br>2 dd    20<br>3 mm    20<br>4 aa    40<br>5 hh    40</p>
+<p>①语法<br />
+select max(字段) from 表名;</p>
+<p>②支持的类型<br />
+sum和avg一般用于处理数值型<br />
+max、min、count可以处理任何数据类型</p>
+<p>③以上分组函数都忽略null<br />
+④都可以搭配distinct使用，实现去重的统计<br />
+select sum(distinct 字段) from 表;<br />
+⑤count函数<br />
+count(字段)：统计该字段非空值的个数<br />
+count(*):统计结果集的行数<br />
+案例：查询每个部门的员工个数<br />
+1 xx    10<br />
+2 dd    20<br />
+3 mm    20<br />
+4 aa    40<br />
+5 hh    40</p>
 <p>count(1):统计结果集的行数</p>
-<p>效率上：<br>MyISAM存储引擎，count(<em>)最高<br>InnoDB存储引擎，count(</em>)和count(1)效率&gt;count(字段)</p>
+<p>效率上：<br />
+MyISAM存储引擎，count(<em>)最高<br />
+InnoDB存储引擎，count(</em>)和count(1)效率&gt;count(字段)</p>
 <p>⑥ 和分组函数一同查询的字段，要求是group by后出现的字段</p>
-<h2 id="分组查序"><a href="#分组查序" class="headerlink" title="分组查序"></a>分组查序</h2><p>一、语法<br>select 分组函数，分组后的字段<br>from 表<br>【where 筛选条件】<br>group by 分组的字段<br>【having 分组后的筛选】<br>【order by 排序列表】</p>
+<h2 id="分组查序"><a class="markdownIt-Anchor" href="#分组查序"></a> 分组查序</h2>
+<p>一、语法<br />
+select 分组函数，分组后的字段<br />
+from 表<br />
+【where 筛选条件】<br />
+group by 分组的字段<br />
+【having 分组后的筛选】<br />
+【order by 排序列表】</p>
 <p>二、特点</p>
-<pre><code>使用关键字        筛选的表    位置</code></pre><p>分组前筛选    where            原始表        group by的前面<br>分组后筛选    having        分组后的结果    group by 的后面</p>
-<h2 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h2><p>一、含义<br>当查询中涉及到了多个表的字段，需要使用多表连接<br>select 字段1，字段2<br>from 表1，表2,…;</p>
-<p>笛卡尔乘积：当查询多个表时，没有添加有效的连接条件，导致多个表所有行实现完全连接<br>如何解决：添加有效的连接条件</p>
+<pre><code>		使用关键字		筛选的表	位置
+</code></pre>
+<p>分组前筛选	where			原始表		group by的前面<br />
+分组后筛选	having		分组后的结果	group by 的后面</p>
+<h2 id="连接查询"><a class="markdownIt-Anchor" href="#连接查询"></a> 连接查询</h2>
+<p>一、含义<br />
+当查询中涉及到了多个表的字段，需要使用多表连接<br />
+select 字段1，字段2<br />
+from 表1，表2,…;</p>
+<p>笛卡尔乘积：当查询多个表时，没有添加有效的连接条件，导致多个表所有行实现完全连接<br />
+如何解决：添加有效的连接条件</p>
 <p>二、分类</p>
-<p>按年代分类：<br>    sql92：<br>        等值<br>        非等值<br>        自连接</p>
-<pre><code>    也支持一部分外连接（用于oracle、sqlserver，mysql不支持）
+<p>按年代分类：<br />
+sql92：<br />
+等值<br />
+非等值<br />
+自连接</p>
+<pre><code>	也支持一部分外连接（用于oracle、sqlserver，mysql不支持）
 sql99【推荐使用】
-    内连接
-        等值
-        非等值
-        自连接
-    外连接
-        左外
-        右外
-        全外（mysql不支持）
-    交叉连接</code></pre><p>三、SQL92语法<br>1、等值连接<br>语法：<br>    select 查询列表<br>    from 表1 别名,表2 别名<br>    where 表1.key=表2.key<br>    【and 筛选条件】<br>    【group by 分组字段】<br>    【having 分组后的筛选】<br>    【order by 排序字段】</p>
-<p>特点：<br>    ① 一般为表起别名<br>    ②多表的顺序可以调换<br>    ③n表连接至少需要n-1个连接条件<br>    ④等值连接的结果是多表的交集部分</p>
-<p>2、非等值连接<br>语法：<br>    select 查询列表<br>    from 表1 别名,表2 别名<br>    where 非等值的连接条件<br>    【and 筛选条件】<br>    【group by 分组字段】<br>    【having 分组后的筛选】<br>    【order by 排序字段】<br>3、自连接</p>
-<p>语法：<br>    select 查询列表<br>    from 表 别名1,表 别名2<br>    where 等值的连接条件<br>    【and 筛选条件】<br>    【group by 分组字段】<br>    【having 分组后的筛选】<br>    【order by 排序字段】</p>
-<p>四、SQL99语法<br>1、内连接<br>语法：<br>select 查询列表<br>from 表1 别名<br>【inner】 join 表2 别名 on 连接条件<br>where 筛选条件<br>group by 分组列表<br>having 分组后的筛选<br>order by 排序列表<br>limit 子句;</p>
-<p>特点：<br>①表的顺序可以调换<br>②内连接的结果=多表的交集<br>③n表连接至少需要n-1个连接条件</p>
-<p>分类：<br>等值连接<br>非等值连接<br>自连接</p>
-<p>2、外连接<br>语法：<br>select 查询列表<br>from 表1 别名<br>left|right|full【outer】 join 表2 别名 on 连接条件<br>where 筛选条件<br>group by 分组列表<br>having 分组后的筛选<br>order by 排序列表<br>limit 子句;<br>特点：<br>①查询的结果=主表中所有的行，如果从表和它匹配的将显示匹配行，如果从表没有匹配的则显示null<br>②left join 左边的就是主表，right join 右边的就是主表<br>  full join 两边都是主表<br>③一般用于查询除了交集部分的剩余的不匹配的行</p>
+	内连接
+		等值
+		非等值
+		自连接
+	外连接
+		左外
+		右外
+		全外（mysql不支持）
+	交叉连接
+</code></pre>
+<p>三、SQL92语法<br />
+1、等值连接<br />
+语法：<br />
+select 查询列表<br />
+from 表1 别名,表2 别名<br />
+where 表1.key=表2.key<br />
+【and 筛选条件】<br />
+【group by 分组字段】<br />
+【having 分组后的筛选】<br />
+【order by 排序字段】</p>
+<p>特点：<br />
+① 一般为表起别名<br />
+②多表的顺序可以调换<br />
+③n表连接至少需要n-1个连接条件<br />
+④等值连接的结果是多表的交集部分</p>
+<p>2、非等值连接<br />
+语法：<br />
+select 查询列表<br />
+from 表1 别名,表2 别名<br />
+where 非等值的连接条件<br />
+【and 筛选条件】<br />
+【group by 分组字段】<br />
+【having 分组后的筛选】<br />
+【order by 排序字段】<br />
+3、自连接</p>
+<p>语法：<br />
+select 查询列表<br />
+from 表 别名1,表 别名2<br />
+where 等值的连接条件<br />
+【and 筛选条件】<br />
+【group by 分组字段】<br />
+【having 分组后的筛选】<br />
+【order by 排序字段】</p>
+<p>四、SQL99语法<br />
+1、内连接<br />
+语法：<br />
+select 查询列表<br />
+from 表1 别名<br />
+【inner】 join 表2 别名 on 连接条件<br />
+where 筛选条件<br />
+group by 分组列表<br />
+having 分组后的筛选<br />
+order by 排序列表<br />
+limit 子句;</p>
+<p>特点：<br />
+①表的顺序可以调换<br />
+②内连接的结果=多表的交集<br />
+③n表连接至少需要n-1个连接条件</p>
+<p>分类：<br />
+等值连接<br />
+非等值连接<br />
+自连接</p>
+<p>2、外连接<br />
+语法：<br />
+select 查询列表<br />
+from 表1 别名<br />
+left|right|full【outer】 join 表2 别名 on 连接条件<br />
+where 筛选条件<br />
+group by 分组列表<br />
+having 分组后的筛选<br />
+order by 排序列表<br />
+limit 子句;<br />
+特点：<br />
+①查询的结果=主表中所有的行，如果从表和它匹配的将显示匹配行，如果从表没有匹配的则显示null<br />
+②left join 左边的就是主表，right join 右边的就是主表<br />
+full join 两边都是主表<br />
+③一般用于查询除了交集部分的剩余的不匹配的行</p>
 <p>3、交叉连接</p>
-<p>语法：<br>select 查询列表<br>from 表1 别名<br>cross join 表2 别名;</p>
-<p>特点：<br>类似于笛卡尔乘积</p>
-<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p>一、含义<br>嵌套在其他语句内部的select语句称为子查询或内查询，<br>外面的语句可以是insert、update、delete、select等，一般select作为外面语句较多<br>外面如果为select语句，则此语句称为外查询或主查询</p>
-<p>二、分类<br>1、按出现位置<br>select后面：<br>        仅仅支持标量子查询<br>from后面：<br>        表子查询<br>where或having后面：<br>        标量子查询<br>        列子查询<br>        行子查询<br>exists后面：<br>        标量子查询<br>        列子查询<br>        行子查询<br>        表子查询</p>
-<p>2、按结果集的行列<br>标量子查询（单行子查询）：结果集为一行一列<br>列子查询（多行子查询）：结果集为多行一列<br>行子查询：结果集为多行多列<br>表子查询：结果集为多行多列</p>
-<p>三、示例<br>where或having后面<br>1、标量子查询<br>案例：查询最低工资的员工姓名和工资<br>①最低工资<br>select min(salary) from employees</p>
-<p>②查询员工的姓名和工资，要求工资=①<br>select last_name,salary<br>from employees<br>where salary=(<br>    select min(salary) from employees<br>);</p>
-<p>2、列子查询<br>案例：查询所有是领导的员工姓名<br>①查询所有员工的 manager_id<br>select manager_id<br>from employees</p>
-<p>②查询姓名，employee_id属于①列表的一个<br>select last_name<br>from employees<br>where employee_id in(<br>    select manager_id<br>    from employees<br>);</p>
-<h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><p>一、应用场景<br>当要查询的条目数太多，一页显示不全<br>二、语法</p>
-<p>select 查询列表<br>from 表<br>limit 【offset，】size;<br>注意：<br>offset代表的是起始的条目索引，默认从0卡死<br>size代表的是显示的条目数</p>
-<p>公式：<br>假如要显示的页数为page，每一页条目数为size<br>select 查询列表<br>from 表<br>limit (page-1)*size,size;</p>
-<h2 id="联合查询"><a href="#联合查询" class="headerlink" title="联合查询"></a>联合查询</h2><p>一、含义<br>union：合并、联合，将多次查询结果合并成一个结果<br>二、语法<br>查询语句1<br>union 【all】<br>查询语句2<br>union 【all】<br>…</p>
-<p>三、意义<br>1、将一条比较复杂的查询语句拆分成多条语句<br>2、适用于查询多个表的时候，查询的列基本是一致</p>
-<p>四、特点<br>1、要求多条查询语句的查询列数必须一致<br>2、要求多条查询语句的查询的各列类型、顺序最好一致<br>3、union 去重，union all包含重复项</p>
-<h2 id="查询总结"><a href="#查询总结" class="headerlink" title="查询总结"></a>查询总结</h2><p>语法：<br>select 查询列表    ⑦<br>from 表1 别名       ①<br>连接类型 join 表2   ②<br>on 连接条件         ③<br>where 筛选          ④<br>group by 分组列表   ⑤<br>having 筛选         ⑥<br>order by排序列表    ⑧<br>limit 起始条目索引，条目数;  ⑨</p>
-<h1 id="DML语言"><a href="#DML语言" class="headerlink" title="DML语言"></a>DML语言</h1><h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p>一、方式一<br>语法：<br>insert into 表名(字段名,…) values(值,…);<br>特点：<br>1、要求值的类型和字段的类型要一致或兼容<br>2、字段的个数和顺序不一定与原始表中的字段个数和顺序一致<br>但必须保证值和字段一一对应<br>3、假如表中有可以为null的字段，注意可以通过以下两种方式插入null值<br>①字段和值都省略<br>②字段写上，值使用null<br>4、字段和值的个数必须一致<br>5、字段名可以省略，默认所有列</p>
-<p>二、方式二<br>语法：<br>insert into 表名 set 字段=值,字段=值,…;</p>
-<p>两种方式 的区别：<br>1.方式一支持一次插入多行，语法如下：<br>insert into 表名【(字段名,..)】 values(值，..),(值，…),…;<br>2.方式一支持子查询，语法如下：<br>insert into 表名<br>查询语句;</p>
-<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><p>一、修改单表的记录 ★<br>语法：update 表名 set 字段=值,字段=值 【where 筛选条件】;</p>
-<p>二、修改多表的记录【补充】<br>语法：<br>update 表1 别名<br>left|right|inner join 表2 别名<br>on 连接条件<br>set 字段=值,字段=值<br>【where 筛选条件】;</p>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>方式一：使用delete<br>一、删除单表的记录★<br>语法：delete from 表名 【where 筛选条件】【limit 条目数】<br>二、级联删除[补充]<br>语法：<br>delete 别名1,别名2 from 表1 别名<br>inner|left|right join 表2 别名<br>on 连接条件<br> 【where 筛选条件】</p>
-<p>方式二：使用truncate<br>语法：truncate table 表名</p>
+<p>语法：<br />
+select 查询列表<br />
+from 表1 别名<br />
+cross join 表2 别名;</p>
+<p>特点：<br />
+类似于笛卡尔乘积</p>
+<h2 id="子查询"><a class="markdownIt-Anchor" href="#子查询"></a> 子查询</h2>
+<p>一、含义<br />
+嵌套在其他语句内部的select语句称为子查询或内查询，<br />
+外面的语句可以是insert、update、delete、select等，一般select作为外面语句较多<br />
+外面如果为select语句，则此语句称为外查询或主查询</p>
+<p>二、分类<br />
+1、按出现位置<br />
+select后面：<br />
+仅仅支持标量子查询<br />
+from后面：<br />
+表子查询<br />
+where或having后面：<br />
+标量子查询<br />
+列子查询<br />
+行子查询<br />
+exists后面：<br />
+标量子查询<br />
+列子查询<br />
+行子查询<br />
+表子查询</p>
+<p>2、按结果集的行列<br />
+标量子查询（单行子查询）：结果集为一行一列<br />
+列子查询（多行子查询）：结果集为多行一列<br />
+行子查询：结果集为多行多列<br />
+表子查询：结果集为多行多列</p>
+<p>三、示例<br />
+where或having后面<br />
+1、标量子查询<br />
+案例：查询最低工资的员工姓名和工资<br />
+①最低工资<br />
+select min(salary) from employees</p>
+<p>②查询员工的姓名和工资，要求工资=①<br />
+select last_name,salary<br />
+from employees<br />
+where salary=(<br />
+select min(salary) from employees<br />
+);</p>
+<p>2、列子查询<br />
+案例：查询所有是领导的员工姓名<br />
+①查询所有员工的 manager_id<br />
+select manager_id<br />
+from employees</p>
+<p>②查询姓名，employee_id属于①列表的一个<br />
+select last_name<br />
+from employees<br />
+where employee_id in(<br />
+select manager_id<br />
+from employees<br />
+);</p>
+<h2 id="分页查询"><a class="markdownIt-Anchor" href="#分页查询"></a> 分页查询</h2>
+<p>一、应用场景<br />
+当要查询的条目数太多，一页显示不全<br />
+二、语法</p>
+<p>select 查询列表<br />
+from 表<br />
+limit 【offset，】size;<br />
+注意：<br />
+offset代表的是起始的条目索引，默认从0卡死<br />
+size代表的是显示的条目数</p>
+<p>公式：<br />
+假如要显示的页数为page，每一页条目数为size<br />
+select 查询列表<br />
+from 表<br />
+limit (page-1)*size,size;</p>
+<h2 id="联合查询"><a class="markdownIt-Anchor" href="#联合查询"></a> 联合查询</h2>
+<p>一、含义<br />
+union：合并、联合，将多次查询结果合并成一个结果<br />
+二、语法<br />
+查询语句1<br />
+union 【all】<br />
+查询语句2<br />
+union 【all】<br />
+…</p>
+<p>三、意义<br />
+1、将一条比较复杂的查询语句拆分成多条语句<br />
+2、适用于查询多个表的时候，查询的列基本是一致</p>
+<p>四、特点<br />
+1、要求多条查询语句的查询列数必须一致<br />
+2、要求多条查询语句的查询的各列类型、顺序最好一致<br />
+3、union 去重，union all包含重复项</p>
+<h2 id="查询总结"><a class="markdownIt-Anchor" href="#查询总结"></a> 查询总结</h2>
+<p>语法：<br />
+select 查询列表    ⑦<br />
+from 表1 别名       ①<br />
+连接类型 join 表2   ②<br />
+on 连接条件         ③<br />
+where 筛选          ④<br />
+group by 分组列表   ⑤<br />
+having 筛选         ⑥<br />
+order by排序列表    ⑧<br />
+limit 起始条目索引，条目数;  ⑨</p>
+<h1 id="dml语言"><a class="markdownIt-Anchor" href="#dml语言"></a> DML语言</h1>
+<h2 id="插入"><a class="markdownIt-Anchor" href="#插入"></a> 插入</h2>
+<p>一、方式一<br />
+语法：<br />
+insert into 表名(字段名,…) values(值,…);<br />
+特点：<br />
+1、要求值的类型和字段的类型要一致或兼容<br />
+2、字段的个数和顺序不一定与原始表中的字段个数和顺序一致<br />
+但必须保证值和字段一一对应<br />
+3、假如表中有可以为null的字段，注意可以通过以下两种方式插入null值<br />
+①字段和值都省略<br />
+②字段写上，值使用null<br />
+4、字段和值的个数必须一致<br />
+5、字段名可以省略，默认所有列</p>
+<p>二、方式二<br />
+语法：<br />
+insert into 表名 set 字段=值,字段=值,…;</p>
+<p>两种方式 的区别：<br />
+1.方式一支持一次插入多行，语法如下：<br />
+insert into 表名【(字段名,…)】 values(值，…),(值，…),…;<br />
+2.方式一支持子查询，语法如下：<br />
+insert into 表名<br />
+查询语句;</p>
+<h2 id="修改"><a class="markdownIt-Anchor" href="#修改"></a> 修改</h2>
+<p>一、修改单表的记录 ★<br />
+语法：update 表名 set 字段=值,字段=值 【where 筛选条件】;</p>
+<p>二、修改多表的记录【补充】<br />
+语法：<br />
+update 表1 别名<br />
+left|right|inner join 表2 别名<br />
+on 连接条件<br />
+set 字段=值,字段=值<br />
+【where 筛选条件】;</p>
+<h2 id="删除"><a class="markdownIt-Anchor" href="#删除"></a> 删除</h2>
+<p>方式一：使用delete<br />
+一、删除单表的记录★<br />
+语法：delete from 表名 【where 筛选条件】【limit 条目数】<br />
+二、级联删除[补充]<br />
+语法：<br />
+delete 别名1,别名2 from 表1 别名<br />
+inner|left|right join 表2 别名<br />
+on 连接条件<br />
+【where 筛选条件】</p>
+<p>方式二：使用truncate<br />
+语法：truncate table 表名</p>
 <p>两种方式的区别【面试题】★</p>
-<p>1.truncate删除后，如果再插入，标识列从1开始<br>  delete删除后，如果再插入，标识列从断点开始<br>2.delete可以添加筛选条件<br> truncate不可以添加筛选条件<br>3.truncate效率较高<br>4.truncate没有返回值<br>delete可以返回受影响的行数<br>5.truncate不可以回滚<br>delete可以回滚</p>
-<h1 id="DDL语言"><a href="#DDL语言" class="headerlink" title="DDL语言"></a>DDL语言</h1><h2 id="库的管理"><a href="#库的管理" class="headerlink" title="库的管理"></a>库的管理</h2><p>一、创建库<br>create database 【if not exists】 库名【 character set 字符集名】;</p>
-<p>二、修改库<br>alter database 库名 character set 字符集名;<br>三、删除库<br>drop database 【if exists】 库名;</p>
-<h2 id="表的管理"><a href="#表的管理" class="headerlink" title="表的管理"></a>表的管理</h2><p>一、创建表 ★<br>create table 【if not exists】 表名(<br>    字段名 字段类型 【约束】,<br>    字段名 字段类型 【约束】,<br>    。。。<br>    字段名 字段类型 【约束】 </p>
+<p>1.truncate删除后，如果再插入，标识列从1开始<br />
+delete删除后，如果再插入，标识列从断点开始<br />
+2.delete可以添加筛选条件<br />
+truncate不可以添加筛选条件<br />
+3.truncate效率较高<br />
+4.truncate没有返回值<br />
+delete可以返回受影响的行数<br />
+5.truncate不可以回滚<br />
+delete可以回滚</p>
+<h1 id="ddl语言"><a class="markdownIt-Anchor" href="#ddl语言"></a> DDL语言</h1>
+<h2 id="库的管理"><a class="markdownIt-Anchor" href="#库的管理"></a> 库的管理</h2>
+<p>一、创建库<br />
+create database 【if not exists】 库名【 character set 字符集名】;</p>
+<p>二、修改库<br />
+alter database 库名 character set 字符集名;<br />
+三、删除库<br />
+drop database 【if exists】 库名;</p>
+<h2 id="表的管理"><a class="markdownIt-Anchor" href="#表的管理"></a> 表的管理</h2>
+<p>一、创建表 ★<br />
+create table 【if not exists】 表名(<br />
+字段名 字段类型 【约束】,<br />
+字段名 字段类型 【约束】,<br />
+。。。<br />
+字段名 字段类型 【约束】</p>
 <p>)</p>
 <p>二、修改表</p>
-<p>1.添加列<br>alter table 表名 add column 列名 类型 【first|after 字段名】;<br>2.修改列的类型或约束<br>alter table 表名 modify column 列名 新类型 【新约束】;<br>3.修改列名<br>alter table 表名 change column 旧列名 新列名 类型;<br>4 .删除列<br>alter table 表名 drop column 列名;<br>5.修改表名<br>alter table 表名 rename 【to】 新表名;</p>
-<p>三、删除表<br>drop table【if exists】 表名;</p>
-<p>四、复制表<br>1、复制表的结构<br>create table 表名 like 旧表;<br>2、复制表的结构+数据<br>create table 表名<br>select 查询列表 from 旧表【where 筛选】;</p>
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>一、数值型<br>1、整型<br>tinyint、smallint、mediumint、int/integer、bigint<br>1         2        3          4            8</p>
-<p>特点：<br>①都可以设置无符号和有符号，默认有符号，通过unsigned设置无符号<br>②如果超出了范围，会报out or range异常，插入临界值<br>③长度可以不指定，默认会有一个长度<br>长度代表显示的最大宽度，如果不够则左边用0填充，但需要搭配zerofill，并且默认变为无符号整型</p>
-<p>2、浮点型<br>定点数：decimal(M,D)<br>浮点数:<br>    float(M,D)   4<br>    double(M,D)  8</p>
-<p>特点：<br>①M代表整数部位+小数部位的个数，D代表小数部位<br>②如果超出范围，则报out or range异常，并且插入临界值<br>③M和D都可以省略，但对于定点数，M默认为10，D默认为0<br>④如果精度要求较高，则优先考虑使用定点数</p>
-<p>二、字符型<br>char、varchar、binary、varbinary、enum、set、text、blob</p>
-<p>char：固定长度的字符，写法为char(M)，最大长度不能超过M，其中M可以省略，默认为1<br>varchar：可变长度的字符，写法为varchar(M)，最大长度不能超过M，其中M不可以省略</p>
-<p>三、日期型<br>year年<br>date日期<br>time时间<br>datetime 日期+时间          8<br>timestamp 日期+时间         4   比较容易受时区、语法模式、版本的影响，更能反映当前时区的真实时间</p>
-<h2 id="常见的约束"><a href="#常见的约束" class="headerlink" title="常见的约束"></a>常见的约束</h2><p>一、常见的约束<br>NOT NULL：非空，该字段的值必填<br>UNIQUE：唯一，该字段的值不可重复<br>DEFAULT：默认，该字段的值不用手动插入有默认值<br>CHECK：检查，mysql不支持<br>PRIMARY KEY：主键，该字段的值不可重复并且非空  unique+not null<br>FOREIGN KEY：外键，该字段的值引用了另外的表的字段</p>
-<p>主键和唯一<br>1、区别：<br>①、一个表至多有一个主键，但可以有多个唯一<br>②、主键不允许为空，唯一可以为空<br>2、相同点<br>都具有唯一性<br>都支持组合键，但不推荐<br>外键：<br>1、用于限制两个表的关系，从表的字段值引用了主表的某字段值<br>2、外键列和主表的被引用列要求类型一致，意义一样，名称无要求<br>3、主表的被引用列要求是一个key（一般就是主键）<br>4、插入数据，先插入主表<br>删除数据，先删除从表<br>可以通过以下两种方式来删除主表的记录<br>#方式一：级联删除<br>ALTER TABLE stuinfo ADD CONSTRAINT fk_stu_major FOREIGN KEY(majorid) REFERENCES major(id) ON DELETE CASCADE;</p>
-<p>#方式二：级联置空<br>ALTER TABLE stuinfo ADD CONSTRAINT fk_stu_major FOREIGN KEY(majorid) REFERENCES major(id) ON DELETE SET NULL;</p>
-<p>二、创建表时添加约束<br>create table 表名(<br>    字段名 字段类型 not null,#非空<br>    字段名 字段类型 primary key,#主键<br>    字段名 字段类型 unique,#唯一<br>    字段名 字段类型 default 值,#默认<br>    constraint 约束名 foreign key(字段名) references 主表（被引用列）</p>
-<p>)<br>注意：<br>            支持类型        可以起约束名<br>列级约束        除了外键        不可以<br>表级约束        除了非空和默认    可以，但对主键无效</p>
+<p>1.添加列<br />
+alter table 表名 add column 列名 类型 【first|after 字段名】;<br />
+2.修改列的类型或约束<br />
+alter table 表名 modify column 列名 新类型 【新约束】;<br />
+3.修改列名<br />
+alter table 表名 change column 旧列名 新列名 类型;<br />
+4 .删除列<br />
+alter table 表名 drop column 列名;<br />
+5.修改表名<br />
+alter table 表名 rename 【to】 新表名;</p>
+<p>三、删除表<br />
+drop table【if exists】 表名;</p>
+<p>四、复制表<br />
+1、复制表的结构<br />
+create table 表名 like 旧表;<br />
+2、复制表的结构+数据<br />
+create table 表名<br />
+select 查询列表 from 旧表【where 筛选】;</p>
+<h2 id="数据类型"><a class="markdownIt-Anchor" href="#数据类型"></a> 数据类型</h2>
+<p>一、数值型<br />
+1、整型<br />
+tinyint、smallint、mediumint、int/integer、bigint<br />
+1         2        3          4            8</p>
+<p>特点：<br />
+①都可以设置无符号和有符号，默认有符号，通过unsigned设置无符号<br />
+②如果超出了范围，会报out or range异常，插入临界值<br />
+③长度可以不指定，默认会有一个长度<br />
+长度代表显示的最大宽度，如果不够则左边用0填充，但需要搭配zerofill，并且默认变为无符号整型</p>
+<p>2、浮点型<br />
+定点数：decimal(M,D)<br />
+浮点数:<br />
+float(M,D)   4<br />
+double(M,D)  8</p>
+<p>特点：<br />
+①M代表整数部位+小数部位的个数，D代表小数部位<br />
+②如果超出范围，则报out or range异常，并且插入临界值<br />
+③M和D都可以省略，但对于定点数，M默认为10，D默认为0<br />
+④如果精度要求较高，则优先考虑使用定点数</p>
+<p>二、字符型<br />
+char、varchar、binary、varbinary、enum、set、text、blob</p>
+<p>char：固定长度的字符，写法为char(M)，最大长度不能超过M，其中M可以省略，默认为1<br />
+varchar：可变长度的字符，写法为varchar(M)，最大长度不能超过M，其中M不可以省略</p>
+<p>三、日期型<br />
+year年<br />
+date日期<br />
+time时间<br />
+datetime 日期+时间          8<br />
+timestamp 日期+时间         4   比较容易受时区、语法模式、版本的影响，更能反映当前时区的真实时间</p>
+<h2 id="常见的约束"><a class="markdownIt-Anchor" href="#常见的约束"></a> 常见的约束</h2>
+<p>一、常见的约束<br />
+NOT NULL：非空，该字段的值必填<br />
+UNIQUE：唯一，该字段的值不可重复<br />
+DEFAULT：默认，该字段的值不用手动插入有默认值<br />
+CHECK：检查，mysql不支持<br />
+PRIMARY KEY：主键，该字段的值不可重复并且非空  unique+not null<br />
+FOREIGN KEY：外键，该字段的值引用了另外的表的字段</p>
+<p>主键和唯一<br />
+1、区别：<br />
+①、一个表至多有一个主键，但可以有多个唯一<br />
+②、主键不允许为空，唯一可以为空<br />
+2、相同点<br />
+都具有唯一性<br />
+都支持组合键，但不推荐<br />
+外键：<br />
+1、用于限制两个表的关系，从表的字段值引用了主表的某字段值<br />
+2、外键列和主表的被引用列要求类型一致，意义一样，名称无要求<br />
+3、主表的被引用列要求是一个key（一般就是主键）<br />
+4、插入数据，先插入主表<br />
+删除数据，先删除从表<br />
+可以通过以下两种方式来删除主表的记录<br />
+#方式一：级联删除<br />
+ALTER TABLE stuinfo ADD CONSTRAINT fk_stu_major FOREIGN KEY(majorid) REFERENCES major(id) ON DELETE CASCADE;</p>
+<p>#方式二：级联置空<br />
+ALTER TABLE stuinfo ADD CONSTRAINT fk_stu_major FOREIGN KEY(majorid) REFERENCES major(id) ON DELETE SET NULL;</p>
+<p>二、创建表时添加约束<br />
+create table 表名(<br />
+字段名 字段类型 not null,#非空<br />
+字段名 字段类型 primary key,#主键<br />
+字段名 字段类型 unique,#唯一<br />
+字段名 字段类型 default 值,#默认<br />
+constraint 约束名 foreign key(字段名) references 主表（被引用列）</p>
+<p>)<br />
+注意：<br />
+支持类型		可以起约束名			<br />
+列级约束		除了外键		不可以<br />
+表级约束		除了非空和默认	可以，但对主键无效</p>
 <p>列级约束可以在一个字段上追加多个，中间用空格隔开，没有顺序要求</p>
-<p>三、修改表时添加或删除约束<br>1、非空<br>添加非空<br>alter table 表名 modify column 字段名 字段类型 not null;<br>删除非空<br>alter table 表名 modify column 字段名 字段类型 ;</p>
-<p>2、默认<br>添加默认<br>alter table 表名 modify column 字段名 字段类型 default 值;<br>删除默认<br>alter table 表名 modify column 字段名 字段类型 ;<br>3、主键<br>添加主键<br>alter table 表名 add【 constraint 约束名】 primary key(字段名);<br>删除主键<br>alter table 表名 drop primary key;</p>
-<p>4、唯一<br>添加唯一<br>alter table 表名 add【 constraint 约束名】 unique(字段名);<br>删除唯一<br>alter table 表名 drop index 索引名;<br>5、外键<br>添加外键<br>alter table 表名 add【 constraint 约束名】 foreign key(字段名) references 主表（被引用列）;<br>删除外键<br>alter table 表名 drop foreign key 约束名;</p>
-<p>四、自增长列<br>特点：<br>1、不用手动插入值，可以自动提供序列值，默认从1开始，步长为1<br>auto_increment_increment<br>如果要更改起始值：手动插入值<br>如果要更改步长：更改系统变量<br>set auto_increment_increment=值;<br>2、一个表至多有一个自增长列<br>3、自增长列只能支持数值型<br>4、自增长列必须为一个key</p>
-<p>一、创建表时设置自增长列<br>create table 表(<br>    字段名 字段类型 约束 auto_increment<br>)<br>二、修改表时设置自增长列<br>alter table 表 modify column 字段名 字段类型 约束 auto_increment<br>三、删除自增长列<br>alter table 表 modify column 字段名 字段类型 约束 </p>
-<h1 id="TCL语言"><a href="#TCL语言" class="headerlink" title="TCL语言"></a>TCL语言</h1><p>一、含义<br>事务：一条或多条sql语句组成一个执行单位，一组sql语句要么都执行要么都不执行<br>二、特点（ACID）<br>A 原子性：一个事务是不可再分割的整体，要么都执行要么都不执行<br>C 一致性：一个事务可以使数据从一个一致状态切换到另外一个一致的状态<br>I 隔离性：一个事务不受其他事务的干扰，多个事务互相隔离的<br>D 持久性：一个事务一旦提交了，则永久的持久化到本地</p>
-<p>三、事务的使用步骤 ★<br>了解：<br>隐式（自动）事务：没有明显的开启和结束，本身就是一条事务可以自动提交，比如insert、update、delete<br>显式事务：具有明显的开启和结束</p>
-<p>使用显式事务：<br>①开启事务<br>set autocommit=0;<br>start transaction;#可以省略</p>
-<p>②编写一组逻辑sql语句<br>注意：sql语句支持的是insert、update、delete</p>
-<p>设置回滚点：<br>savepoint 回滚点名;</p>
-<p>③结束事务<br>提交：commit;<br>回滚：rollback;<br>回滚到指定的地方：rollback to 回滚点名;<br>四、并发事务<br>1、事务的并发问题是如何发生的？<br>多个事务 同时 操作 同一个数据库的相同数据时<br>2、并发问题都有哪些？<br>脏读：一个事务读取了其他事务还没有提交的数据，读到的是其他事务“更新”的数据<br>不可重复读：一个事务多次读取，结果不一样<br>幻读：一个事务读取了其他事务还没有提交的数据，只是读到的是 其他事务“插入”的数据<br>3、如何解决并发问题<br>通过设置隔离级别来解决并发问题<br>4、隔离级别<br>                    脏读        不可重复读        幻读<br>read uncommitted:读未提交     ×                ×              ×<br>read committed：读已提交      √                ×              ×<br>repeatable read：可重复读     √                √              ×<br>serializable：串行化          √                √              √</p>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>一、含义<br>mysql5.1版本出现的新特性，本身是一个虚拟表，它的数据来自于表，通过执行时动态生成。<br>好处：<br>1、简化sql语句<br>2、提高了sql的重用性<br>3、保护基表的数据，提高了安全性<br>二、创建<br>create view 视图名<br>as<br>查询语句;</p>
-<p>三、修改<br>方式一：<br>create or replace view 视图名<br>as<br>查询语句;<br>方式二：<br>alter view 视图名<br>as<br>查询语句</p>
-<p>四、删除<br>drop view 视图1，视图2,…;<br>五、查看<br>desc 视图名;<br>show create view 视图名;<br>六、使用<br>1.插入<br>insert<br>2.修改<br>update<br>3.删除<br>delete<br>4.查看<br>select<br>注意：视图一般用于查询的，而不是更新的，所以具备以下特点的视图都不允许更新<br>①包含分组函数、group by、distinct、having、union、<br>②join<br>③常量视图<br>④where后的子查询用到了from中的表<br>⑤用到了不可更新的视图</p>
-<p>七、视图和表的对比<br>        关键字        是否占用物理空间            使用<br>视图    view        占用较小，只保存sql逻辑        一般用于查询<br>表        table        保存实际的数据            增删改查</p>
-<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>分类<br>一、系统变量<br>说明：变量由系统提供的，不用自定义<br>语法：<br>①查看系统变量<br>show 【global|session 】variables like ‘’; 如果没有显式声明global还是session，则默认是session<br>②查看指定的系统变量的值<br>select @@【global|session】.变量名; 如果没有显式声明global还是session，则默认是session<br>③为系统变量赋值<br>方式一：<br>set 【global|session 】 变量名=值; 如果没有显式声明global还是session，则默认是session<br>方式二：<br>set @@global.变量名=值;<br>set @@变量名=值；</p>
-<p>1、全局变量<br>服务器层面上的，必须拥有super权限才能为系统变量赋值，作用域为整个服务器，也就是针对于所有连接（会话）有效</p>
-<p>2、会话变量<br>服务器为每一个连接的客户端都提供了系统变量，作用域为当前的连接（会话）</p>
-<p>二、自定义变量<br>说明：<br>1、用户变量<br>作用域：针对于当前连接（会话）生效<br>位置：begin end里面，也可以放在外面<br>使用：</p>
-<p>①声明并赋值：<br>set @变量名=值;或<br>set @变量名:=值;或<br>select @变量名:=值;</p>
-<p>②更新值<br>方式一：<br>    set @变量名=值;或<br>    set @变量名:=值;或<br>    select @变量名:=值;<br>方式二：<br>    select xx into @变量名 from 表;</p>
-<p>③使用<br>select @变量名;</p>
-<p>2、局部变量<br>作用域：仅仅在定义它的begin end中有效<br>位置：只能放在begin end中，而且只能放在第一句<br>使用：<br>①声明<br>declare 变量名 类型 【default 值】;<br>②赋值或更新<br>方式一：<br>    set 变量名=值;或<br>    set 变量名:=值;或<br>    select @变量名:=值;<br>方式二：<br>    select xx into 变量名 from 表;<br>③使用<br>select 变量名;</p>
-<h2 id="存储过程和函数"><a href="#存储过程和函数" class="headerlink" title="存储过程和函数"></a>存储过程和函数</h2><p>说明：都类似于java中的方法，将一组完成特定功能的逻辑语句包装起来，对外暴露名字<br>好处：<br>1、提高重用性<br>2、sql语句简单<br>3、减少了和数据库服务器连接的次数，提高了效率</p>
-<h3 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h3><p>一、创建 ★<br>create procedure 存储过程名(参数模式 参数名 参数类型)<br>begin<br>        存储过程体<br>end<br>注意：<br>1.参数模式：in、out、inout，其中in可以省略<br>2.存储过程体的每一条sql语句都需要用分号结尾</p>
-<p>二、调用<br>call 存储过程名(实参列表)<br>举例：<br>调用in模式的参数：call sp1（‘值’）;<br>调用out模式的参数：set @name; call sp1(@name);select @name;<br>调用inout模式的参数：set @name=值; call sp1(@name); select @name;<br>三、查看<br>show create procedure 存储过程名;<br>四、删除<br>drop procedure 存储过程名;</p>
-<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>一、创建<br>create function 函数名(参数名 参数类型) returns  返回类型<br>begin<br>    函数体<br>end</p>
-<p>注意：函数体中肯定需要有return语句<br>二、调用<br>select 函数名(实参列表);<br>三、查看<br>show create function 函数名;<br>四、删除<br>drop function 函数名；</p>
-<h2 id="流程控制结构"><a href="#流程控制结构" class="headerlink" title="流程控制结构"></a>流程控制结构</h2><p>说明：<br>顺序结构：程序从上往下依次执行<br>分支结构：程序按条件进行选择执行，从两条或多条路径中选择一条执行<br>循环结构：程序满足一定条件下，重复执行一组语句</p>
-<h3 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h3><p>特点：<br>1、if函数<br>功能：实现简单双分支<br>语法：<br>if(条件，值1，值2)<br>位置：<br>可以作为表达式放在任何位置<br>2、case结构<br>功能：实现多分支<br>语法1：<br>case 表达式或字段<br>when 值1 then 语句1;<br>when 值2 then 语句2；<br>..<br>else 语句n;<br>end [case];</p>
-<p>语法2：<br>case<br>when 条件1 then 语句1;<br>when 条件2 then 语句2；<br>..<br>else 语句n;<br>end [case];</p>
-<p>位置：<br>可以放在任何位置，<br>如果放在begin end 外面，作为表达式结合着其他语句使用<br>如果放在begin end 里面，一般作为独立的语句使用<br>3、if结构<br>功能：实现多分支<br>语法：<br>if 条件1 then 语句1;<br>elseif 条件2 then 语句2;<br>…<br>else 语句n;<br>end if;<br>位置：<br>只能放在begin end中</p>
-<h3 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h3><p>位置：<br>只能放在begin end中</p>
+<p>三、修改表时添加或删除约束<br />
+1、非空<br />
+添加非空<br />
+alter table 表名 modify column 字段名 字段类型 not null;<br />
+删除非空<br />
+alter table 表名 modify column 字段名 字段类型 ;</p>
+<p>2、默认<br />
+添加默认<br />
+alter table 表名 modify column 字段名 字段类型 default 值;<br />
+删除默认<br />
+alter table 表名 modify column 字段名 字段类型 ;<br />
+3、主键<br />
+添加主键<br />
+alter table 表名 add【 constraint 约束名】 primary key(字段名);<br />
+删除主键<br />
+alter table 表名 drop primary key;</p>
+<p>4、唯一<br />
+添加唯一<br />
+alter table 表名 add【 constraint 约束名】 unique(字段名);<br />
+删除唯一<br />
+alter table 表名 drop index 索引名;<br />
+5、外键<br />
+添加外键<br />
+alter table 表名 add【 constraint 约束名】 foreign key(字段名) references 主表（被引用列）;<br />
+删除外键<br />
+alter table 表名 drop foreign key 约束名;</p>
+<p>四、自增长列<br />
+特点：<br />
+1、不用手动插入值，可以自动提供序列值，默认从1开始，步长为1<br />
+auto_increment_increment<br />
+如果要更改起始值：手动插入值<br />
+如果要更改步长：更改系统变量<br />
+set auto_increment_increment=值;<br />
+2、一个表至多有一个自增长列<br />
+3、自增长列只能支持数值型<br />
+4、自增长列必须为一个key</p>
+<p>一、创建表时设置自增长列<br />
+create table 表(<br />
+字段名 字段类型 约束 auto_increment<br />
+)<br />
+二、修改表时设置自增长列<br />
+alter table 表 modify column 字段名 字段类型 约束 auto_increment<br />
+三、删除自增长列<br />
+alter table 表 modify column 字段名 字段类型 约束</p>
+<h1 id="tcl语言"><a class="markdownIt-Anchor" href="#tcl语言"></a> TCL语言</h1>
+<p>一、含义<br />
+事务：一条或多条sql语句组成一个执行单位，一组sql语句要么都执行要么都不执行<br />
+二、特点（ACID）<br />
+A 原子性：一个事务是不可再分割的整体，要么都执行要么都不执行<br />
+C 一致性：一个事务可以使数据从一个一致状态切换到另外一个一致的状态<br />
+I 隔离性：一个事务不受其他事务的干扰，多个事务互相隔离的<br />
+D 持久性：一个事务一旦提交了，则永久的持久化到本地</p>
+<p>三、事务的使用步骤 ★<br />
+了解：<br />
+隐式（自动）事务：没有明显的开启和结束，本身就是一条事务可以自动提交，比如insert、update、delete<br />
+显式事务：具有明显的开启和结束</p>
+<p>使用显式事务：<br />
+①开启事务<br />
+set autocommit=0;<br />
+start transaction;#可以省略</p>
+<p>②编写一组逻辑sql语句<br />
+注意：sql语句支持的是insert、update、delete</p>
+<p>设置回滚点：<br />
+savepoint 回滚点名;</p>
+<p>③结束事务<br />
+提交：commit;<br />
+回滚：rollback;<br />
+回滚到指定的地方：rollback to 回滚点名;<br />
+四、并发事务<br />
+1、事务的并发问题是如何发生的？<br />
+多个事务 同时 操作 同一个数据库的相同数据时<br />
+2、并发问题都有哪些？<br />
+脏读：一个事务读取了其他事务还没有提交的数据，读到的是其他事务“更新”的数据<br />
+不可重复读：一个事务多次读取，结果不一样<br />
+幻读：一个事务读取了其他事务还没有提交的数据，只是读到的是 其他事务“插入”的数据<br />
+3、如何解决并发问题<br />
+通过设置隔离级别来解决并发问题<br />
+4、隔离级别<br />
+脏读		不可重复读		幻读<br />
+read uncommitted:读未提交     ×                ×              ×<br />
+read committed：读已提交      √                ×              ×<br />
+repeatable read：可重复读     √                √              ×<br />
+serializable：串行化          √                √              √</p>
+<h1 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h1>
+<h2 id="视图"><a class="markdownIt-Anchor" href="#视图"></a> 视图</h2>
+<p>一、含义<br />
+mysql5.1版本出现的新特性，本身是一个虚拟表，它的数据来自于表，通过执行时动态生成。<br />
+好处：<br />
+1、简化sql语句<br />
+2、提高了sql的重用性<br />
+3、保护基表的数据，提高了安全性<br />
+二、创建<br />
+create view 视图名<br />
+as<br />
+查询语句;</p>
+<p>三、修改<br />
+方式一：<br />
+create or replace view 视图名<br />
+as<br />
+查询语句;<br />
+方式二：<br />
+alter view 视图名<br />
+as<br />
+查询语句</p>
+<p>四、删除<br />
+drop view 视图1，视图2,…;<br />
+五、查看<br />
+desc 视图名;<br />
+show create view 视图名;<br />
+六、使用<br />
+1.插入<br />
+insert<br />
+2.修改<br />
+update<br />
+3.删除<br />
+delete<br />
+4.查看<br />
+select<br />
+注意：视图一般用于查询的，而不是更新的，所以具备以下特点的视图都不允许更新<br />
+①包含分组函数、group by、distinct、having、union、<br />
+②join<br />
+③常量视图<br />
+④where后的子查询用到了from中的表<br />
+⑤用到了不可更新的视图</p>
+<p>七、视图和表的对比<br />
+关键字		是否占用物理空间			使用<br />
+视图	view		占用较小，只保存sql逻辑		一般用于查询<br />
+表		table		保存实际的数据			增删改查</p>
+<h2 id="变量"><a class="markdownIt-Anchor" href="#变量"></a> 变量</h2>
+<p>分类<br />
+一、系统变量<br />
+说明：变量由系统提供的，不用自定义<br />
+语法：<br />
+①查看系统变量<br />
+show 【global|session 】variables like ‘’; 如果没有显式声明global还是session，则默认是session<br />
+②查看指定的系统变量的值<br />
+select @@【global|session】.变量名; 如果没有显式声明global还是session，则默认是session<br />
+③为系统变量赋值<br />
+方式一：<br />
+set 【global|session 】 变量名=值; 如果没有显式声明global还是session，则默认是session<br />
+方式二：<br />
+set @@global.变量名=值;<br />
+set @@变量名=值；</p>
+<p>1、全局变量<br />
+服务器层面上的，必须拥有super权限才能为系统变量赋值，作用域为整个服务器，也就是针对于所有连接（会话）有效</p>
+<p>2、会话变量<br />
+服务器为每一个连接的客户端都提供了系统变量，作用域为当前的连接（会话）</p>
+<p>二、自定义变量<br />
+说明：<br />
+1、用户变量<br />
+作用域：针对于当前连接（会话）生效<br />
+位置：begin end里面，也可以放在外面<br />
+使用：</p>
+<p>①声明并赋值：<br />
+set @变量名=值;或<br />
+set @变量名:=值;或<br />
+select @变量名:=值;</p>
+<p>②更新值<br />
+方式一：<br />
+set @变量名=值;或<br />
+set @变量名:=值;或<br />
+select @变量名:=值;<br />
+方式二：<br />
+select xx into @变量名 from 表;</p>
+<p>③使用<br />
+select @变量名;</p>
+<p>2、局部变量<br />
+作用域：仅仅在定义它的begin end中有效<br />
+位置：只能放在begin end中，而且只能放在第一句<br />
+使用：<br />
+①声明<br />
+declare 变量名 类型 【default 值】;<br />
+②赋值或更新<br />
+方式一：<br />
+set 变量名=值;或<br />
+set 变量名:=值;或<br />
+select @变量名:=值;<br />
+方式二：<br />
+select xx into 变量名 from 表;<br />
+③使用<br />
+select 变量名;</p>
+<h2 id="存储过程和函数"><a class="markdownIt-Anchor" href="#存储过程和函数"></a> 存储过程和函数</h2>
+<p>说明：都类似于java中的方法，将一组完成特定功能的逻辑语句包装起来，对外暴露名字<br />
+好处：<br />
+1、提高重用性<br />
+2、sql语句简单<br />
+3、减少了和数据库服务器连接的次数，提高了效率</p>
+<h3 id="存储过程"><a class="markdownIt-Anchor" href="#存储过程"></a> 存储过程</h3>
+<p>一、创建 ★<br />
+create procedure 存储过程名(参数模式 参数名 参数类型)<br />
+begin<br />
+存储过程体<br />
+end<br />
+注意：<br />
+1.参数模式：in、out、inout，其中in可以省略<br />
+2.存储过程体的每一条sql语句都需要用分号结尾</p>
+<p>二、调用<br />
+call 存储过程名(实参列表)<br />
+举例：<br />
+调用in模式的参数：call sp1（‘值’）;<br />
+调用out模式的参数：set @name; call sp1(@name);select @name;<br />
+调用inout模式的参数：set @name=值; call sp1(@name); select @name;<br />
+三、查看<br />
+show create procedure 存储过程名;<br />
+四、删除<br />
+drop procedure 存储过程名;</p>
+<h3 id="函数"><a class="markdownIt-Anchor" href="#函数"></a> 函数</h3>
+<p>一、创建<br />
+create function 函数名(参数名 参数类型) returns  返回类型<br />
+begin<br />
+函数体<br />
+end</p>
+<p>注意：函数体中肯定需要有return语句<br />
+二、调用<br />
+select 函数名(实参列表);<br />
+三、查看<br />
+show create function 函数名;<br />
+四、删除<br />
+drop function 函数名；</p>
+<h2 id="流程控制结构"><a class="markdownIt-Anchor" href="#流程控制结构"></a> 流程控制结构</h2>
+<p>说明：<br />
+顺序结构：程序从上往下依次执行<br />
+分支结构：程序按条件进行选择执行，从两条或多条路径中选择一条执行<br />
+循环结构：程序满足一定条件下，重复执行一组语句</p>
+<h3 id="分支结构"><a class="markdownIt-Anchor" href="#分支结构"></a> 分支结构</h3>
+<p>特点：<br />
+1、if函数<br />
+功能：实现简单双分支<br />
+语法：<br />
+if(条件，值1，值2)<br />
+位置：<br />
+可以作为表达式放在任何位置<br />
+2、case结构<br />
+功能：实现多分支<br />
+语法1：<br />
+case 表达式或字段<br />
+when 值1 then 语句1;<br />
+when 值2 then 语句2；<br />
+…<br />
+else 语句n;<br />
+end [case];</p>
+<p>语法2：<br />
+case<br />
+when 条件1 then 语句1;<br />
+when 条件2 then 语句2；<br />
+…<br />
+else 语句n;<br />
+end [case];</p>
+<p>位置：<br />
+可以放在任何位置，<br />
+如果放在begin end 外面，作为表达式结合着其他语句使用<br />
+如果放在begin end 里面，一般作为独立的语句使用<br />
+3、if结构<br />
+功能：实现多分支<br />
+语法：<br />
+if 条件1 then 语句1;<br />
+elseif 条件2 then 语句2;<br />
+…<br />
+else 语句n;<br />
+end if;<br />
+位置：<br />
+只能放在begin end中</p>
+<h3 id="循环结构"><a class="markdownIt-Anchor" href="#循环结构"></a> 循环结构</h3>
+<p>位置：<br />
+只能放在begin end中</p>
 <p>特点：都能实现循环结构</p>
 <p>对比：</p>
-<p>①这三种循环都可以省略名称，但如果循环中添加了循环控制语句（leave或iterate）则必须添加名称<br>②<br>loop 一般用于实现简单的死循环<br>while 先判断后执行<br>repeat 先执行后判断，无条件至少执行一次</p>
-<p>1、while<br>语法：<br>【名称:】while 循环条件 do<br>        循环体<br>end while 【名称】;<br>2、loop<br>语法：<br>【名称：】loop<br>        循环体<br>end loop 【名称】;</p>
-<p>3、repeat<br>语法：<br>【名称:】repeat<br>        循环体<br>until 结束条件<br>end repeat 【名称】;</p>
-<p>二、循环控制语句<br>leave：类似于break，用于跳出所在的循环<br>iterate：类似于continue，用于结束本次循环，继续下一次</p>
+<p>①这三种循环都可以省略名称，但如果循环中添加了循环控制语句（leave或iterate）则必须添加名称<br />
+②<br />
+loop 一般用于实现简单的死循环<br />
+while 先判断后执行<br />
+repeat 先执行后判断，无条件至少执行一次</p>
+<p>1、while<br />
+语法：<br />
+【名称:】while 循环条件 do<br />
+循环体<br />
+end while 【名称】;<br />
+2、loop<br />
+语法：<br />
+【名称：】loop<br />
+循环体<br />
+end loop 【名称】;</p>
+<p>3、repeat<br />
+语法：<br />
+【名称:】repeat<br />
+循环体<br />
+until 结束条件<br />
+end repeat 【名称】;</p>
+<p>二、循环控制语句<br />
+leave：类似于break，用于跳出所在的循环<br />
+iterate：类似于continue，用于结束本次循环，继续下一次</p>
 
       
       <!-- reward -->
@@ -338,47 +1043,43 @@ sql99【推荐使用】
 <img src="/DB3_img/3.png" style="zoom:80%">
 <img src="/DB3_img/4.png" style="zoom:80%">
 <img src="/DB3_img/5.png" style="zoom:80%">
-
-<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><h2 id="索引分类"><a href="#索引分类" class="headerlink" title="索引分类"></a>索引分类</h2><ol>
-<li><p>普通索引：索引表的Search-key项中的<strong>每一索引值对应全部取该值的基本表中的记录</strong>。普通索引通过索引<br>表的指针项指向一个单链表来实现，该链表的每个结点的数<br>据项指向一条物理记录。</p>
+<h1 id="索引"><a class="markdownIt-Anchor" href="#索引"></a> 索引</h1>
+<h2 id="索引分类"><a class="markdownIt-Anchor" href="#索引分类"></a> 索引分类</h2>
+<ol>
+<li>
+<p>普通索引：索引表的Search-key项中的<strong>每一索引值对应全部取该值的基本表中的记录</strong>。普通索引通过索引<br />
+表的指针项指向一个单链表来实现，该链表的每个结点的数<br />
+据项指向一条物理记录。</p>
 </li>
-<li><p>单一索引：<strong>每一个索引值只对应唯一的数据记录</strong>。当建立单一索引后，索引项不可以再插入已有值，但可<br>以插入多个空值，这等同于在建表时对索引列增加一个<br>UNIQUE约束；同样，当建立单一索引时，如果待索引项存<br>在相同值则不能建立。</p>
+<li>
+<p>单一索引：<strong>每一个索引值只对应唯一的数据记录</strong>。当建立单一索引后，索引项不可以再插入已有值，但可<br />
+以插入多个空值，这等同于在建表时对索引列增加一个<br />
+UNIQUE约束；同样，当建立单一索引时，如果待索引项存<br />
+在相同值则不能建立。</p>
 </li>
-<li><p>聚簇索引：<strong>索引项顺序与表中数据记录的物理顺序一致。</strong>即基本表是按照索引表的Search-key项的排列次序<br>组织存储的，因此，一个基本表只能建立一个聚簇索引。<br>注：聚簇索引适应于很少对基本表进行增删操作和对变长列<br>进行修改操作的情况(?)。</p>
+<li>
+<p>聚簇索引：**索引项顺序与表中数据记录的物理顺序一致。**即基本表是按照索引表的Search-key项的排列次序<br />
+组织存储的，因此，一个基本表只能建立一个聚簇索引。<br />
+注：聚簇索引适应于很少对基本表进行增删操作和对变长列<br />
+进行修改操作的情况(?)。</p>
 </li>
 </ol>
 <img src="/DB3_img/6.png" style="zoom:80%">
-
 <img src="/DB3_img/7.png" style="zoom:80%">
-
 <img src="/DB3_img/8.png" style="zoom:80%">
-
 <img src="/DB3_img/9.png" style="zoom:80%">
-
 <img src="/DB3_img/10.png" style="zoom:80%">
-
 <img src="/DB3_img/11.png" style="zoom:80%">
-
 <img src="/DB3_img/12.png" style="zoom:80%">
-
 <img src="/DB3_img/13.png" style="zoom:80%">
-
 <img src="/DB3_img/14.png" style="zoom:80%">
-
 <img src="/DB3_img/15.png" style="zoom:80%">
-
 <img src="/DB3_img/16.png" style="zoom:80%">
-
 <img src="/DB3_img/17.png" style="zoom:80%">
-
 <img src="/DB3_img/18.png" style="zoom:80%">
-
 <img src="/DB3_img/19.png" style="zoom:80%">
-
 <img src="/DB3_img/20.png" style="zoom:80%">
-
 <img src="/DB3_img/21.png" style="zoom:80%">
-
 <img src="/DB3_img/22.png" style="zoom:80%">
       
       <!-- reward -->
@@ -444,15 +1145,21 @@ sql99【推荐使用】
       
 
       
-      <h1 id="关系模式设计引论"><a href="#关系模式设计引论" class="headerlink" title="关系模式设计引论"></a>关系模式设计引论</h1><h2 id="关系的外延和内涵"><a href="#关系的外延和内涵" class="headerlink" title="关系的外延和内涵"></a>关系的外延和内涵</h2><ol>
+      <h1 id="关系模式设计引论"><a class="markdownIt-Anchor" href="#关系模式设计引论"></a> 关系模式设计引论</h1>
+<h2 id="关系的外延和内涵"><a class="markdownIt-Anchor" href="#关系的外延和内涵"></a> 关系的外延和内涵</h2>
+<ol>
 <li>外延：关系模型的值，即关系模型中的数据，是动态的。</li>
 <li>内涵：对关系、属性、域的定义和说明，即关系模型的定义。</li>
 </ol>
 <img src="/DB6_img/1.png" style="zoom:1%">
-
-<h2 id="关系模式的存储异常"><a href="#关系模式的存储异常" class="headerlink" title="关系模式的存储异常"></a>关系模式的存储异常</h2><p>例：描述学校的数据库有如下属性：<br>学生的学号(Sno)、所在系(Sdept)、系主任姓名(Mname)、课<br>程名(Cname)、成绩(Grade)<br>关系模式 ：Student ( Sno, Sdept, Mname, Cname, Grade )</p>
+<h2 id="关系模式的存储异常"><a class="markdownIt-Anchor" href="#关系模式的存储异常"></a> 关系模式的存储异常</h2>
+<p>例：描述学校的数据库有如下属性：<br />
+学生的学号(Sno)、所在系(Sdept)、系主任姓名(Mname)、课<br />
+程名(Cname)、成绩(Grade)<br />
+关系模式 ：Student ( Sno, Sdept, Mname, Cname, Grade )</p>
 <ol>
-<li><strong>问题</strong>：<ol>
+<li><strong>问题</strong>：
+<ol>
 <li>数据冗余太大：每行中系主任的姓名重复出现。</li>
 <li>更新异常：假如某系更换主任后，系统必须修改所有与该系相关的学生。</li>
 <li>插入异常：对于新成立的系中没有学生，也无法把主任存入。</li>
@@ -460,14 +1167,26 @@ sql99【推荐使用】
 </ol>
 </li>
 <li><strong>原因</strong> 由于各属性见存在某些依赖关系</li>
-<li><strong>解决</strong> 通过模式分解，分解为两个关系模式Student ( Sno, Sdept,<br>Cname, Grade )和 Dept ( Sdept, Mname ) 。</li>
+<li><strong>解决</strong> 通过模式分解，分解为两个关系模式Student ( Sno, Sdept,<br />
+Cname, Grade )和 Dept ( Sdept, Mname ) 。</li>
 </ol>
-<h1 id="规范化（函数依赖"><a href="#规范化（函数依赖" class="headerlink" title="规范化（函数依赖)"></a>规范化（函数依赖)</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
-<li><p>函数依赖（简称FD）<br> 设R(U)是一个属性集U上的关系模式，X和Y是U的<br> 子集。若对于R(U)的任意一个可能的关系r，r中不可能<br> 存在两个元组在X上的属性值相等， 而在Y上的属性值<br> 不等， 则称 “X函数确定Y” 或 “Y函数依赖于X”，记<br> 作X→Y(读作X决定Y)。X称为这个函数依赖的决定因素<br> (Determinant)。</p>
-<p> 说明：</p>
-<pre><code>1. 函数依赖不是指关系模式R的某个或某些关系实例满足的约束条件，而是指R的所有关系实例均要满足的约束条件。
-2. 函数依赖是语义范畴的概念。只能根据数据的语义来确定函数依赖。</code></pre></li>
-<li><p><strong>几种特殊的函数依赖</strong>：在关系模式R(U)中，对于U的子集X和Y</p>
+<h1 id="规范化函数依赖"><a class="markdownIt-Anchor" href="#规范化函数依赖"></a> 规范化（函数依赖)</h1>
+<h2 id="基本概念"><a class="markdownIt-Anchor" href="#基本概念"></a> 基本概念</h2>
+<ol>
+<li>
+<p>函数依赖（简称FD）<br />
+设R(U)是一个属性集U上的关系模式，X和Y是U的<br />
+子集。若对于R(U)的任意一个可能的关系r，r中不可能<br />
+存在两个元组在X上的属性值相等， 而在Y上的属性值<br />
+不等， 则称 “X函数确定Y” 或 “Y函数依赖于X”，记<br />
+作X→Y(读作X决定Y)。X称为这个函数依赖的决定因素<br />
+(Determinant)。</p>
+<p>说明：<br />
+1. 函数依赖不是指关系模式R的某个或某些关系实例满足的约束条件，而是指R的所有关系实例均要满足的约束条件。<br />
+2. 函数依赖是语义范畴的概念。只能根据数据的语义来确定函数依赖。</p>
+</li>
+<li>
+<p><strong>几种特殊的函数依赖</strong>：在关系模式R(U)中，对于U的子集X和Y</p>
 <ol>
 <li>若X→Y，但Y X，则称X→Y是非平凡的函数依赖</li>
 <li>若X→Y，但Y  X，则称X→Y是平凡的函数依赖</li>
@@ -475,12 +1194,19 @@ sql99【推荐使用】
 <li>若Y不函数依赖于X，则记为X→Y。</li>
 </ol>
 </li>
-<li><p><strong>完全函数依赖</strong></p>
- <img src="/DB6_img/2.png" style="zoom:1%"></li>
-<li><p><strong>传递函数依赖</strong></p>
+<li>
+<p><strong>完全函数依赖</strong><br />
+<img src="/DB6_img/2.png" style="zoom:1%"></p>
+</li>
+<li>
+<p><strong>传递函数依赖</strong></p>
  <img src="/DB6_img/3.png" style="zoom:1%">
 </li>
-<li><p><strong>候选码</strong>：设K为关系模式R&lt;U, F&gt;中的属性或属性组。若K F<br>U，则K称为R的一个候选码(Candidate Key)。若关系模<br>式R有多个候选码，则选定其中的一个做为主码(Primary<br>key)。候选码常常简称为码。</p>
+<li>
+<p><strong>候选码</strong>：设K为关系模式R&lt;U, F&gt;中的属性或属性组。若K F<br />
+U，则K称为R的一个候选码(Candidate Key)。若关系模<br />
+式R有多个候选码，则选定其中的一个做为主码(Primary<br />
+key)。候选码常常简称为码。</p>
 <ol>
 <li>具有决定性和最小性。</li>
 <li>主属性：<strong>所有</strong>候选码中出现的属性。</li>
@@ -488,166 +1214,203 @@ sql99【推荐使用】
 <li>全码：由关系模式的所有属性构成的码</li>
 </ol>
 </li>
-<li><p><strong>外码</strong>：关系模式 R 中属性或属性组X 并非R 的码，但 X 是<br>另一个关系模式的码，则称 X 是R 的外部码(Foreign key),<br>也称外码。</p>
-<h2 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h2><h3 id="一范式-保持列的原子性"><a href="#一范式-保持列的原子性" class="headerlink" title="一范式 保持列的原子性"></a>一范式 保持列的原子性</h3><p>如果一个关系模式R的所有属性都是不可分的基本<br>数据项，则称关系R为第一范式的关系模式(First Normal<br>Form)，简称关系R属于一范式，记为：R∈1NF。</p>
-<h3 id="二范式-非主属性都完全依赖于-R-的候选键"><a href="#二范式-非主属性都完全依赖于-R-的候选键" class="headerlink" title="二范式 非主属性都完全依赖于 R 的候选键"></a>二范式 非主属性都完全依赖于 R 的候选键</h3><p>若关系模式R∈1NF，并且每一个非主属性都完全函数依赖于R的码，则R∈2NF。</p>
-<h3 id="三范式-非主属性都不传递依赖于-R-的候选键"><a href="#三范式-非主属性都不传递依赖于-R-的候选键" class="headerlink" title="三范式 非主属性都不传递依赖于 R 的候选键"></a>三范式 非主属性都不传递依赖于 R 的候选键</h3></li>
+<li>
+<p><strong>外码</strong>：关系模式 R 中属性或属性组X 并非R 的码，但 X 是<br />
+另一个关系模式的码，则称 X 是R 的外部码(Foreign key),<br />
+也称外码。</p>
+</li>
 </ol>
+<h2 id="范式"><a class="markdownIt-Anchor" href="#范式"></a> 范式</h2>
+<h3 id="一范式-保持列的原子性"><a class="markdownIt-Anchor" href="#一范式-保持列的原子性"></a> 一范式 保持列的原子性</h3>
+<p>如果一个关系模式R的所有属性都是不可分的基本<br />
+数据项，则称关系R为第一范式的关系模式(First Normal<br />
+Form)，简称关系R属于一范式，记为：R∈1NF。</p>
+<h3 id="二范式-非主属性都完全依赖于-r-的候选键"><a class="markdownIt-Anchor" href="#二范式-非主属性都完全依赖于-r-的候选键"></a> 二范式 非主属性都完全依赖于 R 的候选键</h3>
+<p>若关系模式R∈1NF，并且每一个非主属性都完全函数依赖于R的码，则R∈2NF。</p>
+<h3 id="三范式-非主属性都不传递依赖于-r-的候选键"><a class="markdownIt-Anchor" href="#三范式-非主属性都不传递依赖于-r-的候选键"></a> 三范式 非主属性都不传递依赖于 R 的候选键</h3>
 <p>属性不依赖于其它非主属性</p>
 <p>主键和其他列有直接的联系</p>
 <img src="/DB6_img/4.png" style="zoom:1%">
-
 <ol>
-<li><p>定理：满足三范式，则一定满足二范式。</p>
+<li>
+<p>定理：满足三范式，则一定满足二范式。</p>
 </li>
-<li><p>证明</p>
+<li>
+<p>证明</p>
  <img src="/DB6_img/5.png" style="zoom:1%">
-###  BCNF 每个属性都不传递依赖于 R 的候选键
-所有函数依赖关系中，自变量皆含有一个及以上的候选键
 </li>
-<li><p>多值依赖：在关系模式R(X,Y,Z)的任一关系r中，如果存在元组t,s，使得t[X]=s[X]，就必然存在元组w,v∈r，使得w[X]=v[X]=t[X] (=s[X])，而 w[Y]=t[Y], w[Z]=s[Z]; v[Y]=s[Y], v[Z]=t[Z] (即交换t,s在Y上的分量构成的新元组必然在r中)，则称Y多值依赖于X，记为X→→Y。 这里，X、Y、Z是U的子集，且Z=U-X-Y。</p>
-<p> <strong>没有直接联系、但有间接的联系称为多值依赖的数据依赖。</strong></p>
+</ol>
+<h3 id="bcnf-每个属性都不传递依赖于-r-的候选键"><a class="markdownIt-Anchor" href="#bcnf-每个属性都不传递依赖于-r-的候选键"></a> BCNF 每个属性都不传递依赖于 R 的候选键</h3>
+<p>所有函数依赖关系中，自变量皆含有一个及以上的候选键</p>
+<ol>
+<li>
+<p>多值依赖：在关系模式R(X,Y,Z)的任一关系r中，如果存在元组t,s，使得t[X]=s[X]，就必然存在元组w,v∈r，使得w[X]=v[X]=t[X] (=s[X])，而 w[Y]=t[Y], w[Z]=s[Z]; v[Y]=s[Y], v[Z]=t[Z] (即交换t,s在Y上的分量构成的新元组必然在r中)，则称Y多值依赖于X，记为X→→Y。 这里，X、Y、Z是U的子集，且Z=U-X-Y。</p>
+<p><strong>没有直接联系、但有间接的联系称为多值依赖的数据依赖。</strong></p>
 <ol>
 <li>类似于部分函数依赖，但是函数就是唯一确定的关系；多值依赖却不能唯一确定。</li>
 <li>若X→→Y，而Z＝Ф，则称X→→Y为平凡的多值依赖，否则称X→→Y为非平凡的多值依赖。</li>
 <li><strong>非平凡函数依赖，平凡多值依赖比较好</strong></li>
 </ol>
 </li>
-</ol>
-<ol start="2">
-<li><p>多值依赖的性质：</p>
+<li>
+<p>多值依赖的性质：</p>
  <img src="/DB6_img/6.png" style="zoom:1%">
-
- <img src="/DB6_img/7.png" style="zoom:1%"></li>
-<li><p>多值依赖 &amp; 函数依赖</p>
+ <img src="/DB6_img/7.png" style="zoom:1%">
+</li>
+<li>
+<p>多值依赖 &amp; 函数依赖</p>
  <img src="/DB6_img/8.png" style="zoom:1%">
-
  <img src="/DB6_img/9.png" style="zoom:1%">
-
 </li>
 </ol>
-<p><a href=""https://blog.csdn.net/w2011212787/article/details/52351668"">函数依赖与多值依赖</a></p>
+<p><a href="%22https://blog.csdn.net/w2011212787/article/details/52351668%22">函数依赖与多值依赖</a></p>
 <img src="/DB6_img/11.png" style="zoom:1%">
-
 <ol start="4">
-<li>BCNF </li>
+<li>BCNF</li>
 </ol>
 <p>不存在任何字段对任一候选关键字段的传递函数依赖</p>
 <p>如果有不依赖于候选码的其他函数依赖，则不满足BCNF</p>
 <img src="/DB6_img/21.png" style="zoom:1%">
-
-<h3 id="四范式-完全的一一对应"><a href="#四范式-完全的一一对应" class="headerlink" title="四范式 完全的一一对应"></a>四范式 完全的一一对应</h3><ol start="5">
+<h3 id="四范式-完全的一一对应"><a class="markdownIt-Anchor" href="#四范式-完全的一一对应"></a> 四范式 完全的一一对应</h3>
+<ol start="5">
 <li>四范式是BCNF的子集</li>
 </ol>
 <img src="/DB6_img/10.png" style="zoom:1%">
-
-<h1 id="公理系统"><a href="#公理系统" class="headerlink" title="公理系统"></a>公理系统</h1><h2 id="Armstrong-公理系统"><a href="#Armstrong-公理系统" class="headerlink" title="Armstrong 公理系统"></a>Armstrong 公理系统</h2><ol>
-<li><p>公理系统</p>
+<h1 id="公理系统"><a class="markdownIt-Anchor" href="#公理系统"></a> 公理系统</h1>
+<h2 id="armstrong-公理系统"><a class="markdownIt-Anchor" href="#armstrong-公理系统"></a> Armstrong 公理系统</h2>
+<ol>
+<li>
+<p>公理系统</p>
  <img src="/DB6_img/12.png" style="zoom:1%">
 </li>
-<li><p>定律</p>
+<li>
+<p>定律</p>
 <ol>
 <li>自反律：X能决定他的子集</li>
 <li>增广律：若X-&gt;Y,那么XZ-&gt;YZ</li>
 <li>传递律：若X-&gt;Y,Y-&gt;Z，则X-&gt;Z</li>
 </ol>
 </li>
-<li><p>推理规则</p>
+<li>
+<p>推理规则</p>
 <ol>
 <li>合并规则：若X-&gt;Y,X-&gt;，则X-&gt;YZ</li>
 <li>分解规则：若X-&gt;Y,Z是Y的子集，那么X-&gt;Z</li>
 <li>伪传递规则：若X-&gt;Y,WY-&gt;Z,则WX-&gt;Z</li>
 </ol>
 </li>
-<li><p>定理：X-&gt;A1A2…Ak成立的充分必要条件是X-&gt;Ai成立(i=1,2,…,k)</p>
+<li>
+<p>定理：X-&gt;A1A2…Ak成立的充分必要条件是X-&gt;Ai成立(i=1,2,…,k)</p>
 </li>
 </ol>
-<h2 id="函数依赖集的闭包"><a href="#函数依赖集的闭包" class="headerlink" title="函数依赖集的闭包"></a>函数依赖集的闭包</h2><ol>
-<li>定义：在关系模式R&lt;U，F&gt;中为F所逻辑蕴含的函数依<br>赖的全体叫作 F的闭包(Closure)，记为F<sup>+</sup>。</li>
+<h2 id="函数依赖集的闭包"><a class="markdownIt-Anchor" href="#函数依赖集的闭包"></a> 函数依赖集的闭包</h2>
+<ol>
+<li>定义：在关系模式R&lt;U，F&gt;中为F所逻辑蕴含的函数依<br />
+赖的全体叫作 F的闭包(Closure)，记为F<sup>+</sup>。</li>
 <li>F<sup>+</sup>的意义：包含了给定函数依赖集F(部分)所蕴含的属性集U上的全部函数依赖。但是依赖信息太多，难于利用。</li>
 </ol>
-<h2 id="属性集的闭包"><a href="#属性集的闭包" class="headerlink" title="属性集的闭包"></a>属性集的闭包</h2><ol>
-<li><p>定义：设F为属性集U上的一组函数依赖，X是U的子集， X关于<br>函数依赖集F 的闭包(Closure of X under F ) X<sub>F</sub><sup>+</sup> ={ A |<br>X→A能由F 根据Armstrong公理导出}。</p>
+<h2 id="属性集的闭包"><a class="markdownIt-Anchor" href="#属性集的闭包"></a> 属性集的闭包</h2>
+<ol>
+<li>
+<p>定义：设F为属性集U上的一组函数依赖，X是U的子集， X关于<br />
+函数依赖集F 的闭包(Closure of X under F ) X<sub>F</sub><sup>+</sup> ={ A |<br />
+X→A能由F 根据Armstrong公理导出}。</p>
 </li>
-<li><p>X<sub>F</sub><sup>+</sup>的求法</p>
+<li>
+<p>X<sub>F</sub><sup>+</sup>的求法</p>
  <img src="/DB6_img/13.png" style="zoom:1%">
 </li>
-<li><p>定理1：设F为属性集U上的一组函数依赖，X，Y 是U的子集， X→Y能由F 根据Armstrong公理导出的充分必要条件是Y 是X<sub>F</sub><sup>+</sup>的子集。</p>
+<li>
+<p>定理1：设F为属性集U上的一组函数依赖，X，Y 是U的子集， X→Y能由F 根据Armstrong公理导出的充分必要条件是Y 是X<sub>F</sub><sup>+</sup>的子集。</p>
 </li>
-<li><p>定理2：Armstrong公理系统是有效的、完备的。</p>
+<li>
+<p>定理2：Armstrong公理系统是有效的、完备的。</p>
 </li>
 </ol>
-<h2 id="最小函数依赖集"><a href="#最小函数依赖集" class="headerlink" title="最小函数依赖集"></a>最小函数依赖集</h2><ol>
-<li><p>定义：假设在关系模式R&lt;U, F&gt;上有两个函数依赖集F和 G。如果F＋=G+，则称<strong>F和G是等价的，或称F与G相互覆盖。</strong></p>
+<h2 id="最小函数依赖集"><a class="markdownIt-Anchor" href="#最小函数依赖集"></a> 最小函数依赖集</h2>
+<ol>
+<li>
+<p>定义：假设在关系模式R&lt;U, F&gt;上有两个函数依赖集F和 G。如果F＋=G+，则称<strong>F和G是等价的，或称F与G相互覆盖。</strong></p>
 </li>
-<li><p>定理：F<sup>+</sup>=G<sup>+</sup>，当且仅当F是G<sup>+</sup>的子集且G是F<sup>+</sup>的子集。</p>
+<li>
+<p>定理：F<sup>+</sup>=G<sup>+</sup>，当且仅当F是G<sup>+</sup>的子集且G是F<sup>+</sup>的子集。</p>
 </li>
-<li><p>如果函数依赖集F满足下列条件，则称F为一个<strong>极小函数依赖集</strong>。亦称为最小依赖集或最小覆盖。</p>
+<li>
+<p>如果函数依赖集F满足下列条件，则称F为一个<strong>极小函数依赖集</strong>。亦称为最小依赖集或最小覆盖。</p>
 <ol>
 <li>F中任一函数依赖的右部仅含有一个属性；</li>
 <li>F中不存在这样的函数依赖X→A，使得F与F－{X→A}等价；(去除多余的函数依赖)</li>
 <li>F中不存在这样的函数依赖X→A，X有真子集Z使得 (F－{X→A} )∪{Z→A}与F等价。（去除左部的冗余属性）</li>
 </ol>
 </li>
-<li><p>最小函数依赖集的求解算法</p>
- <img src="/DB6_img/14.png" style="zoom:1%"></li>
-<li><p>一个给定的函数依赖集F的最小函数集不是唯一的。</p>
+<li>
+<p>最小函数依赖集的求解算法</p>
+ <img src="/DB6_img/14.png" style="zoom:1%">
+</li>
+<li>
+<p>一个给定的函数依赖集F的最小函数集不是唯一的。</p>
 </li>
 </ol>
-<h2 id="候选码求解算法"><a href="#候选码求解算法" class="headerlink" title="候选码求解算法"></a>候选码求解算法</h2><ol>
-<li><p>注意</p>
+<h2 id="候选码求解算法"><a class="markdownIt-Anchor" href="#候选码求解算法"></a> 候选码求解算法</h2>
+<ol>
+<li>
+<p>注意</p>
 <ol>
 <li>码是可以确定一个元组的所有信息的属性名或属性名组，差不多理解为主键，并且主键加其他任意属性名也是码。</li>
 <li>候选码的真子集中不存在码。</li>
 <li>主码就是主键的意思，主码是任意一个候选码，注意是任意的一个。而且主码也可能是一个属性名组。</li>
 </ol>
 </li>
-<li><p>对于给定的关系模式R&lt;U, F&gt;，依照函数依赖集F将U中的属性分为以下四类：</p>
+<li>
+<p>对于给定的关系模式R&lt;U, F&gt;，依照函数依赖集F将U中的属性分为以下四类：</p>
 <ol>
-<li><p><strong>L类属性</strong>: 在F中只出现在函数依赖的左部的属性；</p>
-</li>
-<li><p><strong>R类属性</strong>: 在F中只出现在函数依赖的右部的属性；</p>
-</li>
-<li><p><strong>LR类属性</strong>: 分别出现在F中的函数依赖左部和右部的属性；</p>
-</li>
-<li><p><strong>N类属性</strong>: 不在F中的函数依赖中出现的属性。</p>
+<li><strong>L类属性</strong>: 在F中只出现在函数依赖的左部的属性；</li>
+<li><strong>R类属性</strong>: 在F中只出现在函数依赖的右部的属性；</li>
+<li><strong>LR类属性</strong>: 分别出现在F中的函数依赖左部和右部的属性；</li>
+<li><strong>N类属性</strong>: 不在F中的函数依赖中出现的属性。</li>
+</ol>
 <p>有<strong>结论</strong></p>
-</li>
-<li><p>L类属性和N类属性必包含于任何候选码中；</p>
-</li>
-<li><p>R类属性必不包含于任何候选码中；</p>
-</li>
-<li><p>LR类属性不能确定是否在候选码中。</p>
-</li>
+<ol>
+<li>L类属性和N类属性必包含于任何候选码中；</li>
+<li>R类属性必不包含于任何候选码中；</li>
+<li>LR类属性不能确定是否在候选码中。</li>
 </ol>
 </li>
-<li><p>算法</p>
- <img src="/DB6_img/15.png" style="zoom:1%">
-
+<li>
+<p>算法<br />
+<img src="/DB6_img/15.png" style="zoom:1%"></p>
  <img src="/DB6_img/16.png" style="zoom:1%">
-
  <img src="/DB6_img/17.png" style="zoom:1%">
-
  <img src="/DB6_img/18.png" style="zoom:1%">
-
 </li>
 </ol>
-<h1 id="模式分解"><a href="#模式分解" class="headerlink" title="模式分解"></a>模式分解</h1><ol>
+<h1 id="模式分解"><a class="markdownIt-Anchor" href="#模式分解"></a> 模式分解</h1>
+<ol>
 <li>目的：未来更好的存储，在使用中通过自然连接还原为分解前的关系模式。</li>
 </ol>
-<h2 id="无损连接性"><a href="#无损连接性" class="headerlink" title="无损连接性"></a>无损连接性</h2><p>要求自然连接后与原模式相同。</p>
-<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>就好像在模拟自然连接</p>
+<h2 id="无损连接性"><a class="markdownIt-Anchor" href="#无损连接性"></a> 无损连接性</h2>
+<p>要求自然连接后与原模式相同。</p>
+<h3 id="算法"><a class="markdownIt-Anchor" href="#算法"></a> 算法</h3>
+<p>就好像在模拟自然连接</p>
 <p>过程见本。</p>
-<h3 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h3><p>用于一分为二判定</p>
+<h3 id="定理"><a class="markdownIt-Anchor" href="#定理"></a> 定理</h3>
+<p>用于一分为二判定</p>
 <ol>
-<li><p>R分成R1和R2，具有无损连结性的充要条件是：U1∩U2-&gt;U1-U2属于F<sup>+</sup>或U1∩U2-&gt;U2-U1属于F<sup>+</sup>。</p>
+<li>
+<p>R分成R1和R2，具有无损连结性的充要条件是：U1∩U2-&gt;U1-U2属于F<sup>+</sup>或U1∩U2-&gt;U2-U1属于F<sup>+</sup>。</p>
 </li>
-<li><p>关系模式R&lt;U, D&gt;中，D为R中的函数依赖FD和多<br>值依赖MVD的集合。则X→→Y成立的充要条件是R的<br>分解ρ={ R1&lt;XY, F1&gt;，R2 &lt;XZ, F2&gt; }具有无损连接性，<br>其中Z=U－X－Y。</p>
+<li>
+<p>关系模式R&lt;U, D&gt;中，D为R中的函数依赖FD和多<br />
+值依赖MVD的集合。则X→→Y成立的充要条件是R的<br />
+分解ρ={ R1&lt;XY, F1&gt;，R2 &lt;XZ, F2&gt; }具有无损连接性，<br />
+其中Z=U－X－Y。</p>
 </li>
 </ol>
-<h2 id="函数依赖性"><a href="#函数依赖性" class="headerlink" title="函数依赖性"></a>函数依赖性</h2><p>若原函数依赖的闭包和分解后函数依赖的闭包的和相等，那么就保持函数依赖性。</p>
+<h2 id="函数依赖性"><a class="markdownIt-Anchor" href="#函数依赖性"></a> 函数依赖性</h2>
+<p>若原函数依赖的闭包和分解后函数依赖的闭包的和相等，那么就保持函数依赖性。</p>
 <p>例题见本。</p>
-<h2 id="模式分解结论"><a href="#模式分解结论" class="headerlink" title="模式分解结论"></a>模式分解结论</h2><ol>
+<h2 id="模式分解结论"><a class="markdownIt-Anchor" href="#模式分解结论"></a> 模式分解结论</h2>
+<ol>
 <li>无损连结性和函数依赖性互不包含，可能只能满足其中一个。</li>
 <li>无损连结性分解能达到4NF</li>
 <li>函数依赖性分解可达到3NF，未必达到BCNF</li>
@@ -717,37 +1480,43 @@ sql99【推荐使用】
       
 
       
-      <h1 id="数据库的设计方法"><a href="#数据库的设计方法" class="headerlink" title="数据库的设计方法"></a>数据库的设计方法</h1><ol>
+      <h1 id="数据库的设计方法"><a class="markdownIt-Anchor" href="#数据库的设计方法"></a> 数据库的设计方法</h1>
+<ol>
 <li>新奥尔良法:将数据库设计分为四个阶段：需求分析、概念设计、逻辑设计和物理设计。</li>
 <li>基于ER模型的设计方法：使用ER模型来设计数据库的概念模型。</li>
 <li>3NF的设计方法：用关系数据理论指导逻辑模型的设计。</li>
 <li>ODL方法：用面向对象的概念和属于来说明数据库结构。</li>
 </ol>
-<h2 id="数据库设计中的各级模式"><a href="#数据库设计中的各级模式" class="headerlink" title="数据库设计中的各级模式"></a>数据库设计中的各级模式</h2><img src="/DB7_img/1.png">
-
-<h1 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h1><p>需求分析的重点是调查、收集与分析用户在数据管理中的信息要求、处理要求、安全性与完整性要求。</p>
-<h2 id="需求信息的收集"><a href="#需求信息的收集" class="headerlink" title="需求信息的收集"></a>需求信息的收集</h2><p>即了解用户的组织机构设置、主要业务活动和职能及对新系统的要求。</p>
-<h2 id="需求信息的分析"><a href="#需求信息的分析" class="headerlink" title="需求信息的分析"></a>需求信息的分析</h2><p>步骤</p>
-<h3 id="确定系统边界"><a href="#确定系统边界" class="headerlink" title="确定系统边界"></a>确定系统边界</h3><h3 id="业务流程分析"><a href="#业务流程分析" class="headerlink" title="业务流程分析"></a>业务流程分析</h3><p>使用数据流图</p>
+<h2 id="数据库设计中的各级模式"><a class="markdownIt-Anchor" href="#数据库设计中的各级模式"></a> 数据库设计中的各级模式</h2>
+<img src="/DB7_img/1.png">
+<h1 id="需求分析"><a class="markdownIt-Anchor" href="#需求分析"></a> 需求分析</h1>
+<p>需求分析的重点是调查、收集与分析用户在数据管理中的信息要求、处理要求、安全性与完整性要求。</p>
+<h2 id="需求信息的收集"><a class="markdownIt-Anchor" href="#需求信息的收集"></a> 需求信息的收集</h2>
+<p>即了解用户的组织机构设置、主要业务活动和职能及对新系统的要求。</p>
+<h2 id="需求信息的分析"><a class="markdownIt-Anchor" href="#需求信息的分析"></a> 需求信息的分析</h2>
+<p>步骤</p>
+<h3 id="确定系统边界"><a class="markdownIt-Anchor" href="#确定系统边界"></a> 确定系统边界</h3>
+<h3 id="业务流程分析"><a class="markdownIt-Anchor" href="#业务流程分析"></a> 业务流程分析</h3>
+<p>使用数据流图</p>
 <ol>
-<li><p>表达方式</p>
+<li>
+<p>表达方式</p>
 <ol>
-<li><p>圆圈：表示一次处理过程</p>
-</li>
-<li><p>有向线：表示数据流</p>
-</li>
-<li><p>双线段：表示存储的信息</p>
-<img src="/DB7_img/2.png">
-</li>
+<li>圆圈：表示一次处理过程</li>
+<li>有向线：表示数据流</li>
+<li>双线段：表示存储的信息</li>
 </ol>
+ <img src="/DB7_img/2.png">
 </li>
-<li><p>分析方法</p>
+<li>
+<p>分析方法</p>
 <ol>
 <li>自顶向下，逐层分解</li>
 <li>先主干后分支</li>
 </ol>
 </li>
-<li><p>建立<strong>数据字典</strong></p>
+<li>
+<p>建立<strong>数据字典</strong></p>
 <ol>
 <li>数据字典是各类数据描述的集合，通常以表格的形式详细地描述业务处理过程中用到的各类数据</li>
 <li>数据字典的内容包括数据项、数据结构、数据流、数据存储、处理过程等五部分。</li>
@@ -757,215 +1526,53 @@ sql99【推荐使用】
 </ol>
 </li>
 </ol>
-<h1 id="概念结构设计"><a href="#概念结构设计" class="headerlink" title="概念结构设计"></a>概念结构设计</h1><p>概念结构设计就是将现实事物以不依赖于任何数据模<br>型的方式加以描述，目的在于以符号化的形式正确地反映<br>现实事物及事物与事物间的联系。概念结构设计的内容就<br>是建立概念模型。</p>
-<h2 id="概念结构设计四种策略"><a href="#概念结构设计四种策略" class="headerlink" title="概念结构设计四种策略"></a>概念结构设计四种策略</h2><h3 id="自顶向下"><a href="#自顶向下" class="headerlink" title="自顶向下"></a>自顶向下</h3><p>即首先定义全局概念结构的框架，然后逐步细化。</p>
-<h3 id="自底向上"><a href="#自底向上" class="headerlink" title="自底向上"></a>自底向上</h3><p>即首先定义各局部应用的概念结构，然后将它们集成起来，得到全局概念结构。</p>
-<h3 id="逐步扩张"><a href="#逐步扩张" class="headerlink" title="逐步扩张"></a>逐步扩张</h3><p>即首先确定核心业务的概念结构，然后以此为中心向外扩张，最终实现全局概念结构。</p>
-<h3 id="混合策略"><a href="#混合策略" class="headerlink" title="混合策略"></a>混合策略</h3><p>即将自顶向下和自底向上两种策略结合使用，首先确定全局框架，划分为若干个局部概念模型，再采取自底向上的策略实现各局部概念模型，加以合并实现全局概念模型。</p>
-<h2 id="抽象现实事物的三种方法"><a href="#抽象现实事物的三种方法" class="headerlink" title="抽象现实事物的三种方法"></a>抽象现实事物的三种方法</h2><p>分类；聚集；概括</p>
-<h2 id="设计局部视图"><a href="#设计局部视图" class="headerlink" title="设计局部视图"></a>设计局部视图</h2><p>步骤</p>
-<h3 id="选择局部应用"><a href="#选择局部应用" class="headerlink" title="选择局部应用"></a>选择局部应用</h3><h3 id="设计分E-R图"><a href="#设计分E-R图" class="headerlink" title="设计分E-R图"></a>设计分E-R图</h3><h2 id="确定实体与属性的两条准则"><a href="#确定实体与属性的两条准则" class="headerlink" title="确定实体与属性的两条准则"></a>确定实体与属性的两条准则</h2><ol>
+<h1 id="概念结构设计"><a class="markdownIt-Anchor" href="#概念结构设计"></a> 概念结构设计</h1>
+<p>概念结构设计就是将现实事物以不依赖于任何数据模<br />
+型的方式加以描述，目的在于以符号化的形式正确地反映<br />
+现实事物及事物与事物间的联系。概念结构设计的内容就<br />
+是建立概念模型。</p>
+<h2 id="概念结构设计四种策略"><a class="markdownIt-Anchor" href="#概念结构设计四种策略"></a> 概念结构设计四种策略</h2>
+<h3 id="自顶向下"><a class="markdownIt-Anchor" href="#自顶向下"></a> 自顶向下</h3>
+<p>即首先定义全局概念结构的框架，然后逐步细化。</p>
+<h3 id="自底向上"><a class="markdownIt-Anchor" href="#自底向上"></a> 自底向上</h3>
+<p>即首先定义各局部应用的概念结构，然后将它们集成起来，得到全局概念结构。</p>
+<h3 id="逐步扩张"><a class="markdownIt-Anchor" href="#逐步扩张"></a> 逐步扩张</h3>
+<p>即首先确定核心业务的概念结构，然后以此为中心向外扩张，最终实现全局概念结构。</p>
+<h3 id="混合策略"><a class="markdownIt-Anchor" href="#混合策略"></a> 混合策略</h3>
+<p>即将自顶向下和自底向上两种策略结合使用，首先确定全局框架，划分为若干个局部概念模型，再采取自底向上的策略实现各局部概念模型，加以合并实现全局概念模型。</p>
+<h2 id="抽象现实事物的三种方法"><a class="markdownIt-Anchor" href="#抽象现实事物的三种方法"></a> 抽象现实事物的三种方法</h2>
+<p>分类；聚集；概括</p>
+<h2 id="设计局部视图"><a class="markdownIt-Anchor" href="#设计局部视图"></a> 设计局部视图</h2>
+<p>步骤</p>
+<h3 id="选择局部应用"><a class="markdownIt-Anchor" href="#选择局部应用"></a> 选择局部应用</h3>
+<h3 id="设计分e-r图"><a class="markdownIt-Anchor" href="#设计分e-r图"></a> 设计分E-R图</h3>
+<h2 id="确定实体与属性的两条准则"><a class="markdownIt-Anchor" href="#确定实体与属性的两条准则"></a> 确定实体与属性的两条准则</h2>
+<ol>
 <li>属性是不可再分的数据项，属性不可以再有属性</li>
-<li>属性不能与其他实体发生联系，联系只能存在于实体与<br>实体之间</li>
-<li>例如职工(职工号，姓名，年龄，职称)，其中的职称如果<br>与工资、住房和福利挂勾(即有联系)，则应该单独作为<br>实体，而职工与职称间构成联系</li>
+<li>属性不能与其他实体发生联系，联系只能存在于实体与<br />
+实体之间</li>
+<li>例如职工(职工号，姓名，年龄，职称)，其中的职称如果<br />
+与工资、住房和福利挂勾(即有联系)，则应该单独作为<br />
+实体，而职工与职称间构成联系</li>
 </ol>
-<h2 id="视图集成"><a href="#视图集成" class="headerlink" title="视图集成"></a>视图集成</h2><img src="/DB7_img/4.png">
-
-<p>选择两个具有相同实体的E-R图，通过相同实体将两个ER图连结起来构成一个E-R图，然后再与其它E-R图连结直到将<br>所有的局部E-R图全部连结成一个E-R图，称为全局E-R图</p>
-<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ol>
+<h2 id="视图集成"><a class="markdownIt-Anchor" href="#视图集成"></a> 视图集成</h2>
+<img src="/DB7_img/4.png">
+<p>选择两个具有相同实体的E-R图，通过相同实体将两个ER图连结起来构成一个E-R图，然后再与其它E-R图连结直到将<br />
+所有的局部E-R图全部连结成一个E-R图，称为全局E-R图</p>
+<h3 id="作用"><a class="markdownIt-Anchor" href="#作用"></a> 作用</h3>
+<ol>
 <li>可以完整地描述企业的信息及其联系</li>
 <li>另一方面在集成过程中可以解决冲突和消除冗余。</li>
 </ol>
-<h3 id="分E-R图之间的三类冲突"><a href="#分E-R图之间的三类冲突" class="headerlink" title="分E-R图之间的三类冲突"></a>分E-R图之间的三类冲突</h3><ol>
+<h3 id="分e-r图之间的三类冲突"><a class="markdownIt-Anchor" href="#分e-r图之间的三类冲突"></a> 分E-R图之间的三类冲突</h3>
+<ol>
 <li>属性冲突</li>
 <li>命名冲突</li>
 <li>结构冲突：同一对象在某一分E-R图中被抽象为实体而在另一分E-R图中又被抽象为属性，需要统一。</li>
 </ol>
-<h3 id="冗余"><a href="#冗余" class="headerlink" title="冗余"></a>冗余</h3><p>注意从一个实体到另一个实体存在多条路的情况，要检查能否消除冗余。</p>
-<h1 id="逻辑结构设计"><a href="#逻辑结构设计" class="headerlink" title="逻辑结构设计"></a>逻辑结构设计</h1>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-DB4" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/DB4/"
-    >DB4</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/DB4/" class="article-date">
-  <time datetime="2020-03-30T03:41:31.600Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>数据库的安全性是指保护数据库，防止因用户非法使用数据库造成数据泄漏、更改或破坏。</p>
-<p>数据库系统的安全：包括计算机安全和数据库安全。</p>
-<h1 id="数据库安全性控制"><a href="#数据库安全性控制" class="headerlink" title="数据库安全性控制"></a>数据库安全性控制</h1><p>数据库安全性控制的常用方法：用户标识和鉴定、存取控制、视图、审计、数据加密。</p>
-<h2 id="用户标识与鉴别"><a href="#用户标识与鉴别" class="headerlink" title="用户标识与鉴别"></a>用户标识与鉴别</h2><ol>
-<li><p>用户标识与鉴别是系统提供的最外层安全保护措施。</p>
-</li>
-<li><p>基本方法：系统通过一定方式让用户标识自己的身份或名字。</p>
-<h2 id="自主存取控制-授权与回收"><a href="#自主存取控制-授权与回收" class="headerlink" title="自主存取控制-授权与回收"></a>自主存取控制-授权与回收</h2><h3 id="存取控制机制的功能"><a href="#存取控制机制的功能" class="headerlink" title="存取控制机制的功能"></a>存取控制机制的功能</h3></li>
-<li><p>存取控制机制的组成：</p>
-<ol>
-<li>定义存取权限</li>
-<li>检查存取权限</li>
-</ol>
-</li>
-<li><p>用户权限定义和合法权检查机制一起组成了DBMS的安全子系统</p>
-<h3 id="常用存取控制方法"><a href="#常用存取控制方法" class="headerlink" title="常用存取控制方法"></a>常用存取控制方法</h3></li>
-<li><p>自主存取控制：</p>
-<ol>
-<li>同一用户对不同对象有不同的存储权限。</li>
-<li>不同用户对同一对象也有不同的存储权限。</li>
-<li>用户还可以将其拥有的存储权限转授给其他用户。</li>
-<li><strong>优点</strong>：能够通过授权机制有效的控制其他用户对敏感数据的存取。</li>
-<li><strong>缺点</strong>：<ol>
-<li>可能存在数据的无意泄漏。</li>
-<li><strong>原因</strong>：这种机制仅仅通过对数据的存取权限来进行安全控制，而对数据本身并无安全性标记。</li>
-<li><strong>解决</strong>：对系统控制下的所有主客体实施强制存取控制。<h3 id="授权与回收"><a href="#授权与回收" class="headerlink" title="授权与回收"></a>授权与回收</h3></li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>授权语法：见本</p>
-</li>
-<li><p>注意：</p>
-<ol>
-<li>DBA拥有数据库操作的所有权限，可以将权限赋给其他用户。</li>
-<li>建立数据库对象的的用户称为该对象的属主，他拥有该对象的所有操作权限。</li>
-<li>授权给全体用户是PUBLIC。</li>
-<li>若指定了WITH GRANT OPTION子句，则获得某种权限的用户还可以把这种权限再授予别的用户。否则，不能传播该权限。</li>
-</ol>
-</li>
-<li><p>回收权限REVOKE</p>
-</li>
-<li><p>授权图：用户拥有授权当且仅当存在从授权图的根到代表该用户的节点的路径。</p>
-<h3 id="数据库角色：被命名的一组与数据库操作相关的权限。"><a href="#数据库角色：被命名的一组与数据库操作相关的权限。" class="headerlink" title="数据库角色：被命名的一组与数据库操作相关的权限。"></a>数据库角色：被命名的一组与数据库操作相关的权限。</h3></li>
-<li><p>数据库角色</p>
-<ol>
-<li>角色是权限的集合。</li>
-<li>可以为一组具有相同权限的用户创建一个角色。</li>
-</ol>
-</li>
-<li><p>相关语法：见本</p>
-<h3 id="权限总结"><a href="#权限总结" class="headerlink" title="权限总结"></a>权限总结</h3></li>
-<li><p>DBA拥有对数据库中所有对象的所有权限，并可以根据应用<br>的需要将不同的权限授予不同的用户；</p>
-</li>
-<li><p>用户对自己建立的基本表和视图拥有全部的操作权限，并且<br>可以用GRANT语句把其中某些权限授予其他用户；</p>
-</li>
-<li><p>被授权的用户如果有“继续授权”的许可，还可以把获得的<br>权限再授予其他用户；</p>
-</li>
-<li><p>所有授予出去的权力在必要时可以用REVOKE语句收回；</p>
-</li>
-<li><p>使用角色管理数据库可以简化授权的过程；</p>
-<h2 id="强制存取控制"><a href="#强制存取控制" class="headerlink" title="强制存取控制"></a>强制存取控制</h2></li>
-<li><p>强制存取控制：</p>
-<ol>
-<li>对每一个数据对象都标以一定的密级。</li>
-<li>对每一个用户都授予一个级别的许可证。</li>
-<li>对于任意的一个对象，只有具有合法许可证的用户才能存取。</li>
-</ol>
-</li>
-<li><p>敏感度标记： 绝密（Top Secret、机密（Secret）、秘密（Confidential）、公开（Public）。</p>
-</li>
-<li><p>强制存取控制规则</p>
-<ol>
-<li>仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体。</li>
-<li>仅当主体的许可证级别等于客体的密级时，主体才能写相应客体。</li>
-</ol>
-</li>
-<li><p>DAC和MAC关系</p>
-<ol>
-<li>二者共同构成DBMS的安全机制。因为较高安全性级别提供的安全保护要包含较低级别的所有保护。</li>
-<li>安全性检查，要先进行DAC检查，通过DAC检查的数据对象再由系统进行MAC检查，只有都通过的才能进行存取。<h2 id="视图机制"><a href="#视图机制" class="headerlink" title="视图机制"></a>视图机制</h2></li>
-</ol>
-</li>
-<li><p>视图机制与授权机制配合使用共同提供安全性。</p>
-<ol>
-<li>先用视图屏蔽掉一部分保密数据。</li>
-<li>再进一步在视图上定义存取权限。</li>
-<li>间接实现了支持存取谓词的用户权限定义。<h2 id="审计"><a href="#审计" class="headerlink" title="审计"></a>审计</h2></li>
-</ol>
-</li>
-<li><p>审计：将用户对数据库的所有操作记录在上面。</p>
-<h2 id="数据加密"><a href="#数据加密" class="headerlink" title="数据加密"></a>数据加密</h2></li>
-<li><p>加密方法</p>
-<ol>
-<li>替换方法：将明文中的每一个字符都转换维密文中的每一个字符。</li>
-<li>置换方法：将明文的字符按不同的顺序重新排列。</li>
-<li>混合方法<h1 id="统计数据库安全性"><a href="#统计数据库安全性" class="headerlink" title="统计数据库安全性"></a>统计数据库安全性</h1></li>
-</ol>
-</li>
-<li><p>统计数据库的特点</p>
-<ol>
-<li>允许用户查询聚集类型信息。</li>
-<li>不允许查询单个记录信息。</li>
-</ol>
-</li>
-<li><p>统计数据库的问题</p>
-<ol>
-<li>隐藏的信息通道</li>
-<li>从合法的查询中推导出不合法的信息。</li>
-</ol>
-</li>
-<li><p>统计数据库的规则</p>
-<ol>
-<li>任何查询至少要涉及N（N足够大）个以上的记录。</li>
-<li>任意两个查询的相交数据项不能超过M个。</li>
-<li>任一用户的查询次数不能超过1+(N-2)/M次。</li>
-</ol>
-</li>
-</ol>
+<h3 id="冗余"><a class="markdownIt-Anchor" href="#冗余"></a> 冗余</h3>
+<p>注意从一个实体到另一个实体存在多条路的情况，要检查能否消除冗余。</p>
+<h1 id="逻辑结构设计"><a class="markdownIt-Anchor" href="#逻辑结构设计"></a> 逻辑结构设计</h1>
 
       
       <!-- reward -->
@@ -1033,43 +1640,269 @@ sql99【推荐使用】
       
       <ol>
 <li>数据库的完整性：防止数据库中出现不合语义数据。</li>
-<li>完整性控制机制：<ol>
+<li>完整性控制机制：
+<ol>
 <li>完整性约束条件定义机制。</li>
 <li>完整性检查机</li>
 <li>违约处理.</li>
 </ol>
 </li>
-<li>关系型数据库的三类完整性约束：实体完整性、参照完整性、用户定义完整性。<h1 id="实体完整性"><a href="#实体完整性" class="headerlink" title="实体完整性"></a>实体完整性</h1></li>
-<li>实体完整性定义：<ol>
+<li>关系型数据库的三类完整性约束：实体完整性、参照完整性、用户定义完整性。</li>
+</ol>
+<h1 id="实体完整性"><a class="markdownIt-Anchor" href="#实体完整性"></a> 实体完整性</h1>
+<ol>
+<li>实体完整性定义：
+<ol>
 <li>单属性构成的码：定义为列级或表级约束条件。</li>
 <li>多属性构成的码：只可定义为表级约束条件。</li>
 </ol>
 </li>
-<li>实体完整性检查和违约处理<ol>
-<li>检查主码是否唯一；检查主码的各个属性值是否为空。<h1 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h1></li>
+<li>实体完整性检查和违约处理
+<ol>
+<li>检查主码是否唯一；检查主码的各个属性值是否为空。</li>
 </ol>
 </li>
-<li>参照完整性定义：若属性F是基本关系R的外码，它与基本关系S的码Ks相对应，则对于R中每个元组在F上的取值必须满足<ol>
+</ol>
+<h1 id="参照完整性"><a class="markdownIt-Anchor" href="#参照完整性"></a> 参照完整性</h1>
+<ol>
+<li>参照完整性定义：若属性F是基本关系R的外码，它与基本关系S的码Ks相对应，则对于R中每个元组在F上的取值必须满足
+<ol>
 <li>参照关系R和被参照关系S不一定是不同的关系。</li>
-<li>外码中若有多个属性，若其一为NULL，则需全NULL。<h1 id="用户定义完整性"><a href="#用户定义完整性" class="headerlink" title="用户定义完整性"></a>用户定义完整性</h1></li>
+<li>外码中若有多个属性，若其一为NULL，则需全NULL。</li>
 </ol>
 </li>
+</ol>
+<h1 id="用户定义完整性"><a class="markdownIt-Anchor" href="#用户定义完整性"></a> 用户定义完整性</h1>
+<ol>
 <li>使用CHECK见本。</li>
 </ol>
-<h1 id="完整性约束命名子句"><a href="#完整性约束命名子句" class="headerlink" title="完整性约束命名子句"></a>完整性约束命名子句</h1><ol>
+<h1 id="完整性约束命名子句"><a class="markdownIt-Anchor" href="#完整性约束命名子句"></a> 完整性约束命名子句</h1>
+<ol>
 <li>CONSTRAINT</li>
 </ol>
-<h1 id="域中的完整性限制"><a href="#域中的完整性限制" class="headerlink" title="域中的完整性限制"></a>域中的完整性限制</h1><p>CREATE DOMAIN,DOMAIN相当于一个自定义的数据类型。</p>
-<h1 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h1><ol>
-<li><p>触发器：用户定义在关系表上的 一类由事件驱动的特殊存储过程</p>
- <img src="/DB5_img/1.png" style="zoom:80%"></li>
-<li><p>注</p>
+<h1 id="域中的完整性限制"><a class="markdownIt-Anchor" href="#域中的完整性限制"></a> 域中的完整性限制</h1>
+<p>CREATE DOMAIN,DOMAIN相当于一个自定义的数据类型。</p>
+<h1 id="触发器"><a class="markdownIt-Anchor" href="#触发器"></a> 触发器</h1>
+<ol>
+<li>
+<p>触发器：用户定义在关系表上的 一类由事件驱动的特殊存储过程</p>
+ <img src="/DB5_img/1.png" style="zoom:80%">
+</li>
+<li>
+<p>注</p>
 <ol>
 <li>触发器可以在触发事件之前或之后执行。</li>
 <li>触发事件为INSERT/DELETE/UPDATE（SELECT不触发）</li>
 <li>分为行级触发器和语句级触发器</li>
 <li>触发器被激活时，执行触发体。</li>
 <li>同一个表上的触发器，先执行BEFORE触发器，再执行SQL，再执行AFTER触发器。</li>
+</ol>
+</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-DB4" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/DB4/"
+    >DB4</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/DB4/" class="article-date">
+  <time datetime="2020-03-30T03:41:31.600Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>数据库的安全性是指保护数据库，防止因用户非法使用数据库造成数据泄漏、更改或破坏。</p>
+<p>数据库系统的安全：包括计算机安全和数据库安全。</p>
+<h1 id="数据库安全性控制"><a class="markdownIt-Anchor" href="#数据库安全性控制"></a> 数据库安全性控制</h1>
+<p>数据库安全性控制的常用方法：用户标识和鉴定、存取控制、视图、审计、数据加密。</p>
+<h2 id="用户标识与鉴别"><a class="markdownIt-Anchor" href="#用户标识与鉴别"></a> 用户标识与鉴别</h2>
+<ol>
+<li>用户标识与鉴别是系统提供的最外层安全保护措施。</li>
+<li>基本方法：系统通过一定方式让用户标识自己的身份或名字。</li>
+</ol>
+<h2 id="自主存取控制-授权与回收"><a class="markdownIt-Anchor" href="#自主存取控制-授权与回收"></a> 自主存取控制-授权与回收</h2>
+<h3 id="存取控制机制的功能"><a class="markdownIt-Anchor" href="#存取控制机制的功能"></a> 存取控制机制的功能</h3>
+<ol>
+<li>存取控制机制的组成：
+<ol>
+<li>定义存取权限</li>
+<li>检查存取权限</li>
+</ol>
+</li>
+<li>用户权限定义和合法权检查机制一起组成了DBMS的安全子系统</li>
+</ol>
+<h3 id="常用存取控制方法"><a class="markdownIt-Anchor" href="#常用存取控制方法"></a> 常用存取控制方法</h3>
+<ol>
+<li>自主存取控制：
+<ol>
+<li>同一用户对不同对象有不同的存储权限。</li>
+<li>不同用户对同一对象也有不同的存储权限。</li>
+<li>用户还可以将其拥有的存储权限转授给其他用户。</li>
+<li><strong>优点</strong>：能够通过授权机制有效的控制其他用户对敏感数据的存取。</li>
+<li><strong>缺点</strong>：
+<ol>
+<li>可能存在数据的无意泄漏。</li>
+<li><strong>原因</strong>：这种机制仅仅通过对数据的存取权限来进行安全控制，而对数据本身并无安全性标记。</li>
+<li><strong>解决</strong>：对系统控制下的所有主客体实施强制存取控制。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="授权与回收"><a class="markdownIt-Anchor" href="#授权与回收"></a> 授权与回收</h3>
+<ol>
+<li>授权语法：见本</li>
+<li>注意：
+<ol>
+<li>DBA拥有数据库操作的所有权限，可以将权限赋给其他用户。</li>
+<li>建立数据库对象的的用户称为该对象的属主，他拥有该对象的所有操作权限。</li>
+<li>授权给全体用户是PUBLIC。</li>
+<li>若指定了WITH GRANT OPTION子句，则获得某种权限的用户还可以把这种权限再授予别的用户。否则，不能传播该权限。</li>
+</ol>
+</li>
+<li>回收权限REVOKE</li>
+<li>授权图：用户拥有授权当且仅当存在从授权图的根到代表该用户的节点的路径。</li>
+</ol>
+<h3 id="数据库角色被命名的一组与数据库操作相关的权限"><a class="markdownIt-Anchor" href="#数据库角色被命名的一组与数据库操作相关的权限"></a> 数据库角色：被命名的一组与数据库操作相关的权限。</h3>
+<ol>
+<li>数据库角色
+<ol>
+<li>角色是权限的集合。</li>
+<li>可以为一组具有相同权限的用户创建一个角色。</li>
+</ol>
+</li>
+<li>相关语法：见本</li>
+</ol>
+<h3 id="权限总结"><a class="markdownIt-Anchor" href="#权限总结"></a> 权限总结</h3>
+<ol>
+<li>DBA拥有对数据库中所有对象的所有权限，并可以根据应用<br />
+的需要将不同的权限授予不同的用户；</li>
+<li>用户对自己建立的基本表和视图拥有全部的操作权限，并且<br />
+可以用GRANT语句把其中某些权限授予其他用户；</li>
+<li>被授权的用户如果有“继续授权”的许可，还可以把获得的<br />
+权限再授予其他用户；</li>
+<li>所有授予出去的权力在必要时可以用REVOKE语句收回；</li>
+<li>使用角色管理数据库可以简化授权的过程；</li>
+</ol>
+<h2 id="强制存取控制"><a class="markdownIt-Anchor" href="#强制存取控制"></a> 强制存取控制</h2>
+<ol>
+<li>强制存取控制：
+<ol>
+<li>对每一个数据对象都标以一定的密级。</li>
+<li>对每一个用户都授予一个级别的许可证。</li>
+<li>对于任意的一个对象，只有具有合法许可证的用户才能存取。</li>
+</ol>
+</li>
+<li>敏感度标记： 绝密（Top Secret、机密（Secret）、秘密（Confidential）、公开（Public）。</li>
+<li>强制存取控制规则
+<ol>
+<li>仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体。</li>
+<li>仅当主体的许可证级别等于客体的密级时，主体才能写相应客体。</li>
+</ol>
+</li>
+<li>DAC和MAC关系
+<ol>
+<li>二者共同构成DBMS的安全机制。因为较高安全性级别提供的安全保护要包含较低级别的所有保护。</li>
+<li>安全性检查，要先进行DAC检查，通过DAC检查的数据对象再由系统进行MAC检查，只有都通过的才能进行存取。</li>
+</ol>
+</li>
+</ol>
+<h2 id="视图机制"><a class="markdownIt-Anchor" href="#视图机制"></a> 视图机制</h2>
+<ol>
+<li>视图机制与授权机制配合使用共同提供安全性。
+<ol>
+<li>先用视图屏蔽掉一部分保密数据。</li>
+<li>再进一步在视图上定义存取权限。</li>
+<li>间接实现了支持存取谓词的用户权限定义。</li>
+</ol>
+</li>
+</ol>
+<h2 id="审计"><a class="markdownIt-Anchor" href="#审计"></a> 审计</h2>
+<ol>
+<li>审计：将用户对数据库的所有操作记录在上面。</li>
+</ol>
+<h2 id="数据加密"><a class="markdownIt-Anchor" href="#数据加密"></a> 数据加密</h2>
+<ol>
+<li>加密方法
+<ol>
+<li>替换方法：将明文中的每一个字符都转换维密文中的每一个字符。</li>
+<li>置换方法：将明文的字符按不同的顺序重新排列。</li>
+<li>混合方法</li>
+</ol>
+</li>
+</ol>
+<h1 id="统计数据库安全性"><a class="markdownIt-Anchor" href="#统计数据库安全性"></a> 统计数据库安全性</h1>
+<ol>
+<li>统计数据库的特点
+<ol>
+<li>允许用户查询聚集类型信息。</li>
+<li>不允许查询单个记录信息。</li>
+</ol>
+</li>
+<li>统计数据库的问题
+<ol>
+<li>隐藏的信息通道</li>
+<li>从合法的查询中推导出不合法的信息。</li>
+</ol>
+</li>
+<li>统计数据库的规则
+<ol>
+<li>任何查询至少要涉及N（N足够大）个以上的记录。</li>
+<li>任意两个查询的相交数据项不能超过M个。</li>
+<li>任一用户的查询次数不能超过1+(N-2)/M次。</li>
 </ol>
 </li>
 </ol>
@@ -1138,7 +1971,13 @@ sql99【推荐使用】
       
 
       
-      <h2 id="第三章基本语法"><a href="#第三章基本语法" class="headerlink" title="第三章基本语法"></a><a href="/2020/03/30/DB3">第三章基本语法</a></h2><h2 id="第四章数据库安全"><a href="#第四章数据库安全" class="headerlink" title="第四章数据库安全"></a><a href="/2020/03/30/DB4">第四章数据库安全</a></h2><h2 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a><a href="/2020/03/30/DB5/">第五章</a></h2><h2 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a><a href="/2020/03/30/DB6/">第六章</a></h2><h2 id="第七章"><a href="#第七章" class="headerlink" title="第七章"></a><a href="/2020/03/30/DB7/">第七章</a></h2><h2 id="Mysql基本语法"><a href="#Mysql基本语法" class="headerlink" title="Mysql基本语法"></a><a href="/2020/03/30/Mysql基本语法">Mysql基本语法</a></h2>
+      <h2 id="第三章基本语法"><a class="markdownIt-Anchor" href="#第三章基本语法"></a> <a href="/2020/03/30/DB3">第三章基本语法</a></h2>
+<h2 id="第四章数据库安全"><a class="markdownIt-Anchor" href="#第四章数据库安全"></a> <a href="/2020/03/30/DB4">第四章数据库安全</a></h2>
+<h2 id="第五章"><a class="markdownIt-Anchor" href="#第五章"></a> <a href="/2020/03/30/DB5/">第五章</a></h2>
+<h2 id="第六章"><a class="markdownIt-Anchor" href="#第六章"></a> <a href="/2020/03/30/DB6/">第六章</a></h2>
+<h2 id="第七章"><a class="markdownIt-Anchor" href="#第七章"></a> <a href="/2020/03/30/DB7/">第七章</a></h2>
+<h2 id="mysql基本语法"><a class="markdownIt-Anchor" href="#mysql基本语法"></a> <a href="/2020/03/30/Mysql%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95">Mysql基本语法</a></h2>
+
       
       <!-- reward -->
       
@@ -1334,7 +2173,26 @@ sql99【推荐使用】
       
 
       
-      <h2 id="视觉第1讲"><a href="#视觉第1讲" class="headerlink" title="视觉第1讲"></a><a href="/2020/03/30/视觉第1讲/">视觉第1讲</a></h2><h2 id="视觉第2讲"><a href="#视觉第2讲" class="headerlink" title="视觉第2讲"></a><a href="/2020/03/30/视觉第2讲/">视觉第2讲</a></h2><h2 id="视觉第3讲"><a href="#视觉第3讲" class="headerlink" title="视觉第3讲"></a><a href="/2020/03/30/视觉第3讲/">视觉第3讲</a></h2><h2 id="视觉第4讲"><a href="#视觉第4讲" class="headerlink" title="视觉第4讲"></a><a href="/2020/03/30/视觉第4讲/">视觉第4讲</a></h2><h2 id="视觉第5讲"><a href="#视觉第5讲" class="headerlink" title="视觉第5讲"></a><a href="/2020/03/30/视觉第5讲/">视觉第5讲</a></h2><h2 id="视觉第6讲"><a href="#视觉第6讲" class="headerlink" title="视觉第6讲"></a><a href="/2020/03/30/视觉第6讲/">视觉第6讲</a></h2><h2 id="视觉第7讲"><a href="#视觉第7讲" class="headerlink" title="视觉第7讲"></a><a href="/2020/03/30/视觉第7讲/">视觉第7讲</a></h2><h2 id="视觉第8讲"><a href="#视觉第8讲" class="headerlink" title="视觉第8讲"></a><a href="/2020/03/30/视觉第8讲/">视觉第8讲</a></h2><h2 id="视觉第9讲"><a href="#视觉第9讲" class="headerlink" title="视觉第9讲"></a><a href="/2020/03/30/视觉第9讲/">视觉第9讲</a></h2><h2 id="视觉第10讲"><a href="#视觉第10讲" class="headerlink" title="视觉第10讲"></a><a href="/2020/03/30/视觉第10讲/">视觉第10讲</a></h2><h2 id="视觉第11讲"><a href="#视觉第11讲" class="headerlink" title="视觉第11讲"></a><a href="/2020/03/30/视觉第11讲/">视觉第11讲</a></h2><h2 id="视觉第12讲"><a href="#视觉第12讲" class="headerlink" title="视觉第12讲"></a><a href="/2020/03/30/视觉第12讲/">视觉第12讲</a></h2><h2 id="视觉第13讲"><a href="#视觉第13讲" class="headerlink" title="视觉第13讲"></a><a href="/2020/03/30/视觉第13讲/">视觉第13讲</a></h2><h2 id="视觉第14讲"><a href="#视觉第14讲" class="headerlink" title="视觉第14讲"></a><a href="/2020/03/30/视觉第14讲/">视觉第14讲</a></h2><h2 id="视觉第15讲"><a href="#视觉第15讲" class="headerlink" title="视觉第15讲"></a><a href="/2020/03/30/视觉第15讲/">视觉第15讲</a></h2><h2 id="视觉第16讲"><a href="#视觉第16讲" class="headerlink" title="视觉第16讲"></a><a href="/2020/03/30/视觉第16讲/">视觉第16讲</a></h2><h2 id="视觉第17讲"><a href="#视觉第17讲" class="headerlink" title="视觉第17讲"></a><a href="/2020/03/30/视觉第17讲/">视觉第17讲</a></h2><h2 id="视觉第18讲"><a href="#视觉第18讲" class="headerlink" title="视觉第18讲"></a><a href="/2020/03/30/视觉第18讲/">视觉第18讲</a></h2><h2 id="视觉第19讲"><a href="#视觉第19讲" class="headerlink" title="视觉第19讲"></a><a href="/2020/03/30/视觉第19讲/">视觉第19讲</a></h2>
+      <h2 id="视觉第1讲"><a class="markdownIt-Anchor" href="#视觉第1讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC1%E8%AE%B2/">视觉第1讲</a></h2>
+<h2 id="视觉第2讲"><a class="markdownIt-Anchor" href="#视觉第2讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC2%E8%AE%B2/">视觉第2讲</a></h2>
+<h2 id="视觉第3讲"><a class="markdownIt-Anchor" href="#视觉第3讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC3%E8%AE%B2/">视觉第3讲</a></h2>
+<h2 id="视觉第4讲"><a class="markdownIt-Anchor" href="#视觉第4讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC4%E8%AE%B2/">视觉第4讲</a></h2>
+<h2 id="视觉第5讲"><a class="markdownIt-Anchor" href="#视觉第5讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC5%E8%AE%B2/">视觉第5讲</a></h2>
+<h2 id="视觉第6讲"><a class="markdownIt-Anchor" href="#视觉第6讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC6%E8%AE%B2/">视觉第6讲</a></h2>
+<h2 id="视觉第7讲"><a class="markdownIt-Anchor" href="#视觉第7讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC7%E8%AE%B2/">视觉第7讲</a></h2>
+<h2 id="视觉第8讲"><a class="markdownIt-Anchor" href="#视觉第8讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC8%E8%AE%B2/">视觉第8讲</a></h2>
+<h2 id="视觉第9讲"><a class="markdownIt-Anchor" href="#视觉第9讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC9%E8%AE%B2/">视觉第9讲</a></h2>
+<h2 id="视觉第10讲"><a class="markdownIt-Anchor" href="#视觉第10讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC10%E8%AE%B2/">视觉第10讲</a></h2>
+<h2 id="视觉第11讲"><a class="markdownIt-Anchor" href="#视觉第11讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC11%E8%AE%B2/">视觉第11讲</a></h2>
+<h2 id="视觉第12讲"><a class="markdownIt-Anchor" href="#视觉第12讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC12%E8%AE%B2/">视觉第12讲</a></h2>
+<h2 id="视觉第13讲"><a class="markdownIt-Anchor" href="#视觉第13讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC13%E8%AE%B2/">视觉第13讲</a></h2>
+<h2 id="视觉第14讲"><a class="markdownIt-Anchor" href="#视觉第14讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC14%E8%AE%B2/">视觉第14讲</a></h2>
+<h2 id="视觉第15讲"><a class="markdownIt-Anchor" href="#视觉第15讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC15%E8%AE%B2/">视觉第15讲</a></h2>
+<h2 id="视觉第16讲"><a class="markdownIt-Anchor" href="#视觉第16讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC16%E8%AE%B2/">视觉第16讲</a></h2>
+<h2 id="视觉第17讲"><a class="markdownIt-Anchor" href="#视觉第17讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC17%E8%AE%B2/">视觉第17讲</a></h2>
+<h2 id="视觉第18讲"><a class="markdownIt-Anchor" href="#视觉第18讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC18%E8%AE%B2/">视觉第18讲</a></h2>
+<h2 id="视觉第19讲"><a class="markdownIt-Anchor" href="#视觉第19讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC19%E8%AE%B2/">视觉第19讲</a></h2>
+
       
       <!-- reward -->
       
@@ -1399,53 +2257,59 @@ sql99【推荐使用】
       
 
       
-      <h1 id="滤波器"><a href="#滤波器" class="headerlink" title="滤波器"></a>滤波器</h1><ol>
+      <h1 id="滤波器"><a class="markdownIt-Anchor" href="#滤波器"></a> 滤波器</h1>
+<ol>
 <li><strong>滤波</strong>：形成一个新的图像，其像素是原始像素的组合。</li>
-<li>用途：<ol>
+<li>用途：
+<ol>
 <li>提取边缘或轮廓</li>
 <li>消除噪音</li>
 <li>锐化和增强形象</li>
 </ol>
 </li>
 </ol>
-<h1 id="线性滤波"><a href="#线性滤波" class="headerlink" title="线性滤波"></a>线性滤波</h1><ol>
+<h1 id="线性滤波"><a class="markdownIt-Anchor" href="#线性滤波"></a> 线性滤波</h1>
+<ol>
 <li>线性滤波：用相邻的线性组合(加权和)替换每个像素</li>
 </ol>
 <p>–&gt;互相关，卷积</p>
-<h2 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h2><img src="/视觉_img/1-1.png" style="zoom:1%">
-
+<h2 id="相关"><a class="markdownIt-Anchor" href="#相关"></a> 相关</h2>
+<img src="/视觉_img/1-1.png" style="zoom:1%">
 <ol>
 <li>将图像记为,以H表示权重核（大小为(2K+1)x(2K+1)),并记G为输出图像</li>
-<li>G=H×F<h2 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h2></li>
+<li>G=H×F</li>
 </ol>
+<h2 id="卷积"><a class="markdownIt-Anchor" href="#卷积"></a> 卷积</h2>
 <img src="/视觉_img/1-2.png" style="zoom:1%">
-
 <ol>
 <li>与相关相同，只是将权重核在水平和竖直方向翻转。</li>
 <li>妈祖交换律、分配律和结合律</li>
 </ol>
-<h2 id="平均滤波"><a href="#平均滤波" class="headerlink" title="平均滤波"></a>平均滤波</h2><ol>
+<h2 id="平均滤波"><a class="markdownIt-Anchor" href="#平均滤波"></a> 平均滤波</h2>
+<ol>
 <li>H 全为1/k，其中k为权重核边长。</li>
 </ol>
-<h2 id="锐化-增强图像-平均滤波"><a href="#锐化-增强图像-平均滤波" class="headerlink" title="锐化 = 增强图像-平均滤波"></a>锐化 = 增强图像-平均滤波</h2><img src="/视觉_img/1-3.png" style="zoom:1%">
-
+<h2 id="锐化-增强图像-平均滤波"><a class="markdownIt-Anchor" href="#锐化-增强图像-平均滤波"></a> 锐化 = 增强图像-平均滤波</h2>
+<img src="/视觉_img/1-3.png" style="zoom:1%">
 <img src="/视觉_img/1-5.png" style="zoom:1%">
-
-<h2 id="高斯滤波"><a href="#高斯滤波" class="headerlink" title="高斯滤波"></a>高斯滤波</h2><ol>
-<li><p>高斯核</p>
+<h2 id="高斯滤波"><a class="markdownIt-Anchor" href="#高斯滤波"></a> 高斯滤波</h2>
+<ol>
+<li>
+<p>高斯核</p>
  <img src="/视觉_img/1-4.png" style="zoom:1%">
-
 <ol>
 <li>σ作用：σ越大，带通越大，高斯核函数的局部影响的范围就越大。中心亮点也越大，卷积后的图像越模糊。</li>
 </ol>
 </li>
-<li><p>高斯滤波器（低通滤波器）</p>
+<li>
+<p>高斯滤波器（低通滤波器）</p>
 <ol>
-<li>用宽度为σ的核卷积两次=以宽度为&radic;2σ的核卷积一次。</li>
+<li>用宽度为σ的核卷积两次=以宽度为√2σ的核卷积一次。</li>
 </ol>
 </li>
 </ol>
-<h2 id="阈值滤波器"><a href="#阈值滤波器" class="headerlink" title="阈值滤波器"></a>阈值滤波器</h2><p><strong>不是线性滤波器</strong></p>
+<h2 id="阈值滤波器"><a class="markdownIt-Anchor" href="#阈值滤波器"></a> 阈值滤波器</h2>
+<p><strong>不是线性滤波器</strong></p>
 
       
       <!-- reward -->

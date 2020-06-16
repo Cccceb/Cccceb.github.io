@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">897字</span>
+            <span class="post-count">902字</span>
         </span>
     </span>
 
@@ -101,16 +101,37 @@
       
 
       
-      <h1 id="高速公路"><a href="#高速公路" class="headerlink" title="高速公路"></a>高速公路</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>　　某国有<em>n</em>个城市，为了使得城市间的交通更便利，该国国王打算在城市之间修一些高速公路，由于经费限制，国王打算第一阶段先在部分城市之间修一些单向的高速公路。<br>　　现在，大臣们帮国王拟了一个修高速公路的计划。看了计划后，国王发现，有些城市之间可以通过高速公路直接（不经过其他城市）或间接（经过一个或多个其他城市）到达，而有的却不能。如果城市A可以通过高速公路到达城市B，而且城市B也可以通过高速公路到达城市A，则这两个城市被称为便利城市对。<br>　　国王想知道，在大臣们给他的计划中，有多少个便利城市对。</p>
-<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>　　输入的第一行包含两个整数<em>n</em>, <em>m</em>，分别表示城市和单向高速公路的数量。<br>　　接下来<em>m</em>行，每行两个整数<em>a</em>, <em>b</em>，表示城市<em>a</em>有一条单向的高速公路连向城市<em>b</em>。</p>
-<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>　　输出一行，包含一个整数，表示便利城市对的数量。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>5 5<br>1 2<br>2 3<br>3 4<br>4 2<br>3 5</p>
-<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>3</p>
-<h2 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h2><p><img src="http://118.190.20.162/RequireFile.do?fid=4HG9GgbF" alt="img"><br>　　城市间的连接如图所示。有3个便利城市对，它们分别是(2, 3), (2, 4), (3, 4)，请注意(2, 3)和(3, 2)看成同一个便利城市对。</p>
-<h2 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h2><p>　　前30%的评测用例满足1 ≤ <em>n</em> ≤ 100, 1 ≤ <em>m</em> ≤ 1000；<br>　　前60%的评测用例满足1 ≤ <em>n</em> ≤ 1000, 1 ≤ <em>m</em> ≤ 10000；<br>　　所有评测用例满足1 ≤ <em>n</em> ≤ 10000, 1 ≤ <em>m</em> ≤ 100000。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+      <h1 id="高速公路"><a class="markdownIt-Anchor" href="#高速公路"></a> 高速公路</h1>
+<h2 id="问题描述"><a class="markdownIt-Anchor" href="#问题描述"></a> 问题描述</h2>
+<p>某国有<em>n</em>个城市，为了使得城市间的交通更便利，该国国王打算在城市之间修一些高速公路，由于经费限制，国王打算第一阶段先在部分城市之间修一些单向的高速公路。<br />
+　　现在，大臣们帮国王拟了一个修高速公路的计划。看了计划后，国王发现，有些城市之间可以通过高速公路直接（不经过其他城市）或间接（经过一个或多个其他城市）到达，而有的却不能。如果城市A可以通过高速公路到达城市B，而且城市B也可以通过高速公路到达城市A，则这两个城市被称为便利城市对。<br />
+　　国王想知道，在大臣们给他的计划中，有多少个便利城市对。</p>
+<h2 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式"></a> 输入格式</h2>
+<p>输入的第一行包含两个整数<em>n</em>, <em>m</em>，分别表示城市和单向高速公路的数量。<br />
+　　接下来<em>m</em>行，每行两个整数<em>a</em>, <em>b</em>，表示城市<em>a</em>有一条单向的高速公路连向城市<em>b</em>。</p>
+<h2 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式"></a> 输出格式</h2>
+<p>输出一行，包含一个整数，表示便利城市对的数量。</p>
+<h2 id="样例输入"><a class="markdownIt-Anchor" href="#样例输入"></a> 样例输入</h2>
+<p>5 5<br />
+1 2<br />
+2 3<br />
+3 4<br />
+4 2<br />
+3 5</p>
+<h2 id="样例输出"><a class="markdownIt-Anchor" href="#样例输出"></a> 样例输出</h2>
+<p>3</p>
+<h2 id="样例说明"><a class="markdownIt-Anchor" href="#样例说明"></a> 样例说明</h2>
+<p><img src="http://118.190.20.162/RequireFile.do?fid=4HG9GgbF" alt="img" /><br />
+　　城市间的连接如图所示。有3个便利城市对，它们分别是(2, 3), (2, 4), (3, 4)，请注意(2, 3)和(3, 2)看成同一个便利城市对。</p>
+<h2 id="评测用例规模与约定"><a class="markdownIt-Anchor" href="#评测用例规模与约定"></a> 评测用例规模与约定</h2>
+<p>前30%的评测用例满足1 ≤ <em>n</em> ≤ 100, 1 ≤ <em>m</em> ≤ 1000；<br />
+　　前60%的评测用例满足1 ≤ <em>n</em> ≤ 1000, 1 ≤ <em>m</em> ≤ 10000；<br />
+　　所有评测用例满足1 ≤ <em>n</em> ≤ 10000, 1 ≤ <em>m</em> ≤ 100000。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
 <li>本题在求强连通分量数，使用Tarjan算法</li>
-<li>关于tarjan算法<ol>
+<li>关于tarjan算法
+<ol>
 <li>大体思路是在深度搜索的过程中，给遍历到的结点一个编号，用dfn记录。</li>
 <li>如果遍历过程中遍历到重复的点，说明出现了环。以low[i]记录第i个节点所在连通分量的根节点(取该连通分量中编号的最小值)</li>
 <li>过程中用一个栈来记录形成环前所遍历的所有结点</li>
@@ -119,10 +140,10 @@
 </ol>
 </li>
 </ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 10000 + 5;</span><br><span class="line">int m, n;</span><br><span class="line">vector&lt;int&gt; g[maxn];</span><br><span class="line">bool instack[maxn];&#x2F;&#x2F;instack[i]表示i是否还在栈里</span><br><span class="line">int dfn[maxn];&#x2F;&#x2F;dfn[]表示是否被dfs过</span><br><span class="line">int low[maxn];&#x2F;&#x2F;该子树中，且仍在栈中的最小时间戳</span><br><span class="line">int clk &#x3D; 0;</span><br><span class="line">int ans &#x3D; 0;</span><br><span class="line">stack&lt;int&gt; s;</span><br><span class="line">void tarjan(int u) &#123;</span><br><span class="line">	low[u] &#x3D; dfn[u] &#x3D; ++clk;</span><br><span class="line">	s.push(u);</span><br><span class="line">	instack[u] &#x3D; 1;</span><br><span class="line">	for (int v : g[u]) &#123;</span><br><span class="line">		if (!dfn[v]) &#123;</span><br><span class="line">			tarjan(v);</span><br><span class="line">			low[u] &#x3D; min(low[u], low[v]);</span><br><span class="line">		&#125;</span><br><span class="line">		else if (instack[v])</span><br><span class="line">			low[u] &#x3D; min(low[u], dfn[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	if (low[u] &#x3D;&#x3D; dfn[u]) &#123;</span><br><span class="line">		int cnt &#x3D; 0;</span><br><span class="line">		while (1)</span><br><span class="line">		&#123;</span><br><span class="line">			cnt++;</span><br><span class="line">			int tp &#x3D; s.top(); s.pop();</span><br><span class="line">			instack[tp] &#x3D; 0;</span><br><span class="line">			if (tp &#x3D;&#x3D; u) break;</span><br><span class="line">		&#125;</span><br><span class="line">		if (cnt &gt; 1) ans +&#x3D; cnt * (cnt - 1) &#x2F; 2;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);</span><br><span class="line">	int a, b;</span><br><span class="line">	memset(dfn, 0, sizeof(dfn));</span><br><span class="line">	memset(instack, 0, sizeof(instack));</span><br><span class="line">	for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">		scanf(&quot;%d%d&quot;, &amp;a, &amp;b);</span><br><span class="line">		g[a].push_back(b);</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i &#x3D; 1; i &lt;&#x3D; n; ++i)</span><br><span class="line">		if (!dfn[i])</span><br><span class="line">			tarjan(i);</span><br><span class="line">	printf(&quot;%d&quot;, ans);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="前向链表存图"><a href="#前向链表存图" class="headerlink" title="前向链表存图"></a>前向链表存图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">struct EDGE</span><br><span class="line">&#123;</span><br><span class="line">    int to;int next;int from;</span><br><span class="line">&#125;edge[maxn*10],ed[maxn*10];</span><br><span class="line">void add(int x,int y)</span><br><span class="line">&#123;</span><br><span class="line">    edge[++sum].next&#x3D;head[x];</span><br><span class="line">    edge[sum].from&#x3D;x;</span><br><span class="line">    edge[sum].to&#x3D;y;</span><br><span class="line">    head[x]&#x3D;sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 10000 + 5;</span><br><span class="line">int m, n;</span><br><span class="line">vector&lt;int&gt; g[maxn];</span><br><span class="line">bool instack[maxn];&#x2F;&#x2F;instack[i]表示i是否还在栈里</span><br><span class="line">int dfn[maxn];&#x2F;&#x2F;dfn[]表示是否被dfs过</span><br><span class="line">int low[maxn];&#x2F;&#x2F;该子树中，且仍在栈中的最小时间戳</span><br><span class="line">int clk &#x3D; 0;</span><br><span class="line">int ans &#x3D; 0;</span><br><span class="line">stack&lt;int&gt; s;</span><br><span class="line">void tarjan(int u) &#123;</span><br><span class="line">	low[u] &#x3D; dfn[u] &#x3D; ++clk;</span><br><span class="line">	s.push(u);</span><br><span class="line">	instack[u] &#x3D; 1;</span><br><span class="line">	for (int v : g[u]) &#123;</span><br><span class="line">		if (!dfn[v]) &#123;</span><br><span class="line">			tarjan(v);</span><br><span class="line">			low[u] &#x3D; min(low[u], low[v]);</span><br><span class="line">		&#125;</span><br><span class="line">		else if (instack[v])</span><br><span class="line">			low[u] &#x3D; min(low[u], dfn[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	if (low[u] &#x3D;&#x3D; dfn[u]) &#123;</span><br><span class="line">		int cnt &#x3D; 0;</span><br><span class="line">		while (1)</span><br><span class="line">		&#123;</span><br><span class="line">			cnt++;</span><br><span class="line">			int tp &#x3D; s.top(); s.pop();</span><br><span class="line">			instack[tp] &#x3D; 0;</span><br><span class="line">			if (tp &#x3D;&#x3D; u) break;</span><br><span class="line">		&#125;</span><br><span class="line">		if (cnt &gt; 1) ans +&#x3D; cnt * (cnt - 1) &#x2F; 2;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);</span><br><span class="line">	int a, b;</span><br><span class="line">	memset(dfn, 0, sizeof(dfn));</span><br><span class="line">	memset(instack, 0, sizeof(instack));</span><br><span class="line">	for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">		scanf(&quot;%d%d&quot;, &amp;a, &amp;b);</span><br><span class="line">		g[a].push_back(b);</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i &#x3D; 1; i &lt;&#x3D; n; ++i)</span><br><span class="line">		if (!dfn[i])</span><br><span class="line">			tarjan(i);</span><br><span class="line">	printf(&quot;%d&quot;, ans);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="前向链表存图"><a class="markdownIt-Anchor" href="#前向链表存图"></a> 前向链表存图</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">struct EDGE</span><br><span class="line">&#123;</span><br><span class="line">    int to;int next;int from;</span><br><span class="line">&#125;edge[maxn*10],ed[maxn*10];</span><br><span class="line">void add(int x,int y)</span><br><span class="line">&#123;</span><br><span class="line">    edge[++sum].next&#x3D;head[x];</span><br><span class="line">    edge[sum].from&#x3D;x;</span><br><span class="line">    edge[sum].to&#x3D;y;</span><br><span class="line">    head[x]&#x3D;sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
       <!-- reward -->
@@ -210,11 +231,11 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/201803-3/" class="article-nav-link">
+      <a href="/2020/03/30/201712-4/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            201803-3
+            201712-4
           
         </div>
       </a>

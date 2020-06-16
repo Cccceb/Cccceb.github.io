@@ -101,31 +101,41 @@
       
 
       
-      <h1 id="光度测量立体视觉"><a href="#光度测量立体视觉" class="headerlink" title="光度测量立体视觉"></a>光度测量立体视觉</h1><p>基于<strong>朗伯漫反射</strong></p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="求光照方向"><a href="#求光照方向" class="headerlink" title="求光照方向"></a>求光照方向</h3><p>利用铬球的镜面反射</p>
+      <h1 id="光度测量立体视觉"><a class="markdownIt-Anchor" href="#光度测量立体视觉"></a> 光度测量立体视觉</h1>
+<p>基于<strong>朗伯漫反射</strong></p>
+<h2 id="步骤"><a class="markdownIt-Anchor" href="#步骤"></a> 步骤</h2>
+<h3 id="求光照方向"><a class="markdownIt-Anchor" href="#求光照方向"></a> 求光照方向</h3>
+<p>利用铬球的镜面反射</p>
 <img src="/视觉_img/18-2.png">
 ### 求法线方向
-
 <p>假设已知三个点</p>
 <ol>
-<li><img src="/视觉_img/18-3.png"></li>
-<li><p>写成矩阵形式</p>
+<li>
+<img src="/视觉_img/18-3.png">
 </li>
-<li> <img src="/视觉_img/18-4.png">
+<li>
+<p>写成矩阵形式</p>
 </li>
-<li><p>求解N</p>
- <img src="/视觉_img/18-5.png"></li>
-<li><p>对每个像素求解可以获得该像素的表面法线方向</p>
+<li>
+ <img src="/视觉_img/18-4.png">
 </li>
-<li><p>超过三个光源</p>
- <img src="/视觉_img/18-1.png">
-
+<li>
+<p>求解N</p>
+ <img src="/视觉_img/18-5.png">
+</li>
+<li>
+<p>对每个像素求解可以获得该像素的表面法线方向</p>
+</li>
+<li>
+<p>超过三个光源<br />
+<img src="/视觉_img/18-1.png"></p>
 </li>
 </ol>
-<h3 id="从法线计算深度-泊松方程"><a href="#从法线计算深度-泊松方程" class="headerlink" title="从法线计算深度(泊松方程)"></a>从法线计算深度(泊松方程)</h3><p>将相邻的连个点的连线看成是曲面的切面向量，那么这条线与法线垂直。</p>
+<h3 id="从法线计算深度泊松方程"><a class="markdownIt-Anchor" href="#从法线计算深度泊松方程"></a> 从法线计算深度(泊松方程)</h3>
+<p>将相邻的连个点的连线看成是曲面的切面向量，那么这条线与法线垂直。</p>
 <img src="/视觉_img/18-6.png">
-
-<h3 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h3><p>对于有反射，折射，阴影等情况不起效</p>
+<h3 id="局限性"><a class="markdownIt-Anchor" href="#局限性"></a> 局限性</h3>
+<p>对于有反射，折射，阴影等情况不起效</p>
 
       
       <!-- reward -->

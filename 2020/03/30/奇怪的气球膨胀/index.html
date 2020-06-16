@@ -101,29 +101,38 @@
       
 
       
-      <h1 id="UVA-12627-奇怪的气球膨胀"><a href="#UVA-12627-奇怪的气球膨胀" class="headerlink" title="UVA 12627 奇怪的气球膨胀"></a>UVA 12627 奇怪的气球膨胀</h1><p>一开始有一个红气球。每小时后,一个红气球会变成3个红气球和一个蓝气球,而一个 蓝气球会变成4个蓝气球。如图，分别是经过0, 1, 2, 3小时后的情况。经过k小时后, 第A~B行一共有多少个红气球?</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p><img src="/UVA_img/8.png" alt=""></p>
+      <h1 id="uva-12627-奇怪的气球膨胀"><a class="markdownIt-Anchor" href="#uva-12627-奇怪的气球膨胀"></a> UVA 12627 奇怪的气球膨胀</h1>
+<p>一开始有一个红气球。每小时后,一个红气球会变成3个红气球和一个蓝气球,而一个 蓝气球会变成4个蓝气球。如图，分别是经过0, 1, 2, 3小时后的情况。经过k小时后, 第A~B行一共有多少个红气球?</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<p><img src="/UVA_img/8.png" alt="" /></p>
 <ol>
-<li><p>找规律加分治</p>
+<li>
+<p>找规律加分治</p>
 </li>
-<li><p>观察两个图发现，第二章图的前两行是第一张图的平移</p>
+<li>
+<p>观察两个图发现，第二章图的前两行是第一张图的平移</p>
 </li>
-<li><p>第二张图的后两行左半部分就是第一张图，右半部分全蓝</p>
+<li>
+<p>第二张图的后两行左半部分就是第一张图，右半部分全蓝</p>
 </li>
-<li><p>所以得出函数，第k张图的1~i行s(k,i)</p>
+<li>
+<p>所以得出函数，第k张图的1~i行s(k,i)</p>
 <ol>
 <li>当k==0 时，s = 1;</li>
-<li>当k&gt;0时<ol>
+<li>当k&gt;0时
+<ol>
 <li>当i&lt;=2<sup>k-1</sup>时，s = 2*s(k-1,i)</li>
 <li>当i&gt;2<sup>k-1</sup>时，s = s(k-1,i-2<sup>k-1</sup>)+2*红色球总数(k-1)</li>
 </ol>
 </li>
 </ol>
 </li>
-<li><p>最终答案为s(k,B)-s(k,A-1)</p>
+<li>
+<p>最终答案为s(k,B)-s(k,A-1)</p>
 </li>
 </ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">long long A, B, k;</span><br><span class="line"></span><br><span class="line">long long Allred(long long k) &#123; return pow(3, k); &#125;</span><br><span class="line">long long s(long long k, long long i) &#123;</span><br><span class="line">	if (i &lt;&#x3D; 0) return 0;</span><br><span class="line">	if (k &#x3D;&#x3D; 0) return 1;</span><br><span class="line">	if (i &lt;&#x3D; (1 &lt;&lt; k - 1)) return 2 * s(k - 1, i);</span><br><span class="line">	else return s(k - 1, i - (1 &lt;&lt; (k - 1))) + 2 * Allred(k - 1);</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int T;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;T);</span><br><span class="line">	int kase &#x3D; 0;</span><br><span class="line">	while (T--)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;Case %d: &quot;, ++kase);</span><br><span class="line">		scanf(&quot;%lld %lld %lld&quot;, &amp;k, &amp;A, &amp;B);</span><br><span class="line">		printf(&quot;%lld\n&quot;, s(k, B) - s(k, A - 1));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">long long A, B, k;</span><br><span class="line"></span><br><span class="line">long long Allred(long long k) &#123; return pow(3, k); &#125;</span><br><span class="line">long long s(long long k, long long i) &#123;</span><br><span class="line">	if (i &lt;&#x3D; 0) return 0;</span><br><span class="line">	if (k &#x3D;&#x3D; 0) return 1;</span><br><span class="line">	if (i &lt;&#x3D; (1 &lt;&lt; k - 1)) return 2 * s(k - 1, i);</span><br><span class="line">	else return s(k - 1, i - (1 &lt;&lt; (k - 1))) + 2 * Allred(k - 1);</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int T;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;T);</span><br><span class="line">	int kase &#x3D; 0;</span><br><span class="line">	while (T--)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;Case %d: &quot;, ++kase);</span><br><span class="line">		scanf(&quot;%lld %lld %lld&quot;, &amp;k, &amp;A, &amp;B);</span><br><span class="line">		printf(&quot;%lld\n&quot;, s(k, B) - s(k, A - 1));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       
@@ -210,11 +219,11 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/%E5%88%87%E6%9C%A8%E6%A3%8D/" class="article-nav-link">
+      <a href="/2020/03/30/%E5%88%87%E6%96%AD%E5%9C%86%E7%8E%AF%E9%93%BE/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            切木棍
+            切断圆环链
           
         </div>
       </a>

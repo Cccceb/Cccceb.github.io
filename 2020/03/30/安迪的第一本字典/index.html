@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">308字</span>
+            <span class="post-count">306字</span>
         </span>
     </span>
 
@@ -101,9 +101,12 @@
       
 
       
-      <h1 id="UVa10815-安迪的第一本字典"><a href="#UVa10815-安迪的第一本字典" class="headerlink" title="UVa10815 安迪的第一本字典"></a>UVa10815 安迪的第一本字典</h1><p>输入一个文本，找出所有不同的单词(连续字母序列)，按字典序从小到大输出，单词不区分大小写</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>主要利用set自动排序的特性实现字典序;主要工作是分割单词，即连续字母序列</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#include&lt;iostream&gt;
+      <h1 id="uva10815-安迪的第一本字典"><a class="markdownIt-Anchor" href="#uva10815-安迪的第一本字典"></a> UVa10815 安迪的第一本字典</h1>
+<p>输入一个文本，找出所有不同的单词(连续字母序列)，按字典序从小到大输出，单词不区分大小写</p>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+<p>主要利用set自动排序的特性实现字典序;主要工作是分割单词，即连续字母序列</p>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<pre><code>#include&lt;iostream&gt;
 #include&lt;string&gt;
 #include&lt;sstream&gt;
 #include&lt;set&gt;
@@ -112,24 +115,27 @@ set&lt;string&gt; dir;
 int main() {
 string s, buf;
 while (cin &gt;&gt; s) {
-    for (int i = 0; i &lt; s.length(); i++) {
-        if (isalpha(s[i])) s[i] = tolower(s[i]);
-        else s[i] = &apos; &apos;;
-
-    }
+	for (int i = 0; i &lt; s.length(); i++) {
+		if (isalpha(s[i])) s[i] = tolower(s[i]);
+		else s[i] = ' ';
+		
+	}
 
 /*
 将文本存在s中，遍历s；遇到字母，则都转为小写，防止排序出错；若字母序列中断，则插入一个空格，这样在之后向buf中输入的时候，单词即可分开。
 */
 
-    stringstream ss(s);
-    while (ss &gt;&gt; buf) dir.insert(buf);
+	stringstream ss(s);
+	while (ss &gt;&gt; buf) dir.insert(buf);
 }
 
 for (set&lt;string&gt;::iterator it = dir.begin(); it != dir.end(); it++)
-    cout &lt;&lt; *it &lt;&lt; endl;
-}</code></pre><p>主要这一段stringstream以及迭代器的用法；迭代器可以理解为一个指针</p>
-<h2 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h2><p>本题主要是对set的应用</p>
+	cout &lt;&lt; *it &lt;&lt; endl;
+}
+</code></pre>
+<p>主要这一段stringstream以及迭代器的用法；迭代器可以理解为一个指针</p>
+<h2 id="心得"><a class="markdownIt-Anchor" href="#心得"></a> 心得</h2>
+<p>本题主要是对set的应用</p>
 <ol>
 <li>要学习set的声明和基本使用：insert(插入元素)；</li>
 <li>要学习拆分单词的技巧</li>
@@ -222,19 +228,19 @@ for (set&lt;string&gt;::iterator it = dir.begin(); it != dir.end(); it++)
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/%E5%85%AB%E6%95%B0%E7%A0%81/" class="article-nav-link">
+      <a href="/2020/03/30/%E5%B7%B4%E6%AF%94%E4%BC%A6%E5%A1%94/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            八数码
+            巴比伦塔
           
         </div>
       </a>
     
     
-      <a href="/2020/03/30/%E5%AE%9D%E7%AE%B1/" class="article-nav-link">
+      <a href="/2020/03/30/Gergovia%E7%9A%84%E9%85%92%E4%BA%A4%E6%98%93/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">宝箱</div>
+        <div class="article-nav-title">Gergovia的酒交易</div>
       </a>
     
   </nav>

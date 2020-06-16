@@ -101,9 +101,12 @@
       
 
       
-      <h1 id="立体视觉"><a href="#立体视觉" class="headerlink" title="立体视觉"></a>立体视觉</h1><p>通过多个角度拍摄的标定过 的图像，进行3D对象建模。###</p>
-<h1 id="多视图立体视觉"><a href="#多视图立体视觉" class="headerlink" title="多视图立体视觉"></a>多视图立体视觉</h1><ol>
-<li>需要多视图原因<ol>
+      <h1 id="立体视觉"><a class="markdownIt-Anchor" href="#立体视觉"></a> 立体视觉</h1>
+<p>通过多个角度拍摄的标定过 的图像，进行3D对象建模。###</p>
+<h1 id="多视图立体视觉"><a class="markdownIt-Anchor" href="#多视图立体视觉"></a> 多视图立体视觉</h1>
+<ol>
+<li>需要多视图原因
+<ol>
 <li>可能有某些区域的特写</li>
 <li>某些表面在某些视图中缩小了</li>
 <li>某些点可能在某些视图中完全消失。</li>
@@ -111,66 +114,79 @@
 </ol>
 </li>
 </ol>
-<h1 id="多基线立体视觉"><a href="#多基线立体视觉" class="headerlink" title="多基线立体视觉"></a>多基线立体视觉</h1><p>将几台相机矫正到同一共同平面上。可能有宽基线和扭曲问题。</p>
-<h2 id="选择立体视图基线"><a href="#选择立体视图基线" class="headerlink" title="选择立体视图基线"></a>选择立体视图基线</h2><img src="/视觉_img/16-1.png" height="5%" width="%5">
-
+<h1 id="多基线立体视觉"><a class="markdownIt-Anchor" href="#多基线立体视觉"></a> 多基线立体视觉</h1>
+<p>将几台相机矫正到同一共同平面上。可能有宽基线和扭曲问题。</p>
+<h2 id="选择立体视图基线"><a class="markdownIt-Anchor" href="#选择立体视图基线"></a> 选择立体视图基线</h2>
+<img src="/视觉_img/16-1.png" height="5%" width="%5">
 <img src="/视觉_img/16-2.png" height="5%" width="%5">
-
 <ol>
 <li>基线太小导致深度误差大</li>
 <li>基线太大大致搜索范围大，计算复杂度提高。</li>
 </ol>
-<h2 id="基本方法"><a href="#基本方法" class="headerlink" title="基本方法"></a>基本方法</h2><ol>
+<h2 id="基本方法"><a class="markdownIt-Anchor" href="#基本方法"></a> 基本方法</h2>
+<ol>
 <li>选择参考视图</li>
 <li>使用立体视图算法，但将其中双视图SSD换成SSSD(SUM SSD)</li>
 </ol>
-<h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><ol>
+<h3 id="限制"><a class="markdownIt-Anchor" href="#限制"></a> 限制</h3>
+<ol>
 <li>只能给出深度图，不能给出对象模型</li>
 <li>不适用于广泛分布的视图</li>
 </ol>
-<h1 id="照片一致性评分"><a href="#照片一致性评分" class="headerlink" title="照片一致性评分"></a>照片一致性评分</h1><h2 id="衡量函数"><a href="#衡量函数" class="headerlink" title="衡量函数"></a>衡量函数</h2><ol>
-<li><p>SSD</p>
+<h1 id="照片一致性评分"><a class="markdownIt-Anchor" href="#照片一致性评分"></a> 照片一致性评分</h1>
+<h2 id="衡量函数"><a class="markdownIt-Anchor" href="#衡量函数"></a> 衡量函数</h2>
+<ol>
+<li>
+<p>SSD</p>
  <img src="/视觉_img/16-3.png" height="5%" width="%5">
 </li>
-<li><p>SAD</p>
+<li>
+<p>SAD</p>
  <img src="/视觉_img/16-4.png" height="5%" width="%5">
 </li>
-<li><p>ZNCC</p>
+<li>
+<p>ZNCC</p>
  <img src="/视觉_img/16-5.png" height="5%" width="%5">
-
 </li>
 </ol>
-<h1 id="平面扫描立体视觉"><a href="#平面扫描立体视觉" class="headerlink" title="平面扫描立体视觉"></a>平面扫描立体视觉</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><img src="/视觉_img/16-6.png" height="5%" width="%5">
-
+<h1 id="平面扫描立体视觉"><a class="markdownIt-Anchor" href="#平面扫描立体视觉"></a> 平面扫描立体视觉</h1>
+<h2 id="基础"><a class="markdownIt-Anchor" href="#基础"></a> 基础</h2>
+<img src="/视觉_img/16-6.png" height="5%" width="%5">
 <ol>
-<li><p>相机1系即世界坐标系，相机1为参考相机</p>
+<li>
+<p>相机1系即世界坐标系，相机1为参考相机</p>
 </li>
-<li><p>深度平面</p>
+<li>
+<p>深度平面</p>
  <img src="/视觉_img/16-7.png" height="5%" width="%5">
-
 <ol>
 <li>其中n<sub>m</sub>为深度平面的法向量</li>
 <li>平面表示为ax+by+cz+d=0</li>
-<li>点到平面距离dm=&radic;a<sup>2</sup>+b<sup>2</sup>+c<sup>2</sup>?</li>
+<li>点到平面距离dm=√a<sup>2</sup>+b<sup>2</sup>+c<sup>2</sup>?</li>
 </ol>
 </li>
-<li><p>从参考相机Pref映射到深度平<br>面Πm，再映射到相机Pk的单应<br>映射为</p>
+<li>
+<p>从参考相机Pref映射到深度平<br />
+面Πm，再映射到相机Pk的单应<br />
+映射为</p>
  <img src="/视觉_img/16-8.png" height="5%" width="%5">
-
 </li>
 </ol>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><img src="/视觉_img/16-9.png" height="5%" width="%5">
-
-<h3 id="参考平面"><a href="#参考平面" class="headerlink" title="参考平面"></a>参考平面</h3><ol>
-<li><p>与成像平面平行</p>
- <img src="/视觉_img/16-10.png" height="5%" width="%5">
+<h2 id="过程"><a class="markdownIt-Anchor" href="#过程"></a> 过程</h2>
+<img src="/视觉_img/16-9.png" height="5%" width="%5">
+<h3 id="参考平面"><a class="markdownIt-Anchor" href="#参考平面"></a> 参考平面</h3>
+<ol>
+<li>
+<p>与成像平面平行<br />
+<img src="/视觉_img/16-10.png" height="5%" width="%5"></p>
 </li>
-<li><p>其他方向</p>
+<li>
+<p>其他方向</p>
  <img src="/视觉_img/16-11.png" height="5%" width="%5">
-
 </li>
 </ol>
-<h1 id="深度图融合"><a href="#深度图融合" class="headerlink" title="深度图融合"></a>深度图融合</h1><p>方法</p>
+<h1 id="深度图融合"><a class="markdownIt-Anchor" href="#深度图融合"></a> 深度图融合</h1>
+<p>方法</p>
 <ol>
 <li>使用多基线方法计算一个深度图</li>
 <li>体积融合</li>

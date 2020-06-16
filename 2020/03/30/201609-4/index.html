@@ -101,19 +101,37 @@
       
 
       
-      <h1 id="交通规划"><a href="#交通规划" class="headerlink" title="交通规划"></a>交通规划</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>　　G国国王来中国参观后，被中国的高速铁路深深的震撼，决定为自己的国家也建设一个高速铁路系统。<br> 　建设高速铁路投入非常大，为了节约建设成本，G国国王决定不新建铁路，而是将已有的铁路改造成高速铁路。现在，请你为G国国王提供一个方案，将现有的一部分铁路改造成高速铁路，使得任何两个城市间都可以通过高速铁路到达，而且从所有城市乘坐高速铁路到首都的最短路程和原来一样长。请你告诉G国国王在这些条件下最少要改造多长的铁路。</p>
-<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>　　输入的第一行包含两个整数<em>n</em>, <em>m</em>，分别表示G国城市的数量和城市间铁路的数量。所有的城市由1到<em>n</em>编号，首都为1号。<br> 　接下来<em>m</em>行，每行三个整数<em>a</em>, <em>b</em>, <em>c</em>，表示城市<em>a</em>和城市<em>b</em>之间有一条长度为<em>c</em>的双向铁路。这条铁路不会经过<em>a</em>和<em>b</em>以外的城市。</p>
-<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>　　输出一行，表示在满足条件的情况下最少要改造的铁路长度。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>4 5<br> 1 2 4<br> 1 3 5<br> 2 3 2<br> 2 4 3<br> 3 4 2</p>
-<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>11</p>
-<h2 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h2><p>　　对于20%的评测用例，1 ≤ <em>n</em> ≤ 10，1 ≤ <em>m</em> ≤ 50；<br> 　对于50%的评测用例，1 ≤ <em>n</em> ≤ 100，1 ≤ <em>m</em> ≤ 5000；<br> 　对于80%的评测用例，1 ≤ <em>n</em> ≤ 1000，1 ≤ <em>m</em> ≤ 50000；<br> 　对于100%的评测用例，1 ≤ <em>n</em> ≤ 10000，1 ≤ <em>m</em> ≤ 100000，1 ≤ <em>a</em>, <em>b</em> ≤ n，1 ≤ <em>c</em> ≤ 1000。输入保证每个城市都可以通过铁路达到首都。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+      <h1 id="交通规划"><a class="markdownIt-Anchor" href="#交通规划"></a> 交通规划</h1>
+<h2 id="问题描述"><a class="markdownIt-Anchor" href="#问题描述"></a> 问题描述</h2>
+<p>G国国王来中国参观后，被中国的高速铁路深深的震撼，决定为自己的国家也建设一个高速铁路系统。<br />
+　建设高速铁路投入非常大，为了节约建设成本，G国国王决定不新建铁路，而是将已有的铁路改造成高速铁路。现在，请你为G国国王提供一个方案，将现有的一部分铁路改造成高速铁路，使得任何两个城市间都可以通过高速铁路到达，而且从所有城市乘坐高速铁路到首都的最短路程和原来一样长。请你告诉G国国王在这些条件下最少要改造多长的铁路。</p>
+<h2 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式"></a> 输入格式</h2>
+<p>输入的第一行包含两个整数<em>n</em>, <em>m</em>，分别表示G国城市的数量和城市间铁路的数量。所有的城市由1到<em>n</em>编号，首都为1号。<br />
+　接下来<em>m</em>行，每行三个整数<em>a</em>, <em>b</em>, <em>c</em>，表示城市<em>a</em>和城市<em>b</em>之间有一条长度为<em>c</em>的双向铁路。这条铁路不会经过<em>a</em>和<em>b</em>以外的城市。</p>
+<h2 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式"></a> 输出格式</h2>
+<p>输出一行，表示在满足条件的情况下最少要改造的铁路长度。</p>
+<h2 id="样例输入"><a class="markdownIt-Anchor" href="#样例输入"></a> 样例输入</h2>
+<p>4 5<br />
+1 2 4<br />
+1 3 5<br />
+2 3 2<br />
+2 4 3<br />
+3 4 2</p>
+<h2 id="样例输出"><a class="markdownIt-Anchor" href="#样例输出"></a> 样例输出</h2>
+<p>11</p>
+<h2 id="评测用例规模与约定"><a class="markdownIt-Anchor" href="#评测用例规模与约定"></a> 评测用例规模与约定</h2>
+<p>对于20%的评测用例，1 ≤ <em>n</em> ≤ 10，1 ≤ <em>m</em> ≤ 50；<br />
+　对于50%的评测用例，1 ≤ <em>n</em> ≤ 100，1 ≤ <em>m</em> ≤ 5000；<br />
+　对于80%的评测用例，1 ≤ <em>n</em> ≤ 1000，1 ≤ <em>m</em> ≤ 50000；<br />
+　对于100%的评测用例，1 ≤ <em>n</em> ≤ 10000，1 ≤ <em>m</em> ≤ 100000，1 ≤ <em>a</em>, <em>b</em> ≤ n，1 ≤ <em>c</em> ≤ 1000。输入保证每个城市都可以通过铁路达到首都。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
 <li>由于要保证最短路径不变，所以考虑使用dij来保证是最短路径</li>
 <li>对于相同长度的路径，可以将这一步可能走的最小值记录在cost里</li>
 <li>最后统计到所有点的cost的和</li>
 </ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 10000 + 5;</span><br><span class="line">struct edge &#123;</span><br><span class="line">	int to;</span><br><span class="line">	int w;</span><br><span class="line">	edge(int to, int w) :to(to), w(w) &#123;&#125;</span><br><span class="line">	bool operator &lt; (const edge &amp; a)const &#123;</span><br><span class="line">		return w &gt; a.w;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;edge&gt; g[maxn];</span><br><span class="line">int dis[maxn];</span><br><span class="line">int vis[maxn];</span><br><span class="line">int cost[maxn];</span><br><span class="line">void dij() &#123;</span><br><span class="line">	memset(dis, -1, sizeof(dis));</span><br><span class="line">	memset(vis, 0, sizeof(vis));</span><br><span class="line">	memset(cost, -1, sizeof(cost));</span><br><span class="line">	edge beg(1, 0);</span><br><span class="line">	dis[1] &#x3D; 0;</span><br><span class="line">	cost[1] &#x3D; 0;</span><br><span class="line">	priority_queue&lt;edge&gt; pq;</span><br><span class="line">	pq.push(beg);</span><br><span class="line">	while (!pq.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		edge x &#x3D; pq.top(); pq.pop();</span><br><span class="line">		int u &#x3D; x.to;</span><br><span class="line">		if (vis[u]) continue;</span><br><span class="line">		vis[u] &#x3D; 1;</span><br><span class="line">		for (edge y : g[u]) &#123;</span><br><span class="line">			int v &#x3D; y.to;</span><br><span class="line">			if (vis[v]) continue;</span><br><span class="line">			if (dis[v] &#x3D;&#x3D; -1 || dis[v] &gt; dis[u] + y.w)</span><br><span class="line">				dis[v] &#x3D; dis[u] + y.w;</span><br><span class="line">			if (cost[v] &#x3D;&#x3D; -1 || (dis[v] &#x3D;&#x3D; dis[u] + y.w&amp;&amp;cost[v] &gt; y.w))</span><br><span class="line">				cost[v] &#x3D; y.w;</span><br><span class="line">			pq.push(edge(v, dis[v]));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, m;</span><br><span class="line">	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);</span><br><span class="line">	int a, b, w;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">		scanf(&quot;%d%d%d&quot;, &amp;a, &amp;b, &amp;w);</span><br><span class="line">		g[a].push_back(edge(b, w));</span><br><span class="line">		g[b].push_back(edge(a, w));</span><br><span class="line">	&#125;</span><br><span class="line">	dij();</span><br><span class="line">	int ans &#x3D; 0;</span><br><span class="line">	for (int i &#x3D; 1; i &lt;&#x3D; n; i++)</span><br><span class="line">		ans +&#x3D; cost[i];</span><br><span class="line">	printf(&quot;%d&quot;, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 10000 + 5;</span><br><span class="line">struct edge &#123;</span><br><span class="line">	int to;</span><br><span class="line">	int w;</span><br><span class="line">	edge(int to, int w) :to(to), w(w) &#123;&#125;</span><br><span class="line">	bool operator &lt; (const edge &amp; a)const &#123;</span><br><span class="line">		return w &gt; a.w;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;edge&gt; g[maxn];</span><br><span class="line">int dis[maxn];</span><br><span class="line">int vis[maxn];</span><br><span class="line">int cost[maxn];</span><br><span class="line">void dij() &#123;</span><br><span class="line">	memset(dis, -1, sizeof(dis));</span><br><span class="line">	memset(vis, 0, sizeof(vis));</span><br><span class="line">	memset(cost, -1, sizeof(cost));</span><br><span class="line">	edge beg(1, 0);</span><br><span class="line">	dis[1] &#x3D; 0;</span><br><span class="line">	cost[1] &#x3D; 0;</span><br><span class="line">	priority_queue&lt;edge&gt; pq;</span><br><span class="line">	pq.push(beg);</span><br><span class="line">	while (!pq.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		edge x &#x3D; pq.top(); pq.pop();</span><br><span class="line">		int u &#x3D; x.to;</span><br><span class="line">		if (vis[u]) continue;</span><br><span class="line">		vis[u] &#x3D; 1;</span><br><span class="line">		for (edge y : g[u]) &#123;</span><br><span class="line">			int v &#x3D; y.to;</span><br><span class="line">			if (vis[v]) continue;</span><br><span class="line">			if (dis[v] &#x3D;&#x3D; -1 || dis[v] &gt; dis[u] + y.w)</span><br><span class="line">				dis[v] &#x3D; dis[u] + y.w;</span><br><span class="line">			if (cost[v] &#x3D;&#x3D; -1 || (dis[v] &#x3D;&#x3D; dis[u] + y.w&amp;&amp;cost[v] &gt; y.w))</span><br><span class="line">				cost[v] &#x3D; y.w;</span><br><span class="line">			pq.push(edge(v, dis[v]));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, m;</span><br><span class="line">	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);</span><br><span class="line">	int a, b, w;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">		scanf(&quot;%d%d%d&quot;, &amp;a, &amp;b, &amp;w);</span><br><span class="line">		g[a].push_back(edge(b, w));</span><br><span class="line">		g[b].push_back(edge(a, w));</span><br><span class="line">	&#125;</span><br><span class="line">	dij();</span><br><span class="line">	int ans &#x3D; 0;</span><br><span class="line">	for (int i &#x3D; 1; i &lt;&#x3D; n; i++)</span><br><span class="line">		ans +&#x3D; cost[i];</span><br><span class="line">	printf(&quot;%d&quot;, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
       <!-- reward -->
@@ -201,19 +219,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/201609-3/" class="article-nav-link">
+      <a href="/2020/03/30/201612-3/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            201609-3
+            201612-3
           
         </div>
       </a>
     
     
-      <a href="/2020/03/30/201612-3/" class="article-nav-link">
+      <a href="/2020/03/30/201609-3/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">201612-3</div>
+        <div class="article-nav-title">201609-3</div>
       </a>
     
   </nav>

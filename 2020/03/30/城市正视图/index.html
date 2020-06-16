@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">693字</span>
+            <span class="post-count">697字</span>
         </span>
     </span>
 
@@ -101,86 +101,107 @@
       
 
       
-      <h1 id="uva221-城市正视图"><a href="#uva221-城市正视图" class="headerlink" title="uva221 城市正视图"></a>uva221 城市正视图</h1><p>&ensp;如图5-4所示，有n（n≤100）个建筑物。左侧是俯视图（左上角为建筑物编号，右下角为高度），右侧是从南向北看的正视图。<br>输入每个建筑物左下角坐标（即x、y坐标的最小值）、宽度（即x方向的长度）、深度（即y方向的长度）和高度（以上数据均为实数），输出正视图中能看到的所有建筑物，按照左下角x坐标从小到大进行排序。左下角x坐标相同时，按y坐标从小到大排序。</p>
-<p>&ensp;输入保证不同的x坐标不会很接近（即任意两个x坐标要么完全相同，要么差别足够大，不会引起精度问题）。</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
-<li><p>需要对横坐标进行离散化，然后判断每个区间中点是否可以看见。</p>
-</li>
-<li><p>判断一个建筑是否在某个坐标处可见：首先，要包含这个点。其次，其他包含这个点的建筑没有比他靠近南边，并且比他高的。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p> #include<iostream><br> #include <algorithm><br> using namespace std;<br> struct bulid {</p>
-<pre><code>double x, y, w, d, h;
-int id;
-bool operator &lt;(const bulid&amp;r) const{ return x &lt; r.x || x == r.x&amp;&amp;y &lt; r.y; }</code></pre><p> }b[105];</p>
+      <h1 id="uva221-城市正视图"><a class="markdownIt-Anchor" href="#uva221-城市正视图"></a> uva221 城市正视图</h1>
+<p> 如图5-4所示，有n（n≤100）个建筑物。左侧是俯视图（左上角为建筑物编号，右下角为高度），右侧是从南向北看的正视图。<br />
+输入每个建筑物左下角坐标（即x、y坐标的最小值）、宽度（即x方向的长度）、深度（即y方向的长度）和高度（以上数据均为实数），输出正视图中能看到的所有建筑物，按照左下角x坐标从小到大进行排序。左下角x坐标相同时，按y坐标从小到大排序。</p>
+<p> 输入保证不同的x坐标不会很接近（即任意两个x坐标要么完全相同，要么差别足够大，不会引起精度问题）。</p>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+<ol>
+<li>需要对横坐标进行离散化，然后判断每个区间中点是否可以看见。</li>
+<li>判断一个建筑是否在某个坐标处可见：首先，要包含这个点。其次，其他包含这个点的建筑没有比他靠近南边，并且比他高的。</li>
+</ol>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<pre><code>#include&lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+struct bulid {
+	double x, y, w, d, h;
+	int id;
+	bool operator &lt;(const bulid&amp;r) const{ return x &lt; r.x || x == r.x&amp;&amp;y &lt; r.y; }
+}b[105];
+</code></pre>
 <blockquote>
 <blockquote>
 <p>注意此处要重写小于号，用于后面的sort</p>
 </blockquote>
 </blockquote>
-<p> int n;<br> bool cover(int id, double mx) {</p>
-<pre><code>return mx &gt;= b[id].x &amp;&amp; mx &lt;= b[id].x + b[id].w;</code></pre><p> }</p>
+<pre><code>int n;
+bool cover(int id, double mx) {
+	return mx &gt;= b[id].x &amp;&amp; mx &lt;= b[id].x + b[id].w;
+}
+</code></pre>
 <blockquote>
 <blockquote>
 <p>判断id号建筑是否包办mx这个点</p>
 </blockquote>
 </blockquote>
-<p> bool visable(int id, double mx) {</p>
-<pre><code>if (!cover(id, mx)) return false;
-for (int i = 0; i &lt; n; i++) {
-    if (b[i].y &lt; b[id].y&amp;&amp;b[i].h &gt;= b[id].h&amp;&amp;cover(i, mx)) return false;
+<pre><code>bool visable(int id, double mx) {
+	if (!cover(id, mx)) return false;
+	for (int i = 0; i &lt; n; i++) {
+		if (b[i].y &lt; b[id].y&amp;&amp;b[i].h &gt;= b[id].h&amp;&amp;cover(i, mx)) return false;
+	}
+	return true;
 }
-return true;</code></pre><p> }</p>
+</code></pre>
 <blockquote>
 <blockquote>
 <p>判断id号建筑是否在mx点处可见</p>
 </blockquote>
 </blockquote>
-<p> int main() {</p>
-<pre><code>int kase = 0;
-int first = 1;
-while (cin &gt;&gt; n &amp;&amp; n) {
+<pre><code>int main() {
+	int kase = 0;
+	int first = 1;
+	while (cin &gt;&gt; n &amp;&amp; n) {
+	
+	if (first) first = 0;
+	else cout &lt;&lt; endl;
 
-if (first) first = 0;
-else cout &lt;&lt; endl;
-
-int x[2*105]{};
-for (int i = 0; i &lt; n; i++) {
-    cin &gt;&gt; b[i].x &gt;&gt; b[i].y &gt;&gt; b[i].w &gt;&gt; b[i].d &gt;&gt; b[i].h;
-    b[i].id = i + 1;</code></pre><blockquote>
+	int x[2*105]{};
+	for (int i = 0; i &lt; n; i++) {
+		cin &gt;&gt; b[i].x &gt;&gt; b[i].y &gt;&gt; b[i].w &gt;&gt; b[i].d &gt;&gt; b[i].h;
+		b[i].id = i + 1;
+</code></pre>
+<blockquote>
 <blockquote>
 <p>对坐标进行离散化，把连续的坐标变成离散的区间</p>
 </blockquote>
 </blockquote>
-<pre><code>    x[2 * i] = b[i].x;
-    x[2 * i + 1] = b[i].x + b[i].w;
-}</code></pre></li>
-</ol>
-<pre><code>sort(b, b + n);
-sort(x, x + 2 * n);
+<pre><code>		x[2 * i] = b[i].x;
+		x[2 * i + 1] = b[i].x + b[i].w;
+	}
 
 
-int m = unique(x, x + 2 * n) - x;</code></pre><blockquote>
+	sort(b, b + n);
+	sort(x, x + 2 * n);
+
+
+	int m = unique(x, x + 2 * n) - x;
+</code></pre>
+<blockquote>
 <blockquote>
 <p>对x去重，unique返回值为一个地址，所以要减去x转成索引位置</p>
 </blockquote>
 </blockquote>
-<pre><code>    cout &lt;&lt; &quot;For map # &quot; &lt;&lt;++kase &lt;&lt; &quot;, the visible buildings are numbered as follows:&quot; &lt;&lt; endl;
-    cout &lt;&lt; b[0].id ;
-        for (int i = 1; i &lt; n; i++) {//循环所有的建筑
-            bool vis = false;
-            for (int j = 0; j &lt; m - 1; j++) {//循环所有区间
-                if (visable(i, (x[j] + x[j + 1]) / 2)) {
-                //如果id号建筑在该区间中点可见，则在整个区间可见
-                    vis = true;
-                    break;
-                }
+<pre><code>	cout &lt;&lt; &quot;For map # &quot; &lt;&lt;++kase &lt;&lt; &quot;, the visible buildings are numbered as follows:&quot; &lt;&lt; endl;
+	cout &lt;&lt; b[0].id ;
+		for (int i = 1; i &lt; n; i++) {//循环所有的建筑
+			bool vis = false;
+			for (int j = 0; j &lt; m - 1; j++) {//循环所有区间
+				if (visable(i, (x[j] + x[j + 1]) / 2)) {
+				//如果id号建筑在该区间中点可见，则在整个区间可见
+					vis = true;
+					break;
+				}
 
-            }
-            if (vis) cout &lt;&lt;&quot; &quot;&lt;&lt; b[i].id;
+			}
+			if (vis) cout &lt;&lt;&quot; &quot;&lt;&lt; b[i].id;
 
-        }
-        cout &lt;&lt; &quot;\n&quot;;
+		}
+		cout &lt;&lt; &quot;\n&quot;;
 }
-}</code></pre>
+}
+</code></pre>
+
       
       <!-- reward -->
       

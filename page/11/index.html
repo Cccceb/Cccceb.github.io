@@ -78,287 +78,6 @@
     
     
     
-    <article id="post-计安导第10章" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC10%E7%AB%A0/"
-    >计安导第10章</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC10%E7%AB%A0/" class="article-date">
-  <time datetime="2020-03-30T02:29:18.478Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="数据库安全"><a href="#数据库安全" class="headerlink" title="数据库安全"></a>数据库安全</h1><h2 id="两阶段协议–实现完整性和可用性"><a href="#两阶段协议–实现完整性和可用性" class="headerlink" title="两阶段协议–实现完整性和可用性"></a>两阶段协议–实现完整性和可用性</h2><ol>
-<li>第一阶段是请求阶段：<ol>
-<li>该阶段，确定所要修改的部分，并标记。</li>
-<li>结果是成功或终止。在成功时，每个修改请求都是可 用的，标记被修改；在中止时，由于别人早已对其进行了标记，或者 由于网络或系统出现了故障，所以不能标记所有需要修改的部分。</li>
-<li>如果第一阶段被中止，则重置所有修改的请求，这样做是完全可行 的，因为并未进行任何永久性的修改。如果第一阶段成功完成，则协议继续第二个阶段。</li>
-</ol>
-</li>
-<li>第二阶段是提交阶段<ol>
-<li>在这个阶段，对于其他 修改而言，数据库是锁定的，只执行在请求阶段确定的修改序列。</li>
-<li>如果更新成功完成，则清除所有确定请求修改的标志，并释放对数据库的锁定。</li>
-<li>如果更新操作失败，则回滚，使数据库回到完成第一 阶段后的状态。</li>
-</ol>
-</li>
-</ol>
-<h2 id="数据库访问控制"><a href="#数据库访问控制" class="headerlink" title="数据库访问控制"></a>数据库访问控制</h2><ol>
-<li><p><strong>最小特权原则</strong>：实现适当的访问控制应遵 循最小特权原则，使每个用户都拥有完成自己任务所必需的权限，但 除此之外，不再拥有其他的权限</p>
-</li>
-<li><p><strong>特权分离原则</strong>：实现适当的访问控 制还应遵循特权分离原则，以便不同的用户具有不同的权限，这取决 于他们需要执行的不同任务</p>
-</li>
-<li><p>数据库允许SQL实现权限委托</p>
-</li>
-<li><p>权限委托：除了能向其他用户授予具体的权限外，表的所有者还允许其他用户来授予 这些表的权限，这称为策略授权委托</p>
-</li>
-<li><p>权限撤销：级联撤销</p>
-</li>
-</ol>
-<h2 id="敏感信息"><a href="#敏感信息" class="headerlink" title="敏感信息"></a>敏感信息</h2><p>1.要保护用户因素，满足机密性要求<br>2. 方法：使用加密，存储密文。授权用户直到解密密钥，但不能将解密密钥存储在数据库中。<br>3. 隐私保护：如果数据库是公开的，比如说是出于研究的目的，则应删除姓名、地址、 社会安全码、员工人数和学生人数等身份信息，或改用掩码值 ，从而不提供任何身份信息。</p>
-<h2 id="推理攻击"><a href="#推理攻击" class="headerlink" title="推理攻击"></a>推理攻击</h2><ol>
-<li><p>推理攻击：即使删除或屏蔽掉身份信息，攻击者仍能将其他的信息与数据库结合，得到底层的数据。</p>
-</li>
-<li><p>推理攻击的防御：</p>
-<ol>
-<li><p>单元抑制：在使用这种技术时，会删除数据库 中的一些单元，在公开版本中只留下空白。</p>
-</li>
-<li><p>推广：在使用这种技术时，公开数据库中的一些 值被更常用的值所替代。</p>
-</li>
-<li><p>加噪：在使用这种技术时，在公开数据库中添加 了随机值，使具有相同属性的所有记录的平均噪声为零。</p>
-<img src="/计安导_img/27.png">
-
-</li>
-</ol>
-</li>
-</ol>
-<h1 id="垃圾邮件和网络犯罪"><a href="#垃圾邮件和网络犯罪" class="headerlink" title="垃圾邮件和网络犯罪"></a>垃圾邮件和网络犯罪</h1><h2 id="SMTP"><a href="#SMTP" class="headerlink" title="SMTP"></a>SMTP</h2><ol>
-<li>使用25端口建立TCP连接</li>
-<li>客户端向服务器发送命令，服务器确认或通知错误</li>
-<li><strong>问题</strong> <ol>
-<li>发件人未经过身份验证 </li>
-<li>消息和消息头使用明文传输 </li>
-<li>消息和消息头完整性没有得到保护</li>
-</ol>
-</li>
-</ol>
-<h2 id="垃圾邮件"><a href="#垃圾邮件" class="headerlink" title="垃圾邮件"></a>垃圾邮件</h2><ol>
-<li>垃圾邮件：不清自来的批量电子邮件</li>
-</ol>
-<h2 id="黑名单"><a href="#黑名单" class="headerlink" title="黑名单"></a>黑名单</h2><img src="/计安导_img/28.png">
-
-<h2 id="灰名单"><a href="#灰名单" class="headerlink" title="灰名单"></a>灰名单</h2><ol>
-<li>灰名单：是一种垃圾邮件过滤技术，接收邮件服务器拒绝来自未知发 件人的邮件。当接收来自未知发件人的邮件时，接收服务器会发送一 个“临时拒绝”消息给发送方，并记录相应的信息。</li>
-<li>维护一个可信发件服务器的数据库</li>
-<li>简单易行高效</li>
-</ol>
-<h2 id="发件人ID和发件人策略框架"><a href="#发件人ID和发件人策略框架" class="headerlink" title="发件人ID和发件人策略框架"></a>发件人ID和发件人策略框架</h2><ol>
-<li>发件人策略框架(SPF)可对发件人的发送邮 件代理进行身份验证，其中不使用加密 技术。接收方MTA会检查发送方MTA的IP是否在发件人域的授权IP 地址列表中。</li>
-</ol>
-<h2 id="发件人的MTA身份验证：DKIM"><a href="#发件人的MTA身份验证：DKIM" class="headerlink" title="发件人的MTA身份验证：DKIM"></a>发件人的MTA身份验证：DKIM</h2><ol>
-<li>域密钥标识邮件DKIM：是一种用于验证发送邮件传输代理的方法</li>
-<li>签名实体(通常是发件人的MTA) 向消息中增加签名， 表明消息的签名实体所在的域</li>
-<li>公钥存储在DNS的文本记录中</li>
-</ol>
-<h2 id="SPF-vs-DKIM"><a href="#SPF-vs-DKIM" class="headerlink" title="SPF vs DKIM"></a>SPF vs DKIM</h2><img src="/计安导_img/29.png">
-
-<h2 id="网络犯罪"><a href="#网络犯罪" class="headerlink" title="网络犯罪"></a>网络犯罪</h2><ol>
-<li>网络犯罪：是使用计算机、网络或硬件设备犯下的任何罪行。 计算机或 设备可以是犯罪的代理人，犯罪的促进者或犯罪的目标。 犯罪可以 单独在计算机上进行，也可以在其他地方进行</li>
-</ol>
-<h2 id="信用卡"><a href="#信用卡" class="headerlink" title="信用卡"></a>信用卡</h2><ol>
-<li><p>特点</p>
-<ol>
-<li>支持保密</li>
-<li>可与多个商家共享</li>
-<li>经常被不安全的传送</li>
-<li>熵值较低</li>
-</ol>
-</li>
-<li><p>优点：简单易行</p>
-</li>
-<li><p>缺点：易发生欺诈</p>
-</li>
-<li><p>防范：</p>
-<ol>
-<li>一次性信用卡号码</li>
-<li>监控交易</li>
-<li>交易时启动密码输入</li>
-</ol>
-</li>
-</ol>
-<h2 id="常见银行欺诈"><a href="#常见银行欺诈" class="headerlink" title="常见银行欺诈"></a>常见银行欺诈</h2><ol>
-<li>伪造支票</li>
-<li>电子汇款</li>
-<li>创建恶意账户</li>
-<li>多重身份认证</li>
-<li>账户所有权验证</li>
-<li>账户限制</li>
-<li>监控银行交易</li>
-<li>取消网银</li>
-</ol>
-<h1 id="支付系统"><a href="#支付系统" class="headerlink" title="支付系统"></a>支付系统</h1><h2 id="电子支付方案"><a href="#电子支付方案" class="headerlink" title="电子支付方案"></a>电子支付方案</h2><ol>
-<li>是一种多方协议</li>
-<li>目标：<ol>
-<li>完整性：电子货币不能伪造或复制；合法交易能够兑现</li>
-<li>问责制：交易后不可否认</li>
-<li>隐私</li>
-</ol>
-</li>
-</ol>
-<h2 id="私密支付方案"><a href="#私密支付方案" class="headerlink" title="私密支付方案"></a>私密支付方案</h2><h3 id="盲签名"><a href="#盲签名" class="headerlink" title="盲签名"></a>盲签名</h3><ol>
-<li><p>允许签名者在不知道消息本身的情况下对消息进行签名</p>
-</li>
-<li><p>基本过程</p>
-<ol>
-<li>银行对客户提取的货币进行盲签名 </li>
-<li>商家验证签名并存入货币 </li>
-<li>银行无法将货币与客户关联起来</li>
-</ol>
-</li>
-<li><p>RSA 盲签名</p>
- <img src="/计安导_img/30.png">
-
- <img src="/计安导_img/31.png"></li>
-<li><p>对钱币进行盲签名</p>
- <img src="/计安导_img/32.png">
-
-</li>
-</ol>
-<h2 id="防止双重支付"><a href="#防止双重支付" class="headerlink" title="防止双重支付"></a>防止双重支付</h2><ol>
-<li>联机系统：在支付过程中，银行保持在线，实时撤销已使用的钱币</li>
-<li>离线系统：<ol>
-<li>每个提款的钱币都包含客户身份的加密信息</li>
-<li>每个存款的钱币都包含商家身份的加密信息</li>
-<li>双重支付将导致欺骗者的身份被披露出来</li>
-</ol>
-</li>
-</ol>
-<h2 id="秘密分享"><a href="#秘密分享" class="headerlink" title="秘密分享"></a>秘密分享</h2><p>步骤</p>
-<ol>
-<li>一个秘密字符串 x 可以被划分为以下的随机值 y 和 z。选择一个随机数 y ；z = y⊕x</li>
-<li>通过x = y⊕z重构字符串x</li>
-<li>其中y和z都是随机值，成为x的秘密份额，任一秘密份额都不会揭示关于秘密值 x 的任何信息</li>
-</ol>
-<h2 id="钱币–保护匿名性"><a href="#钱币–保护匿名性" class="headerlink" title="钱币–保护匿名性"></a>钱币–保护匿名性</h2><ol>
-<li>给定一个秘密值x和关于x的承诺(a,b)</li>
-<li>a=h(y) b=h(z) y,z是x的秘密份额</li>
-</ol>
-<h2 id="取款"><a href="#取款" class="headerlink" title="取款"></a>取款</h2><ol>
-<li>客户生成并向银行提交 k 个钱币 </li>
-<li>银行随机选择 k-1 枚钱币 </li>
-<li>银行要求客户向其披露所选定的 k-1 个钱币的承诺的秘密份额 </li>
-<li>银行在剩余的硬币上创建一个盲签名 </li>
-<li>银行签名的钱币是有效的概率是 1 - 1/k</li>
-</ol>
-<h2 id="支付"><a href="#支付" class="headerlink" title="支付"></a>支付</h2><ol>
-<li><p>客户向商家提交钱币 {x, [(a1, b2) , … , (an, bn)]} </p>
-</li>
-<li><p>商家验证钱币上的签名 </p>
-</li>
-<li><p>商家发送给客户一个随机的二进制向量 s1, … , sn, 称为选择器。</p>
-</li>
-<li><p>客户向商家揭示由选择器所选定的秘密份额，即客户向商家发送 一组字符串 P1, … , Pn </p>
-<p> h(Pi) = ai if si = 0 </p>
-<p> h(Pi) = bi if si= 1</p>
-</li>
-</ol>
-<h2 id="存款及其安全性分析"><a href="#存款及其安全性分析" class="headerlink" title="存款及其安全性分析"></a>存款及其安全性分析</h2><ol>
-<li><p>存款</p>
-<ol>
-<li>商人将钱币和字符串 P1, … , Pn提交给银行进行存款 </li>
-<li>银行验证签名并且记录钱币和相应字符串的对应关系</li>
-</ol>
-</li>
-<li><p>安全性分析</p>
-<ol>
-<li>两个商家提供的选择器相同的概率是 1/2<sup>n</sup> </li>
-<li>因此，如果客户将1个钱币进行双重支付，那么银行发现该客户 身份的概率为 1/2<sup>n</sup>  </li>
-<li>客户想要在不被银行发现的情况进行双重支付的唯一办法是找到 一个Hash函数的碰撞。</li>
-</ol>
-</li>
-</ol>
-<h1 id="数字版权管理"><a href="#数字版权管理" class="headerlink" title="数字版权管理"></a>数字版权管理</h1><ol>
-<li>数字版权管理：是指能限制用户 使用数字内容的做法，常用于数字媒体，如DVD、下载的音乐和 许可的软件<h2 id="复制保护方法"><a href="#复制保护方法" class="headerlink" title="复制保护方法"></a>复制保护方法</h2></li>
-<li>加密狗</li>
-<li>产品密钥</li>
-<li>手机激活</li>
-</ol>
-<h2 id="用于媒体文件的DRM方案"><a href="#用于媒体文件的DRM方案" class="headerlink" title="用于媒体文件的DRM方案"></a>用于媒体文件的DRM方案</h2><p>步骤</p>
-<ol>
-<li>媒体服务器向播放器发送用文件密钥加密的媒体文件和用播放器密钥加密的文件密钥</li>
-<li>播放器先用播放器密 钥解密文件密钥，然 后使用文件密钥解密 媒体文件</li>
-</ol>
-<h2 id="叛徒识别"><a href="#叛徒识别" class="headerlink" title="叛徒识别"></a>叛徒识别</h2><p><img src="/%E8%AE%A1%E5%AE%89%E5%AF%BC_img/33.png" alt=""></p>
-<h2 id="逻辑密钥对"><a href="#逻辑密钥对" class="headerlink" title="逻辑密钥对"></a>逻辑密钥对</h2><p><img src="/%E8%AE%A1%E5%AE%89%E5%AF%BC_img/34.png" alt=""></p>
-<ol>
-<li>是平衡二叉树，树的每个节点都与一个对称加密密钥相关联 </li>
-<li>将设备与叶子节点关联，每个设备上存储着从叶子到根路径上的所有密钥</li>
-<li>用节点 v 的密钥加密的内容可以被 v 的子树中的所有设备解密</li>
-<li>撤销设备：如果设备需要被撤销，则必须更改此设备已知的密钥，并分发新的密钥。新密钥的分发可以通过广播对数级数量的加密消息来完成</li>
-</ol>
-<h2 id="加密广播"><a href="#加密广播" class="headerlink" title="加密广播"></a>加密广播</h2><ol>
-<li>广播之前，每个内容都用单一的对称密钥进行加密。被授权产看内容项的订阅者应该拥有解密该项的密钥</li>
-<li>每个节点的密钥可以被用来计算子孙节点的密钥</li>
-<li>存在密钥分配问题</li>
-</ol>
-<h2 id="可信设备"><a href="#可信设备" class="headerlink" title="可信设备"></a>可信设备</h2><ol>
-<li>由可信制造商加工，被分配一个保密的播放器密钥</li>
-</ol>
-<h2 id="内容扰乱系统CSS"><a href="#内容扰乱系统CSS" class="headerlink" title="内容扰乱系统CSS"></a>内容扰乱系统CSS</h2><p><img src="/%E8%AE%A1%E5%AE%89%E5%AF%BC_img/35.png" alt=""></p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
     <article id="post-计安导第8章" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -395,168 +114,228 @@
       
 
       
-      <h1 id="密码学基础"><a href="#密码学基础" class="headerlink" title="密码学基础"></a>密码学基础</h1><h2 id="基本符号"><a href="#基本符号" class="headerlink" title="基本符号"></a>基本符号</h2><ol>
+      <h1 id="密码学基础"><a class="markdownIt-Anchor" href="#密码学基础"></a> 密码学基础</h1>
+<h2 id="基本符号"><a class="markdownIt-Anchor" href="#基本符号"></a> 基本符号</h2>
+<ol>
 <li>密钥 K</li>
-<li>加密算法 E<sub>K</sub>(P) = C</li>
-<li>解密算法 D<sub>K</sub>(C)    = M<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2></li>
-<li>密文长度通常和明文长度相同</li>
-<li>加密/解密是所有n位二进制序列构成的集合上的 (双射)置换函数。加密算法EK(P)和解密算法DK(C)必须是高效的。</li>
-<li>对密文解密后可恢复出明文，即D<sub>K</sub>(E<sub>K</sub>(P))=P</li>
+<li>加密算法 E<sub>K</sub>§ = C</li>
+<li>解密算法 D<sub>K</sub>©	= M</li>
 </ol>
-<h1 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h1><p>加密和解密使用同一个密钥</p>
-<h2 id="攻击者主要类型"><a href="#攻击者主要类型" class="headerlink" title="攻击者主要类型"></a>攻击者主要类型</h2><ol>
+<h2 id="基本概念"><a class="markdownIt-Anchor" href="#基本概念"></a> 基本概念</h2>
+<ol>
+<li>密文长度通常和明文长度相同</li>
+<li>加密/解密是所有n位二进制序列构成的集合上的 (双射)置换函数。加密算法EK§和解密算法DK©必须是高效的。</li>
+<li>对密文解密后可恢复出明文，即D<sub>K</sub>(E<sub>K</sub>§)=P</li>
+</ol>
+<h1 id="对称加密"><a class="markdownIt-Anchor" href="#对称加密"></a> 对称加密</h1>
+<p>加密和解密使用同一个密钥</p>
+<h2 id="攻击者主要类型"><a class="markdownIt-Anchor" href="#攻击者主要类型"></a> 攻击者主要类型</h2>
+<ol>
 <li>唯密文攻击：攻击者收集一个或多个消息的密文。且这些消息都使用相同的密钥K加密。攻击者的目标是根据一个或多个密文来确定明文，或者找到密钥K。</li>
 <li>已知明文攻击：攻击者收集一个或多个明文-密文对。且每个这样的对都使用相同的密钥K加密。攻击者目标是确定密钥K。</li>
 <li>选择明文攻击: 攻击者可收集指定的明文对应的密文信息。且这些明文都使用相同的密钥K。 目的在于破解密钥K。</li>
 <li>选择密文攻击：攻击者可收集指定的密文 对应的明文信息。且这些明文都使用相同的密钥K。 目的在于破解密钥K。</li>
 <li>穷举攻击：穷举可能的密钥，直到能把密文转换称有意义的明文。需要了解明文结构且密钥不长。</li>
 </ol>
-<h2 id="英文文本的唯一解距离计算"><a href="#英文文本的唯一解距离计算" class="headerlink" title="英文文本的唯一解距离计算"></a>英文文本的唯一解距离计算</h2><p>已知英文文本的信息熵为1.25bits，共t个字符，每个字符由8位二进制数的ASCII码表示。</p>
+<h2 id="英文文本的唯一解距离计算"><a class="markdownIt-Anchor" href="#英文文本的唯一解距离计算"></a> 英文文本的唯一解距离计算</h2>
+<p>已知英文文本的信息熵为1.25bits，共t个字符，每个字符由8位二进制数的ASCII码表示。</p>
 <img src="/计安导_img/9.png">
-
 <img src="/计安导_img/10.png">
-
-<h2 id="替换密码"><a href="#替换密码" class="headerlink" title="替换密码"></a>替换密码</h2><p>每个字母用不同的独一无二的其他字符替代。存在26!个可能的替换密码。存在4.03×1026个可能的密文。</p>
-<h3 id="主要弱点"><a href="#主要弱点" class="headerlink" title="主要弱点"></a>主要弱点</h3><p>他们不隐藏明文中不同字母的基本频率。</p>
-<h3 id="多字母替换密码和替换盒"><a href="#多字母替换密码和替换盒" class="headerlink" title="多字母替换密码和替换盒"></a>多字母替换密码和替换盒</h3><ol>
-<li><p>多字母替换密码：对字母组进行替换。由26<sup>2</sup> = 676种可能的组合。会产生676!个可能的密钥</p>
+<h2 id="替换密码"><a class="markdownIt-Anchor" href="#替换密码"></a> 替换密码</h2>
+<p>每个字母用不同的独一无二的其他字符替代。存在26!个可能的替换密码。存在4.03×1026个可能的密文。</p>
+<h3 id="主要弱点"><a class="markdownIt-Anchor" href="#主要弱点"></a> 主要弱点</h3>
+<p>他们不隐藏明文中不同字母的基本频率。</p>
+<h3 id="多字母替换密码和替换盒"><a class="markdownIt-Anchor" href="#多字母替换密码和替换盒"></a> 多字母替换密码和替换盒</h3>
+<ol>
+<li>
+<p>多字母替换密码：对字母组进行替换。由26<sup>2</sup> = 676种可能的组合。会产生676!个可能的密钥</p>
 </li>
-<li><p>问题 导致密钥太长，需要保存所有替换组合密码。</p>
+<li>
+<p>问题 导致密钥太长，需要保存所有替换组合密码。</p>
 </li>
-<li><p>替换盒(S-盒)：一张二维表，交叉处为相应的替换。</p>
+<li>
+<p>替换盒(S-盒)：一张二维表，交叉处为相应的替换。</p>
  <img src="/计安导_img/11.png">
-
 </li>
 </ol>
-<h3 id="频率分析"><a href="#频率分析" class="headerlink" title="频率分析"></a>频率分析</h3><p>对字母频率的分析是针对替换密码的有效攻击手段</p>
-<h3 id="一次一密"><a href="#一次一密" class="headerlink" title="一次一密"></a>一次一密</h3><p>绝对牢不可破的替换密码</p>
+<h3 id="频率分析"><a class="markdownIt-Anchor" href="#频率分析"></a> 频率分析</h3>
+<p>对字母频率的分析是针对替换密码的有效攻击手段</p>
+<h3 id="一次一密"><a class="markdownIt-Anchor" href="#一次一密"></a> 一次一密</h3>
+<p>绝对牢不可破的替换密码</p>
 <ol>
 <li>使用密钥块(k1, k2, . . . , kn)来加密长度为n的明文M，每个密钥ki都是均匀随机生成的。由于每次都是完全随机地选择移动量，在密文中字母表的每 个字母出现的概率几乎相同</li>
-<li>弱点：<ol>
+<li>弱点：
+<ol>
 <li>密钥块的长度m必须和明文的 长度n相同</li>
-<li>密钥不可以被重用。而事实是密钥很可能被用完，当重用密钥时，安全性会大大降低。<h2 id="分组密码"><a href="#分组密码" class="headerlink" title="分组密码"></a>分组密码</h2>每条消息被划分成一系列的块，基于这些数据块来进行加密或解密。<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3></li>
+<li>密钥不可以被重用。而事实是密钥很可能被用完，当重用密钥时，安全性会大大降低。</li>
 </ol>
 </li>
+</ol>
+<h2 id="分组密码"><a class="markdownIt-Anchor" href="#分组密码"></a> 分组密码</h2>
+<p>每条消息被划分成一系列的块，基于这些数据块来进行加密或解密。</p>
+<h3 id="特点"><a class="markdownIt-Anchor" href="#特点"></a> 特点</h3>
+<ol>
 <li>明文和密文具有固定的长度b</li>
 <li>长度为 n 的明文被划分为 m 个序列块 P[0], …, P[m-1]（n ≤ bm＜ n + b）</li>
 </ol>
-<h3 id="填充要求"><a href="#填充要求" class="headerlink" title="填充要求"></a>填充要求</h3><p>分组密码要求明文长度n应该为块长度b的倍数，所以最后一个块特殊。对最后一个数据块的填充必须是明确的（不能只是填充0）。要求</p>
+<h3 id="填充要求"><a class="markdownIt-Anchor" href="#填充要求"></a> 填充要求</h3>
+<p>分组密码要求明文长度n应该为块长度b的倍数，所以最后一个块特殊。对最后一个数据块的填充必须是明确的（不能只是填充0）。要求</p>
 <ol>
 <li>当块大小和明文长度是8的倍数时，一种常用的填充方法（PKCS5） 是一组相同的字节，每个字节都表示填充的长度（以字节为单位）</li>
 </ol>
 <img src="/计安导_img/12.png"> 
-
 <p>意思貌似是要填充9个字节，所以用9来填充。</p>
-<h2 id="实际使用的分组密码"><a href="#实际使用的分组密码" class="headerlink" title="实际使用的分组密码"></a>实际使用的分组密码</h2><h3 id="AES-高级加密标准"><a href="#AES-高级加密标准" class="headerlink" title="AES 高级加密标准"></a>AES 高级加密标准</h3><ol>
+<h2 id="实际使用的分组密码"><a class="markdownIt-Anchor" href="#实际使用的分组密码"></a> 实际使用的分组密码</h2>
+<h3 id="aes-高级加密标准"><a class="markdownIt-Anchor" href="#aes-高级加密标准"></a> AES 高级加密标准</h3>
+<ol>
 <li>每组128位，所采用的密钥长度为128、192或者256 位，所得到的密码称为AES-128、AES-192和AES-256。</li>
 <li>AES轮结构</li>
 </ol>
 <img src="/计安导_img/13.png"> 
-
 <p>10轮异或之后得到密文。</p>
 <ol>
-<li>SubBytes步骤：S-盒替换步骤 </li>
-<li>ShiftRows步骤：置换步骤 </li>
+<li>SubBytes步骤：S-盒替换步骤</li>
+<li>ShiftRows步骤：置换步骤</li>
 <li>MixColumns步骤：矩阵乘法（希尔密码）步骤</li>
 <li>AddRoundKey步骤：使用从128位密钥派生的轮密钥的XOR步骤</li>
 </ol>
-<h3 id="数据加密标准（DES）"><a href="#数据加密标准（DES）" class="headerlink" title="数据加密标准（DES）"></a>数据加密标准（DES）</h3><h3 id="三重DES-（3DES）"><a href="#三重DES-（3DES）" class="headerlink" title="三重DES （3DES）"></a>三重DES （3DES）</h3><h2 id="分组密码的操作模式"><a href="#分组密码的操作模式" class="headerlink" title="分组密码的操作模式"></a>分组密码的操作模式</h2><h3 id="电子密码本模式-ECB"><a href="#电子密码本模式-ECB" class="headerlink" title="电子密码本模式     ECB"></a>电子密码本模式     ECB</h3><ol>
+<h3 id="数据加密标准des"><a class="markdownIt-Anchor" href="#数据加密标准des"></a> 数据加密标准（DES）</h3>
+<h3 id="三重des-3des"><a class="markdownIt-Anchor" href="#三重des-3des"></a> 三重DES （3DES）</h3>
+<h2 id="分组密码的操作模式"><a class="markdownIt-Anchor" href="#分组密码的操作模式"></a> 分组密码的操作模式</h2>
+<h3 id="电子密码本模式-ecb"><a class="markdownIt-Anchor" href="#电子密码本模式-ecb"></a> 电子密码本模式 	ECB</h3>
+<ol>
 <li>明文块 P[i] 加密成密文块 C[i] = EK( P[i] )；密文块 C[i] 解密成明文块 M[i] = DK( C[i] )</li>
 <li>优点 可以容忍分组丢失。因为解密i分组与i-1分组无关。</li>
-<li>缺点<ol>
+<li>缺点
+<ol>
 <li>如果加密算法是完全确定的，比如使用AES，那么每个明文都与唯一的密文相关联。对于很长的消息，ECB模式可能会解释分组流中出现的模式。</li>
 <li>适用于短报文，如<strong>密钥和初始向量的加密</strong></li>
 </ol>
 </li>
 </ol>
-<h3 id="密码分组链接模式-CBC"><a href="#密码分组链接模式-CBC" class="headerlink" title="密码分组链接模式    CBC"></a>密码分组链接模式    CBC</h3><p>是最常用的模式之一</p>
+<h3 id="密码分组链接模式cbc"><a class="markdownIt-Anchor" href="#密码分组链接模式cbc"></a> 密码分组链接模式	CBC</h3>
+<p>是最常用的模式之一</p>
 <img src="/计安导_img/14.png"> 
-
 <ol>
-<li><p>加密 C[i] = EK(C[i-1] ⊕ P[i])    </p>
-<p> C[-1] = V， 一个单独传输的随机加密数据块将作为初始化向量</p>
+<li>
+<p>加密 C[i] = EK(C[i-1] ⊕ P[i])</p>
+<p>C[-1] = V， 一个单独传输的随机加密数据块将作为初始化向量</p>
 </li>
-<li><p>解密 P[i] = C[i-1] ⊕DK(C[i])</p>
+<li>
+<p>解密 P[i] = C[i-1] ⊕DK(C[i])</p>
 </li>
-<li><p>优点</p>
+<li>
+<p>优点</p>
 <ol>
 <li>没有在明文中泄露明文的模式</li>
 <li>快速而简单</li>
 </ol>
 </li>
-<li><p>缺点</p>
+<li>
+<p>缺点</p>
 <ol>
 <li>需要所有数据进行有序可靠的传输</li>
 <li>不适用于允许丢包的应用，如音频流、视频流</li>
 </ol>
 </li>
 </ol>
-<h3 id="密码反馈模式-CFB"><a href="#密码反馈模式-CFB" class="headerlink" title="密码反馈模式 CFB"></a>密码反馈模式 CFB</h3><h3 id="输出反馈模式-OFB"><a href="#输出反馈模式-OFB" class="headerlink" title="输出反馈模式 OFB"></a>输出反馈模式 OFB</h3><h2 id="流密码"><a href="#流密码" class="headerlink" title="流密码"></a>流密码</h2><h3 id="密钥流"><a href="#密钥流" class="headerlink" title="密钥流"></a>密钥流</h3><p>是一组伪随机序列S = S[0], S[1], S[2], …… ；每次生成1位或者1个字节。</p>
-<h3 id="流密码-1"><a href="#流密码-1" class="headerlink" title="流密码"></a>流密码</h3><p>密钥流和明文流进行对位异或操作 C[i] = S[i]⊕P[i]</p>
-<h3 id="同步流密码"><a href="#同步流密码" class="headerlink" title="同步流密码"></a>同步流密码</h3><ol>
+<h3 id="密码反馈模式-cfb"><a class="markdownIt-Anchor" href="#密码反馈模式-cfb"></a> 密码反馈模式 CFB</h3>
+<h3 id="输出反馈模式-ofb"><a class="markdownIt-Anchor" href="#输出反馈模式-ofb"></a> 输出反馈模式 OFB</h3>
+<h2 id="流密码"><a class="markdownIt-Anchor" href="#流密码"></a> 流密码</h2>
+<h3 id="密钥流"><a class="markdownIt-Anchor" href="#密钥流"></a> 密钥流</h3>
+<p>是一组伪随机序列S = S[0], S[1], S[2], …… ；每次生成1位或者1个字节。</p>
+<h3 id="流密码-2"><a class="markdownIt-Anchor" href="#流密码-2"></a> 流密码</h3>
+<p>密钥流和明文流进行对位异或操作 C[i] = S[i]⊕P[i]</p>
+<h3 id="同步流密码"><a class="markdownIt-Anchor" href="#同步流密码"></a> 同步流密码</h3>
+<ol>
 <li>密钥流的生成只依靠密钥K</li>
 <li>如果明文是带有序列号的包，同步流密码可在不可靠信道下工作。</li>
 </ol>
-<h3 id="自同步流密码"><a href="#自同步流密码" class="headerlink" title="自同步流密码"></a>自同步流密码</h3><ol>
+<h3 id="自同步流密码"><a class="markdownIt-Anchor" href="#自同步流密码"></a> 自同步流密码</h3>
+<ol>
 <li>使用密钥K和前q个密文来生成密钥流</li>
 <li>在接收到q个密文后自动与密钥流生成器同步，如果数字被丢弃或添加到明文流中，更容易恢复。</li>
 <li>自同步：因解码当前文字只依赖于固定个数的之前的密文字。所以仅有确定数量的明文字符不可被恢复。</li>
 </ol>
-<h3 id="RC4-流密码与密钥流生成器"><a href="#RC4-流密码与密钥流生成器" class="headerlink" title="RC4 流密码与密钥流生成器"></a>RC4 流密码与密钥流生成器</h3><ol>
+<h3 id="rc4-流密码与密钥流生成器"><a class="markdownIt-Anchor" href="#rc4-流密码与密钥流生成器"></a> RC4 流密码与密钥流生成器</h3>
+<ol>
 <li>最多可以使用2048位的密钥</li>
 <li>使用块大小为b的数据块</li>
 <li>使用一个密钥对(K, t), K为密钥，计数器t是一个b位的值</li>
-<li>密钥流由下列密文块连接而成: E<sub>K</sub>(t), E<sub>K</sub>(t+1), E<sub>K</sub>(t+2), ……<h2 id="针对流密码的攻击"><a href="#针对流密码的攻击" class="headerlink" title="针对流密码的攻击"></a>针对流密码的攻击</h2><h3 id="重试攻击"><a href="#重试攻击" class="headerlink" title="重试攻击"></a>重试攻击</h3>如果密钥流被重用，那么攻击者可获得两个明文的异或值<h3 id="插入攻击"><a href="#插入攻击" class="headerlink" title="插入攻击"></a>插入攻击</h3>将由攻击者选定的字节插入到消息流中，并使用相同的密钥流进行加密</li>
+<li>密钥流由下列密文块连接而成: E<sub>K</sub>(t), E<sub>K</sub>(t+1), E<sub>K</sub>(t+2), ……</li>
 </ol>
-<h1 id="公钥加密"><a href="#公钥加密" class="headerlink" title="公钥加密"></a>公钥加密</h1><h2 id="数论基础"><a href="#数论基础" class="headerlink" title="数论基础"></a>数论基础</h2><h3 id="素数-只能被1和他自身整除。"><a href="#素数-只能被1和他自身整除。" class="headerlink" title="素数 只能被1和他自身整除。"></a>素数 只能被1和他自身整除。</h3><ol>
+<h2 id="针对流密码的攻击"><a class="markdownIt-Anchor" href="#针对流密码的攻击"></a> 针对流密码的攻击</h2>
+<h3 id="重试攻击"><a class="markdownIt-Anchor" href="#重试攻击"></a> 重试攻击</h3>
+<p>如果密钥流被重用，那么攻击者可获得两个明文的异或值</p>
+<h3 id="插入攻击"><a class="markdownIt-Anchor" href="#插入攻击"></a> 插入攻击</h3>
+<p>将由攻击者选定的字节插入到消息流中，并使用相同的密钥流进行加密</p>
+<h1 id="公钥加密"><a class="markdownIt-Anchor" href="#公钥加密"></a> 公钥加密</h1>
+<h2 id="数论基础"><a class="markdownIt-Anchor" href="#数论基础"></a> 数论基础</h2>
+<h3 id="素数-只能被1和他自身整除"><a class="markdownIt-Anchor" href="#素数-只能被1和他自身整除"></a> 素数 只能被1和他自身整除。</h3>
+<ol>
 <li>正整数n可以写成若干个素数的某次幂的乘积。如200=2<sup>3</sup>×5<sup>2</sup></li>
 <li>算术基本定理：一个正整数的素数分解是唯一的</li>
 </ol>
-<h3 id="互质-两个数的最大公约数为1"><a href="#互质-两个数的最大公约数为1" class="headerlink" title="互质 两个数的最大公约数为1"></a>互质 两个数的最大公约数为1</h3><h3 id="辗转相除法-用于计算两个正整数的最大公约数"><a href="#辗转相除法-用于计算两个正整数的最大公约数" class="headerlink" title="辗转相除法 用于计算两个正整数的最大公约数"></a>辗转相除法 用于计算两个正整数的最大公约数</h3><ol>
-<li><p>gcd(a, b) = gcd(b, a mod b)</p>
+<h3 id="互质-两个数的最大公约数为1"><a class="markdownIt-Anchor" href="#互质-两个数的最大公约数为1"></a> 互质 两个数的最大公约数为1</h3>
+<h3 id="辗转相除法-用于计算两个正整数的最大公约数"><a class="markdownIt-Anchor" href="#辗转相除法-用于计算两个正整数的最大公约数"></a> 辗转相除法 用于计算两个正整数的最大公约数</h3>
+<ol>
+<li>
+<p>gcd(a, b) = gcd(b, a mod b)</p>
 </li>
-<li><p>算法最大迭代次数为1+2log max(a,b) </p>
-<p> 复杂度 O(log min(a,b))</p>
-<p> gcd(412,260)=4</p>
+<li>
+<p>算法最大迭代次数为1+2log max(a,b)</p>
+<p>复杂度 O(log min(a,b))</p>
+<p>gcd(412,260)=4</p>
  <img src="/计安导_img/15.png">
-
 </li>
 </ol>
-<h3 id="乘法逆元"><a href="#乘法逆元" class="headerlink" title="乘法逆元"></a>乘法逆元</h3><ol>
-<li><p>xy mod n = 1, 则称 y 是 x 在 Zn的乘法逆元，记作 y = x - 1</p>
+<h3 id="乘法逆元"><a class="markdownIt-Anchor" href="#乘法逆元"></a> 乘法逆元</h3>
+<ol>
+<li>
+<p>xy mod n = 1, 则称 y 是 x 在 Zn的乘法逆元，记作 y = x - 1</p>
  <img src="/计安导_img/16.png">
 </li>
-<li><p>定理：Zn中的元素 x 有乘法逆元当且仅当 x 和 n 互素。</p>
+<li>
+<p>定理：Zn中的元素 x 有乘法逆元当且仅当 x 和 n 互素。</p>
 </li>
-<li><p>定理：a存在模b的乘法逆元的充要条件是gcd（a,b）= 1</p>
+<li>
+<p>定理：a存在模b的乘法逆元的充要条件是gcd（a,b）= 1</p>
 </li>
-<li><p>定理：如果p是素数，那么Zp上的非0剩余类都有乘法逆元</p>
+<li>
+<p>定理：如果p是素数，那么Zp上的非0剩余类都有乘法逆元</p>
 </li>
-<li><p>定理：欧几里得算法可以用来计算 Zn 中元素 x 的乘法逆元或者确定该元素是否存在乘法逆元</p>
+<li>
+<p>定理：欧几里得算法可以用来计算 Zn 中元素 x 的乘法逆元或者确定该元素是否存在乘法逆元</p>
 </li>
 </ol>
-<h3 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h3><ol>
-<li><p>若 p 是素数，x 是正整数且不能被 p 整除，则 x<sup>p-1</sup> mod p = 1</p>
+<h3 id="费马小定理"><a class="markdownIt-Anchor" href="#费马小定理"></a> 费马小定理</h3>
+<ol>
+<li>
+<p>若 p 是素数，x 是正整数且不能被 p 整除，则 x<sup>p-1</sup> mod p = 1</p>
  <img src="/计安导_img/17.png">
 </li>
-<li><p>若 p 是素数，x 是正整数且不能被 p 整除，x的乘法逆元是 xp<sup>p-2</sup> mod p</p>
+<li>
+<p>若 p 是素数，x 是正整数且不能被 p 整除，x的乘法逆元是 xp<sup>p-2</sup> mod p</p>
 </li>
 </ol>
-<h3 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h3><ol>
+<h3 id="欧拉定理"><a class="markdownIt-Anchor" href="#欧拉定理"></a> 欧拉定理</h3>
+<ol>
 <li>欧拉函数  Φ(n)指的是小于n且与n互素的正整数个数。Φ(1) = 1。 当p为素数时，Φ(p - 1) = p</li>
 <li>欧拉定理：对任意互素的x和n，有 x<sup>Φ(n)</sup> mod n = 1</li>
 </ol>
 <img src="/计安导_img/18.png">
-
-<h2 id="RSA-密码系统"><a href="#RSA-密码系统" class="headerlink" title="RSA 密码系统"></a>RSA 密码系统</h2><img src="/计安导_img/19.png">
-
+<h2 id="rsa-密码系统"><a class="markdownIt-Anchor" href="#rsa-密码系统"></a> RSA 密码系统</h2>
+<img src="/计安导_img/19.png">
 <img src="/计安导_img/20.png">
-
-<h3 id="RSA-安全性"><a href="#RSA-安全性" class="headerlink" title="RSA 安全性"></a>RSA 安全性</h3><p>基于给定e和n，找到d是困难的</p>
-<h1 id="密码学哈希函数"><a href="#密码学哈希函数" class="headerlink" title="密码学哈希函数"></a>密码学哈希函数</h1><h2 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h2><ol>
-<li>哈希函数 指将可变长度的消息P 作为输入，产生固定 长度的Hash值 x = h(P)，称函数值h(P)为P的哈希值或消息摘要。</li>
+<h3 id="rsa-安全性"><a class="markdownIt-Anchor" href="#rsa-安全性"></a> RSA 安全性</h3>
+<p>基于给定e和n，找到d是困难的</p>
+<h1 id="密码学哈希函数"><a class="markdownIt-Anchor" href="#密码学哈希函数"></a> 密码学哈希函数</h1>
+<h2 id="哈希函数"><a class="markdownIt-Anchor" href="#哈希函数"></a> 哈希函数</h2>
+<ol>
+<li>哈希函数 指将可变长度的消息P 作为输入，产生固定 长度的Hash值 x = h§，称函数值h§为P的哈希值或消息摘要。</li>
 <li>哈希表 是根据关键码值(Key value)而直接进行访问的数据结构。也就是说， 它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。</li>
-<li>性质：<ol>
+<li>性质：
+<ol>
 <li>单向性</li>
 <li>抗弱碰撞性 想穷举出明文是困难的</li>
 <li>抗强碰撞性 想伪造哈希签名是困难的</li>
@@ -564,68 +343,274 @@
 </ol>
 </li>
 </ol>
-<h2 id="随机预言机"><a href="#随机预言机" class="headerlink" title="随机预言机"></a>随机预言机</h2><p>把随机预言机理解为<strong>完美</strong>的散列函数，具有</p>
+<h2 id="随机预言机"><a class="markdownIt-Anchor" href="#随机预言机"></a> 随机预言机</h2>
+<p>把随机预言机理解为<strong>完美</strong>的散列函数，具有</p>
 <ol>
 <li>一致性：对于相同的输入，其输出必然相同</li>
 <li>可计算性：输出的计算可以在多项式时间内完成</li>
 <li>均匀分布性：预言机的输出在取值空间内均匀分布，<strong>无碰撞</strong></li>
 </ol>
-<h2 id="生日攻击"><a href="#生日攻击" class="headerlink" title="生日攻击"></a>生日攻击</h2><p>暴力破解哈希，危害其抗碰撞性</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<h2 id="生日攻击"><a class="markdownIt-Anchor" href="#生日攻击"></a> 生日攻击</h2>
+<p>暴力破解哈希，危害其抗碰撞性</p>
+<h3 id="步骤"><a class="markdownIt-Anchor" href="#步骤"></a> 步骤</h3>
+<ol>
 <li>随机产生消息序列X1，X2，X3，…</li>
 <li>对于每个Xi计算Hash值 yi = h(Xi) 并且检测yi是否等于yj ( j &lt; i )</li>
 <li>直至找到碰撞即停止</li>
 </ol>
-<h3 id="概率分析"><a href="#概率分析" class="headerlink" title="概率分析"></a>概率分析</h3><ol>
+<h3 id="概率分析"><a class="markdownIt-Anchor" href="#概率分析"></a> 概率分析</h3>
+<ol>
 <li>对于b位的Hash函数，则有2<sup>b</sup>个Hash值数目</li>
 <li>攻击者 生成的第 i 个消息与前面 i-1 个消息中任意一个产生冲突的概率为 1 - (i - 1)/m</li>
 <li>在k轮的失败概率(即攻击者在生成 k个消息后没有找到冲突的概率)为Fk = (1 - 1/m) (1 - 2/m) (1 - 3/m) … (1 - (k - 1)/m)</li>
 <li>用1- x ≈ e<sup>-x</sup>逼近,Fk ≈ e <sup>-(1/m + 2/m + 3/m + … + (k - 1)/m) </sup>= e <sup>-k ( k-1) / 2m</sup></li>
 <li>当Fk = 1/2时，攻击成功/失败的概率为50%，即e <sup>-k ( k-1) / 2m</sup> = 1/2</li>
-<li>进一步得到k=1.17&radic;m , 其中&radic;m 的位数是b/2，m位数的一半</li>
+<li>进一步得到k=1.17√m , 其中√m 的位数是b/2，m位数的一半</li>
 <li>所以通常根据输出大小的一半来考虑加密散列函数的安全, 比如256位抗冲突Hash函数的安全是128位。</li>
 </ol>
-<h2 id="MD5消息签名算法"><a href="#MD5消息签名算法" class="headerlink" title="MD5消息签名算法"></a>MD5消息签名算法</h2><p>对于任意两个密文Ｐ和Ｑ，通过250次MD5哈希运算可以找出两个前 缀S1和S2使得 P||S1 和 Q||S2 发生碰撞.</p>
-<h1 id="数据完整性"><a href="#数据完整性" class="headerlink" title="数据完整性"></a>数据完整性</h1><h2 id="消息认证码-MAC"><a href="#消息认证码-MAC" class="headerlink" title="消息认证码 MAC"></a>消息认证码 MAC</h2><ol>
+<h2 id="md5消息签名算法"><a class="markdownIt-Anchor" href="#md5消息签名算法"></a> MD5消息签名算法</h2>
+<p>对于任意两个密文Ｐ和Ｑ，通过250次MD5哈希运算可以找出两个前 缀S1和S2使得 P||S1 和 Q||S2 发生碰撞.</p>
+<h1 id="数据完整性"><a class="markdownIt-Anchor" href="#数据完整性"></a> 数据完整性</h1>
+<h2 id="消息认证码-mac"><a class="markdownIt-Anchor" href="#消息认证码-mac"></a> 消息认证码 MAC</h2>
+<ol>
 <li>发送方计算MAC值 c = h(K, M) 并且将c连同消息M一起传输。接收方从收到的消息中重新计算MAC值并将其与接收到的MAC进行比较。</li>
 <li>密钥可以以单独加密并签名的方式发送</li>
 </ol>
-<h2 id="基于Hash函数的MAC-HMAC"><a href="#基于Hash函数的MAC-HMAC" class="headerlink" title="基于Hash函数的MAC HMAC"></a>基于Hash函数的MAC HMAC</h2><ol>
+<h2 id="基于hash函数的mac-hmac"><a class="markdownIt-Anchor" href="#基于hash函数的mac-hmac"></a> 基于Hash函数的MAC HMAC</h2>
+<ol>
 <li>密码学Hash函数不能直接用作消息认证函数。因为Hash函数内部迭代结构，所以标准Hash并不安全。</li>
-<li>HMAC构造方法<ol>
+<li>HMAC构造方法
+<ol>
 <li>h(K⊕A||h(K⊕B||M)) A和B为常数</li>
 </ol>
 </li>
 </ol>
-<h2 id="安全信道"><a href="#安全信道" class="headerlink" title="安全信道"></a>安全信道</h2><p>确保不安全信道所传输的消息的完整性和机密性。包括</p>
+<h2 id="安全信道"><a class="markdownIt-Anchor" href="#安全信道"></a> 安全信道</h2>
+<p>确保不安全信道所传输的消息的完整性和机密性。包括</p>
 <ol>
 <li>签名配合加密：对(message, signature)加密后再进行传输</li>
-<li>MAC配合加密：对(message, MAC)加密后再进行传输。<ol>
+<li>MAC配合加密：对(message, MAC)加密后再进行传输。
+<ol>
 <li>比签名配合加密的方法更加高效：计算消息的MAC比对消息进行签名 和验证更快，且开销更低。</li>
 </ol>
 </li>
 </ol>
-<h2 id="Hash链"><a href="#Hash链" class="headerlink" title="Hash链"></a>Hash链</h2><img src="/计安导_img/21.png">
-
+<h2 id="hash链"><a class="markdownIt-Anchor" href="#hash链"></a> Hash链</h2>
+<img src="/计安导_img/21.png">
 <ol>
-<li><p>计算Hash链</p>
-<p> xn = r </p>
-<p> xi = h(x<sub>i+1</sub>) for i = n-1, …, 1</p>
+<li>
+<p>计算Hash链</p>
+<p>xn = r</p>
+<p>xi = h(x<sub>i+1</sub>) for i = n-1, …, 1</p>
 </li>
-<li><p>验证Hash链</p>
-<p> xn+1 = 0</p>
-<p> xi = h(Pi || x<sub>i+1</sub>) ) for i = n, …, 1</p>
+<li>
+<p>验证Hash链</p>
+<p>xn+1 = 0</p>
+<p>xi = h(Pi || x<sub>i+1</sub>) ) for i = n, …, 1</p>
 </li>
 </ol>
-<h2 id="Hash-树"><a href="#Hash-树" class="headerlink" title="Hash 树"></a>Hash 树</h2><p>是一种树 形数据结构，每个叶节点均以 数据块的Hash作为标签，而 除了叶节点以外的节点则以其 子节点标签的Hash作为标签</p>
-<h2 id="哈希认证树"><a href="#哈希认证树" class="headerlink" title="哈希认证树"></a>哈希认证树</h2><img src="/计安导_img/22.png">
-
+<h2 id="hash-树"><a class="markdownIt-Anchor" href="#hash-树"></a> Hash 树</h2>
+<p>是一种树 形数据结构，每个叶节点均以 数据块的Hash作为标签，而 除了叶节点以外的节点则以其 子节点标签的Hash作为标签</p>
+<h2 id="哈希认证树"><a class="markdownIt-Anchor" href="#哈希认证树"></a> 哈希认证树</h2>
+<img src="/计安导_img/22.png">
 <ol>
 <li>g = h(h(a, h(x3, x4)), d)</li>
 <li>proof(x4) = [(x3, L), (a, L), (d, R)]</li>
 <li>具有对数级的存储和计算复杂度</li>
 </ol>
-<h2 id="允许丢包的数据流检验"><a href="#允许丢包的数据流检验" class="headerlink" title="允许丢包的数据流检验"></a>允许丢包的数据流检验</h2><img src="/计安导_img/23.png">
+<h2 id="允许丢包的数据流检验"><a class="markdownIt-Anchor" href="#允许丢包的数据流检验"></a> 允许丢包的数据流检验</h2>
+<img src="/计安导_img/23.png">
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-计安导第7章" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC7%E7%AB%A0/"
+    >计安导第7章</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC7%E7%AB%A0/" class="article-date">
+  <time datetime="2020-03-30T02:29:18.478Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="万维网"><a class="markdownIt-Anchor" href="#万维网"></a> 万维网</h1>
+<h2 id="html-超文本标记语言"><a class="markdownIt-Anchor" href="#html-超文本标记语言"></a> HTML 超文本标记语言</h2>
+<h3 id="特点"><a class="markdownIt-Anchor" href="#特点"></a> 特点</h3>
+<ol>
+<li>静态文档描述语言</li>
+<li>支持链接到其他页面或者嵌入图像</li>
+<li>通过表单（Forms）将用户输入发送到服务器</li>
+</ol>
+<h2 id="超文本传输协议http"><a class="markdownIt-Anchor" href="#超文本传输协议http"></a> 超文本传输协议HTTP</h2>
+<ol>
+<li>先检索本地DNS，如果没有找到则查询DNS服务器</li>
+<li>解析IP地址之后，建立TCP连接</li>
+<li>HTTP请求和响应<strong>通过TCP的端口80</strong>传输</li>
+<li>不提供数据加密，以明文发送</li>
+</ol>
+<h2 id="安全套接字层超文本传输协议https"><a class="markdownIt-Anchor" href="#安全套接字层超文本传输协议https"></a> 安全套接字层超文本传输协议HTTPS</h2>
+<ol>
+<li>
+<p>与HTTP语法相同，但使用了安全套接字层SSL或传输层安全TLS</p>
+</li>
+<li>
+<p>SSL和TLS都依靠证书来验 证服务器的身份，并建立加 密的通信信道</p>
+ <img src="/计安导_img/8.png">
+</li>
+</ol>
+<h1 id="网络钓鱼"><a class="markdownIt-Anchor" href="#网络钓鱼"></a> 网络钓鱼</h1>
+<p>通过伪造网页以欺诈的方式获取敏感资料</p>
+<h2 id="url混淆同源攻击"><a class="markdownIt-Anchor" href="#url混淆同源攻击"></a> URL混淆	同源攻击</h2>
+<p>注册带有unicode字符的域名，针对相似的字母进行注册。称为<strong>同源攻击</strong></p>
+<h2 id="移除或伪造地址栏"><a class="markdownIt-Anchor" href="#移除或伪造地址栏"></a> 移除或伪造地址栏</h2>
+<h1 id="图像崩溃"><a class="markdownIt-Anchor" href="#图像崩溃"></a> 图像崩溃</h1>
+<p>由于浏览器的缺陷导致。通过HTML代码创建一个非常大比例的简单图像，可以使IE 崩溃，有时还会使电脑宕机。</p>
+<h1 id="可移动代码"><a class="markdownIt-Anchor" href="#可移动代码"></a> 可移动代码</h1>
+<p><strong>可移动代码</strong> 指可执行、通过网络发送、在目标 电脑上执行的代码程序。包括</p>
+<h2 id="javascript"><a class="markdownIt-Anchor" href="#javascript"></a> JavaScript</h2>
+<h2 id="activex控件"><a class="markdownIt-Anchor" href="#activex控件"></a> ActiveX控件</h2>
+<h3 id="支持签名"><a class="markdownIt-Anchor" href="#支持签名"></a> 支持签名</h3>
+<p>此签名的ActiveX控件要求 用户运行权限。如果获得批准，控件将以与用户相同的权限运行</p>
+<h3 id="受信任不受信任的activex控件"><a class="markdownIt-Anchor" href="#受信任不受信任的activex控件"></a> 受信任/不受信任的ActiveX控件</h3>
+<ol>
+<li>
+<p>可行的发布者：</p>
+<ol>
+<li>存储在Windows注册表中的列表</li>
+<li>恶意ActiveX控件可以修改注册表，使其发行者可信</li>
+<li>运行该发布者今后所有的插件不需要提示用户</li>
+</ol>
+</li>
+<li>
+<p>未签名的控件</p>
+<ol>
+<li>浏览器对于未签名的控件会给出一个接受/拒绝的选项</li>
+<li>但即使你拒绝该控件，它也已被下载到一个临时文件夹中</li>
+<li>如果拒绝，它不会被执行，但也不会被删除</li>
+</ol>
+</li>
+</ol>
+<p>###<strong>可以访问用户文件</strong></p>
+<h2 id="java插件"><a class="markdownIt-Anchor" href="#java插件"></a> Java插件</h2>
+<h3 id="支持签名-2"><a class="markdownIt-Anchor" href="#支持签名-2"></a> 支持签名</h3>
+<p>###<strong>沙箱执行</strong></p>
+<ol>
+<li>沙箱：应用程序或脚本在另一个应用程序中首先的运行权限。沙箱只能访问某些文件和设备。</li>
+</ol>
+<h1 id="cookies"><a class="markdownIt-Anchor" href="#cookies"></a> Cookies</h1>
+<p>cookie是指存储在计算机上、与特定服务器关联的 一小部分信息。用于在会话中保存状态信息。</p>
+<h2 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h2>
+<p>可能包含敏感信息</p>
+<h2 id="分类"><a class="markdownIt-Anchor" href="#分类"></a> 分类</h2>
+<ol>
+<li><strong>会话型cookie</strong>：是浏览器的处理过程中保留的，是暂时性的，当 浏览器关闭时则消除。</li>
+<li><strong>持久性cookie</strong>：而持久性的是保存在客户端的硬盘上的，浏览器 关闭也不会消除。</li>
+</ol>
+<h1 id="跨站脚本-xss"><a class="markdownIt-Anchor" href="#跨站脚本-xss"></a> 跨站脚本 XSS</h1>
+<p>用于攻击者将脚本代码注入Web应用程序生成的页面。攻击者通常在有漏洞的程序中插入Javascript， VBScript，ActiveX或Flash以欺骗用户。</p>
+<h2 id="案例"><a class="markdownIt-Anchor" href="#案例"></a> 案例</h2>
+<p>2005 年 Samy 在社交网站Myspace的个人资料中加入 Javascript ，打开该页面 的浏览器将执行该脚本 ― 首先把攻击者加为好友，其次把这段 XSS 复制到被 攻击者的个人资料中。</p>
+<p>这算是一种<strong>蠕虫</strong></p>
+<h2 id="xss的发起条件"><a class="markdownIt-Anchor" href="#xss的发起条件"></a> XSS的发起条件</h2>
+<ol>
+<li>Web服务器没有对用户输入进行有效性验证或者验证强度不够 ，而又轻易地将它们返回到客户端</li>
+<li>允许用户在表格或编辑框中输入不相关字符</li>
+<li>存储并允许把用户输入显示在返回给终端的页面上，而没有去 除非法字符或者重新进行编码</li>
+</ol>
+<h2 id="xss盗取cookie"><a class="markdownIt-Anchor" href="#xss盗取cookie"></a> XSS盗取cookie</h2>
+<ol>
+<li>首先编写获取cokie的php脚本</li>
+<li>向被攻击者服务器页面上注入一段JS代码，用于将被攻击者的cookie传送到我们的服务器。</li>
+</ol>
+<h2 id="xss的防御"><a class="markdownIt-Anchor" href="#xss的防御"></a> XSS的防御</h2>
+<h3 id="基于代理"><a class="markdownIt-Anchor" href="#基于代理"></a> 基于代理</h3>
+<ol>
+<li>分析浏览器和Web服务器之间的HTTP通信量</li>
+<li>寻找HTML中的特殊字符</li>
+<li>执行Web页面之前对它们进行编码</li>
+</ol>
+<h3 id="使用应用层防火墙"><a class="markdownIt-Anchor" href="#使用应用层防火墙"></a> 使用应用层防火墙</h3>
+<ol>
+<li>分析HTML页面中可能导致敏感信息泄漏的超链接</li>
+<li>对于使用不良请求的一系列链接进行停止操作</li>
+</ol>
+<h3 id="审计制度"><a class="markdownIt-Anchor" href="#审计制度"></a> 审计制度</h3>
+<p>监视JavaScript代码的执行，并将操作与高级策略进行比较，以 检测恶意行为</p>
+<h1 id="sql注入攻击"><a class="markdownIt-Anchor" href="#sql注入攻击"></a> SQL注入攻击</h1>
+<p>SQL注入：就是通过把SQL命令插入到Web表单提交或输入 域名或页面请求的查询字符串，最终达到欺骗服务器执行恶 意的SQL命令</p>
+<h2 id="条件"><a class="markdownIt-Anchor" href="#条件"></a> 条件</h2>
+<ol>
+<li>web应用程序从表单中获取用户输入</li>
+<li>用户提交的信息用于构建查询</li>
+<li>SQL注入攻击涉及在用户输入中放置SQL语句。</li>
+</ol>
+<h2 id="万能语句-1-or-1"><a class="markdownIt-Anchor" href="#万能语句-1-or-1"></a> 万能语句 1 or 1</h2>
+<h2 id="防范"><a class="markdownIt-Anchor" href="#防范"></a> 防范</h2>
+<ol>
+<li>使用预编译语句，绑定变量。</li>
+<li>对用户提交的数据和输入参数进行严格过滤。</li>
+<li>使用安全函数</li>
+<li>摒弃动态SQL语句，改用存储过程来访问和操作数据。</li>
+<li>最小权限原则：避免Web直接使用root</li>
+</ol>
+<h1 id="dos-拒绝服务攻击"><a class="markdownIt-Anchor" href="#dos-拒绝服务攻击"></a> DoS 拒绝服务攻击</h1>
+<p>任何旨在 使计算机或系统不可用或无法执行基本功能的攻击。如TCP 泛滥攻击，DNS放大攻击。</p>
+<h2 id="分布式拒绝服务攻击-ddos"><a class="markdownIt-Anchor" href="#分布式拒绝服务攻击-ddos"></a> 分布式拒绝服务攻击 DDoS</h2>
+<ol>
+<li>利用控制的大量僵尸计算机同时攻击目标。使得传统DoS攻击不了的高性能服务器也变得不安全。</li>
+</ol>
+
       
       <!-- reward -->
       
@@ -690,78 +675,103 @@
       
 
       
-      <h1 id="策略、模型与信任"><a href="#策略、模型与信任" class="headerlink" title="策略、模型与信任"></a>策略、模型与信任</h1><h2 id="安全策略"><a href="#安全策略" class="headerlink" title="安全策略"></a>安全策略</h2><h3 id="主体"><a href="#主体" class="headerlink" title="主体"></a>主体</h3><p>是与系统交互的代理</p>
-<h3 id="客体"><a href="#客体" class="headerlink" title="客体"></a>客体</h3><p>是安全策略要保护和管理的信息与计算资源</p>
-<h3 id="动作"><a href="#动作" class="headerlink" title="动作"></a>动作</h3><p>主体对客体可能(或不可能)执行的操作</p>
-<h3 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h3><p>主体、操作与客体之间的映射，权限明确规定允许或禁止哪些操作</p>
-<h3 id="保护"><a href="#保护" class="headerlink" title="保护"></a>保护</h3><p>策略中包含的特定安全特性或规则，以 帮助实现特定的安全目标，如保密性、完整性、可用性或匿 名性。</p>
-<h2 id="安全模型"><a href="#安全模型" class="headerlink" title="安全模型"></a>安全模型</h2><p>是一种抽象的、为管理员指定安全策略提供 概念语言。</p>
+      <h1 id="策略-模型与信任"><a class="markdownIt-Anchor" href="#策略-模型与信任"></a> 策略、模型与信任</h1>
+<h2 id="安全策略"><a class="markdownIt-Anchor" href="#安全策略"></a> 安全策略</h2>
+<h3 id="主体"><a class="markdownIt-Anchor" href="#主体"></a> 主体</h3>
+<p>是与系统交互的代理</p>
+<h3 id="客体"><a class="markdownIt-Anchor" href="#客体"></a> 客体</h3>
+<p>是安全策略要保护和管理的信息与计算资源</p>
+<h3 id="动作"><a class="markdownIt-Anchor" href="#动作"></a> 动作</h3>
+<p>主体对客体可能(或不可能)执行的操作</p>
+<h3 id="权限"><a class="markdownIt-Anchor" href="#权限"></a> 权限</h3>
+<p>主体、操作与客体之间的映射，权限明确规定允许或禁止哪些操作</p>
+<h3 id="保护"><a class="markdownIt-Anchor" href="#保护"></a> 保护</h3>
+<p>策略中包含的特定安全特性或规则，以 帮助实现特定的安全目标，如保密性、完整性、可用性或匿 名性。</p>
+<h2 id="安全模型"><a class="markdownIt-Anchor" href="#安全模型"></a> 安全模型</h2>
+<p>是一种抽象的、为管理员指定安全策略提供 概念语言。</p>
 <p>通常定义了</p>
 <ol>
 <li>组织成员所拥有的访问或修改权限的层次结构</li>
 </ol>
-<h2 id="自主访问控制-DAC"><a href="#自主访问控制-DAC" class="headerlink" title="自主访问控制 DAC"></a>自主访问控制 DAC</h2><p>指的是赋予用户能力确定文件访 问权限的一种方案。</p>
+<h2 id="自主访问控制-dac"><a class="markdownIt-Anchor" href="#自主访问控制-dac"></a> 自主访问控制 DAC</h2>
+<p>指的是赋予用户能力确定文件访 问权限的一种方案。</p>
 <ol>
 <li>允许用户根据用户和组设置访问控制措施。</li>
 <li>允许用户将资源特权授予同一系统上的其他用户。</li>
 </ol>
-<h2 id="强制访问控制-MAC"><a href="#强制访问控制-MAC" class="headerlink" title="强制访问控制 MAC"></a>强制访问控制 MAC</h2><ol>
+<h2 id="强制访问控制-mac"><a class="markdownIt-Anchor" href="#强制访问控制-mac"></a> 强制访问控制 MAC</h2>
+<ol>
 <li>不允许用户定义文件的权限.</li>
 <li>而是由中央策略管理员制定安全策略。</li>
 <li>每个安全规则都由主体、客体和一系列的权限组成。其中主体是获得权限的的一方，客体是被访问的资源。</li>
 </ol>
-<h2 id="信任管理系统"><a href="#信任管理系统" class="headerlink" title="信任管理系统"></a>信任管理系统</h2><h2 id="组成包括"><a href="#组成包括" class="headerlink" title="组成包括"></a>组成包括</h2><ol>
+<h2 id="信任管理系统"><a class="markdownIt-Anchor" href="#信任管理系统"></a> 信任管理系统</h2>
+<h2 id="组成包括"><a class="markdownIt-Anchor" href="#组成包括"></a> 组成包括</h2>
+<ol>
 <li><strong>策略语言</strong></li>
 <li><strong>一致性检查器</strong></li>
 <li>策略规则由策略语言指定，并由一致性检查器执行</li>
 </ol>
-<h2 id="规则包括"><a href="#规则包括" class="headerlink" title="规则包括"></a>规则包括</h2><ol>
+<h2 id="规则包括"><a class="markdownIt-Anchor" href="#规则包括"></a> 规则包括</h2>
+<ol>
 <li>操作 与系统安全相关的结果</li>
 <li>主题 可以在系统 上执行操作的用户、进程或其他实体</li>
 <li>策略 就是制定的规 则，制定赋予主体哪些权限，能执行那些操作</li>
 <li>凭证 数字签名 的文件，将主体身份与允许的行 为绑定，包括允许主体将权限委 托给其他主体的权限</li>
 </ol>
-<h1 id="访问控制模型"><a href="#访问控制模型" class="headerlink" title="访问控制模型"></a>访问控制模型</h1><h2 id="Bell-La-Padula模型"><a href="#Bell-La-Padula模型" class="headerlink" title="Bell-La Padula模型"></a>Bell-La Padula模型</h2><p>强制访问控制模型，保护机密性</p>
-<h3 id="全序和偏序"><a href="#全序和偏序" class="headerlink" title="全序和偏序"></a>全序和偏序</h3><ol>
+<h1 id="访问控制模型"><a class="markdownIt-Anchor" href="#访问控制模型"></a> 访问控制模型</h1>
+<h2 id="bell-la-padula模型"><a class="markdownIt-Anchor" href="#bell-la-padula模型"></a> Bell-La Padula模型</h2>
+<p>强制访问控制模型，保护机密性</p>
+<h3 id="全序和偏序"><a class="markdownIt-Anchor" href="#全序和偏序"></a> 全序和偏序</h3>
+<ol>
 <li>全序：自反，反对称，传递，完全性(如果x和y在U中，则x ≤ y 或 y ≤ x)</li>
 <li>偏序：去掉完全性</li>
 </ol>
-<h3 id="BLP-工作原理"><a href="#BLP-工作原理" class="headerlink" title="BLP 工作原理"></a>BLP 工作原理</h3><ol>
+<h3 id="blp-工作原理"><a class="markdownIt-Anchor" href="#blp-工作原理"></a> BLP 工作原理</h3>
+<ol>
 <li>原则：信息只能从低安全级别流向高安全级别。</li>
 <li>安全级别是偏序的</li>
-<li>每个对象x被分配到一个安全级别L(X)。同样，每个用户u被分配到 安全级别L(U)。用户对象的访问受以下两条规则控制：<ol>
+<li>每个对象x被分配到一个安全级别L(X)。同样，每个用户u被分配到 安全级别L(U)。用户对象的访问受以下两条规则控制：
+<ol>
 <li>简单安全性质：只有满足L(x) ≼ L(u)，用户u才能读取对象x：即<strong>不可向上读</strong></li>
 <li>性质只有满足L(u) ≼ L(x)，用户u才能写入（创建、编 辑或追加）对象x：即<strong>不可向下写</strong></li>
 </ol>
 </li>
 </ol>
-<h2 id="Biba模型"><a href="#Biba模型" class="headerlink" title="Biba模型"></a>Biba模型</h2><ol>
+<h2 id="biba模型"><a class="markdownIt-Anchor" href="#biba模型"></a> Biba模型</h2>
+<ol>
 <li>Biba模型的完整性级别表明对象和用户的可信度或准确度。</li>
 <li>Biba 不允许从下一级阅读，也不允许写到上层。</li>
 </ol>
-<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>如果让I(u)表示用户u的完整性级别，I(x)表示对象x的完整性级别， 则Biba模型中有以下规则：</p>
+<h3 id="工作原理"><a class="markdownIt-Anchor" href="#工作原理"></a> 工作原理</h3>
+<p>如果让I(u)表示用户u的完整性级别，I(x)表示对象x的完整性级别， 则Biba模型中有以下规则：</p>
 <ol>
 <li>原则：信息只能从较高的完整性级别下降 到较低的完整性级别</li>
 <li>用户u只能在I(u) ≼ I(x)情况下读取对象x：</li>
 <li>用户u只能在I(x) ≼ I(u)情况下才能写入(创建、编辑或追加)一个对象x</li>
 </ol>
-<h2 id="低水印模型"><a href="#低水印模型" class="headerlink" title="低水印模型"></a>低水印模型</h2><p>扩展的Biba模型，放宽了不可想下读的限制。</p>
+<h2 id="低水印模型"><a class="markdownIt-Anchor" href="#低水印模型"></a> 低水印模型</h2>
+<p>扩展的Biba模型，放宽了不可想下读的限制。</p>
 <ol>
 <li>原则 具有较高完整性级别的用户可以读取完整性级别较低 的对象。</li>
 <li>在这样的读取之后，对执行读取的用户进行降级，使其完整性级别 与所读取对象的完整性级别相匹配。</li>
 </ol>
-<h2 id="克拉克-威尔逊模型"><a href="#克拉克-威尔逊模型" class="headerlink" title="克拉克-威尔逊模型"></a>克拉克-威尔逊模型</h2><p>用于处理执行事务的系统。关键组件包括</p>
+<h2 id="克拉克-威尔逊模型"><a class="markdownIt-Anchor" href="#克拉克-威尔逊模型"></a> 克拉克-威尔逊模型</h2>
+<p>用于处理执行事务的系统。关键组件包括</p>
 <ol>
 <li>完整性约束：表明为了保证系统的状态有效，各对象之间必须满足的关系。</li>
 <li>认证方法：验证事务给定的完整性约束。一旦认证了事务的程序，每 次执行事务时，则不必再次进行完整性约束验证。</li>
 <li>职责分离原则：防止执行事务的用户验证事务。通常，每个事务都被 分配给可以分别验证和执行事务的不相交的用户集。</li>
 </ol>
-<h2 id="中国墙模型"><a href="#中国墙模型" class="headerlink" title="中国墙模型"></a>中国墙模型</h2><p>被设计用于商业领域， 以消除利益冲突的可能性。</p>
+<h2 id="中国墙模型"><a class="markdownIt-Anchor" href="#中国墙模型"></a> 中国墙模型</h2>
+<p>被设计用于商业领域， 以消除利益冲突的可能性。</p>
 <ol>
 <li>讲资源分组为利益冲突类</li>
 <li>每个用户只能从每个利益冲突类访问一个资源。</li>
 </ol>
-<h2 id="基于角色的访问控制-RBAC"><a href="#基于角色的访问控制-RBAC" class="headerlink" title="基于角色的访问控制 RBAC"></a>基于角色的访问控制 RBAC</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
+<h2 id="基于角色的访问控制-rbac"><a class="markdownIt-Anchor" href="#基于角色的访问控制-rbac"></a> 基于角色的访问控制 RBAC</h2>
+<h3 id="优点"><a class="markdownIt-Anchor" href="#优点"></a> 优点</h3>
+<ol>
 <li>便于组织授权管理</li>
 <li>支持继承</li>
 <li>便于实现最小特权原则</li>
@@ -769,25 +779,32 @@
 <li>支持客体抽象</li>
 <li>策略中立，通过不同配置能够实现特殊策略</li>
 </ol>
-<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ol>
+<h3 id="核心概念"><a class="markdownIt-Anchor" href="#核心概念"></a> 核心概念</h3>
+<ol>
 <li>用户：需要访问组织的资源以执行任务的实体</li>
 <li>角色：组织中具有类似功能和职责的用户的集合</li>
 <li>权限：权限描述了允许访问资源的方法。</li>
 <li>会话：由为执行特定任务而激活用户角色的子集组成。</li>
 </ol>
-<h3 id="分级RBAC"><a href="#分级RBAC" class="headerlink" title="分级RBAC"></a>分级RBAC</h3><ol>
+<h3 id="分级rbac"><a class="markdownIt-Anchor" href="#分级rbac"></a> 分级RBAC</h3>
+<ol>
 <li>定义：色R1继承（inherits）R2，如果R1包含R2的所有权限，R2包括 R1的所有用户，可以表示为R1 ≽ R2。称R1为R2的上一层。</li>
 </ol>
-<h1 id="渗透测试"><a href="#渗透测试" class="headerlink" title="渗透测试"></a>渗透测试</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
-<li><p>渗透测试：从攻击者(黑客)的角度测试系统和体系结构的安全性，在 固定时间内必须获得的具有预定目标的“模拟攻击”</p>
+<h1 id="渗透测试"><a class="markdownIt-Anchor" href="#渗透测试"></a> 渗透测试</h1>
+<h2 id="基本概念"><a class="markdownIt-Anchor" href="#基本概念"></a> 基本概念</h2>
+<ol>
+<li>
+<p>渗透测试：从攻击者(黑客)的角度测试系统和体系结构的安全性，在 固定时间内必须获得的具有预定目标的“模拟攻击”</p>
 <ol>
 <li>组我欸其他安全措施的补充</li>
 <li>花销大</li>
 </ol>
 </li>
-<li><p>流程：</p>
+<li>
+<p>流程：</p>
 <ol>
-<li>收集信息<ol>
+<li>收集信息
+<ol>
 <li>IP地址信息</li>
 <li>个人信息</li>
 </ol>
@@ -799,27 +816,32 @@
 </ol>
 </li>
 </ol>
-<h1 id="Kerberos"><a href="#Kerberos" class="headerlink" title="Kerberos"></a>Kerberos</h1><ol>
+<h1 id="kerberos"><a class="markdownIt-Anchor" href="#kerberos"></a> Kerberos</h1>
+<ol>
 <li>Kerberos：基于可信第三方（Trusted Third Party， TTP）的身份认证协议；</li>
 <li>旨在对整个网络进行集中身份验证，而不是在每个用户计算机上存储敏感的身份验证信息。</li>
 </ol>
-<h2 id="身份验证"><a href="#身份验证" class="headerlink" title="身份验证"></a>身份验证</h2><ol>
-<li><p>在身份验证过程中，客户端收到两个票据</p>
+<h2 id="身份验证"><a class="markdownIt-Anchor" href="#身份验证"></a> 身份验证</h2>
+<ol>
+<li>
+<p>在身份验证过程中，客户端收到两个票据</p>
 <ol>
 <li>票据授予票据（TGT）：用户和会话密钥的全局标识符。</li>
 <li>服务票据（service ticket）：对用户进行身份验证，确定用户能否 使用特殊服务。</li>
 <li>票据都有时间戳，用于标明数据的有效期限</li>
 </ol>
 </li>
-<li><p>密钥分发中心 KDC 组成</p>
-<p> 为了实现安全的身份验证</p>
+<li>
+<p>密钥分发中心 KDC 组成</p>
+<p>为了实现安全的身份验证</p>
 <ol>
 <li>身份验证服务器(AS):用于执行用户身份验证。维护存储用户和服务密钥的数据库。对用户提供的密码执行单向散列来生成用户的密钥。</li>
 <li>票据授予服务器(TGS):用于向用户授予票据</li>
 </ol>
 </li>
 </ol>
-<h3 id="身份认证过程"><a href="#身份认证过程" class="headerlink" title="身份认证过程"></a>身份认证过程</h3><p>概括的说</p>
+<h3 id="身份认证过程"><a class="markdownIt-Anchor" href="#身份认证过程"></a> 身份认证过程</h3>
+<p>概括的说</p>
 <ol>
 <li>客户端与AS互相进行身份验证</li>
 <li>客户端与TGS互相进行身份验证</li>
@@ -827,85 +849,99 @@
 </ol>
 <p>具体</p>
 <ol>
-<li><p>用户输入的密码经过哈希散列形成客户端密钥Kc</p>
-</li>
-<li><p>客户端与AS联系，AS执行</p>
+<li>用户输入的密码经过哈希散列形成客户端密钥Kc</li>
+<li>客户端与AS联系，AS执行
 <ol>
-<li><p>使用客户端密钥Kc加密客户端-TGS的会话密钥K<sub>CT</sub></p>
+<li>
+<p>使用客户端密钥Kc加密客户端-TGS的会话密钥K<sub>CT</sub></p>
 </li>
-<li><p>使用TGS的密钥K<sub>T</sub>加密票据授予票据TGT。TGT中包含K<sub>CT</sub>和有效期。</p>
+<li>
+<p>使用TGS的密钥K<sub>T</sub>加密票据授予票据TGT。TGT中包含K<sub>CT</sub>和有效期。</p>
 </li>
-<li><p>客户端使用Kc解密TGS会话密钥K<sub>CT</sub>。之后，客户端向TGS发送如下两个消息：</p>
+<li>
+<p>客户端使用Kc解密TGS会话密钥K<sub>CT</sub>。之后，客户端向TGS发送如下两个消息：</p>
 <ol>
 <li>TGT 和 所请求服务名称S</li>
 <li>验证令牌 有用户ID和时间戳组成，使用客户端TGS会话密钥K<sub>CT</sub>进行加密</li>
 </ol>
 </li>
-<li><p>.TGS使KT解密TGS，从而得到客户端TGS的会话密钥K<sub>CT</sub>和TGT的 有效期。在有效期之内，TGS使用密钥K<sub>CT</sub>解密身份验证令牌，向客 户端发送如下两个消息：</p>
+<li>
+<p>.TGS使KT解密TGS，从而得到客户端TGS的会话密钥K<sub>CT</sub>和TGT的 有效期。在有效期之内，TGS使用密钥K<sub>CT</sub>解密身份验证令牌，向客 户端发送如下两个消息：</p>
 <ol>
-<li>使用K<sub>CT</sub>加密的新的客户端-服务器会话密K<sub>CS</sub>。 </li>
+<li>使用K<sub>CT</sub>加密的新的客户端-服务器会话密K<sub>CS</sub>。</li>
 <li>使用具体服务的密钥KS加密客户端-服务器票据（client-server ticket），其中 TGS已知密钥KS 。票据包含客户端ID、网络地址、有效期、密钥K<sub>CS</sub>。</li>
 </ol>
 </li>
-<li><p>在对客户端-服务器会话密钥K<sub>CS</sub>解密后，为了使服务对客户端进行身份验证，客户端发送以下两个消息： </p>
+<li>
+<p>在对客户端-服务器会话密钥K<sub>CS</sub>解密后，为了使服务对客户端进行身份验证，客户端发送以下两个消息：</p>
 <ol>
-<li>在上个步骤中，TGS发送的客户端-服务器的票据。 </li>
+<li>在上个步骤中，TGS发送的客户端-服务器的票据。</li>
 <li>使用K<sub>CS</sub>加密的客户端ID和时间戳。</li>
 </ol>
 </li>
-<li><p>服务使用自己的密钥KS解密客户端-服务器的票据，得到客户端-服 务器的会话密钥K<sub>CS</sub> 。使用K<sub>CS</sub>解密客户端ID和时间戳。最后，为了向客户端证码自己的身份，它使用时间戳加1，并用K<sub>CS</sub>重新加密送回客户端。 </p>
+<li>
+<p>服务使用自己的密钥KS解密客户端-服务器的票据，得到客户端-服 务器的会话密钥K<sub>CS</sub> 。使用K<sub>CS</sub>解密客户端ID和时间戳。最后，为了向客户端证码自己的身份，它使用时间戳加1，并用K<sub>CS</sub>重新加密送回客户端。</p>
 </li>
-<li><p>客户端使用KCS解密并验证这个响应，如果验证成功，就可以开始 客户端-服务器的会话了。</p>
+<li>
+<p>客户端使用KCS解密并验证这个响应，如果验证成功，就可以开始 客户端-服务器的会话了。</p>
 </li>
-<li><p>票据有效期内，客户端为了访问多个服务，可以一直重复3-7步。</p>
+<li>
+<p>票据有效期内，客户端为了访问多个服务，可以一直重复3-7步。</p>
 </li>
 </ol>
 </li>
 </ol>
-<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ol>
+<h3 id="优点-2"><a class="markdownIt-Anchor" href="#优点-2"></a> 优点</h3>
+<ol>
 <li>分布式体系结构，可以在不安全的网络中使用。</li>
 <li>由于每次传输都使用适当的密钥进行加密，攻击者在不能破解密 钥或底层的加密算法的情况下，无法伪造有效的票据来获得对未 授权服务的访问。</li>
 <li>可防止重放攻击，因为不接受未授权方重传的消息。</li>
 <li>使用对称加密，所以比较高效</li>
 </ol>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ol>
+<h3 id="缺点"><a class="markdownIt-Anchor" href="#缺点"></a> 缺点</h3>
+<ol>
 <li>存在单点故障问题：密钥分发中心不可用</li>
 <li>如果KDC被破坏，在每个客户端和服务器的身法验证信息都被泄漏</li>
 <li>需要所有参与方都有同步的时钟</li>
 </ol>
-<h1 id="安全存储"><a href="#安全存储" class="headerlink" title="安全存储"></a>安全存储</h1><h2 id="安全保护措施"><a href="#安全保护措施" class="headerlink" title="安全保护措施"></a>安全保护措施</h2><ol>
+<h1 id="安全存储"><a class="markdownIt-Anchor" href="#安全存储"></a> 安全存储</h1>
+<h2 id="安全保护措施"><a class="markdownIt-Anchor" href="#安全保护措施"></a> 安全保护措施</h2>
+<ol>
 <li>保存好U盘手机</li>
 <li>防范窃取数据的恶意软件</li>
 <li>合理处置废旧设备</li>
 <li>备份</li>
 <li>云存储</li>
 </ol>
-<h2 id="文件密码保护"><a href="#文件密码保护" class="headerlink" title="文件密码保护"></a>文件密码保护</h2><p>保护信息的一种方法就是对文件进行加密，在密码算法没有在理论破解或密钥泄露的情况下，即使文件被盗，也不用担心信息会泄露。</p>
+<h2 id="文件密码保护"><a class="markdownIt-Anchor" href="#文件密码保护"></a> 文件密码保护</h2>
+<p>保护信息的一种方法就是对文件进行加密，在密码算法没有在理论破解或密钥泄露的情况下，即使文件被盗，也不用担心信息会泄露。</p>
 <ol>
-<li><p>常见密码算法</p>
+<li>
+<p>常见密码算法</p>
  <img src="/计安导_img/25.png">
-
-
 </li>
 </ol>
-<h3 id="加密文件系统-EFS"><a href="#加密文件系统-EFS" class="headerlink" title="加密文件系统 EFS"></a>加密文件系统 EFS</h3><ol>
-<li><p>特点</p>
+<h3 id="加密文件系统-efs"><a class="markdownIt-Anchor" href="#加密文件系统-efs"></a> 加密文件系统 EFS</h3>
+<ol>
+<li>
+<p>特点</p>
 <ol>
 <li>自动加密解密</li>
 <li>保护文件内容，而不保护文件名和其他元数据</li>
 <li>支持共享加密文件</li>
 </ol>
 </li>
-<li><p>缺点</p>
+<li>
+<p>缺点</p>
 <ol>
 <li>只保护本地文件系统，所以传送到其他文件系统会被破解</li>
 <li>临时文件不受保护</li>
 <li>密钥管理很麻烦</li>
 </ol>
 </li>
-<li><p>加密技术：同时使用对称和非对称加密</p>
+<li>
+<p>加密技术：同时使用对称和非对称加密</p>
  <img src="/计安导_img/26.png">
-
 <ol>
 <li>加密时首先使用AES(对称)单独的加密密钥FEK加密每个文件</li>
 <li>然后使用FEK加密数据</li>
@@ -916,16 +952,22 @@
 </ol>
 </li>
 </ol>
-<h2 id="磁盘加密"><a href="#磁盘加密" class="headerlink" title="磁盘加密"></a>磁盘加密</h2><h3 id="TrueCrypt"><a href="#TrueCrypt" class="headerlink" title="TrueCrypt"></a>TrueCrypt</h3><ol>
+<h2 id="磁盘加密"><a class="markdownIt-Anchor" href="#磁盘加密"></a> 磁盘加密</h2>
+<h3 id="truecrypt"><a class="markdownIt-Anchor" href="#truecrypt"></a> TrueCrypt</h3>
+<ol>
 <li>以分区为基础</li>
 <li>所有加密数据都是经过AES等加密算法，难以破解</li>
 <li>加密过程自动透明</li>
-<li>提供两级方案<h3 id="BitLocker"><a href="#BitLocker" class="headerlink" title="BitLocker"></a>BitLocker</h3></li>
+<li>提供两级方案</li>
+</ol>
+<h3 id="bitlocker"><a class="markdownIt-Anchor" href="#bitlocker"></a> BitLocker</h3>
+<ol>
 <li>使用AES对扇区进行加密</li>
 <li>使用NTFS格式的卷</li>
 <li>可以通过冷启动攻击：属于一种边信道攻击方法，可 以物理接触到计算机的攻击者能够运用这种攻击手段 在冷启动或硬盘重启之后，比如计算机没经历正常的 关机过程就突然重启时，从计算机的内存(RAM)中获 取加密密钥、口令和其他数据。断电后内存中的数据 能维持几十秒或数分钟，但通过液氮或压缩空气冷冻 ，这一数据衰减过程可被攻击者拉长至数小时之久。</li>
 </ol>
-<h2 id="可信平台模块-TPM"><a href="#可信平台模块-TPM" class="headerlink" title="可信平台模块 TPM"></a>可信平台模块 TPM</h2><p>是设计安装在主板上的芯片 ，作为安全密码处理器，它能安全地生成和存储密 钥。在生产时，将一个唯一地RSA私钥铸入到每一 个TPM芯片中。TPM的设计是防篡改的，所以，能 进行物理访问的攻击者也很难恢复这个密钥。</p>
+<h2 id="可信平台模块-tpm"><a class="markdownIt-Anchor" href="#可信平台模块-tpm"></a> 可信平台模块 TPM</h2>
+<p>是设计安装在主板上的芯片 ，作为安全密码处理器，它能安全地生成和存储密 钥。在生产时，将一个唯一地RSA私钥铸入到每一 个TPM芯片中。TPM的设计是防篡改的，所以，能 进行物理访问的攻击者也很难恢复这个密钥。</p>
 
       
       <!-- reward -->
@@ -991,7 +1033,16 @@
       
 
       
-      <h2 id="计安导第2章"><a href="#计安导第2章" class="headerlink" title="计安导第2章"></a><a href="/2020/03/30/计安导第2章/">计安导第2章</a></h2><h2 id="计安导第3章"><a href="#计安导第3章" class="headerlink" title="计安导第3章"></a><a href="/2020/03/30/计安导第3章/">计安导第3章</a></h2><h2 id="计安导第4章"><a href="#计安导第4章" class="headerlink" title="计安导第4章"></a><a href="/2020/03/30/计安导第4章/">计安导第4章</a></h2><h2 id="计安导第5章"><a href="#计安导第5章" class="headerlink" title="计安导第5章"></a><a href="/2020/03/30/计安导第5章/">计安导第5章</a></h2><h2 id="计安导第6章"><a href="#计安导第6章" class="headerlink" title="计安导第6章"></a><a href="/2020/03/30/计安导第6章/">计安导第6章</a></h2><h2 id="计安导第7章"><a href="#计安导第7章" class="headerlink" title="计安导第7章"></a><a href="/2020/03/30/计安导第7章/">计安导第7章</a></h2><h2 id="计安导第8章"><a href="#计安导第8章" class="headerlink" title="计安导第8章"></a><a href="/2020/03/30/计安导第8章/">计安导第8章</a></h2><h2 id="计安导第9章"><a href="#计安导第9章" class="headerlink" title="计安导第9章"></a><a href="/2020/03/30/计安导第9章/">计安导第9章</a></h2><h2 id="计安导第10章"><a href="#计安导第10章" class="headerlink" title="计安导第10章"></a><a href="/2020/03/30/计安导第10章/">计安导第10章</a></h2>
+      <h2 id="计安导第2章"><a class="markdownIt-Anchor" href="#计安导第2章"></a> <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC2%E7%AB%A0/">计安导第2章</a></h2>
+<h2 id="计安导第3章"><a class="markdownIt-Anchor" href="#计安导第3章"></a> <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC3%E7%AB%A0/">计安导第3章</a></h2>
+<h2 id="计安导第4章"><a class="markdownIt-Anchor" href="#计安导第4章"></a> <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC4%E7%AB%A0/">计安导第4章</a></h2>
+<h2 id="计安导第5章"><a class="markdownIt-Anchor" href="#计安导第5章"></a> <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC5%E7%AB%A0/">计安导第5章</a></h2>
+<h2 id="计安导第6章"><a class="markdownIt-Anchor" href="#计安导第6章"></a> <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC6%E7%AB%A0/">计安导第6章</a></h2>
+<h2 id="计安导第7章"><a class="markdownIt-Anchor" href="#计安导第7章"></a> <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC7%E7%AB%A0/">计安导第7章</a></h2>
+<h2 id="计安导第8章"><a class="markdownIt-Anchor" href="#计安导第8章"></a> <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC8%E7%AB%A0/">计安导第8章</a></h2>
+<h2 id="计安导第9章"><a class="markdownIt-Anchor" href="#计安导第9章"></a> <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC9%E7%AB%A0/">计安导第9章</a></h2>
+<h2 id="计安导第10章"><a class="markdownIt-Anchor" href="#计安导第10章"></a> <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC10%E7%AB%A0/">计安导第10章</a></h2>
+
       
       <!-- reward -->
       
@@ -1056,12 +1107,14 @@
       
 
       
-      <h1 id="uav-455-周期串"><a href="#uav-455-周期串" class="headerlink" title="uav 455 周期串"></a>uav 455 周期串</h1><p>如果一个字符串可以由某个长度为kkk 的字符串重复多次得到，则称该串以kkk 为周期。例如，abcabcabcabcabcabcabcabcabcabcabcabc 以333 为周期（注意，它也以666 和121212 为周期）。</p>
+      <h1 id="uav-455-周期串"><a class="markdownIt-Anchor" href="#uav-455-周期串"></a> uav 455 周期串</h1>
+<p>如果一个字符串可以由某个长度为kkk 的字符串重复多次得到，则称该串以kkk 为周期。例如，abcabcabcabcabcabcabcabcabcabcabcabc 以333 为周期（注意，它也以666 和121212 为周期）。</p>
 <p>输入一个长度不超过808080 的字符串，输出其最小周期。</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><pre><code>#include&lt;iostream&gt;
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<pre><code>#include&lt;iostream&gt;
 #include&lt;stdio.h&gt;
 #include&lt;string.h&gt;
- # pragma warning(disable:4996)
+# pragma warning(disable:4996)
 # define LOCAL
 # ifdef LOCAL
 FILE *fin = freopen(&quot;习题3-8in.txt&quot;, &quot;r&quot;, stdin);
@@ -1070,29 +1123,30 @@ FILE *fout = freopen(&quot;习题3-8out.txt&quot;, &quot;w&quot;, stdout);
 using namespace std;
 int main()
 {
-    int t; cin &gt;&gt; t;
-    char s[85];
-    while (t--)
-    {
-        memset(s, 0, sizeof(s));
-        scanf(&quot;%s&quot;, s);
-        int len = strlen(s);
-        int j;
-        for (int i = 1; i &lt;= len; ++i)
-            if (len%i == 0)//说明长度i可以作为一个循环节
-            {
-                for (j = i; j &lt;= len; j++)
-                    if (s[j] != s[j%i])//之后都和0-i-1的字符串来比较
-                        break;
-                if (j == len)
-                {
-                    cout &lt;&lt; i &lt;&lt; endl;
-                    break;
-                }
-            }
-        if (t)cout &lt;&lt; endl;
-    }
+	int t; cin &gt;&gt; t;
+	char s[85];
+	while (t--)
+	{
+		memset(s, 0, sizeof(s));
+		scanf(&quot;%s&quot;, s);
+		int len = strlen(s);
+		int j;
+		for (int i = 1; i &lt;= len; ++i)
+			if (len%i == 0)//说明长度i可以作为一个循环节
+			{
+				for (j = i; j &lt;= len; j++)
+					if (s[j] != s[j%i])//之后都和0-i-1的字符串来比较
+						break;
+				if (j == len)
+				{
+					cout &lt;&lt; i &lt;&lt; endl;
+					break;
+				}
+			}
+		if (t)cout &lt;&lt; endl;
+	}
 }</code></pre>
+
       
       <!-- reward -->
       
@@ -1157,25 +1211,35 @@ int main()
       
 
       
-      <h1 id="UVA-11853-战场"><a href="#UVA-11853-战场" class="headerlink" title="UVA 11853 战场"></a>UVA 11853 战场</h1><p>有一个1000*1000的正方形战场，战场西南角的坐标为(0,0)，西北角的坐标为(0,1000)。战场上有n个敌人，给定每个敌人的坐标和攻击半径，求能否从西边进入，从东边离开。如果有多个位置进出，则求出最北的进/出位置。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li><p>地图比较大，敌人相对较少。转换思路，考虑能否从上边界踩着敌人到达下边界</p>
+      <h1 id="uva-11853-战场"><a class="markdownIt-Anchor" href="#uva-11853-战场"></a> UVA 11853 战场</h1>
+<p>有一个1000*1000的正方形战场，战场西南角的坐标为(0,0)，西北角的坐标为(0,1000)。战场上有n个敌人，给定每个敌人的坐标和攻击半径，求能否从西边进入，从东边离开。如果有多个位置进出，则求出最北的进/出位置。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>
+<p>地图比较大，敌人相对较少。转换思路，考虑能否从上边界踩着敌人到达下边界</p>
 <ol>
 <li>如果能，则说明敌人将战场从中分割，即无解。</li>
 <li>如果不能，在选择最北的点。</li>
 </ol>
 </li>
-<li><p>将问题转换成了图的连通性问题，下面给出bfs和dfs两种解法</p>
+<li>
+<p>将问题转换成了图的连通性问题，下面给出bfs和dfs两种解法</p>
 </li>
-<li><p>dfs速度远远快于bfs</p>
+<li>
+<p>dfs速度远远快于bfs</p>
 </li>
 </ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="dfs"><a href="#dfs" class="headerlink" title="dfs"></a>dfs</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    bool dfs(int u)</span><br><span class="line">	&#123;</span><br><span class="line">	if (vis[u]) return false;</span><br><span class="line">	vis[u] &#x3D; 1;</span><br><span class="line">	if (y[u] &lt; r[u]) return true;</span><br><span class="line">	for (int v &#x3D; 0; v &lt; n; v++) &#123;</span><br><span class="line">		if (intersect(u, v) &amp;&amp; dfs(v)) </span><br><span class="line">			return true;</span><br><span class="line">	&#125;</span><br><span class="line">	check(u);</span><br><span class="line">	return false;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">1. 注意是在走不通时，才更新进入点</span><br></pre></td></tr></table></figure>
-<h3 id="intersect-判断两个圆是否相交"><a href="#intersect-判断两个圆是否相交" class="headerlink" title="intersect 判断两个圆是否相交"></a>intersect 判断两个圆是否相交</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">bool intersect(int a, int b) &#123;</span><br><span class="line">return sqrt((x[a] - x[b])*(x[a] - x[b]) + (y[a] - y[b])*(y[a] - y[b])) &lt; r[a] + r[b];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="check-更新进入点"><a href="#check-更新进入点" class="headerlink" title="check 更新进入点"></a>check 更新进入点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void check(int u)</span><br><span class="line">&#123;</span><br><span class="line">if (x[u] &lt; r[u]) left &#x3D; min(left, y[u] - sqrt(r[u] * r[u] - x[u] * x[u]));</span><br><span class="line">if (x[u] + r[u] &gt; W) right &#x3D; min(right, y[u] - sqrt(r[u] * r[u] - (W - x[u])*(W - x[u])));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="main-函数"><a href="#main-函数" class="headerlink" title="main 函数"></a>main 函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">#ifdef local</span><br><span class="line">freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">#endif &#x2F;&#x2F; local</span><br><span class="line">while (~scanf(&quot;%d&quot;, &amp;n)) &#123;</span><br><span class="line">	bool ok &#x3D; true;</span><br><span class="line">	memset(vis, 0, sizeof(vis));</span><br><span class="line">	left &#x3D; right &#x3D; W;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">		scanf(&quot;%d%d%d&quot;, x + i, y + i, r + i);</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">		if (r[i] + y[i] &gt;&#x3D; W &amp;&amp; dfs(i)) &#123; ok &#x3D; false; break; &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	if (ok) printf(&quot;0.00 %.2lf 1000.00 %.2lf\n&quot;, left, right);</span><br><span class="line">	else printf(&quot;IMPOSSIBLE\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="bfs"><a href="#bfs" class="headerlink" title="bfs"></a>bfs</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#pragma warning(disable:4996)</span><br><span class="line">#define LOCAL</span><br><span class="line">#ifdef LOCAL</span><br><span class="line">FILE *fin &#x3D; freopen(&quot;战场in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">FILE *fout &#x3D; freopen(&quot;战场out.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line">#endif </span><br><span class="line">using namespace std;</span><br><span class="line">int vis[1005];</span><br><span class="line">int n;</span><br><span class="line">double le, ri;</span><br><span class="line">struct Node &#123;</span><br><span class="line">double x, y, r;</span><br><span class="line">Node(double x, double y, double r) :x(x), y(y), r(r) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;Node&gt; enemy;</span><br><span class="line">bool intersect(int u, int v) &#123;</span><br><span class="line">return sqrt(pow(enemy[u].x - enemy[v].x, 2) + pow(enemy[u].y - enemy[v].y, 2)) &lt; enemy[u].r + enemy[v].r;</span><br><span class="line">&#125;	</span><br><span class="line"></span><br><span class="line">void check_circle(int u) &#123;</span><br><span class="line">if (enemy[u].x - enemy[u].r &lt; 0)</span><br><span class="line">	le &#x3D; min(le, enemy[u].y - sqrt(enemy[u].r * enemy[u].r - enemy[u].x * enemy[u].x));</span><br><span class="line">if (enemy[u].x + enemy[u].r &gt; 1000)</span><br><span class="line">	ri &#x3D; min(ri, enemy[u].y - sqrt(enemy[u].r * enemy[u].r - (1000 - enemy[u].x) *(1000 - enemy[u].x)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool bfs(int i) &#123;</span><br><span class="line">queue&lt;int&gt; q;</span><br><span class="line">q.push(i);</span><br><span class="line">while (!q.empty()) &#123;</span><br><span class="line">	int u &#x3D; q.front(); q.pop();</span><br><span class="line">	if (enemy[u].y - enemy[u].r &lt;&#x3D; 0) &#123;</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">	vis[u] &#x3D; 1;</span><br><span class="line">	check_circle(u);</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if (!vis[i] &amp;&amp; intersect(i, u))</span><br><span class="line">			q.push(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">return true;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line"></span><br><span class="line">while (cin &gt;&gt; n) &#123;</span><br><span class="line">	memset(vis, 0, sizeof(vis));</span><br><span class="line">	enemy.clear();</span><br><span class="line">	le &#x3D; ri &#x3D; 1000;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">		int x, y, r;</span><br><span class="line">		cin &gt;&gt; x &gt;&gt; y &gt;&gt; r;</span><br><span class="line">		enemy.push_back(Node(x, y, r));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	bool flag &#x3D; true;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++)</span><br><span class="line">		if (enemy[i].y + enemy[i].r &gt;&#x3D; 1000)</span><br><span class="line">			flag &#x3D; bfs(i);</span><br><span class="line"></span><br><span class="line">	if (!flag) &#123;</span><br><span class="line">		cout &lt;&lt; &quot;IMPOSSIBLE&quot; &lt;&lt; endl;</span><br><span class="line">		continue;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;0.00 %.2f 1000.00 %.2f\n&quot;,le, ri);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<h2 id="dfs"><a class="markdownIt-Anchor" href="#dfs"></a> dfs</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    bool dfs(int u)</span><br><span class="line">	&#123;</span><br><span class="line">	if (vis[u]) return false;</span><br><span class="line">	vis[u] &#x3D; 1;</span><br><span class="line">	if (y[u] &lt; r[u]) return true;</span><br><span class="line">	for (int v &#x3D; 0; v &lt; n; v++) &#123;</span><br><span class="line">		if (intersect(u, v) &amp;&amp; dfs(v)) </span><br><span class="line">			return true;</span><br><span class="line">	&#125;</span><br><span class="line">	check(u);</span><br><span class="line">	return false;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">1. 注意是在走不通时，才更新进入点</span><br></pre></td></tr></table></figure>
+<h3 id="intersect-判断两个圆是否相交"><a class="markdownIt-Anchor" href="#intersect-判断两个圆是否相交"></a> intersect 判断两个圆是否相交</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">bool intersect(int a, int b) &#123;</span><br><span class="line">return sqrt((x[a] - x[b])*(x[a] - x[b]) + (y[a] - y[b])*(y[a] - y[b])) &lt; r[a] + r[b];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="check-更新进入点"><a class="markdownIt-Anchor" href="#check-更新进入点"></a> check 更新进入点</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void check(int u)</span><br><span class="line">&#123;</span><br><span class="line">if (x[u] &lt; r[u]) left &#x3D; min(left, y[u] - sqrt(r[u] * r[u] - x[u] * x[u]));</span><br><span class="line">if (x[u] + r[u] &gt; W) right &#x3D; min(right, y[u] - sqrt(r[u] * r[u] - (W - x[u])*(W - x[u])));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="main-函数"><a class="markdownIt-Anchor" href="#main-函数"></a> main 函数</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">#ifdef local</span><br><span class="line">freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">#endif &#x2F;&#x2F; local</span><br><span class="line">while (~scanf(&quot;%d&quot;, &amp;n)) &#123;</span><br><span class="line">	bool ok &#x3D; true;</span><br><span class="line">	memset(vis, 0, sizeof(vis));</span><br><span class="line">	left &#x3D; right &#x3D; W;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">		scanf(&quot;%d%d%d&quot;, x + i, y + i, r + i);</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">		if (r[i] + y[i] &gt;&#x3D; W &amp;&amp; dfs(i)) &#123; ok &#x3D; false; break; &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	if (ok) printf(&quot;0.00 %.2lf 1000.00 %.2lf\n&quot;, left, right);</span><br><span class="line">	else printf(&quot;IMPOSSIBLE\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="bfs"><a class="markdownIt-Anchor" href="#bfs"></a> bfs</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#pragma warning(disable:4996)</span><br><span class="line">#define LOCAL</span><br><span class="line">#ifdef LOCAL</span><br><span class="line">FILE *fin &#x3D; freopen(&quot;战场in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">FILE *fout &#x3D; freopen(&quot;战场out.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line">#endif </span><br><span class="line">using namespace std;</span><br><span class="line">int vis[1005];</span><br><span class="line">int n;</span><br><span class="line">double le, ri;</span><br><span class="line">struct Node &#123;</span><br><span class="line">double x, y, r;</span><br><span class="line">Node(double x, double y, double r) :x(x), y(y), r(r) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;Node&gt; enemy;</span><br><span class="line">bool intersect(int u, int v) &#123;</span><br><span class="line">return sqrt(pow(enemy[u].x - enemy[v].x, 2) + pow(enemy[u].y - enemy[v].y, 2)) &lt; enemy[u].r + enemy[v].r;</span><br><span class="line">&#125;	</span><br><span class="line"></span><br><span class="line">void check_circle(int u) &#123;</span><br><span class="line">if (enemy[u].x - enemy[u].r &lt; 0)</span><br><span class="line">	le &#x3D; min(le, enemy[u].y - sqrt(enemy[u].r * enemy[u].r - enemy[u].x * enemy[u].x));</span><br><span class="line">if (enemy[u].x + enemy[u].r &gt; 1000)</span><br><span class="line">	ri &#x3D; min(ri, enemy[u].y - sqrt(enemy[u].r * enemy[u].r - (1000 - enemy[u].x) *(1000 - enemy[u].x)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool bfs(int i) &#123;</span><br><span class="line">queue&lt;int&gt; q;</span><br><span class="line">q.push(i);</span><br><span class="line">while (!q.empty()) &#123;</span><br><span class="line">	int u &#x3D; q.front(); q.pop();</span><br><span class="line">	if (enemy[u].y - enemy[u].r &lt;&#x3D; 0) &#123;</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">	vis[u] &#x3D; 1;</span><br><span class="line">	check_circle(u);</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if (!vis[i] &amp;&amp; intersect(i, u))</span><br><span class="line">			q.push(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">return true;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line"></span><br><span class="line">while (cin &gt;&gt; n) &#123;</span><br><span class="line">	memset(vis, 0, sizeof(vis));</span><br><span class="line">	enemy.clear();</span><br><span class="line">	le &#x3D; ri &#x3D; 1000;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">		int x, y, r;</span><br><span class="line">		cin &gt;&gt; x &gt;&gt; y &gt;&gt; r;</span><br><span class="line">		enemy.push_back(Node(x, y, r));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	bool flag &#x3D; true;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++)</span><br><span class="line">		if (enemy[i].y + enemy[i].r &gt;&#x3D; 1000)</span><br><span class="line">			flag &#x3D; bfs(i);</span><br><span class="line"></span><br><span class="line">	if (!flag) &#123;</span><br><span class="line">		cout &lt;&lt; &quot;IMPOSSIBLE&quot; &lt;&lt; endl;</span><br><span class="line">		continue;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;0.00 %.2f 1000.00 %.2f\n&quot;,le, ri);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       
@@ -1240,22 +1304,25 @@ int main()
       
 
       
-      <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>给定一个长度为n的序列1,A2,···,An，求最大连续和</p>
-<h1 id="O-n3"><a href="#O-n3" class="headerlink" title="O(n3)"></a>O(n<sup>3</sup>)</h1><p>枚举始末位置</p>
+      <h1 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h1>
+<p>给定一个长度为n的序列1,A2,···,An，求最大连续和</p>
+<h1 id="onsup3sup"><a class="markdownIt-Anchor" href="#onsup3sup"></a> O(n<sup>3</sup>)</h1>
+<p>枚举始末位置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">for(int i&#x3D;0;i&lt;&#x3D;n;i++)</span><br><span class="line">	for(int j&#x3D;0;j&lt;&#x3D;n;j++)&#123;</span><br><span class="line">		int sum &#x3D; 0;</span><br><span class="line">		for(int k&#x3D;i;k&lt;&#x3D;j;k++)&#123;</span><br><span class="line">			sum+&#x3D;A[k];</span><br><span class="line">			tot++;</span><br><span class="line">		&#125;</span><br><span class="line">		if(sum&gt;best) best&#x3D;sum;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="O-n2"><a href="#O-n2" class="headerlink" title="O(n2)"></a>O(n<sup>2</sup>)</h1><p>先递推的求出前i项和，利用Sj-Si求出i-j的连续和</p>
+<h1 id="onsup2sup"><a class="markdownIt-Anchor" href="#onsup2sup"></a> O(n<sup>2</sup>)</h1>
+<p>先递推的求出前i项和，利用Sj-Si求出i-j的连续和</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">S[0] &#x3D; 0;</span><br><span class="line">for(int i&#x3D;0;i&lt;&#x3D;n;i++) S[i] &#x3D; A[i]+S[i-1];</span><br><span class="line">for(int i&#x3D;0;i&lt;&#x3D;n;i++)&#123;</span><br><span class="line">for(int j &#x3D; i;j &lt;&#x3D; n;j++)</span><br><span class="line">brest &#x3D; max(best,S[j]-S[i-1]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="分治法-O-nlogn"><a href="#分治法-O-nlogn" class="headerlink" title="分治法 O(nlogn)"></a>分治法 O(nlogn)</h1><ol>
+<h1 id="分治法-onlogn"><a class="markdownIt-Anchor" href="#分治法-onlogn"></a> 分治法 O(nlogn)</h1>
+<ol>
 <li>划分问题：将序列分成数量尽可能相等两部分</li>
 <li>递归求解：分别求出完全位于左半部和完全位于右半部的最佳序列</li>
-<li>合并问题：求出起点位于左半，终点位于右半的连续和序列<ol>
+<li>合并问题：求出起点位于左半，终点位于右半的连续和序列
+<ol>
 <li>注：递归方程T(n) = 2T(n/2)+O(n)</li>
 </ol>
 </li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int maxsum(int* A, int x, int y)&#123;</span><br><span class="line">int v, L , R,     maxs;</span><br><span class="line">if(y-x&#x3D;&#x3D;1) return A[X];</span><br><span class="line">int m &#x3D; x+(y-x)&#x2F;2;</span><br><span class="line">int maxs &#x3D; max(maxsum(A,x,m),maxsum(A,m,y));</span><br><span class="line">int v, L, R;</span><br><span class="line">v&#x3D; 0;L &#x3D; A[m-1];</span><br><span class="line">for(int i &#x3D; m-1;i &gt;&#x3D; x;i--)</span><br><span class="line">	L &#x3D; max(L,v +&#x3D; A[i]);</span><br><span class="line">v&#x3D; 0;L &#x3D; A[m];</span><br><span class="line">for(int i &#x3D; m;i &lt; y;i++)</span><br><span class="line">	R &#x3D; max(R,v +&#x3D; A[i]);</span><br><span class="line">return max(maxs, L+R);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
       
       <!-- reward -->
@@ -1321,13 +1388,16 @@ int main()
       
 
       
-      <h1 id="UVA-11400-照明系统设计"><a href="#UVA-11400-照明系统设计" class="headerlink" title="UVA 11400 照明系统设计"></a>UVA 11400 照明系统设计</h1><p>题意: 给定n(n≤1000)种类型灯泡，每个灯泡给出其电压v(v≤132000)，电源花费k(k≤1000)，每个灯的花费c(c≤10) 和需求量l(1≤l≤100)l。现在通过用电压大的灯泡替换某些电压小的灯泡来减小总花费，求最小的花费。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+      <h1 id="uva-11400-照明系统设计"><a class="markdownIt-Anchor" href="#uva-11400-照明系统设计"></a> UVA 11400 照明系统设计</h1>
+<p>题意: 给定n(n≤1000)种类型灯泡，每个灯泡给出其电压v(v≤132000)，电源花费k(k≤1000)，每个灯的花费c(c≤10) 和需求量l(1≤l≤100)l。现在通过用电压大的灯泡替换某些电压小的灯泡来减小总花费，求最小的花费。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
 <li>首先有结论，每种电压的灯泡要么全换，要么全部不换。这是因为，如果因为换1个降低成本，那么换2个也降低成本…全换了还剩一个电源钱，就很棒。</li>
 <li>其次，由于题干要求只能换成电压更大的灯泡，所以先将所有种类的灯泡按电压从小到大排序。顺次遍历，对于更大电压的灯泡，依次尝试替换比他电压小的灯泡，更新状态。</li>
 <li>设d(i)表示灯泡1~i的最小开销</li>
 </ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 1000 + 5;</span><br><span class="line">struct Lamp &#123;</span><br><span class="line">	int v, k, c, l;</span><br><span class="line">	bool operator &lt; (const Lamp&amp;x)const &#123; return v &lt; x.v; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Lamp lamp[maxn];</span><br><span class="line">int d[maxn];</span><br><span class="line">int s[maxn];</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n;</span><br><span class="line">	while (scanf(&quot;%d&quot;, &amp;n) &#x3D;&#x3D; 1 &amp;&amp; n)</span><br><span class="line">	&#123;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++)</span><br><span class="line">			scanf(&quot;%d%d%d%d&quot;, &amp;lamp[i].v, &amp;lamp[i].k, &amp;lamp[i].c, &amp;lamp[i].l);</span><br><span class="line"></span><br><span class="line">		sort(lamp + 1, lamp + 1 + n);</span><br><span class="line">		s[0] &#x3D; 0;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++) s[i] &#x3D; s[i - 1] + lamp[i].l;</span><br><span class="line">		d[0] &#x3D; 0;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">			d[i] &#x3D; s[i] * lamp[i].c + lamp[i].k; </span><br><span class="line">			for (int j &#x3D; 1; j &lt;&#x3D; i; j++)</span><br><span class="line">				d[i] &#x3D; min(d[i], d[j] + (s[i] - s[j]) * lamp[i].c + lamp[i].k);</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; d[n] &lt;&lt; &quot;\n&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 1000 + 5;</span><br><span class="line">struct Lamp &#123;</span><br><span class="line">	int v, k, c, l;</span><br><span class="line">	bool operator &lt; (const Lamp&amp;x)const &#123; return v &lt; x.v; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Lamp lamp[maxn];</span><br><span class="line">int d[maxn];</span><br><span class="line">int s[maxn];</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n;</span><br><span class="line">	while (scanf(&quot;%d&quot;, &amp;n) &#x3D;&#x3D; 1 &amp;&amp; n)</span><br><span class="line">	&#123;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++)</span><br><span class="line">			scanf(&quot;%d%d%d%d&quot;, &amp;lamp[i].v, &amp;lamp[i].k, &amp;lamp[i].c, &amp;lamp[i].l);</span><br><span class="line"></span><br><span class="line">		sort(lamp + 1, lamp + 1 + n);</span><br><span class="line">		s[0] &#x3D; 0;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++) s[i] &#x3D; s[i - 1] + lamp[i].l;</span><br><span class="line">		d[0] &#x3D; 0;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">			d[i] &#x3D; s[i] * lamp[i].c + lamp[i].k; </span><br><span class="line">			for (int j &#x3D; 1; j &lt;&#x3D; i; j++)</span><br><span class="line">				d[i] &#x3D; min(d[i], d[j] + (s[i] - s[j]) * lamp[i].c + lamp[i].k);</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; d[n] &lt;&lt; &quot;\n&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       
@@ -1392,20 +1462,25 @@ int main()
       
 
       
-      <h1 id="UVA-1607-与非门电路"><a href="#UVA-1607-与非门电路" class="headerlink" title="UVA 1607 与非门电路"></a>UVA 1607 与非门电路</h1><p>可以用与非门（NAND）来设计逻辑电路，每个NAND门有两个输入端，输出为两个输入端与非运算的结果。也就是说 两个输入都是1是输出是0，其他输入输出都是1，给出一个由m（m&lt;=200000）个NAND组成的无环电路，电路的所有n个输入（n&lt;=100000）全部连接到一个相同的输入x,请把其中的一些输入设置为常数，用最少的x完成相同功能。输出任意方案即可。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+      <h1 id="uva-1607-与非门电路"><a class="markdownIt-Anchor" href="#uva-1607-与非门电路"></a> UVA 1607 与非门电路</h1>
+<p>可以用与非门（NAND）来设计逻辑电路，每个NAND门有两个输入端，输出为两个输入端与非运算的结果。也就是说 两个输入都是1是输出是0，其他输入输出都是1，给出一个由m（m&lt;=200000）个NAND组成的无环电路，电路的所有n个输入（n&lt;=100000）全部连接到一个相同的输入x,请把其中的一些输入设置为常数，用最少的x完成相同功能。输出任意方案即可。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
 <li>因为只有一个输入x，所以输出只有四种可能，0,1,x,x’</li>
 <li>首先令输出全0和全1，比较二者结果，如果相等，那么说明输出与x无关 ，整个电路肯定是常数。</li>
 <li>否则说明与x有关。不妨设x=0时输出0，x=1时输出1。假设现在把输入从00000改成10000，如果输出为1，那么可以得到一个解x0000，否则继续尝试11000，如果输出为1，则得到一个解1x000…直到输入全1时输出为1。</li>
 <li>由于m很大，所以采用二分法，二分1的个数，再计算输出。</li>
 </ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="output-计算0-k出入为0时的输出"><a href="#output-计算0-k出入为0时的输出" class="headerlink" title="output 计算0~k出入为0时的输出"></a>output 计算0~k出入为0时的输出</h2><ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<h2 id="output-计算0~k出入为0时的输出"><a class="markdownIt-Anchor" href="#output-计算0~k出入为0时的输出"></a> output 计算0~k出入为0时的输出</h2>
+<ol>
 <li>注 输入格式中，负数代表从门输入，正数代表从其他门的输出来输入。数字绝对值代表门或输入的编号。</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int output(int k) &#123;</span><br><span class="line">	for (int i &#x3D; 1; i &lt;&#x3D; m; i++) &#123;</span><br><span class="line">		int a &#x3D; gate[i].a;</span><br><span class="line">		int b &#x3D; gate[i].b;</span><br><span class="line">		int va &#x3D; a&lt;0 ? -a&gt;k:gate[a].o; </span><br><span class="line">		int vb &#x3D; b&lt;0 ? -b&gt;k:gate[b].o;</span><br><span class="line"></span><br><span class="line">		gate[i].o &#x3D; !(va&amp;&amp;vb);</span><br><span class="line">	&#125;</span><br><span class="line">	return gate[m].o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="sovle-二分查找过程"><a href="#sovle-二分查找过程" class="headerlink" title="sovle 二分查找过程"></a>sovle 二分查找过程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int solve(int vn) &#123;</span><br><span class="line">	int L &#x3D; 1, R &#x3D; n;</span><br><span class="line">	while (L&lt;R)</span><br><span class="line">	&#123;</span><br><span class="line">		int m &#x3D; L + (R - L) &#x2F; 2;</span><br><span class="line">		if (output(m) &#x3D;&#x3D; vn) R &#x3D; m;</span><br><span class="line">		else L &#x3D; m+1;</span><br><span class="line">	&#125;</span><br><span class="line">	return L;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="main"><a href="#main" class="headerlink" title="main"></a>main</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">const int maxm &#x3D; 200000 + 5;</span><br><span class="line"></span><br><span class="line">int n, m;</span><br><span class="line"></span><br><span class="line">struct Gates &#123;</span><br><span class="line">	int a, b, o;</span><br><span class="line">&#125; gate[maxm];</span><br><span class="line"></span><br><span class="line">inline int output(int k);</span><br><span class="line">inline int solve(int);</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	int T;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;T);</span><br><span class="line">	while (T--)</span><br><span class="line">	&#123;</span><br><span class="line">		scanf(&quot;%d  %d&quot;, &amp;n, &amp;m);</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; m; i++)</span><br><span class="line">			scanf(&quot;%d  %d&quot;, &amp;gate[i].a, &amp;gate[i].b);</span><br><span class="line">		int v0, vn;</span><br><span class="line">		v0 &#x3D; output(0);</span><br><span class="line">		vn &#x3D; output(n);</span><br><span class="line">		if (v0 &#x3D;&#x3D; vn) &#123;</span><br><span class="line">			for (int i &#x3D; 1; i &lt;&#x3D; n; i++) printf(&quot;0&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			int ix &#x3D; solve(vn);</span><br><span class="line">			for (int i &#x3D; 1; i &lt; ix; i++) printf(&quot;0&quot;);</span><br><span class="line">			printf(&quot;x&quot;);</span><br><span class="line">			for (int i &#x3D; ix + 1; i &lt;&#x3D; n; i++) printf(&quot;1&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="sovle-二分查找过程"><a class="markdownIt-Anchor" href="#sovle-二分查找过程"></a> sovle 二分查找过程</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int solve(int vn) &#123;</span><br><span class="line">	int L &#x3D; 1, R &#x3D; n;</span><br><span class="line">	while (L&lt;R)</span><br><span class="line">	&#123;</span><br><span class="line">		int m &#x3D; L + (R - L) &#x2F; 2;</span><br><span class="line">		if (output(m) &#x3D;&#x3D; vn) R &#x3D; m;</span><br><span class="line">		else L &#x3D; m+1;</span><br><span class="line">	&#125;</span><br><span class="line">	return L;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="main"><a class="markdownIt-Anchor" href="#main"></a> main</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">const int maxm &#x3D; 200000 + 5;</span><br><span class="line"></span><br><span class="line">int n, m;</span><br><span class="line"></span><br><span class="line">struct Gates &#123;</span><br><span class="line">	int a, b, o;</span><br><span class="line">&#125; gate[maxm];</span><br><span class="line"></span><br><span class="line">inline int output(int k);</span><br><span class="line">inline int solve(int);</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	int T;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;T);</span><br><span class="line">	while (T--)</span><br><span class="line">	&#123;</span><br><span class="line">		scanf(&quot;%d  %d&quot;, &amp;n, &amp;m);</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; m; i++)</span><br><span class="line">			scanf(&quot;%d  %d&quot;, &amp;gate[i].a, &amp;gate[i].b);</span><br><span class="line">		int v0, vn;</span><br><span class="line">		v0 &#x3D; output(0);</span><br><span class="line">		vn &#x3D; output(n);</span><br><span class="line">		if (v0 &#x3D;&#x3D; vn) &#123;</span><br><span class="line">			for (int i &#x3D; 1; i &lt;&#x3D; n; i++) printf(&quot;0&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			int ix &#x3D; solve(vn);</span><br><span class="line">			for (int i &#x3D; 1; i &lt; ix; i++) printf(&quot;0&quot;);</span><br><span class="line">			printf(&quot;x&quot;);</span><br><span class="line">			for (int i &#x3D; ix + 1; i &lt;&#x3D; n; i++) printf(&quot;1&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       
@@ -1470,19 +1545,22 @@ int main()
       
 
       
-      <h1 id="uva-1597-在web中搜索"><a href="#uva-1597-在web中搜索" class="headerlink" title="uva 1597 在web中搜索"></a>uva 1597 在web中搜索</h1><p>输入nnn篇文章和mmm个请求（n&lt;100，m≤50000n &lt; 100\text{，}m \leq 50000n&lt;100，m≤50000），每个请求都是444种格式之一。</p>
+      <h1 id="uva-1597-在web中搜索"><a class="markdownIt-Anchor" href="#uva-1597-在web中搜索"></a> uva 1597 在web中搜索</h1>
+<p>输入nnn篇文章和mmm个请求（n&lt;100，m≤50000n &lt; 100\text{，}m \leq 50000n&lt;100，m≤50000），每个请求都是444种格式之一。</p>
 <p>A: 找包含关键字A的文章。</p>
 <p>A AND B 找同时包含关键字A和B的文章。</p>
 <p>A OR B 找包含关键字A或B的文章。</p>
 <p>NOT A 找不包含关键字A的文章。</p>
 <p>处理询问时需要对每篇文章输出证据。前3种询问输出所有至少包含一个关键字的行。第4种询问输出不包含A的整篇文章。关键字只由小写字母组成，查找时忽略大小写。每行不超过不超过80字符，一共不超过1500行。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
 <li>主要的STL是一个map&lt;string,set<Node>&gt; 用来存储每个单词出现的段号和行号。vector<string> txt[i]来存储第i段的若干句子，一句一句的存。</li>
 <li>对于AND指令，需要n2次查找两个单词出现的段落和行号，只有当两个单词出现的段落一致的时候，才输出</li>
 <li>OR指令同理</li>
-<li>NOT需要循环所有的段落，对于A出现的段落集合中不包括的段，将它防在答案集合中<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line"># pragma warning(disable:4996)</span><br><span class="line"># define LOCAL</span><br><span class="line"># ifdef LOCAL</span><br><span class="line">FILE *fin &#x3D; freopen(&quot;习题5-10in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">FILE *fout &#x3D; freopen(&quot;习题5-10out.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line"># endif </span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">vector&lt;string&gt; txt[105];</span><br><span class="line">map&lt;string, set&lt;int&gt;&gt; which_pa;</span><br><span class="line">struct node &#123;</span><br><span class="line">	int p;</span><br><span class="line">	int r;</span><br><span class="line">	node(int p, int r) :p(p), r(r) &#123;&#125;</span><br><span class="line">	bool operator &lt;(const node&amp;a) const &#123;</span><br><span class="line">		return p &lt; a.p || p &#x3D;&#x3D; a.p&amp;&amp;r &lt; a.r;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">map&lt;string, set&lt;node&gt;&gt; words_in_where;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, m;</span><br><span class="line">	string s;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;n); getchar();</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line"></span><br><span class="line">		while (getline(cin, s) &amp;&amp; s !&#x3D; &quot;**********&quot;) &#123;</span><br><span class="line">			txt[i].push_back(s);</span><br><span class="line">			string r;</span><br><span class="line">			for (int j &#x3D; 0; j &lt; s.length(); j++) &#123;</span><br><span class="line">				if (isalpha(s[j])) r +&#x3D; tolower(s[j]);</span><br><span class="line">				else &#123;</span><br><span class="line">					if (!r.empty()) &#123;</span><br><span class="line">						words_in_where[r].insert(node(i, txt[i].size() - 1));</span><br><span class="line">						which_pa[r].insert(i);</span><br><span class="line">					&#125;</span><br><span class="line">					r.clear();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	scanf(&quot;%d&quot;, &amp;m); getchar();</span><br><span class="line">	for (int ff &#x3D; 0; ff &lt; m; ff++) &#123;</span><br><span class="line">		getline(cin, s);</span><br><span class="line">		int orx;</span><br><span class="line">		&#x2F;&#x2F;cout &lt;&lt; endl &lt;&lt; s &lt;&lt; endl &lt;&lt; endl;</span><br><span class="line">		if ((orx &#x3D; s.find(&quot; AND &quot;)) !&#x3D; string::npos) &#123;</span><br><span class="line">			string a &#x3D; s.substr(0, orx);</span><br><span class="line">			string b &#x3D; s.substr(orx + 5);</span><br><span class="line">			&#x2F;&#x2F;	cout &lt;&lt; a &lt;&lt; &quot; &quot; &lt;&lt; b &lt;&lt; endl;</span><br><span class="line">			set&lt;node&gt; aw &#x3D; words_in_where[a];</span><br><span class="line">			set&lt;node&gt; bw &#x3D; words_in_where[b];</span><br><span class="line">			set&lt;node&gt; ans;</span><br><span class="line">			ans.clear();</span><br><span class="line">			if (a &#x3D;&#x3D; b) &#123;</span><br><span class="line">				for (set&lt;node&gt;::iterator it &#x3D; aw.begin(); it !&#x3D; aw.end(); it++)</span><br><span class="line">					ans.insert(*it);</span><br><span class="line">			&#125;</span><br><span class="line">			else &#123;</span><br><span class="line">				for (set&lt;node&gt;::iterator it &#x3D; aw.begin(); it !&#x3D; aw.end(); it++)</span><br><span class="line">					for (set&lt;node&gt;::iterator id &#x3D; bw.begin(); id !&#x3D; bw.end(); id++)</span><br><span class="line">						if ((*it).p &#x3D;&#x3D; (*id).p) &#123;</span><br><span class="line">							ans.insert(*it);</span><br><span class="line">							ans.insert(*id);</span><br><span class="line">						&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			if (ans.empty()) &#123;</span><br><span class="line">				cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">				continue;</span><br><span class="line">			&#125;</span><br><span class="line">			int k &#x3D; ans.begin()-&gt;p;</span><br><span class="line">			for (set&lt;node&gt;::iterator it &#x3D; ans.begin(); it !&#x3D; ans.end(); it++)</span><br><span class="line">			&#123;</span><br><span class="line">				int p &#x3D; (*it).p;</span><br><span class="line">				int r &#x3D; (*it).r;</span><br><span class="line">				if (k !&#x3D; p) &#123;</span><br><span class="line">					cout &lt;&lt; &quot;----------&quot; &lt;&lt; endl;</span><br><span class="line">					k &#x3D; p;</span><br><span class="line">				&#125;</span><br><span class="line">				cout &lt;&lt; txt[p][r] &lt;&lt; endl;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			cout &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		else if ((orx &#x3D; s.find(&quot; OR &quot;)) !&#x3D; string::npos) &#123;</span><br><span class="line">			string a &#x3D; s.substr(0, orx);</span><br><span class="line">			string b &#x3D; s.substr(orx + 4);</span><br><span class="line">			&#x2F;&#x2F;cout &lt;&lt; a &lt;&lt; &quot; &quot; &lt;&lt; b &lt;&lt; endl;</span><br><span class="line">			set&lt;node&gt; aw &#x3D; words_in_where[a];</span><br><span class="line">			set&lt;node&gt; bw &#x3D; words_in_where[b];</span><br><span class="line">			set&lt;node&gt; ans;</span><br><span class="line">			ans.clear();</span><br><span class="line">			if (a &#x3D;&#x3D; b) &#123;</span><br><span class="line">				for (set&lt;node&gt;::iterator it &#x3D; aw.begin(); it !&#x3D; aw.end(); it++) &#123;</span><br><span class="line">					ans.insert(*it);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			else &#123;</span><br><span class="line">				for (set&lt;node&gt;::iterator it &#x3D; aw.begin(); it !&#x3D; aw.end(); it++)</span><br><span class="line">					ans.insert(*it);</span><br><span class="line">				for (set&lt;node&gt;::iterator id &#x3D; bw.begin(); id !&#x3D; bw.end(); id++)</span><br><span class="line">					ans.insert(*id);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			if (ans.empty()) &#123;</span><br><span class="line">				cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">				continue;</span><br><span class="line">			&#125;</span><br><span class="line">			int k &#x3D; ans.begin()-&gt;p;</span><br><span class="line">			for (set&lt;node&gt;::iterator it &#x3D; ans.begin(); it !&#x3D; ans.end(); it++)</span><br><span class="line">			&#123;</span><br><span class="line">				int p &#x3D; (*it).p;</span><br><span class="line">				int r &#x3D; (*it).r;</span><br><span class="line">				if (k !&#x3D; p) &#123;</span><br><span class="line">					cout &lt;&lt; &quot;----------&quot; &lt;&lt; endl;</span><br><span class="line">					k &#x3D; p;</span><br><span class="line">				&#125;</span><br><span class="line">				cout &lt;&lt; txt[p][r] &lt;&lt; endl;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			cout &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		else if (s[0]&#x3D;&#x3D;&#39;N&#39;) &#123;</span><br><span class="line">			string no &#x3D; s.substr(4);</span><br><span class="line">			&#x2F;&#x2F;cout &lt;&lt; no &lt;&lt; endl;</span><br><span class="line">			bool flag &#x3D; false;</span><br><span class="line">			bool first &#x3D; true;</span><br><span class="line">			for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">				if (!which_pa[no].count(i)) &#123;</span><br><span class="line">					if (first) first &#x3D; false; else cout &lt;&lt; &quot;----------&quot; &lt;&lt; endl;</span><br><span class="line">					for (int j &#x3D; 0; j &lt; txt[i].size(); j++)</span><br><span class="line">						cout &lt;&lt; txt[i][j] &lt;&lt; endl;</span><br><span class="line">					flag &#x3D; true;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			if (flag) cout &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">			else cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			&#x2F;&#x2F;cout &lt;&lt; s &lt;&lt; endl;</span><br><span class="line">			if (!words_in_where.count(s)) &#123;</span><br><span class="line">				cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">				continue;</span><br><span class="line">			&#125;##    ##  </span><br><span class="line">			int k &#x3D; words_in_where[s].begin()-&gt;p;</span><br><span class="line">			for (set&lt;node&gt;::iterator it &#x3D; words_in_where[s].begin(); it !&#x3D; words_in_where[s].end(); it++) &#123;</span><br><span class="line">				int p &#x3D; (*it).p;</span><br><span class="line">				int r &#x3D; (*it).r;</span><br><span class="line">				if (k !&#x3D; p) &#123;</span><br><span class="line">					cout &lt;&lt; &quot;----------&quot; &lt;&lt; endl;</span><br><span class="line">					k &#x3D; p;</span><br><span class="line">				&#125;</span><br><span class="line">				cout &lt;&lt; txt[p][r] &lt;&lt; endl;</span><br><span class="line">			&#125;</span><br><span class="line">			&#x2F;&#x2F;if (first) cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl;</span><br><span class="line">			cout &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>NOT需要循环所有的段落，对于A出现的段落集合中不包括的段，将它防在答案集合中</li>
 </ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line"># pragma warning(disable:4996)</span><br><span class="line"># define LOCAL</span><br><span class="line"># ifdef LOCAL</span><br><span class="line">FILE *fin &#x3D; freopen(&quot;习题5-10in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">FILE *fout &#x3D; freopen(&quot;习题5-10out.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line"># endif </span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">vector&lt;string&gt; txt[105];</span><br><span class="line">map&lt;string, set&lt;int&gt;&gt; which_pa;</span><br><span class="line">struct node &#123;</span><br><span class="line">	int p;</span><br><span class="line">	int r;</span><br><span class="line">	node(int p, int r) :p(p), r(r) &#123;&#125;</span><br><span class="line">	bool operator &lt;(const node&amp;a) const &#123;</span><br><span class="line">		return p &lt; a.p || p &#x3D;&#x3D; a.p&amp;&amp;r &lt; a.r;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">map&lt;string, set&lt;node&gt;&gt; words_in_where;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, m;</span><br><span class="line">	string s;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;n); getchar();</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line"></span><br><span class="line">		while (getline(cin, s) &amp;&amp; s !&#x3D; &quot;**********&quot;) &#123;</span><br><span class="line">			txt[i].push_back(s);</span><br><span class="line">			string r;</span><br><span class="line">			for (int j &#x3D; 0; j &lt; s.length(); j++) &#123;</span><br><span class="line">				if (isalpha(s[j])) r +&#x3D; tolower(s[j]);</span><br><span class="line">				else &#123;</span><br><span class="line">					if (!r.empty()) &#123;</span><br><span class="line">						words_in_where[r].insert(node(i, txt[i].size() - 1));</span><br><span class="line">						which_pa[r].insert(i);</span><br><span class="line">					&#125;</span><br><span class="line">					r.clear();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	scanf(&quot;%d&quot;, &amp;m); getchar();</span><br><span class="line">	for (int ff &#x3D; 0; ff &lt; m; ff++) &#123;</span><br><span class="line">		getline(cin, s);</span><br><span class="line">		int orx;</span><br><span class="line">		&#x2F;&#x2F;cout &lt;&lt; endl &lt;&lt; s &lt;&lt; endl &lt;&lt; endl;</span><br><span class="line">		if ((orx &#x3D; s.find(&quot; AND &quot;)) !&#x3D; string::npos) &#123;</span><br><span class="line">			string a &#x3D; s.substr(0, orx);</span><br><span class="line">			string b &#x3D; s.substr(orx + 5);</span><br><span class="line">			&#x2F;&#x2F;	cout &lt;&lt; a &lt;&lt; &quot; &quot; &lt;&lt; b &lt;&lt; endl;</span><br><span class="line">			set&lt;node&gt; aw &#x3D; words_in_where[a];</span><br><span class="line">			set&lt;node&gt; bw &#x3D; words_in_where[b];</span><br><span class="line">			set&lt;node&gt; ans;</span><br><span class="line">			ans.clear();</span><br><span class="line">			if (a &#x3D;&#x3D; b) &#123;</span><br><span class="line">				for (set&lt;node&gt;::iterator it &#x3D; aw.begin(); it !&#x3D; aw.end(); it++)</span><br><span class="line">					ans.insert(*it);</span><br><span class="line">			&#125;</span><br><span class="line">			else &#123;</span><br><span class="line">				for (set&lt;node&gt;::iterator it &#x3D; aw.begin(); it !&#x3D; aw.end(); it++)</span><br><span class="line">					for (set&lt;node&gt;::iterator id &#x3D; bw.begin(); id !&#x3D; bw.end(); id++)</span><br><span class="line">						if ((*it).p &#x3D;&#x3D; (*id).p) &#123;</span><br><span class="line">							ans.insert(*it);</span><br><span class="line">							ans.insert(*id);</span><br><span class="line">						&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			if (ans.empty()) &#123;</span><br><span class="line">				cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">				continue;</span><br><span class="line">			&#125;</span><br><span class="line">			int k &#x3D; ans.begin()-&gt;p;</span><br><span class="line">			for (set&lt;node&gt;::iterator it &#x3D; ans.begin(); it !&#x3D; ans.end(); it++)</span><br><span class="line">			&#123;</span><br><span class="line">				int p &#x3D; (*it).p;</span><br><span class="line">				int r &#x3D; (*it).r;</span><br><span class="line">				if (k !&#x3D; p) &#123;</span><br><span class="line">					cout &lt;&lt; &quot;----------&quot; &lt;&lt; endl;</span><br><span class="line">					k &#x3D; p;</span><br><span class="line">				&#125;</span><br><span class="line">				cout &lt;&lt; txt[p][r] &lt;&lt; endl;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			cout &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		else if ((orx &#x3D; s.find(&quot; OR &quot;)) !&#x3D; string::npos) &#123;</span><br><span class="line">			string a &#x3D; s.substr(0, orx);</span><br><span class="line">			string b &#x3D; s.substr(orx + 4);</span><br><span class="line">			&#x2F;&#x2F;cout &lt;&lt; a &lt;&lt; &quot; &quot; &lt;&lt; b &lt;&lt; endl;</span><br><span class="line">			set&lt;node&gt; aw &#x3D; words_in_where[a];</span><br><span class="line">			set&lt;node&gt; bw &#x3D; words_in_where[b];</span><br><span class="line">			set&lt;node&gt; ans;</span><br><span class="line">			ans.clear();</span><br><span class="line">			if (a &#x3D;&#x3D; b) &#123;</span><br><span class="line">				for (set&lt;node&gt;::iterator it &#x3D; aw.begin(); it !&#x3D; aw.end(); it++) &#123;</span><br><span class="line">					ans.insert(*it);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			else &#123;</span><br><span class="line">				for (set&lt;node&gt;::iterator it &#x3D; aw.begin(); it !&#x3D; aw.end(); it++)</span><br><span class="line">					ans.insert(*it);</span><br><span class="line">				for (set&lt;node&gt;::iterator id &#x3D; bw.begin(); id !&#x3D; bw.end(); id++)</span><br><span class="line">					ans.insert(*id);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			if (ans.empty()) &#123;</span><br><span class="line">				cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">				continue;</span><br><span class="line">			&#125;</span><br><span class="line">			int k &#x3D; ans.begin()-&gt;p;</span><br><span class="line">			for (set&lt;node&gt;::iterator it &#x3D; ans.begin(); it !&#x3D; ans.end(); it++)</span><br><span class="line">			&#123;</span><br><span class="line">				int p &#x3D; (*it).p;</span><br><span class="line">				int r &#x3D; (*it).r;</span><br><span class="line">				if (k !&#x3D; p) &#123;</span><br><span class="line">					cout &lt;&lt; &quot;----------&quot; &lt;&lt; endl;</span><br><span class="line">					k &#x3D; p;</span><br><span class="line">				&#125;</span><br><span class="line">				cout &lt;&lt; txt[p][r] &lt;&lt; endl;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			cout &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		else if (s[0]&#x3D;&#x3D;&#39;N&#39;) &#123;</span><br><span class="line">			string no &#x3D; s.substr(4);</span><br><span class="line">			&#x2F;&#x2F;cout &lt;&lt; no &lt;&lt; endl;</span><br><span class="line">			bool flag &#x3D; false;</span><br><span class="line">			bool first &#x3D; true;</span><br><span class="line">			for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">				if (!which_pa[no].count(i)) &#123;</span><br><span class="line">					if (first) first &#x3D; false; else cout &lt;&lt; &quot;----------&quot; &lt;&lt; endl;</span><br><span class="line">					for (int j &#x3D; 0; j &lt; txt[i].size(); j++)</span><br><span class="line">						cout &lt;&lt; txt[i][j] &lt;&lt; endl;</span><br><span class="line">					flag &#x3D; true;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			if (flag) cout &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">			else cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			&#x2F;&#x2F;cout &lt;&lt; s &lt;&lt; endl;</span><br><span class="line">			if (!words_in_where.count(s)) &#123;</span><br><span class="line">				cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">				continue;</span><br><span class="line">			&#125;##    ##  </span><br><span class="line">			int k &#x3D; words_in_where[s].begin()-&gt;p;</span><br><span class="line">			for (set&lt;node&gt;::iterator it &#x3D; words_in_where[s].begin(); it !&#x3D; words_in_where[s].end(); it++) &#123;</span><br><span class="line">				int p &#x3D; (*it).p;</span><br><span class="line">				int r &#x3D; (*it).r;</span><br><span class="line">				if (k !&#x3D; p) &#123;</span><br><span class="line">					cout &lt;&lt; &quot;----------&quot; &lt;&lt; endl;</span><br><span class="line">					k &#x3D; p;</span><br><span class="line">				&#125;</span><br><span class="line">				cout &lt;&lt; txt[p][r] &lt;&lt; endl;</span><br><span class="line">			&#125;</span><br><span class="line">			&#x2F;&#x2F;if (first) cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl;</span><br><span class="line">			cout &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
       <!-- reward -->

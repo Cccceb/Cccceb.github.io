@@ -101,91 +101,106 @@
       
 
       
-      <h1 id="uva-140-带宽"><a href="#uva-140-带宽" class="headerlink" title="uva 140 带宽"></a>uva 140 带宽</h1><p>题意： 给一个最多8个结点的无向图，把结点重排后对于图中每条边(u,v)，u和v在排列中的最大距离称为该排列的带宽。求带宽最小的排列.</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li><p>本题是带优化的穷举法—-回溯法的应用</p>
-</li>
-<li><p>所谓回溯法，就是在遍历的过程中构建树和删除树(剪枝)，如果可以确定该子树中不含有问题的解，则放弃对该子树的搜索，返回到上层的父节点，继续下一步深度优先搜索。</p>
-</li>
-<li><p>类比到本题中，有两种情况可以剪枝：</p>
+      <h1 id="uva-140-带宽"><a class="markdownIt-Anchor" href="#uva-140-带宽"></a> uva 140 带宽</h1>
+<p>题意： 给一个最多8个结点的无向图，把结点重排后对于图中每条边(u,v)，u和v在排列中的最大距离称为该排列的带宽。求带宽最小的排列.</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>本题是带优化的穷举法----回溯法的应用</li>
+<li>所谓回溯法，就是在遍历的过程中构建树和删除树(剪枝)，如果可以确定该子树中不含有问题的解，则放弃对该子树的搜索，返回到上层的父节点，继续下一步深度优先搜索。</li>
+<li>类比到本题中，有两种情况可以剪枝：
 <ol>
 <li>对于节点u来说，假设u有m个相邻的节点，那么最理想的情况就是这m个节点紧跟在u后面，这样的节点带宽为m，而其他任何非理想情况的带宽至少为m+1</li>
 <li>如果当前节点的带宽已经大于最小带宽，那么说明这个位置不能放这个位置不能放i，即放回到上层，再又上层执行vis[i] = 0来回溯</li>
 </ol>
 </li>
-<li><p>由于A即使在没有成功运行到底的情况下，也会被改变，所以要将每次的结果更新到另一个数组里，采用memcpy函数</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p> #include&lt;bits/stdc++.h&gt;</p>
-<h1 id="pragma-warning-disable-4996"><a href="#pragma-warning-disable-4996" class="headerlink" title="pragma warning(disable:4996)"></a>pragma warning(disable:4996)</h1><h1 id="define-LOCAL"><a href="#define-LOCAL" class="headerlink" title="define LOCAL"></a>define LOCAL</h1><h1 id="ifdef-LOCAL"><a href="#ifdef-LOCAL" class="headerlink" title="ifdef LOCAL"></a>ifdef LOCAL</h1><p> FILE *fin = freopen(“带宽in.txt”, “r”, stdin);<br> FILE *fout = freopen(“带宽out.txt”, “w”, stdout);</p>
-<h1 id="endif"><a href="#endif" class="headerlink" title="endif"></a>endif</h1><p> using namespace std;<br> map&lt;int, set<int>&gt; xl;<br> int n;<br> int A[10],ans[10];<br> int vis[26];<br> int minb = 100000000;<br> void dfs(int cur, int B) {</p>
-<pre><code>if (cur == n)
-{
-    //能到这，说明已经是最优解了，所以要更新ans和最小带宽
-    memcpy(ans, A, sizeof(int)*n);
-    minb = B;
-}
-else for (auto it = xl.begin(); it != xl.end();it++) {
-    //由于给的点不一定是前n个，所以要用迭代器来遍历可以用的点
-    int i = it-&gt;first;
-    if (!vis[i]) {//vis[i]用来保证是个排列
-        int m = 0;
-        for (int j = 0; j &lt; cur; j++)
-            if (!vis[A[j]] &amp;&amp; xl[i].count(A[j])) 
-                m++;
-        if (m &gt;= minb) return;//等于号很重要，用来保证是第一个最优解
-
-        int ok = 1;
-        A[cur] = i;
-        for (int j = 0; j &lt; cur; j++) {
-
-            if (xl[i].count(A[j])) {
-                int w = cur - j;
-                if (w &gt; B) B = w;
-                if (B &gt;= minb) return;</code></pre></li>
+<li>由于A即使在没有成功运行到底的情况下，也会被改变，所以要将每次的结果更新到另一个数组里，采用memcpy函数</li>
 </ol>
-<pre><code>                }
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+# pragma warning(disable:4996)
+# define LOCAL
+# ifdef LOCAL
+FILE *fin = freopen(&quot;带宽in.txt&quot;, &quot;r&quot;, stdin);
+FILE *fout = freopen(&quot;带宽out.txt&quot;, &quot;w&quot;, stdout);
+# endif 
+using namespace std;
+map&lt;int, set&lt;int&gt;&gt; xl;
+int n;
+int A[10],ans[10];
+int vis[26];
+int minb = 100000000;
+void dfs(int cur, int B) {
+	if (cur == n)
+	{
+		//能到这，说明已经是最优解了，所以要更新ans和最小带宽
+		memcpy(ans, A, sizeof(int)*n);
+		minb = B;
+	}
+	else for (auto it = xl.begin(); it != xl.end();it++) {
+		//由于给的点不一定是前n个，所以要用迭代器来遍历可以用的点
+		int i = it-&gt;first;
+		if (!vis[i]) {//vis[i]用来保证是个排列
+			int m = 0;
+			for (int j = 0; j &lt; cur; j++)
+				if (!vis[A[j]] &amp;&amp; xl[i].count(A[j])) 
+					m++;
+			if (m &gt;= minb) return;//等于号很重要，用来保证是第一个最优解
 
-            }
+			int ok = 1;
+			A[cur] = i;
+			for (int j = 0; j &lt; cur; j++) {
+				
+				if (xl[i].count(A[j])) {
+					int w = cur - j;
+					if (w &gt; B) B = w;
+					if (B &gt;= minb) return;
 
-            if (ok) {
-                vis[i] = 1;
-                dfs(cur + 1, B);
-                vis[i] = 0;//回溯：要么是到头了，回溯来找其他解；要么是中间返回，回溯以求正确解
-            }
-        }
-    }
+					
+				}
+					
+			}
+
+			if (ok) {
+				vis[i] = 1;
+				dfs(cur + 1, B);
+				vis[i] = 0;//回溯：要么是到头了，回溯来找其他解；要么是中间返回，回溯以求正确解
+			}
+		}
+	}
 }
 int main() {
-    string line;
-    while (getline(cin, line) &amp;&amp; line != &quot;# &quot;) {
-        xl.clear();
-        memset(A, -1, sizeof(A));
-        bool flag = true;
-        char u;
-        for (int i = 0; i &lt; line.length(); i++) {
-            if (isalpha(line[i])) {
-                if (flag) {
-                    u = line[i] - &apos;A&apos;;
-                    flag = false;
-                    xl[line[i] - &apos;A&apos;];
-                }
-                else {
-                    xl[u].insert(line[i] - &apos;A&apos;);
-                    xl[line[i] - &apos;A&apos;].insert(u);
-                }
-            }
-            else if (line[i] == &apos;;&apos;) flag = true;
-        }
-        n = xl.size();
-        memset(vis, 0, sizeof(vis));
-        memset(ans, 0, sizeof(ans));
-        minb = 100000000;
-        dfs(0, 0);
-        for (int i = 0; i &lt; n; i++) cout &lt;&lt; char(&apos;A&apos; + ans[i]) &lt;&lt; &quot; &quot;;
-        cout &lt;&lt; &quot;-&gt; &quot;&lt;&lt;minb &lt;&lt; endl;
+	string line;
+	while (getline(cin, line) &amp;&amp; line != &quot;# &quot;) {
+		xl.clear();
+		memset(A, -1, sizeof(A));
+		bool flag = true;
+		char u;
+		for (int i = 0; i &lt; line.length(); i++) {
+			if (isalpha(line[i])) {
+				if (flag) {
+					u = line[i] - 'A';
+					flag = false;
+					xl[line[i] - 'A'];
+				}
+				else {
+					xl[u].insert(line[i] - 'A');
+					xl[line[i] - 'A'].insert(u);
+				}
+			}
+			else if (line[i] == ';') flag = true;
+		}
+		n = xl.size();
+		memset(vis, 0, sizeof(vis));
+		memset(ans, 0, sizeof(ans));
+		minb = 100000000;
+		dfs(0, 0);
+		for (int i = 0; i &lt; n; i++) cout &lt;&lt; char('A' + ans[i]) &lt;&lt; &quot; &quot;;
+		cout &lt;&lt; &quot;-&gt; &quot;&lt;&lt;minb &lt;&lt; endl;
 
 
-    }
+	}
 }</code></pre>
+
       
       <!-- reward -->
       
@@ -282,9 +297,9 @@ int main() {
       </a>
     
     
-      <a href="/2020/03/30/%E4%B8%8D%E6%97%A0%E8%81%8A%E7%9A%84%E5%BA%8F%E5%88%97/" class="article-nav-link">
+      <a href="/2020/03/30/%E6%89%93%E5%8D%B0%E9%98%9F%E5%88%97/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">不无聊的序列</div>
+        <div class="article-nav-title">打印队列</div>
       </a>
     
   </nav>

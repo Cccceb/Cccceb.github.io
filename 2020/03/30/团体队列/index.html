@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">545字</span>
+            <span class="post-count">551字</span>
         </span>
     </span>
 
@@ -101,54 +101,73 @@
       
 
       
-      <h1 id="UVA540-团体队列"><a href="#UVA540-团体队列" class="headerlink" title="UVA540 团体队列"></a>UVA540 团体队列</h1><p>有t个团队的人正在排一个长队。每次新来一个人时，如果他有队友在排队，那么这个新人会插队到最后一个队友的身后。如果没有任何一个队友排队，则他会排到长队的队尾。输入每个团队中所有队员的编号，要求支持如下3种指令（前两种指令可以穿插进行）。</p>
+      <h1 id="uva540-团体队列"><a class="markdownIt-Anchor" href="#uva540-团体队列"></a> UVA540 团体队列</h1>
+<p>有t个团队的人正在排一个长队。每次新来一个人时，如果他有队友在排队，那么这个新人会插队到最后一个队友的身后。如果没有任何一个队友排队，则他会排到长队的队尾。输入每个团队中所有队员的编号，要求支持如下3种指令（前两种指令可以穿插进行）。</p>
 <p>ENQUEUEx：编号为x的人进入长队。</p>
 <p>DEQUEUE：长队的队首出队。</p>
 <p>STOP：停止模拟。</p>
 <p>对于每个DEQUEUE指令，输出出队的人的编号。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
 <li>本题中涉及两种队列，一个是每个团队的队列，一个是整体的长队。所以用两个整型队列来存储。</li>
-<li>由于一个团队的人一定站在一起，所以在整体的长队里，我们不关心每个人的具体位置。所以用给每个团队映射为一个编号，长队中是元素是队伍的编号<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1> /*<br> p117 例5-6 UVA540<br> */<br> #include<iostream><br> #include<string><br> #include<map><br> #include<queue><br> using namespace std;<br> int main() {<br> int kase = 0;<br> for (;;) {<pre><code>map&lt;int, int&gt; belong;
-queue&lt;int&gt; total,team[1100];
-int n;
-cin &gt;&gt; n;
-if (!n) return 0;
-cout &lt;&lt; &quot;Scenario # &quot; &lt;&lt; ++kase &lt;&lt; endl;
-for(int i=0;i&lt;n;i++) {
-    int m;
-    cin &gt;&gt; m;
-    while(m--) {
-        int x;
-        cin &gt;&gt; x;
-        belong[x] = i;
-    }
-}</code></pre></li>
+<li>由于一个团队的人一定站在一起，所以在整体的长队里，我们不关心每个人的具体位置。所以用给每个团队映射为一个编号，长队中是元素是队伍的编号</li>
 </ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<pre><code>/*
+p117 例5-6 UVA540
+*/
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+using namespace std;
+int main() {
+int kase = 0;
+for (;;) {
+	map&lt;int, int&gt; belong;
+	queue&lt;int&gt; total,team[1100];
+	int n;
+	cin &gt;&gt; n;
+	if (!n) return 0;
+	cout &lt;&lt; &quot;Scenario # &quot; &lt;&lt; ++kase &lt;&lt; endl;
+	for(int i=0;i&lt;n;i++) {
+		int m;
+		cin &gt;&gt; m;
+		while(m--) {
+			int x;
+			cin &gt;&gt; x;
+			belong[x] = i;
+		}
+	}
+</code></pre>
 <p><strong>完成输入，并给每个队伍的成员都映射一个编号</strong></p>
-<pre><code>    for (;;) {
-        string cmd;
-        cin &gt;&gt; cmd;
-        if (cmd[0] == &apos;S&apos;) break;
-        else {
-            if (cmd[0] == &apos;D&apos;) {
-                int t = total.front();
-                cout &lt;&lt; team[t].front() &lt;&lt; endl;
-                team[t].pop();
-                if (team[t].empty()) total.pop();
+<pre><code>	for (;;) {
+		string cmd;
+		cin &gt;&gt; cmd;
+		if (cmd[0] == 'S') break;
+		else {
+			if (cmd[0] == 'D') {
+				int t = total.front();
+				cout &lt;&lt; team[t].front() &lt;&lt; endl;
+				team[t].pop();
+				if (team[t].empty()) total.pop();
 
-            }
-            if (cmd[0] == &apos;E&apos;) {
-                int num;
-                cin &gt;&gt; num;
-                int t = belong[num];
-                if (team[t].empty()) total.push(t);
-                team[t].push(num);
-            }
-        }
-    }
-    cout &lt;&lt; endl;
+			}
+			if (cmd[0] == 'E') {
+				int num;
+				cin &gt;&gt; num;
+				int t = belong[num];
+				if (team[t].empty()) total.push(t);
+				team[t].push(num);
+			}
+		}
+	}
+	cout &lt;&lt; endl;
 }
-}</code></pre><h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><ol>
+}
+</code></pre>
+<h1 id="心得"><a class="markdownIt-Anchor" href="#心得"></a> 心得</h1>
+<ol>
 <li>因为队伍数量不定，所以一开始想用vector，但是会出现越界，所以使用vector时，最好用push_back，不要随机访问。</li>
 <li>两个指令，一个有操作数，一个没有，注意分情况输入！！</li>
 <li>学习映射的方法，注意需要什么，应该关注什么。本题中，长队里只需关注各队伍的相对顺序，无需在长队中注意每个人的相对位置。</li>

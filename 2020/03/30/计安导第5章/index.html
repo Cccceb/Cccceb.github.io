@@ -101,74 +101,93 @@
       
 
       
-      <h1 id="网络基本概念"><a href="#网络基本概念" class="headerlink" title="网络基本概念"></a>网络基本概念</h1><h2 id="网络协议"><a href="#网络协议" class="headerlink" title="网络协议"></a>网络协议</h2><ol>
+      <h1 id="网络基本概念"><a class="markdownIt-Anchor" href="#网络基本概念"></a> 网络基本概念</h1>
+<h2 id="网络协议"><a class="markdownIt-Anchor" href="#网络协议"></a> 网络协议</h2>
+<ol>
 <li>OSI七层模型：应用层；表示层；会话层；传输层；网络层；链路层；物理层</li>
 <li>TCP/IP五层模型：应用层；传输层；网络层；数据链路层；物理层</li>
 </ol>
-<h2 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h2><ol>
-<li><p>物理层</p>
+<h2 id="tcpip"><a class="markdownIt-Anchor" href="#tcpip"></a> TCP/IP</h2>
+<ol>
+<li>
+<p>物理层</p>
 <ol>
 <li>其任务是以尽力服务为基础，在网络节点之间传输实际的比特位。</li>
 <li>规定通信设备的机械的、电气的、功能的和过程的特性，用以建 立、维护和拆除物理链路连接。</li>
 </ol>
 </li>
-<li><p>链路层</p>
+<li>
+<p>链路层</p>
 <ol>
 <li>其任务是在网络节点对间或局域网节点间传输数据并检测物理层出现的差错。</li>
 <li>该层的作用包括：物理地址寻址、数据的成帧、流量控制、数据 的检错、重发等。</li>
 </ol>
 </li>
-<li><p>网络层</p>
+<li>
+<p>网络层</p>
 <ol>
 <li>其任务是以尽力服务为基础，在任意两台主机之间传送数据包。就是选择合适的网间路由和交换结点， 确保数据及 时传送。</li>
 <li>网络层将数据链路层提供的帧组成数据包，包中封装有网络层包 头，其中含有逻辑地址信息：源站点和目的站点地址的网络地址。</li>
 </ol>
 </li>
-<li><p>传输层</p>
+<li>
+<p>传输层</p>
 <ol>
 <li>其任务是基于IP地址和端口，支持应用程序之间的通信与连接。</li>
 <li>传输层为上层提供端到端（最终用户到最终用户）的透明的、可 靠的数据传输服务。所谓透明的传输是指在通信过程中传输层对 上层屏蔽了通信传输系统的具体细节。</li>
 </ol>
 </li>
-<li><p>应用层</p>
+<li>
+<p>应用层</p>
 <ol>
 <li>其任务是以传输层提供的服务为基础，提供协议来支持互联网上的有用的功能。</li>
 <li>常用协议有FTP、TELNET、DNS、SMTP、POP3。</li>
 </ol>
 </li>
 </ol>
-<h2 id="网络与安全"><a href="#网络与安全" class="headerlink" title="网络与安全"></a>网络与安全</h2><h3 id="与计算机安全目标-CIA"><a href="#与计算机安全目标-CIA" class="headerlink" title="与计算机安全目标 CIA"></a>与计算机安全目标 CIA</h3><ol>
+<h2 id="网络与安全"><a class="markdownIt-Anchor" href="#网络与安全"></a> 网络与安全</h2>
+<h3 id="与计算机安全目标-cia"><a class="markdownIt-Anchor" href="#与计算机安全目标-cia"></a> 与计算机安全目标 CIA</h3>
+<ol>
 <li>机密性：网络协议的任何分层中，都没有要求传输数据的机密性。 需要修订相关协议来完成机密性。可以在应用层进行加密协议的 设计，也可以在网络层。</li>
 <li>完整性：封装的数据包中的头和尾部都有简单的校验和，以检查 传输数据是否有改变。但这些校验和不是密码学意义下安全的， 因此不能提供计算机安全层面的完整性。</li>
 <li>可用性：网络协议设计之初主要考虑的是节点发生故障时如何保 证可用性，并未考虑攻击者存在时的情形。如拒绝服务攻击会影 响系统可用性。</li>
 </ol>
-<h3 id="与计算机安全目标-3A"><a href="#与计算机安全目标-3A" class="headerlink" title="与计算机安全目标 3A"></a>与计算机安全目标 3A</h3><ol>
+<h3 id="与计算机安全目标-3a"><a class="markdownIt-Anchor" href="#与计算机安全目标-3a"></a> 与计算机安全目标 3A</h3>
+<ol>
 <li>保证：默认情况下网络中数据包可以在任何两个节点间阐述。如 果需要引入权限和策略来控制网络中的数据流，必须通过显式得 的措施来实现。</li>
 <li>真实性：网络协议的数据格式中没有存储数字签名的字段，也没 有用户身份的概念。如果需要引入身份证明和数字签名，必须在 应用层完成。</li>
 <li>匿名：网络协议没有用户身份的概念，因此具有内在的匿名性。 对于匿名攻击，可以通过确定用户正在使用网络中的哪台计算机 来确定。</li>
 </ol>
-<h1 id="链路层"><a href="#链路层" class="headerlink" title="链路层"></a>链路层</h1><h2 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h2><ol>
+<h1 id="链路层"><a class="markdownIt-Anchor" href="#链路层"></a> 链路层</h1>
+<h2 id="以太网"><a class="markdownIt-Anchor" href="#以太网"></a> 以太网</h2>
+<ol>
 <li>定义：以太网包括通信所使用的物理介质以及链路层的协议 标准IEEE 802.3。</li>
 <li>不同帧 在以太网电缆上同时传输时会产生冲突，需要丢弃并重传冲突帧。</li>
 <li>冲突处理：以太网协议使用CSMA/CD（载波监听多路访问及冲突 检测）技术来避免冲突。</li>
 </ol>
-<h2 id="集线器："><a href="#集线器：" class="headerlink" title="集线器："></a>集线器：</h2><ol>
+<h2 id="集线器"><a class="markdownIt-Anchor" href="#集线器"></a> 集线器：</h2>
+<ol>
 <li>工作与物理层，将所有帧广播给与之相连的所有设备。</li>
 <li>缺点是与集线器相连的所有设备共享带宽，传输效率低下。由于 是广播，所以数据容易被窃听。</li>
 </ol>
-<h2 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h2><ol>
+<h2 id="交换机"><a class="markdownIt-Anchor" href="#交换机"></a> 交换机</h2>
+<ol>
 <li>交换机会记录连接到自己各个接口的计算机地址。之后交换机会 将接收到的帧发送到特定的接收端，而不是广播出去。</li>
 </ol>
-<h2 id="MAC地址"><a href="#MAC地址" class="headerlink" title="MAC地址"></a>MAC地址</h2><ol>
+<h2 id="mac地址"><a class="markdownIt-Anchor" href="#mac地址"></a> MAC地址</h2>
+<ol>
 <li>MAC（Medium/Media Access Control）地址，用来表示互联网 上每一个站点的标识符，采用十六进制数表示，共六个字节。</li>
 <li>MAC地址是网卡决定的，一般是固定的。但可以通过网卡的驱动 程序软件来修改MAC地址。因此，<strong>从安全角度考虑，不能使用MAC地址作为识别网络流源头的依据。</strong></li>
 </ol>
-<h2 id="ARP欺骗"><a href="#ARP欺骗" class="headerlink" title="ARP欺骗"></a>ARP欺骗</h2><ol>
+<h2 id="arp欺骗"><a class="markdownIt-Anchor" href="#arp欺骗"></a> ARP欺骗</h2>
+<ol>
 <li>ARP:是一种链路层协议，其主要功能是将给定主机的网络层地址解析为主机 的硬件地址。</li>
 <li>过程：主机通过发送包含目标IP地址的AARP请求到网络上所有主机，并接受返回消息，以此确定目标的物理地址。同时将映射存入ARP缓存。</li>
-<li><strong>ARP欺骗</strong>：攻击者可以向某 一主机发送伪ARP应答报文，使其发送的信息无法到达预期的主 机或到达错误的主机，这就构成了一个<strong>ARP欺骗</strong>。<ol>
+<li><strong>ARP欺骗</strong>：攻击者可以向某 一主机发送伪ARP应答报文，使其发送的信息无法到达预期的主 机或到达错误的主机，这就构成了一个<strong>ARP欺骗</strong>。
+<ol>
 <li>问题在于ARP缺乏身份认证</li>
-<li><strong>解决</strong> ：<ol>
+<li><strong>解决</strong> ：
+<ol>
 <li>检查相同的MAC是否在局域网中多次出现，以作为ARP欺骗的标志。</li>
 <li>静态ARP表：通过手动指定路由器的ARP缓存来将具体的MAC地址与特定的IP地址进行绑定。问题是不够灵活。</li>
 <li>更加复杂和灵活的措施：anti-arpsroof、XArp、Arpwatch，这些 程序会仔细检查所有的ARP数据包，并将数据包的内容与所存储 的ARP表项纪录做比较，以检测并防止ARP欺骗。</li>
@@ -177,49 +196,67 @@
 </ol>
 </li>
 </ol>
-<h1 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h1><h2 id="网际协议基本概念"><a href="#网际协议基本概念" class="headerlink" title="网际协议基本概念"></a>网际协议基本概念</h2><ol>
+<h1 id="网络层"><a class="markdownIt-Anchor" href="#网络层"></a> 网络层</h1>
+<h2 id="网际协议基本概念"><a class="markdownIt-Anchor" href="#网际协议基本概念"></a> 网际协议基本概念</h2>
+<ol>
 <li>IP：网络层协议，尽最大努力将一个数据包从源节点路由到目的 节点。节点由IP地址标识，IPv4地址为32位，IPv6地址为128位。</li>
 <li>IP包路由：如果数据包的源和目的在同一个局域网内，则通过ARP进行。否则，将包传送至网关，由网关根据路由表来确定如何转发。</li>
 <li>IP地址与子网掩码：例如IP地址为192.168.1.100,子网掩码为 255.255.255.0。则该地址的网络部分为192.168.1.0,主机部分为 0.0.0.100.</li>
-<li>IPv4地址耗尽解决：IPv6；网络地址转换<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2></li>
+<li>IPv4地址耗尽解决：IPv6；网络地址转换</li>
+</ol>
+<h2 id="路由"><a class="markdownIt-Anchor" href="#路由"></a> 路由</h2>
+<ol start="3">
 <li>路由器：为数据包寻找一条最佳的传输路径。路由器中维护一张路由表，以提高效率。</li>
 <li>路由操作：包括发送、丢弃、转发</li>
 <li><strong>TTL</strong>:数据包的<strong>生存周期</strong>，由跳数决定，一般最大条数为255。</li>
-<li>路由协议<ol>
+<li>路由协议
+<ol>
 <li>OSPF决定了如何在自治系统内路由数据包。</li>
 <li>BGP决定了如何在自治系统之间路由数据包。</li>
 </ol>
 </li>
 </ol>
-<h2 id="ICMP-网际控制消息协议"><a href="#ICMP-网际控制消息协议" class="headerlink" title="ICMP 网际控制消息协议"></a>ICMP 网际控制消息协议</h2><ol>
-<li>ICMP:用于在主机、路由器之间传递控制消息。<ol>
+<h2 id="icmp-网际控制消息协议"><a class="markdownIt-Anchor" href="#icmp-网际控制消息协议"></a> ICMP 网际控制消息协议</h2>
+<ol>
+<li>ICMP:用于在主机、路由器之间传递控制消息。
+<ol>
 <li>包括：回显请求；回显响应；超时；目的地不可达</li>
 </ol>
 </li>
 <li>Ping 命令：Ping发送一个ICMP<strong>回声请求</strong> 消息给目的地并报告是否收到ICMP<strong>回声应答</strong>消息。</li>
 <li>traceroute命令：利用ICMP 协议定位您的计算机和目标计算机之间的所有路由器。<strong>利用ICMP超时报文，依次等增TTL，以确定路径上有哪些路由</strong></li>
 </ol>
-<h2 id="IP地址欺骗"><a href="#IP地址欺骗" class="headerlink" title="IP地址欺骗"></a>IP地址欺骗</h2><ol>
+<h2 id="ip地址欺骗"><a class="markdownIt-Anchor" href="#ip地址欺骗"></a> IP地址欺骗</h2>
+<ol>
 <li><strong>方法</strong> 恶意用户产生的IP数据包中的源IP地址是伪造的， 以便冒充其他系统或发件人的身份。源IP地址修改后， IP数据包 头部校验和也需重新计算。</li>
 <li>攻击者不会收到服务器响应，因为服务器会将数据包返回给具有假冒IP地址的主机。因此，攻击者不在乎响应，故可以用来Dos攻击。</li>
-<li><strong>应对</strong> <ol>
+<li><strong>应对</strong>
+<ol>
 <li>通过边缘路由器禁止那些源地址在域内，但实际地址在域外的数据包或源地址在域外，但是从域内向域外发的送的数据包。</li>
-<li>可以通过IP追踪计数追踪数据包返回到实际源地址的路径。<h2 id="数据包嗅探"><a href="#数据包嗅探" class="headerlink" title="数据包嗅探"></a>数据包嗅探</h2></li>
+<li>可以通过IP追踪计数追踪数据包返回到实际源地址的路径。</li>
 </ol>
 </li>
-<li>Wireshark：网络数据包分析软件。使用WinpCAP作为接口，直接与网卡进行数据报文交换。此时网卡需要设置为混杂模式。<ol>
+</ol>
+<h2 id="数据包嗅探"><a class="markdownIt-Anchor" href="#数据包嗅探"></a> 数据包嗅探</h2>
+<ol>
+<li>Wireshark：网络数据包分析软件。使用WinpCAP作为接口，直接与网卡进行数据报文交换。此时网卡需要设置为混杂模式。
+<ol>
 <li><strong>问题</strong> 可能泄露敏感信息。</li>
 </ol>
 </li>
-<li><strong>解决</strong><ol>
+<li><strong>解决</strong>
+<ol>
 <li>对于有线网，使用以太网交换机而不是集线器，降低数据包包嗅探的可能性。</li>
-<li>检查网卡是否被设置为混杂模式。 </li>
+<li>检查网卡是否被设置为混杂模式。</li>
 <li>利用高层协议进行加密，比如HTTPS</li>
 </ol>
 </li>
 </ol>
-<h1 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h1><h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><ol>
-<li><p>端口号：16位，用来标识应用层不同服务。</p>
+<h1 id="传输层"><a class="markdownIt-Anchor" href="#传输层"></a> 传输层</h1>
+<h2 id="基础概念"><a class="markdownIt-Anchor" href="#基础概念"></a> 基础概念</h2>
+<ol>
+<li>
+<p>端口号：16位，用来标识应用层不同服务。</p>
 <ol>
 <li>FTP:21</li>
 <li>Telnet:23</li>
@@ -227,40 +264,53 @@
 <li>HTTP:80</li>
 </ol>
 </li>
-<li><p><strong>TCP</strong>:面向连接的、可靠的。面向 连接意味着实现会比较复杂，可靠的是指信息会完整、有序地到 达。如果数据包丢失，TCP会保证重传。 TCP是传输文件、网页 和电子邮件的首选协议。</p>
+<li>
+<p><strong>TCP</strong>:面向连接的、可靠的。面向 连接意味着实现会比较复杂，可靠的是指信息会完整、有序地到 达。如果数据包丢失，TCP会保证重传。 TCP是传输文件、网页 和电子邮件的首选协议。</p>
 </li>
-<li><p><strong>UDP</strong>：无连接的、不可靠但速度快。基于IP的语音会话(VoIP)适合于使用UDP协议。</p>
-<h2 id="TCP-协议"><a href="#TCP-协议" class="headerlink" title="TCP 协议"></a>TCP 协议</h2></li>
-<li><p>三次握手建立连接，每个数据包都有编号。</p>
+<li>
+<p><strong>UDP</strong>：无连接的、不可靠但速度快。基于IP的语音会话(VoIP)适合于使用UDP协议。</p>
 </li>
-<li><p>采用<strong>累计确认</strong></p>
+</ol>
+<h2 id="tcp-协议"><a class="markdownIt-Anchor" href="#tcp-协议"></a> TCP 协议</h2>
+<ol>
+<li>
+<p>三次握手建立连接，每个数据包都有编号。</p>
 </li>
-<li><p>流量控制使用滑动窗口协议</p>
+<li>
+<p>采用<strong>累计确认</strong></p>
 </li>
-<li><p>校验和：使用循环冗余校验(CRC)，可以检测由网络错误引发的数据不一致，但不能检测恶意篡改。</p>
+<li>
+<p>流量控制使用滑动窗口协议</p>
 </li>
-<li><p>拥塞控制：拥塞会导致传输速率急剧下降和数据包的丢弃。拥塞 控制是防止流量淹没网络的一种技术，通过收集确认数据包等信 息来调整数据的传输速率，防止拥塞。</p>
+<li>
+<p>校验和：使用循环冗余校验(CRC)，可以检测由网络错误引发的数据不一致，但不能检测恶意篡改。</p>
+</li>
+<li>
+<p>拥塞控制：拥塞会导致传输速率急剧下降和数据包的丢弃。拥塞 控制是防止流量淹没网络的一种技术，通过收集确认数据包等信 息来调整数据的传输速率，防止拥塞。</p>
 <ol>
 <li>慢开始与拥塞避免</li>
 <li>快重传与快恢复</li>
 </ol>
 </li>
-<li><p>TCP三次握手</p>
+<li>
+<p>TCP三次握手</p>
  <img src="/计安导_img/1.png" style="zoom:80%">
-
 <ol>
 <li>初始序列号是随机的，以<strong>防止针对预测初始序列号的攻击</strong>。</li>
 </ol>
 </li>
 </ol>
-<h2 id="UDP-协议"><a href="#UDP-协议" class="headerlink" title="UDP 协议"></a>UDP 协议</h2><ol>
+<h2 id="udp-协议"><a class="markdownIt-Anchor" href="#udp-协议"></a> UDP 协议</h2>
+<ol>
 <li>无需三次握手，允许直接发送数据包。</li>
 <li>UPD提供无连接、不可靠的服务。将数据报序列中丢失数据报的工作交给应用层。</li>
 <li>使用16位校验和验证数据包完整性。</li>
 <li>速度远远快于TCP,用于DNS和VoIP。</li>
 </ol>
-<h2 id="NAT-网络地址转换"><a href="#NAT-网络地址转换" class="headerlink" title="NAT 网络地址转换"></a>NAT 网络地址转换</h2><ol>
-<li>NAT允许局域网内的主机共享一个公共IP，以接入因特网。<ol>
+<h2 id="nat-网络地址转换"><a class="markdownIt-Anchor" href="#nat-网络地址转换"></a> NAT 网络地址转换</h2>
+<ol>
+<li>NAT允许局域网内的主机共享一个公共IP，以接入因特网。
+<ol>
 <li>解决了IP地址不足的问题。</li>
 <li>有效的避免了来自网络外部的攻击，隐藏并保护网络内部的计算机。</li>
 <li>NAT路由器：公网和私网之间的网关，负责管理流入和流出的数据包。</li>
@@ -269,8 +319,10 @@
 </ol>
 </li>
 </ol>
-<h2 id="TCP会话劫持"><a href="#TCP会话劫持" class="headerlink" title="TCP会话劫持"></a>TCP会话劫持</h2><ol>
-<li><p><strong>TCP序列号预测攻击</strong> 通过预测TCP会话的初始序列号，以建立伪造的TCP会话。之后</p>
+<h2 id="tcp会话劫持"><a class="markdownIt-Anchor" href="#tcp会话劫持"></a> TCP会话劫持</h2>
+<ol>
+<li>
+<p><strong>TCP序列号预测攻击</strong> 通过预测TCP会话的初始序列号，以建立伪造的TCP会话。之后</p>
 <ol>
 <li>发动拒绝服务攻击</li>
 <li>向服务器发送SYN，将源IP地址伪造成受害者客户端IP。</li>
@@ -278,26 +330,33 @@
 <li>攻击者以受害客户端名义向服务器发送请求。</li>
 </ol>
 </li>
-<li><p><strong>盲注入</strong>：在TCP序列预测攻击中使用了IP欺骗，所以攻击者无法从服务器收到任何响应。盲注入允许攻击者使用请求者的源IP地址来执行某些命令，从而破坏系统。</p>
+<li>
+<p><strong>盲注入</strong>：在TCP序列预测攻击中使用了IP欺骗，所以攻击者无法从服务器收到任何响应。盲注入允许攻击者使用请求者的源IP地址来执行某些命令，从而破坏系统。</p>
 </li>
-<li><p><strong>ACK风暴</strong>：盲注入后客户端不会向服务器发送同步消息，导致不同步。此时，客户端和服务端都会向对方发送ACK消息，来告知对方需要开始使用正确的序列号。这种反复的通信称为ACK风暴。</p>
+<li>
+<p><strong>ACK风暴</strong>：盲注入后客户端不会向服务器发送同步消息，导致不同步。此时，客户端和服务端都会向对方发送ACK消息，来告知对方需要开始使用正确的序列号。这种反复的通信称为ACK风暴。</p>
 </li>
-<li><p><strong>完全会话劫持</strong>：当攻击者与目标服务器或客户端在同一网段时，攻击者可以通过数据包嗅探攻击，直到建立会话时的数据包序列号，从而完全劫持会话。</p>
+<li>
+<p><strong>完全会话劫持</strong>：当攻击者与目标服务器或客户端在同一网段时，攻击者可以通过数据包嗅探攻击，直到建立会话时的数据包序列号，从而完全劫持会话。</p>
 </li>
-<li><p><strong>防范会话劫持</strong>：</p>
+<li>
+<p><strong>防范会话劫持</strong>：</p>
 <ol>
 <li>在IP层或者应用层使用认证和加密，如IPSec或者应用层安全协议。</li>
 <li>网站应避免创建以安全身份验证措施开始，但后来切换到未加密交 换的会话，这样会产生TCP会话劫持攻击的风险。</li>
 </ol>
 </li>
 </ol>
-<h1 id="Dos攻击"><a href="#Dos攻击" class="headerlink" title="Dos攻击"></a>Dos攻击</h1><ol>
+<h1 id="dos攻击"><a class="markdownIt-Anchor" href="#dos攻击"></a> Dos攻击</h1>
+<ol>
 <li><strong>拒绝服务攻击</strong>亦称洪水攻击，其目的在于使目标电脑的网络或系统 资源耗尽，使服务暂时中断或停止，导致其正常用户无法访问。</li>
 <li><strong>分布式拒绝服务攻击</strong>：使用多台僵尸机发起攻击。</li>
 <li>症状：网络异常缓慢(打开文件或访问网站)、特定网站无法访 问、无法访问任何网站、垃圾邮件的数量急剧增加、无线或有线网 络连接异常断开、长时间尝试访问网站或任何互联网服务时被拒绝、 服务器容易断线、卡顿等。</li>
 </ol>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ol>
-<li><p>带宽消耗：</p>
+<h2 id="分类"><a class="markdownIt-Anchor" href="#分类"></a> 分类</h2>
+<ol>
+<li>
+<p>带宽消耗：</p>
 <ol>
 <li>ICMP洪水攻击：通过向未良好设置的路由器发送广播信息以占用系统资源 。</li>
 <li>UDP洪水攻击：大量UDP数据包发送给受害系统，可能会导致带宽。</li>
@@ -305,7 +364,8 @@
 <li>泪滴攻击：数据在发送前都会经过切割，每个小切割都会记录位移的信息，以 便重组。此攻击模式就是捏造位移信息，导致重组时发生问题，造成错误。</li>
 </ol>
 </li>
-<li><p>资源消耗型</p>
+<li>
+<p>资源消耗型</p>
 <ol>
 <li>SYN 洪水攻击：大量TCP SYN请求反复发送，导致系统资源耗尽。</li>
 <li>LAND攻击：与SYN floods类似，会导致被攻击的机器死循环。</li>
@@ -314,45 +374,54 @@
 </ol>
 </li>
 </ol>
-<h2 id="ICMP-攻击"><a href="#ICMP-攻击" class="headerlink" title="ICMP 攻击"></a>ICMP 攻击</h2><ol>
+<h2 id="icmp-攻击"><a class="markdownIt-Anchor" href="#icmp-攻击"></a> ICMP 攻击</h2>
+<ol>
 <li><strong>ping洪水攻击</strong>：通过功能强大的计算机向单个受害服务器发送大量 回显请求命令。这样受害服务器会被这些网络流量 淹没，无法响应合法的请求。</li>
 <li><strong>Smurf攻击</strong>：攻击者向网络广播地址发送ICMP包，并将回复地址 设置成受害网络的广播地址，通过使用ICMP应答请求数据包来淹 没受害主机的方式进行。</li>
-<li><strong>阻止Smurf攻击</strong>：<ol>
+<li><strong>阻止Smurf攻击</strong>：
+<ol>
 <li>管理员应该将网络中的主机和路由器配置 为忽略广播请求；</li>
 <li>避免直接向广播地址转发数据包；</li>
 <li>忽略 ping请求。</li>
 </ol>
 </li>
 </ol>
-<h2 id="SYN洪水攻击"><a href="#SYN洪水攻击" class="headerlink" title="SYN洪水攻击"></a>SYN洪水攻击</h2><ol>
-<li><p>攻击者故意延迟或不发送握手确认。</p>
+<h2 id="syn洪水攻击"><a class="markdownIt-Anchor" href="#syn洪水攻击"></a> SYN洪水攻击</h2>
+<ol>
+<li>
+<p>攻击者故意延迟或不发送握手确认。</p>
 </li>
-<li><p><strong>过程</strong>：</p>
+<li>
+<p><strong>过程</strong>：</p>
 <ol>
 <li>假设连接发起方是A，接受方是B。A发送SYN消息给B，B反馈 SYN-ACK消息给A，使连接进入半开状态。此时B会给每个半开连 接都设一个Timer，如果超过时间还没有收到A的ACK消息，则重 新发送一次SYN-ACK消息给A，直到重试超过一定次数时才会放弃。</li>
 <li>攻击方A可以控制肉鸡向B发送大量SYN消息但不响应ACK消息， 或者干脆伪造SYN消息中的Source IP，使B反馈的SYN-ACK消息 石沉大海，导致B被大量注定不能完成的半开连接占据，直到资源 耗尽，停止响应正常的连接请求。</li>
 </ol>
 </li>
-<li><p><strong>防范</strong></p>
+<li>
+<p><strong>防范</strong></p>
 <ol>
 <li><strong>SYN Cookie机制</strong>：在TCP服务器接收到TCP SYN包并返回TCP SYN+ACK包时，不分配专门的数据区，而是根据SYN包计算一个 cookie值。 这个cookie作为将要返回的SYN-ACK包的初始序列号。</li>
 </ol>
 </li>
-<li><p>SYN + ACK包的32比特结构如下：</p>
+<li>
+<p>SYN + ACK包的32比特结构如下：</p>
 <ol>
 <li>前5比特是时间戳，由每分 钟按模32递增的计数器实现</li>
 <li>中间3比特是编码值，表示传输段 的最大值</li>
 <li>最后24比特是基于密钥k，由服务器和客户端IP地址，端口号和前面使用的时间戳计算出来的MAC值。</li>
 </ol>
 </li>
-<li><p>当客户端返回一个ACK包时</p>
+<li>
+<p>当客户端返回一个ACK包时</p>
 <ol>
 <li>服务器首先根据其前5比特判断是否 过期；</li>
 <li>服务器根据包头信息重新计算24比特的MAC值，与返回的确认序列号(初始序列号 + 1)进行对比；</li>
 <li>服务器对中间3 比特进行解码，完成对SYN队列项的重构。如果验证通过，则服务 器发起TCP会话。</li>
 </ol>
 </li>
-<li><p>Optimistic TCP ACK攻击</p>
+<li>
+<p>Optimistic TCP ACK攻击</p>
 <ol>
 <li>利用TCP的拥塞控制机制。在TCP的华东窗口协议中，虽则接收ACK的增多，窗口大小增大。</li>
 <li><strong>攻击</strong> 恶意客户端在没有收到SYN-ACK时，就提前发送ACK，使得服务 器增加其传输速度。如果同时针对多台服务器进行TCP ACK攻击，它会通过淹 没网络带宽资源，导致互联网范围内的拥塞。</li>
@@ -447,19 +516,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC4%E7%AB%A0/" class="article-nav-link">
+      <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC2%E7%AB%A0/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            计安导第4章
+            计安导第2章
           
         </div>
       </a>
     
     
-      <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC6%E7%AB%A0/" class="article-nav-link">
+      <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC4%E7%AB%A0/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">计安导第6章</div>
+        <div class="article-nav-title">计安导第4章</div>
       </a>
     
   </nav>

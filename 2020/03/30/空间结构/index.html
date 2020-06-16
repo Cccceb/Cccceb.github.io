@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.2k字</span>
+            <span class="post-count">1.3k字</span>
         </span>
     </span>
 
@@ -101,7 +101,8 @@
       
 
       
-      <h1 id="UVA-806-空间结构"><a href="#UVA-806-空间结构" class="headerlink" title="UVA 806 空间结构"></a>UVA 806 空间结构</h1><p>一个四分树是由一个方格的结构组成的，如图：（就是上面的三个图）。</p>
+      <h1 id="uva-806-空间结构"><a class="markdownIt-Anchor" href="#uva-806-空间结构"></a> UVA 806 空间结构</h1>
+<p>一个四分树是由一个方格的结构组成的，如图：（就是上面的三个图）。</p>
 <p>那些像素点可以构成一个四分树，如图：（就是上面的那个树）。</p>
 <p>我们规定，NW=1,NE=2,SW=3,SE=4，而一个节点所构成的数字串可以认为是一个五进制数，将它们排序后输出。</p>
 <p>例如：上图中地四号节点的路径为NE,SW，所以是32532_5325​ （五进制数）=171017_{10}1710​（十进制数）</p>
@@ -109,158 +110,198 @@
 <p>9 14 17 22 23 44 63 69 88 94 113\text{9 14 17 22 23 44 63 69 88 94 113} 9 14 17 22 23 44 63 69 88 94 113</p>
 <p>你的任务是在这两者之间转换。</p>
 <p>注意，数串中的数字顺序是从叶子到根的，别搞错了。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li><p>对于n&gt;0的情况，需要将矩阵转化为四分树。</p>
-<p> 采用递归算法，每次递归四分之一块，如果遇到范围内纯黑或纯白，则返回。并且在遇到纯黑时，将序列存入向量中。</p>
-<p> 注意：要先判断整个图是否为纯黑或者纯白。</p>
-<p> 然后将五进制转化为十进制</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>
+<p>对于n&gt;0的情况，需要将矩阵转化为四分树。</p>
+<p>采用递归算法，每次递归四分之一块，如果遇到范围内纯黑或纯白，则返回。并且在遇到纯黑时，将序列存入向量中。</p>
+<p>注意：要先判断整个图是否为纯黑或者纯白。</p>
+<p>然后将五进制转化为十进制</p>
 </li>
-<li><p>对于n&lt;0的情况，将四分树转化为矩阵<br> 先将十进制转化为五进制，并在字符串尾部添加*，以标识叶子节点<br> 采用递归算法，每次根据当前字符，来选择下一步递归的范围。当遇到叶子节点时，将当前层的范围内的点涂黑</p>
-<p> 注意：pre向量中的每个元素，代表一条从根到叶子的路径，所以要用循环配合递归。</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p> #include<iostream><br> #include<string><br> #include&lt;string.h&gt;<br> #include<vector><br> #include<algorithm><br> #include<cmath></p>
-<h1 id="pragma-warning-disable-4996"><a href="#pragma-warning-disable-4996" class="headerlink" title="pragma warning(disable:4996)"></a>pragma warning(disable:4996)</h1><h1 id="define-LOCAL"><a href="#define-LOCAL" class="headerlink" title="define LOCAL"></a>define LOCAL</h1><h1 id="ifdef-LOCAL"><a href="#ifdef-LOCAL" class="headerlink" title="ifdef LOCAL"></a>ifdef LOCAL</h1><p> FILE *fin = freopen(“空间结构in.txt”, “r”, stdin);<br> FILE *fout = freopen(“空间结构out.txt”, “w”, stdout);</p>
-<h1 id="endif"><a href="#endif" class="headerlink" title="endif"></a>endif</h1><p> using namespace std;</p>
-<p> vector<int> number;<br> vector<string> pre;<br> char g[64][64];<br> int n;<br> void five() {</p>
-<pre><code>for (int i = 0; i &lt; number.size(); i++) {
-    int temp = 0;
-    while (number[i]) {
-        temp *= 10;        //注意此处要先乘10
-        temp += number[i] % 5;
-        number[i] = number[i] / 5;
-    }
-
-    pre.push_back(to_string(temp) + &apos;*&apos;);
-    //加*以标识叶子
-}</code></pre><p> }<br> void draw(const string s, int &amp;p, int r, int c, int w) {</p>
-<pre><code>if (p == s.length()) return;
-char ch = s[p++];
-switch (ch - &apos;0&apos;)
-{
-
-case 1:    draw(s, p, r, c, w / 2); break;
-case 2: draw(s, p, r, c + w / 2, w / 2); break;
-case 3:    draw(s, p, r + w / 2, c, w / 2); break;
-case 4:    draw(s, p, r + w / 2, c + w / 2, w / 2); break;
-default:
-    break;
-}
-if (ch == &apos;*&apos;) {
-    for (int i = r; i &lt; r + w; i++)
-        for (int j = c; j &lt; c + w; j++) {
-
-                g[i][j] = &apos;*&apos;;
-
-        }
-}</code></pre><p> }<br> bool judge(int r, int c, int w,char ch) {</p>
-<pre><code>// ch为0代表是否纯黑，为1代表是否纯白
-for (int i = r; i &lt; r + w; i++)
-    for (int j = c; j &lt; c + w; j++)
-        if (g[i][j] == ch)
-            return false;
-return true;    //任何情况下都要有return否则会RE</code></pre><p> }<br> void matrix(string str, int r, int c, int w) {</p>
-<pre><code>if (judge(r, c, w,&apos;0&apos;)) {
-    pre.push_back(str);    //纯黑则递归到头，将序列保存
-    return;
-}
-else if (judge(r, c, w,&apos;1&apos;)) return;
-else {
-    matrix(str + &quot;1&quot;, r, c, w / 2);
-    matrix(str + &quot;2&quot;, r, c + w / 2, w / 2);
-    matrix(str + &quot;3&quot;, r + w / 2, c, w / 2);
-    matrix(str + &quot;4&quot;, r + w / 2, c + w / 2, w / 2);
-}</code></pre><p> }<br> void ten() {</p>
-<pre><code>for (int i = 0; i &lt; pre.size(); i++) {
-    int temp = 0;
-    for (int j = pre[i].size() - 1; j &gt;= 0; j--)
-        temp += (pre[i][j] - &apos;0&apos;)*pow(5, j);
-    number.push_back(temp);
-
-}</code></pre><p> }<br> int main() {</p>
-<pre><code>int first = 1;
-int kase = 0;
-while (cin &gt;&gt; n &amp;&amp; n) {
-    if (first) first = 0; else cout &lt;&lt; endl;
-    cout &lt;&lt; &quot;Image &quot; &lt;&lt; ++kase &lt;&lt; endl;
-
-    number.clear();
-    pre.clear();
-    memset(g, &apos;.&apos;, sizeof(g));
-    getchar();
-    if (n &gt; 0) {
-        for (int i = 0; i &lt; n; i++)
-            for (int j = 0; j &lt; n; j++)
-                cin &gt;&gt; g[i][j];</code></pre></li>
+<li>
+<p>对于n&lt;0的情况，将四分树转化为矩阵<br />
+先将十进制转化为五进制，并在字符串尾部添加*，以标识叶子节点<br />
+采用递归算法，每次根据当前字符，来选择下一步递归的范围。当遇到叶子节点时，将当前层的范围内的点涂黑</p>
+<p>注意：pre向量中的每个元素，代表一条从根到叶子的路径，所以要用循环配合递归。</p>
+</li>
 </ol>
-<pre><code>            if (judge(0, 0, n,&apos;0&apos;)) number.push_back(0);
-            //纯黑的情况
-            else if (judge(0, 0, n,&apos;1&apos;));//纯白
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;string.h&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+# pragma warning(disable:4996)
+# define LOCAL
+# ifdef LOCAL
+FILE *fin = freopen(&quot;空间结构in.txt&quot;, &quot;r&quot;, stdin);
+FILE *fout = freopen(&quot;空间结构out.txt&quot;, &quot;w&quot;, stdout);
+# endif 
+using namespace std;
 
-            else {
-                matrix(&quot;1&quot;, 0, 0, n / 2);
-                matrix(&quot;2&quot;, 0, n / 2, n / 2);
-                matrix(&quot;3&quot;, n / 2, 0, n / 2);
-                matrix(&quot;4&quot;, n / 2, n / 2, n / 2);
-                ten();
-            }
+vector&lt;int&gt; number;
+vector&lt;string&gt; pre;
+char g[64][64];
+int n;
+void five() {
+	for (int i = 0; i &lt; number.size(); i++) {
+		int temp = 0;
+		while (number[i]) {
+			temp *= 10;		//注意此处要先乘10
+			temp += number[i] % 5;
+			number[i] = number[i] / 5;
+		}
+
+		pre.push_back(to_string(temp) + '*');
+		//加*以标识叶子
+	}
+}
+void draw(const string s, int &amp;p, int r, int c, int w) {
+
+	if (p == s.length()) return;
+	char ch = s[p++];
+	switch (ch - '0')
+	{
+
+	case 1:	draw(s, p, r, c, w / 2); break;
+	case 2: draw(s, p, r, c + w / 2, w / 2); break;
+	case 3:	draw(s, p, r + w / 2, c, w / 2); break;
+	case 4:	draw(s, p, r + w / 2, c + w / 2, w / 2); break;
+	default:
+		break;
+	}
+	if (ch == '*') {
+		for (int i = r; i &lt; r + w; i++)
+			for (int j = c; j &lt; c + w; j++) {
+				
+					g[i][j] = '*';
+				
+			}
+	}
+}
+bool judge(int r, int c, int w,char ch) {
+	// ch为0代表是否纯黑，为1代表是否纯白
+	for (int i = r; i &lt; r + w; i++)
+		for (int j = c; j &lt; c + w; j++)
+			if (g[i][j] == ch)
+				return false;
+	return true;	//任何情况下都要有return否则会RE
+}
+void matrix(string str, int r, int c, int w) {
+	
+	if (judge(r, c, w,'0')) {
+		pre.push_back(str);	//纯黑则递归到头，将序列保存
+		return;
+	}
+	else if (judge(r, c, w,'1')) return;
+	else {
+		matrix(str + &quot;1&quot;, r, c, w / 2);
+		matrix(str + &quot;2&quot;, r, c + w / 2, w / 2);
+		matrix(str + &quot;3&quot;, r + w / 2, c, w / 2);
+		matrix(str + &quot;4&quot;, r + w / 2, c + w / 2, w / 2);
+	}
+}
+void ten() {
+
+	for (int i = 0; i &lt; pre.size(); i++) {
+		int temp = 0;
+		for (int j = pre[i].size() - 1; j &gt;= 0; j--)
+			temp += (pre[i][j] - '0')*pow(5, j);
+		number.push_back(temp);
+
+	}
+}
+int main() {
+	int first = 1;
+	int kase = 0;
+	while (cin &gt;&gt; n &amp;&amp; n) {
+		if (first) first = 0; else cout &lt;&lt; endl;
+		cout &lt;&lt; &quot;Image &quot; &lt;&lt; ++kase &lt;&lt; endl;
+
+		number.clear();
+		pre.clear();
+		memset(g, '.', sizeof(g));
+		getchar();
+		if (n &gt; 0) {
+			for (int i = 0; i &lt; n; i++)
+				for (int j = 0; j &lt; n; j++)
+					cin &gt;&gt; g[i][j];
+		
+		
+			if (judge(0, 0, n,'0')) number.push_back(0);
+			//纯黑的情况
+			else if (judge(0, 0, n,'1'));//纯白
+			
+			else {
+				matrix(&quot;1&quot;, 0, 0, n / 2);
+				matrix(&quot;2&quot;, 0, n / 2, n / 2);
+				matrix(&quot;3&quot;, n / 2, 0, n / 2);
+				matrix(&quot;4&quot;, n / 2, n / 2, n / 2);
+				ten();
+			}
+			
+			
+			sort(number.begin(), number.end());
+			if (!number.empty()) {
+				for (int i = 0; i &lt; number.size(); i++)
+				{
+					cout &lt;&lt; number[i];
+					if ((i + 1) % 12 == 0||i==number.size()-1) cout &lt;&lt; endl;
+					else cout &lt;&lt; &quot; &quot;;
+				}
+			}
+
+			cout &lt;&lt; &quot;Total number of black nodes = &quot; &lt;&lt; number.size() &lt;&lt; endl;
+			
+		}
+		if (n &lt; 0) {
+
+			string s;
+			bool flag = false;
+			bool zero = false;
+			for (;;) {
+				int a;
+				//由于输入的结束标志-1不一定出现在哪里，所以
+				//要设置标志
+				for (int i = 0; i &lt; 12; i++) {
+					cin &gt;&gt; a;
+					if (a == -1) {
+						flag = true;
+						break;
+					}
+					if (a == 0)zero = true;
+					number.push_back(a);
+				}
+				if (flag) break;
+			}	
+			if (zero) {
+			//如果包含0，代表它是一个只有一个节点的树
+				memset(g, '*', sizeof(g));
+			}
+			else {
+				five();
+				for (int i = 0; i &lt; pre.size(); i++) {
+					int p = 0;
+					draw(pre[i], p, 0, 0, abs(n));
+				}
+			}
+			
 
 
-            sort(number.begin(), number.end());
-            if (!number.empty()) {
-                for (int i = 0; i &lt; number.size(); i++)
-                {
-                    cout &lt;&lt; number[i];
-                    if ((i + 1) % 12 == 0||i==number.size()-1) cout &lt;&lt; endl;
-                    else cout &lt;&lt; &quot; &quot;;
-                }
-            }
-
-            cout &lt;&lt; &quot;Total number of black nodes = &quot; &lt;&lt; number.size() &lt;&lt; endl;
-
-        }
-        if (n &lt; 0) {
-
-            string s;
-            bool flag = false;
-            bool zero = false;
-            for (;;) {
-                int a;
-                //由于输入的结束标志-1不一定出现在哪里，所以
-                //要设置标志
-                for (int i = 0; i &lt; 12; i++) {
-                    cin &gt;&gt; a;
-                    if (a == -1) {
-                        flag = true;
-                        break;
-                    }
-                    if (a == 0)zero = true;
-                    number.push_back(a);
-                }
-                if (flag) break;
-            }    
-            if (zero) {
-            //如果包含0，代表它是一个只有一个节点的树
-                memset(g, &apos;*&apos;, sizeof(g));
-            }
-            else {
-                five();
-                for (int i = 0; i &lt; pre.size(); i++) {
-                    int p = 0;
-                    draw(pre[i], p, 0, 0, abs(n));
-                }
-            }
+			for (int i = 0; i &lt; abs(n); i++) {
+				for (int j = 0; j &lt; abs(n); j++)
+					cout &lt;&lt; g[i][j];
+				cout &lt;&lt; endl;
+			}
+		}
 
 
-
-            for (int i = 0; i &lt; abs(n); i++) {
-                for (int j = 0; j &lt; abs(n); j++)
-                    cout &lt;&lt; g[i][j];
-                cout &lt;&lt; endl;
-            }
-        }
-
-
-    }
-}</code></pre><h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><ol>
+	}
+}
+</code></pre>
+<h1 id="心得"><a class="markdownIt-Anchor" href="#心得"></a> 心得</h1>
+<ol>
 <li>本题加深了对递归问题的理解，使用递归算法也不是仅仅用递归实现，要搭配循环，减小递归代码的编写难度。</li>
 <li>理清思路再写递归，注意认清递归结束条件，不要模糊。</li>
 </ol>

@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">580字</span>
+            <span class="post-count">581字</span>
         </span>
     </span>
 
@@ -101,55 +101,71 @@
       
 
       
-      <h1 id="UVA-12258-埃及分数"><a href="#UVA-12258-埃及分数" class="headerlink" title="UVA 12258 埃及分数"></a>UVA 12258 埃及分数</h1><p>输入出a,b,k，然后输入k个数，要求这k个数不出现在结果中。埃及分数是将任何一个分数a/b，转换成1/x1+1/x2+1/x3…的形式。好的解应该是项数最少的，对于相同项数的解，最小的分数值越大越好。</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
+      <h1 id="uva-12258-埃及分数"><a class="markdownIt-Anchor" href="#uva-12258-埃及分数"></a> UVA 12258 埃及分数</h1>
+<p>输入出a,b,k，然后输入k个数，要求这k个数不出现在结果中。埃及分数是将任何一个分数a/b，转换成1/x1+1/x2+1/x3…的形式。好的解应该是项数最少的，对于相同项数的解，最小的分数值越大越好。</p>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+<ol>
 <li>由于本题中深度没有上限，而且加数的选择也没有上届，因此如果用广度有限遍历，可能连一层都遍历不完。</li>
 <li>使用迭代加深度搜索解决。不断枚举深度的上限maxd，每次搜索深度不超过maxd的节点。<strong>这样只要解的深度有限，那么一定可以在有限的时间内枚举得到</strong>；</li>
 <li>关于剪枝：本题中，如果剩余的maxd-d+1项都是1/i，但是和仍然小于目标a/b，那么说明项数不够，则不需要继续递归下去。</li>
 <li>关于约分：使用到gcd算法，求出g = gcd(a,b)，那么a/b 可以转换成(a/g)/(b/g)；</li>
-<li>关于inline:使用inline之后，时间从2290减到1380。不能使用inline的情况包括<ol>
+<li>关于inline:使用inline之后，时间从2290减到1380。不能使用inline的情况包括
+<ol>
 <li>不适用于包含复杂控制语句的函数</li>
 <li>不适用于直接递归函数</li>
 </ol>
 </li>
 </ol>
 <p><strong>但是是否真的设置为内联，由编译器决定</strong></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="dfs-深度搜索"><a href="#dfs-深度搜索" class="headerlink" title="dfs 深度搜索"></a>dfs 深度搜索</h3><pre><code>bool dfs(int d, LL from, LL a, LL b) {
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<h3 id="dfs-深度搜索"><a class="markdownIt-Anchor" href="#dfs-深度搜索"></a> dfs 深度搜索</h3>
+<pre><code>bool dfs(int d, LL from, LL a, LL b) {
 if (d == maxd) {
-    if (b%a || avoid.count(b / a)) return false;
+	if (b%a || avoid.count(b / a)) return false;
 
-    v[d] = b / a;
-    if (better(d)) memcpy(ans, v, sizeof(LL)*(d + 1)); //0~d
-    return true;
+	v[d] = b / a;
+	if (better(d)) memcpy(ans, v, sizeof(LL)*(d + 1)); //0~d
+	return true;
 }
 bool ok = false;
 from = max(from, get_first(a, b));
 for (LL i = from;; i++) {
-    if (b*(maxd - d + 1) &lt;= a * i) break;
-    //如果a/b &gt;= (maxd-d+1)*/(1/i)，则剪枝
-    if (avoid.count(i)) continue;
-    v[d] = i;
+	if (b*(maxd - d + 1) &lt;= a * i) break;
+	//如果a/b &gt;= (maxd-d+1)*/(1/i)，则剪枝
+	if (avoid.count(i)) continue;
+	v[d] = i;
 
-    //这一部分目的是计算a/b-1/i
-    LL a2 = a * i - b;
-    LL b2 = b * i;
-    LL g = gcd(a, b);
-    if (dfs(d + 1, i + 1, a2 / g, b2 / g)) ok = true;
+	//这一部分目的是计算a/b-1/i
+	LL a2 = a * i - b;
+	LL b2 = b * i;
+	LL g = gcd(a, b);
+	if (dfs(d + 1, i + 1, a2 / g, b2 / g)) ok = true;
 }
-return ok;</code></pre><h3 id="比较函数"><a href="#比较函数" class="headerlink" title="比较函数"></a>比较函数</h3><pre><code>inline bool better(int d) {
+return ok;
+</code></pre>
+<h3 id="比较函数"><a class="markdownIt-Anchor" href="#比较函数"></a> 比较函数</h3>
+<pre><code>inline bool better(int d) {
 for (int i = d; i &gt;= 0; i--) {
-    if (ans[i] != v[i])
-        return ans[i] == -1 || ans[i] &gt; v[i];
+	if (ans[i] != v[i])
+		return ans[i] == -1 || ans[i] &gt; v[i];
 }
 return false;
-}</code></pre><ol>
+}
+</code></pre>
+<ol>
 <li>要求最小的分数值越大越好，即是要求分母最大的数越小越好。所以从i=d开始比较。</li>
 </ol>
-<h3 id="gcd-固定的"><a href="#gcd-固定的" class="headerlink" title="gcd 固定的"></a>gcd 固定的</h3><pre><code>inline LL gcd(LL a, LL b) {
+<h3 id="gcd-固定的"><a class="markdownIt-Anchor" href="#gcd-固定的"></a> gcd 固定的</h3>
+<pre><code>inline LL gcd(LL a, LL b) {
 if (b == 0) return a;
 return gcd(b, a%b);
-}</code></pre><h3 id="get-first-返回1-从-lt-a-b的最小的"><a href="#get-first-返回1-从-lt-a-b的最小的" class="headerlink" title="get_first 返回1/从&lt;=a/b的最小的"></a>get_first 返回1/从&lt;=a/b的最小的</h3><pre><code>inline LL get_first(LL a, LL b) 
-{ return b / a + 1; }</code></pre>
+}
+</code></pre>
+<h3 id="get_first-返回1从ab的最小的"><a class="markdownIt-Anchor" href="#get_first-返回1从ab的最小的"></a> get_first 返回1/从&lt;=a/b的最小的</h3>
+<pre><code>inline LL get_first(LL a, LL b) 
+{ return b / a + 1; }
+</code></pre>
+
       
       <!-- reward -->
       
@@ -236,19 +252,19 @@ return gcd(b, a%b);
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" class="article-nav-link">
+      <a href="/2020/03/30/%E5%85%AB%E6%95%B0%E7%A0%81/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            八皇后问题
+            八数码
           
         </div>
       </a>
     
     
-      <a href="/2020/03/30/%E5%85%AB%E6%95%B0%E7%A0%81/" class="article-nav-link">
+      <a href="/2020/03/30/%E5%AE%9D%E7%AE%B1/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">八数码</div>
+        <div class="article-nav-title">宝箱</div>
       </a>
     
   </nav>

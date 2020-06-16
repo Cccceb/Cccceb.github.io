@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">606字</span>
+            <span class="post-count">617字</span>
         </span>
     </span>
 
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2分钟</span>
+            <span class="post-count">3分钟</span>
         </span>
     </span>
 </div>
@@ -101,52 +101,74 @@
       
 
       
-      <h1 id="uva1600-巡逻机器人"><a href="#uva1600-巡逻机器人" class="headerlink" title="uva1600 巡逻机器人"></a>uva1600 巡逻机器人</h1><p>本题有t组数据，每组数据包含一个m*n的01矩阵，0表示能走，1表示有一个障碍物。机器人能往上下左右四个方向走动.它要从(1,1)到(m,n),可以连续翻越k个障碍物,求它从(1,1)到(m,n)的最短路径.如果不能到达输出”-1”.</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li><p>本题基础是一个bfs，附加可以跳跃0的条件。</p>
-</li>
-<li><p>对无权图进行bfs的时候，走到每一个点时的步数都是一定的，所以对于每个点，应该让能够跨越障碍的机会越多越好，所以Node节点中应该包含(r,c,k,step)其中k为到达(r,c)位置时剩余的跨越障碍的机会，step为最小步数。(※如果只需要知道步数而不需要路径，则将其包在结构体里即可)</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p> #include&lt;bits/stdc++.h&gt;</p>
-<h1 id="pragma-warning-disable-4996"><a href="#pragma-warning-disable-4996" class="headerlink" title="pragma warning(disable:4996)"></a>pragma warning(disable:4996)</h1><h1 id="define-LOCAL"><a href="#define-LOCAL" class="headerlink" title="define LOCAL"></a>define LOCAL</h1><h1 id="ifdef-LOCAL"><a href="#ifdef-LOCAL" class="headerlink" title="ifdef LOCAL"></a>ifdef LOCAL</h1><p> FILE *fin = freopen(“习题6-5in.txt”, “r”, stdin);<br> FILE *fout = freopen(“习题6-5out.txt”, “w”, stdout);</p>
-<h1 id="endif"><a href="#endif" class="headerlink" title="endif"></a>endif</h1><p> using namespace std;<br> int n, x, y, k;<br> int g[20][20];<br> struct node {</p>
-<pre><code>int r, c, k, step;
-
-node(int r, int c, int k, int step = 0) :r(r), c(c), k(k), step(step) {}</code></pre><p> };<br> int step[20][20];<br> int dr[] = { 1, 0, -1, 0 };<br> int dc[] = { 0, 1, 0, -1 };<br> int min_step;<br> void bfs() {</p>
-<pre><code>queue&lt;node&gt;q;
-q.push(node(0, 0, k));
-int block = 0;
-while (!q.empty()) {
-    node u = q.front(); q.pop();
-
-    if (u.r == x - 1 &amp;&amp; u.c == y - 1) {
-        min_step = u.step;
-        break;
-    }
-    for (int i = 0; i &lt; 4; i++) {
-        int r = u.r + dr[i], c = u.c + dc[i];
-        if (r &gt;= 0 &amp;&amp; r &lt; x&amp;&amp;c &gt;= 0 &amp;&amp; c &lt; y) {
-            if (step[r][c] &lt; u.k) {//u.k是走到step[r][c]处，还剩余的跳过障碍的机会，所以要保留大的
-                step[r][c] = u.k;
-            }
-            else continue;//如果step[r][c]更大，说明目前正在走的路不是最好的(因为bfs走到每个节点的步数是一定的
-                          //所以剩余的跨越障碍的次数越多越好),不需要再走下去，所以不入队)
-            if (g[r][c] == 0) q.push(node(r, c, k, u.step + 1));
-            else if(u.k) q.push(node(r, c, u.k - 1, u.step + 1));
-        }
-    }
-}</code></pre><p> }<br> int main() {<br> cin &gt;&gt; n;<br> while (n–) {</p>
-<pre><code>memset(g, 0, sizeof(g));
-memset(step, -1, sizeof(step));
-cin &gt;&gt; x &gt;&gt; y;
-cin &gt;&gt; k;
-for (int i = 0; i &lt; x; i++)
-    for (int j = 0; j &lt; y; j++)
-        cin &gt;&gt; g[i][j];
-min_step = 999;
-bfs();
-min_step == 999 ? cout &lt;&lt; &quot;-1&quot; &lt;&lt; endl:cout &lt;&lt; min_step &lt;&lt; endl;</code></pre><p> }<br> }</p>
-</li>
+      <h1 id="uva1600-巡逻机器人"><a class="markdownIt-Anchor" href="#uva1600-巡逻机器人"></a> uva1600 巡逻机器人</h1>
+<p>本题有t组数据，每组数据包含一个m*n的01矩阵，0表示能走，1表示有一个障碍物。机器人能往上下左右四个方向走动.它要从(1,1)到(m,n),可以连续翻越k个障碍物,求它从(1,1)到(m,n)的最短路径.如果不能到达输出&quot;-1&quot;.</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>本题基础是一个bfs，附加可以跳跃0的条件。</li>
+<li>对无权图进行bfs的时候，走到每一个点时的步数都是一定的，所以对于每个点，应该让能够跨越障碍的机会越多越好，所以Node节点中应该包含(r,c,k,step)其中k为到达(r,c)位置时剩余的跨越障碍的机会，step为最小步数。(※如果只需要知道步数而不需要路径，则将其包在结构体里即可)</li>
 </ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+# pragma warning(disable:4996)
+# define LOCAL
+# ifdef LOCAL
+FILE *fin = freopen(&quot;习题6-5in.txt&quot;, &quot;r&quot;, stdin);
+FILE *fout = freopen(&quot;习题6-5out.txt&quot;, &quot;w&quot;, stdout);
+# endif 
+using namespace std;
+int n, x, y, k;
+int g[20][20];
+struct node {
+	int r, c, k, step;
+
+	node(int r, int c, int k, int step = 0) :r(r), c(c), k(k), step(step) {}
+};
+int step[20][20];
+int dr[] = { 1, 0, -1, 0 };
+int dc[] = { 0, 1, 0, -1 };
+int min_step;
+void bfs() {
+	queue&lt;node&gt;q;
+	q.push(node(0, 0, k));
+	int block = 0;
+	while (!q.empty()) {
+		node u = q.front(); q.pop();
+
+		if (u.r == x - 1 &amp;&amp; u.c == y - 1) {
+			min_step = u.step;
+			break;
+		}
+		for (int i = 0; i &lt; 4; i++) {
+			int r = u.r + dr[i], c = u.c + dc[i];
+			if (r &gt;= 0 &amp;&amp; r &lt; x&amp;&amp;c &gt;= 0 &amp;&amp; c &lt; y) {
+				if (step[r][c] &lt; u.k) {//u.k是走到step[r][c]处，还剩余的跳过障碍的机会，所以要保留大的
+					step[r][c] = u.k;
+				}
+				else continue;//如果step[r][c]更大，说明目前正在走的路不是最好的(因为bfs走到每个节点的步数是一定的
+							  //所以剩余的跨越障碍的次数越多越好),不需要再走下去，所以不入队)
+				if (g[r][c] == 0) q.push(node(r, c, k, u.step + 1));
+				else if(u.k) q.push(node(r, c, u.k - 1, u.step + 1));
+			}
+		}
+	}
+}
+int main() {
+cin &gt;&gt; n;
+while (n--) {
+
+	memset(g, 0, sizeof(g));
+	memset(step, -1, sizeof(step));
+	cin &gt;&gt; x &gt;&gt; y;
+	cin &gt;&gt; k;
+	for (int i = 0; i &lt; x; i++)
+		for (int j = 0; j &lt; y; j++)
+			cin &gt;&gt; g[i][j];
+	min_step = 999;
+	bfs();
+	min_step == 999 ? cout &lt;&lt; &quot;-1&quot; &lt;&lt; endl:cout &lt;&lt; min_step &lt;&lt; endl;
+}
+}</code></pre>
 
       
       <!-- reward -->
@@ -244,9 +266,9 @@ min_step == 999 ? cout &lt;&lt; &quot;-1&quot; &lt;&lt; endl:cout &lt;&lt; min_s
       </a>
     
     
-      <a href="/2020/03/30/%E6%97%8B%E8%BD%AC%E6%B8%B8%E6%88%8F/" class="article-nav-link">
+      <a href="/2020/03/30/%E6%B6%88%E9%98%B2%E8%BD%A6/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">旋转游戏</div>
+        <div class="article-nav-title">消防车</div>
       </a>
     
   </nav>

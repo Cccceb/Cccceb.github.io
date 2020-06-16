@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">237字</span>
+            <span class="post-count">238字</span>
         </span>
     </span>
 
@@ -101,15 +101,19 @@
       
 
       
-      <h1 id="UVA-11054-Gergovia的酒交易"><a href="#UVA-11054-Gergovia的酒交易" class="headerlink" title="UVA 11054 Gergovia的酒交易"></a>UVA 11054 Gergovia的酒交易</h1><p>n个等距村庄,每个村庄要么买酒要么卖酒,把k个单位的酒运到相邻村庄去需要k*酒的需求的劳动力,问最少需要多少劳动力才能满足所有的村庄的要求。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li>等价转换，考虑最左侧的村庄<ol>
+      <h1 id="uva-11054-gergovia的酒交易"><a class="markdownIt-Anchor" href="#uva-11054-gergovia的酒交易"></a> UVA 11054 Gergovia的酒交易</h1>
+<p>n个等距村庄,每个村庄要么买酒要么卖酒,把k个单位的酒运到相邻村庄去需要k*酒的需求的劳动力,问最少需要多少劳动力才能满足所有的村庄的要求。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>等价转换，考虑最左侧的村庄
+<ol>
 <li>假设a1&gt;0,则需要从其他的村庄向1运a1单位的酒，等价于只有村庄2-n，且第二个村庄的需求量为a1+a2。</li>
 <li>再举个例子，如果a1&lt;0,a2&gt;0，由于供需平衡，a1的酒需要全部运出，耗费劳动力|a1|，剩余的酒从a2运走需要||a1|-a2| = a1+a2</li>
 </ol>
 </li>
 </ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">	int main() &#123;</span><br><span class="line">	int n;</span><br><span class="line">	while (scanf(&quot;%d&quot;, &amp;n) &amp;&amp; n) &#123;</span><br><span class="line">		long long ans &#x3D; 0, left &#x3D; 0, a;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			scanf(&quot;%lld&quot;, &amp;a);</span><br><span class="line">			ans +&#x3D; abs(left);</span><br><span class="line">			left +&#x3D; a;</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;%lld\n&quot;, ans);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">	int main() &#123;</span><br><span class="line">	int n;</span><br><span class="line">	while (scanf(&quot;%d&quot;, &amp;n) &amp;&amp; n) &#123;</span><br><span class="line">		long long ans &#x3D; 0, left &#x3D; 0, a;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			scanf(&quot;%lld&quot;, &amp;a);</span><br><span class="line">			ans +&#x3D; abs(left);</span><br><span class="line">			left +&#x3D; a;</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;%lld\n&quot;, ans);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       
@@ -196,11 +200,11 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/UnixIS%E5%91%BD%E4%BB%A4/" class="article-nav-link">
+      <a href="/2020/03/30/%E5%AE%89%E8%BF%AA%E7%9A%84%E7%AC%AC%E4%B8%80%E6%9C%AC%E5%AD%97%E5%85%B8/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            UnixIS命令
+            安迪的第一本字典
           
         </div>
       </a>

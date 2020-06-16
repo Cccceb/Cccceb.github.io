@@ -101,36 +101,42 @@
       
 
       
-      <h1 id="UVA-12325-宝箱"><a href="#UVA-12325-宝箱" class="headerlink" title="UVA 12325 宝箱"></a>UVA 12325 宝箱</h1><p>你有一个体积为N的箱子和两种数量无限的宝物。宝物1的体积为S1，价值为V1:；宝物2的体积为S2，价值为V2。输入均为32位带符号整数。 计算最多能装多大价值的宝物。（每种宝物都必须拿非负整数个）。</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
+      <h1 id="uva-12325-宝箱"><a class="markdownIt-Anchor" href="#uva-12325-宝箱"></a> UVA 12325 宝箱</h1>
+<p>你有一个体积为N的箱子和两种数量无限的宝物。宝物1的体积为S1，价值为V1:；宝物2的体积为S2，价值为V2。输入均为32位带符号整数。 计算最多能装多大价值的宝物。（每种宝物都必须拿非负整数个）。</p>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+<ol>
 <li>可以选择枚举宝藏1的个数，然后尽可能多的拿宝物2；或者；但是当n和s1,s2的差距较大的时候，这种方法不奏效。</li>
 <li>假设宝物1取总体积S2，宝物2取总体积S1，且二者总价值相等，即S1<em>V2 == S2</em>V1。那么当V1较大时，宝藏1至多取S2-1个，否则可用S1个宝物二替换。同理，如果V2较大，那么宝物2至多取S1-1个.因此，枚举量只有S1和S2。</li>
-<li>解决TLE：<ol>
+<li>解决TLE：
+<ol>
 <li>当N/S1比较小时，枚举宝物1的个数，时间复杂度为O(N/S1)；否则，当N/S2比较小时，枚举宝物2的个数，时间复杂度为O(N/S2)。</li>
 <li>因此枚举的时间复杂度为O(max(S1,S2))</li>
 </ol>
 </li>
 </ol>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>typedef long long int64;
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<pre><code>typedef long long int64;
 using std::swap; using std::max;
 int main() {
 int T, id = 0; scanf(&quot;%d&quot;, &amp;T);
 while (T--) {
-    int n, s1, v1, s2, v2; scanf(&quot;%d %d %d %d %d&quot;, &amp;n, &amp;s1, &amp;v1, &amp;s2, &amp;v2);
-    if (s1 &gt; s2) swap(s1, s2), swap(v1, v2);//目的是使得S2&gt;S1
-    int64 ans = 0;
-    if (n / s2 &gt;= 65536) {    //S2&gt;S1，如果除以S2都大于65536，说明S2就很小，那么S1更小，那么使用特殊枚举。
-        for (int64 i = 0; i &lt;= s1; i++) ans = max(ans, v2 * i + (n - s2 * i) / s1 * v1);
-        for (int64 i = 0; i &lt;= s2; i++) ans = max(ans, v1 * i + (n - s1 * i) / s2 * v2);
-    }
-    else {//否则枚举宝物2的数量。
-        for (int64 i = 0; s2 * i &lt;= n; i++) ans = max(ans, v2 * i + (n - s2 * i) / s1 * v1);
-    }
-    printf(&quot;Case # %d: %lld\n&quot;, ++id, ans);
+	int n, s1, v1, s2, v2; scanf(&quot;%d %d %d %d %d&quot;, &amp;n, &amp;s1, &amp;v1, &amp;s2, &amp;v2);
+	if (s1 &gt; s2) swap(s1, s2), swap(v1, v2);//目的是使得S2&gt;S1
+	int64 ans = 0;
+	if (n / s2 &gt;= 65536) {	//S2&gt;S1，如果除以S2都大于65536，说明S2就很小，那么S1更小，那么使用特殊枚举。
+		for (int64 i = 0; i &lt;= s1; i++) ans = max(ans, v2 * i + (n - s2 * i) / s1 * v1);
+		for (int64 i = 0; i &lt;= s2; i++) ans = max(ans, v1 * i + (n - s1 * i) / s2 * v2);
+	}
+	else {//否则枚举宝物2的数量。
+		for (int64 i = 0; s2 * i &lt;= n; i++) ans = max(ans, v2 * i + (n - s2 * i) / s1 * v1);
+	}
+	printf(&quot;Case # %d: %lld\n&quot;, ++id, ans);
 }
 
 return 0;
-}</code></pre>
+}
+</code></pre>
+
       
       <!-- reward -->
       
@@ -217,11 +223,11 @@ return 0;
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/%E5%AE%89%E8%BF%AA%E7%9A%84%E7%AC%AC%E4%B8%80%E6%9C%AC%E5%AD%97%E5%85%B8/" class="article-nav-link">
+      <a href="/2020/03/30/%E5%9F%83%E5%8F%8A%E5%88%86%E6%95%B0/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            安迪的第一本字典
+            埃及分数
           
         </div>
       </a>

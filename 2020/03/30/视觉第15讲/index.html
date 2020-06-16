@@ -101,24 +101,27 @@
       
 
       
-      <h1 id="运动恢复结构-SFM"><a href="#运动恢复结构-SFM" class="headerlink" title="运动恢复结构 SFM"></a>运动恢复结构 SFM</h1><ol>
+      <h1 id="运动恢复结构-sfm"><a class="markdownIt-Anchor" href="#运动恢复结构-sfm"></a> 运动恢复结构 SFM</h1>
+<ol>
 <li>目的：输入一对匹配点的图像坐标，输出这个点的三维坐标及相机内外参数(可能的话)。同时使得目标函数具有最小化重投影误差。</li>
-<li>过程：<ol>
+<li>过程：
+<ol>
 <li>特征检测与匹配</li>
 <li>匹配每对图像之间的特征</li>
 <li>用 RANSAC 优化匹配以估计各对之间的基本矩阵</li>
 </ol>
 </li>
 </ol>
-<h2 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h2><img src="/视觉_img/15-1.png" style="zoom:80%">
-
+<h2 id="目标函数"><a class="markdownIt-Anchor" href="#目标函数"></a> 目标函数</h2>
+<img src="/视觉_img/15-1.png" style="zoom:80%">
 <ol>
 <li>目标是使重投影误差平方和最小</li>
 <li>P(xi,Rj,tj)表示把Xi这个点投影到第j个相机。</li>
 <li>Wij：=1代表三维点在图像中出现了；=0代表没出现。</li>
 <li>解不唯一。</li>
 </ol>
-<h2 id="重复结构问题的解决"><a href="#重复结构问题的解决" class="headerlink" title="重复结构问题的解决"></a>重复结构问题的解决</h2><ol>
+<h2 id="重复结构问题的解决"><a class="markdownIt-Anchor" href="#重复结构问题的解决"></a> 重复结构问题的解决</h2>
+<ol>
 <li>预处理：删除不一致的场景图边缘</li>
 <li>后处理：识别和更正重复的结构</li>
 </ol>

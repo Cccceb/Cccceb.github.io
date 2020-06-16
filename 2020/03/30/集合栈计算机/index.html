@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">522字</span>
+            <span class="post-count">537字</span>
         </span>
     </span>
 
@@ -101,7 +101,8 @@
       
 
       
-      <h1 id="uva12096-※集合栈计算机※"><a href="#uva12096-※集合栈计算机※" class="headerlink" title="uva12096 ※集合栈计算机※"></a>uva12096 ※集合栈计算机※</h1><pre><code>Sample Input
+      <h1 id="uva12096-集合栈计算机"><a class="markdownIt-Anchor" href="#uva12096-集合栈计算机"></a> uva12096 ※集合栈计算机※</h1>
+<pre><code>Sample Input
 2
 9
 PUSH
@@ -133,53 +134,74 @@ Sample Output
 0
 1
 0
-0</code></pre><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
+0
+</code></pre>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+<ol>
 <li>首先考虑集合的存储问题：由于有集合作为元素插入到另一个集合的情况，所以不能直接定义集合类型的栈。考虑将集合映射到值(map)，另用一个向量存集合本身。</li>
-<li>按照题干输入输出判断操作即可。注意后三种操作可以合并简化代码<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2> #include<iostream><br> #include<string><br> #include<map><br> #include<set><br> #include<vector><br> #include<stack><br> #include<iterator><br> #include<algorithm><h1 id="define-ALL-x-x-begin-x-end"><a href="#define-ALL-x-x-begin-x-end" class="headerlink" title="define ALL(x) x.begin(),x.end()"></a>define ALL(x) x.begin(),x.end()</h1><h1 id="define-INS-x-inserter-x-x-begin"><a href="#define-INS-x-inserter-x-x-begin" class="headerlink" title="define INS(x) inserter(x,x.begin())"></a>define INS(x) inserter(x,x.begin())</h1></li>
+<li>按照题干输入输出判断操作即可。注意后三种操作可以合并简化代码</li>
 </ol>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;map&gt;
+#include&lt;set&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;iterator&gt;
+#include&lt;algorithm&gt;
+# define ALL(x) x.begin(),x.end()
+# define INS(x) inserter(x,x.begin())
+</code></pre>
 <blockquote>
-<p>INS(x)插入迭代器，插入而非覆盖<br><a href="https://blog.csdn.net/m0_37456764/article/details/83019250" target="_blank" rel="noopener">inserter</a>.</p>
+<p>INS(x)插入迭代器，插入而非覆盖<br />
+<a href="https://blog.csdn.net/m0_37456764/article/details/83019250" target="_blank" rel="noopener">inserter</a>.</p>
 </blockquote>
 <pre><code>using namespace std;
 typedef set&lt;int&gt; Set;
 map&lt;Set, int&gt; id;//将每个集合对应一个编号，编号是在向量中的下标
 vector&lt;Set&gt; Setcache;
 int ID(Set x) {//既是插入又是查询！！
-    if (id.count(x)) return id[x];//存在则返回id
+	if (id.count(x)) return id[x];//存在则返回id
 
-    //不存在则添加
-    Setcache.push_back(x);
-    return id[x] = Setcache.size() - 1;
-}</code></pre><p>插入和查询合并简化代码</p>
+	//不存在则添加
+	Setcache.push_back(x);
+	return id[x] = Setcache.size() - 1;
+}
+</code></pre>
+<p>插入和查询合并简化代码</p>
 <pre><code>int main() {
 int n;
 
 cin &gt;&gt; n;
 while (n--) {
-    int m;
-    cin &gt;&gt; m;
-    stack&lt;int&gt; s;
-    while (m--) {
-        string op;
-        cin &gt;&gt; op;
-        if (op[0] == &apos;P&apos;) s.push(ID(Set()));
-        //空集入栈，注意此处空集的写法
-        else if (op[0] == &apos;D&apos;) s.push(s.top());
-        else {
-            Set x1 = Setcache[s.top()]; s.pop();
-            //不同直接用pop赋值，因为pop的返回值为void
-            Set x2 = Setcache[s.top()]; s.pop();
-            Set x;
-            if (op[0] == &apos;U&apos;) set_union(ALL(x1), ALL(x2), INS(x));
-            if (op[0] == &apos;I&apos;) set_intersection(ALL(x1), ALL(x2), INS(x));
-            if (op[0] == &apos;A&apos;) { x = x2; x.insert(ID(x1)); }
-            s.push(ID(x));
-        }
-        cout &lt;&lt; Setcache[s.top()].size() &lt;&lt; endl;
-    }
-    cout &lt;&lt; &quot;***&quot; &lt;&lt; endl;
+	int m;
+	cin &gt;&gt; m;
+	stack&lt;int&gt; s;
+	while (m--) {
+		string op;
+		cin &gt;&gt; op;
+		if (op[0] == 'P') s.push(ID(Set()));
+		//空集入栈，注意此处空集的写法
+		else if (op[0] == 'D') s.push(s.top());
+		else {
+			Set x1 = Setcache[s.top()]; s.pop();
+			//不同直接用pop赋值，因为pop的返回值为void
+			Set x2 = Setcache[s.top()]; s.pop();
+			Set x;
+			if (op[0] == 'U') set_union(ALL(x1), ALL(x2), INS(x));
+			if (op[0] == 'I') set_intersection(ALL(x1), ALL(x2), INS(x));
+			if (op[0] == 'A') { x = x2; x.insert(ID(x1)); }
+			s.push(ID(x));
+		}
+		cout &lt;&lt; Setcache[s.top()].size() &lt;&lt; endl;
+	}
+	cout &lt;&lt; &quot;***&quot; &lt;&lt; endl;
 }
-}</code></pre><h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><ol>
+}
+</code></pre>
+<h1 id="心得"><a class="markdownIt-Anchor" href="#心得"></a> 心得</h1>
+<ol>
 <li>本题主要注重多种STL的结合使用，尤其是集合映射为整型的处理方式</li>
 <li>记住题中交并集的函数，set_union(参数为5个迭代器),set_intersection(参数为5个迭代器);要配合两处define使用</li>
 <li>注意模拟多种操作时提取相同部分简化代码，也降低出错的可能性和调试难度。</li>

@@ -101,70 +101,82 @@
       
 
       
-      <h1 id="UVA-11212-编辑书稿"><a href="#UVA-11212-编辑书稿" class="headerlink" title="UVA 11212 编辑书稿"></a>UVA 11212 编辑书稿</h1><p>你有一篇n(2≤n≤9)个自然段组成的文章，希望将它们排列成1，2，…，n。可以用Ctrl+X（剪切）和Ctrl+V（粘贴）快捷键来完成任务。每次可以剪切一段连续的自然段，粘贴时按照顺序粘贴。注意，剪贴板只有一个，所以不能连续剪切两次，只能剪切和粘贴交替。例如，为了将{2，4，1，5，3，6}变为升序，可以剪切1将其放到2前，然后剪切3将其放到4前。再如，排列{3，4，5，1，2}，只需一次剪切和一次粘贴即可——将{3，4，5}放在{1，2}后，或者将{1，2}放在{3，4，5}前。 </p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
-<li><p>典型的状态空间搜索问题，其中的状态是1-n的排列。排列最多有9！个。但是由于剪切和粘贴的位置不定，所以搜索空间很大。</p>
+      <h1 id="uva-11212-编辑书稿"><a class="markdownIt-Anchor" href="#uva-11212-编辑书稿"></a> UVA 11212 编辑书稿</h1>
+<p>你有一篇n(2≤n≤9)个自然段组成的文章，希望将它们排列成1，2，…，n。可以用Ctrl+X（剪切）和Ctrl+V（粘贴）快捷键来完成任务。每次可以剪切一段连续的自然段，粘贴时按照顺序粘贴。注意，剪贴板只有一个，所以不能连续剪切两次，只能剪切和粘贴交替。例如，为了将{2，4，1，5，3，6}变为升序，可以剪切1将其放到2前，然后剪切3将其放到4前。再如，排列{3，4，5，1，2}，只需一次剪切和一次粘贴即可——将{3，4，5}放在{1，2}后，或者将{1，2}放在{3，4，5}前。</p>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+<ol>
+<li>
+<p>典型的状态空间搜索问题，其中的状态是1-n的排列。排列最多有9！个。但是由于剪切和粘贴的位置不定，所以搜索空间很大。</p>
 </li>
-<li><p>关于剪枝</p>
+<li>
+<p>关于剪枝</p>
 <ol>
 <li>每次只剪切一段连续的数字，不破坏已经有序的串。</li>
 <li>每次剪切至多使后继数字不正确的个数减少3个。考虑abc变成acb时，a b c 三段的末尾的数字。</li>
 </ol>
 </li>
-<li><p>迭代加深搜。迭代以获得下一次递归调用的初始状态，深度搜索来找解。迭代的时候需要枚举剪切的长度，剪切和粘贴的起始位置。注意循环的边界问题。</p>
+<li>
+<p>迭代加深搜。迭代以获得下一次递归调用的初始状态，深度搜索来找解。迭代的时候需要枚举剪切的长度，剪切和粘贴的起始位置。注意循环的边界问题。</p>
 </li>
-<li><p>进行剪切和粘贴的时候，要分情况，因为涉及到其他元素往前移动还是往后移动的问题。</p>
+<li>
+<p>进行剪切和粘贴的时候，要分情况，因为涉及到其他元素往前移动还是往后移动的问题。</p>
 <ol>
 <li>如果start位置在pos后面，那么粘贴之后，需要将pos之后到start的元素向后移动len位。</li>
 <li>同理如果start在pos前面，则需要从pos开始到start之前的元素向前移动len位。</li>
 </ol>
 </li>
 </ol>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="dfs"><a href="#dfs" class="headerlink" title="dfs()"></a>dfs()</h3><pre><code>bool dfs(int d) {
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<h3 id="dfs"><a class="markdownIt-Anchor" href="#dfs"></a> dfs()</h3>
+<pre><code>bool dfs(int d) {
 if (d == maxd) 
-    return not_inorder(d) == 0;
+	return not_inorder(d) == 0;
 if (d * 3 + not_inorder(d) &gt; 3 * maxd) return false; //每次剪切时后继不正确的数字个数至多减少三个
-                                                    //考虑abc变成acb，那么受影响的至多是a b c的最后一个数
+													//考虑abc变成acb，那么受影响的至多是a b c的最后一个数
 
 //枚举剪切的起始位置和长度
 int next = d + 1;
 for (rint len = 0; len &lt; T; len++) {
-    for (rint start = 0; start &lt;= T - len; start++) {
+	for (rint start = 0; start &lt;= T - len; start++) {
 
 
-        //如果试图剪切有序串，那么剪枝
-        if (start &gt; 0 &amp;&amp; in[d][start - 1] == in[d][start] - 1) continue;
-        if (start + len &lt; T &amp;&amp; in[d][start + d - 1] == in[d][start + d] - 1) continue;
+		//如果试图剪切有序串，那么剪枝
+		if (start &gt; 0 &amp;&amp; in[d][start - 1] == in[d][start] - 1) continue;
+		if (start + len &lt; T &amp;&amp; in[d][start + d - 1] == in[d][start + d] - 1) continue;
 
-        //枚举粘贴的起始位置
-        for (rint pos = 0; pos &lt;= T - len; pos++)
-        {
-            //也不能粘到自己里面
-            if (pos &gt;= start &amp;&amp; pos &lt; start + len) continue;
-            for (rint i = 0; i &lt; T; i++) in[next][i] = in[d][i];
-            //粘贴
-            for (rint i = 0; i &lt; len; i++)
-                in[next][pos + i] = in[d][start + i];
+		//枚举粘贴的起始位置
+		for (rint pos = 0; pos &lt;= T - len; pos++)
+		{
+			//也不能粘到自己里面
+			if (pos &gt;= start &amp;&amp; pos &lt; start + len) continue;
+			for (rint i = 0; i &lt; T; i++) in[next][i] = in[d][i];
+			//粘贴
+			for (rint i = 0; i &lt; len; i++)
+				in[next][pos + i] = in[d][start + i];
 
-            if (pos &lt; start)
-                for (rint i(pos); i &lt; start; ++i)
-                    in[next][i + len] = in[d][i];
-            else
-                for (rint i(pos); i &gt; start; --i)
-                    in[next][i - len] = in[d][i];
-            if (dfs(next)) return true;
-        }
+			if (pos &lt; start)
+				for (rint i(pos); i &lt; start; ++i)
+					in[next][i + len] = in[d][i];
+			else
+				for (rint i(pos); i &gt; start; --i)
+					in[next][i - len] = in[d][i];
+			if (dfs(next)) return true;
+		}
 
-    }
+	}
 }
 return false;
-}</code></pre><h3 id="not-inorder-返回后继不正确的数字的个数"><a href="#not-inorder-返回后继不正确的数字的个数" class="headerlink" title="not_inorder() 返回后继不正确的数字的个数"></a>not_inorder() 返回后继不正确的数字的个数</h3><pre><code>inline int not_inorder(int d) {
+}
+</code></pre>
+<h3 id="not_inorder-返回后继不正确的数字的个数"><a class="markdownIt-Anchor" href="#not_inorder-返回后继不正确的数字的个数"></a> not_inorder() 返回后继不正确的数字的个数</h3>
+<pre><code>inline int not_inorder(int d) {
 int ret(0);
 for (int i(0); i &lt; T - 1; ++i)
-    ret += in[d][i + 1] != in[d][i] + 1;
+	ret += in[d][i + 1] != in[d][i] + 1;
 return ret + (in[d][T - 1] != (T - 1));
 
 }</code></pre>
+
       
       <!-- reward -->
       
@@ -261,9 +273,9 @@ return ret + (in[d][T - 1] != (T - 1));
       </a>
     
     
-      <a href="/2020/03/30/%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" class="article-nav-link">
+      <a href="/2020/03/30/UnixIS%E5%91%BD%E4%BB%A4/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">八皇后问题</div>
+        <div class="article-nav-title">UnixIS命令</div>
       </a>
     
   </nav>

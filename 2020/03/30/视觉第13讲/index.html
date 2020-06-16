@@ -101,50 +101,56 @@
       
 
       
-      <h1 id="极几何"><a href="#极几何" class="headerlink" title="极几何"></a>极几何</h1><h2 id="基本的立体图算法"><a href="#基本的立体图算法" class="headerlink" title="基本的立体图算法"></a>基本的立体图算法</h2><img src="/视觉_img/13_1.png" style="zoom:1%">
-
+      <h1 id="极几何"><a class="markdownIt-Anchor" href="#极几何"></a> 极几何</h1>
+<h2 id="基本的立体图算法"><a class="markdownIt-Anchor" href="#基本的立体图算法"></a> 基本的立体图算法</h2>
+<img src="/视觉_img/13_1.png" style="zoom:1%">
 <p>对于左图中每个像素，在右图同一个极线上选择最小匹配成本的像素。</p>
 <ol>
 <li>用SSD衡量成本</li>
 <li>匹配窗口：大窗口粒度粗，小窗口更加精细，但是噪声多。</li>
 </ol>
-<h2 id="能量最小化求解立体视觉"><a href="#能量最小化求解立体视觉" class="headerlink" title="能量最小化求解立体视觉"></a>能量最小化求解立体视觉</h2><ol>
-<li><p>目标</p>
+<h2 id="能量最小化求解立体视觉"><a class="markdownIt-Anchor" href="#能量最小化求解立体视觉"></a> 能量最小化求解立体视觉</h2>
+<ol>
+<li>目标
 <ol>
 <li>匹配质量：希望每个像素在其他图像中找到一个好的匹配项</li>
-<li>平滑：如果两个像素相邻，他们的应该平移大约相同的量<h3 id="贪心匹配"><a href="#贪心匹配" class="headerlink" title="贪心匹配"></a>贪心匹配</h3></li>
+<li>平滑：如果两个像素相邻，他们的应该平移大约相同的量</li>
 </ol>
 </li>
-<li><p>定义能量函数E(d)</p>
+</ol>
+<h3 id="贪心匹配"><a class="markdownIt-Anchor" href="#贪心匹配"></a> 贪心匹配</h3>
+<ol start="2">
+<li>
+<p>定义能量函数E(d)</p>
  <img src="/视觉_img/13_2.png" style="zoom:1%">
-
 <ol>
 <li>现在要找一个平移量映射D，最大限度的减少一个能量函数E(d)</li>
-<li>独立的选择每一列的最小值d(x,y)=argmin C(x,y,d’)<h3 id="改进目标函数"><a href="#改进目标函数" class="headerlink" title="改进目标函数"></a>改进目标函数</h3></li>
+<li>独立的选择每一列的最小值d(x,y)=argmin C(x,y,d’)</li>
 </ol>
 </li>
 </ol>
+<h3 id="改进目标函数"><a class="markdownIt-Anchor" href="#改进目标函数"></a> 改进目标函数</h3>
 <img src="/视觉_img/13_3.png" style="zoom:1%">
-
 <p>其中</p>
 <img src="/视觉_img/13_4.png" style="zoom:1%">
-
 <p>对于平滑成本，v的选择很多</p>
 <img src="/视觉_img/13_5.png" style="zoom:1%">
-
 <ol>
-<li><p>一维动态规划</p>
+<li>
+<p>一维动态规划</p>
 <ol>
-<li><p>对每条扫描线使用动态规划方法独立求解</p>
+<li>
+<p>对每条扫描线使用动态规划方法独立求解</p>
 </li>
-<li><p>以增量方式构建成本函数D</p>
+<li>
+<p>以增量方式构建成本函数D</p>
  <img src="/视觉_img/13_6.png" style="zoom:1%">
 </li>
 </ol>
 </li>
-<li><p>二维动态规划</p>
+<li>
+<p>二维动态规划</p>
  <img src="/视觉_img/13_7.png" style="zoom:1%">
-
 <ol>
 <li>不能用二维动态规划求解，因为dx,y-1和 dx-1,y可能取决于 dx-1,y-1 的不同值</li>
 <li>2D有许多局部极小值</li>
@@ -153,22 +159,25 @@
 </ol>
 </li>
 </ol>
-<h1 id="通过视差求深度"><a href="#通过视差求深度" class="headerlink" title="通过视差求深度"></a>通过视差求深度</h1><img src="/视觉_img/13_8.png" style="zoom:1%">
-
+<h1 id="通过视差求深度"><a class="markdownIt-Anchor" href="#通过视差求深度"></a> 通过视差求深度</h1>
+<img src="/视觉_img/13_8.png" style="zoom:1%">
 <ol>
 <li>baseline 极线，平行于成像平面</li>
 <li>X是物体</li>
 <li>x和x’是向量</li>
 <li>(baseline-(x-x’))/baseline=z-f/z</li>
-<li>z为深度<h1 id="立体重建"><a href="#立体重建" class="headerlink" title="立体重建"></a>立体重建</h1></li>
+<li>z为深度</li>
 </ol>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ol>
+<h1 id="立体重建"><a class="markdownIt-Anchor" href="#立体重建"></a> 立体重建</h1>
+<h2 id="过程"><a class="markdownIt-Anchor" href="#过程"></a> 过程</h2>
+<ol>
 <li>标定摄像机：标定内外参数</li>
 <li>校正图像：将两个图像放到同一个平面上，且平行于baseline</li>
 <li>计算平移量</li>
 <li>估计深度</li>
 </ol>
-<h2 id="由结构光主动获得立体图"><a href="#由结构光主动获得立体图" class="headerlink" title="由结构光主动获得立体图"></a>由结构光主动获得立体图</h2>
+<h2 id="由结构光主动获得立体图"><a class="markdownIt-Anchor" href="#由结构光主动获得立体图"></a> 由结构光主动获得立体图</h2>
+
       
       <!-- reward -->
       

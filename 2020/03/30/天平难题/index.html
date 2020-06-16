@@ -101,39 +101,46 @@
       
 
       
-      <h1 id="UVA-1354-天平难题"><a href="#UVA-1354-天平难题" class="headerlink" title="UVA 1354 天平难题"></a>UVA 1354 <a href=""https://www.luogu.com.cn/problem/UVA1354"">天平难题</a></h1><p>给出房间宽度r和s个吊坠的重量wi。设计一个尽量宽（不超过r)的天平，挂着所有挂坠。 天平由一些长度为1的木棍组成。木棍的每一端要么挂一个挂坠，要么挂另外一个木棍。设n和m分别是两端挂的总重量，a和b为两端长度，要让天平平衡，必须满足na=mb。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>回溯法加暴搜，通过枚举二叉树来求解，<strong>其中天平力矩平衡的条件用来计算偏移量</strong>。</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="DFS函数"><a href="#DFS函数" class="headerlink" title="DFS函数"></a>DFS函数</h2><p>用来遍历解答树，同时进行剪枝。只有当可扩展位置和剩余挂坠全部刚好同时用尽，才说明是一个可能的解，对于其他的情况需要进行剪枝。对于枚举二叉树中的每个节点，可能的情况又分成两种，一种是在该节点(step)处放一个木棍，那么可放置挂坠的节点数+1(别忘了回溯);另一种是在该节点处放置一个挂坠，那么可放置挂坠的位置-1，同时剩余挂坠-1(也要回溯)</p>
+      <h1 id="uva-1354-天平难题"><a class="markdownIt-Anchor" href="#uva-1354-天平难题"></a> UVA 1354 <a href="%22https://www.luogu.com.cn/problem/UVA1354%22">天平难题</a></h1>
+<p>给出房间宽度r和s个吊坠的重量wi。设计一个尽量宽（不超过r)的天平，挂着所有挂坠。 天平由一些长度为1的木棍组成。木棍的每一端要么挂一个挂坠，要么挂另外一个木棍。设n和m分别是两端挂的总重量，a和b为两端长度，要让天平平衡，必须满足na=mb。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<p>回溯法加暴搜，通过枚举二叉树来求解，<strong>其中天平力矩平衡的条件用来计算偏移量</strong>。</p>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<h2 id="dfs函数"><a class="markdownIt-Anchor" href="#dfs函数"></a> DFS函数</h2>
+<p>用来遍历解答树，同时进行剪枝。只有当可扩展位置和剩余挂坠全部刚好同时用尽，才说明是一个可能的解，对于其他的情况需要进行剪枝。对于枚举二叉树中的每个节点，可能的情况又分成两种，一种是在该节点(step)处放一个木棍，那么可放置挂坠的节点数+1(别忘了回溯);另一种是在该节点处放置一个挂坠，那么可放置挂坠的位置-1，同时剩余挂坠-1(也要回溯)</p>
 <pre><code>void dfs(int step, int leaf, int node) {
 if (!node &amp;&amp; !leaf) {
-    update(step - 1);
-    return;
+	update(step - 1);
+	return;
 }
 if ((!node&amp;&amp;leaf) || (node &amp;&amp; !leaf)) {
-    return;
+	return;
 }
 if (tree[step / 2] != -1) {
-    dfs(step + 1, leaf, node);
-    return;
+	dfs(step + 1, leaf, node);
+	return;
 }
 if (leaf &lt; node) {
-    tree[step] = -1;
-    dfs(step + 1, leaf + 1, node);
-    tree[step] = 0;
+	tree[step] = -1;
+	dfs(step + 1, leaf + 1, node);
+	tree[step] = 0;
 }
 for (int i = 1; i &lt;= s; i++) {
-    if (!vis[i]) {
-        vis[i] = 1;
-        tree[step] = i;
+	if (!vis[i]) {
+		vis[i] = 1;
+		tree[step] = i;
 
-        dfs(step + 1, leaf - 1, node - 1);
+		dfs(step + 1, leaf - 1, node - 1);
 
-        vis[i] = 0;
-        tree[step] = 0;
-    }
+		vis[i] = 0;
+		tree[step] = 0;
+	}
 }
 
-}</code></pre><h2 id="update函数"><a href="#update函数" class="headerlink" title="update函数"></a>update函数</h2><p>在枚举出一种二叉树之后，要计算他的宽度并和目前的最优解比较。这里首先使用一个val数组来记录各个节点处的权重：</p>
+}
+</code></pre>
+<h2 id="update函数"><a class="markdownIt-Anchor" href="#update函数"></a> update函数</h2>
+<p>在枚举出一种二叉树之后，要计算他的宽度并和目前的最优解比较。这里首先使用一个val数组来记录各个节点处的权重：</p>
 <ol>
 <li>如果是木棍，那么他的重量等于他的两个子节点之和；</li>
 <li>如果是挂坠，那么重量就是该挂坠的重量。</li>
@@ -142,8 +149,8 @@ for (int i = 1; i &lt;= s; i++) {
 <pre><code>void update(int num) {
 memset(val, 0, sizeof(val));
 for (int i = num; i &gt;= 1; i--) {
-    if (tree[i] &lt; 0) val[i] = val[i * 2] + val[i * 2 + 1];
-    else if(tree[i]&gt;0) val[i] = w[tree[i]];
+	if (tree[i] &lt; 0) val[i] = val[i * 2] + val[i * 2 + 1];
+	else if(tree[i]&gt;0) val[i] = w[tree[i]];
 }
 left = DBL_MAX;
 right = DBL_MIN;
@@ -151,10 +158,13 @@ right = DBL_MIN;
 findedge(double(0), 1);
 double fin = right - left;
 if (fin &lt; r) {
-    ans = max(ans, fin);
+	ans = max(ans, fin);
 }
 
-}</code></pre><h2 id="findedge函数"><a href="#findedge函数" class="headerlink" title="findedge函数"></a>findedge函数</h2><p>利用天平平衡，力矩为0计算宽度。nl * a = nr * b。如果该节点是一个木棍，那么需要计算他的子节点的偏移量，过程与前面一样，所以整体上构成了一个递归的结构。</p>
+}
+</code></pre>
+<h2 id="findedge函数"><a class="markdownIt-Anchor" href="#findedge函数"></a> findedge函数</h2>
+<p>利用天平平衡，力矩为0计算宽度。nl * a = nr * b。如果该节点是一个木棍，那么需要计算他的子节点的偏移量，过程与前面一样，所以整体上构成了一个递归的结构。</p>
 <pre><code>void findedge(double mid, int cur) {
 int a = cur * 2;
 int b = cur * 2 + 1;
@@ -165,9 +175,11 @@ left = min(left, nl);
 right = max(right, nr);
 
 if (tree[cur] &lt; 0) {
-    findedge(nl, a);
-    findedge(nr, b);
-}</code></pre>
+	findedge(nl, a);
+	findedge(nr, b);
+}
+</code></pre>
+
       
       <!-- reward -->
       

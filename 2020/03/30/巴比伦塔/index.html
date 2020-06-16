@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">779字</span>
+            <span class="post-count">782字</span>
         </span>
     </span>
 
@@ -101,22 +101,27 @@
       
 
       
-      <h1 id="UVA-437-巴比伦塔"><a href="#UVA-437-巴比伦塔" class="headerlink" title="UVA 437 巴比伦塔"></a>UVA 437 巴比伦塔</h1><p>你可能已经听说过巴比伦塔的传说。现在这个传说的许多细节已经被遗忘。所以本着本场比赛的教育性质，我们现在会告诉你整个传说：</p>
+      <h1 id="uva-437-巴比伦塔"><a class="markdownIt-Anchor" href="#uva-437-巴比伦塔"></a> UVA 437 巴比伦塔</h1>
+<p>你可能已经听说过巴比伦塔的传说。现在这个传说的许多细节已经被遗忘。所以本着本场比赛的教育性质，我们现在会告诉你整个传说：</p>
 <p>巴比伦人有n种长方形方块，每种有无限个，第i种方块的三边边长是xi,yi,zi。对于每一个方块，你可以任意选择一面作为底，这样高就随着确定了。举个例子，同一种方块，可能其中一个是竖着放的，一个是侧着放的，一个是横着放的。</p>
 <p>他们想要用堆方块的方式建尽可能高的塔。问题是，只有一个方块的底的两条边严格小于另一个方块的底的两条边，这个方块才能堆在另一个上面。这意味着，一个方块甚至不能堆在一个底的尺寸与它一样的方块的上面。</p>
 <p>你的任务是编写一个程序，计算出这个塔可以建出的最高的高度。</p>
 <p>输入会包含至少一组数据，每组数据的第一行是一个整数n(n&lt;=30)，表示方块的种类数。 这组数据接下来的n行，每行有三个整数，表示xi,yi,zi。 输入数据会以0结束。</p>
 <p>对于每组数据，输出一行，其中包含组号(从1开始)和塔最高的高度。按以下格式： Case : maximum height = __</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol start="3">
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol start="3">
 <li>每次决策的影响因素只有顶面尺寸</li>
 <li>每次的顶面长宽都会严格减小，所以状态图是一个有向无环图，所以问题转换成了求DAG上的最长路径问题</li>
 <li>关于状态的存储。如果使用(a,b)表示顶面面积a*b，由于ab可能很大是，所以不可行；如果用(idx,k)表示以第idx号立方体的第k号边为高，则可行。</li>
 </ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="get-wl-将以b号边为高的第a号矩形的长宽填入数组v"><a href="#get-wl-将以b号边为高的第a号矩形的长宽填入数组v" class="headerlink" title="get_wl 将以b号边为高的第a号矩形的长宽填入数组v"></a>get_wl 将以b号边为高的第a号矩形的长宽填入数组v</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">void get_wl(int *v, int a, int b) &#123;&#x2F;&#x2F;将长宽填入数组</span><br><span class="line">	int idx &#x3D; 0;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; 3; i++)</span><br><span class="line">		if (i !&#x3D; b)</span><br><span class="line">			v[idx++] &#x3D; block[a][i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="dp-尝试填充d数组"><a href="#dp-尝试填充d数组" class="headerlink" title="dp 尝试填充d数组"></a>dp 尝试填充d数组</h2><p>d[i][j]表示以第i个立方体的第j条边，能达到的最大高度</p>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<h2 id="get_wl-将以b号边为高的第a号矩形的长宽填入数组v"><a class="markdownIt-Anchor" href="#get_wl-将以b号边为高的第a号矩形的长宽填入数组v"></a> get_wl 将以b号边为高的第a号矩形的长宽填入数组v</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">void get_wl(int *v, int a, int b) &#123;&#x2F;&#x2F;将长宽填入数组</span><br><span class="line">	int idx &#x3D; 0;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; 3; i++)</span><br><span class="line">		if (i !&#x3D; b)</span><br><span class="line">			v[idx++] &#x3D; block[a][i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="dp-尝试填充d数组"><a class="markdownIt-Anchor" href="#dp-尝试填充d数组"></a> dp 尝试填充d数组</h2>
+<p>d[i][j]表示以第i个立方体的第j条边，能达到的最大高度</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">int dp(int i, int j) &#123;</span><br><span class="line">	int &amp;ans &#x3D; d[i][j];</span><br><span class="line">	if (ans &gt; 0)  return ans;</span><br><span class="line">	ans &#x3D; 0;</span><br><span class="line">	int v1[2], v2[2];</span><br><span class="line">	get_wl(v1, i, j);</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">		for (int j &#x3D; 0; j &lt; 3; j++) &#123;</span><br><span class="line">			get_wl(v2, i, j);</span><br><span class="line">			if (v1[0] &gt; v2[0] &amp;&amp; v1[1] &gt; v2[1])</span><br><span class="line">				ans &#x3D; max(ans, dp(i, j));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	ans +&#x3D; block[i][j];</span><br><span class="line">	return ans;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="main"><a href="#main" class="headerlink" title="main"></a>main</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">int main() &#123;</span><br><span class="line">	int kase &#x3D; 0;</span><br><span class="line">	while (scanf(&quot;%d&quot;, &amp;n) &#x3D;&#x3D; 1 &amp;&amp; n)</span><br><span class="line">	&#123;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			for (int j &#x3D; 0; j &lt; 3; j++)</span><br><span class="line">				scanf(&quot;%d&quot;, &amp;block[i][j]);</span><br><span class="line">			sort(block[i], block[i] + 3);</span><br><span class="line">		&#125;</span><br><span class="line">		memset(d, 0, sizeof(d));</span><br><span class="line">		int ans &#x3D; 0;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			for (int j &#x3D; 0; j &lt; 3; j++)</span><br><span class="line">				ans &#x3D; max(ans, dp(i, j));</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;Case %d: maximum height &#x3D; %d\n&quot;, ++kase, ans);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="main"><a class="markdownIt-Anchor" href="#main"></a> main</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">int main() &#123;</span><br><span class="line">	int kase &#x3D; 0;</span><br><span class="line">	while (scanf(&quot;%d&quot;, &amp;n) &#x3D;&#x3D; 1 &amp;&amp; n)</span><br><span class="line">	&#123;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			for (int j &#x3D; 0; j &lt; 3; j++)</span><br><span class="line">				scanf(&quot;%d&quot;, &amp;block[i][j]);</span><br><span class="line">			sort(block[i], block[i] + 3);</span><br><span class="line">		&#125;</span><br><span class="line">		memset(d, 0, sizeof(d));</span><br><span class="line">		int ans &#x3D; 0;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			for (int j &#x3D; 0; j &lt; 3; j++)</span><br><span class="line">				ans &#x3D; max(ans, dp(i, j));</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;Case %d: maximum height &#x3D; %d\n&quot;, ++kase, ans);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       
@@ -213,9 +218,9 @@
       </a>
     
     
-      <a href="/2020/03/30/UnixIS%E5%91%BD%E4%BB%A4/" class="article-nav-link">
+      <a href="/2020/03/30/%E5%AE%89%E8%BF%AA%E7%9A%84%E7%AC%AC%E4%B8%80%E6%9C%AC%E5%AD%97%E5%85%B8/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">UnixIS命令</div>
+        <div class="article-nav-title">安迪的第一本字典</div>
       </a>
     
   </nav>

@@ -101,18 +101,28 @@
       
 
       
-      <h1 id="特征描述符"><a href="#特征描述符" class="headerlink" title="特征描述符"></a>特征描述符</h1><ol>
-<li>性质：<ol>
+      <h1 id="特征描述符"><a class="markdownIt-Anchor" href="#特征描述符"></a> 特征描述符</h1>
+<ol>
+<li>性质：
+<ol>
 <li>不变性：图像被变换，描述符应该不变</li>
-<li>区分力：每个点的描述符是高度唯一的<h2 id="实现不变性"><a href="#实现不变性" class="headerlink" title="实现不变性"></a>实现不变性</h2></li>
+<li>区分力：每个点的描述符是高度唯一的</li>
 </ol>
 </li>
+</ol>
+<h2 id="实现不变性"><a class="markdownIt-Anchor" href="#实现不变性"></a> 实现不变性</h2>
+<ol>
 <li>确保检测器是不变的</li>
 <li>设计不变的特征描述符</li>
 </ol>
-<h2 id="旋转不变性"><a href="#旋转不变性" class="headerlink" title="旋转不变性"></a>旋转不变性</h2><p>通过寻找图像块的主导方向实现，主导方向为<br>    1. H的特征向量Xmax对应的λmax<br>    2. 梯度方向</p>
-<h2 id="MOPS"><a href="#MOPS" class="headerlink" title="MOPS"></a>MOPS</h2><ol>
-<li><strong>步骤</strong>：<ol>
+<h2 id="旋转不变性"><a class="markdownIt-Anchor" href="#旋转不变性"></a> 旋转不变性</h2>
+<p>通过寻找图像块的主导方向实现，主导方向为<br />
+1. H的特征向量Xmax对应的λmax<br />
+2. 梯度方向</p>
+<h2 id="mops"><a class="markdownIt-Anchor" href="#mops"></a> MOPS</h2>
+<ol>
+<li><strong>步骤</strong>：
+<ol>
 <li>选出特征点周围40×40的窗口</li>
 <li>缩放到1/5大小</li>
 <li>旋转至水平</li>
@@ -121,8 +131,10 @@
 </ol>
 </li>
 </ol>
-<h2 id="SIFT"><a href="#SIFT" class="headerlink" title="SIFT"></a>SIFT</h2><ol>
-<li><p><strong>步骤</strong></p>
+<h2 id="sift"><a class="markdownIt-Anchor" href="#sift"></a> SIFT</h2>
+<ol>
+<li>
+<p><strong>步骤</strong></p>
 <ol>
 <li>取特征周围16×16的窗口，划分为4×4单元格</li>
 <li>为每个像素计算边缘方向(梯度方向-90°)</li>
@@ -131,7 +143,8 @@
 <li>将该128维描述符归一化到单位长度</li>
 </ol>
 </li>
-<li><p>性质：</p>
+<li>
+<p>性质：</p>
 <ol>
 <li>可以处理视角变化</li>
 <li>适应光照变化</li>
@@ -139,15 +152,19 @@
 </ol>
 </li>
 </ol>
-<h1 id="特征匹配"><a href="#特征匹配" class="headerlink" title="特征匹配"></a>特征匹配</h1><p>想找到最佳匹配</p>
+<h1 id="特征匹配"><a class="markdownIt-Anchor" href="#特征匹配"></a> 特征匹配</h1>
+<p>想找到最佳匹配</p>
 <ol>
 <li>定义距离函数来比较两个描述符</li>
 <li>测试I2中所有的特征，找出距离最小的一个。</li>
 </ol>
-<h2 id="特征距离"><a href="#特征距离" class="headerlink" title="特征距离"></a>特征距离</h2><ol>
-<li>定义为||f1-f2||<ol>
+<h2 id="特征距离"><a class="markdownIt-Anchor" href="#特征距离"></a> 特征距离</h2>
+<ol>
+<li>定义为||f1-f2||
+<ol>
 <li><strong>问题</strong> 可能对不正确匹配给出小的距离。</li>
-<li><strong>解决</strong> 定义距离比= ||f1-f2||/||f1-f2’||<ol>
+<li><strong>解决</strong> 定义距离比= ||f1-f2||/||f1-f2’||
+<ol>
 <li>f2是f1在I2中最好的SSD匹配</li>
 <li>f2’是f1在I2中次好的SSD匹配</li>
 <li>距离比可以对不正确的匹配给出较大的值，用阈值过滤即可。</li>
@@ -156,12 +173,12 @@
 </ol>
 </li>
 </ol>
-<h1 id="结果评估"><a href="#结果评估" class="headerlink" title="结果评估"></a>结果评估</h1><ol>
-<li>最大化真阳性，最小化假阳性<h2 id="Roc-曲线"><a href="#Roc-曲线" class="headerlink" title="Roc 曲线"></a>Roc 曲线</h2></li>
+<h1 id="结果评估"><a class="markdownIt-Anchor" href="#结果评估"></a> 结果评估</h1>
+<ol>
+<li>最大化真阳性，最小化假阳性</li>
 </ol>
+<h2 id="roc-曲线"><a class="markdownIt-Anchor" href="#roc-曲线"></a> Roc 曲线</h2>
 <img src="/视觉_img/6-1.png" style="zoom:1%">
-
-
 <img src="/视觉_img/6-2.png" style="zoom:1%">
 1. AUC:一个正例，一个负例，预测为正的概率值比负的概率值还要大的可能性。
 

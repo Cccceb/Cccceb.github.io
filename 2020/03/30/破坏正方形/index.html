@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">702字</span>
+            <span class="post-count">704字</span>
         </span>
     </span>
 
@@ -101,77 +101,95 @@
       
 
       
-      <h1 id="UVA-1603-破坏正方形"><a href="#UVA-1603-破坏正方形" class="headerlink" title="UVA 1603 破坏正方形"></a>UVA 1603 破坏正方形</h1><p>一个 n×n的网格,共 2×n×(n+1)条边,现在已经删除了一些边,问至 少还需删去多少边,可以使得剩下的边不能构成正方形。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li><p>可以采用迭代加深度深搜，或者回溯法解决</p>
+      <h1 id="uva-1603-破坏正方形"><a class="markdownIt-Anchor" href="#uva-1603-破坏正方形"></a> UVA 1603 破坏正方形</h1>
+<p>一个 n×n的网格,共 2×n×(n+1)条边,现在已经删除了一些边,问至 少还需删去多少边,可以使得剩下的边不能构成正方形。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>
+<p>可以采用迭代加深度深搜，或者回溯法解决</p>
 </li>
-<li><p>搜索对象可以是木棍或者正方形，对应不同的剪枝</p>
+<li>
+<p>搜索对象可以是木棍或者正方形，对应不同的剪枝</p>
 <ol>
 <li>如果搜索对象是木棍，那么可以将每个木棍影响的正方形数量记录下来，从大到小排序。当最大影响数量为1时，可以停止搜索，结果为当前层数+剩余正方形数。这是因为如果最大影响数为1，说明剩余正方形之间没有耦合，删除任一木棍，至多减少1个正方形。</li>
 <li>如果搜索对象是正方形，那么应该从小正方形开始破坏。本题中采用这种方法。</li>
 </ol>
 </li>
-<li><p>此外，还需要找规律，寻找各行各列，竖线横线的标号关系。以标记构成正方形的边。</p>
+<li>
+<p>此外，还需要找规律，寻找各行各列，竖线横线的标号关系。以标记构成正方形的边。</p>
 </li>
-<li><p>本题中判断是否为正方形，<strong>通过size数组和full数组，分别记录第cnt个正方形实际有的边和应该有的边，如果二者相等，那么是一个完整的正方形</strong></p>
+<li>
+<p>本题中判断是否为正方形，<strong>通过size数组和full数组，分别记录第cnt个正方形实际有的边和应该有的边，如果二者相等，那么是一个完整的正方形</strong></p>
 </li>
-<li><p>本题中使用了回溯法，因为搜素深度有明显的上界2<em>n</em>(n+1)，其中n为边长。</p>
+<li>
+<p>本题中使用了回溯法，因为搜素深度有明显的上界2<em>n</em>(n+1)，其中n为边长。</p>
 </li>
 </ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="dfs"><a href="#dfs" class="headerlink" title="dfs"></a>dfs</h2><pre><code>void dfs(int d) {
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<h2 id="dfs"><a class="markdownIt-Anchor" href="#dfs"></a> dfs</h2>
+<pre><code>void dfs(int d) {
 if (d &gt;= maxd) return;
 int next = getNext();
 if (next == 0) {
-    maxd = d;
-    return;
+	maxd = d;
+	return;
 }
 for (int j = 1; j &lt;= sum; j++) {
-    if (in[next][j])
-    {
-        for (int k = 1; k &lt;= cnt; k++)//删掉火柴棍
-            if (in[k][j]) Size[k]--;
-        dfs(d + 1);
-        for (int k = 1; k &lt;= cnt; k++)//复原
-            if (in[k][j]) Size[k]++;
-    }
+	if (in[next][j])
+	{
+		for (int k = 1; k &lt;= cnt; k++)//删掉火柴棍
+			if (in[k][j]) Size[k]--;
+		dfs(d + 1);
+		for (int k = 1; k &lt;= cnt; k++)//复原
+			if (in[k][j]) Size[k]++;
+	}
 }
 return;
-}</code></pre><ol>
+}
+</code></pre>
+<ol>
 <li>在删除木棍和回溯的部分，由于判断是才用size[i]==full[i]，所以in[k][j]处必有火柴。</li>
 </ol>
-<h2 id="getr-getc-求横竖线编号"><a href="#getr-getc-求横竖线编号" class="headerlink" title="getr,getc 求横竖线编号"></a>getr,getc 求横竖线编号</h2><pre><code>inline int getr(int r, int c) {
+<h2 id="getrgetc-求横竖线编号"><a class="markdownIt-Anchor" href="#getrgetc-求横竖线编号"></a> getr,getc 求横竖线编号</h2>
+<pre><code>inline int getr(int r, int c) {
 return r * (2 * n + 1) + c + 1;
 }
 inline int getc(int r, int c) {
 return r * (2 * n + 1) + c + n + 1;
-}</code></pre><h2 id="get-cnt-填充size数组和full数组"><a href="#get-cnt-填充size数组和full数组" class="headerlink" title="get_cnt 填充size数组和full数组"></a>get_cnt 填充size数组和full数组</h2><pre><code>inline void get_cnt() {
+}
+</code></pre>
+<h2 id="get_cnt-填充size数组和full数组"><a class="markdownIt-Anchor" href="#get_cnt-填充size数组和full数组"></a> get_cnt 填充size数组和full数组</h2>
+<pre><code>inline void get_cnt() {
 int a, b, e, f;
 cnt = 0;
 for (int len = 1; len &lt;= n; len++) {
-    for (int r = 0; r + len &lt;= n; r++) {
-        for (int c = 0; c + len &lt;= n; c++) {
-            ++cnt;
-            full[cnt] = len * 4;
-            Size[cnt] = 0;
-            for (int i = 0; i &lt; len; i++)
-            {
-                a = getr(r, c + i);
-                b = getr(r + len, c + i);
-                e = getc(r + i, c);
-                f = getc(r + i, c + len);
-                in[cnt][a] = true;
-                in[cnt][b] = true;
-                in[cnt][e] = true;
-                in[cnt][f] = true;
-                Size[cnt] += sticks[a] + sticks[b] + sticks[e] + sticks[f];
-            }
-        }
-    }
+	for (int r = 0; r + len &lt;= n; r++) {
+		for (int c = 0; c + len &lt;= n; c++) {
+			++cnt;
+			full[cnt] = len * 4;
+			Size[cnt] = 0;
+			for (int i = 0; i &lt; len; i++)
+			{
+				a = getr(r, c + i);
+				b = getr(r + len, c + i);
+				e = getc(r + i, c);
+				f = getc(r + i, c + len);
+				in[cnt][a] = true;
+				in[cnt][b] = true;
+				in[cnt][e] = true;
+				in[cnt][f] = true;
+				Size[cnt] += sticks[a] + sticks[b] + sticks[e] + sticks[f];
+			}
+		}
+	}
 }
-}</code></pre><ol>
+}
+</code></pre>
+<ol>
 <li>注意这种判断的思维。</li>
 </ol>
-<h2 id="main-函数"><a href="#main-函数" class="headerlink" title="main 函数"></a>main 函数</h2><pre><code>int n, maxd, cnt, sum;
+<h2 id="main-函数"><a class="markdownIt-Anchor" href="#main-函数"></a> main 函数</h2>
+<pre><code>int n, maxd, cnt, sum;
 bool sticks[2 * maxn*(maxn + 1) + 1];
 int Size[625];
 int full[625];
@@ -180,20 +198,22 @@ int main() {
 int T, k, tmp;
 scanf(&quot;%d&quot;, &amp;T);
 while (T--) {
-    scanf(&quot;%d\n%d&quot;, &amp;n, &amp;k);
-    memset(sticks, 1, sizeof(sticks));
-    memset(in, 0, sizeof(in));
-    while (k--) {
-        scanf(&quot;%d&quot;, &amp;tmp);
-        sticks[tmp] = false;
-    }
-    sum = 2 * n*(n + 1);
-    maxd = sum;
-    get_cnt();
-    dfs(0);
-    printf(&quot;%d\n&quot;, maxd);
+	scanf(&quot;%d\n%d&quot;, &amp;n, &amp;k);
+	memset(sticks, 1, sizeof(sticks));
+	memset(in, 0, sizeof(in));
+	while (k--) {
+		scanf(&quot;%d&quot;, &amp;tmp);
+		sticks[tmp] = false;
+	}
+	sum = 2 * n*(n + 1);
+	maxd = sum;
+	get_cnt();
+	dfs(0);
+	printf(&quot;%d\n&quot;, maxd);
 }
-}</code></pre>
+}
+</code></pre>
+
       
       <!-- reward -->
       

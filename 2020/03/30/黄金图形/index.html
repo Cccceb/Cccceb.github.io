@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">687字</span>
+            <span class="post-count">700字</span>
         </span>
     </span>
 
@@ -101,71 +101,93 @@
       
 
       
-      <h1 id="UVA-225-黄金图形"><a href="#UVA-225-黄金图形" class="headerlink" title="UVA 225 黄金图形"></a>UVA 225 黄金图形</h1><p>平面上有k个障碍点。 从(0,0)点出发，第一次走1个单位，第二次走2个单位，……， 第n次走n个单位，恰好回到(0,0)。 要求只能沿着东南西北方向走，且每次必须转弯90°（不能沿着同一个方向继续走，也不能后退）。 走出的图形可以自交，但不能经过障碍点，如图 7-25所示。每个转折点只能走一次。 输入n、k（1≤n≤20，0≤k≤50）和所有障碍点的坐标，输出所有满足要求的移动序列（用 news表示北、东、西、南），按照字典序从小到大排列，最后输出移动序列的总数。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li><p>又要输出所有的路径，所以直观的想到用dfs。dfs中处理好可以移动的方向即可。</p>
-</li>
-<li><p>本题的特殊之处在于，障碍格可能出现负坐标。由于本题中最长边长n小于等于20，所以采用给(0,0)点以及障碍物点加一个比较大的值来消负号。我是假设n=20，那么一共也就能走1+2+…20/2=105，所以我加了一个120.</p>
-</li>
-<li><p>注意：卡了很久的原因主要是题干中要求最长边等于n，这条件不仅是限定搜索深度的。他还要求必须包含长度为n的边。</p>
-</li>
-<li><p>注意每个转折点只能走一次的条件。这个转折点是指每一步走完之后的终点。</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p> #include&lt;bits/stdc++.h&gt;</p>
-<h1 id="pragma-warning-disable-4996"><a href="#pragma-warning-disable-4996" class="headerlink" title="pragma warning(disable:4996)"></a>pragma warning(disable:4996)</h1><p> FILE <em>fin = freopen(“习题7-2in.txt”, “r”, stdin);<br> FILE *fout = freopen(“习题7-2out.txt”, “w”, stdout);<br> using namespace std;<br> const int maxn = 20;<br> void dfs(int r, int c, int dir, int step);<br> int dx[] = { 1,0,0,-1 };//东北南西<br> int dy[] = { 0,1,-1,0 };<br> int cnt, n;<br> bool g[maxn * maxn + 1][maxn * maxn + 1];<br> char direction[] = { ‘e’,’n’,’s’,’w’ };<br> int path[maxn</em>maxn];<br> bool vis[maxn<em>maxn + 1][maxn</em>maxn+ 1];<br> int stax, stay;<br> int main() {<br> int T;<br> scanf(“%d”, &amp;T);<br> int k;<br> while (T–)<br> {</p>
-<pre><code>int x, y;
-memset(g, 1, sizeof(g));
-memset(path, 0, sizeof(path));
-
-scanf(&quot;%d\n%d&quot;, &amp;n, &amp;k);
-vector&lt;int&gt; tmpx;
-vector&lt;int&gt; tmpy;
-stax = stay = 120;
-cnt = 0;
-while (k--)
-{
-    scanf(&quot;%d %d&quot;, &amp;x, &amp;y);
-    g[x + stax][y + stay] = 0;
-}
-
-for (int i = 0; i &lt; 4; i++) {
-    memset(vis, 0, sizeof(vis));
-    dfs(stax, stay, i, 1);</code></pre></li>
+      <h1 id="uva-225-黄金图形"><a class="markdownIt-Anchor" href="#uva-225-黄金图形"></a> UVA 225 黄金图形</h1>
+<p>平面上有k个障碍点。 从(0,0)点出发，第一次走1个单位，第二次走2个单位，……， 第n次走n个单位，恰好回到(0,0)。 要求只能沿着东南西北方向走，且每次必须转弯90°（不能沿着同一个方向继续走，也不能后退）。 走出的图形可以自交，但不能经过障碍点，如图 7-25所示。每个转折点只能走一次。 输入n、k（1≤n≤20，0≤k≤50）和所有障碍点的坐标，输出所有满足要求的移动序列（用 news表示北、东、西、南），按照字典序从小到大排列，最后输出移动序列的总数。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>又要输出所有的路径，所以直观的想到用dfs。dfs中处理好可以移动的方向即可。</li>
+<li>本题的特殊之处在于，障碍格可能出现负坐标。由于本题中最长边长n小于等于20，所以采用给(0,0)点以及障碍物点加一个比较大的值来消负号。我是假设n=20，那么一共也就能走1+2+…20/2=105，所以我加了一个120.</li>
+<li>注意：卡了很久的原因主要是题干中要求最长边等于n，这条件不仅是限定搜索深度的。他还要求必须包含长度为n的边。</li>
+<li>注意每个转折点只能走一次的条件。这个转折点是指每一步走完之后的终点。</li>
 </ol>
-<pre><code>    }
-    printf(&quot;Found %d golygon(s).\n\n&quot;, cnt);
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+# pragma warning(disable:4996)
+FILE *fin = freopen(&quot;习题7-2in.txt&quot;, &quot;r&quot;, stdin);
+FILE *fout = freopen(&quot;习题7-2out.txt&quot;, &quot;w&quot;, stdout);
+using namespace std;
+const int maxn = 20;
+void dfs(int r, int c, int dir, int step);
+int dx[] = { 1,0,0,-1 };//东北南西
+int dy[] = { 0,1,-1,0 };
+int cnt, n;
+bool g[maxn * maxn + 1][maxn * maxn + 1];
+char direction[] = { 'e','n','s','w' };
+int path[maxn*maxn];
+bool vis[maxn*maxn + 1][maxn*maxn+ 1];
+int stax, stay;
+int main() {
+int T;
+scanf(&quot;%d&quot;, &amp;T);
+int k;
+while (T--)
+{
+	int x, y;
+	memset(g, 1, sizeof(g));
+	memset(path, 0, sizeof(path));
+	
+	scanf(&quot;%d\n%d&quot;, &amp;n, &amp;k);
+	vector&lt;int&gt; tmpx;
+	vector&lt;int&gt; tmpy;
+	stax = stay = 120;
+	cnt = 0;
+	while (k--)
+	{
+		scanf(&quot;%d %d&quot;, &amp;x, &amp;y);
+		g[x + stax][y + stay] = 0;
+	}
+
+	for (int i = 0; i &lt; 4; i++) {
+		memset(vis, 0, sizeof(vis));
+		dfs(stax, stay, i, 1);
+
+
+	}
+	printf(&quot;Found %d golygon(s).\n\n&quot;, cnt);
 }
 }
 void dfs(int r, int c, int dir, int step) {
 path[step] = dir;
 for (int i = 0; i &lt; step; i++) {
-    r += dx[dir];
-    c += dy[dir];
-    if (!g[r][c] || r &lt; 0 || c &lt; 0 ) {
-        return;
-    }
+	r += dx[dir];
+	c += dy[dir];
+	if (!g[r][c] || r &lt; 0 || c &lt; 0 ) {
+		return;
+	}
 }
 if (vis[r][c]) return;
 if (step &gt;= n) {
-    if (r == (stax) &amp;&amp; c == (stay)) {
-        for (int i = 1; i &lt;= step; i++)
-            printf(&quot;%c&quot;, direction[path[i]]);
-        printf(&quot;\n&quot;);
-        cnt++;
-    }
-    return;
+	if (r == (stax) &amp;&amp; c == (stay)) {
+		for (int i = 1; i &lt;= step; i++)
+			printf(&quot;%c&quot;, direction[path[i]]);
+		printf(&quot;\n&quot;);
+		cnt++;
+	}
+	return;
 }
 
 vis[r][c] = 1;
 if (dir == 0 || dir == 3) {
-    dfs(r, c, 1, step + 1);
-    dfs(r, c, 2, step + 1);
+	dfs(r, c, 1, step + 1);
+	dfs(r, c, 2, step + 1);
 }
 else {
-    dfs(r, c, 0, step + 1);
-    dfs(r, c, 3, step + 1);
+	dfs(r, c, 0, step + 1);
+	dfs(r, c, 3, step + 1);
 }
 vis[r][c] = 0;
 }</code></pre>
+
       
       <!-- reward -->
       

@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">384字</span>
+            <span class="post-count">392字</span>
         </span>
     </span>
 
@@ -101,29 +101,64 @@
       
 
       
-      <h1 id="uva12166-修改天平-括号表示法给出树"><a href="#uva12166-修改天平-括号表示法给出树" class="headerlink" title="uva12166 修改天平    (括号表示法给出树)"></a>uva12166 修改天平    (括号表示法给出树)</h1><p>给出一个深度不超过16的二叉树，代表一个天平。每根杆都悬挂在中间，每个秤砣的重量已知。至少修改多少个秤砣的重量才能让天平平衡？</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+      <h1 id="uva12166-修改天平括号表示法给出树"><a class="markdownIt-Anchor" href="#uva12166-修改天平括号表示法给出树"></a> uva12166 修改天平	(括号表示法给出树)</h1>
+<p>给出一个深度不超过16的二叉树，代表一个天平。每根杆都悬挂在中间，每个秤砣的重量已知。至少修改多少个秤砣的重量才能让天平平衡？</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
 <li>思考如何使得修改的天平最少：保证让总重量最多的秤砣不变。</li>
 <li>用sum记录总的秤砣个数，用base记录每个对应重量的秤砣数。注意秤砣重量与所在高度有关，重w的秤砣在depth深处的总重量为w&lt;&lt;depth</li>
 <li>括号表示法给出树的结构可以参考本题</li>
 </ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>```<br>    #include&lt;bits/stdc++.h&gt;<br>    # pragma warning(disable:4996)<br>    # define LOCAL<br>    # ifdef LOCAL<br>    FILE *fin = freopen(“习题6-6in.txt”, “r”, stdin);<br>    FILE *fout = freopen(“习题6-6out.txt”, “w”, stdout);<br>    # endif<br>    using namespace std;<br>    int T;<br>    string s;<br>    int sum;<br>    map&lt;long long, int&gt; base;<br>    void dfs(int depth, int p, int e) {<br>        if (s[p] == ‘[‘) {<br>        int not_ok = 0;<br>        for (int i = p + 1; i != e; i++) {<br>            if (s[i] == ‘[‘) not_ok++;<br>            if (s[i] == ‘]’) not_ok–;<br>            //注意此处脱括号的方法非常灵性<br>            if (!not_ok&amp;&amp;s[i] == ‘,’) {<br>                dfs(depth + 1, p + 1, i - 1);<br>                dfs(depth + 1, i + 1, e - 1);<br>            }<br>        }<br>    }<br>    else {<br>        long long w = 0;<br>        for (int i = p; i &lt;= e; i++)<br>            w = w * 10 + s[i] - ‘0’;<br>        ++sum;<br>        ++base[w &lt;&lt; depth];//sum统计砝码总数量，base[w&lt;&lt;depth]统计该总重量对应的砝码个数</p>
-<pre><code>}
-}
-int main() {
-cin &gt;&gt; T;
-while (T--)
-{
-    cin &gt;&gt; s;
-    sum = 0;
-    base.clear();
-    dfs(0, 0, s.length() - 1);
-    int maxn = 0;
-    for (auto it = base.begin(); it != base.end(); it++)
-        maxn = max(maxn, it-&gt;second);
-    cout &lt;&lt; sum - maxn &lt;&lt; endl;
-}
-}</code></pre>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<pre class="highlight"><code class="">    #include&lt;bits/stdc++.h&gt;
+    # pragma warning(disable:4996)
+    # define LOCAL
+    # ifdef LOCAL
+    FILE *fin = freopen(&quot;习题6-6in.txt&quot;, &quot;r&quot;, stdin);
+    FILE *fout = freopen(&quot;习题6-6out.txt&quot;, &quot;w&quot;, stdout);
+    # endif 
+    using namespace std;
+    int T;
+    string s;
+    int sum;
+    map&lt;long long, int&gt; base;
+    void dfs(int depth, int p, int e) {
+    	if (s[p] == '[') {
+		int not_ok = 0;
+		for (int i = p + 1; i != e; i++) {
+			if (s[i] == '[') not_ok++;
+			if (s[i] == ']') not_ok--;
+			//注意此处脱括号的方法非常灵性
+			if (!not_ok&amp;&amp;s[i] == ',') {
+				dfs(depth + 1, p + 1, i - 1);
+				dfs(depth + 1, i + 1, e - 1);
+			}
+		}
+	}
+	else {
+		long long w = 0;
+		for (int i = p; i &lt;= e; i++)
+			w = w * 10 + s[i] - '0';
+		++sum;
+		++base[w &lt;&lt; depth];//sum统计砝码总数量，base[w&lt;&lt;depth]统计该总重量对应的砝码个数
+
+	}
+	}
+	int main() {
+	cin &gt;&gt; T;
+	while (T--)
+	{
+		cin &gt;&gt; s;
+		sum = 0;
+		base.clear();
+		dfs(0, 0, s.length() - 1);
+		int maxn = 0;
+		for (auto it = base.begin(); it != base.end(); it++)
+			maxn = max(maxn, it-&gt;second);
+		cout &lt;&lt; sum - maxn &lt;&lt; endl;
+	}
+	}</code></pre>
+
       
       <!-- reward -->
       

@@ -103,37 +103,56 @@
       
       <ol>
 <li>数据库的完整性：防止数据库中出现不合语义数据。</li>
-<li>完整性控制机制：<ol>
+<li>完整性控制机制：
+<ol>
 <li>完整性约束条件定义机制。</li>
 <li>完整性检查机</li>
 <li>违约处理.</li>
 </ol>
 </li>
-<li>关系型数据库的三类完整性约束：实体完整性、参照完整性、用户定义完整性。<h1 id="实体完整性"><a href="#实体完整性" class="headerlink" title="实体完整性"></a>实体完整性</h1></li>
-<li>实体完整性定义：<ol>
+<li>关系型数据库的三类完整性约束：实体完整性、参照完整性、用户定义完整性。</li>
+</ol>
+<h1 id="实体完整性"><a class="markdownIt-Anchor" href="#实体完整性"></a> 实体完整性</h1>
+<ol>
+<li>实体完整性定义：
+<ol>
 <li>单属性构成的码：定义为列级或表级约束条件。</li>
 <li>多属性构成的码：只可定义为表级约束条件。</li>
 </ol>
 </li>
-<li>实体完整性检查和违约处理<ol>
-<li>检查主码是否唯一；检查主码的各个属性值是否为空。<h1 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h1></li>
+<li>实体完整性检查和违约处理
+<ol>
+<li>检查主码是否唯一；检查主码的各个属性值是否为空。</li>
 </ol>
 </li>
-<li>参照完整性定义：若属性F是基本关系R的外码，它与基本关系S的码Ks相对应，则对于R中每个元组在F上的取值必须满足<ol>
+</ol>
+<h1 id="参照完整性"><a class="markdownIt-Anchor" href="#参照完整性"></a> 参照完整性</h1>
+<ol>
+<li>参照完整性定义：若属性F是基本关系R的外码，它与基本关系S的码Ks相对应，则对于R中每个元组在F上的取值必须满足
+<ol>
 <li>参照关系R和被参照关系S不一定是不同的关系。</li>
-<li>外码中若有多个属性，若其一为NULL，则需全NULL。<h1 id="用户定义完整性"><a href="#用户定义完整性" class="headerlink" title="用户定义完整性"></a>用户定义完整性</h1></li>
+<li>外码中若有多个属性，若其一为NULL，则需全NULL。</li>
 </ol>
 </li>
+</ol>
+<h1 id="用户定义完整性"><a class="markdownIt-Anchor" href="#用户定义完整性"></a> 用户定义完整性</h1>
+<ol>
 <li>使用CHECK见本。</li>
 </ol>
-<h1 id="完整性约束命名子句"><a href="#完整性约束命名子句" class="headerlink" title="完整性约束命名子句"></a>完整性约束命名子句</h1><ol>
+<h1 id="完整性约束命名子句"><a class="markdownIt-Anchor" href="#完整性约束命名子句"></a> 完整性约束命名子句</h1>
+<ol>
 <li>CONSTRAINT</li>
 </ol>
-<h1 id="域中的完整性限制"><a href="#域中的完整性限制" class="headerlink" title="域中的完整性限制"></a>域中的完整性限制</h1><p>CREATE DOMAIN,DOMAIN相当于一个自定义的数据类型。</p>
-<h1 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h1><ol>
-<li><p>触发器：用户定义在关系表上的 一类由事件驱动的特殊存储过程</p>
- <img src="/DB5_img/1.png" style="zoom:80%"></li>
-<li><p>注</p>
+<h1 id="域中的完整性限制"><a class="markdownIt-Anchor" href="#域中的完整性限制"></a> 域中的完整性限制</h1>
+<p>CREATE DOMAIN,DOMAIN相当于一个自定义的数据类型。</p>
+<h1 id="触发器"><a class="markdownIt-Anchor" href="#触发器"></a> 触发器</h1>
+<ol>
+<li>
+<p>触发器：用户定义在关系表上的 一类由事件驱动的特殊存储过程</p>
+ <img src="/DB5_img/1.png" style="zoom:80%">
+</li>
+<li>
+<p>注</p>
 <ol>
 <li>触发器可以在触发事件之前或之后执行。</li>
 <li>触发事件为INSERT/DELETE/UPDATE（SELECT不触发）</li>
@@ -230,19 +249,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/DB4/" class="article-nav-link">
+      <a href="/2020/03/30/DB7/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            DB4
+            DB7
           
         </div>
       </a>
     
     
-      <a href="/2020/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%AE%E5%BD%95/" class="article-nav-link">
+      <a href="/2020/03/30/DB4/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">数据库目录</div>
+        <div class="article-nav-title">DB4</div>
       </a>
     
   </nav>

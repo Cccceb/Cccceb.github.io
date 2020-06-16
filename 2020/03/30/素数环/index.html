@@ -101,16 +101,21 @@
       
 
       
-      <h1 id="UVA-524-素数环"><a href="#UVA-524-素数环" class="headerlink" title="UVA 524 素数环"></a>UVA 524 素数环</h1><p>输入正整数n，把1，2，3，···，n组成一个环，使得相邻两个整数之和均为素数。输出时从整数1开始逆时针排列。同一个环应恰好输出一次。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+      <h1 id="uva-524-素数环"><a class="markdownIt-Anchor" href="#uva-524-素数环"></a> UVA 524 素数环</h1>
+<p>输入正整数n，把1，2，3，···，n组成一个环，使得相邻两个整数之和均为素数。输出时从整数1开始逆时针排列。同一个环应恰好输出一次。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
 <li>直观的考虑，答案应该是1-n的某种排列，但是16！太大了，如果生成排列再测试会导致超时。</li>
 <li>因为前面能构成素数也未必能构成素数环，有点局部最优未必是整体最优的感觉。所以考虑回溯法，在当前位置处枚举没用过的数，判断能否与上一位构成素数。</li>
 <li>加速：实现打印出素数表，后面直接判断。</li>
 </ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="dfs-每一层都在寻找cur位置处能放的数，别忘了回溯"><a href="#dfs-每一层都在寻找cur位置处能放的数，别忘了回溯" class="headerlink" title="dfs 每一层都在寻找cur位置处能放的数，别忘了回溯"></a>dfs 每一层都在寻找cur位置处能放的数，别忘了回溯</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void dfs(int cur) &#123;</span><br><span class="line">if (cur &#x3D;&#x3D; n &amp;&amp; isp[A[0] + A[n - 1]]) &#123;</span><br><span class="line">	cout &lt;&lt; A[0];</span><br><span class="line">	for (int i &#x3D; 1; i &lt; n; i++) cout &lt;&lt; &quot; &quot; &lt;&lt; A[i];</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">	for (int j &#x3D; 2; j &lt;&#x3D; n; j++) &#123;</span><br><span class="line">		if (!vis[j] &amp;&amp; isp[j + A[cur - 1]]) &#123;</span><br><span class="line">			A[cur] &#x3D; j;</span><br><span class="line">			&#x2F;&#x2F;回溯法</span><br><span class="line">			vis[j] &#x3D; 1;</span><br><span class="line">			dfs(cur + 1);</span><br><span class="line">			vis[j] &#x3D; 0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="is-prime-判断i是否是素数，固定的"><a href="#is-prime-判断i是否是素数，固定的" class="headerlink" title="is_prime 判断i是否是素数，固定的"></a>is_prime 判断i是否是素数，固定的</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int is_prime(int a) &#123;</span><br><span class="line">for (int i &#x3D; 2; i &lt; a; i++)</span><br><span class="line">	if (a%i &#x3D;&#x3D; 0) return 0;</span><br><span class="line">return 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int n, vis[1000000];</span><br><span class="line">int A[1000000];</span><br><span class="line">int isp[100000];</span><br><span class="line">int main() &#123;</span><br><span class="line">int kase &#x3D; 0;</span><br><span class="line">while (cin &gt;&gt; n) &#123;</span><br><span class="line">	if (kase) cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; &quot;Case &quot; &lt;&lt; ++kase &lt;&lt; &quot;:&quot; &lt;&lt; endl;</span><br><span class="line">	memset(isp, 0, 2 * n * sizeof(int));</span><br><span class="line">	memset(vis, 0, 2 * n * sizeof(int));</span><br><span class="line">	for (int i &#x3D; 2; i &lt;&#x3D; 2 * n; i++)</span><br><span class="line">		isp[i] &#x3D; is_prime(i);</span><br><span class="line">	isp[1] &#x3D; 1;&#x2F;&#x2F;先构造出素数表，以后方便</span><br><span class="line">	A[0] &#x3D; 1;&#x2F;&#x2F;题干要求从1开始逆序输出</span><br><span class="line">	dfs(1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<h2 id="dfs-每一层都在寻找cur位置处能放的数别忘了回溯"><a class="markdownIt-Anchor" href="#dfs-每一层都在寻找cur位置处能放的数别忘了回溯"></a> dfs 每一层都在寻找cur位置处能放的数，别忘了回溯</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void dfs(int cur) &#123;</span><br><span class="line">if (cur &#x3D;&#x3D; n &amp;&amp; isp[A[0] + A[n - 1]]) &#123;</span><br><span class="line">	cout &lt;&lt; A[0];</span><br><span class="line">	for (int i &#x3D; 1; i &lt; n; i++) cout &lt;&lt; &quot; &quot; &lt;&lt; A[i];</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">	for (int j &#x3D; 2; j &lt;&#x3D; n; j++) &#123;</span><br><span class="line">		if (!vis[j] &amp;&amp; isp[j + A[cur - 1]]) &#123;</span><br><span class="line">			A[cur] &#x3D; j;</span><br><span class="line">			&#x2F;&#x2F;回溯法</span><br><span class="line">			vis[j] &#x3D; 1;</span><br><span class="line">			dfs(cur + 1);</span><br><span class="line">			vis[j] &#x3D; 0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="is_prime-判断i是否是素数固定的"><a class="markdownIt-Anchor" href="#is_prime-判断i是否是素数固定的"></a> is_prime 判断i是否是素数，固定的</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int is_prime(int a) &#123;</span><br><span class="line">for (int i &#x3D; 2; i &lt; a; i++)</span><br><span class="line">	if (a%i &#x3D;&#x3D; 0) return 0;</span><br><span class="line">return 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id=""><a class="markdownIt-Anchor" href="#"></a> </h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int n, vis[1000000];</span><br><span class="line">int A[1000000];</span><br><span class="line">int isp[100000];</span><br><span class="line">int main() &#123;</span><br><span class="line">int kase &#x3D; 0;</span><br><span class="line">while (cin &gt;&gt; n) &#123;</span><br><span class="line">	if (kase) cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; &quot;Case &quot; &lt;&lt; ++kase &lt;&lt; &quot;:&quot; &lt;&lt; endl;</span><br><span class="line">	memset(isp, 0, 2 * n * sizeof(int));</span><br><span class="line">	memset(vis, 0, 2 * n * sizeof(int));</span><br><span class="line">	for (int i &#x3D; 2; i &lt;&#x3D; 2 * n; i++)</span><br><span class="line">		isp[i] &#x3D; is_prime(i);</span><br><span class="line">	isp[1] &#x3D; 1;&#x2F;&#x2F;先构造出素数表，以后方便</span><br><span class="line">	A[0] &#x3D; 1;&#x2F;&#x2F;题干要求从1开始逆序输出</span><br><span class="line">	dfs(1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
       <!-- reward -->
@@ -198,19 +203,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E7%8B%AC%E7%AB%8B%E9%9B%86/" class="article-nav-link">
+      <a href="/2020/03/30/%E7%BC%A9%E7%82%B9/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            树的最大独立集
+            缩点
           
         </div>
       </a>
     
     
-      <a href="/2020/03/30/%E7%BC%A9%E7%82%B9/" class="article-nav-link">
+      <a href="/2020/03/30/%E5%88%87%E6%9C%A8%E6%A3%8D/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">缩点</div>
+        <div class="article-nav-title">切木棍</div>
       </a>
     
   </nav>

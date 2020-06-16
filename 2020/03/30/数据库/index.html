@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">533字</span>
+            <span class="post-count">552字</span>
         </span>
     </span>
 
@@ -101,61 +101,80 @@
       
 
       
-      <h1 id="uva-1592-数据库"><a href="#uva-1592-数据库" class="headerlink" title="uva 1592 数据库"></a>uva 1592 数据库</h1><p>输入一个n行m列的数据库，是否存在两个不同行r1，r2和两个不同列c1，c2，使得这两行和两列相同。（即（r1,c1）和（r2,c1）相同，（r1,c2）和（r2,c2）相同）</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li><p>由于最终要判断是否相同，所以可以将字符串映射为一个值，以减少比较的时间</p>
-</li>
-<li><p>主循环中，在c1,c2下循环r，并将（r,c1）,(r,c2)存成一个二元组，将二元组映射为当前的行号，如果图中已存在这样的二元组，那么对应的值即为r2，当前行为r1。</p>
-</li>
-<li><p>由于有以二元组为键类型的图，所以结构体中要重写“&lt;”，否则会报错</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p> #include<iostream><br> #include<string><br> #include<set><br> #include<map><br> #include<vector><br> using namespace std;<br> map&lt;string, int&gt; location;<br> set<string> same;<br> vector<int> str[100000];<br> typedef struct point {</p>
-<pre><code>int x;
-int y;
-point(int x, int y) :x(x), y(y) {}
-bool operator &lt; (const point&amp; r) const { return x &lt; r.x || x == r.x&amp;&amp;y &lt; r.y; }</code></pre><p> }point;<br>※※注意此处重写“&lt;”的方法</p>
-<p> int main() {<br> int r, c;<br> while (scanf(“%d%d”, &amp;r, &amp;c) == 2) {</p>
-<pre><code>getchar();
-same.clear();
-location.clear();
-for (int i = 0; i &lt; r; i++) str[i].clear();
-for (int i = 0; i &lt; r; i++) {
-    for (int j = 0; j &lt; c; j++) {
-        string s;
-        char cs = getchar();
-        while (cs != &apos;,&apos;&amp;&amp;cs != &apos;\n&apos;) {
-            s += cs;
-            cs = getchar();
-        }
-        if (!same.count(s)) {
-            location[s] = i * r + j;
-            same.insert(s);
-        }
-        str[i].push_back(location[s]);
-    }
-}</code></pre></li>
+      <h1 id="uva-1592-数据库"><a class="markdownIt-Anchor" href="#uva-1592-数据库"></a> uva 1592 数据库</h1>
+<p>输入一个n行m列的数据库，是否存在两个不同行r1，r2和两个不同列c1，c2，使得这两行和两列相同。（即（r1,c1）和（r2,c1）相同，（r1,c2）和（r2,c2）相同）</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>由于最终要判断是否相同，所以可以将字符串映射为一个值，以减少比较的时间</li>
+<li>主循环中，在c1,c2下循环r，并将（r,c1）,(r,c2)存成一个二元组，将二元组映射为当前的行号，如果图中已存在这样的二元组，那么对应的值即为r2，当前行为r1。</li>
+<li>由于有以二元组为键类型的图，所以结构体中要重写“&lt;”，否则会报错</li>
 </ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;set&gt;
+#include&lt;map&gt;
+#include&lt;vector&gt;
+using namespace std;
+map&lt;string, int&gt; location;
+set&lt;string&gt; same;
+vector&lt;int&gt; str[100000];
+typedef struct point {
+	int x;
+	int y;
+	point(int x, int y) :x(x), y(y) {}
+	bool operator &lt; (const point&amp; r) const { return x &lt; r.x || x == r.x&amp;&amp;y &lt; r.y; }
+}point;
+</code></pre>
+<p>※※注意此处重写“&lt;”的方法</p>
+<pre><code>int main() {
+int r, c;
+while (scanf(&quot;%d%d&quot;, &amp;r, &amp;c) == 2) {
+	getchar();
+	same.clear();
+	location.clear();
+	for (int i = 0; i &lt; r; i++) str[i].clear();
+	for (int i = 0; i &lt; r; i++) {
+		for (int j = 0; j &lt; c; j++) {
+			string s;
+			char cs = getchar();
+			while (cs != ','&amp;&amp;cs != '\n') {
+				s += cs;
+				cs = getchar();
+			}
+			if (!same.count(s)) {
+				location[s] = i * r + j;
+				same.insert(s);
+			}
+			str[i].push_back(location[s]);
+		}
+	}
+</code></pre>
 <p><strong>利用set和map，将每种字符串映射为唯一的值</strong></p>
-<pre><code>    map&lt;point, int&gt; data;
-    for (int c1 = 0; c1 &lt; c; c1++) {
-        for (int c2 = c1 + 1; c2 &lt; c; c2++) {
-            data.clear();
-            for (int r1 = 0; r1 &lt; r; r1++) {
-                int x = str[r1][c1];
-                int y = str[r1][c2];
-                point p(x, y);
-                if (!data.count(p)) data[p] = r1;
-                else {
-                    cout &lt;&lt; &quot;NO&quot; &lt;&lt; endl &lt;&lt; data[p] + 1 &lt;&lt; &quot; &quot; &lt;&lt; r1 + 1 &lt;&lt; endl
-                        &lt;&lt; c1 + 1 &lt;&lt;&quot; &quot;&lt;&lt; c2 + 1 &lt;&lt; endl;
-                    goto here;
-                }
-            }
-        }
-    }
-    cout &lt;&lt; &quot;YES&quot; &lt;&lt; endl;
-    here:;
+<pre><code>	map&lt;point, int&gt; data;
+	for (int c1 = 0; c1 &lt; c; c1++) {
+		for (int c2 = c1 + 1; c2 &lt; c; c2++) {
+			data.clear();
+			for (int r1 = 0; r1 &lt; r; r1++) {
+				int x = str[r1][c1];
+				int y = str[r1][c2];
+				point p(x, y);
+				if (!data.count(p)) data[p] = r1;
+				else {
+					cout &lt;&lt; &quot;NO&quot; &lt;&lt; endl &lt;&lt; data[p] + 1 &lt;&lt; &quot; &quot; &lt;&lt; r1 + 1 &lt;&lt; endl
+						&lt;&lt; c1 + 1 &lt;&lt;&quot; &quot;&lt;&lt; c2 + 1 &lt;&lt; endl;
+					goto here;
+				}
+			}
+		}
+	}
+	cout &lt;&lt; &quot;YES&quot; &lt;&lt; endl;
+	here:;
 }
-}</code></pre><h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><ol>
+}
+</code></pre>
+<h1 id="心得"><a class="markdownIt-Anchor" href="#心得"></a> 心得</h1>
+<ol>
 <li>本题在循环前的映射与集合栈计算机类似，本题中目的是减少比较时的时间</li>
 <li>本题应把两列最为一个整体，否则需要四重循环，会TEL</li>
 <li>学习结构体初始化和重写操作符的方法。</li>

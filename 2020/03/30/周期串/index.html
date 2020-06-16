@@ -101,12 +101,14 @@
       
 
       
-      <h1 id="uav-455-周期串"><a href="#uav-455-周期串" class="headerlink" title="uav 455 周期串"></a>uav 455 周期串</h1><p>如果一个字符串可以由某个长度为kkk 的字符串重复多次得到，则称该串以kkk 为周期。例如，abcabcabcabcabcabcabcabcabcabcabcabc 以333 为周期（注意，它也以666 和121212 为周期）。</p>
+      <h1 id="uav-455-周期串"><a class="markdownIt-Anchor" href="#uav-455-周期串"></a> uav 455 周期串</h1>
+<p>如果一个字符串可以由某个长度为kkk 的字符串重复多次得到，则称该串以kkk 为周期。例如，abcabcabcabcabcabcabcabcabcabcabcabc 以333 为周期（注意，它也以666 和121212 为周期）。</p>
 <p>输入一个长度不超过808080 的字符串，输出其最小周期。</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><pre><code>#include&lt;iostream&gt;
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<pre><code>#include&lt;iostream&gt;
 #include&lt;stdio.h&gt;
 #include&lt;string.h&gt;
- # pragma warning(disable:4996)
+# pragma warning(disable:4996)
 # define LOCAL
 # ifdef LOCAL
 FILE *fin = freopen(&quot;习题3-8in.txt&quot;, &quot;r&quot;, stdin);
@@ -115,29 +117,30 @@ FILE *fout = freopen(&quot;习题3-8out.txt&quot;, &quot;w&quot;, stdout);
 using namespace std;
 int main()
 {
-    int t; cin &gt;&gt; t;
-    char s[85];
-    while (t--)
-    {
-        memset(s, 0, sizeof(s));
-        scanf(&quot;%s&quot;, s);
-        int len = strlen(s);
-        int j;
-        for (int i = 1; i &lt;= len; ++i)
-            if (len%i == 0)//说明长度i可以作为一个循环节
-            {
-                for (j = i; j &lt;= len; j++)
-                    if (s[j] != s[j%i])//之后都和0-i-1的字符串来比较
-                        break;
-                if (j == len)
-                {
-                    cout &lt;&lt; i &lt;&lt; endl;
-                    break;
-                }
-            }
-        if (t)cout &lt;&lt; endl;
-    }
+	int t; cin &gt;&gt; t;
+	char s[85];
+	while (t--)
+	{
+		memset(s, 0, sizeof(s));
+		scanf(&quot;%s&quot;, s);
+		int len = strlen(s);
+		int j;
+		for (int i = 1; i &lt;= len; ++i)
+			if (len%i == 0)//说明长度i可以作为一个循环节
+			{
+				for (j = i; j &lt;= len; j++)
+					if (s[j] != s[j%i])//之后都和0-i-1的字符串来比较
+						break;
+				if (j == len)
+				{
+					cout &lt;&lt; i &lt;&lt; endl;
+					break;
+				}
+			}
+		if (t)cout &lt;&lt; endl;
+	}
 }</code></pre>
+
       
       <!-- reward -->
       

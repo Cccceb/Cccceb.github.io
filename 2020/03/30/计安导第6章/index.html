@@ -101,67 +101,76 @@
       
 
       
-      <h1 id="DNS-域名系统"><a href="#DNS-域名系统" class="headerlink" title="DNS 域名系统"></a>DNS 域名系统</h1><ol>
-<li><p>DNS是应用层协议，负责将域名映射到IP地址。</p>
-</li>
-<li><p>DNS数据库包括</p>
+      <h1 id="dns-域名系统"><a class="markdownIt-Anchor" href="#dns-域名系统"></a> DNS 域名系统</h1>
+<ol>
+<li>DNS是应用层协议，负责将域名映射到IP地址。</li>
+<li>DNS数据库包括
 <ol>
 <li>地址记录：与主机名相关链的IP地址。</li>
 <li>邮件交换记录：域的邮件服务器。</li>
-<li>名称服务器记录：域的权威服务器。<h2 id="应用层协议"><a href="#应用层协议" class="headerlink" title="应用层协议"></a>应用层协议</h2></li>
+<li>名称服务器记录：域的权威服务器。</li>
 </ol>
 </li>
-<li><p>DNS：建立IP和域名间的映射</p>
-</li>
-<li><p>HTTP:用来浏览网页</p>
-</li>
-<li><p>SSL/TLS: 以安全的、加密的方式浏览网页的协议(<strong>HTTPS</strong>)</p>
-</li>
-<li><p>IMAP/POP/SMAP:用于互联网电子邮件</p>
-</li>
-<li><p>SOAP：用于交换作为网络服务模式部分的结构化数据</p>
-</li>
-<li><p>talent：远程访问协议(与FTP一样，不提供加密)</p>
-</li>
-<li><p>SSH:较新的安全远程访问和管理协议</p>
-<h2 id="域名服务器"><a href="#域名服务器" class="headerlink" title="域名服务器"></a>域名服务器</h2></li>
-<li><p>域名：最右为顶级域名(TLD)</p>
-</li>
-<li><p>域名服务器从上至下依次为</p>
+</ol>
+<h2 id="应用层协议"><a class="markdownIt-Anchor" href="#应用层协议"></a> 应用层协议</h2>
+<ol>
+<li>DNS：建立IP和域名间的映射</li>
+<li>HTTP:用来浏览网页</li>
+<li>SSL/TLS: 以安全的、加密的方式浏览网页的协议(<strong>HTTPS</strong>)</li>
+<li>IMAP/POP/SMAP:用于互联网电子邮件</li>
+<li>SOAP：用于交换作为网络服务模式部分的结构化数据</li>
+<li>talent：远程访问协议(与FTP一样，不提供加密)</li>
+<li>SSH:较新的安全远程访问和管理协议</li>
+</ol>
+<h2 id="域名服务器"><a class="markdownIt-Anchor" href="#域名服务器"></a> 域名服务器</h2>
+<ol>
+<li>域名：最右为顶级域名(TLD)</li>
+<li>域名服务器从上至下依次为
 <ol>
 <li>根域名服务器：管理顶级域名.</li>
 <li>顶级域名服务器:如.com。其中保存的每条记录都对应一个权威域名服务器</li>
-<li>权威域名服务器<h2 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h2></li>
+<li>权威域名服务器</li>
 </ol>
 </li>
-<li><p>区域：具有相同权威DNS服务器的已连接节点的集合。</p>
-</li>
-<li><p>域名解析：</p>
+</ol>
+<h2 id="域名解析"><a class="markdownIt-Anchor" href="#域名解析"></a> 域名解析</h2>
 <ol>
-<li><p>迭代解析</p>
-<img src="/计安导_img/2.png"  />
+<li>
+<p>区域：具有相同权威DNS服务器的已连接节点的集合。</p>
 </li>
-<li><p>递归解析</p>
-<img src="/计安导_img/3.png"  />    
-
+<li>
+<p>域名解析：</p>
+<ol>
+<li>迭代解析</li>
+</ol>
+ <img src="/计安导_img/2.png"  />
+<ol start="2">
+<li>递归解析</li>
+</ol>
+ <img src="/计安导_img/3.png"  />	
 </li>
 </ol>
-</li>
-</ol>
-<h2 id="权威域名服务器"><a href="#权威域名服务器" class="headerlink" title="权威域名服务器"></a>权威域名服务器</h2><ol>
+<h2 id="权威域名服务器"><a class="markdownIt-Anchor" href="#权威域名服务器"></a> 权威域名服务器</h2>
+<ol>
 <li>权威域名服务器层次结构：权威域名服务器也是分层的，每个域名服务器都存储着记录的集合，每个记录提供域名地址或者对该域权威域名服务器的引用。</li>
-<li>作用：控制在权威域名服务器(ANS)之间分配<ol>
+<li>作用：控制在权威域名服务器(ANS)之间分配
+<ol>
 <li>负责特定域</li>
 <li>可以为子域指定其他ANS</li>
 </ol>
 </li>
 </ol>
-<h2 id="DNS数据包"><a href="#DNS数据包" class="headerlink" title="DNS数据包"></a>DNS数据包</h2><ol>
+<h2 id="dns数据包"><a class="markdownIt-Anchor" href="#dns数据包"></a> DNS数据包</h2>
+<ol>
 <li>DNS查询和应答是通过UDP实现的，但当请求超过512时，会采用TCP。</li>
-<li>DNS查询通常通过端口53上的UDP发出。<h3 id="组成："><a href="#组成：" class="headerlink" title="组成："></a>组成：</h3></li>
+<li>DNS查询通常通过端口53上的UDP发出。</li>
+</ol>
+<h3 id="组成"><a class="markdownIt-Anchor" href="#组成"></a> 组成：</h3>
+<ol>
 <li>头：包含16为查询标识符，用于标识查询和响应</li>
 <li>查询部分：由问题序列组成，每个问题由所查询域名和查询记录的类型组成。</li>
-<li>应答部分包括<ol>
+<li>应答部分包括
+<ol>
 <li>NAME 包含一个全域名</li>
 <li>2B的TYPE 标识DNS记录的类型</li>
 <li>2B的CLASS域 标识更广泛的类型</li>
@@ -171,115 +180,143 @@
 </ol>
 </li>
 </ol>
-<h2 id="DNS缓存"><a href="#DNS缓存" class="headerlink" title="DNS缓存"></a>DNS缓存</h2><ol>
+<h2 id="dns缓存"><a class="markdownIt-Anchor" href="#dns缓存"></a> DNS缓存</h2>
+<ol>
 <li>目的：如果每个查询都遍历DNS树会导致根区域过载</li>
 <li>缓存有效期：由ANS回复的TTL指定。</li>
-<li>由操作系统和浏览器维护缓存<h2 id="DNS-攻击：-网络嫁接与网络钓鱼"><a href="#DNS-攻击：-网络嫁接与网络钓鱼" class="headerlink" title="DNS 攻击： 网络嫁接与网络钓鱼"></a>DNS 攻击： 网络嫁接与网络钓鱼</h2></li>
-<li><strong>过程</strong> 攻击者把网站发送请求解析成子集恶意服务器的伪装IP地址，导致受害人浏览或下载伪造的内容。 </li>
+<li>由操作系统和浏览器维护缓存</li>
+</ol>
+<h2 id="dns-攻击-网络嫁接与网络钓鱼"><a class="markdownIt-Anchor" href="#dns-攻击-网络嫁接与网络钓鱼"></a> DNS 攻击： 网络嫁接与网络钓鱼</h2>
+<ol>
+<li><strong>过程</strong> 攻击者把网站发送请求解析成子集恶意服务器的伪装IP地址，导致受害人浏览或下载伪造的内容。</li>
 <li><strong>用途</strong> 伪造王章</li>
 </ol>
-<h2 id="DNS-缓存中毒"><a href="#DNS-缓存中毒" class="headerlink" title="DNS 缓存中毒"></a>DNS 缓存中毒</h2><ol>
-<li><p><strong>思想</strong> 攻击者欺骗DNS服务器缓存保存虚假的DNS记录。</p>
+<h2 id="dns-缓存中毒"><a class="markdownIt-Anchor" href="#dns-缓存中毒"></a> DNS 缓存中毒</h2>
+<ol>
+<li>
+<p><strong>思想</strong> 攻击者欺骗DNS服务器缓存保存虚假的DNS记录。</p>
  <img src="/计安导_img/4.png"  />
-
  <img src="/计安导_img/5.png"  />
-
  <img src="/计安导_img/6.png"  />
 </li>
-<li><p><strong>检测</strong> DNS使用16位请求标识符将查询ID与响应ID配对。当服务器</p>
+<li>
+<p><strong>检测</strong> DNS使用16位请求标识符将查询ID与响应ID配对。当服务器</p>
 <ol>
-<li><p>忽略标识符</p>
-</li>
-<li><p>具有可预测的ID</p>
-</li>
-<li><p>接受未经请求的DNS记录</p>
+<li>忽略标识符</li>
+<li>具有可预测的ID</li>
+<li>接受未经请求的DNS记录</li>
+</ol>
 <p>说明可能中毒了</p>
 </li>
-</ol>
-</li>
-<li><p>防御DNS缓存中毒</p>
+<li>
+<p>防御DNS缓存中毒</p>
 <ol>
-<li>对查询使用随机标识符 </li>
-<li>始终检查标识符 </li>
+<li>对查询使用随机标识符</li>
+<li>始终检查标识符</li>
 <li>DNS请求的端口随机化</li>
 <li>部署DNSSEC（DNS协议的安全扩展集）</li>
 </ol>
 </li>
 </ol>
-<h2 id="DNS缓存中毒和生日悖论"><a href="#DNS缓存中毒和生日悖论" class="headerlink" title="DNS缓存中毒和生日悖论"></a>DNS缓存中毒和生日悖论</h2><blockquote>
+<h2 id="dns缓存中毒和生日悖论"><a class="markdownIt-Anchor" href="#dns缓存中毒和生日悖论"></a> DNS缓存中毒和生日悖论</h2>
+<blockquote>
 <p>DNS 协议交换不验证对递归迭代查询的响应。验证查询只会检查 16 位事务 ID 以及响应数据包的源 IP 地址和目标端口。在 2008 年之前，所有 DNS 使用固定端口53 解析.因此，除了事务 ID 之外，欺骗 DNS 回复所需的所有信息都是可预测的。用这种弱点攻击 DNS 被称为“生日悖论”，平均需要 256 次来猜测事务 ID。为了使攻击成功，伪造的 DNS 回复必须在合法权威响应之前到达目标解析器。如果合法响应首先到达，它将由解析器缓存，并且直到其生存时间（TTL）到期，解析器将不会要求权威服务器解析相同的域名，从而防止攻击者中毒映射该域，直到 TTL 到期。</p>
 </blockquote>
-<h2 id="DNSSEC"><a href="#DNSSEC" class="headerlink" title="DNSSEC"></a>DNSSEC</h2><blockquote>
+<h2 id="dnssec"><a class="markdownIt-Anchor" href="#dnssec"></a> DNSSEC</h2>
+<blockquote>
 <p>DNSSEC 采用基于公共密钥加密的数字签名，从而增强 DNS 验证强度。DNSSEC 并非对 DNS 查询和响应本身进行加密签名，而是由数据所有者对 DNS 数据自身进行签名。</p>
 </blockquote>
 <blockquote>
-<p>每一个 DNS 区均包含一个公私秘钥对。DNS 区所有者使用该区域的私钥对区域内的 DNS 数据进行签名，为这些数据生成数字签名。顾名思义，”私钥”是指 DNS 区所有者会对这些密钥材料保密。但是，该区域的公钥则在区域内公开发布，供全体用户检索。凡在区域内查找数据的递归解析器，还必需检索区域公钥，从而使用公钥验证 DNS 数据的真实性。解析器确认检索到的 DNS 数据的数字签名是否有效。如果有效，证明 DNS 数据合法，则将 DNS 数据返回给用户。如果签名未通过验证，解析器会假设发生攻击，丢弃数据并向用户返回错误。</p>
+<p>每一个 DNS 区均包含一个公私秘钥对。DNS 区所有者使用该区域的私钥对区域内的 DNS 数据进行签名，为这些数据生成数字签名。顾名思义，&quot;私钥&quot;是指 DNS 区所有者会对这些密钥材料保密。但是，该区域的公钥则在区域内公开发布，供全体用户检索。凡在区域内查找数据的递归解析器，还必需检索区域公钥，从而使用公钥验证 DNS 数据的真实性。解析器确认检索到的 DNS 数据的数字签名是否有效。如果有效，证明 DNS 数据合法，则将 DNS 数据返回给用户。如果签名未通过验证，解析器会假设发生攻击，丢弃数据并向用户返回错误。</p>
 </blockquote>
 <ol>
-<li><p>目的：验证</p>
+<li>
+<p>目的：验证</p>
 <ol>
 <li>DNS回答来源的真实性</li>
 <li>回复的完整性</li>
 <li>拒绝存在的真实性</li>
 </ol>
 </li>
-<li><p>通过在每一步中对DNS回复签名来实现这一点</p>
+<li>
+<p>通过在每一步中对DNS回复签名来实现这一点</p>
 </li>
-<li><p>使用公钥加密对所有DNS应答进行数字签名</p>
+<li>
+<p>使用公钥加密对所有DNS应答进行数字签名</p>
 </li>
-<li><p>通常使用信任锚，操作系统中的条目来引导进程</p>
+<li>
+<p>通常使用信任锚，操作系统中的条目来引导进程</p>
 </li>
-<li><p>现状：加入安全机制后，数据包会远大于512B的UDP数据包。</p>
+<li>
+<p>现状：加入安全机制后，数据包会远大于512B的UDP数据包。</p>
 </li>
 </ol>
-<h1 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h1><ol>
-<li><p>定义：防火墙是一种集成的安全措施集合，旨在防止对网络计算机 系统未经授权的访问。</p>
+<h1 id="防火墙"><a class="markdownIt-Anchor" href="#防火墙"></a> 防火墙</h1>
+<ol>
+<li>
+<p>定义：防火墙是一种集成的安全措施集合，旨在防止对网络计算机 系统未经授权的访问。</p>
 </li>
-<li><p>防火墙策略：</p>
+<li>
+<p>防火墙策略：</p>
 <ol>
 <li>接收</li>
 <li>拒绝</li>
 <li>丢弃</li>
 </ol>
 </li>
-<li><p>数据包匹配：基于数据包的一些特性。</p>
+<li>
+<p>数据包匹配：基于数据包的一些特性。</p>
 </li>
 </ol>
-<h2 id="黑名单与白名单"><a href="#黑名单与白名单" class="headerlink" title="黑名单与白名单"></a>黑名单与白名单</h2><h3 id="黑名单"><a href="#黑名单" class="headerlink" title="黑名单"></a>黑名单</h3><ol>
+<h2 id="黑名单与白名单"><a class="markdownIt-Anchor" href="#黑名单与白名单"></a> 黑名单与白名单</h2>
+<h3 id="黑名单"><a class="markdownIt-Anchor" href="#黑名单"></a> 黑名单</h3>
+<ol>
 <li>默认规则为接收，只拒绝/丢弃黑名单定义的规则匹配到的数据包。</li>
 </ol>
-<h3 id="白名单"><a href="#白名单" class="headerlink" title="白名单"></a>白名单</h3><ol>
+<h3 id="白名单"><a class="markdownIt-Anchor" href="#白名单"></a> 白名单</h3>
+<ol>
 <li>默认规则拒绝，只接收白名单规则匹配到的数据包。</li>
 </ol>
-<h2 id="防火墙分类"><a href="#防火墙分类" class="headerlink" title="防火墙分类"></a>防火墙分类</h2><ol>
+<h2 id="防火墙分类"><a class="markdownIt-Anchor" href="#防火墙分类"></a> 防火墙分类</h2>
+<ol>
 <li>数据包过滤器(无状态防火墙)：如果数据包与数据包过滤器的规则集匹配，则数据包过滤器将丢弃或者接受他。</li>
 <li>状态过滤器(状态防火墙)：一种能够提供状态数据包检查或状态查看功能的防火墙，能够持续追踪穿过这个防火墙的各种网络连接（例如TCP与UDP连接）的状态。这种防火墙被设计来区分不同连接种类下的合法数据包。只有匹配主动连接的数据包才能够被允许穿过防火墙，其他的数据包都会被拒绝。</li>
 <li>应用层防火墙：当内部计算机与外部主机连结时，将由代理服务器（Proxy Server）担任内部计算机与外部主机的连结中继者。使用ALG的好处是隐藏内部主机的地址和防止外部不正常的连接，如果代理服务器上未安装针对该应用程序设计的代理程序时，任何属于这个网络服务的封包将完全无法通过防火墙。</li>
 </ol>
-<h3 id="无状态防火墙"><a href="#无状态防火墙" class="headerlink" title="无状态防火墙"></a>无状态防火墙</h3><ol>
+<h3 id="无状态防火墙"><a class="markdownIt-Anchor" href="#无状态防火墙"></a> 无状态防火墙</h3>
+<ol>
 <li>将每个尝试通过它的数据包视为独立的，而不考虑前后数据包间的关系。</li>
 <li>因此必须具有严格的限制性</li>
 </ol>
-<h3 id="状态防火墙"><a href="#状态防火墙" class="headerlink" title="状态防火墙"></a>状态防火墙</h3><ol>
+<h3 id="状态防火墙"><a class="markdownIt-Anchor" href="#状态防火墙"></a> 状态防火墙</h3>
+<ol>
 <li>可以区分数据包是否是<strong>受信任网络</strong>内发起的<strong>合法会话</strong>的一部分。</li>
 <li>状态防火墙维护一些表，表中包含每个活动<strong>连接的信息</strong>， 包括<strong>IP地址、端口和数据包的序列号</strong>。通过这些表，可以只允许响应内部网发起连接的TCP数据包流入。</li>
 <li><strong>对于TCP</strong> 一旦完成初始的握手，且也允许数据包通过防火墙，则该连接的所有后续通信都允许通过防火墙，直到连接终止。</li>
 <li><strong>对于UDP</strong> 由于UDP没有握手过程，所以一般情况下，当防火墙允许合法UDP通过</li>
 </ol>
-<h3 id="应用层防火墙"><a href="#应用层防火墙" class="headerlink" title="应用层防火墙"></a>应用层防火墙</h3><ol>
-<li>基于进入或流出网络数据包的实际内容来管理流量，而不是仅仅分析源和目的。<h3 id="现状：基于深度数据包检测技术"><a href="#现状：基于深度数据包检测技术" class="headerlink" title="现状：基于深度数据包检测技术"></a>现状：基于深度数据包检测技术</h3></li>
+<h3 id="应用层防火墙"><a class="markdownIt-Anchor" href="#应用层防火墙"></a> 应用层防火墙</h3>
+<ol>
+<li>基于进入或流出网络数据包的实际内容来管理流量，而不是仅仅分析源和目的。</li>
 </ol>
-<h1 id="隧道—-gt-TCP"><a href="#隧道—-gt-TCP" class="headerlink" title="隧道—-&gt;TCP"></a>隧道—-&gt;TCP</h1><ol>
+<h3 id="现状基于深度数据包检测技术"><a class="markdownIt-Anchor" href="#现状基于深度数据包检测技术"></a> 现状：基于深度数据包检测技术</h3>
+<h1 id="隧道-tcp"><a class="markdownIt-Anchor" href="#隧道-tcp"></a> 隧道----&gt;TCP</h1>
+<ol>
 <li><strong>问题</strong> 由于TCP本身是不加密的，如果有人窃听TCP连接，就可以知道有效载荷中的全部内容。</li>
 <li><strong>解决</strong> 使用隧道协议，无需改变软件的执行就能防止窃听，并且加密是自动的。</li>
-<li><strong>缺点</strong> 需要在传输层或网络层协议中使用应用层概念，增加了协议栈的开销。<h2 id="安全的Shell-SSH-gt-Telnet-FTP-rlogin等早期远程管理协议"><a href="#安全的Shell-SSH-gt-Telnet-FTP-rlogin等早期远程管理协议" class="headerlink" title="安全的Shell (SSH) -&gt;Telnet,FTP,rlogin等早期远程管理协议"></a>安全的Shell (SSH) -&gt;Telnet,FTP,rlogin等早期远程管理协议</h2></li>
+<li><strong>缺点</strong> 需要在传输层或网络层协议中使用应用层概念，增加了协议栈的开销。</li>
+</ol>
+<h2 id="安全的shell-ssh-telnetftprlogin等早期远程管理协议"><a class="markdownIt-Anchor" href="#安全的shell-ssh-telnetftprlogin等早期远程管理协议"></a> 安全的Shell (SSH) -&gt;Telnet,FTP,rlogin等早期远程管理协议</h2>
+<ol>
 <li>使用对称和公钥密码技术加密通信。</li>
 <li>常用于<strong>安全隧道</strong>，目的是使窃听者无法推断出SSH流量的内容，使用SSH建立的隧道能防止许多基于数据包嗅探的攻击。</li>
-<li><strong>安全的交互式命令会话</strong>过程：<ol>
+<li><strong>安全的交互式命令会话</strong>过程：
+<ol>
 <li>客户端通过一个TCP会话连接到服务器</li>
 <li>客户端与服务器交换管理细节的信息，如支持的加密方法、各 自协议的版本，每一方都要选择另一方支持的一组协议</li>
 <li>客户端和服务器进行密钥交换，创建共享的秘密会话密钥，用 会话密钥加密双方的通信（但不用于身份验证）。这个会话密 钥配合选择的块加密（通常是AES、3DES、Blowfish或IDEA） 来加密所有后续的通信</li>
-<li>服务器向客户端发送可以接受身份验证列表，客户端将按顺序尝 试。最常见的机制是使用密码或以下的公共密钥身份验证方法：<ol>
+<li>服务器向客户端发送可以接受身份验证列表，客户端将按顺序尝 试。最常见的机制是使用密码或以下的公共密钥身份验证方法：
+<ol>
 <li>如果选定的机制是<strong>公共密钥身份验证</strong>，则客户端向服务器发送<strong>自己的</strong>公钥；</li>
 <li>然后服务器检查是否这密钥已存储在其授权的密钥列表之中。如果在， 服务器使用客户的<strong>公钥加密挑战</strong>，并将其发送给客户端；</li>
 <li>客户用自己的私钥解密挑战，并向服务器发回响应，证明自己的身份；</li>
@@ -288,46 +325,61 @@
 </ol>
 </li>
 </ol>
-<h2 id="IPSec–-gt-IP"><a href="#IPSec–-gt-IP" class="headerlink" title="IPSec–&gt;IP"></a>IPSec–&gt;IP</h2><p>IPSec协议族在网络层保证应用程序的安全，为数据包提供机密性和真实性。且协议族中每个协议都能运行在<strong>传输模式</strong>或<strong>隧道模式</strong>下</p>
+<h2 id="ipsecip"><a class="markdownIt-Anchor" href="#ipsecip"></a> IPSec–&gt;IP</h2>
+<p>IPSec协议族在网络层保证应用程序的安全，为数据包提供机密性和真实性。且协议族中每个协议都能运行在<strong>传输模式</strong>或<strong>隧道模式</strong>下</p>
 <ol>
 <li><strong>传输模式</strong>：在原数据包的数据之前，插入额外的IPSec的头信息，只对数据包的有效载荷继续加密或身份验证。</li>
 <li><strong>隧道模式</strong>：构造一个新的数据包，将IPSec头信息和整个原数据包一起封装进新数据包的有效载荷中。</li>
 </ol>
-<h2 id="VPN-虚拟专用网"><a href="#VPN-虚拟专用网" class="headerlink" title="VPN 虚拟专用网"></a>VPN 虚拟专用网</h2><p>分为 <strong>远程访问VPN</strong>和<strong>站点到站点的VPN</strong></p>
-<h3 id="远程访问VPN"><a href="#远程访问VPN" class="headerlink" title="远程访问VPN"></a>远程访问VPN</h3><p>允许授权的用户通过安装在自己电脑上的客户端通过NAS访问私有网络，即内网。</p>
+<h2 id="vpn-虚拟专用网"><a class="markdownIt-Anchor" href="#vpn-虚拟专用网"></a> VPN 虚拟专用网</h2>
+<p>分为 <strong>远程访问VPN</strong>和<strong>站点到站点的VPN</strong></p>
+<h3 id="远程访问vpn"><a class="markdownIt-Anchor" href="#远程访问vpn"></a> 远程访问VPN</h3>
+<p>允许授权的用户通过安装在自己电脑上的客户端通过NAS访问私有网络，即内网。</p>
 <ol>
 <li><strong>网路接入服务器(NAS)</strong>：VPN服务端</li>
 </ol>
-<h3 id="站点到站点的VPN"><a href="#站点到站点的VPN" class="headerlink" title="站点到站点的VPN"></a>站点到站点的VPN</h3><p>旨在为<strong>两个或更多</strong>远程网络提供安全的桥梁。两个网络各有一个独立的VPN端点，两端点之间相互通信。</p>
-<h3 id="安全问题"><a href="#安全问题" class="headerlink" title="安全问题"></a>安全问题</h3><ol>
-<li><p>使用点对点的隧道协议 PPTP</p>
-<p> 首先使用PPP建立连接，然后封装PPP帧，然后用MPPE对其加密，最后通过互联网发送数据包。</p>
+<h3 id="站点到站点的vpn"><a class="markdownIt-Anchor" href="#站点到站点的vpn"></a> 站点到站点的VPN</h3>
+<p>旨在为<strong>两个或更多</strong>远程网络提供安全的桥梁。两个网络各有一个独立的VPN端点，两端点之间相互通信。</p>
+<h3 id="安全问题"><a class="markdownIt-Anchor" href="#安全问题"></a> 安全问题</h3>
+<ol>
+<li>
+<p>使用点对点的隧道协议 PPTP</p>
+<p>首先使用PPP建立连接，然后封装PPP帧，然后用MPPE对其加密，最后通过互联网发送数据包。</p>
 </li>
 </ol>
-<h2 id="隧道存在的安全风险"><a href="#隧道存在的安全风险" class="headerlink" title="隧道存在的安全风险"></a>隧道存在的安全风险</h2><ol>
+<h2 id="隧道存在的安全风险"><a class="markdownIt-Anchor" href="#隧道存在的安全风险"></a> 隧道存在的安全风险</h2>
+<ol>
 <li>会规避防火墙的策略。当使用隧道技术时，会不同的传输协议对一系列网络数据包的有效载荷进行封装。同时，在隧道协议中也对有效载荷进行了加密，所以深度数据包检测也毫无用处。</li>
 <li>如果内部用户通过隧道直接和外部服务器连接，并代表该用户向禁止访问的网站路由HTTP流量，同样通过隧道，将响应返回给该用户。相应的，攻击者也可以通过隧道规避防火墙。</li>
 </ol>
-<h1 id="入侵检测"><a href="#入侵检测" class="headerlink" title="入侵检测"></a>入侵检测</h1><h2 id="入侵检测系统-IDS"><a href="#入侵检测系统-IDS" class="headerlink" title="入侵检测系统 IDS"></a>入侵检测系统 IDS</h2><p>IDS 是一个软件或硬件系统，用于检测网络或个人计算机上恶意活动的迹象。</p>
+<h1 id="入侵检测"><a class="markdownIt-Anchor" href="#入侵检测"></a> 入侵检测</h1>
+<h2 id="入侵检测系统-ids"><a class="markdownIt-Anchor" href="#入侵检测系统-ids"></a> 入侵检测系统 IDS</h2>
+<p>IDS 是一个软件或硬件系统，用于检测网络或个人计算机上恶意活动的迹象。</p>
 <ol>
-<li><p>分类： 按功能分</p>
+<li>
+<p>分类： 按功能分</p>
 <ol>
-<li><p>IDS传感器，用于收集网络组件或计算机的实时数据</p>
+<li>
+<p>IDS传感器，用于收集网络组件或计算机的实时数据</p>
 </li>
-<li><p>IDS管理器，用于接收来自传感器的报告</p>
+<li>
+<p>IDS管理器，用于接收来自传感器的报告</p>
 </li>
-<li><p><strong>关系</strong>：IDS管理器编译来自IDS传感器的数据，以确定是否发生了入侵。以此确定基于一组站点策略，这些策略是定义可能入侵的规则和条件。如果 IDS管理员检测到入侵，则会发出警报。</p>
+<li>
+<p><strong>关系</strong>：IDS管理器编译来自IDS传感器的数据，以确定是否发生了入侵。以此确定基于一组站点策略，这些策略是定义可能入侵的规则和条件。如果 IDS管理员检测到入侵，则会发出警报。</p>
 </li>
 </ol>
 </li>
-<li><p>IDS所检测的威胁包括</p>
+<li>
+<p>IDS所检测的威胁包括</p>
 <ol>
 <li>伪装者：冒用合法用户的身份或凭据来获得对计算机系统或网络的访问的攻击者</li>
 <li>违反者：执行了未经授权的操作的合法的用户</li>
 <li>秘密用户：通过删除审计文件或系统日志，试图组织或掩盖自己行为的用户</li>
 </ol>
 </li>
-<li><p>IDS所检测的攻击包括</p>
+<li>
+<p>IDS所检测的攻击包括</p>
 <ol>
 <li><strong>端口扫描</strong>：是指某些别有用心的人发送一组端口扫描消息，试图以此侵入某台计算机，并了解其提供的计算机网络服务类型。攻击者可以通过它了解到从哪里可探寻到攻击弱点。</li>
 <li><strong>拒绝服务攻击</strong>：网络攻击淹没主机，并将合法访问拒之门外</li>
@@ -337,191 +389,250 @@
 </ol>
 </li>
 </ol>
-<h2 id="入侵检测技术"><a href="#入侵检测技术" class="headerlink" title="入侵检测技术"></a>入侵检测技术</h2><ol>
-<li><p>传统的网络入侵检测系统（NIDS）</p>
-<p> – 位于网络边界，基于<strong>流量模式和内容</strong>检测恶意的行为；</p>
+<h2 id="入侵检测技术"><a class="markdownIt-Anchor" href="#入侵检测技术"></a> 入侵检测技术</h2>
+<ol>
+<li>
+<p>传统的网络入侵检测系统（NIDS）</p>
+<p>– 位于网络边界，基于<strong>流量模式和内容</strong>检测恶意的行为；</p>
 </li>
-<li><p>基于入侵检测系统的协议（PIDS）</p>
-<p> – <strong>专门检测特定协议中的恶意行为</strong>，通常部署在特定的网络主机中。如 Web服务器可以运行PIDS来分析流入的HTTP流量，丢弃恶意的或包含错误的请求</p>
+<li>
+<p>基于入侵检测系统的协议（PIDS）</p>
+<p>– <strong>专门检测特定协议中的恶意行为</strong>，通常部署在特定的网络主机中。如 Web服务器可以运行PIDS来分析流入的HTTP流量，丢弃恶意的或包含错误的请求</p>
 </li>
-<li><p>基于主机的IDS（HIDS）</p>
-<p> – 驻留在单个系统之中，<strong>监控这台计算机上的活动</strong>。如系统调用，进程间 的通信和资源使用模式</p>
+<li>
+<p>基于主机的IDS（HIDS）</p>
+<p>– 驻留在单个系统之中，<strong>监控这台计算机上的活动</strong>。如系统调用，进程间 的通信和资源使用模式</p>
 </li>
 </ol>
-<h2 id="IDS攻击"><a href="#IDS攻击" class="headerlink" title="IDS攻击"></a>IDS攻击</h2><p>通过对IDS本身发动Dos攻击，故意触发大量入侵警报。直到淹没IDS，使他无法记录每个事件，或让管理员很难确定哪些日志代表攻击。</p>
-<h2 id="入侵检测错误"><a href="#入侵检测错误" class="headerlink" title="入侵检测错误"></a>入侵检测错误</h2><p>包括：</p>
+<h2 id="ids攻击"><a class="markdownIt-Anchor" href="#ids攻击"></a> IDS攻击</h2>
+<p>通过对IDS本身发动Dos攻击，故意触发大量入侵警报。直到淹没IDS，使他无法记录每个事件，或让管理员很难确定哪些日志代表攻击。</p>
+<h2 id="入侵检测错误"><a class="markdownIt-Anchor" href="#入侵检测错误"></a> 入侵检测错误</h2>
+<p>包括：</p>
 <ol>
 <li>误报：当事件是良性活动而不是入侵时就发出警报，导致时间和资源的浪费。</li>
 <li>漏报：当事件是入侵的恶意事件，却未发出警报。</li>
 </ol>
-<h3 id="基率谬误"><a href="#基率谬误" class="headerlink" title="基率谬误"></a>基率谬误</h3><p>由于基率谬误的存在，可能使某些IDS的有效性被误解。所以，当评估某些条件事件的概率而不考虑该事件的“基本概率”时，会发生此类错误。例如：</p>
+<h3 id="基率谬误"><a class="markdownIt-Anchor" href="#基率谬误"></a> 基率谬误</h3>
+<p>由于基率谬误的存在，可能使某些IDS的有效性被误解。所以，当评估某些条件事件的概率而不考虑该事件的“基本概率”时，会发生此类错误。例如：</p>
 <ol>
-<li><p>假设IDS准确度为99％，假阳性或假阴性的概率为1％。 </p>
+<li>
+<p>假设IDS准确度为99％，假阳性或假阴性的概率为1％。</p>
 </li>
-<li><p>假设入侵检测系统生成1,000,100个日志条目。 1,000,100个条目中只有100个对应于实际的恶意事件。 </p>
+<li>
+<p>假设入侵检测系统生成1,000,100个日志条目。 1,000,100个条目中只有100个对应于实际的恶意事件。</p>
 </li>
-<li><p>由于IDS的成功率，在100个恶意事件中，99个将被检测为恶意，这意 味着我们有1个假阴性。 </p>
+<li>
+<p>由于IDS的成功率，在100个恶意事件中，99个将被检测为恶意，这意 味着我们有1个假阴性。</p>
 </li>
-<li><p>然而，在1,000,000个良性事件中，10,000个将被错误地识别为恶意事件。 </p>
+<li>
+<p>然而，在1,000,000个良性事件中，10,000个将被错误地识别为恶意事件。</p>
 </li>
-<li><p>因此，将共有10,099个警报响起，其中10,000个是误报警。也就是说，大约99％的警报都是误报警。</p>
+<li>
+<p>因此，将共有10,099个警报响起，其中10,000个是误报警。也就是说，大约99％的警报都是误报警。</p>
 </li>
 </ol>
-<h2 id="IDS数据收集和审计记录"><a href="#IDS数据收集和审计记录" class="headerlink" title="IDS数据收集和审计记录"></a>IDS数据收集和审计记录</h2><ol>
-<li><p>入侵检测的输入是确定网络或主机操作基本的记录流</p>
+<h2 id="ids数据收集和审计记录"><a class="markdownIt-Anchor" href="#ids数据收集和审计记录"></a> IDS数据收集和审计记录</h2>
+<ol>
+<li>
+<p>入侵检测的输入是确定网络或主机操作基本的记录流</p>
 </li>
-<li><p>记录流中操作的类型包括：</p>
+<li>
+<p>记录流中操作的类型包括：</p>
 <ol>
 <li>基于网的IDS，包括每次HTTP会话尝试、每次登录尝试、每 次TCP绘画的初始化等；</li>
 <li>基于主机的IDS，包括对文件的读、写或执行</li>
 </ol>
 </li>
-<li><p>IDS传感器检测这些操作，创建这些操作的特征。将这 些记录报告给IDS管理器或者将它们写入审计日志</p>
+<li>
+<p>IDS传感器检测这些操作，创建这些操作的特征。将这 些记录报告给IDS管理器或者将它们写入审计日志</p>
 </li>
-<li><p>IDS事件记录包括：主体，对象，操作，异常条件，占用的资源，时间戳。</p>
-</li>
-</ol>
-<h2 id="入侵检测系统的类型"><a href="#入侵检测系统的类型" class="headerlink" title="入侵检测系统的类型"></a>入侵检测系统的类型</h2><h3 id="基于规则的入侵检测"><a href="#基于规则的入侵检测" class="headerlink" title="基于规则的入侵检测"></a>基于规则的入侵检测</h3><ol>
-<li><p><strong>规则</strong>标识与入侵攻击的某些已知<strong>配置文件匹配的操作类型</strong>，在这种情况下， 规则将编码此类攻击的<strong>签名</strong>。因此，如果IDS管理器看到与该规则的签名匹配的事件，它将立即发出警报，甚至可能指示怀疑的类型。</p>
-</li>
-<li><p><strong>优点</strong>：减少了误报，因为决策者已经明确了规则列表。</p>
-</li>
-<li><p><strong>缺点</strong>：存在局限性，因为它需要IDS具有每一个攻击类型的特征。</p>
-<h3 id="基于统计的入侵检测"><a href="#基于统计的入侵检测" class="headerlink" title="基于统计的入侵检测"></a>基于统计的入侵检测</h3></li>
-<li><p>构建了一个配置文件，它是用户行为或主机使用的<strong>典型方式</strong>的统计表示； 因此，它可用于确定用户或主机何时以非常不寻常的<strong>异常方式</strong>运行。</p>
+<li>
+<p>IDS事件记录包括：主体，对象，操作，异常条件，占用的资源，时间戳。</p>
 </li>
 </ol>
-<h3 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h3><ol>
-<li><p>允许用户列举计算机的哪个端口正在接受连接的技术。端口的状态包括：开放的，关闭的，阻塞的。</p>
-</li>
-<li><p>端口扫描的方法：</p>
+<h2 id="入侵检测系统的类型"><a class="markdownIt-Anchor" href="#入侵检测系统的类型"></a> 入侵检测系统的类型</h2>
+<h3 id="基于规则的入侵检测"><a class="markdownIt-Anchor" href="#基于规则的入侵检测"></a> 基于规则的入侵检测</h3>
 <ol>
-<li><p>TCP扫描/连接扫描：向目标主机的每个端口发起TCP连接。完成连接的端口是开放的，否则要么是关闭的，要么是阻塞的。</p>
+<li>
+<p><strong>规则</strong>标识与入侵攻击的某些已知<strong>配置文件匹配的操作类型</strong>，在这种情况下， 规则将编码此类攻击的<strong>签名</strong>。因此，如果IDS管理器看到与该规则的签名匹配的事件，它将立即发出警报，甚至可能指示怀疑的类型。</p>
 </li>
-<li><p>SYN扫描：向目标主机端口发起SYN标志的数据包，看是否有SYN-ACK返回。(如果收到，则发出一个RST数据包终止连接而非完成握手)</p>
+<li>
+<p><strong>优点</strong>：减少了误报，因为决策者已经明确了规则列表。</p>
 </li>
-<li><p>空闲扫描：它允许进行端口完全欺骗扫描。使得攻击者能够不使用自己的IP向目标主机发送数据包。它的巧妙之处在于，利用不活跃的“僵尸主机”反弹给攻击者一个旁通信道，从而使得攻击者可以进行端口扫描。入侵检测系统也就会把无辜的僵尸主机当成攻击者。利用僵尸可预测的TCP序列号实现。其过程如下：</p>
+<li>
+<p><strong>缺点</strong>：存在局限性，因为它需要IDS具有每一个攻击类型的特征。</p>
+</li>
+</ol>
+<h3 id="基于统计的入侵检测"><a class="markdownIt-Anchor" href="#基于统计的入侵检测"></a> 基于统计的入侵检测</h3>
+<ol>
+<li>构建了一个配置文件，它是用户行为或主机使用的<strong>典型方式</strong>的统计表示； 因此，它可用于确定用户或主机何时以非常不寻常的<strong>异常方式</strong>运行。</li>
+</ol>
+<h3 id="端口扫描"><a class="markdownIt-Anchor" href="#端口扫描"></a> 端口扫描</h3>
+<ol>
+<li>允许用户列举计算机的哪个端口正在接受连接的技术。端口的状态包括：开放的，关闭的，阻塞的。</li>
+<li>端口扫描的方法：
+<ol>
+<li>
+<p>TCP扫描/连接扫描：向目标主机的每个端口发起TCP连接。完成连接的端口是开放的，否则要么是关闭的，要么是阻塞的。</p>
+</li>
+<li>
+<p>SYN扫描：向目标主机端口发起SYN标志的数据包，看是否有SYN-ACK返回。(如果收到，则发出一个RST数据包终止连接而非完成握手)</p>
+</li>
+<li>
+<p>空闲扫描：它允许进行端口完全欺骗扫描。使得攻击者能够不使用自己的IP向目标主机发送数据包。它的巧妙之处在于，利用不活跃的“僵尸主机”反弹给攻击者一个旁通信道，从而使得攻击者可以进行端口扫描。入侵检测系统也就会把无辜的僵尸主机当成攻击者。利用僵尸可预测的TCP序列号实现。其过程如下：</p>
 <ol>
 <li>探测僵尸主机的IP ID 并记录。</li>
 <li>向需要扫描的目标主机端口发送一个伪造成来自僵尸主机的SYN包。根据目标主机端口状态的不同，目标主机返回的数据包会使得僵尸主机的IP ID递增或否。</li>
 <li>再次探测僵尸主机的IP ID。并对比第一步记录的IP ID就可以确定目标主机端口的状态。如果序列号递增了，则表示目标端口是开放的。否则，目标端口是关闭或阻塞的。</li>
 </ol>
 </li>
-<li><p>UDP扫描：向目标主机端口发送UDP数据包。</p>
+<li>
+<p>UDP扫描：向目标主机端口发送UDP数据包。</p>
 </li>
 </ol>
 </li>
 </ol>
-<h2 id="蜜罐"><a href="#蜜罐" class="headerlink" title="蜜罐"></a>蜜罐</h2><p>使用一台计算机作为诱饵的入侵检测技术。其优点包括</p>
+<h2 id="蜜罐"><a class="markdownIt-Anchor" href="#蜜罐"></a> 蜜罐</h2>
+<p>使用一台计算机作为诱饵的入侵检测技术。其优点包括</p>
 <ol>
-<li><p>入侵检测：因为连接到蜜罐的尝试不会来自合法用户，所以 对蜜罐的任何连接都被安全地确定为入侵。</p>
+<li>
+<p>入侵检测：因为连接到蜜罐的尝试不会来自合法用户，所以 对蜜罐的任何连接都被安全地确定为入侵。</p>
 </li>
-<li><p>证据：蜜罐计算机中有吸引力的文件使入侵者逗留并留下证据，从而识别出入侵者或者确定他的位置。</p>
+<li>
+<p>证据：蜜罐计算机中有吸引力的文件使入侵者逗留并留下证据，从而识别出入侵者或者确定他的位置。</p>
 </li>
-<li><p>导流：与合法计算机相比，蜜罐对入侵者更有吸引力，从而分散入侵者对敏感信息和服务的注意力。</p>
+<li>
+<p>导流：与合法计算机相比，蜜罐对入侵者更有吸引力，从而分散入侵者对敏感信息和服务的注意力。</p>
 </li>
 </ol>
-<h1 id="无线网"><a href="#无线网" class="headerlink" title="无线网"></a>无线网</h1><p>无线网引入安全问题包括：</p>
+<h1 id="无线网"><a class="markdownIt-Anchor" href="#无线网"></a> 无线网</h1>
+<p>无线网引入安全问题包括：</p>
 <ol>
 <li>使得<strong>数据包嗅探</strong>更加容易。因为同一个网段的所有计算机都共享一个无线接入点。</li>
 <li>使得<strong>会话劫持</strong>更加容易。因为配有无线适配器的计算机都可以嗅探出数据包并模拟无线接入点。</li>
 <li>存在<strong>入侵</strong>问题。入侵指未授权用户通过其他人的无限接入点连接到互联网。</li>
 <li>验证<strong>合法用户</strong>的难度增加。通过在局域网中主机的位置来验证合法主机再不可能，需要其他的身份验证或授权方法。</li>
 </ol>
-<h2 id="无线网结构"><a href="#无线网结构" class="headerlink" title="无线网结构"></a>无线网结构</h2><img src="/计安导_img/7.png"  />    
-
+<h2 id="无线网结构"><a class="markdownIt-Anchor" href="#无线网结构"></a> 无线网结构</h2>
+<img src="/计安导_img/7.png"  />	
 <ol>
 <li>基于802.11标准。大多数的TCP/IP实现会根据不同的接收者重新定义数据包，即802.11帧和以太网帧的相互转换。</li>
-<li>结构<ol>
+<li>结构
+<ol>
 <li>客户端计算机与接入点建立无线连接。</li>
 <li>无线接入点连接到有线网络的接入点提供到互联网的网关。</li>
 </ol>
 </li>
 </ol>
-<h2 id="SSID-服务集ID"><a href="#SSID-服务集ID" class="headerlink" title="SSID (服务集ID)"></a>SSID (服务集ID)</h2><ol>
-<li>SSID 32个字符组成的网络标识，使得多个无线网络可以共存。<ol>
+<h2 id="ssid-服务集id"><a class="markdownIt-Anchor" href="#ssid-服务集id"></a> SSID (服务集ID)</h2>
+<ol>
+<li>SSID 32个字符组成的网络标识，使得多个无线网络可以共存。
+<ol>
 <li>制造商的名称是接入点的典型默认SSID。</li>
 <li>经常广播SSID可以使潜在用户能够发现网络</li>
 </ol>
 </li>
-<li><strong>问题</strong> ：由于SSID未被签名，所以可以进行欺骗攻击<ol>
-<li>将恶意接入点放置在公共场所（例如，咖啡馆，机场）； </li>
+<li><strong>问题</strong> ：由于SSID未被签名，所以可以进行欺骗攻击
+<ol>
+<li>将恶意接入点放置在公共场所（例如，咖啡馆，机场）；</li>
 <li>使用ISP的SSID</li>
-<li>设置类似于ISP的登录页面； </li>
+<li>设置类似于ISP的登录页面；</li>
 <li>等待客户端连接到恶意接入点并进行身份验证；</li>
 <li>可能会转发到ISP网络的会话；</li>
 <li>由自动连接默认值促成</li>
 </ol>
 </li>
 </ol>
-<h2 id="强制网络门户"><a href="#强制网络门户" class="headerlink" title="强制网络门户"></a>强制网络门户</h2><ol>
-<li><p><strong>定义</strong>：是公共接入网络的用户在授予访问权限之前必须查看和交互的网页。通常 用于商业中心、机场、酒店大堂、咖啡店等为用户提供免费Wi-Fi的场所</p>
-</li>
-<li><p><strong>协议</strong></p>
+<h2 id="强制网络门户"><a class="markdownIt-Anchor" href="#强制网络门户"></a> 强制网络门户</h2>
 <ol>
-<li><p>通过MAC地址定位客户端。</p>
+<li>
+<p><strong>定义</strong>：是公共接入网络的用户在授予访问权限之前必须查看和交互的网页。通常 用于商业中心、机场、酒店大堂、咖啡店等为用户提供免费Wi-Fi的场所</p>
 </li>
-<li><p>认证完成之前，任何URL都会被重定向到身份验证界面。</p>
+<li>
+<p><strong>协议</strong></p>
+<ol>
+<li>
+<p>通过MAC地址定位客户端。</p>
+</li>
+<li>
+<p>认证完成之前，任何URL都会被重定向到身份验证界面。</p>
 <ol>
 <li>防火墙会阻止其他流量。</li>
 <li>名称服务器会将一切映射到认证服务器。</li>
 </ol>
 </li>
-<li><p>身份验证之后，恢复常规网络服务。由DHCP提供IP地址。</p>
+<li>
+<p>身份验证之后，恢复常规网络服务。由DHCP提供IP地址。</p>
 </li>
 </ol>
 </li>
-<li><p><strong>问题</strong> </p>
+<li>
+<p><strong>问题</strong></p>
 <ol>
 <li>如果客户端没有主动断开连接，则可以执行MAC欺骗和会话窃取。</li>
 <li>如果身份验证之前未阻止防火墙之外的DNS流量，则隧道攻击可以绕过强制网络门户。</li>
 </ol>
 </li>
 </ol>
-<h2 id="Wardriving-and-Warchalking"><a href="#Wardriving-and-Warchalking" class="headerlink" title="Wardriving and Warchalking"></a>Wardriving and Warchalking</h2><ol>
+<h2 id="wardriving-and-warchalking"><a class="markdownIt-Anchor" href="#wardriving-and-warchalking"></a> Wardriving and Warchalking</h2>
+<ol>
 <li>Wardriving在移动的汽车中，使用移动设备四处寻找无线网。</li>
 <li>Warchalking（开战标记）：在公共场所绘制引导公共Wi-Fi网 络的一种绘画符号（源自流浪汉符号）</li>
 </ol>
-<h2 id="WEP-有线等效保密协议"><a href="#WEP-有线等效保密协议" class="headerlink" title="WEP 有线等效保密协议"></a>WEP 有线等效保密协议</h2><p>###<strong>目标</strong> ：</p>
+<h2 id="wep-有线等效保密协议"><a class="markdownIt-Anchor" href="#wep-有线等效保密协议"></a> WEP 有线等效保密协议</h2>
+<p>###<strong>目标</strong> ：</p>
 <ol>
 <li>机密性:防止窃听。</li>
 <li>数据完整性：保证数据包不被篡改。</li>
-<li>访问控制：仅路由正确加密的数据包。<br>###<strong>限制</strong></li>
+<li>访问控制：仅路由正确加密的数据包。<br />
+###<strong>限制</strong></li>
 <li>在数据链路层加密每个帧的主体。</li>
 <li>避免传统的802.11标准。</li>
 </ol>
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>接入点和客户端共享40b的密钥。密钥在WEP会话期间不被更改。</p>
-<h3 id="流密码"><a href="#流密码" class="headerlink" title="流密码"></a>流密码</h3><ol>
+<h3 id="初始化"><a class="markdownIt-Anchor" href="#初始化"></a> 初始化</h3>
+<p>接入点和客户端共享40b的密钥。密钥在WEP会话期间不被更改。</p>
+<h3 id="流密码"><a class="markdownIt-Anchor" href="#流密码"></a> 流密码</h3>
+<ol>
 <li>流密码是一种对称加密系统，密文C由明文消息M异或密钥流生成，而密钥流是密钥产生的伪随机数二进制向量S。</li>
-<li><strong>流密码是安全的</strong> 因为相同的密钥流永远不会被重用，否则攻击者会得到两个明文消息的异或值，统计攻击就能同时恢复明文和密钥流。<h3 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h3></li>
+<li><strong>流密码是安全的</strong> 因为相同的密钥流永远不会被重用，否则攻击者会得到两个明文消息的异或值，统计攻击就能同时恢复明文和密钥流。</li>
+</ol>
+<h3 id="加密"><a class="markdownIt-Anchor" href="#加密"></a> 加密</h3>
+<ol>
 <li>计算消息M(有效载荷部分)的CRC校验和。</li>
 <li>选择24b的初始化向量V</li>
 <li>使用RC4流密码生成密钥流S(K,V)</li>
 <li>计算密文 C=(M||CRC(m))⊕S(K,V)</li>
 </ol>
-<h3 id="WEP-认证方法"><a href="#WEP-认证方法" class="headerlink" title="WEP 认证方法"></a>WEP 认证方法</h3><p>包括开放系统和共享密钥两种。</p>
+<h3 id="wep-认证方法"><a class="markdownIt-Anchor" href="#wep-认证方法"></a> WEP 认证方法</h3>
+<p>包括开放系统和共享密钥两种。</p>
 <ol>
-<li><p><strong>开放系统</strong>身份验证</p>
-<p> 客户端无需任何凭证就可以连接接入点。且只能使用正确的密钥发送和接收信息，否则接入点会忽略请求。</p>
+<li>
+<p><strong>开放系统</strong>身份验证</p>
+<p>客户端无需任何凭证就可以连接接入点。且只能使用正确的密钥发送和接收信息，否则接入点会忽略请求。</p>
 </li>
-<li><p><strong>共享密钥</strong>身份验证</p>
-<p> 在连入接入点之前要先证明自己拥有接入点的WEP密钥。</p>
+<li>
+<p><strong>共享密钥</strong>身份验证</p>
+<p>在连入接入点之前要先证明自己拥有接入点的WEP密钥。</p>
 <ol start="2">
 <li>接入点向客户端发起明文挑战，客户端用拥有的密钥加密该明文，并将生成的密文发给接入点。</li>
 <li>如果接入点能正确解密，则可连接接入点。</li>
 </ol>
 </li>
 </ol>
-<h2 id="消息篡改攻击"><a href="#消息篡改攻击" class="headerlink" title="消息篡改攻击"></a>消息篡改攻击</h2><h3 id="消息篡改"><a href="#消息篡改" class="headerlink" title="消息篡改"></a>消息篡改</h3><p>对于给定一个任意字符串 ，我们想用M’=M⊕▲替换消息M</p>
+<h2 id="消息篡改攻击"><a class="markdownIt-Anchor" href="#消息篡改攻击"></a> 消息篡改攻击</h2>
+<h3 id="消息篡改"><a class="markdownIt-Anchor" href="#消息篡改"></a> 消息篡改</h3>
+<p>对于给定一个任意字符串 ，我们想用M’=M⊕▲替换消息M</p>
 <p>可以在中途用C’=C⊕(▲||CRC(▲))来替换C。</p>
 <ol>
 <li>需要直到消息中文本的位置即可</li>
 <li><strong>脆弱性原因</strong> CRC检验和是通过XOR</li>
 <li><strong>解决</strong> 改用哈希函数</li>
 </ol>
-<h2 id="IP重定向攻击"><a href="#IP重定向攻击" class="headerlink" title="IP重定向攻击"></a>IP重定向攻击</h2><p>指攻击者利用物理接入点解密数据包，将目的地址修改为恶意主机地址。</p>
+<h2 id="ip重定向攻击"><a class="markdownIt-Anchor" href="#ip重定向攻击"></a> IP重定向攻击</h2>
+<p>指攻击者利用物理接入点解密数据包，将目的地址修改为恶意主机地址。</p>
 <ol>
-<li><p>过程为：</p>
+<li>
+<p>过程为：</p>
 <ol>
 <li>窃听入站的IP数据包。</li>
 <li>将数据包重新发送到由攻击者控制的外部计算机。</li>
@@ -529,40 +640,54 @@
 <li>重复出站数据包。</li>
 </ol>
 </li>
-<li><p>需要修改数据包校验和。校验和的差为：x’-x=(D’H+D’L)-(DH-DL)</p>
+<li>
+<p>需要修改数据包校验和。校验和的差为：x’-x=(D’H+D’L)-(DH-DL)</p>
 </li>
 </ol>
-<h2 id="重用初始化向量IV"><a href="#重用初始化向量IV" class="headerlink" title="重用初始化向量IV"></a>重用初始化向量IV</h2><h3 id="初始化向量IV"><a href="#初始化向量IV" class="headerlink" title="初始化向量IV"></a>初始化向量IV</h3><ol>
+<h2 id="重用初始化向量iv"><a class="markdownIt-Anchor" href="#重用初始化向量iv"></a> 重用初始化向量IV</h2>
+<h3 id="初始化向量iv"><a class="markdownIt-Anchor" href="#初始化向量iv"></a> 初始化向量IV</h3>
+<ol>
 <li>每个数据包一个，24位。</li>
 <li>以邮件的明文部分发送。</li>
 <li>初始化向量空间过小会导致重用相同的密钥流。</li>
 </ol>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ol>
+<h3 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h3>
+<ol>
 <li><strong>问题</strong> 重用初始化向量意味着重用密钥流，攻击者获得两条消息的XOR，可以恢复出消息和密钥流。</li>
 <li><strong>默认IV存在上述问题</strong></li>
-<li><strong>解决</strong> 使用随机IV，且长度要足够长。<h3 id="注入方法"><a href="#注入方法" class="headerlink" title="注入方法"></a>注入方法</h3></li>
+<li><strong>解决</strong> 使用随机IV，且长度要足够长。</li>
+</ol>
+<h3 id="注入方法"><a class="markdownIt-Anchor" href="#注入方法"></a> 注入方法</h3>
+<ol>
 <li>假设攻击者知道一个加密消息的一个明文。</li>
 <li>利用RC4(X )⊕X⊕Y=RC4(Y),来构造计算CRC32的新消息。</li>
 </ol>
-<h2 id="身份验证欺骗"><a href="#身份验证欺骗" class="headerlink" title="身份验证欺骗"></a>身份验证欺骗</h2><ol>
+<h2 id="身份验证欺骗"><a class="markdownIt-Anchor" href="#身份验证欺骗"></a> 身份验证欺骗</h2>
+<ol>
 <li>不知道密钥的非法用户可以通过窃听身份验证消息。</li>
-<li><strong>攻击</strong><ol>
-<li>生成挑战R和加密挑战C =(R||CRC(R))⊕S(K,V)</li>
-<li>计算密钥流S(K,V)=(R||CRC(R))⊕C</li>
+<li><strong>攻击</strong>
+<ol>
+<li>生成挑战R和加密挑战C =(R||CRC®)⊕S(K,V)</li>
+<li>计算密钥流S(K,V)=(R||CRC®)⊕C</li>
 <li>从接入点挑战时重用密钥流S(K,V)</li>
 </ol>
 </li>
 </ol>
-<h2 id="慢攻击：WEP嗅探"><a href="#慢攻击：WEP嗅探" class="headerlink" title="慢攻击：WEP嗅探"></a>慢攻击：WEP嗅探</h2><p>通过大量数据包去计算初始化向量IV</p>
-<h2 id="快攻击：数据包注入"><a href="#快攻击：数据包注入" class="headerlink" title="快攻击：数据包注入"></a>快攻击：数据包注入</h2><h2 id="WPA-Wi-fi访问保护"><a href="#WPA-Wi-fi访问保护" class="headerlink" title="WPA Wi-fi访问保护"></a>WPA Wi-fi访问保护</h2><p>目的是为了改进WEP</p>
-<h3 id="区别WEP"><a href="#区别WEP" class="headerlink" title="区别WEP"></a>区别WEP</h3><ol>
+<h2 id="慢攻击wep嗅探"><a class="markdownIt-Anchor" href="#慢攻击wep嗅探"></a> 慢攻击：WEP嗅探</h2>
+<p>通过大量数据包去计算初始化向量IV</p>
+<h2 id="快攻击数据包注入"><a class="markdownIt-Anchor" href="#快攻击数据包注入"></a> 快攻击：数据包注入</h2>
+<h2 id="wpa-wi-fi访问保护"><a class="markdownIt-Anchor" href="#wpa-wi-fi访问保护"></a> WPA Wi-fi访问保护</h2>
+<p>目的是为了改进WEP</p>
+<h3 id="区别wep"><a class="markdownIt-Anchor" href="#区别wep"></a> 区别WEP</h3>
+<ol>
 <li>采用128位密钥和48位IV</li>
 <li>支持除共享密钥外各种类型的身份验证。</li>
 <li>会话期间动态修改密钥。</li>
 <li>支持检查完整性的加密。</li>
 <li>增加帧计数器防止重放攻击</li>
 </ol>
-<h3 id="WPA2"><a href="#WPA2" class="headerlink" title="WPA2"></a>WPA2</h3><ol>
+<h3 id="wpa2"><a class="markdownIt-Anchor" href="#wpa2"></a> WPA2</h3>
+<ol>
 <li>使用AES而不是RC4</li>
 <li>处理加密，密钥管理和完整性</li>
 <li>由反模式提供的MAC与密码块链接（CCMP）一起使用</li>
@@ -654,19 +779,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC5%E7%AB%A0/" class="article-nav-link">
+      <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC4%E7%AB%A0/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            计安导第5章
+            计安导第4章
           
         </div>
       </a>
     
     
-      <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC7%E7%AB%A0/" class="article-nav-link">
+      <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC3%E7%AB%A0/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">计安导第7章</div>
+        <div class="article-nav-title">计安导第3章</div>
       </a>
     
   </nav>

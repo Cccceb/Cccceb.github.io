@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">380字</span>
+            <span class="post-count">381字</span>
         </span>
     </span>
 
@@ -101,13 +101,18 @@
       
 
       
-      <h1 id="UVA-10003-切木棍"><a href="#UVA-10003-切木棍" class="headerlink" title="UVA 10003 切木棍"></a>UVA 10003 切木棍</h1><p>有一根长度为L（L＜1000）的棍子，还有n（n＜50）个切割点的位置（按照从小到大排 列）。你的任务是在这些切割点的位置处把棍子切成n＋1部分，使得总切割费用最小。每次 切割的费用等于被切割的木棍长度。例如，L=10，切割点为2, 4, 7。如果按照2, 4, 7的顺序， 费用为10＋8＋6=24，如果按照4, 2, 7的顺序，费用为10＋4＋6=20。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+      <h1 id="uva-10003-切木棍"><a class="markdownIt-Anchor" href="#uva-10003-切木棍"></a> UVA 10003 切木棍</h1>
+<p>有一根长度为L（L＜1000）的棍子，还有n（n＜50）个切割点的位置（按照从小到大排 列）。你的任务是在这些切割点的位置处把棍子切成n＋1部分，使得总切割费用最小。每次 切割的费用等于被切割的木棍长度。例如，L=10，切割点为2, 4, 7。如果按照2, 4, 7的顺序， 费用为10＋8＋6=24，如果按照4, 2, 7的顺序，费用为10＋4＋6=20。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
 <li>设d(i,j)为切割小木棍i~j的最优费用，则d(i,j) = min(d(i,k)+d(k,j)|i&lt;k&lt;j)+a[j]-a[i],其中a[j] -a[i]为第一刀的费用</li>
 <li>注意这种递归写法，与UVA的巴比伦塔有类似之处</li>
 </ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="dp-注意初值"><a href="#dp-注意初值" class="headerlink" title="dp 注意初值"></a>dp 注意初值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 50 + 5;</span><br><span class="line">int vis[maxn][maxn];</span><br><span class="line">int d[maxn][maxn];</span><br><span class="line">int a[maxn];</span><br><span class="line"></span><br><span class="line">int dp(int i, int j) &#123;</span><br><span class="line">	if (i &gt;&#x3D; j - 1) return 0;</span><br><span class="line">	if (vis[i][j]) return d[i][j];</span><br><span class="line">	vis[i][j] &#x3D; 1;</span><br><span class="line">	int &amp;ans &#x3D; d[i][j];</span><br><span class="line">	ans &#x3D; -1;</span><br><span class="line">	for (int k &#x3D; i + 1; k &lt;&#x3D; j - 1; k++) &#123;</span><br><span class="line">		int v &#x3D; dp(i, k) + dp(k,j) + a[j] - a[i];</span><br><span class="line">		if (ans&lt;0 || ans&gt;v) ans &#x3D; v;</span><br><span class="line">	&#125;</span><br><span class="line">	return ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="main"><a href="#main" class="headerlink" title="main"></a>main</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int main() &#123;</span><br><span class="line">	int L, n;</span><br><span class="line">	while (scanf(&quot;%d%d&quot;, &amp;L, &amp;n) &#x3D;&#x3D; 2 &amp;&amp; L) &#123;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++) scanf(&quot;%d&quot;, &amp;a[i]);</span><br><span class="line">		a[0] &#x3D; 0; a[n + 1] &#x3D; L;</span><br><span class="line">		memset(vis, 0, sizeof(vis));</span><br><span class="line">		printf(&quot;The minimum cutting is %d.\n&quot;, dp(0, n + 1));</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<h2 id="dp-注意初值"><a class="markdownIt-Anchor" href="#dp-注意初值"></a> dp 注意初值</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 50 + 5;</span><br><span class="line">int vis[maxn][maxn];</span><br><span class="line">int d[maxn][maxn];</span><br><span class="line">int a[maxn];</span><br><span class="line"></span><br><span class="line">int dp(int i, int j) &#123;</span><br><span class="line">	if (i &gt;&#x3D; j - 1) return 0;</span><br><span class="line">	if (vis[i][j]) return d[i][j];</span><br><span class="line">	vis[i][j] &#x3D; 1;</span><br><span class="line">	int &amp;ans &#x3D; d[i][j];</span><br><span class="line">	ans &#x3D; -1;</span><br><span class="line">	for (int k &#x3D; i + 1; k &lt;&#x3D; j - 1; k++) &#123;</span><br><span class="line">		int v &#x3D; dp(i, k) + dp(k,j) + a[j] - a[i];</span><br><span class="line">		if (ans&lt;0 || ans&gt;v) ans &#x3D; v;</span><br><span class="line">	&#125;</span><br><span class="line">	return ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="main"><a class="markdownIt-Anchor" href="#main"></a> main</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int main() &#123;</span><br><span class="line">	int L, n;</span><br><span class="line">	while (scanf(&quot;%d%d&quot;, &amp;L, &amp;n) &#x3D;&#x3D; 2 &amp;&amp; L) &#123;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++) scanf(&quot;%d&quot;, &amp;a[i]);</span><br><span class="line">		a[0] &#x3D; 0; a[n + 1] &#x3D; L;</span><br><span class="line">		memset(vis, 0, sizeof(vis));</span><br><span class="line">		printf(&quot;The minimum cutting is %d.\n&quot;, dp(0, n + 1));</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       
@@ -194,19 +199,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/%E5%88%87%E6%96%AD%E5%9C%86%E7%8E%AF%E9%93%BE/" class="article-nav-link">
+      <a href="/2020/03/30/%E7%B4%A0%E6%95%B0%E7%8E%AF/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            切断圆环链
+            素数环
           
         </div>
       </a>
     
     
-      <a href="/2020/03/30/%E5%A5%87%E6%80%AA%E7%9A%84%E6%B0%94%E7%90%83%E8%86%A8%E8%83%80/" class="article-nav-link">
+      <a href="/2020/03/30/%E5%88%87%E6%96%AD%E5%9C%86%E7%8E%AF%E9%93%BE/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">奇怪的气球膨胀</div>
+        <div class="article-nav-title">切断圆环链</div>
       </a>
     
   </nav>

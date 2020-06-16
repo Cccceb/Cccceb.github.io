@@ -101,7 +101,9 @@
       
 
       
-      <h1 id="创建全景图"><a href="#创建全景图" class="headerlink" title="创建全景图"></a>创建全景图</h1><h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><ol>
+      <h1 id="创建全景图"><a class="markdownIt-Anchor" href="#创建全景图"></a> 创建全景图</h1>
+<h2 id="基本流程"><a class="markdownIt-Anchor" href="#基本流程"></a> 基本流程</h2>
+<ol>
 <li>从同一位置拍摄一系列图像。<strong>光心不动</strong></li>
 <li>计算第二个图像与第一个映像之间的变换。</li>
 <li>变换第二个图像与第一个图像部分重合</li>
@@ -110,46 +112,53 @@
 </ol>
 <img src="/视觉_img/11_1.png" style="zoom:80%">
 ## 变换矩阵
-
 <img src="/视觉_img/11_2.png" style="zoom:80%">
-
 <img src="/视觉_img/11_3.png" style="zoom:80%">
-
 <p>注：</p>
 <ol>
 <li>图像平面一般以主点为圆心。</li>
-<li>相机1的坐标系为世界坐标系。<h2 id="360°全景图"><a href="#360°全景图" class="headerlink" title="360°全景图"></a>360°全景图</h2>使用拼图投影球</li>
+<li>相机1的坐标系为世界坐标系。</li>
 </ol>
+<h2 id="360全景图"><a class="markdownIt-Anchor" href="#360全景图"></a> 360°全景图</h2>
+<p>使用拼图投影球</p>
 <img src="/视觉_img/11_4.png" style="zoom:80%">
-
 <p>注：</p>
 <ol>
 <li>球面坐标：弧长</li>
-<li>s为投影球半径<h2 id="装配全景图"><a href="#装配全景图" class="headerlink" title="装配全景图"></a>装配全景图</h2></li>
+<li>s为投影球半径</li>
+</ol>
+<h2 id="装配全景图"><a class="markdownIt-Anchor" href="#装配全景图"></a> 装配全景图</h2>
+<ol>
 <li>过程：拼接，融合，裁剪</li>
 <li>问题：出现漂移</li>
 <li>解决</li>
 </ol>
 <img src="/视觉_img/11_5.png" style="zoom:80%">
-
-<h2 id="图像融合"><a href="#图像融合" class="headerlink" title="图像融合"></a>图像融合</h2><ol>
-<li><p>使用羽化</p>
+<h2 id="图像融合"><a class="markdownIt-Anchor" href="#图像融合"></a> 图像融合</h2>
 <ol>
-<li>窗口大小影响羽化效果。<ol>
+<li>
+<p>使用羽化</p>
+<ol>
+<li>窗口大小影响羽化效果。
+<ol>
 <li>窗口大小为0和直接拼接一样</li>
 <li>良好的窗口应该是平滑且没有虚影的。</li>
 </ol>
 </li>
 </ol>
 </li>
-<li><p>金字塔混合<br> 使用拉普拉斯金子塔在各层次上融合，最终叠加。</p>
-<p> 拉普拉斯金字塔</p>
+<li>
+<p>金字塔混合<br />
+使用拉普拉斯金子塔在各层次上融合，最终叠加。</p>
+<p>拉普拉斯金字塔</p>
  <img src="/视觉_img/11_6.png" style="zoom:80%">
 </li>
-<li><p>Alpha混合</p>
-<img src="/视觉_img/11_7.png" style="zoom:80%">
+<li>
+<p>Alpha混合<br />
+<img src="/视觉_img/11_7.png" style="zoom:80%"></p>
 </li>
-<li><p>泊松图像编辑</p>
+<li>
+<p>泊松图像编辑</p>
 </li>
 </ol>
 

@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">202字</span>
+            <span class="post-count">186字</span>
         </span>
     </span>
 
@@ -101,21 +101,26 @@
       
 
       
-      <h1 id="图像配准"><a href="#图像配准" class="headerlink" title="图像配准"></a>图像配准</h1><p>问题：给定图像A和B之间的一组匹配项，如何计算从A到B的变换T？</p>
+      <h1 id="图像配准"><a class="markdownIt-Anchor" href="#图像配准"></a> 图像配准</h1>
+<p>问题：给定图像A和B之间的一组匹配项，如何计算从A到B的变换T？</p>
 <ol>
-<li><p>对于平移</p>
+<li>
+<p>对于平移</p>
 <ol>
-<li><p>最简单的取n对匹配的移动平均值值</p>
- <img src="/视觉_img/8_1.png" style = "zoom:80%" /></li>
-<li><p>通过线性方程组求解</p>
+<li>最简单的取n对匹配的移动平均值值<br />
+<img src="/视觉_img/8_1.png" style = "zoom:80%" /></li>
+<li>通过线性方程组求解
 <ol>
-<li><p>问题：对于n对匹配点，有2两个未知数和2n个方程–&gt;最小二乘法。</p>
+<li>问题：对于n对匹配点，有2两个未知数和2n个方程–&gt;最小二乘法。</li>
+<li>最小二乘法
+<ol>
+<li>
+<p>最小二乘法公式</p>
+ <img src="/视觉_img/8_2.png" style = "zoom:80%"/>
 </li>
-<li><p>最小二乘法</p>
-<ol>
-<li><p>最小二乘法公式</p>
- <img src="/视觉_img/8_2.png" style = "zoom:80%"/></li>
-<li><p>矩阵形式</p>
+<li>
+<p>矩阵形式</p>
+ <img src="/视觉_img/8_3.png" style = "zoom:80%"/>
 </li>
 </ol>
 </li>
@@ -123,32 +128,34 @@
 </li>
 </ol>
 </li>
-</ol>
-<pre><code>&lt;img src=&quot;/视觉_img/8_3.png&quot; style = &quot;zoom:80%&quot;/&gt;</code></pre><ol start="2">
-<li><p>对于仿射变化</p>
+<li>
+<p>对于仿射变化</p>
 <ol>
-<li><p>有6个未知数</p>
- <img src="/视觉_img/8_4.png" style = "zoom:80%"/></li>
+<li>
+<p>有6个未知数</p>
+ <img src="/视觉_img/8_4.png" style = "zoom:80%"/>
+</li>
 </ol>
 </li>
-<li><p>对于同态映射（单应映射）</p>
+<li>
+<p>对于同态映射（单应映射）</p>
 <ol>
-<li><p>有8个未知数，至少需要4个匹配对。</p>
-<img src="/视觉_img/8_5.png" style = "zoom:80%"/>
-
-<img src="/视觉_img/8_6.png" style = "zoom:80%"/>
-
-<img src="/视觉_img/8_7.png" style = "zoom:80%"/></li>
+<li>有8个未知数，至少需要4个匹配对。</li>
 </ol>
+ <img src="/视觉_img/8_5.png" style = "zoom:80%"/>
+ <img src="/视觉_img/8_6.png" style = "zoom:80%"/>
+ <img src="/视觉_img/8_7.png" style = "zoom:80%"/>
 </li>
-<li><p>图像配准过程</p>
+<li>
+<p>图像配准过程</p>
 <ol>
 <li>计算A和B的特征</li>
 <li>匹配A和B之间的特征</li>
 <li>使用匹配集计算A到B单应映射矩阵的最小二乘解。</li>
 </ol>
 </li>
-<li><p>离群点（外点）</p>
+<li>
+<p>离群点（外点）</p>
 </li>
 </ol>
 

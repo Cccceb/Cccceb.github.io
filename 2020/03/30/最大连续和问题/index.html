@@ -101,22 +101,25 @@
       
 
       
-      <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>给定一个长度为n的序列1,A2,···,An，求最大连续和</p>
-<h1 id="O-n3"><a href="#O-n3" class="headerlink" title="O(n3)"></a>O(n<sup>3</sup>)</h1><p>枚举始末位置</p>
+      <h1 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h1>
+<p>给定一个长度为n的序列1,A2,···,An，求最大连续和</p>
+<h1 id="onsup3sup"><a class="markdownIt-Anchor" href="#onsup3sup"></a> O(n<sup>3</sup>)</h1>
+<p>枚举始末位置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">for(int i&#x3D;0;i&lt;&#x3D;n;i++)</span><br><span class="line">	for(int j&#x3D;0;j&lt;&#x3D;n;j++)&#123;</span><br><span class="line">		int sum &#x3D; 0;</span><br><span class="line">		for(int k&#x3D;i;k&lt;&#x3D;j;k++)&#123;</span><br><span class="line">			sum+&#x3D;A[k];</span><br><span class="line">			tot++;</span><br><span class="line">		&#125;</span><br><span class="line">		if(sum&gt;best) best&#x3D;sum;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="O-n2"><a href="#O-n2" class="headerlink" title="O(n2)"></a>O(n<sup>2</sup>)</h1><p>先递推的求出前i项和，利用Sj-Si求出i-j的连续和</p>
+<h1 id="onsup2sup"><a class="markdownIt-Anchor" href="#onsup2sup"></a> O(n<sup>2</sup>)</h1>
+<p>先递推的求出前i项和，利用Sj-Si求出i-j的连续和</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">S[0] &#x3D; 0;</span><br><span class="line">for(int i&#x3D;0;i&lt;&#x3D;n;i++) S[i] &#x3D; A[i]+S[i-1];</span><br><span class="line">for(int i&#x3D;0;i&lt;&#x3D;n;i++)&#123;</span><br><span class="line">for(int j &#x3D; i;j &lt;&#x3D; n;j++)</span><br><span class="line">brest &#x3D; max(best,S[j]-S[i-1]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="分治法-O-nlogn"><a href="#分治法-O-nlogn" class="headerlink" title="分治法 O(nlogn)"></a>分治法 O(nlogn)</h1><ol>
+<h1 id="分治法-onlogn"><a class="markdownIt-Anchor" href="#分治法-onlogn"></a> 分治法 O(nlogn)</h1>
+<ol>
 <li>划分问题：将序列分成数量尽可能相等两部分</li>
 <li>递归求解：分别求出完全位于左半部和完全位于右半部的最佳序列</li>
-<li>合并问题：求出起点位于左半，终点位于右半的连续和序列<ol>
+<li>合并问题：求出起点位于左半，终点位于右半的连续和序列
+<ol>
 <li>注：递归方程T(n) = 2T(n/2)+O(n)</li>
 </ol>
 </li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int maxsum(int* A, int x, int y)&#123;</span><br><span class="line">int v, L , R,     maxs;</span><br><span class="line">if(y-x&#x3D;&#x3D;1) return A[X];</span><br><span class="line">int m &#x3D; x+(y-x)&#x2F;2;</span><br><span class="line">int maxs &#x3D; max(maxsum(A,x,m),maxsum(A,m,y));</span><br><span class="line">int v, L, R;</span><br><span class="line">v&#x3D; 0;L &#x3D; A[m-1];</span><br><span class="line">for(int i &#x3D; m-1;i &gt;&#x3D; x;i--)</span><br><span class="line">	L &#x3D; max(L,v +&#x3D; A[i]);</span><br><span class="line">v&#x3D; 0;L &#x3D; A[m];</span><br><span class="line">for(int i &#x3D; m;i &lt; y;i++)</span><br><span class="line">	R &#x3D; max(R,v +&#x3D; A[i]);</span><br><span class="line">return max(maxs, L+R);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
       
       <!-- reward -->

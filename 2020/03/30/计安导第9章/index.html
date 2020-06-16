@@ -101,78 +101,103 @@
       
 
       
-      <h1 id="策略、模型与信任"><a href="#策略、模型与信任" class="headerlink" title="策略、模型与信任"></a>策略、模型与信任</h1><h2 id="安全策略"><a href="#安全策略" class="headerlink" title="安全策略"></a>安全策略</h2><h3 id="主体"><a href="#主体" class="headerlink" title="主体"></a>主体</h3><p>是与系统交互的代理</p>
-<h3 id="客体"><a href="#客体" class="headerlink" title="客体"></a>客体</h3><p>是安全策略要保护和管理的信息与计算资源</p>
-<h3 id="动作"><a href="#动作" class="headerlink" title="动作"></a>动作</h3><p>主体对客体可能(或不可能)执行的操作</p>
-<h3 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h3><p>主体、操作与客体之间的映射，权限明确规定允许或禁止哪些操作</p>
-<h3 id="保护"><a href="#保护" class="headerlink" title="保护"></a>保护</h3><p>策略中包含的特定安全特性或规则，以 帮助实现特定的安全目标，如保密性、完整性、可用性或匿 名性。</p>
-<h2 id="安全模型"><a href="#安全模型" class="headerlink" title="安全模型"></a>安全模型</h2><p>是一种抽象的、为管理员指定安全策略提供 概念语言。</p>
+      <h1 id="策略-模型与信任"><a class="markdownIt-Anchor" href="#策略-模型与信任"></a> 策略、模型与信任</h1>
+<h2 id="安全策略"><a class="markdownIt-Anchor" href="#安全策略"></a> 安全策略</h2>
+<h3 id="主体"><a class="markdownIt-Anchor" href="#主体"></a> 主体</h3>
+<p>是与系统交互的代理</p>
+<h3 id="客体"><a class="markdownIt-Anchor" href="#客体"></a> 客体</h3>
+<p>是安全策略要保护和管理的信息与计算资源</p>
+<h3 id="动作"><a class="markdownIt-Anchor" href="#动作"></a> 动作</h3>
+<p>主体对客体可能(或不可能)执行的操作</p>
+<h3 id="权限"><a class="markdownIt-Anchor" href="#权限"></a> 权限</h3>
+<p>主体、操作与客体之间的映射，权限明确规定允许或禁止哪些操作</p>
+<h3 id="保护"><a class="markdownIt-Anchor" href="#保护"></a> 保护</h3>
+<p>策略中包含的特定安全特性或规则，以 帮助实现特定的安全目标，如保密性、完整性、可用性或匿 名性。</p>
+<h2 id="安全模型"><a class="markdownIt-Anchor" href="#安全模型"></a> 安全模型</h2>
+<p>是一种抽象的、为管理员指定安全策略提供 概念语言。</p>
 <p>通常定义了</p>
 <ol>
 <li>组织成员所拥有的访问或修改权限的层次结构</li>
 </ol>
-<h2 id="自主访问控制-DAC"><a href="#自主访问控制-DAC" class="headerlink" title="自主访问控制 DAC"></a>自主访问控制 DAC</h2><p>指的是赋予用户能力确定文件访 问权限的一种方案。</p>
+<h2 id="自主访问控制-dac"><a class="markdownIt-Anchor" href="#自主访问控制-dac"></a> 自主访问控制 DAC</h2>
+<p>指的是赋予用户能力确定文件访 问权限的一种方案。</p>
 <ol>
 <li>允许用户根据用户和组设置访问控制措施。</li>
 <li>允许用户将资源特权授予同一系统上的其他用户。</li>
 </ol>
-<h2 id="强制访问控制-MAC"><a href="#强制访问控制-MAC" class="headerlink" title="强制访问控制 MAC"></a>强制访问控制 MAC</h2><ol>
+<h2 id="强制访问控制-mac"><a class="markdownIt-Anchor" href="#强制访问控制-mac"></a> 强制访问控制 MAC</h2>
+<ol>
 <li>不允许用户定义文件的权限.</li>
 <li>而是由中央策略管理员制定安全策略。</li>
 <li>每个安全规则都由主体、客体和一系列的权限组成。其中主体是获得权限的的一方，客体是被访问的资源。</li>
 </ol>
-<h2 id="信任管理系统"><a href="#信任管理系统" class="headerlink" title="信任管理系统"></a>信任管理系统</h2><h2 id="组成包括"><a href="#组成包括" class="headerlink" title="组成包括"></a>组成包括</h2><ol>
+<h2 id="信任管理系统"><a class="markdownIt-Anchor" href="#信任管理系统"></a> 信任管理系统</h2>
+<h2 id="组成包括"><a class="markdownIt-Anchor" href="#组成包括"></a> 组成包括</h2>
+<ol>
 <li><strong>策略语言</strong></li>
 <li><strong>一致性检查器</strong></li>
 <li>策略规则由策略语言指定，并由一致性检查器执行</li>
 </ol>
-<h2 id="规则包括"><a href="#规则包括" class="headerlink" title="规则包括"></a>规则包括</h2><ol>
+<h2 id="规则包括"><a class="markdownIt-Anchor" href="#规则包括"></a> 规则包括</h2>
+<ol>
 <li>操作 与系统安全相关的结果</li>
 <li>主题 可以在系统 上执行操作的用户、进程或其他实体</li>
 <li>策略 就是制定的规 则，制定赋予主体哪些权限，能执行那些操作</li>
 <li>凭证 数字签名 的文件，将主体身份与允许的行 为绑定，包括允许主体将权限委 托给其他主体的权限</li>
 </ol>
-<h1 id="访问控制模型"><a href="#访问控制模型" class="headerlink" title="访问控制模型"></a>访问控制模型</h1><h2 id="Bell-La-Padula模型"><a href="#Bell-La-Padula模型" class="headerlink" title="Bell-La Padula模型"></a>Bell-La Padula模型</h2><p>强制访问控制模型，保护机密性</p>
-<h3 id="全序和偏序"><a href="#全序和偏序" class="headerlink" title="全序和偏序"></a>全序和偏序</h3><ol>
+<h1 id="访问控制模型"><a class="markdownIt-Anchor" href="#访问控制模型"></a> 访问控制模型</h1>
+<h2 id="bell-la-padula模型"><a class="markdownIt-Anchor" href="#bell-la-padula模型"></a> Bell-La Padula模型</h2>
+<p>强制访问控制模型，保护机密性</p>
+<h3 id="全序和偏序"><a class="markdownIt-Anchor" href="#全序和偏序"></a> 全序和偏序</h3>
+<ol>
 <li>全序：自反，反对称，传递，完全性(如果x和y在U中，则x ≤ y 或 y ≤ x)</li>
 <li>偏序：去掉完全性</li>
 </ol>
-<h3 id="BLP-工作原理"><a href="#BLP-工作原理" class="headerlink" title="BLP 工作原理"></a>BLP 工作原理</h3><ol>
+<h3 id="blp-工作原理"><a class="markdownIt-Anchor" href="#blp-工作原理"></a> BLP 工作原理</h3>
+<ol>
 <li>原则：信息只能从低安全级别流向高安全级别。</li>
 <li>安全级别是偏序的</li>
-<li>每个对象x被分配到一个安全级别L(X)。同样，每个用户u被分配到 安全级别L(U)。用户对象的访问受以下两条规则控制：<ol>
+<li>每个对象x被分配到一个安全级别L(X)。同样，每个用户u被分配到 安全级别L(U)。用户对象的访问受以下两条规则控制：
+<ol>
 <li>简单安全性质：只有满足L(x) ≼ L(u)，用户u才能读取对象x：即<strong>不可向上读</strong></li>
 <li>性质只有满足L(u) ≼ L(x)，用户u才能写入（创建、编 辑或追加）对象x：即<strong>不可向下写</strong></li>
 </ol>
 </li>
 </ol>
-<h2 id="Biba模型"><a href="#Biba模型" class="headerlink" title="Biba模型"></a>Biba模型</h2><ol>
+<h2 id="biba模型"><a class="markdownIt-Anchor" href="#biba模型"></a> Biba模型</h2>
+<ol>
 <li>Biba模型的完整性级别表明对象和用户的可信度或准确度。</li>
 <li>Biba 不允许从下一级阅读，也不允许写到上层。</li>
 </ol>
-<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>如果让I(u)表示用户u的完整性级别，I(x)表示对象x的完整性级别， 则Biba模型中有以下规则：</p>
+<h3 id="工作原理"><a class="markdownIt-Anchor" href="#工作原理"></a> 工作原理</h3>
+<p>如果让I(u)表示用户u的完整性级别，I(x)表示对象x的完整性级别， 则Biba模型中有以下规则：</p>
 <ol>
 <li>原则：信息只能从较高的完整性级别下降 到较低的完整性级别</li>
 <li>用户u只能在I(u) ≼ I(x)情况下读取对象x：</li>
 <li>用户u只能在I(x) ≼ I(u)情况下才能写入(创建、编辑或追加)一个对象x</li>
 </ol>
-<h2 id="低水印模型"><a href="#低水印模型" class="headerlink" title="低水印模型"></a>低水印模型</h2><p>扩展的Biba模型，放宽了不可想下读的限制。</p>
+<h2 id="低水印模型"><a class="markdownIt-Anchor" href="#低水印模型"></a> 低水印模型</h2>
+<p>扩展的Biba模型，放宽了不可想下读的限制。</p>
 <ol>
 <li>原则 具有较高完整性级别的用户可以读取完整性级别较低 的对象。</li>
 <li>在这样的读取之后，对执行读取的用户进行降级，使其完整性级别 与所读取对象的完整性级别相匹配。</li>
 </ol>
-<h2 id="克拉克-威尔逊模型"><a href="#克拉克-威尔逊模型" class="headerlink" title="克拉克-威尔逊模型"></a>克拉克-威尔逊模型</h2><p>用于处理执行事务的系统。关键组件包括</p>
+<h2 id="克拉克-威尔逊模型"><a class="markdownIt-Anchor" href="#克拉克-威尔逊模型"></a> 克拉克-威尔逊模型</h2>
+<p>用于处理执行事务的系统。关键组件包括</p>
 <ol>
 <li>完整性约束：表明为了保证系统的状态有效，各对象之间必须满足的关系。</li>
 <li>认证方法：验证事务给定的完整性约束。一旦认证了事务的程序，每 次执行事务时，则不必再次进行完整性约束验证。</li>
 <li>职责分离原则：防止执行事务的用户验证事务。通常，每个事务都被 分配给可以分别验证和执行事务的不相交的用户集。</li>
 </ol>
-<h2 id="中国墙模型"><a href="#中国墙模型" class="headerlink" title="中国墙模型"></a>中国墙模型</h2><p>被设计用于商业领域， 以消除利益冲突的可能性。</p>
+<h2 id="中国墙模型"><a class="markdownIt-Anchor" href="#中国墙模型"></a> 中国墙模型</h2>
+<p>被设计用于商业领域， 以消除利益冲突的可能性。</p>
 <ol>
 <li>讲资源分组为利益冲突类</li>
 <li>每个用户只能从每个利益冲突类访问一个资源。</li>
 </ol>
-<h2 id="基于角色的访问控制-RBAC"><a href="#基于角色的访问控制-RBAC" class="headerlink" title="基于角色的访问控制 RBAC"></a>基于角色的访问控制 RBAC</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
+<h2 id="基于角色的访问控制-rbac"><a class="markdownIt-Anchor" href="#基于角色的访问控制-rbac"></a> 基于角色的访问控制 RBAC</h2>
+<h3 id="优点"><a class="markdownIt-Anchor" href="#优点"></a> 优点</h3>
+<ol>
 <li>便于组织授权管理</li>
 <li>支持继承</li>
 <li>便于实现最小特权原则</li>
@@ -180,25 +205,32 @@
 <li>支持客体抽象</li>
 <li>策略中立，通过不同配置能够实现特殊策略</li>
 </ol>
-<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ol>
+<h3 id="核心概念"><a class="markdownIt-Anchor" href="#核心概念"></a> 核心概念</h3>
+<ol>
 <li>用户：需要访问组织的资源以执行任务的实体</li>
 <li>角色：组织中具有类似功能和职责的用户的集合</li>
 <li>权限：权限描述了允许访问资源的方法。</li>
 <li>会话：由为执行特定任务而激活用户角色的子集组成。</li>
 </ol>
-<h3 id="分级RBAC"><a href="#分级RBAC" class="headerlink" title="分级RBAC"></a>分级RBAC</h3><ol>
+<h3 id="分级rbac"><a class="markdownIt-Anchor" href="#分级rbac"></a> 分级RBAC</h3>
+<ol>
 <li>定义：色R1继承（inherits）R2，如果R1包含R2的所有权限，R2包括 R1的所有用户，可以表示为R1 ≽ R2。称R1为R2的上一层。</li>
 </ol>
-<h1 id="渗透测试"><a href="#渗透测试" class="headerlink" title="渗透测试"></a>渗透测试</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
-<li><p>渗透测试：从攻击者(黑客)的角度测试系统和体系结构的安全性，在 固定时间内必须获得的具有预定目标的“模拟攻击”</p>
+<h1 id="渗透测试"><a class="markdownIt-Anchor" href="#渗透测试"></a> 渗透测试</h1>
+<h2 id="基本概念"><a class="markdownIt-Anchor" href="#基本概念"></a> 基本概念</h2>
+<ol>
+<li>
+<p>渗透测试：从攻击者(黑客)的角度测试系统和体系结构的安全性，在 固定时间内必须获得的具有预定目标的“模拟攻击”</p>
 <ol>
 <li>组我欸其他安全措施的补充</li>
 <li>花销大</li>
 </ol>
 </li>
-<li><p>流程：</p>
+<li>
+<p>流程：</p>
 <ol>
-<li>收集信息<ol>
+<li>收集信息
+<ol>
 <li>IP地址信息</li>
 <li>个人信息</li>
 </ol>
@@ -210,27 +242,32 @@
 </ol>
 </li>
 </ol>
-<h1 id="Kerberos"><a href="#Kerberos" class="headerlink" title="Kerberos"></a>Kerberos</h1><ol>
+<h1 id="kerberos"><a class="markdownIt-Anchor" href="#kerberos"></a> Kerberos</h1>
+<ol>
 <li>Kerberos：基于可信第三方（Trusted Third Party， TTP）的身份认证协议；</li>
 <li>旨在对整个网络进行集中身份验证，而不是在每个用户计算机上存储敏感的身份验证信息。</li>
 </ol>
-<h2 id="身份验证"><a href="#身份验证" class="headerlink" title="身份验证"></a>身份验证</h2><ol>
-<li><p>在身份验证过程中，客户端收到两个票据</p>
+<h2 id="身份验证"><a class="markdownIt-Anchor" href="#身份验证"></a> 身份验证</h2>
+<ol>
+<li>
+<p>在身份验证过程中，客户端收到两个票据</p>
 <ol>
 <li>票据授予票据（TGT）：用户和会话密钥的全局标识符。</li>
 <li>服务票据（service ticket）：对用户进行身份验证，确定用户能否 使用特殊服务。</li>
 <li>票据都有时间戳，用于标明数据的有效期限</li>
 </ol>
 </li>
-<li><p>密钥分发中心 KDC 组成</p>
-<p> 为了实现安全的身份验证</p>
+<li>
+<p>密钥分发中心 KDC 组成</p>
+<p>为了实现安全的身份验证</p>
 <ol>
 <li>身份验证服务器(AS):用于执行用户身份验证。维护存储用户和服务密钥的数据库。对用户提供的密码执行单向散列来生成用户的密钥。</li>
 <li>票据授予服务器(TGS):用于向用户授予票据</li>
 </ol>
 </li>
 </ol>
-<h3 id="身份认证过程"><a href="#身份认证过程" class="headerlink" title="身份认证过程"></a>身份认证过程</h3><p>概括的说</p>
+<h3 id="身份认证过程"><a class="markdownIt-Anchor" href="#身份认证过程"></a> 身份认证过程</h3>
+<p>概括的说</p>
 <ol>
 <li>客户端与AS互相进行身份验证</li>
 <li>客户端与TGS互相进行身份验证</li>
@@ -238,85 +275,99 @@
 </ol>
 <p>具体</p>
 <ol>
-<li><p>用户输入的密码经过哈希散列形成客户端密钥Kc</p>
-</li>
-<li><p>客户端与AS联系，AS执行</p>
+<li>用户输入的密码经过哈希散列形成客户端密钥Kc</li>
+<li>客户端与AS联系，AS执行
 <ol>
-<li><p>使用客户端密钥Kc加密客户端-TGS的会话密钥K<sub>CT</sub></p>
+<li>
+<p>使用客户端密钥Kc加密客户端-TGS的会话密钥K<sub>CT</sub></p>
 </li>
-<li><p>使用TGS的密钥K<sub>T</sub>加密票据授予票据TGT。TGT中包含K<sub>CT</sub>和有效期。</p>
+<li>
+<p>使用TGS的密钥K<sub>T</sub>加密票据授予票据TGT。TGT中包含K<sub>CT</sub>和有效期。</p>
 </li>
-<li><p>客户端使用Kc解密TGS会话密钥K<sub>CT</sub>。之后，客户端向TGS发送如下两个消息：</p>
+<li>
+<p>客户端使用Kc解密TGS会话密钥K<sub>CT</sub>。之后，客户端向TGS发送如下两个消息：</p>
 <ol>
 <li>TGT 和 所请求服务名称S</li>
 <li>验证令牌 有用户ID和时间戳组成，使用客户端TGS会话密钥K<sub>CT</sub>进行加密</li>
 </ol>
 </li>
-<li><p>.TGS使KT解密TGS，从而得到客户端TGS的会话密钥K<sub>CT</sub>和TGT的 有效期。在有效期之内，TGS使用密钥K<sub>CT</sub>解密身份验证令牌，向客 户端发送如下两个消息：</p>
+<li>
+<p>.TGS使KT解密TGS，从而得到客户端TGS的会话密钥K<sub>CT</sub>和TGT的 有效期。在有效期之内，TGS使用密钥K<sub>CT</sub>解密身份验证令牌，向客 户端发送如下两个消息：</p>
 <ol>
-<li>使用K<sub>CT</sub>加密的新的客户端-服务器会话密K<sub>CS</sub>。 </li>
+<li>使用K<sub>CT</sub>加密的新的客户端-服务器会话密K<sub>CS</sub>。</li>
 <li>使用具体服务的密钥KS加密客户端-服务器票据（client-server ticket），其中 TGS已知密钥KS 。票据包含客户端ID、网络地址、有效期、密钥K<sub>CS</sub>。</li>
 </ol>
 </li>
-<li><p>在对客户端-服务器会话密钥K<sub>CS</sub>解密后，为了使服务对客户端进行身份验证，客户端发送以下两个消息： </p>
+<li>
+<p>在对客户端-服务器会话密钥K<sub>CS</sub>解密后，为了使服务对客户端进行身份验证，客户端发送以下两个消息：</p>
 <ol>
-<li>在上个步骤中，TGS发送的客户端-服务器的票据。 </li>
+<li>在上个步骤中，TGS发送的客户端-服务器的票据。</li>
 <li>使用K<sub>CS</sub>加密的客户端ID和时间戳。</li>
 </ol>
 </li>
-<li><p>服务使用自己的密钥KS解密客户端-服务器的票据，得到客户端-服 务器的会话密钥K<sub>CS</sub> 。使用K<sub>CS</sub>解密客户端ID和时间戳。最后，为了向客户端证码自己的身份，它使用时间戳加1，并用K<sub>CS</sub>重新加密送回客户端。 </p>
+<li>
+<p>服务使用自己的密钥KS解密客户端-服务器的票据，得到客户端-服 务器的会话密钥K<sub>CS</sub> 。使用K<sub>CS</sub>解密客户端ID和时间戳。最后，为了向客户端证码自己的身份，它使用时间戳加1，并用K<sub>CS</sub>重新加密送回客户端。</p>
 </li>
-<li><p>客户端使用KCS解密并验证这个响应，如果验证成功，就可以开始 客户端-服务器的会话了。</p>
+<li>
+<p>客户端使用KCS解密并验证这个响应，如果验证成功，就可以开始 客户端-服务器的会话了。</p>
 </li>
-<li><p>票据有效期内，客户端为了访问多个服务，可以一直重复3-7步。</p>
+<li>
+<p>票据有效期内，客户端为了访问多个服务，可以一直重复3-7步。</p>
 </li>
 </ol>
 </li>
 </ol>
-<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ol>
+<h3 id="优点-2"><a class="markdownIt-Anchor" href="#优点-2"></a> 优点</h3>
+<ol>
 <li>分布式体系结构，可以在不安全的网络中使用。</li>
 <li>由于每次传输都使用适当的密钥进行加密，攻击者在不能破解密 钥或底层的加密算法的情况下，无法伪造有效的票据来获得对未 授权服务的访问。</li>
 <li>可防止重放攻击，因为不接受未授权方重传的消息。</li>
 <li>使用对称加密，所以比较高效</li>
 </ol>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ol>
+<h3 id="缺点"><a class="markdownIt-Anchor" href="#缺点"></a> 缺点</h3>
+<ol>
 <li>存在单点故障问题：密钥分发中心不可用</li>
 <li>如果KDC被破坏，在每个客户端和服务器的身法验证信息都被泄漏</li>
 <li>需要所有参与方都有同步的时钟</li>
 </ol>
-<h1 id="安全存储"><a href="#安全存储" class="headerlink" title="安全存储"></a>安全存储</h1><h2 id="安全保护措施"><a href="#安全保护措施" class="headerlink" title="安全保护措施"></a>安全保护措施</h2><ol>
+<h1 id="安全存储"><a class="markdownIt-Anchor" href="#安全存储"></a> 安全存储</h1>
+<h2 id="安全保护措施"><a class="markdownIt-Anchor" href="#安全保护措施"></a> 安全保护措施</h2>
+<ol>
 <li>保存好U盘手机</li>
 <li>防范窃取数据的恶意软件</li>
 <li>合理处置废旧设备</li>
 <li>备份</li>
 <li>云存储</li>
 </ol>
-<h2 id="文件密码保护"><a href="#文件密码保护" class="headerlink" title="文件密码保护"></a>文件密码保护</h2><p>保护信息的一种方法就是对文件进行加密，在密码算法没有在理论破解或密钥泄露的情况下，即使文件被盗，也不用担心信息会泄露。</p>
+<h2 id="文件密码保护"><a class="markdownIt-Anchor" href="#文件密码保护"></a> 文件密码保护</h2>
+<p>保护信息的一种方法就是对文件进行加密，在密码算法没有在理论破解或密钥泄露的情况下，即使文件被盗，也不用担心信息会泄露。</p>
 <ol>
-<li><p>常见密码算法</p>
+<li>
+<p>常见密码算法</p>
  <img src="/计安导_img/25.png">
-
-
 </li>
 </ol>
-<h3 id="加密文件系统-EFS"><a href="#加密文件系统-EFS" class="headerlink" title="加密文件系统 EFS"></a>加密文件系统 EFS</h3><ol>
-<li><p>特点</p>
+<h3 id="加密文件系统-efs"><a class="markdownIt-Anchor" href="#加密文件系统-efs"></a> 加密文件系统 EFS</h3>
+<ol>
+<li>
+<p>特点</p>
 <ol>
 <li>自动加密解密</li>
 <li>保护文件内容，而不保护文件名和其他元数据</li>
 <li>支持共享加密文件</li>
 </ol>
 </li>
-<li><p>缺点</p>
+<li>
+<p>缺点</p>
 <ol>
 <li>只保护本地文件系统，所以传送到其他文件系统会被破解</li>
 <li>临时文件不受保护</li>
 <li>密钥管理很麻烦</li>
 </ol>
 </li>
-<li><p>加密技术：同时使用对称和非对称加密</p>
+<li>
+<p>加密技术：同时使用对称和非对称加密</p>
  <img src="/计安导_img/26.png">
-
 <ol>
 <li>加密时首先使用AES(对称)单独的加密密钥FEK加密每个文件</li>
 <li>然后使用FEK加密数据</li>
@@ -327,16 +378,22 @@
 </ol>
 </li>
 </ol>
-<h2 id="磁盘加密"><a href="#磁盘加密" class="headerlink" title="磁盘加密"></a>磁盘加密</h2><h3 id="TrueCrypt"><a href="#TrueCrypt" class="headerlink" title="TrueCrypt"></a>TrueCrypt</h3><ol>
+<h2 id="磁盘加密"><a class="markdownIt-Anchor" href="#磁盘加密"></a> 磁盘加密</h2>
+<h3 id="truecrypt"><a class="markdownIt-Anchor" href="#truecrypt"></a> TrueCrypt</h3>
+<ol>
 <li>以分区为基础</li>
 <li>所有加密数据都是经过AES等加密算法，难以破解</li>
 <li>加密过程自动透明</li>
-<li>提供两级方案<h3 id="BitLocker"><a href="#BitLocker" class="headerlink" title="BitLocker"></a>BitLocker</h3></li>
+<li>提供两级方案</li>
+</ol>
+<h3 id="bitlocker"><a class="markdownIt-Anchor" href="#bitlocker"></a> BitLocker</h3>
+<ol>
 <li>使用AES对扇区进行加密</li>
 <li>使用NTFS格式的卷</li>
 <li>可以通过冷启动攻击：属于一种边信道攻击方法，可 以物理接触到计算机的攻击者能够运用这种攻击手段 在冷启动或硬盘重启之后，比如计算机没经历正常的 关机过程就突然重启时，从计算机的内存(RAM)中获 取加密密钥、口令和其他数据。断电后内存中的数据 能维持几十秒或数分钟，但通过液氮或压缩空气冷冻 ，这一数据衰减过程可被攻击者拉长至数小时之久。</li>
 </ol>
-<h2 id="可信平台模块-TPM"><a href="#可信平台模块-TPM" class="headerlink" title="可信平台模块 TPM"></a>可信平台模块 TPM</h2><p>是设计安装在主板上的芯片 ，作为安全密码处理器，它能安全地生成和存储密 钥。在生产时，将一个唯一地RSA私钥铸入到每一 个TPM芯片中。TPM的设计是防篡改的，所以，能 进行物理访问的攻击者也很难恢复这个密钥。</p>
+<h2 id="可信平台模块-tpm"><a class="markdownIt-Anchor" href="#可信平台模块-tpm"></a> 可信平台模块 TPM</h2>
+<p>是设计安装在主板上的芯片 ，作为安全密码处理器，它能安全地生成和存储密 钥。在生产时，将一个唯一地RSA私钥铸入到每一 个TPM芯片中。TPM的设计是防篡改的，所以，能 进行物理访问的攻击者也很难恢复这个密钥。</p>
 
       
       <!-- reward -->
@@ -424,11 +481,11 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC8%E7%AB%A0/" class="article-nav-link">
+      <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%AC%AC7%E7%AB%A0/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            计安导第8章
+            计安导第7章
           
         </div>
       </a>

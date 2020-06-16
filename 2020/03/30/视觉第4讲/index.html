@@ -101,12 +101,14 @@
       
 
       
-      <h1 id="Harris角点检测"><a href="#Harris角点检测" class="headerlink" title="Harris角点检测"></a>Harris角点检测</h1><ol>
-<li><p>不变的局部特征</p>
+      <h1 id="harris角点检测"><a class="markdownIt-Anchor" href="#harris角点检测"></a> Harris角点检测</h1>
+<ol>
+<li>不变的局部特征
 <ol>
 <li>几何不变性：平移、旋转、缩放</li>
 <li>光度不变性：亮度、曝光率</li>
-<li>局部特征的优点<ol>
+<li>局部特征的优点
+<ol>
 <li>局部性：由于特征是局部的，所以对遮挡和噪声鲁棒。</li>
 <li>数量：一张图片中成百上千。</li>
 <li>独特性：可以区分大量对象</li>
@@ -115,37 +117,39 @@
 </li>
 </ol>
 </li>
-<li><p>好的特征</p>
+<li>好的特征
 <ol>
 <li>需要具有唯一性</li>
 <li>在任何方向上移动窗口都导致大的变化–&gt;角点。</li>
 </ol>
 </li>
-<li><p>Harris角点检测</p>
+<li>Harris角点检测
 <ol>
-<li><p>通过比较平移前后窗口w内每个像素的差异平方和(SSD)</p>
+<li>
+<p>通过比较平移前后窗口w内每个像素的差异平方和(SSD)</p>
 </li>
-<li><p>SSD:</p>
- <img src="/视觉_img/4_1.png" style="zoom:80%">
-
+<li>
+<p>SSD:<br />
+<img src="/视觉_img/4_1.png" style="zoom:80%"></p>
 <ol>
 <li>SSD越大越好</li>
 <li>问题：计算每个点的SSD很慢。</li>
 <li>对平移量进行泰勒级数展开。</li>
 </ol>
 </li>
-<li><p>近似SSD</p>
+<li>
+<p>近似SSD</p>
  <img src="/视觉_img/4_2.png" style="zoom:80%">
-
  <img src="/视觉_img/4_3.png" style="zoom:80%">
  1. 对于水平边缘Ix=0;垂直边缘Iy=0;
  2. 对于矩阵H可以看作一个椭圆
-
-<pre><code>&lt;img src=&quot;/视觉_img/4_4.png&quot; style=&quot;zoom:80%&quot;&gt;
-
-可以通过查看H的特征向量来找到导致最大和最小的E的方向。
-1. &lt;img src=&quot;/视觉_img/4_4.png&quot; style=&quot;zoom:80%&quot;&gt;
-2. 特征值与特征检测的关系：我们希望E(u,v)的最小值对于小的平移量(u,v)都大，此最小值由H的较小的特征值λ&lt;sub&gt;min&lt;/sub&gt;给出</code></pre></li>
+<pre><code> &lt;img src=&quot;/视觉_img/4_4.png&quot; style=&quot;zoom:80%&quot;&gt;
+ 
+ 可以通过查看H的特征向量来找到导致最大和最小的E的方向。
+ 1. &lt;img src=&quot;/视觉_img/4_4.png&quot; style=&quot;zoom:80%&quot;&gt;
+ 2. 特征值与特征检测的关系：我们希望E(u,v)的最小值对于小的平移量(u,v)都大，此最小值由H的较小的特征值λ&lt;sub&gt;min&lt;/sub&gt;给出
+</code></pre>
+</li>
 </ol>
 </li>
 </ol>
