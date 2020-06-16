@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">722字</span>
+            <span class="post-count">104字</span>
         </span>
     </span>
 
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">4分钟</span>
+            <span class="post-count">1分钟</span>
         </span>
     </span>
 </div>
@@ -108,116 +108,6 @@
 <li>操作平台为 VS2019+Parser Generator</li>
 <li>源码间仓库https://github.com/Cccceb/No3.second/tree/master/MySSql</li>
 </ol>
-<h1 id="测试1"><a class="markdownIt-Anchor" href="#测试1"></a> 测试1</h1>
-<p><em><strong>测试CREATE DATABASE SHOW DATABASES DROP DATABASE USE DATABASE*</strong></em></p>
-<p><em><strong>*输入：********CREATE DATABASE XJGL;*</strong></em></p>
-<p><em><strong>*CREATE DATABASE JUST_FOR_TEST;*</strong></em></p>
-<p><em><strong>*CREATE DATABASE JUST_FOR_TEST;*</strong></em></p>
-<p><em><strong>*SHOW DATABASE;*</strong></em></p>
-<p><em><strong>*DROP DATABASE JUST_FOR_TEST;*</strong></em></p>
-<p><em><strong>*SHOW DATABASE;*</strong></em></p>
-<p><em><strong>*USE XJGL;*</strong></em></p>
-<p><em><strong>*输出********：*</strong></em></p>
-<p><img src="/MyImages/wps1-1592281234789.jpg" alt="img" /></p>
-<h1 id="测试2"><a class="markdownIt-Anchor" href="#测试2"></a> 测试2</h1>
-<p><em><strong>*测试CREATE TABLE SHOW TABLES DROP TABLE*</strong></em></p>
-<p><em><strong>*输入*</strong></em></p>
-<p><em><strong>*CREATE TABLE STUDENT(SNAME CHAR(20),SAGE INT,SSEX INT);CREATE TABLE*</strong></em> 	<em><strong>*COURSE(CNAME CHAR(20),CID INT);*</strong></em></p>
-<p><em><strong>*CREATE TABLE CS(SNAME CHAR(20),CID INT);*</strong></em></p>
-<p><em><strong>*CREATE TABLE TEST_TABLE(COL1 CHAR(22),COL2 INT,COL3 CHAR(22));*</strong></em></p>
-<p><em><strong>*CREATE TABLE TEST_TABLE(COL1 CHAR(22),COL2 INT,COL3 CHAR(22));*</strong></em></p>
-<p><em><strong>*SHOW TABLES;*</strong></em></p>
-<p><em><strong>*DROP TABLE TEST_TABLE;*</strong></em></p>
-<p><em><strong>*SHOW TABLES;*</strong></em></p>
-<p><em><strong>*输出*</strong></em></p>
-<p><img src="/MyImages/wps2-1592281234789.jpg" alt="img" /></p>
-<h1 id="测试3"><a class="markdownIt-Anchor" href="#测试3"></a> 测试3</h1>
-<p><em><strong>*测试INSERT INTO VALUES*</strong></em></p>
-<p><em><strong>*输入*</strong></em></p>
-<p><em><strong>*USE XJGL;*</strong></em></p>
-<p><em><strong>*INSERT INTO STUDENT(SNAME,SAGE,SSEX) VALUES (‘ZHANGSAN’,22,1);*</strong></em></p>
-<p><em><strong>*INSERT INTO STUDENT VALUES (‘LISI’,23,0);*</strong></em></p>
-<p><em><strong>*INSERT INTO STUDENT(SNAME,SAGE) VALUES (‘WANGWU’,21);*</strong></em></p>
-<p><em><strong>*INSERT INTO STUDENT VALUES (‘ZHAOLIU’,22,1);*</strong></em></p>
-<p><em><strong>*INSERT INTO STUDENT VALUES (‘XIAOBAI’,23,0);*</strong></em></p>
-<p><em><strong>*INSERT INTO STUDENT VALUES (‘XIAOHEI’,19,0);*</strong></em></p>
-<p><em><strong>*INSERT INTO COURSE(CNAME,CID) VALUES (‘DB’,1);*</strong></em></p>
-<p><em><strong>*INSERT INTO COURSE (CNAME,CID) VALUES(‘COMPILER’,2);*</strong></em></p>
-<p><em><strong>*insert into course (CNAME,CID) VALUES(‘C’,3);*</strong></em></p>
-<p><img src="/MyImages/wps3-1592281234789.jpg" alt="img" /></p>
-<h1 id="测试4"><a class="markdownIt-Anchor" href="#测试4"></a> 测试4</h1>
-<p><em><strong>*测试单表查询*</strong></em></p>
-<p><em><strong>*输入*</strong></em></p>
-<p><em><strong>*USE XJGL;*</strong></em></p>
-<p><em><strong>*SELECT SNAME,SAGE,SSEX FROM STUDENT;*</strong></em></p>
-<p><em><strong>*SELECT SNAME,SAGE FROM STUDENT;*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT;*</strong></em></p>
-<p><em><strong>*SELECT SNAME,SAGE FROM STUDENT WHERE SAGE=21;*</strong></em></p>
-<p><em><strong>*SELECT SNAME,SAGE FROM STUDENT WHERE (((SAGE=21)));*</strong></em></p>
-<p><em><strong>*SELECT SNAME,SAGE,SSEX FROM STUDENT WHERE (SAGE&gt;21) AND (SSEX=0);*</strong></em></p>
-<p><em><strong>*SELECT SNAME,SAGE,SSEX FROM STUDENT WHERE (SAGE&gt;21) OR (SSEX=0);*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT WHERE SSEX!=1;*</strong></em></p>
-<p><em><strong>*SELECT SNAME,SAGE FROM STUDENT WHERE SAGE&gt;21 AND SSEX=0;*</strong></em></p>
-<p><em><strong>*SELECT SNAME,SAGE,SSEX  FROM STUDENT WHERE SAGE&gt;21 OR SSEX=0;*</strong></em></p>
-<p><em><strong>*SELECT * from STUDENT WHERE SNAME = ‘ZHANGSAN’ OR SNAME = ‘ZHAOLIU’ AND SAGE = 21;*</strong></em></p>
-<p><em><strong>*SELECT * from STUDENT WHERE SNAME = ‘ZHAOLIU’ AND SAGE = 21 OR SNAME = ‘ZHANGSAN’ ;*</strong></em></p>
-<p><em><strong>*SELECT * from STUDENT WHERE (SNAME = ‘ZHANGSAN’ OR SNAME = ‘ZHAOLIU’) AND SAGE = 21;*</strong></em></p>
-<p><em><strong>*SELECT * from STUDENT WHERE (SAGE = 21 AND SNAME = ‘ZHANGSAN’) OR (SAGE = 22 AND SNAME = ‘ZHAOLIU’);*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT WHERE (SAGE = 21 OR SAGE = 19) AND (SNAME = 'XIAOHEI’OR SNAME = ‘HH’ );*</strong></em></p>
-<p><img src="/MyImages/wps4-1592281234789.jpg" alt="img" /></p>
-<p><img src="/MyImages/wps5-1592281234789.jpg" alt="img" /></p>
-<p><img src="/MyImages/wps6-1592281234789.jpg" alt="img" /></p>
-<p><img src="/MyImages/wps7-1592281234789.jpg" alt="img" /></p>
-<h1 id="测试5"><a class="markdownIt-Anchor" href="#测试5"></a> 测试5</h1>
-<p><em><strong>*测试带有NOT 和多AND/OR 的*</strong></em></p>
-<p><em><strong>*输入*</strong></em></p>
-<p><em><strong>*INSERT INTO STUDENT VALUES (‘ZHAOLIU’,23,1);*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT WHERE NOT (SAGE =22 AND SNAME = ‘ZHAOLIU’);*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT WHERE NOT (SAGE =22 AND SNAME = ‘ZHAOLIU’) AND SSEX = ‘1’;*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT WHERE NOT (SAGE =22 AND SNAME = ‘ZHAOLIU’) OR SAGE = 22;*</strong></em></p>
-<p><em><strong>*SELECT * from STUDENT WHERE SNAME = ‘ZHANGSAN’ OR SNAME = ‘ZHAOLIU’ AND SAGE = 21;*</strong></em></p>
-<p><em><strong>*SELECT * from STUDENT WHERE (SNAME = ‘ZHANGSAN’ OR SNAME = ‘ZHAOLIU’)*</strong></em>  <em><strong>*AND*</strong></em> <em><strong>*SAGE = 21;*</strong></em></p>
-<p><em><strong>*SELECT * from STUDENT WHERE (SAGE = 21 AND SNAME = ‘ZHANGSAN’) OR (SAGE = 22 AND SNAME = ‘ZHAOLIU’);*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT WHERE (SAGE = 21 OR SAGE = 19) AND (SNAME = 'XIAOHEI’OR SNAME = ‘HH’ );*</strong></em></p>
-<p><img src="/MyImages/wps8-1592281234789.jpg" alt="img" /></p>
-<p><img src="/MyImages/wps9-1592281234789.jpg" alt="img" /></p>
-<p><img src="/MyImages/wps10-1592281234790.jpg" alt="img" /></p>
-<p><img src="/MyImages/wps11-1592281234790.jpg" alt="img" /></p>
-<h1 id="测试6"><a class="markdownIt-Anchor" href="#测试6"></a> 测试6</h1>
-<p><em><strong>*测试多表查询*</strong></em></p>
-<p><em><strong>*输入*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT;SELECT * FROM COURSE;*</strong></em></p>
-<p><em><strong>*select * from student,course;*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT,COURSE WHERE STUDENT.SSEX=0 AND COURSE.CID=1;*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT,COURSE WHERE STUDENT.SAGE &gt;20 AND COURSE.CID !=1;*</strong></em></p>
-<p><img src="/MyImages/wps12.jpg" alt="img" /></p>
-<h1 id="测试7"><a class="markdownIt-Anchor" href="#测试7"></a> 测试7</h1>
-<p><img src="/MyImages/wps13.jpg" alt="img" /></p>
-<p><em><strong>*测试DELETE语句*</strong></em></p>
-<p><em><strong>*输入*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT;*</strong></em></p>
-<p><em><strong>*DELETE FROM STUDENT WHERE SAGE&gt;21 AND SSEX=0;*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT;*</strong></em></p>
-<p><img src="/MyImages/wps14.jpg" alt="img" /></p>
-<h1 id="测试8"><a class="markdownIt-Anchor" href="#测试8"></a> 测试8</h1>
-<p><em><strong>*测试update语句*</strong></em></p>
-<p><em><strong>*输入*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT;*</strong></em></p>
-<p><em><strong>*UPDATE STUDENT SET SAGE=21 WHERE SSEX=1;*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT;*</strong></em></p>
-<p><em><strong>*UPDATE STUDENT SET SAGE=27,SSEX=1 WHERE SNAME=‘ZHANGSAN’;*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT;*</strong></em></p>
-<p><img src="/MyImages/wps15.jpg" alt="img" /></p>
-<h1 id="测试9"><a class="markdownIt-Anchor" href="#测试9"></a> 测试9</h1>
-<p><em><strong>*测试算数运算*</strong></em></p>
-<p><em><strong>*输入*</strong></em></p>
-<p><em><strong>*USE XJGL;*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT;*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT WHERE SAGE = 20+1;*</strong></em></p>
-<p><em><strong>*SELECT * FROM STUDENT WHERE SAGE = 54/2;*</strong></em></p>
-<p><em><strong>*select * from STUDENT WHERE SAGE = 54 *2;*</strong></em></p>
-<p><em><strong>*select * from STUDENT WHERE SAGE = -22+43;*</strong></em></p>
-<p><img src="/MyImages/wps16.jpg" alt="img" /></p>
 
       
       <!-- reward -->
