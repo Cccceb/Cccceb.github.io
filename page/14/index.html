@@ -78,6 +78,96 @@
     
     
     
+    <article id="post-切断圆环链" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E5%88%87%E6%96%AD%E5%9C%86%E7%8E%AF%E9%93%BE/"
+    >切断圆环链</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E5%88%87%E6%96%AD%E5%9C%86%E7%8E%AF%E9%93%BE/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.670Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="UVA-818-切断圆环链"><a href="#UVA-818-切断圆环链" class="headerlink" title="UVA 818 切断圆环链"></a>UVA 818 切断圆环链</h1><p>现在有n个圆环 ，其中可能有些已经连接在一起 现在你想拆开一些圆环与其他圆环连接，使得最后所有圆环都在一条串上 问至少需要拆开几个圆环 (n≤15)</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+<li><p>应该抽象为图的问题，要解决连通性的问题。</p>
+</li>
+<li><p>首先，把所有环打开后再扣上一定可以形成一条链。所以不存在无解的情况。</p>
+</li>
+<li><p>然后，我们发现n≤15，所以我们可以用二进制表示这n个环是否被打开。</p>
+</li>
+<li><p>我们可以遍历所有状态。判断这个状态是否合法即可。如何判断状态合法？我们发现只要一个状态满足一下三条条件就合法。</p>
+<ol>
+<li><p>不能有环</p>
+</li>
+<li><p>一个节点不能有3个及其以上的儿子。即：每个点的度数需要≤2</p>
+</li>
+<li><p>由于每个打开的环只能连接两个未打开的环（即两个连通分量），所以联通分量的个数必须≤要打开的环的个数＋1。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="have-cycle-判断有无环-使用递归"><a href="#have-cycle-判断有无环-使用递归" class="headerlink" title="have_cycle 判断有无环(使用递归)"></a>have_cycle 判断有无环(使用递归)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">bool have_circle(int s) &#123;&#x2F;&#x2F;判断是否存在环</span><br><span class="line">	memset(used, 0, sizeof(used));</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">		if (!used[i] &amp;&amp; !(s&amp;(1 &lt;&lt; i))) &#123;</span><br><span class="line"></span><br><span class="line">&gt; 此处条件表示i节点没有遍历过，且跳过s代表的状态</span><br><span class="line">&gt; 只有当s&#x3D;&#x3D;(1&lt;&lt;i)时，后面的条件才为假</span><br><span class="line"></span><br><span class="line">			num++;</span><br><span class="line">			if (dfs(i, -1, s))</span><br><span class="line">				return true;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool dfs(int u, int fa, int s) &#123;</span><br><span class="line">	used[u] &#x3D; 1;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">		if (g[u][i]) &#123;</span><br><span class="line">			if (i &#x3D;&#x3D; fa || (s &amp; (1 &lt;&lt; i))) continue;</span><br><span class="line"></span><br><span class="line">&gt; 状态s下，该边会被切断，所以不能走下去。</span><br><span class="line"></span><br><span class="line">			if (used[i]) return true;</span><br><span class="line">			if (dfs(i, u, s)) return true;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="above-two-判断是否右节点的度大于二"><a href="#above-two-判断是否右节点的度大于二" class="headerlink" title="above_two 判断是否右节点的度大于二"></a>above_two 判断是否右节点的度大于二</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">bool above_two(int s) &#123;</span><br><span class="line">for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">	int cnt &#x3D; 0;</span><br><span class="line">	for (int j &#x3D; 0; j &lt; n; j++)</span><br><span class="line">		if (g[i][j] &amp;&amp; !(s&amp;(1 &lt;&lt; i)) &amp;&amp; !(s&amp;(1 &lt;&lt; j))) &#123;</span><br><span class="line">			cnt++;</span><br><span class="line">			if (cnt &gt; 2) return true;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="count-统计s状态打开的环的数量"><a href="#count-统计s状态打开的环的数量" class="headerlink" title="count 统计s状态打开的环的数量"></a>count 统计s状态打开的环的数量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int count(int s) &#123;</span><br><span class="line">int cnt &#x3D; 0;</span><br><span class="line">for (int i &#x3D; 0; i &lt; n; i++)</span><br><span class="line">	if (s&amp;(1 &lt;&lt; i)) cnt++;</span><br><span class="line">return cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="main"><a href="#main" class="headerlink" title="main"></a>main</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">const int maxn &#x3D; 15;</span><br><span class="line">bool dfs(int u, int fa, int s);</span><br><span class="line">bool above_two(int s);</span><br><span class="line">bool have_circle(int s);</span><br><span class="line">int count(int s);</span><br><span class="line">int n, num;</span><br><span class="line">int g[maxn][maxn];</span><br><span class="line">bool used[maxn];</span><br><span class="line">int main() &#123;</span><br><span class="line">int a, b;</span><br><span class="line">int kase &#x3D; 0;</span><br><span class="line">while (scanf(&quot;%d&quot;, &amp;n) &amp;&amp; n)</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	int ans &#x3D; inf;</span><br><span class="line">	memset(g, 0, sizeof(g));</span><br><span class="line">	while (scanf(&quot;%d %d&quot;, &amp;a, &amp;b) &amp;&amp; a !&#x3D; -1) &#123;</span><br><span class="line">		g[a - 1][b - 1] &#x3D; 1;</span><br><span class="line">		g[b - 1][a - 1] &#x3D; 1;</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; (1 &lt;&lt; n); i++) &#123;</span><br><span class="line">		num &#x3D; 0;</span><br><span class="line">		if (above_two(i) || have_circle(i))</span><br><span class="line">			continue;</span><br><span class="line">		int now &#x3D; count(i);</span><br><span class="line">		if (num - 1 &lt;&#x3D; now)</span><br><span class="line">			ans &#x3D; min(ans, now);</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;Set %d: Minimum links to open is %d\n&quot;, ++kase, ans);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-切木棍" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -1013,86 +1103,6 @@ return 0;
 <h2 id="init-初始化"><a href="#init-初始化" class="headerlink" title="init 初始化"></a>init 初始化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void init() &#123;</span><br><span class="line">ans &#x3D; 10 * n;</span><br><span class="line">memset(w, 0, sizeof(w));</span><br><span class="line">char s[maxn];</span><br><span class="line">for (int i &#x3D; 0; i &lt; 5; i++) &#123;</span><br><span class="line">	scanf(&quot;%s&quot;, s);</span><br><span class="line">	for (int j &#x3D; 0; j &lt; n; j++)</span><br><span class="line">		if (s[j] &#x3D;&#x3D; &#39;X&#39;) &#123;</span><br><span class="line">			w[i] |&#x3D; (1 &lt;&lt; j);&#x2F;&#x2F;记录初始状态</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line">c &#x3D; 0;</span><br><span class="line">for (int i &#x3D; 0; i &lt;&#x3D; n; i++)&#x2F;&#x2F;枚举两个程序起始点的间隔</span><br><span class="line">	if (judge(w, i)) &#123;</span><br><span class="line">		jump[c++] &#x3D; i;</span><br><span class="line">	&#125;</span><br><span class="line">dfs(1, n, w);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="main"><a href="#main" class="headerlink" title="main"></a>main</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">const int M &#x3D; 100;</span><br><span class="line">const int maxn &#x3D; 20;</span><br><span class="line">int n, c, ans, w[5], jump[M];</span><br><span class="line"></span><br><span class="line">inline bool judge(const int *s, int k);</span><br><span class="line">void dfs(int d, int time, const int *s);</span><br><span class="line">inline void init();</span><br><span class="line">int main() &#123;</span><br><span class="line">while (scanf(&quot;%d&quot;, &amp;n) &amp;&amp; n)</span><br><span class="line">&#123;</span><br><span class="line">	init();</span><br><span class="line">	printf(&quot;%d\n&quot;, ans);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-理想路径" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E7%90%86%E6%83%B3%E8%B7%AF%E5%BE%84/"
-    >理想路径</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E7%90%86%E6%83%B3%E8%B7%AF%E5%BE%84/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.654Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="UVA-1599-理想路径"><a href="#UVA-1599-理想路径" class="headerlink" title="UVA 1599 理想路径"></a>UVA 1599 理想路径</h1><p>给定一个n个点m条边的无向图，每条边上都涂有1种颜色。求11到点n的一条路径，使得经过的边数最少，在此前提下，经过边的颜色序列最小。可能有自环与重边。输入保证至少存在一条连接1和n的道路。</p>
-<p>输入共m+1行：</p>
-<p>第一行2个空格整数：n和m</p>
-<p>以后m行，每行空格隔开的3个整数ai,bi,ci表示在ai,bi之间有一条颜色为ci的道路。</p>
-<p>输出路径序列</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li>整体来说，还是无向图最短路问题，使用bfs求解。</li>
-<li>问题在于路径选择需要选择字典序最小的序列，而bfs过程中并不能知道哪条路是最短的，所以无法一次性求解。</li>
-<li>解决方法是从n点开始bfs，记录到其余各点的最小距离。之后再从头进行一次bfs，每次只走距离n点距离恰好减一的点走，并在其中选择字典序最小的走，这样一定走的是最短路，并且路径字典序最小。</li>
-<li>为了减少队列占用的空间，实现是队列中存的是边的序号，应该关注这种写法</li>
-</ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="addEdge-给新加入的边一个序号"><a href="#addEdge-给新加入的边一个序号" class="headerlink" title="addEdge 给新加入的边一个序号"></a>addEdge 给新加入的边一个序号</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;edge&gt; E;</span><br><span class="line">vector&lt;int&gt; g[maxn];</span><br><span class="line">void addEdge(int u, int v, int w) &#123;</span><br><span class="line">	E.push_back(edge(u, v, w));</span><br><span class="line">	int size &#x3D; E.size() - 1;</span><br><span class="line">	g[u].push_back(size);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="bfs-end-从尾部开始的bfs，常规"><a href="#bfs-end-从尾部开始的bfs，常规" class="headerlink" title="bfs_end 从尾部开始的bfs，常规"></a>bfs_end 从尾部开始的bfs，常规</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">bool vis[maxn];</span><br><span class="line">int d[maxn];</span><br><span class="line">void bfs_end() &#123;</span><br><span class="line">	memset(vis, 0, sizeof(vis));</span><br><span class="line">	d[n] &#x3D; 0;</span><br><span class="line">	vis[n] &#x3D; 1;</span><br><span class="line">	queue&lt;int&gt; q;</span><br><span class="line">	q.push(n);</span><br><span class="line">	while (!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		int u &#x3D; q.front(); q.pop();</span><br><span class="line">		for (int i : g[u]) &#123;</span><br><span class="line">			int v &#x3D; E[i].b;</span><br><span class="line">			if (!vis[v])</span><br><span class="line">			&#123;</span><br><span class="line">				vis[v] &#x3D; 1;</span><br><span class="line">				d[v] &#x3D; d[u] + 1;</span><br><span class="line">				q.push(v);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="bfs-sta-从正向开始bfs"><a href="#bfs-sta-从正向开始bfs" class="headerlink" title="bfs_sta 从正向开始bfs"></a>bfs_sta 从正向开始bfs</h2><p>此处tmp中包含了字典序最小的点，只有当真正走出这一步时，vis[i]才置1(即入队的时候)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; ans;</span><br><span class="line">void bfs_sta() &#123;</span><br><span class="line">	ans.clear();</span><br><span class="line">	memset(vis, 0, sizeof(vis));</span><br><span class="line">	vis[1] &#x3D; 1;</span><br><span class="line">	queue&lt;int&gt; q;</span><br><span class="line">	q.push(1);</span><br><span class="line">	vector&lt;int&gt; tmp;</span><br><span class="line">	int minn;</span><br><span class="line">	while (1) &#123;</span><br><span class="line">		minn &#x3D; inf;</span><br><span class="line">		tmp.clear();</span><br><span class="line">		while (!q.empty())</span><br><span class="line">		&#123;</span><br><span class="line">			int u &#x3D; q.front(); q.pop();</span><br><span class="line">			if (u &#x3D;&#x3D; n) return;</span><br><span class="line">			for (int i : g[u]) &#123;</span><br><span class="line">				int v &#x3D; E[i].b;</span><br><span class="line">				if (d[v] &#x3D;&#x3D; d[u] - 1) &#123;</span><br><span class="line">					if (E[i].w &lt;&#x3D; minn) &#123;</span><br><span class="line">						minn &#x3D; E[i].w;</span><br><span class="line">						tmp.push_back(i);</span><br><span class="line">					&#125;</span><br><span class="line"></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		ans.push_back(minn);</span><br><span class="line"></span><br><span class="line">		for (int i : tmp) &#123;</span><br><span class="line">			int v &#x3D; E[i].b;</span><br><span class="line">			if (!vis[v] &amp;&amp; E[i].w &#x3D;&#x3D; minn) &#123;</span><br><span class="line">				q.push(v);</span><br><span class="line">				vis[v] &#x3D; 1;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="main"><a href="#main" class="headerlink" title="main"></a>main</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 100000 + 5;</span><br><span class="line">#define inf 1000000000</span><br><span class="line">int n, m;</span><br><span class="line">struct edge &#123;</span><br><span class="line">	int a;</span><br><span class="line">	int b;</span><br><span class="line">	int w;</span><br><span class="line">	edge(int a, int b, int w) :a(a), b(b), w(w) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">int main() &#123;</span><br><span class="line">	while (scanf(&quot;%d%d&quot;, &amp;n, &amp;m) &#x3D;&#x3D; 2) &#123;</span><br><span class="line"></span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++) g[i].clear();</span><br><span class="line">		E.clear();</span><br><span class="line"></span><br><span class="line">		for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">			int u, v, w;</span><br><span class="line">			scanf(&quot;%d%d%d&quot;, &amp;u, &amp;v, &amp;w);</span><br><span class="line">			addEdge(u, v, w);</span><br><span class="line">			addEdge(v, u, w);</span><br><span class="line">		&#125;</span><br><span class="line">		bfs_end();</span><br><span class="line">		bfs_sta();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		printf(&quot;%d\n%d&quot;, ans.size(), ans[0]);</span><br><span class="line">		for (int i &#x3D; 1; i &lt; ans.size(); i++)</span><br><span class="line">			printf(&quot; %d&quot;, ans[i]);</span><br><span class="line">		printf(&quot;\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       

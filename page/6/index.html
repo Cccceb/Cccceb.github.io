@@ -78,6 +78,88 @@
     
     
     
+    <article id="post-201412-4" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/201412-4/"
+    >201412-4</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/201412-4/" class="article-date">
+  <time datetime="2020-03-30T04:00:17.054Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="最优灌溉"><a href="#最优灌溉" class="headerlink" title="最优灌溉"></a>最优灌溉</h1><p><strong>问题描述</strong></p>
+<p>　　雷雷承包了很多片麦田，为了灌溉这些麦田，雷雷在第一个麦田挖了一口很深的水井，所有的麦田都从这口井来引水灌溉。<br>　　为了灌溉，雷雷需要建立一些水渠，以连接水井和麦田，雷雷也可以利用部分麦田作为“中转站”，利用水渠连接不同的麦田，这样只要一片麦田能被灌溉，则与其连接的麦田也能被灌溉。<br>　　现在雷雷知道哪些麦田之间可以建设水渠和建设每个水渠所需要的费用（注意不是所有麦田之间都可以建立水渠）。请问灌溉所有麦田最少需要多少费用来修建水渠。</p>
+<p><strong>输入格式</strong></p>
+<p>　　输入的第一行包含两个正整数n, m，分别表示麦田的片数和雷雷可以建立的水渠的数量。麦田使用1, 2, 3, ……依次标号。<br>　　接下来m行，每行包含三个整数ai, bi, ci，表示第ai片麦田与第bi片麦田之间可以建立一条水渠，所需要的费用为ci。</p>
+<p><strong>输出格式</strong></p>
+<p>　　输出一行，包含一个整数，表示灌溉所有麦田所需要的最小费用。</p>
+<p><strong>样例输入</strong></p>
+<p>4 4<br>1 2 1<br>2 3 4<br>2 4 2<br>3 4 3</p>
+<p><strong>样例输出</strong></p>
+<p>6</p>
+<p><strong>样例说明</strong></p>
+<p>　　建立以下三条水渠：麦田1与麦田2、麦田2与麦田4、麦田4与麦田3。</p>
+<p><strong>评测用例规模与约定</strong></p>
+<p>　　前20%的评测用例满足：n≤5。<br>　　前40%的评测用例满足：n≤20。<br>　　前60%的评测用例满足：n≤100。<br>　　所有评测用例都满足：1≤n≤1000，1≤m≤100,000，1≤ci≤10,000。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>最小生成树。前几年是真简单啊</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1000</span> + <span class="number">5</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> a, b;</span><br><span class="line">	<span class="keyword">int</span> w;</span><br><span class="line">	edge(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> w):a(a),b(b),w(w)&#123;&#125;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> edge&amp; x) &#123;</span><br><span class="line">		<span class="keyword">return</span> w &lt; x.w;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> Tree[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findroot</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (Tree[p] == <span class="number">-1</span>) <span class="keyword">return</span> p;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">int</span> tmp = findroot(Tree[p]);</span><br><span class="line">		Tree[p] = tmp;</span><br><span class="line">		<span class="keyword">return</span> tmp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">union_</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> rp = findroot(p);</span><br><span class="line">	<span class="keyword">int</span> rq = findroot(q);</span><br><span class="line">	<span class="keyword">if</span> (rp != rq) &#123;</span><br><span class="line">		Tree[rq] = rp;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">vector</span>&lt;edge&gt; g;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(Tree, <span class="number">-1</span>, <span class="keyword">sizeof</span>(Tree));</span><br><span class="line">	<span class="keyword">int</span> n, m;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">	<span class="keyword">int</span> a, b, w;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;w);</span><br><span class="line">		g.push_back(edge(a, b, w));</span><br><span class="line">	&#125;</span><br><span class="line">	sort(g.<span class="built_in">begin</span>(), g.<span class="built_in">end</span>());</span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; g.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> a = g[i].a;</span><br><span class="line">		<span class="keyword">int</span> b = g[i].b;</span><br><span class="line">		<span class="keyword">int</span> w = g[i].w;</span><br><span class="line">		<span class="keyword">if</span> (union_(a, b)) &#123;</span><br><span class="line">			cnt++;</span><br><span class="line">			ans += w;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (cnt == n - <span class="number">1</span>) <span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-201503-4" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -1071,225 +1153,6 @@
 
       
       <h2 id="基础相关"><a href="#基础相关" class="headerlink" title="基础相关"></a><a href="/2020/03/30/基础相关/">基础相关</a></h2><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a><a href="/2020/03/30/数据结构/">数据结构</a></h2><h2 id="数学理论"><a href="#数学理论" class="headerlink" title="数学理论"></a><a href="/2020/03/30/数学理论/">数学理论</a></h2><h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a><a href="/2020/03/30/搜索/">搜索</a></h2><h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a><a href="/2020/03/30/动态规划/">动态规划</a></h2><h2 id="图论"><a href="#图论" class="headerlink" title="图论"></a><a href="/2020/03/30/图论/">图论</a></h2><h2 id="其他技巧"><a href="#其他技巧" class="headerlink" title="其他技巧"></a><a href="/2020/03/30/其他技巧/">其他技巧</a></h2>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-Mysql基本语法" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/Mysql%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"
-    >Mysql基本语法</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/Mysql%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" class="article-date">
-  <time datetime="2020-03-30T03:50:57.746Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="Mysql基础"><a href="#Mysql基础" class="headerlink" title="Mysql基础"></a>Mysql基础</h1><h2 id="数据库相关概念"><a href="#数据库相关概念" class="headerlink" title="数据库相关概念"></a>数据库相关概念</h2><p>一、数据库的好处<br>1、可以持久化数据到本地<br>2、结构化查询</p>
-<p>二、数据库的常见概念 ★<br>1、DB：数据库，存储数据的容器<br>2、DBMS：数据库管理系统，又称为数据库软件或数据库产品，用于创建或管理DB<br>3、SQL：结构化查询语言，用于和数据库通信的语言，不是某个数据库软件特有的，而是几乎所有的主流数据库软件通用的语言</p>
-<p>三、数据库存储数据的特点<br>1、数据存放到表中，然后表再放到库中<br>2、一个库中可以有多张表，每张表具有唯一的表名用来标识自己<br>3、表中有一个或多个列，列又称为“字段”，相当于java中“属性”<br>4、表中的每一行数据，相当于java中“对象”</p>
-<p>四、常见的数据库管理系统<br>mysql、oracle、db2、sqlserver</p>
-<h2 id="MySql介绍"><a href="#MySql介绍" class="headerlink" title="MySql介绍"></a>MySql介绍</h2><p>一、MySQL的背景<br>前身属于瑞典的一家公司，MySQL AB<br>08年被sun公司收购<br>09年sun被oracle收购</p>
-<p>二、MySQL的优点<br>1、开源、免费、成本低<br>2、性能高、移植性也好<br>3、体积小，便于安装<br>三、MySQL的安装<br>属于c/s架构的软件，一般来讲安装服务端<br>企业版<br>社区版</p>
-<p>5.5<br>5.6<br>5.7<br>8.0</p>
-<p>四、MySQL服务的启动和停止<br>方式一：通过命令行<br>    net start 服务名<br>    net stop 服务名<br>方式二：计算机——右击——管理——服务</p>
-<p>五、MySQL服务的登录和退出</p>
-<p>登录：mysql 【-h 主机名 -P 端口号】 -u 用户名 -p密码</p>
-<p>退出：exit或ctrl+C</p>
-<h1 id="DQL语言"><a href="#DQL语言" class="headerlink" title="DQL语言"></a>DQL语言</h1><h2 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h2><p>一、语法<br>select 查询列表<br>from 表名;<br>二、特点<br>1、查询列表可以是字段、常量、表达式、函数，也可以是多个<br>2、查询结果是一个虚拟表</p>
-<p>三、示例<br>1、查询单个字段<br>select 字段名 from 表名;<br>2、查询多个字段<br>select 字段名，字段名 from 表名;<br>3、查询所有字段<br>select * from 表名<br>4、查询常量<br>select 常量值;<br>注意：字符型和日期型的常量值必须用单引号引起来，数值型不需要<br>5、查询函数<br>select 函数名(实参列表);<br>6、查询表达式<br>select 100/1234;<br>7、起别名<br>①as<br>②空格<br>8、去重<br>select distinct 字段名 from 表名;</p>
-<p>9、+<br>作用：做加法运算<br>select 数值+数值; 直接运算<br>select 字符+数值;先试图将字符转换成数值，如果转换成功，则继续运算；否则转换成0，再做运算<br>select null+值;结果都为null</p>
-<p>10、【补充】concat函数<br>功能：拼接字符<br>select concat(字符1，字符2，字符3,…);</p>
-<p>11、【补充】ifnull函数<br>功能：判断某字段或表达式是否为null，如果为null 返回指定的值，否则返回原本的值<br>select ifnull(commission_pct,0) from employees;</p>
-<p>12、【补充】isnull函数<br>功能：判断某字段或表达式是否为null，如果是，则返回1，否则返回0</p>
-<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><p>一、语法<br>select 查询列表<br>from 表名<br>where 筛选条件</p>
-<p>二、筛选条件的分类<br>1、简单条件运算符</p>
-<blockquote>
-<p>&lt; = &lt;&gt; != &gt;= &lt;=  &lt;=&gt;安全等于<br>2、逻辑运算符<br>&amp;&amp; and<br>|| or<br>!  not<br>3、模糊查询<br>like:一般搭配通配符使用，可以判断字符型或数值型<br>通配符：%任意多个字符，_任意单个字符</p>
-</blockquote>
-<p>between and<br>in<br>is null /is not null：用于判断null值</p>
-<p>is null PK &lt;=&gt;<br>            普通类型的数值    null值        可读性<br>is null        ×            √        √<br>&lt;=&gt;        √            √        ×</p>
-<h2 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h2><p>一、语法<br>select 查询列表<br>from 表<br>where 筛选条件<br>order by 排序列表 【asc}desc】</p>
-<p>二、特点<br>1、asc ：升序，如果不写默认升序<br>   desc：降序</p>
-<p>2、排序列表 支持 单个字段、多个字段、函数、表达式、别名</p>
-<p>3、order by的位置一般放在查询语句的最后（除limit语句之外）</p>
-<h2 id="常见函数"><a href="#常见函数" class="headerlink" title="常见函数"></a>常见函数</h2><p>一、概述<br>功能：类似于java中的方法<br>好处：提高重用性和隐藏实现细节<br>调用：select 函数名(实参列表);<br>二、单行函数<br>1、字符函数<br>concat:连接<br>substr:截取子串<br>upper:变大写<br>lower：变小写<br>replace：替换<br>length：获取字节长度<br>trim:去前后空格<br>lpad：左填充<br>rpad：右填充<br>instr:获取子串第一次出现的索引<br>2、数学函数<br>ceil:向上取整<br>round：四舍五入<br>mod:取模<br>floor：向下取整<br>truncate:截断<br>rand:获取随机数，返回0-1之间的小数</p>
-<p>3、日期函数</p>
-<p>now：返回当前日期+时间<br>year:返回年<br>month：返回月<br>day:返回日<br>date_format:将日期转换成字符<br>curdate:返回当前日期<br>str_to_date:将字符转换成日期<br>curtime：返回当前时间<br>hour:小时<br>minute:分钟<br>second：秒<br>datediff:返回两个日期相差的天数<br>monthname:以英文形式返回月</p>
-<p>4、其他函数<br>version 当前数据库服务器的版本<br>database 当前打开的数据库<br>user当前用户<br>password(‘字符’)：返回该字符的密码形式<br>md5(‘字符’):返回该字符的md5加密形式</p>
-<p>5、流程控制函数</p>
-<p>①if(条件表达式，表达式1，表达式2)：如果条件表达式成立，返回表达式1，否则返回表达式2<br>②case情况1<br>case 变量或表达式或字段<br>when 常量1 then 值1<br>when 常量2 then 值2<br>…<br>else 值n<br>end</p>
-<p>③case情况2<br>case<br>when 条件1 then 值1<br>when 条件2 then 值2<br>…<br>else 值n<br>end</p>
-<p>三、分组函数<br>1、分类<br>max 最大值<br>min 最小值<br>sum 和<br>avg 平均值<br>count 计算个数</p>
-<p>2、特点</p>
-<p>①语法<br>select max(字段) from 表名;</p>
-<p>②支持的类型<br>sum和avg一般用于处理数值型<br>max、min、count可以处理任何数据类型</p>
-<p>③以上分组函数都忽略null<br>④都可以搭配distinct使用，实现去重的统计<br>select sum(distinct 字段) from 表;<br>⑤count函数<br>count(字段)：统计该字段非空值的个数<br>count(*):统计结果集的行数<br>案例：查询每个部门的员工个数<br>1 xx    10<br>2 dd    20<br>3 mm    20<br>4 aa    40<br>5 hh    40</p>
-<p>count(1):统计结果集的行数</p>
-<p>效率上：<br>MyISAM存储引擎，count(<em>)最高<br>InnoDB存储引擎，count(</em>)和count(1)效率&gt;count(字段)</p>
-<p>⑥ 和分组函数一同查询的字段，要求是group by后出现的字段</p>
-<h2 id="分组查序"><a href="#分组查序" class="headerlink" title="分组查序"></a>分组查序</h2><p>一、语法<br>select 分组函数，分组后的字段<br>from 表<br>【where 筛选条件】<br>group by 分组的字段<br>【having 分组后的筛选】<br>【order by 排序列表】</p>
-<p>二、特点</p>
-<pre><code>使用关键字        筛选的表    位置</code></pre><p>分组前筛选    where            原始表        group by的前面<br>分组后筛选    having        分组后的结果    group by 的后面</p>
-<h2 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h2><p>一、含义<br>当查询中涉及到了多个表的字段，需要使用多表连接<br>select 字段1，字段2<br>from 表1，表2,…;</p>
-<p>笛卡尔乘积：当查询多个表时，没有添加有效的连接条件，导致多个表所有行实现完全连接<br>如何解决：添加有效的连接条件</p>
-<p>二、分类</p>
-<p>按年代分类：<br>    sql92：<br>        等值<br>        非等值<br>        自连接</p>
-<pre><code>    也支持一部分外连接（用于oracle、sqlserver，mysql不支持）
-sql99【推荐使用】
-    内连接
-        等值
-        非等值
-        自连接
-    外连接
-        左外
-        右外
-        全外（mysql不支持）
-    交叉连接</code></pre><p>三、SQL92语法<br>1、等值连接<br>语法：<br>    select 查询列表<br>    from 表1 别名,表2 别名<br>    where 表1.key=表2.key<br>    【and 筛选条件】<br>    【group by 分组字段】<br>    【having 分组后的筛选】<br>    【order by 排序字段】</p>
-<p>特点：<br>    ① 一般为表起别名<br>    ②多表的顺序可以调换<br>    ③n表连接至少需要n-1个连接条件<br>    ④等值连接的结果是多表的交集部分</p>
-<p>2、非等值连接<br>语法：<br>    select 查询列表<br>    from 表1 别名,表2 别名<br>    where 非等值的连接条件<br>    【and 筛选条件】<br>    【group by 分组字段】<br>    【having 分组后的筛选】<br>    【order by 排序字段】<br>3、自连接</p>
-<p>语法：<br>    select 查询列表<br>    from 表 别名1,表 别名2<br>    where 等值的连接条件<br>    【and 筛选条件】<br>    【group by 分组字段】<br>    【having 分组后的筛选】<br>    【order by 排序字段】</p>
-<p>四、SQL99语法<br>1、内连接<br>语法：<br>select 查询列表<br>from 表1 别名<br>【inner】 join 表2 别名 on 连接条件<br>where 筛选条件<br>group by 分组列表<br>having 分组后的筛选<br>order by 排序列表<br>limit 子句;</p>
-<p>特点：<br>①表的顺序可以调换<br>②内连接的结果=多表的交集<br>③n表连接至少需要n-1个连接条件</p>
-<p>分类：<br>等值连接<br>非等值连接<br>自连接</p>
-<p>2、外连接<br>语法：<br>select 查询列表<br>from 表1 别名<br>left|right|full【outer】 join 表2 别名 on 连接条件<br>where 筛选条件<br>group by 分组列表<br>having 分组后的筛选<br>order by 排序列表<br>limit 子句;<br>特点：<br>①查询的结果=主表中所有的行，如果从表和它匹配的将显示匹配行，如果从表没有匹配的则显示null<br>②left join 左边的就是主表，right join 右边的就是主表<br>  full join 两边都是主表<br>③一般用于查询除了交集部分的剩余的不匹配的行</p>
-<p>3、交叉连接</p>
-<p>语法：<br>select 查询列表<br>from 表1 别名<br>cross join 表2 别名;</p>
-<p>特点：<br>类似于笛卡尔乘积</p>
-<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p>一、含义<br>嵌套在其他语句内部的select语句称为子查询或内查询，<br>外面的语句可以是insert、update、delete、select等，一般select作为外面语句较多<br>外面如果为select语句，则此语句称为外查询或主查询</p>
-<p>二、分类<br>1、按出现位置<br>select后面：<br>        仅仅支持标量子查询<br>from后面：<br>        表子查询<br>where或having后面：<br>        标量子查询<br>        列子查询<br>        行子查询<br>exists后面：<br>        标量子查询<br>        列子查询<br>        行子查询<br>        表子查询</p>
-<p>2、按结果集的行列<br>标量子查询（单行子查询）：结果集为一行一列<br>列子查询（多行子查询）：结果集为多行一列<br>行子查询：结果集为多行多列<br>表子查询：结果集为多行多列</p>
-<p>三、示例<br>where或having后面<br>1、标量子查询<br>案例：查询最低工资的员工姓名和工资<br>①最低工资<br>select min(salary) from employees</p>
-<p>②查询员工的姓名和工资，要求工资=①<br>select last_name,salary<br>from employees<br>where salary=(<br>    select min(salary) from employees<br>);</p>
-<p>2、列子查询<br>案例：查询所有是领导的员工姓名<br>①查询所有员工的 manager_id<br>select manager_id<br>from employees</p>
-<p>②查询姓名，employee_id属于①列表的一个<br>select last_name<br>from employees<br>where employee_id in(<br>    select manager_id<br>    from employees<br>);</p>
-<h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><p>一、应用场景<br>当要查询的条目数太多，一页显示不全<br>二、语法</p>
-<p>select 查询列表<br>from 表<br>limit 【offset，】size;<br>注意：<br>offset代表的是起始的条目索引，默认从0卡死<br>size代表的是显示的条目数</p>
-<p>公式：<br>假如要显示的页数为page，每一页条目数为size<br>select 查询列表<br>from 表<br>limit (page-1)*size,size;</p>
-<h2 id="联合查询"><a href="#联合查询" class="headerlink" title="联合查询"></a>联合查询</h2><p>一、含义<br>union：合并、联合，将多次查询结果合并成一个结果<br>二、语法<br>查询语句1<br>union 【all】<br>查询语句2<br>union 【all】<br>…</p>
-<p>三、意义<br>1、将一条比较复杂的查询语句拆分成多条语句<br>2、适用于查询多个表的时候，查询的列基本是一致</p>
-<p>四、特点<br>1、要求多条查询语句的查询列数必须一致<br>2、要求多条查询语句的查询的各列类型、顺序最好一致<br>3、union 去重，union all包含重复项</p>
-<h2 id="查询总结"><a href="#查询总结" class="headerlink" title="查询总结"></a>查询总结</h2><p>语法：<br>select 查询列表    ⑦<br>from 表1 别名       ①<br>连接类型 join 表2   ②<br>on 连接条件         ③<br>where 筛选          ④<br>group by 分组列表   ⑤<br>having 筛选         ⑥<br>order by排序列表    ⑧<br>limit 起始条目索引，条目数;  ⑨</p>
-<h1 id="DML语言"><a href="#DML语言" class="headerlink" title="DML语言"></a>DML语言</h1><h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p>一、方式一<br>语法：<br>insert into 表名(字段名,…) values(值,…);<br>特点：<br>1、要求值的类型和字段的类型要一致或兼容<br>2、字段的个数和顺序不一定与原始表中的字段个数和顺序一致<br>但必须保证值和字段一一对应<br>3、假如表中有可以为null的字段，注意可以通过以下两种方式插入null值<br>①字段和值都省略<br>②字段写上，值使用null<br>4、字段和值的个数必须一致<br>5、字段名可以省略，默认所有列</p>
-<p>二、方式二<br>语法：<br>insert into 表名 set 字段=值,字段=值,…;</p>
-<p>两种方式 的区别：<br>1.方式一支持一次插入多行，语法如下：<br>insert into 表名【(字段名,..)】 values(值，..),(值，…),…;<br>2.方式一支持子查询，语法如下：<br>insert into 表名<br>查询语句;</p>
-<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><p>一、修改单表的记录 ★<br>语法：update 表名 set 字段=值,字段=值 【where 筛选条件】;</p>
-<p>二、修改多表的记录【补充】<br>语法：<br>update 表1 别名<br>left|right|inner join 表2 别名<br>on 连接条件<br>set 字段=值,字段=值<br>【where 筛选条件】;</p>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>方式一：使用delete<br>一、删除单表的记录★<br>语法：delete from 表名 【where 筛选条件】【limit 条目数】<br>二、级联删除[补充]<br>语法：<br>delete 别名1,别名2 from 表1 别名<br>inner|left|right join 表2 别名<br>on 连接条件<br> 【where 筛选条件】</p>
-<p>方式二：使用truncate<br>语法：truncate table 表名</p>
-<p>两种方式的区别【面试题】★</p>
-<p>1.truncate删除后，如果再插入，标识列从1开始<br>  delete删除后，如果再插入，标识列从断点开始<br>2.delete可以添加筛选条件<br> truncate不可以添加筛选条件<br>3.truncate效率较高<br>4.truncate没有返回值<br>delete可以返回受影响的行数<br>5.truncate不可以回滚<br>delete可以回滚</p>
-<h1 id="DDL语言"><a href="#DDL语言" class="headerlink" title="DDL语言"></a>DDL语言</h1><h2 id="库的管理"><a href="#库的管理" class="headerlink" title="库的管理"></a>库的管理</h2><p>一、创建库<br>create database 【if not exists】 库名【 character set 字符集名】;</p>
-<p>二、修改库<br>alter database 库名 character set 字符集名;<br>三、删除库<br>drop database 【if exists】 库名;</p>
-<h2 id="表的管理"><a href="#表的管理" class="headerlink" title="表的管理"></a>表的管理</h2><p>一、创建表 ★<br>create table 【if not exists】 表名(<br>    字段名 字段类型 【约束】,<br>    字段名 字段类型 【约束】,<br>    。。。<br>    字段名 字段类型 【约束】 </p>
-<p>)</p>
-<p>二、修改表</p>
-<p>1.添加列<br>alter table 表名 add column 列名 类型 【first|after 字段名】;<br>2.修改列的类型或约束<br>alter table 表名 modify column 列名 新类型 【新约束】;<br>3.修改列名<br>alter table 表名 change column 旧列名 新列名 类型;<br>4 .删除列<br>alter table 表名 drop column 列名;<br>5.修改表名<br>alter table 表名 rename 【to】 新表名;</p>
-<p>三、删除表<br>drop table【if exists】 表名;</p>
-<p>四、复制表<br>1、复制表的结构<br>create table 表名 like 旧表;<br>2、复制表的结构+数据<br>create table 表名<br>select 查询列表 from 旧表【where 筛选】;</p>
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>一、数值型<br>1、整型<br>tinyint、smallint、mediumint、int/integer、bigint<br>1         2        3          4            8</p>
-<p>特点：<br>①都可以设置无符号和有符号，默认有符号，通过unsigned设置无符号<br>②如果超出了范围，会报out or range异常，插入临界值<br>③长度可以不指定，默认会有一个长度<br>长度代表显示的最大宽度，如果不够则左边用0填充，但需要搭配zerofill，并且默认变为无符号整型</p>
-<p>2、浮点型<br>定点数：decimal(M,D)<br>浮点数:<br>    float(M,D)   4<br>    double(M,D)  8</p>
-<p>特点：<br>①M代表整数部位+小数部位的个数，D代表小数部位<br>②如果超出范围，则报out or range异常，并且插入临界值<br>③M和D都可以省略，但对于定点数，M默认为10，D默认为0<br>④如果精度要求较高，则优先考虑使用定点数</p>
-<p>二、字符型<br>char、varchar、binary、varbinary、enum、set、text、blob</p>
-<p>char：固定长度的字符，写法为char(M)，最大长度不能超过M，其中M可以省略，默认为1<br>varchar：可变长度的字符，写法为varchar(M)，最大长度不能超过M，其中M不可以省略</p>
-<p>三、日期型<br>year年<br>date日期<br>time时间<br>datetime 日期+时间          8<br>timestamp 日期+时间         4   比较容易受时区、语法模式、版本的影响，更能反映当前时区的真实时间</p>
-<h2 id="常见的约束"><a href="#常见的约束" class="headerlink" title="常见的约束"></a>常见的约束</h2><p>一、常见的约束<br>NOT NULL：非空，该字段的值必填<br>UNIQUE：唯一，该字段的值不可重复<br>DEFAULT：默认，该字段的值不用手动插入有默认值<br>CHECK：检查，mysql不支持<br>PRIMARY KEY：主键，该字段的值不可重复并且非空  unique+not null<br>FOREIGN KEY：外键，该字段的值引用了另外的表的字段</p>
-<p>主键和唯一<br>1、区别：<br>①、一个表至多有一个主键，但可以有多个唯一<br>②、主键不允许为空，唯一可以为空<br>2、相同点<br>都具有唯一性<br>都支持组合键，但不推荐<br>外键：<br>1、用于限制两个表的关系，从表的字段值引用了主表的某字段值<br>2、外键列和主表的被引用列要求类型一致，意义一样，名称无要求<br>3、主表的被引用列要求是一个key（一般就是主键）<br>4、插入数据，先插入主表<br>删除数据，先删除从表<br>可以通过以下两种方式来删除主表的记录<br>#方式一：级联删除<br>ALTER TABLE stuinfo ADD CONSTRAINT fk_stu_major FOREIGN KEY(majorid) REFERENCES major(id) ON DELETE CASCADE;</p>
-<p>#方式二：级联置空<br>ALTER TABLE stuinfo ADD CONSTRAINT fk_stu_major FOREIGN KEY(majorid) REFERENCES major(id) ON DELETE SET NULL;</p>
-<p>二、创建表时添加约束<br>create table 表名(<br>    字段名 字段类型 not null,#非空<br>    字段名 字段类型 primary key,#主键<br>    字段名 字段类型 unique,#唯一<br>    字段名 字段类型 default 值,#默认<br>    constraint 约束名 foreign key(字段名) references 主表（被引用列）</p>
-<p>)<br>注意：<br>            支持类型        可以起约束名<br>列级约束        除了外键        不可以<br>表级约束        除了非空和默认    可以，但对主键无效</p>
-<p>列级约束可以在一个字段上追加多个，中间用空格隔开，没有顺序要求</p>
-<p>三、修改表时添加或删除约束<br>1、非空<br>添加非空<br>alter table 表名 modify column 字段名 字段类型 not null;<br>删除非空<br>alter table 表名 modify column 字段名 字段类型 ;</p>
-<p>2、默认<br>添加默认<br>alter table 表名 modify column 字段名 字段类型 default 值;<br>删除默认<br>alter table 表名 modify column 字段名 字段类型 ;<br>3、主键<br>添加主键<br>alter table 表名 add【 constraint 约束名】 primary key(字段名);<br>删除主键<br>alter table 表名 drop primary key;</p>
-<p>4、唯一<br>添加唯一<br>alter table 表名 add【 constraint 约束名】 unique(字段名);<br>删除唯一<br>alter table 表名 drop index 索引名;<br>5、外键<br>添加外键<br>alter table 表名 add【 constraint 约束名】 foreign key(字段名) references 主表（被引用列）;<br>删除外键<br>alter table 表名 drop foreign key 约束名;</p>
-<p>四、自增长列<br>特点：<br>1、不用手动插入值，可以自动提供序列值，默认从1开始，步长为1<br>auto_increment_increment<br>如果要更改起始值：手动插入值<br>如果要更改步长：更改系统变量<br>set auto_increment_increment=值;<br>2、一个表至多有一个自增长列<br>3、自增长列只能支持数值型<br>4、自增长列必须为一个key</p>
-<p>一、创建表时设置自增长列<br>create table 表(<br>    字段名 字段类型 约束 auto_increment<br>)<br>二、修改表时设置自增长列<br>alter table 表 modify column 字段名 字段类型 约束 auto_increment<br>三、删除自增长列<br>alter table 表 modify column 字段名 字段类型 约束 </p>
-<h1 id="TCL语言"><a href="#TCL语言" class="headerlink" title="TCL语言"></a>TCL语言</h1><p>一、含义<br>事务：一条或多条sql语句组成一个执行单位，一组sql语句要么都执行要么都不执行<br>二、特点（ACID）<br>A 原子性：一个事务是不可再分割的整体，要么都执行要么都不执行<br>C 一致性：一个事务可以使数据从一个一致状态切换到另外一个一致的状态<br>I 隔离性：一个事务不受其他事务的干扰，多个事务互相隔离的<br>D 持久性：一个事务一旦提交了，则永久的持久化到本地</p>
-<p>三、事务的使用步骤 ★<br>了解：<br>隐式（自动）事务：没有明显的开启和结束，本身就是一条事务可以自动提交，比如insert、update、delete<br>显式事务：具有明显的开启和结束</p>
-<p>使用显式事务：<br>①开启事务<br>set autocommit=0;<br>start transaction;#可以省略</p>
-<p>②编写一组逻辑sql语句<br>注意：sql语句支持的是insert、update、delete</p>
-<p>设置回滚点：<br>savepoint 回滚点名;</p>
-<p>③结束事务<br>提交：commit;<br>回滚：rollback;<br>回滚到指定的地方：rollback to 回滚点名;<br>四、并发事务<br>1、事务的并发问题是如何发生的？<br>多个事务 同时 操作 同一个数据库的相同数据时<br>2、并发问题都有哪些？<br>脏读：一个事务读取了其他事务还没有提交的数据，读到的是其他事务“更新”的数据<br>不可重复读：一个事务多次读取，结果不一样<br>幻读：一个事务读取了其他事务还没有提交的数据，只是读到的是 其他事务“插入”的数据<br>3、如何解决并发问题<br>通过设置隔离级别来解决并发问题<br>4、隔离级别<br>                    脏读        不可重复读        幻读<br>read uncommitted:读未提交     ×                ×              ×<br>read committed：读已提交      √                ×              ×<br>repeatable read：可重复读     √                √              ×<br>serializable：串行化          √                √              √</p>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>一、含义<br>mysql5.1版本出现的新特性，本身是一个虚拟表，它的数据来自于表，通过执行时动态生成。<br>好处：<br>1、简化sql语句<br>2、提高了sql的重用性<br>3、保护基表的数据，提高了安全性<br>二、创建<br>create view 视图名<br>as<br>查询语句;</p>
-<p>三、修改<br>方式一：<br>create or replace view 视图名<br>as<br>查询语句;<br>方式二：<br>alter view 视图名<br>as<br>查询语句</p>
-<p>四、删除<br>drop view 视图1，视图2,…;<br>五、查看<br>desc 视图名;<br>show create view 视图名;<br>六、使用<br>1.插入<br>insert<br>2.修改<br>update<br>3.删除<br>delete<br>4.查看<br>select<br>注意：视图一般用于查询的，而不是更新的，所以具备以下特点的视图都不允许更新<br>①包含分组函数、group by、distinct、having、union、<br>②join<br>③常量视图<br>④where后的子查询用到了from中的表<br>⑤用到了不可更新的视图</p>
-<p>七、视图和表的对比<br>        关键字        是否占用物理空间            使用<br>视图    view        占用较小，只保存sql逻辑        一般用于查询<br>表        table        保存实际的数据            增删改查</p>
-<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>分类<br>一、系统变量<br>说明：变量由系统提供的，不用自定义<br>语法：<br>①查看系统变量<br>show 【global|session 】variables like ‘’; 如果没有显式声明global还是session，则默认是session<br>②查看指定的系统变量的值<br>select @@【global|session】.变量名; 如果没有显式声明global还是session，则默认是session<br>③为系统变量赋值<br>方式一：<br>set 【global|session 】 变量名=值; 如果没有显式声明global还是session，则默认是session<br>方式二：<br>set @@global.变量名=值;<br>set @@变量名=值；</p>
-<p>1、全局变量<br>服务器层面上的，必须拥有super权限才能为系统变量赋值，作用域为整个服务器，也就是针对于所有连接（会话）有效</p>
-<p>2、会话变量<br>服务器为每一个连接的客户端都提供了系统变量，作用域为当前的连接（会话）</p>
-<p>二、自定义变量<br>说明：<br>1、用户变量<br>作用域：针对于当前连接（会话）生效<br>位置：begin end里面，也可以放在外面<br>使用：</p>
-<p>①声明并赋值：<br>set @变量名=值;或<br>set @变量名:=值;或<br>select @变量名:=值;</p>
-<p>②更新值<br>方式一：<br>    set @变量名=值;或<br>    set @变量名:=值;或<br>    select @变量名:=值;<br>方式二：<br>    select xx into @变量名 from 表;</p>
-<p>③使用<br>select @变量名;</p>
-<p>2、局部变量<br>作用域：仅仅在定义它的begin end中有效<br>位置：只能放在begin end中，而且只能放在第一句<br>使用：<br>①声明<br>declare 变量名 类型 【default 值】;<br>②赋值或更新<br>方式一：<br>    set 变量名=值;或<br>    set 变量名:=值;或<br>    select @变量名:=值;<br>方式二：<br>    select xx into 变量名 from 表;<br>③使用<br>select 变量名;</p>
-<h2 id="存储过程和函数"><a href="#存储过程和函数" class="headerlink" title="存储过程和函数"></a>存储过程和函数</h2><p>说明：都类似于java中的方法，将一组完成特定功能的逻辑语句包装起来，对外暴露名字<br>好处：<br>1、提高重用性<br>2、sql语句简单<br>3、减少了和数据库服务器连接的次数，提高了效率</p>
-<h3 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h3><p>一、创建 ★<br>create procedure 存储过程名(参数模式 参数名 参数类型)<br>begin<br>        存储过程体<br>end<br>注意：<br>1.参数模式：in、out、inout，其中in可以省略<br>2.存储过程体的每一条sql语句都需要用分号结尾</p>
-<p>二、调用<br>call 存储过程名(实参列表)<br>举例：<br>调用in模式的参数：call sp1（‘值’）;<br>调用out模式的参数：set @name; call sp1(@name);select @name;<br>调用inout模式的参数：set @name=值; call sp1(@name); select @name;<br>三、查看<br>show create procedure 存储过程名;<br>四、删除<br>drop procedure 存储过程名;</p>
-<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>一、创建<br>create function 函数名(参数名 参数类型) returns  返回类型<br>begin<br>    函数体<br>end</p>
-<p>注意：函数体中肯定需要有return语句<br>二、调用<br>select 函数名(实参列表);<br>三、查看<br>show create function 函数名;<br>四、删除<br>drop function 函数名；</p>
-<h2 id="流程控制结构"><a href="#流程控制结构" class="headerlink" title="流程控制结构"></a>流程控制结构</h2><p>说明：<br>顺序结构：程序从上往下依次执行<br>分支结构：程序按条件进行选择执行，从两条或多条路径中选择一条执行<br>循环结构：程序满足一定条件下，重复执行一组语句</p>
-<h3 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h3><p>特点：<br>1、if函数<br>功能：实现简单双分支<br>语法：<br>if(条件，值1，值2)<br>位置：<br>可以作为表达式放在任何位置<br>2、case结构<br>功能：实现多分支<br>语法1：<br>case 表达式或字段<br>when 值1 then 语句1;<br>when 值2 then 语句2；<br>..<br>else 语句n;<br>end [case];</p>
-<p>语法2：<br>case<br>when 条件1 then 语句1;<br>when 条件2 then 语句2；<br>..<br>else 语句n;<br>end [case];</p>
-<p>位置：<br>可以放在任何位置，<br>如果放在begin end 外面，作为表达式结合着其他语句使用<br>如果放在begin end 里面，一般作为独立的语句使用<br>3、if结构<br>功能：实现多分支<br>语法：<br>if 条件1 then 语句1;<br>elseif 条件2 then 语句2;<br>…<br>else 语句n;<br>end if;<br>位置：<br>只能放在begin end中</p>
-<h3 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h3><p>位置：<br>只能放在begin end中</p>
-<p>特点：都能实现循环结构</p>
-<p>对比：</p>
-<p>①这三种循环都可以省略名称，但如果循环中添加了循环控制语句（leave或iterate）则必须添加名称<br>②<br>loop 一般用于实现简单的死循环<br>while 先判断后执行<br>repeat 先执行后判断，无条件至少执行一次</p>
-<p>1、while<br>语法：<br>【名称:】while 循环条件 do<br>        循环体<br>end while 【名称】;<br>2、loop<br>语法：<br>【名称：】loop<br>        循环体<br>end loop 【名称】;</p>
-<p>3、repeat<br>语法：<br>【名称:】repeat<br>        循环体<br>until 结束条件<br>end repeat 【名称】;</p>
-<p>二、循环控制语句<br>leave：类似于break，用于跳出所在的循环<br>iterate：类似于continue，用于结束本次循环，继续下一次</p>
-
       
       <!-- reward -->
       

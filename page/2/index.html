@@ -78,6 +78,269 @@
     
     
     
+    <article id="post-第7章搜索策略之与或树" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/13/%E7%AC%AC7%E7%AB%A0%E6%90%9C%E7%B4%A2%E7%AD%96%E7%95%A5%E4%B9%8B%E4%B8%8E%E6%88%96%E6%A0%91/"
+    >第7章搜索策略之与或树</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/13/%E7%AC%AC7%E7%AB%A0%E6%90%9C%E7%B4%A2%E7%AD%96%E7%95%A5%E4%B9%8B%E4%B8%8E%E6%88%96%E6%A0%91/" class="article-date">
+  <time datetime="2020-06-13T05:03:31.641Z" itemprop="datePublished">2020-06-13</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="基础知识"><a class="markdownIt-Anchor" href="#基础知识"></a> 基础知识</h1>
+<h2 id="可解结点与不可解结点"><a class="markdownIt-Anchor" href="#可解结点与不可解结点"></a> 可解结点与不可解结点</h2>
+<h3 id="可解结点递归定义"><a class="markdownIt-Anchor" href="#可解结点递归定义"></a> 可解结点递归定义</h3>
+<ul>
+<li>终叶节点是可解节点，直接和本原问题相关连；</li>
+<li>非终叶节点含有“或”子节点时，只要子节点中有一个是可解节点，该非终叶节点便为可解节点；</li>
+<li>非终叶节点含有“与”子节点时，只有子节点全为可解节点时，该非终叶节点才是可解节点。</li>
+</ul>
+<h3 id="不可解结点的定义"><a class="markdownIt-Anchor" href="#不可解结点的定义"></a> 不可解结点的定义</h3>
+<p>关于可解节点的三个条件全部不满足的节点，称为不可解节点；</p>
+<h2 id="一般搜索过程流程"><a class="markdownIt-Anchor" href="#一般搜索过程流程"></a> 一般搜索过程流程</h2>
+<ol>
+<li>把原始问题作为初始节点S，并把它作为当前节点。</li>
+<li>应用分解或等价变换算符对当前节点进行扩展。</li>
+<li>为每个子节点设置指向父节点的指针。</li>
+<li>选择合适子节点作为当前节点，反复执行第(2)、(3)步，在此期间多次调用可解标示过程和不可解标示过程，直到初始节点被标示为可解节点或不可解节点为止。
+<ul>
+<li>由这个搜索过程所形成的节点和指针结构称为搜索树。</li>
+<li>搜索中，通过可解标示过程确定初始节点是可解的，则由此初始节点及其下属的可解节点就构成了解树。</li>
+</ul>
+</li>
+</ol>
+<h2 id="剪枝"><a class="markdownIt-Anchor" href="#剪枝"></a> 剪枝</h2>
+<ul>
+<li>如果已确定某个节点为可解节点，其不可解的后裔节点不再有用，可从搜索树中删去；</li>
+<li>若已确定某个节点是不可解节点，其全部后裔节点都不再有用，可从搜索树中删去。但当前这个不可解节点还不能删去，在判断其先辈节点的可解性时还要用到</li>
+</ul>
+<h1 id="盲目搜索"><a class="markdownIt-Anchor" href="#盲目搜索"></a> 盲目搜索</h1>
+<h2 id="广度优先搜索"><a class="markdownIt-Anchor" href="#广度优先搜索"></a> 广度优先搜索</h2>
+<h3 id="流程"><a class="markdownIt-Anchor" href="#流程"></a> 流程</h3>
+<img src="/MyImages/image-20200422095129126.png" alt="image-20200422095129126" style="zoom: 50%;" />
+<img src="/MyImages/image-20200422095147781.png" alt="image-20200422095147781" style="zoom: 50%;" />
+<ul>
+<li>注： 放入OPEN表中时，子节点要放到OPEN表尾部，配指向父节点的指针</li>
+</ul>
+<h3 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h3>
+<h2 id="深度优先搜索"><a class="markdownIt-Anchor" href="#深度优先搜索"></a> 深度优先搜索</h2>
+<ul>
+<li>区别在于是向OPEN表的首部加如结点</li>
+</ul>
+<h2 id="与或树的深度-宽度优先搜索特点"><a class="markdownIt-Anchor" href="#与或树的深度-宽度优先搜索特点"></a> 与/或树的深度、宽度优先搜索特点</h2>
+<ul>
+<li>都是盲目搜索。</li>
+<li>搜索从初始节点开始，先自上而下进行搜索，寻找终叶节点及端点节，然后再自下而上进行标示。一旦初始节点被标示为可解或不可解节点，搜索就不再继续进行。</li>
+<li>搜索都按确定路线进行，当选择某个节点进行扩展时，只考虑节点在与/或树中的位置，没有考虑要付出的代价，因而求得的解树不一定是代价最小的解树，即不一定是最优解树。</li>
+</ul>
+<h1 id="有序搜索启发式搜索策略"><a class="markdownIt-Anchor" href="#有序搜索启发式搜索策略"></a> 有序搜索（启发式搜索策略）</h1>
+<ul>
+<li>用于与/或树的有序搜索是求代价最小的解树的搜索方法</li>
+<li><strong>基本思想</strong>：为求得代价最小的解树，每次确定待扩展节点时，需要往前多看几步（向叶子），<strong>计算扩展这个节点可能要付出的代价</strong>，并选择代价最小的节点进行扩展。</li>
+</ul>
+<h2 id="解树的代价计算"><a class="markdownIt-Anchor" href="#解树的代价计算"></a> 解树的代价计算</h2>
+<p>通过计算解树中节点的代价得到。若问题可解，由子节点代价推算父节点代价，<strong>逐层上推</strong>，最终求出S的代价，即<strong>解树的代价</strong></p>
+<ul>
+<li>如果x是终叶节点，则定义x的代价： h(x)=0</li>
+<li>如果x不可扩展，且不是终叶节点，则定义h(x)=∞</li>
+<li>如果x是“或”节点，y1， y2， …， yn是它的子节点，则x的代价为$$h(x)=min_{1\leq i\leq n}{c(x,y_i)+h(y_i)}$$</li>
+<li>如果x是“与”结点，可以使用
+<ul>
+<li>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>m</mi><mi>a</mi><msub><mi>x</mi><mrow><mn>1</mn><mo>≤</mo><mi>i</mi><mo>≤</mo><mi>n</mi></mrow></msub><mo stretchy="false">{</mo><mi>c</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>+</mo><mi>h</mi><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">h(x)=max_{1\leq i\leq n}\{c(x,y_i)+h(y_i)\}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mrel mtight">≤</span><span class="mord mathdefault mtight">i</span><span class="mrel mtight">≤</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24517899999999998em;"><span></span></span></span></span></span></span><span class="mopen">{</span><span class="mord mathdefault">c</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">}</span></span></span></span></span></p>
+</li>
+<li>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mn>1</mn><mo>≤</mo><mi>i</mi><mo>≤</mo><mi>n</mi></mrow><mi>n</mi></munderover><mo stretchy="false">{</mo><mi>c</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>+</mo><mi>h</mi><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">h(x)=\sum ^n_{1\leq i\leq n}\{c(x,y_i)+h(y_i)\}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0242450000000005em;vertical-align:-1.372848em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.8723309999999997em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mrel mtight">≤</span><span class="mord mathdefault mtight">i</span><span class="mrel mtight">≤</span><span class="mord mathdefault mtight">n</span></span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.300005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.372848em;"><span></span></span></span></span></span><span class="mopen">{</span><span class="mord mathdefault">c</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">}</span></span></span></span></span></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="举例-2"><a class="markdownIt-Anchor" href="#举例-2"></a> 举例</h3>
+<img src="/MyImages/72.png" style="zoom: 67%;" />
+<h3 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h3>
+<ul>
+<li>计算h(x)的条件：已知x所有子节点的代价</li>
+<li><strong>问题</strong>：搜索是自上而下进行的，只有不可扩展节点的代价是已知的（∞或0），因此除非x的所有子节点都不可扩展，否则x的代价无法计算得到</li>
+<li><strong>解决方案</strong>：根据问题本身提供的启发性信息定义一个启发函数，由启发函数估算子节点的代价，然后反推计算父节点和先辈节点的代价。每当有新一代的节点生成时，都要自下而上地重新计算先辈节点的代价</li>
+</ul>
+<h2 id="希望树"><a class="markdownIt-Anchor" href="#希望树"></a> 希望树</h2>
+<ul>
+<li>选择待扩展节点时，挑选有希望成为最优解树一部分的节点进行扩展，保证任一时刻求出的部分解树的代价都是最小的。<br />
+这些节点及先辈节点（包括初始节点S）构成的与/或树有可能成为最优解树一部分，被称为<strong>希望树</strong></li>
+<li>随着新节点的生成，结点的代价不断变化，希望树也不断变化</li>
+<li>有序搜索是不断选择，不断调整希望树的过程</li>
+</ul>
+<h3 id="希望树的构成"><a class="markdownIt-Anchor" href="#希望树的构成"></a> 希望树的构成</h3>
+<ul>
+<li>初始节点S在希望树中</li>
+<li>如果节点x在希望树中，则一定有
+<ul>
+<li>如果x是“或”节点，y1， y2， …， yn是它的子节点，则具有$$h(x)=min_{1\leq i\leq n}{c(x,y_i)+h(y_i)}$$，值的那个子节点也在希望树中</li>
+<li>如果x是与结点，则它的全部子节点都应该在希望树中</li>
+</ul>
+</li>
+</ul>
+<h3 id="有序搜索算法流程"><a class="markdownIt-Anchor" href="#有序搜索算法流程"></a> 有序搜索算法流程</h3>
+<p>(1)把初始节点S放入OPEN表中。<br />
+(2)根据当前搜索树中节点的代价求出以S为根的希望树T 。<br />
+(3)依次把OPEN表中T的端节点N选出放入CLOSED表中。<br />
+(4)如果N是终叶节点，则做下列工作：<br />
+①标示N为可解节点。<br />
+②对T应用可解标示过程，标记N的先辈节点。<br />
+③若S被标记为可解，则T就是最优解树，成功退出。<br />
+④否则，从OPEN表中删去具有可解先辈的节点。</p>
+<p>(5)如果N不是终叶节点，且不可扩展，则做下列工作：<br />
+①标示N为不可解节点。<br />
+②对T应用不可解标示过程，标记N的先辈节点。<br />
+③若初始节点S被标示为不可解节点，则失败退出。<br />
+④否则，从OPEN表中删去有不可解先辈的节点。<br />
+(6)如果N不是终叶节点，但可扩展，则做下列工作：<br />
+①扩展N，产生N的所有子节点。<br />
+②把子节点放入OPEN表，并为每个子节点配置父指针。<br />
+③计算子节点的h值及其先辈节点的h值。<br />
+(7)转第(2)步。</p>
+<h3 id="举例-3"><a class="markdownIt-Anchor" href="#举例-3"></a> 举例</h3>
+<p>此例中路径长度为1，每次扩展两层</p>
+<img src="/MyImages/73.png" style="zoom:67%;" />
+<img src="/MyImages/74.png" style="zoom:67%;" />
+<img src="/MyImages/75.png" style="zoom:67%;" />
+<img src="/MyImages/76.png" style="zoom:67%;" />
+<h1 id="博弈"><a class="markdownIt-Anchor" href="#博弈"></a> 博弈</h1>
+<h2 id="博弈树的形成"><a class="markdownIt-Anchor" href="#博弈树的形成"></a> 博弈树的形成</h2>
+<ul>
+<li>博弈过程中，设我方为A方，则可供A方选择的若干行动方案之间是“或”关系；</li>
+<li>在A方行动方案基础上，B方也有若干个可供选择的行动方案，则这些方案对A方来说就是“与”关系。</li>
+<li>如此，逐层扩展，并用图表示博弈过程，得到的就是一棵与/或树，描述博弈过程的与/或树被称为博弈树。</li>
+</ul>
+<h2 id="博弈树搜索的特点"><a class="markdownIt-Anchor" href="#博弈树搜索的特点"></a> 博弈树搜索的特点</h2>
+<ul>
+<li>博弈的<strong>初始格局是初始节点。</strong></li>
+<li>博弈树中，<strong>“或”节点和“与”节点是逐层交替出现的</strong>。自己一方扩展的节点之间是“或”关系，对方扩展的节点之间是“与”关系。双方轮流扩展节点。</li>
+<li>所有能使<strong>自己一方获胜的终局都是本原问题</strong>，相应节点是可解节点；所有<strong>使对方获胜的终局都是不可解节点</strong>。</li>
+</ul>
+<h2 id="极大极小分析法"><a class="markdownIt-Anchor" href="#极大极小分析法"></a> 极大极小分析法</h2>
+<h3 id="基本思想"><a class="markdownIt-Anchor" href="#基本思想"></a> 基本思想</h3>
+<ul>
+<li>根据问题特性定义一个估价函数。考虑每一方案实施后，对方可能采取的所有行动，利用估价函数估算当前博弈树端节点得分（<strong>静态估值</strong>）。</li>
+<li>利用端节点的估值推算其父节点得分（<strong>倒推值</strong>）
+<ul>
+<li><strong>对“或”节点</strong>，为了选一个对自己最有利的方案，选<strong>其子节点中的最大得分</strong>作为父节点得分；</li>
+<li><strong>对“与”节点</strong>，立足于最坏情况，<strong>选其子节点中的最小得分</strong>作为父节点得分。</li>
+</ul>
+</li>
+<li>具有较大倒推值的行动方案就是当前最好的行动方案。</li>
+</ul>
+<h3 id="倒退值的计算"><a class="markdownIt-Anchor" href="#倒退值的计算"></a> 倒退值的计算</h3>
+<img src="/MyImages/image-20200510233317658.png" alt="image-20200510233317658" style="zoom: 50%;" />
+<h3 id="举例-4"><a class="markdownIt-Anchor" href="#举例-4"></a> 举例</h3>
+<p>设有如图所示九个空格，A、B二人对奕，轮到谁走谁就往空格上放一只自己的棋子，最先使自己棋子构成三子一线的就获得胜利。<br />
+设A的棋子用“a”表示，B的棋子用“b”表示，A先走棋。<br />
+为了不生成太大的博弈树，假设每次仅扩展两层。</p>
+<ul>
+<li>设计估价函数e§
+<ul>
+<li>若P是A必胜的棋局，则e§=+∞</li>
+<li>若P是B必胜的棋局，则e§=-∞</li>
+<li>若P是胜负未定的棋局，则e§=e(+P)-e(-P)
+<ul>
+<li>e(+P)：棋局P上有可能使a成为三子成一线的数目；</li>
+<li>e(-P)：棋局P上有可能使b成为三子成一线的数目。</li>
+</ul>
+</li>
+<li>
+<img src="/MyImages/77.png" style="zoom: 67%;" />
+</li>
+</ul>
+</li>
+<li>
+<img src="/MyImages/78.png" style="zoom:67%;" />
+</li>
+<li>
+<img src="/MyImages/79.png" style="zoom:67%;" />
+</li>
+</ul>
+<h3 id="极大极小法的缺点"><a class="markdownIt-Anchor" href="#极大极小法的缺点"></a> 极大极小法的缺点</h3>
+<ul>
+<li>首先，生成一定深度的博弈树。然后，对端节点进行估值，再计算上层节点的倒推值，效率较低</li>
+<li>分析可知：博弈树具有“与”、“或”节点逐层交替出现的特点，如能边生成节点边计算估值及倒推值，就有可能删去一些不必要的节点，从而减少搜索及计算的工作量。</li>
+</ul>
+<h3 id="α-β剪枝"><a class="markdownIt-Anchor" href="#α-β剪枝"></a> α-β剪枝</h3>
+<ul>
+<li>对“与”节点，取当前子节点中最小倒推值作为它的倒推值上界，该值被称为值。</li>
+<li>对“或”节点，取当前子节点中最大倒推值作为它的倒推值下界，该值被称为值。</li>
+</ul>
+<img src="/MyImages/80.png" style="zoom: 67%;" />
+<ul>
+<li>
+<p><strong>α剪枝</strong><br />
+对“或”节点x，如果x的α值不能降低其父节点的值，则对x以下的分枝可停止搜索，并使x的倒推值为α。这种剪枝称为α剪枝。</p>
+</li>
+<li>
+<p><strong>β剪枝</strong><br />
+对“与”节点x，如果x的β值不能升高其父节点的值，则对x以下的分枝可停止搜索，并使x的倒推值为β。这种剪枝称为剪枝。</p>
+</li>
+<li>
+<p>举例</p>
+<img src="/MyImages/81.png" style="zoom:67%;" /></li>
+</ul>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-第8章遗传算法" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -3973,136 +4236,6 @@ gainratiO(A)=\frac {gain(A)}{splitinfo(A)}
 <li><p>logging.pattern.console = 用于指定控制台输出的格式</p>
 </li>
 </ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-STOMP" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/STOMP/"
-    >STOMP</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/STOMP/" class="article-date">
-  <time datetime="2020-03-30T04:22:50.881Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="STOMP基础"><a href="#STOMP基础" class="headerlink" title="STOMP基础"></a>STOMP基础</h1><h2 id="STOMP的意义"><a href="#STOMP的意义" class="headerlink" title="STOMP的意义"></a>STOMP的意义</h2><p>http协议是无状态协议，即每次请求时都不知道前面发生的什么。而且请求只能由浏览器发起，服务器只能响应该请求，不能主动发送消息给浏览器。这种单向的协议显然在很多场景下是不适用的，比如消息推送，股票实时行情。在websocket之前，我们通常使用Ajax轮询服务器或者使用长轮询，这两种方式都极大消耗了服务端和客户端的资源。而使用websocket，我们只需要借用http协议进行握手，然后保持着一个websocket连接，直到客户端主动断开。相对于另外两种方式，websocket只发送了一次http请求，当服务器有数据时再向浏览器推送数据，减少了带宽的使用以及服务器CPU使用率。</p>
-<h2 id="Websocket、Http、TCP、Socket之间关系："><a href="#Websocket、Http、TCP、Socket之间关系：" class="headerlink" title="Websocket、Http、TCP、Socket之间关系："></a>Websocket、Http、TCP、Socket之间关系：</h2><ol>
-<li>HTTP、WebSocket 等应用层协议，都是基于 TCP 协议来传输数据的。 </li>
-<li>对于 WebSocket 来说，它必须依赖 HTTP 协议进行一次握手 ，握手成功后，数据就直接从 TCP 通道传输，与 HTTP 无关了。 </li>
-<li>Socket并不是一种协议，而是方便我们使用TCP/IP的一种封装，而WebSocket 则不同，它是一个完整的 应用层协议，包含一套标准的 API 。</li>
-</ol>
-<h2 id="配置启用代理的web消息功能"><a href="#配置启用代理的web消息功能" class="headerlink" title="配置启用代理的web消息功能"></a>配置启用代理的web消息功能</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span>  </span><br><span class="line"><span class="meta">@ComponentScan</span></span><br><span class="line"><span class="meta">@EnableWebSocketMessageBroker</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebSocketConfig</span> <span class="keyword">extends</span> <span class="title">AbstractWebSocketMessageBrokerConfigurer</span> </span>&#123;  </span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configureMessageBroker</span><span class="params">(MessageBrokerRegistry config)</span> </span>&#123;  </span><br><span class="line">        config.enableSimpleBroker(<span class="string">"/topic"</span>,<span class="string">"/queue"</span>);  </span><br><span class="line">        config.setApplicationDestinationPrefixes(<span class="string">"/app"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerStompEndpoints</span><span class="params">(StompEndpointRegistry registry)</span> </span>&#123;  </span><br><span class="line">        registry.addEndpoint(<span class="string">"/endpoint"</span>).setAllowedOrigins(<span class="string">"*"</span>).withSockJS();  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>使用了 @EnableWebSocketMessageBroker 注解。这表明这个配置类不仅配置了 WebSocket ，还配置了基于代理的 STOMP 消息。</li>
-<li>重载了 registerStompEndpoints() 方法，将 “/endpoint” 注册为 STOMP 端点。这个路径与之前发送和接收消息的目的地路径有所不同。这是一个端点，客户端在订阅或发布消息到目的地路径前，要连接该端点。</li>
-<li>重载 configureMessageBroker() 方法配置了一个简单的消息代理。这个方法是可选的，如果不重载它的话，将会自动配置一个简单的内存消息代理，用它来处理以 “/topic” 为前缀的消息。但是在本例中，我们重载了这个方法，所以消息代理将会处理前缀为 “/topic” 和 “/queue” 的消息。除此之外，发往应用程序的消息将会带有 “/app” 前缀。</li>
-<li>当消息到达时，目的地的前缀将会决定消息该如何处理。<ol>
-<li>应用程序的目的地以 “/app” 作为前缀。以应用程序为目的地的消息将会直接路由到带有 @MessageMapping 注解的控制器方法中。</li>
-<li>而代理的目的地以 “/topic” 和 “/queue” 作为前缀。而发送到代理上的消息，其中也包括 @MessageMapping 注解方法的返回值所形成的消息，将会路由到代理上，并最终发送到订阅这些目的地的客户端.</li>
-</ol>
-</li>
-</ol>
-<h1 id="STOMP服务端实现"><a href="#STOMP服务端实现" class="headerlink" title="STOMP服务端实现"></a>STOMP服务端实现</h1><p><img src="https://images2018.cnblogs.com/blog/1153954/201805/1153954-20180506222500876-639399590.png" alt="img"></p>
-<h2 id="前缀"><a href="#前缀" class="headerlink" title="前缀"></a>前缀</h2><ol>
-<li>以 /app 开头的消息都会被路由到带有@MessageMapping 或 @SubscribeMapping 注解的方法中；</li>
-<li>以/topic 或 /queue 开头的消息都会发送到STOMP代理中，根据你所选择的STOMP代理不同，目的地的可选前缀也会有所限制；</li>
-<li>以/user开头的消息会将消息重路由到某个用户独有的目的地上。</li>
-</ol>
-<h2 id="处理来自客户端的STOMP消息"><a href="#处理来自客户端的STOMP消息" class="headerlink" title="处理来自客户端的STOMP消息"></a>处理来自客户端的STOMP消息</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MessageMapping</span>(<span class="string">"/marco"</span>)</span><br><span class="line"><span class="meta">@SendTo</span>(<span class="string">"/topic/marco"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Shout <span class="title">stompHandle</span><span class="params">(Shout shout)</span></span>&#123;</span><br><span class="line">    LOGGER.info(<span class="string">"接收到消息："</span> + shout.getMessage());</span><br><span class="line">    Shout s = <span class="keyword">new</span> Shout();</span><br><span class="line">    s.setMessage(<span class="string">"Polo!"</span>);</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><p>方法接收一个Shout对象，该对象是用Spring的某个消息转换器将STOMP消息的负载转换的</p>
-</li>
-<li><p>尤其注意，这个处理器方法有一个返回值，<strong>这个返回值</strong>并不是返回给客户端的，而<strong>是转发给消息代理的</strong>，<strong>如果客户端想要这个返回值的话，只能从消息代理订阅</strong>。</p>
-</li>
-<li><p>@SendTo 注解重写了消息代理的目的地，如果不指定@SendTo，帧所发往的目的地会与触发处理器方法的目的地相同，只不过会添加上“/topic”前缀。</p>
-</li>
-<li><p>STOMP 仍然为这种一次性的响应提供了支持，用的@SubscribeMapping注解，与HTTP不同的是，这种请求-响应模式是异步的…</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SubscribeMapping</span>(<span class="string">"/getShout"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Shout <span class="title">getShout</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Shout shout = <span class="keyword">new</span> Shout();</span><br><span class="line">    shout.setMessage(<span class="string">"Hello STOMP"</span>);</span><br><span class="line">    <span class="keyword">return</span> shout;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h1 id="发送消息到客户端"><a href="#发送消息到客户端" class="headerlink" title="发送消息到客户端"></a>发送消息到客户端</h1><h2 id="处理消息之后发送消息"><a href="#处理消息之后发送消息" class="headerlink" title="处理消息之后发送消息"></a>处理消息之后发送消息</h2><ol>
-<li>如果 @MessageMapping 注解的控制器方法有返回值的话，返回值会被发送到消息代理，只不过会添加上”/topic”前缀。可以使用@SendTo 重写消息目的地；</li>
-<li>如果 @SubscribeMapping 注解的控制器方法有返回值的话，返回值会直接发送到客户端，不经过代理。如果加上@SendTo 注解的话，则要经过消息代理。</li>
-</ol>
-<h2 id="在应用的任意地方发送消息"><a href="#在应用的任意地方发送消息" class="headerlink" title="在应用的任意地方发送消息"></a>在应用的任意地方发送消息</h2><p>spring-websocket 定义了一个 SimpMessageSendingOperations 接口（或者使用SimpMessagingTemplate ），可以实现自由的向任意目的地发送消息，并且订阅此目的地的所有用户都能收到消息。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">  <span class="keyword">private</span> SimpMessageSendingOperations simpMessageSendingOperations;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 广播消息，不指定用户，所有订阅此的用户都能收到消息</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> shout</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="meta">@MessageMapping</span>(<span class="string">"/broadcastShout"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">broadcast</span><span class="params">(Shout shout)</span> </span>&#123;</span><br><span class="line">      simpMessageSendingOperations.convertAndSend(<span class="string">"/topic/shouts"</span>, shout);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="为指定用户发送消息"><a href="#为指定用户发送消息" class="headerlink" title="为指定用户发送消息"></a>为指定用户发送消息</h2><h3 id="基于SendToUser注解和Principal参数"><a href="#基于SendToUser注解和Principal参数" class="headerlink" title="基于SendToUser注解和Principal参数"></a>基于SendToUser注解和Principal参数</h3><p>@SendToUser 表示要将消息发送给指定的用户，会<strong>自动在消息目的地前补上”/user”前缀</strong>。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MessageMapping</span>(<span class="string">"/shout"</span>)</span><br><span class="line">  <span class="meta">@SendToUser</span>(<span class="string">"/queue/notifications"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> Shout <span class="title">userStomp</span><span class="params">(Principal principal, Shout shout)</span> </span>&#123;</span><br><span class="line">        String name = principal.getName();</span><br><span class="line">        String message = shout.getMessage();</span><br><span class="line">        LOGGER.info(<span class="string">"认证的名字是：&#123;&#125;，收到的消息是：&#123;&#125;"</span>, name, message);</span><br><span class="line">        <span class="keyword">return</span> shout;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>比如，最后消息会被发布在  /user/queue/notifications-username。但是问题来了，这个username是怎么来的呢？就是通过 principal 参数来获得的。那么，principal 参数又是怎么来的呢？需要在spring-websocket 的配置类中重写 configureClientInboundChannel 方法，添加上用户的认证。</p>
-<h3 id="基于convertAndSendToUser方法"><a href="#基于convertAndSendToUser方法" class="headerlink" title="基于convertAndSendToUser方法"></a>基于convertAndSendToUser方法</h3><p>SimpMessageSendingOperations 还提供了convertAndSendToUser()方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MessageMapping</span>(<span class="string">"/singleShout"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">singleUser</span><span class="params">(Shout shout, StompHeaderAccessor stompHeaderAccessor)</span> </span>&#123;</span><br><span class="line">    String message = shout.getMessage();</span><br><span class="line">    LOGGER.info(<span class="string">"接收到消息："</span> + message);</span><br><span class="line">    Principal user = stompHeaderAccessor.getUser();</span><br><span class="line">    simpMessageSendingOperations.convertAndSendToUser(user.getName(), <span class="string">"/queue/shouts"</span>, shout);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>convertAndSendToUser 方法最终会把消息发送到 /user/sername/queue/shouts 目的地上。</li>
-</ol>
-<h2 id="处理消息异常"><a href="#处理消息异常" class="headerlink" title="处理消息异常"></a>处理消息异常</h2><p>在处理消息的时候，有可能会出错并抛出异常。因为STOMP消息异步的特点，发送者可能永远也不会知道出现了错误。@MessageExceptionHandler标注的方法能够处理消息方法中所抛出的异常。我们可以把错误发送给用户特定的目的地上，然后用户从该目的地上订阅消息，从而用户就能知道自己出现了什么错误啦…</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MessageExceptionHandler</span>(Exception<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line">@SendToUser("/queue/errors")</span><br><span class="line"><span class="function"><span class="keyword">public</span> Exception <span class="title">handleExceptions</span><span class="params">(Exception t)</span></span>&#123;</span><br><span class="line">    t.printStackTrace();</span><br><span class="line">    <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="STOMP客户端实现"><a href="#STOMP客户端实现" class="headerlink" title="STOMP客户端实现"></a>STOMP客户端实现</h1><h2 id="JS依赖"><a href="#JS依赖" class="headerlink" title="JS依赖"></a>JS依赖</h2><p>STOMP 依赖 sockjs.js 和 stomp.min.js。stomp.min.js的下载链接：<a href="http://www.bootcdn.cn/stomp.js/" target="_blank" rel="noopener">http://www.bootcdn.cn/stomp.js/</a></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://cdn.bootcss.com/sockjs-client/1.1.1/sockjs.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"/js/stomp.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="JS客户端实现"><a href="#JS客户端实现" class="headerlink" title="JS客户端实现"></a>JS客户端实现</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*STOMP*/</span></span><br><span class="line"><span class="keyword">var</span> url = <span class="string">'http://localhost:8080/stomp'</span>;</span><br><span class="line"><span class="keyword">var</span> sock = <span class="keyword">new</span> SockJS(url);</span><br><span class="line"><span class="keyword">var</span> stomp = Stomp.over(sock);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> strJson = <span class="built_in">JSON</span>.stringify(&#123;<span class="string">'message'</span>: <span class="string">'Marco!'</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//默认的和STOMP端点连接</span></span><br><span class="line"><span class="comment">/*stomp.connect("guest", "guest", function (franme) &#123;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&#125;);*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> headers=&#123;</span><br><span class="line">    username:<span class="string">'admin'</span>,</span><br><span class="line">    password:<span class="string">'admin'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">stomp.connect(headers, <span class="function"><span class="keyword">function</span> (<span class="params">frame</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//发送消息</span></span><br><span class="line">    <span class="comment">//第二个参数是一个头信息的Map，它会包含在STOMP的帧中</span></span><br><span class="line">    <span class="comment">//事务支持</span></span><br><span class="line">    <span class="keyword">var</span> tx = stomp.begin();</span><br><span class="line">    stomp.send(<span class="string">"/app/marco"</span>, &#123;<span class="attr">transaction</span>: tx.id&#125;, strJson);</span><br><span class="line">    tx.commit();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//订阅服务端消息 subscribe(destination url, callback[, headers])</span></span><br><span class="line">    stomp.subscribe(<span class="string">"/topic/marco"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">message</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> content = message.body;</span><br><span class="line">        <span class="keyword">var</span> obj = <span class="built_in">JSON</span>.parse(content);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"订阅的服务端消息："</span> + obj.message);</span><br><span class="line">    &#125;, &#123;&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    stomp.subscribe(<span class="string">"/app/getShout"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">message</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> content = message.body;</span><br><span class="line">        <span class="keyword">var</span> obj = <span class="built_in">JSON</span>.parse(content);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"订阅的服务端直接返回的消息："</span> + obj.message);</span><br><span class="line">    &#125;, &#123;&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/*以下是针对特定用户的订阅*/</span></span><br><span class="line">    <span class="keyword">var</span> adminJSON = <span class="built_in">JSON</span>.stringify(&#123;<span class="string">'message'</span>: <span class="string">'ADMIN'</span>&#125;);</span><br><span class="line">    <span class="comment">/*第一种*/</span></span><br><span class="line">    stomp.send(<span class="string">"/app/singleShout"</span>, &#123;&#125;, adminJSON);</span><br><span class="line">    stomp.subscribe(<span class="string">"/user/queue/shouts"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">message</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> content = message.body;</span><br><span class="line">        <span class="keyword">var</span> obj = <span class="built_in">JSON</span>.parse(content);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"admin用户特定的消息1："</span> + obj.message);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">/*第二种*/</span></span><br><span class="line">    stomp.send(<span class="string">"/app/shout"</span>, &#123;&#125;, adminJSON);</span><br><span class="line">    stomp.subscribe(<span class="string">"/user/queue/notifications"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">message</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> content = message.body;</span><br><span class="line">        <span class="keyword">var</span> obj = <span class="built_in">JSON</span>.parse(content);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"admin用户特定的消息2："</span> + obj.message);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*订阅异常消息*/</span></span><br><span class="line">    stomp.subscribe(<span class="string">"/user/queue/errors"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">message</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(message.body);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//若使用STOMP 1.1 版本，默认开启了心跳检测机制（默认值都是10000ms）</span></span><br><span class="line">    stomp.heartbeat.outgoing = <span class="number">20000</span>;</span><br><span class="line"></span><br><span class="line">    stomp.heartbeat.incoming = <span class="number">0</span>; <span class="comment">//客户端不从服务端接收心跳包</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-
-
 
       
       <!-- reward -->

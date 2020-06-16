@@ -78,6 +78,84 @@
     
     
     
+    <article id="post-201709-4" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/201709-4/"
+    >201709-4</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/201709-4/" class="article-date">
+  <time datetime="2020-03-30T04:00:17.085Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="通信网络"><a href="#通信网络" class="headerlink" title="通信网络"></a>通信网络</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>　　某国的军队由<em>N</em>个部门组成，为了提高安全性，部门之间建立了<em>M</em>条通路，每条通路只能单向传递信息，即一条从部门<em>a</em>到部门<em>b</em>的通路只能由<em>a</em>向<em>b</em>传递信息。信息可以通过中转的方式进行传递，即如果<em>a</em>能将信息传递到<em>b</em>，<em>b</em>又能将信息传递到<em>c</em>，则<em>a</em>能将信息传递到<em>c</em>。一条信息可能通过多次中转最终到达目的地。<br> 　由于保密工作做得很好，并不是所有部门之间都互相知道彼此的存在。只有当两个部门之间可以直接或间接传递信息时，他们才彼此知道对方的存在。部门之间不会把自己知道哪些部门告诉其他部门。<br> <img src="http://118.190.20.162/RequireFile.do?fid=yHg9gf9q" alt="img"><br> 　上图中给了一个4个部门的例子，图中的单向边表示通路。部门1可以将消息发送给所有部门，部门4可以接收所有部门的消息，所以部门1和部门4知道所有其他部门的存在。部门2和部门3之间没有任何方式可以发送消息，所以部门2和部门3互相不知道彼此的存在。<br> 　现在请问，有多少个部门知道所有<em>N</em>个部门的存在。或者说，有多少个部门所知道的部门数量（包括自己）正好是<em>N</em>。</p>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>　　输入的第一行包含两个整数<em>N</em>, <em>M</em>，分别表示部门的数量和单向通路的数量。所有部门从1到<em>N</em>标号。<br> 　接下来<em>M</em>行，每行两个整数<em>a</em>, <em>b</em>，表示部门<em>a</em>到部门<em>b</em>有一条单向通路。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>　　输出一行，包含一个整数，表示答案。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>4 4<br> 1 2<br> 1 3<br> 2 4<br> 3 4</p>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>2</p>
+<h2 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h2><p>　　部门1和部门4知道所有其他部门的存在。</p>
+<h2 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h2><p>　　对于30%的评测用例，1 ≤ <em>N</em> ≤ 10，1 ≤ <em>M</em> ≤ 20；<br> 　对于60%的评测用例，1 ≤ <em>N</em> ≤ 100，1 ≤ <em>M</em> ≤ 1000；<br> 　对于100%的评测用例，1 ≤ <em>N</em> ≤ 1000，1 ≤ <em>M</em> ≤ 10000。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+<li>分别以每个点为起点进行深度搜索，将能到达的点进行标记</li>
+<li>遍历连接矩阵connect[][]</li>
+</ol>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 1100;</span><br><span class="line">vector&lt;int&gt; g[maxn];</span><br><span class="line">bool vis[maxn];</span><br><span class="line">bool connect[maxn][maxn];</span><br><span class="line">int n, m;</span><br><span class="line">void init() &#123;</span><br><span class="line">	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);</span><br><span class="line">	int a, b;</span><br><span class="line">	memset(connect, 0, sizeof(connect));</span><br><span class="line">	for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">		scanf(&quot;%d%d&quot;, &amp;a, &amp;b);</span><br><span class="line">		g[a].push_back(b);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void dfs(int u, int v) &#123;</span><br><span class="line">	if (vis[v]) return;</span><br><span class="line">	vis[v] &#x3D; 1;</span><br><span class="line">	connect[u][v] &#x3D; connect[v][u] &#x3D; 1;</span><br><span class="line">	for (int i : g[v]) &#123;</span><br><span class="line">		dfs(u, i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	init();</span><br><span class="line">	int cnt &#x3D; 0;</span><br><span class="line">	for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">		memset(vis, 0, sizeof(vis));</span><br><span class="line">		dfs(i, i);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">		int j;</span><br><span class="line">		for (j &#x3D; 1; j &lt;&#x3D; n; j++)</span><br><span class="line">			if (!connect[i][j]) break;</span><br><span class="line">		if (j &#x3D;&#x3D; n + 1) cnt++;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;%d&quot;, cnt);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-201712-4" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -795,88 +873,6 @@
 <li><strong>注意 结果可能会超过int的范围</strong></li>
 </ol>
 <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1000</span> + <span class="number">5</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> x, y;</span><br><span class="line">	ll <span class="built_in">step</span>;</span><br><span class="line">	node(<span class="keyword">int</span> x, <span class="keyword">int</span> y, ll <span class="built_in">step</span> = <span class="number">0</span>) :x(x), y(y), <span class="built_in">step</span>(<span class="built_in">step</span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> dx[] = &#123; <span class="number">1</span>,<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> dy[] = &#123; <span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span> &#125;;</span><br><span class="line"><span class="built_in">queue</span>&lt;node&gt; q;</span><br><span class="line"><span class="keyword">int</span> goal[maxn][maxn];</span><br><span class="line"><span class="keyword">int</span> vis[maxn][maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n, m, k, d;</span><br><span class="line">	<span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="keyword">sizeof</span>(vis));</span><br><span class="line">	<span class="built_in">memset</span>(goal, <span class="number">0</span>, <span class="keyword">sizeof</span>(vis));</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>, &amp;n, &amp;m, &amp;k, &amp;d);</span><br><span class="line">	<span class="keyword">int</span> a, b,w;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;b);</span><br><span class="line">		q.push(node(a, b));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;w);</span><br><span class="line">		goal[a][b] += w;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; d; i++) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;b);</span><br><span class="line">		vis[a][b] = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	ll ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		node u = q.front(); q.pop();</span><br><span class="line">		<span class="keyword">if</span> (vis[u.x][u.y]) <span class="keyword">continue</span>;</span><br><span class="line">		vis[u.x][u.y] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> <span class="built_in">step</span> = u.<span class="built_in">step</span>;</span><br><span class="line">		ans += goal[u.x][u.y] * <span class="built_in">step</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> newx = u.x + dx[i];</span><br><span class="line">			<span class="keyword">int</span> newy = u.y + dy[i];</span><br><span class="line">			<span class="keyword">if</span> (vis[newx][newy]) <span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">if</span> (newx&lt;<span class="number">1</span> || newx&gt;n || newy&lt;<span class="number">1</span> || newy&gt;n) <span class="keyword">continue</span>;</span><br><span class="line">			q.push(node(newx, newy, <span class="built_in">step</span> + <span class="number">1</span>));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld"</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-201412-4" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/201412-4/"
-    >201412-4</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/201412-4/" class="article-date">
-  <time datetime="2020-03-30T04:00:17.054Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="最优灌溉"><a href="#最优灌溉" class="headerlink" title="最优灌溉"></a>最优灌溉</h1><p><strong>问题描述</strong></p>
-<p>　　雷雷承包了很多片麦田，为了灌溉这些麦田，雷雷在第一个麦田挖了一口很深的水井，所有的麦田都从这口井来引水灌溉。<br>　　为了灌溉，雷雷需要建立一些水渠，以连接水井和麦田，雷雷也可以利用部分麦田作为“中转站”，利用水渠连接不同的麦田，这样只要一片麦田能被灌溉，则与其连接的麦田也能被灌溉。<br>　　现在雷雷知道哪些麦田之间可以建设水渠和建设每个水渠所需要的费用（注意不是所有麦田之间都可以建立水渠）。请问灌溉所有麦田最少需要多少费用来修建水渠。</p>
-<p><strong>输入格式</strong></p>
-<p>　　输入的第一行包含两个正整数n, m，分别表示麦田的片数和雷雷可以建立的水渠的数量。麦田使用1, 2, 3, ……依次标号。<br>　　接下来m行，每行包含三个整数ai, bi, ci，表示第ai片麦田与第bi片麦田之间可以建立一条水渠，所需要的费用为ci。</p>
-<p><strong>输出格式</strong></p>
-<p>　　输出一行，包含一个整数，表示灌溉所有麦田所需要的最小费用。</p>
-<p><strong>样例输入</strong></p>
-<p>4 4<br>1 2 1<br>2 3 4<br>2 4 2<br>3 4 3</p>
-<p><strong>样例输出</strong></p>
-<p>6</p>
-<p><strong>样例说明</strong></p>
-<p>　　建立以下三条水渠：麦田1与麦田2、麦田2与麦田4、麦田4与麦田3。</p>
-<p><strong>评测用例规模与约定</strong></p>
-<p>　　前20%的评测用例满足：n≤5。<br>　　前40%的评测用例满足：n≤20。<br>　　前60%的评测用例满足：n≤100。<br>　　所有评测用例都满足：1≤n≤1000，1≤m≤100,000，1≤ci≤10,000。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>最小生成树。前几年是真简单啊</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1000</span> + <span class="number">5</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> a, b;</span><br><span class="line">	<span class="keyword">int</span> w;</span><br><span class="line">	edge(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> w):a(a),b(b),w(w)&#123;&#125;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> edge&amp; x) &#123;</span><br><span class="line">		<span class="keyword">return</span> w &lt; x.w;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> Tree[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findroot</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (Tree[p] == <span class="number">-1</span>) <span class="keyword">return</span> p;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">int</span> tmp = findroot(Tree[p]);</span><br><span class="line">		Tree[p] = tmp;</span><br><span class="line">		<span class="keyword">return</span> tmp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">union_</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> rp = findroot(p);</span><br><span class="line">	<span class="keyword">int</span> rq = findroot(q);</span><br><span class="line">	<span class="keyword">if</span> (rp != rq) &#123;</span><br><span class="line">		Tree[rq] = rp;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">vector</span>&lt;edge&gt; g;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(Tree, <span class="number">-1</span>, <span class="keyword">sizeof</span>(Tree));</span><br><span class="line">	<span class="keyword">int</span> n, m;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">	<span class="keyword">int</span> a, b, w;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;w);</span><br><span class="line">		g.push_back(edge(a, b, w));</span><br><span class="line">	&#125;</span><br><span class="line">	sort(g.<span class="built_in">begin</span>(), g.<span class="built_in">end</span>());</span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; g.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> a = g[i].a;</span><br><span class="line">		<span class="keyword">int</span> b = g[i].b;</span><br><span class="line">		<span class="keyword">int</span> w = g[i].w;</span><br><span class="line">		<span class="keyword">if</span> (union_(a, b)) &#123;</span><br><span class="line">			cnt++;</span><br><span class="line">			ans += w;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (cnt == n - <span class="number">1</span>) <span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
