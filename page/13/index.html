@@ -78,6 +78,188 @@
     
     
     
+    <article id="post-旋转游戏" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E6%97%8B%E8%BD%AC%E6%B8%B8%E6%88%8F/"
+    >旋转游戏</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E6%97%8B%E8%BD%AC%E6%B8%B8%E6%88%8F/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.717Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva-1343-旋转游戏"><a class="markdownIt-Anchor" href="#uva-1343-旋转游戏"></a> UVA 1343 旋转游戏</h1>
+<img src="/计安导_img/1.png">
+<p>现给定一个初始状态，请使用最少的操作次数，使 “# ” 形棋盘最中间的 888 个格子里的数字相同。输入包括不超过 303030 组测试数据。每个测试数据只包括一行，包含 242424 个整数，每相邻两个整数之间用 111 个空格隔开，表示这个 “# ” 形棋盘的初始状态。（这些整数的排列顺序是从上至下，同一行的从左至右。例如 1 1 1 1 3 2 3 2 3 1 3 2 2 3 1 2 2 2 3 1 2 1 3 3\text{1 1 1 1 3 2 3 2 3 1 3 2 2 3 1 2 2 2 3 1 2 1 3 3}1 1 1 1 3 2 3 2 3 1 3 2 2 3 1 2 2 2 3 1 2 1 3 3 表示图 111 最左边的状态。）每两组测试数据之间没有换行符。输入文件以一行 000 结束。对于每组测试数据，输出两行。第一行用字符 A∼H\text{A}\sim \text{H}A∼H 输出操作的方法，每两个操作字符之间没有空格分开，如果不需要任何步数，输出 No moves needed。第二行输出最终状态中最中间的 888 个格子里的数字。如果有多组解，输出操作次数最少的一组解；如果仍有多组解，输出字典序最小的一组。任意相邻两组测试数据的输出之间不需输出换行符。</p>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+<ol>
+<li>
+<p>典型的状态空间搜索，采用迭代加深搜的方法。</p>
+</li>
+<li>
+<p><strong>IDA*模板题</strong></p>
+</li>
+<li>
+<p>本题中要求中间8个数是相同的，而出现的数字又限定在1，2，3中。所以可以分三次求解，这样可以减少搜素空间。以目标为1为例，这时，将元素看作为1和非1的元素，那么状态总数就变成了8个1，16个非1的全排列，即24!/(8!*16!)。</p>
+</li>
+<li>
+<p>其实本题中的state可以定义为bool型，因为只关心比如1和非1</p>
+</li>
+<li>
+<p>关于剪枝</p>
+<ol>
+<li>最直接的，由于A-F/B-E/H-C/G-D相对，所以不能回滚上一层的操作。<strong>实现时使用op数组记录对应关系</strong></li>
+<li>每次旋转至多引入一个新的元素，也就是说每次回滚只能增加一个相同的元素。所以如果当前的层数d加上中间8个数字中非当前目标的数字个数大于最大个数maxd时，需要进行剪枝。</li>
+</ol>
+</li>
+<li>
+<p>关于旋转：由于输入方式比较特殊，旋转的次序固定，所以把A-H中每个元素在输入串中出现的位置手动写出。旋转时只需要模7加即可。</p>
+</li>
+<li>
+<p>相同的思路，将中间8个格出现的位置预先写出也可简化代码。</p>
+</li>
+<li>
+<p>与编辑书稿有相似之处</p>
+</li>
+</ol>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<h3 id="dfs"><a class="markdownIt-Anchor" href="#dfs"></a> dfs</h3>
+<pre><code>bool dfs(int d) {
+if (d == maxd) {
+	if (not_equal(d) == 0) return true;
+	else return false;
+}
+int next = d + 1;
+if (d + not_equal(d) &gt; maxd) return false;
+for (int i = 0; i &lt; 8; i++) {
+	if (d &gt; 0 &amp;&amp; op[v[d-1]]== i) continue;
+
+	v[d] = i;
+	memcpy(state[next], state[d], 24 * sizeof(int));
+	for (int j = 0; j &lt; 7; j++)
+		state[next][move[i][j]] = state[d][move[i][(j + 1) % 7]];
+	if (dfs(next)) return true;
+}
+return false;
+}
+</code></pre>
+<h3 id="update-判断是否字典序更小"><a class="markdownIt-Anchor" href="#update-判断是否字典序更小"></a> update 判断是否字典序更小</h3>
+<pre><code>bool update() {
+if (ans[0] != -1)
+	for (int i = 0; i &lt; maxd; i++)
+		if (v[i] &gt; ans[i]) return false;
+		else if (v[i] &lt; ans[i]) break;
+memcpy(ans, v, sizeof(int)*maxd);
+return true;
+}
+</code></pre>
+<h3 id="not_equla-统计中间八格中与当前目标不等的元素个数"><a class="markdownIt-Anchor" href="#not_equla-统计中间八格中与当前目标不等的元素个数"></a> not_equla 统计中间八格中与当前目标不等的元素个数</h3>
+<pre><code>int not_equal(int d) {
+int ans = 0;
+for (int i = 0; i &lt; 8; i++)
+	if (state[d][mid[i]] != cur_nm)	ans++;
+return ans;
+}
+</code></pre>
+<h3 id="main"><a class="markdownIt-Anchor" href="#main"></a> main</h3>
+<pre><code>int maxd;
+int move[8][7] = {
+{0,2,6,11,15,20,22},
+{1,3,8,12,17,21,23},
+{10,9,8,7,6,5,4},
+{19,18,17,16,15,14,13},
+{23,21,17,12,8,3,1},
+{22,20,15,11,6,2,0},
+{13,14,15,16,17,18,19},
+{4,5,6,7,8,9,10}
+};
+int mid[8] = { 6,7,8,11,12,15,16,17 };
+int op[8] = { 5,4,7,6,1,0,3,2 };
+int state[50][24];
+int ans[50], v[50];
+int table[24];
+inline int not_equal(int d);
+bool dfs(int d);
+inline bool update();
+int cur_nm;
+int main() {
+while (true)
+{
+	memset(ans, -1, sizeof(ans));
+	scanf(&quot;%d&quot;, &amp;table[0]);
+	if (!table[0]) break;
+	for (int i = 1; i &lt; 24; i++)
+		scanf(&quot;%d&quot;, &amp;table[i]);
+	int p = 0;
+	for (maxd = 0;; maxd++) {
+		for (cur_nm = 1; cur_nm &lt;= 3; cur_nm++) {
+			memcpy(state[0], table, 24 * sizeof(int));
+			if (dfs(0) &amp;&amp; update()) 
+				p = cur_nm;
+		}
+		if (p) break;
+	}
+	if (maxd)
+		for (int i = 0; i &lt; maxd; i++) printf(&quot;%c&quot;, ans[i] + 'A');
+	else printf(&quot;No moves needed&quot;);
+	printf(&quot;\n%d\n&quot;, p);
+}
+}</code></pre>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-万圣节后的早晨" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -1194,93 +1376,13 @@ int main() {
 
 </article>
     
-    <article id="post-素数环" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E7%B4%A0%E6%95%B0%E7%8E%AF/"
-    >素数环</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E7%B4%A0%E6%95%B0%E7%8E%AF/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.685Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="uva-524-素数环"><a class="markdownIt-Anchor" href="#uva-524-素数环"></a> UVA 524 素数环</h1>
-<p>输入正整数n，把1，2，3，···，n组成一个环，使得相邻两个整数之和均为素数。输出时从整数1开始逆时针排列。同一个环应恰好输出一次。</p>
-<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
-<ol>
-<li>直观的考虑，答案应该是1-n的某种排列，但是16！太大了，如果生成排列再测试会导致超时。</li>
-<li>因为前面能构成素数也未必能构成素数环，有点局部最优未必是整体最优的感觉。所以考虑回溯法，在当前位置处枚举没用过的数，判断能否与上一位构成素数。</li>
-<li>加速：实现打印出素数表，后面直接判断。</li>
-</ol>
-<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<h2 id="dfs-每一层都在寻找cur位置处能放的数别忘了回溯"><a class="markdownIt-Anchor" href="#dfs-每一层都在寻找cur位置处能放的数别忘了回溯"></a> dfs 每一层都在寻找cur位置处能放的数，别忘了回溯</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void dfs(int cur) &#123;</span><br><span class="line">if (cur &#x3D;&#x3D; n &amp;&amp; isp[A[0] + A[n - 1]]) &#123;</span><br><span class="line">	cout &lt;&lt; A[0];</span><br><span class="line">	for (int i &#x3D; 1; i &lt; n; i++) cout &lt;&lt; &quot; &quot; &lt;&lt; A[i];</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">	for (int j &#x3D; 2; j &lt;&#x3D; n; j++) &#123;</span><br><span class="line">		if (!vis[j] &amp;&amp; isp[j + A[cur - 1]]) &#123;</span><br><span class="line">			A[cur] &#x3D; j;</span><br><span class="line">			&#x2F;&#x2F;回溯法</span><br><span class="line">			vis[j] &#x3D; 1;</span><br><span class="line">			dfs(cur + 1);</span><br><span class="line">			vis[j] &#x3D; 0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="is_prime-判断i是否是素数固定的"><a class="markdownIt-Anchor" href="#is_prime-判断i是否是素数固定的"></a> is_prime 判断i是否是素数，固定的</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int is_prime(int a) &#123;</span><br><span class="line">for (int i &#x3D; 2; i &lt; a; i++)</span><br><span class="line">	if (a%i &#x3D;&#x3D; 0) return 0;</span><br><span class="line">return 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id=""><a class="markdownIt-Anchor" href="#"></a> </h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int n, vis[1000000];</span><br><span class="line">int A[1000000];</span><br><span class="line">int isp[100000];</span><br><span class="line">int main() &#123;</span><br><span class="line">int kase &#x3D; 0;</span><br><span class="line">while (cin &gt;&gt; n) &#123;</span><br><span class="line">	if (kase) cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; &quot;Case &quot; &lt;&lt; ++kase &lt;&lt; &quot;:&quot; &lt;&lt; endl;</span><br><span class="line">	memset(isp, 0, 2 * n * sizeof(int));</span><br><span class="line">	memset(vis, 0, 2 * n * sizeof(int));</span><br><span class="line">	for (int i &#x3D; 2; i &lt;&#x3D; 2 * n; i++)</span><br><span class="line">		isp[i] &#x3D; is_prime(i);</span><br><span class="line">	isp[1] &#x3D; 1;&#x2F;&#x2F;先构造出素数表，以后方便</span><br><span class="line">	A[0] &#x3D; 1;&#x2F;&#x2F;题干要求从1开始逆序输出</span><br><span class="line">	dfs(1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/12/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/14/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/12/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/14/">下一页</a>
   </nav>
   
 </section>

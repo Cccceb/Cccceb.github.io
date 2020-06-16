@@ -78,6 +78,124 @@
     
     
     
+    <article id="post-视觉第1讲" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC1%E8%AE%B2/"
+    >视觉第1讲</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC1%E8%AE%B2/" class="article-date">
+  <time datetime="2020-03-30T03:17:13.915Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="滤波器"><a class="markdownIt-Anchor" href="#滤波器"></a> 滤波器</h1>
+<ol>
+<li><strong>滤波</strong>：形成一个新的图像，其像素是原始像素的组合。</li>
+<li>用途：
+<ol>
+<li>提取边缘或轮廓</li>
+<li>消除噪音</li>
+<li>锐化和增强形象</li>
+</ol>
+</li>
+</ol>
+<h1 id="线性滤波"><a class="markdownIt-Anchor" href="#线性滤波"></a> 线性滤波</h1>
+<ol>
+<li>线性滤波：用相邻的线性组合(加权和)替换每个像素</li>
+</ol>
+<p>–&gt;互相关，卷积</p>
+<h2 id="相关"><a class="markdownIt-Anchor" href="#相关"></a> 相关</h2>
+<img src="/视觉_img/1-1.png" style="zoom:1%">
+<ol>
+<li>将图像记为,以H表示权重核（大小为(2K+1)x(2K+1)),并记G为输出图像</li>
+<li>G=H×F</li>
+</ol>
+<h2 id="卷积"><a class="markdownIt-Anchor" href="#卷积"></a> 卷积</h2>
+<img src="/视觉_img/1-2.png" style="zoom:1%">
+<ol>
+<li>与相关相同，只是将权重核在水平和竖直方向翻转。</li>
+<li>妈祖交换律、分配律和结合律</li>
+</ol>
+<h2 id="平均滤波"><a class="markdownIt-Anchor" href="#平均滤波"></a> 平均滤波</h2>
+<ol>
+<li>H 全为1/k，其中k为权重核边长。</li>
+</ol>
+<h2 id="锐化-增强图像-平均滤波"><a class="markdownIt-Anchor" href="#锐化-增强图像-平均滤波"></a> 锐化 = 增强图像-平均滤波</h2>
+<img src="/视觉_img/1-3.png" style="zoom:1%">
+<img src="/视觉_img/1-5.png" style="zoom:1%">
+<h2 id="高斯滤波"><a class="markdownIt-Anchor" href="#高斯滤波"></a> 高斯滤波</h2>
+<ol>
+<li>
+<p>高斯核</p>
+ <img src="/视觉_img/1-4.png" style="zoom:1%">
+<ol>
+<li>σ作用：σ越大，带通越大，高斯核函数的局部影响的范围就越大。中心亮点也越大，卷积后的图像越模糊。</li>
+</ol>
+</li>
+<li>
+<p>高斯滤波器（低通滤波器）</p>
+<ol>
+<li>用宽度为σ的核卷积两次=以宽度为√2σ的核卷积一次。</li>
+</ol>
+</li>
+</ol>
+<h2 id="阈值滤波器"><a class="markdownIt-Anchor" href="#阈值滤波器"></a> 阈值滤波器</h2>
+<p><strong>不是线性滤波器</strong></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-视觉第19讲" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -1315,235 +1433,13 @@
 
 </article>
     
-    <article id="post-视觉第10讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC10%E8%AE%B2/"
-    >视觉第10讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC10%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.887Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="相机成像原理"><a class="markdownIt-Anchor" href="#相机成像原理"></a> 相机成像原理</h1>
-<ol>
-<li>为什么不使光圈尽可能小?<br />
-（1）使光线减少 （2）衍射影响</li>
-<li>人的眼睛：瞳孔相当于光圈；视网膜上的感光细胞相当于胶片。</li>
-</ol>
-<h2 id="相机模型"><a class="markdownIt-Anchor" href="#相机模型"></a> 相机模型</h2>
-<ol>
-<li>
-<p>投影建模</p>
- <img src="/视觉_img/10_1.png" style="zoom:80%">
- 1. 将相机近似为针孔模型
- 2. 把小孔的位置设在原点
- 3. 将图像平面放在投影中心COP的前面(为了得到正立的相)
- 4. 相机向负z轴看去(右手坐标系下)
-</li>
-<li>
-<p>投影方程</p>
- <img src="/视觉_img/10_2.png" style="zoom:80%">
-<ol>
-<li>
-<p>不是线性变换----&gt;采用3D齐次坐标。</p>
- <img src="/视觉_img/10_3.png" style="zoom:80%">
-</li>
-</ol>
-</li>
-<li>
-<p>透视投影</p>
-<ol>
-<li>
-<p>投影是使用齐次坐标的矩阵乘法：</p>
- <img src="/视觉_img/10_4.png" style="zoom:80%">
-</li>
-<li>
-<p>改变投影变换的吃尺度对变换没有影响</p>
- <img src="/视觉_img/10_5.png" style="zoom:80%">
-</li>
-</ol>
-</li>
-<li>
-<p>正交投影（平行投影）</p>
-<ol>
-<li>
-<p>是透视投影的特殊情况：当光学中心COP到投影平面PP的距离是无限的时候。（1/d = 0）</p>
- <img src="/视觉_img/10_6.png" style="zoom:80%">
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="正交投影的变体"><a class="markdownIt-Anchor" href="#正交投影的变体"></a> 正交投影的变体</h2>
-<ol start="5">
-<li>
-<p>缩放正交（弱透视）</p>
-<p>相当于在物体聚焦到角点前就将图像截获。</p>
- <img src="/视觉_img/10_7.png" style="zoom:80%">
-<p>分两步:</p>
-<ol>
-<li>第一步：整个物体按平行于光轴的方向正交投影到经过物体质心并与图像平面平行的平面上。</li>
-<li>第二步：再按透视模型投影到图像平面上，这一步实际是全局的缩放。</li>
-</ol>
-</li>
-<li>
-<p>仿射投影</p>
- <img src="/视觉_img/10_8.png" style="zoom:80%">
-<p>分两步：</p>
-<ol>
-<li>仍把物体平行投影到过质心且与图象平面平行的平面上，不过这次的投影线不是平行于光轴，而是平行于光心C和物体质心G的连线CG；</li>
-<li>再按透视模型投影到图象平面上。</li>
-</ol>
-</li>
-<li>
-<p>总结</p>
-</li>
-</ol>
-<img src="/视觉_img/10_9.png" style="zoom:80%">
-<h2 id="降维"><a class="markdownIt-Anchor" href="#降维"></a> 降维</h2>
-<ol>
-<li>
-<p>投影属性</p>
-<ol>
-<li>多对一：同一光线上的所有点映射到图像中的同一点。</li>
-<li>点-&gt;点，线-&gt;线（通过角点的线变成一个点）</li>
-<li>平面-&gt;平面（通过角点的平面变成一条线）</li>
-<li>平行线在消失点汇合
-<ol>
-<li>每个方向在空间中都有他自己的消失点，但平行于图像平面的平行线保持平行。</li>
-</ol>
-</li>
-</ol>
- <img src="/视觉_img/10_10.png" style="zoom:80%">
-</li>
-</ol>
-<h2 id="相机参数"><a class="markdownIt-Anchor" href="#相机参数"></a> 相机参数</h2>
-<p>现在我们要将世界坐标系中的一个点投影到相机坐标系中。我们需要知道相机在世界坐标系中的位置和方向。然后透视投影到图像平面上以获得像素坐标。</p>
-<ol>
-<li>
-<p>相机内参数</p>
-<ol>
-<li>从世界坐标系原点到光心COP的平移变换T</li>
-<li>描述相机方向的旋转变换R</li>
-<li>焦距f、主点(x,y)、像素大小（sx,sy）</li>
-</ol>
-</li>
-<li>
- <img src="/视觉_img/10_11.png" style="zoom:80%">
-<p>·</p>
-<p>·</p>
- <img src="/视觉_img/10_12.png" style="zoom:80%">
-<p>这个公式要从右向左看</p>
-<ol>
-<li>平移矩阵即是将相机原点与世界原点重合。</li>
-<li>第二步旋转，是将相机坐标系的三个轴旋转到与世界坐标系坐标轴平行。</li>
-<li>第三步是将世界坐标系中的三维点透过光心进行投影。</li>
-<li>第四步是使用相机内参数将图像变成离散的坐标。</li>
-<li><strong>注意</strong> 该公式中对投影变换进行了拆分，，一部分与内参数乘在了一起。</li>
-</ol>
-</li>
-</ol>
-<h2 id="外参数让相机规范化"><a class="markdownIt-Anchor" href="#外参数让相机规范化"></a> 外参数—让相机规范化</h2>
-<ol>
-<li>
-<p>第一步 平移-c，将相机坐标系原点与世界坐标系原点重合。<br />
-<img src="/视觉_img/10_15.png" style="zoom:80%"></p>
-<p>其中c为相机坐标原点在世界坐标系中的坐标[[tx,ty,tz]].T</p>
-</li>
-<li>
-<p>第二步 旋转R， 将相机坐标系的轴旋转到与世界坐标系轴平行。</p>
- <img src="/视觉_img/10_16.png" style="zoom:80%">
-</li>
-</ol>
-<h2 id="透视投影"><a class="markdownIt-Anchor" href="#透视投影"></a> 透视投影</h2>
-<img src="/视觉_img/10_17.png" style="zoom:80%">
-<h2 id="投影矩阵"><a class="markdownIt-Anchor" href="#投影矩阵"></a> 投影矩阵</h2>
-<img src="/视觉_img/10_18.png" style="zoom:80%">
-<p><strong>注：</strong></p>
-<ol>
-<li>
-<p>平移的三个参数是相机原点在世界坐标系中的坐标。</p>
-</li>
-<li>
-<p>旋转的三个参数是相机坐标系的坐标轴在用世界坐标系的方向向量来表达的向量坐标的转置。</p>
-</li>
-<li>
-<p><strong>将投影矩阵乘开</strong></p>
-</li>
-</ol>
-<img src="/视觉_img/10_19.png" style="zoom:80%">
-<img src="/视觉_img/10_13.png" style="zoom:80%">
-<h2 id="透视失真"><a class="markdownIt-Anchor" href="#透视失真"></a> 透视失真</h2>
-<ol>
-<li>梯形失真</li>
-<li>仰拍导致。解决：移轴镜头</li>
-<li>外侧列更大</li>
-<li>镜头失真：枕型，桶型–&gt;由不完美镜头引起</li>
-<li><strong>修正径向畸变</strong><br />
-<img src="/视觉_img/10_14.png" style="zoom:80%"></li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/7/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/9/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/7/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/9/">下一页</a>
   </nav>
   
 </section>
