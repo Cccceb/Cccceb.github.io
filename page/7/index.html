@@ -78,78 +78,6 @@
     
     
     
-    <article id="post-考研机试目录" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%80%83%E7%A0%94%E6%9C%BA%E8%AF%95%E7%9B%AE%E5%BD%95/"
-    >考研机试目录</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%80%83%E7%A0%94%E6%9C%BA%E8%AF%95%E7%9B%AE%E5%BD%95/" class="article-date">
-  <time datetime="2020-03-30T03:55:14.299Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="基础相关"><a class="markdownIt-Anchor" href="#基础相关"></a> <a href="/2020/03/30/%E5%9F%BA%E7%A1%80%E7%9B%B8%E5%85%B3/">基础相关</a></h2>
-<h2 id="数据结构"><a class="markdownIt-Anchor" href="#数据结构"></a> <a href="/2020/03/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></h2>
-<h2 id="数学理论"><a class="markdownIt-Anchor" href="#数学理论"></a> <a href="/2020/03/30/%E6%95%B0%E5%AD%A6%E7%90%86%E8%AE%BA/">数学理论</a></h2>
-<h2 id="搜索"><a class="markdownIt-Anchor" href="#搜索"></a> <a href="/2020/03/30/%E6%90%9C%E7%B4%A2/">搜索</a></h2>
-<h2 id="动态规划"><a class="markdownIt-Anchor" href="#动态规划"></a> <a href="/2020/03/30/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a></h2>
-<h2 id="图论"><a class="markdownIt-Anchor" href="#图论"></a> <a href="/2020/03/30/%E5%9B%BE%E8%AE%BA/">图论</a></h2>
-<h2 id="其他技巧"><a class="markdownIt-Anchor" href="#其他技巧"></a> <a href="/2020/03/30/%E5%85%B6%E4%BB%96%E6%8A%80%E5%B7%A7/">其他技巧</a></h2>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
     <article id="post-Mysql基本语法" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -2293,13 +2221,131 @@ X→A能由F 根据Armstrong公理导出}。</p>
 
 </article>
     
+    <article id="post-视觉第1讲" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC1%E8%AE%B2/"
+    >视觉第1讲</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC1%E8%AE%B2/" class="article-date">
+  <time datetime="2020-03-30T03:17:13.915Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="滤波器"><a class="markdownIt-Anchor" href="#滤波器"></a> 滤波器</h1>
+<ol>
+<li><strong>滤波</strong>：形成一个新的图像，其像素是原始像素的组合。</li>
+<li>用途：
+<ol>
+<li>提取边缘或轮廓</li>
+<li>消除噪音</li>
+<li>锐化和增强形象</li>
+</ol>
+</li>
+</ol>
+<h1 id="线性滤波"><a class="markdownIt-Anchor" href="#线性滤波"></a> 线性滤波</h1>
+<ol>
+<li>线性滤波：用相邻的线性组合(加权和)替换每个像素</li>
+</ol>
+<p>–&gt;互相关，卷积</p>
+<h2 id="相关"><a class="markdownIt-Anchor" href="#相关"></a> 相关</h2>
+<img src="/视觉_img/1-1.png" style="zoom:1%">
+<ol>
+<li>将图像记为,以H表示权重核（大小为(2K+1)x(2K+1)),并记G为输出图像</li>
+<li>G=H×F</li>
+</ol>
+<h2 id="卷积"><a class="markdownIt-Anchor" href="#卷积"></a> 卷积</h2>
+<img src="/视觉_img/1-2.png" style="zoom:1%">
+<ol>
+<li>与相关相同，只是将权重核在水平和竖直方向翻转。</li>
+<li>妈祖交换律、分配律和结合律</li>
+</ol>
+<h2 id="平均滤波"><a class="markdownIt-Anchor" href="#平均滤波"></a> 平均滤波</h2>
+<ol>
+<li>H 全为1/k，其中k为权重核边长。</li>
+</ol>
+<h2 id="锐化-增强图像-平均滤波"><a class="markdownIt-Anchor" href="#锐化-增强图像-平均滤波"></a> 锐化 = 增强图像-平均滤波</h2>
+<img src="/视觉_img/1-3.png" style="zoom:1%">
+<img src="/视觉_img/1-5.png" style="zoom:1%">
+<h2 id="高斯滤波"><a class="markdownIt-Anchor" href="#高斯滤波"></a> 高斯滤波</h2>
+<ol>
+<li>
+<p>高斯核</p>
+ <img src="/视觉_img/1-4.png" style="zoom:1%">
+<ol>
+<li>σ作用：σ越大，带通越大，高斯核函数的局部影响的范围就越大。中心亮点也越大，卷积后的图像越模糊。</li>
+</ol>
+</li>
+<li>
+<p>高斯滤波器（低通滤波器）</p>
+<ol>
+<li>用宽度为σ的核卷积两次=以宽度为√2σ的核卷积一次。</li>
+</ol>
+</li>
+</ol>
+<h2 id="阈值滤波器"><a class="markdownIt-Anchor" href="#阈值滤波器"></a> 阈值滤波器</h2>
+<p><strong>不是线性滤波器</strong></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/6/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/8/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/6/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/8/">下一页</a>
   </nav>
   
 </section>
