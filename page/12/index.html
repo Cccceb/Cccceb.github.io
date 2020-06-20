@@ -78,6 +78,525 @@
     
     
     
+    <article id="post-周期串" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E5%91%A8%E6%9C%9F%E4%B8%B2/"
+    >周期串</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E5%91%A8%E6%9C%9F%E4%B8%B2/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.748Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uav-455-周期串"><a class="markdownIt-Anchor" href="#uav-455-周期串"></a> uav 455 周期串</h1>
+<p>如果一个字符串可以由某个长度为kkk 的字符串重复多次得到，则称该串以kkk 为周期。例如，abcabcabcabcabcabcabcabcabcabcabcabc 以333 为周期（注意，它也以666 和121212 为周期）。</p>
+<p>输入一个长度不超过808080 的字符串，输出其最小周期。</p>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+# pragma warning(disable:4996)
+# define LOCAL
+# ifdef LOCAL
+FILE *fin = freopen(&quot;习题3-8in.txt&quot;, &quot;r&quot;, stdin);
+FILE *fout = freopen(&quot;习题3-8out.txt&quot;, &quot;w&quot;, stdout);
+# endif 
+using namespace std;
+int main()
+{
+	int t; cin &gt;&gt; t;
+	char s[85];
+	while (t--)
+	{
+		memset(s, 0, sizeof(s));
+		scanf(&quot;%s&quot;, s);
+		int len = strlen(s);
+		int j;
+		for (int i = 1; i &lt;= len; ++i)
+			if (len%i == 0)//说明长度i可以作为一个循环节
+			{
+				for (j = i; j &lt;= len; j++)
+					if (s[j] != s[j%i])//之后都和0-i-1的字符串来比较
+						break;
+				if (j == len)
+				{
+					cout &lt;&lt; i &lt;&lt; endl;
+					break;
+				}
+			}
+		if (t)cout &lt;&lt; endl;
+	}
+}</code></pre>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-战场" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E6%88%98%E5%9C%BA/"
+    >战场</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E6%88%98%E5%9C%BA/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.748Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva-11853-战场"><a class="markdownIt-Anchor" href="#uva-11853-战场"></a> UVA 11853 战场</h1>
+<p>有一个1000*1000的正方形战场，战场西南角的坐标为(0,0)，西北角的坐标为(0,1000)。战场上有n个敌人，给定每个敌人的坐标和攻击半径，求能否从西边进入，从东边离开。如果有多个位置进出，则求出最北的进/出位置。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>
+<p>地图比较大，敌人相对较少。转换思路，考虑能否从上边界踩着敌人到达下边界</p>
+<ol>
+<li>如果能，则说明敌人将战场从中分割，即无解。</li>
+<li>如果不能，在选择最北的点。</li>
+</ol>
+</li>
+<li>
+<p>将问题转换成了图的连通性问题，下面给出bfs和dfs两种解法</p>
+</li>
+<li>
+<p>dfs速度远远快于bfs</p>
+</li>
+</ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<h2 id="dfs"><a class="markdownIt-Anchor" href="#dfs"></a> dfs</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    bool dfs(int u)</span><br><span class="line">	&#123;</span><br><span class="line">	if (vis[u]) return false;</span><br><span class="line">	vis[u] &#x3D; 1;</span><br><span class="line">	if (y[u] &lt; r[u]) return true;</span><br><span class="line">	for (int v &#x3D; 0; v &lt; n; v++) &#123;</span><br><span class="line">		if (intersect(u, v) &amp;&amp; dfs(v)) </span><br><span class="line">			return true;</span><br><span class="line">	&#125;</span><br><span class="line">	check(u);</span><br><span class="line">	return false;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">1. 注意是在走不通时，才更新进入点</span><br></pre></td></tr></table></figure>
+<h3 id="intersect-判断两个圆是否相交"><a class="markdownIt-Anchor" href="#intersect-判断两个圆是否相交"></a> intersect 判断两个圆是否相交</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">bool intersect(int a, int b) &#123;</span><br><span class="line">return sqrt((x[a] - x[b])*(x[a] - x[b]) + (y[a] - y[b])*(y[a] - y[b])) &lt; r[a] + r[b];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="check-更新进入点"><a class="markdownIt-Anchor" href="#check-更新进入点"></a> check 更新进入点</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void check(int u)</span><br><span class="line">&#123;</span><br><span class="line">if (x[u] &lt; r[u]) left &#x3D; min(left, y[u] - sqrt(r[u] * r[u] - x[u] * x[u]));</span><br><span class="line">if (x[u] + r[u] &gt; W) right &#x3D; min(right, y[u] - sqrt(r[u] * r[u] - (W - x[u])*(W - x[u])));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="main-函数"><a class="markdownIt-Anchor" href="#main-函数"></a> main 函数</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">#ifdef local</span><br><span class="line">freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">#endif &#x2F;&#x2F; local</span><br><span class="line">while (~scanf(&quot;%d&quot;, &amp;n)) &#123;</span><br><span class="line">	bool ok &#x3D; true;</span><br><span class="line">	memset(vis, 0, sizeof(vis));</span><br><span class="line">	left &#x3D; right &#x3D; W;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">		scanf(&quot;%d%d%d&quot;, x + i, y + i, r + i);</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">		if (r[i] + y[i] &gt;&#x3D; W &amp;&amp; dfs(i)) &#123; ok &#x3D; false; break; &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	if (ok) printf(&quot;0.00 %.2lf 1000.00 %.2lf\n&quot;, left, right);</span><br><span class="line">	else printf(&quot;IMPOSSIBLE\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="bfs"><a class="markdownIt-Anchor" href="#bfs"></a> bfs</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#pragma warning(disable:4996)</span><br><span class="line">#define LOCAL</span><br><span class="line">#ifdef LOCAL</span><br><span class="line">FILE *fin &#x3D; freopen(&quot;战场in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">FILE *fout &#x3D; freopen(&quot;战场out.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line">#endif </span><br><span class="line">using namespace std;</span><br><span class="line">int vis[1005];</span><br><span class="line">int n;</span><br><span class="line">double le, ri;</span><br><span class="line">struct Node &#123;</span><br><span class="line">double x, y, r;</span><br><span class="line">Node(double x, double y, double r) :x(x), y(y), r(r) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;Node&gt; enemy;</span><br><span class="line">bool intersect(int u, int v) &#123;</span><br><span class="line">return sqrt(pow(enemy[u].x - enemy[v].x, 2) + pow(enemy[u].y - enemy[v].y, 2)) &lt; enemy[u].r + enemy[v].r;</span><br><span class="line">&#125;	</span><br><span class="line"></span><br><span class="line">void check_circle(int u) &#123;</span><br><span class="line">if (enemy[u].x - enemy[u].r &lt; 0)</span><br><span class="line">	le &#x3D; min(le, enemy[u].y - sqrt(enemy[u].r * enemy[u].r - enemy[u].x * enemy[u].x));</span><br><span class="line">if (enemy[u].x + enemy[u].r &gt; 1000)</span><br><span class="line">	ri &#x3D; min(ri, enemy[u].y - sqrt(enemy[u].r * enemy[u].r - (1000 - enemy[u].x) *(1000 - enemy[u].x)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool bfs(int i) &#123;</span><br><span class="line">queue&lt;int&gt; q;</span><br><span class="line">q.push(i);</span><br><span class="line">while (!q.empty()) &#123;</span><br><span class="line">	int u &#x3D; q.front(); q.pop();</span><br><span class="line">	if (enemy[u].y - enemy[u].r &lt;&#x3D; 0) &#123;</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">	vis[u] &#x3D; 1;</span><br><span class="line">	check_circle(u);</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if (!vis[i] &amp;&amp; intersect(i, u))</span><br><span class="line">			q.push(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">return true;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line"></span><br><span class="line">while (cin &gt;&gt; n) &#123;</span><br><span class="line">	memset(vis, 0, sizeof(vis));</span><br><span class="line">	enemy.clear();</span><br><span class="line">	le &#x3D; ri &#x3D; 1000;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">		int x, y, r;</span><br><span class="line">		cin &gt;&gt; x &gt;&gt; y &gt;&gt; r;</span><br><span class="line">		enemy.push_back(Node(x, y, r));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	bool flag &#x3D; true;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++)</span><br><span class="line">		if (enemy[i].y + enemy[i].r &gt;&#x3D; 1000)</span><br><span class="line">			flag &#x3D; bfs(i);</span><br><span class="line"></span><br><span class="line">	if (!flag) &#123;</span><br><span class="line">		cout &lt;&lt; &quot;IMPOSSIBLE&quot; &lt;&lt; endl;</span><br><span class="line">		continue;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;0.00 %.2f 1000.00 %.2f\n&quot;,le, ri);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-最大连续和问题" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E6%9C%80%E5%A4%A7%E8%BF%9E%E7%BB%AD%E5%92%8C%E9%97%AE%E9%A2%98/"
+    >最大连续和问题</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E6%9C%80%E5%A4%A7%E8%BF%9E%E7%BB%AD%E5%92%8C%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.748Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h1>
+<p>给定一个长度为n的序列1,A2,···,An，求最大连续和</p>
+<h1 id="onsup3sup"><a class="markdownIt-Anchor" href="#onsup3sup"></a> O(n<sup>3</sup>)</h1>
+<p>枚举始末位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">for(int i&#x3D;0;i&lt;&#x3D;n;i++)</span><br><span class="line">	for(int j&#x3D;0;j&lt;&#x3D;n;j++)&#123;</span><br><span class="line">		int sum &#x3D; 0;</span><br><span class="line">		for(int k&#x3D;i;k&lt;&#x3D;j;k++)&#123;</span><br><span class="line">			sum+&#x3D;A[k];</span><br><span class="line">			tot++;</span><br><span class="line">		&#125;</span><br><span class="line">		if(sum&gt;best) best&#x3D;sum;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="onsup2sup"><a class="markdownIt-Anchor" href="#onsup2sup"></a> O(n<sup>2</sup>)</h1>
+<p>先递推的求出前i项和，利用Sj-Si求出i-j的连续和</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">S[0] &#x3D; 0;</span><br><span class="line">for(int i&#x3D;0;i&lt;&#x3D;n;i++) S[i] &#x3D; A[i]+S[i-1];</span><br><span class="line">for(int i&#x3D;0;i&lt;&#x3D;n;i++)&#123;</span><br><span class="line">for(int j &#x3D; i;j &lt;&#x3D; n;j++)</span><br><span class="line">brest &#x3D; max(best,S[j]-S[i-1]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="分治法-onlogn"><a class="markdownIt-Anchor" href="#分治法-onlogn"></a> 分治法 O(nlogn)</h1>
+<ol>
+<li>划分问题：将序列分成数量尽可能相等两部分</li>
+<li>递归求解：分别求出完全位于左半部和完全位于右半部的最佳序列</li>
+<li>合并问题：求出起点位于左半，终点位于右半的连续和序列
+<ol>
+<li>注：递归方程T(n) = 2T(n/2)+O(n)</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int maxsum(int* A, int x, int y)&#123;</span><br><span class="line">int v, L , R,     maxs;</span><br><span class="line">if(y-x&#x3D;&#x3D;1) return A[X];</span><br><span class="line">int m &#x3D; x+(y-x)&#x2F;2;</span><br><span class="line">int maxs &#x3D; max(maxsum(A,x,m),maxsum(A,m,y));</span><br><span class="line">int v, L, R;</span><br><span class="line">v&#x3D; 0;L &#x3D; A[m-1];</span><br><span class="line">for(int i &#x3D; m-1;i &gt;&#x3D; x;i--)</span><br><span class="line">	L &#x3D; max(L,v +&#x3D; A[i]);</span><br><span class="line">v&#x3D; 0;L &#x3D; A[m];</span><br><span class="line">for(int i &#x3D; m;i &lt; y;i++)</span><br><span class="line">	R &#x3D; max(R,v +&#x3D; A[i]);</span><br><span class="line">return max(maxs, L+R);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-照明系统设计" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E7%85%A7%E6%98%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/"
+    >照明系统设计</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E7%85%A7%E6%98%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.748Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva-11400-照明系统设计"><a class="markdownIt-Anchor" href="#uva-11400-照明系统设计"></a> UVA 11400 照明系统设计</h1>
+<p>题意: 给定n(n≤1000)种类型灯泡，每个灯泡给出其电压v(v≤132000)，电源花费k(k≤1000)，每个灯的花费c(c≤10) 和需求量l(1≤l≤100)l。现在通过用电压大的灯泡替换某些电压小的灯泡来减小总花费，求最小的花费。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>首先有结论，每种电压的灯泡要么全换，要么全部不换。这是因为，如果因为换1个降低成本，那么换2个也降低成本…全换了还剩一个电源钱，就很棒。</li>
+<li>其次，由于题干要求只能换成电压更大的灯泡，所以先将所有种类的灯泡按电压从小到大排序。顺次遍历，对于更大电压的灯泡，依次尝试替换比他电压小的灯泡，更新状态。</li>
+<li>设d(i)表示灯泡1~i的最小开销</li>
+</ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 1000 + 5;</span><br><span class="line">struct Lamp &#123;</span><br><span class="line">	int v, k, c, l;</span><br><span class="line">	bool operator &lt; (const Lamp&amp;x)const &#123; return v &lt; x.v; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Lamp lamp[maxn];</span><br><span class="line">int d[maxn];</span><br><span class="line">int s[maxn];</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n;</span><br><span class="line">	while (scanf(&quot;%d&quot;, &amp;n) &#x3D;&#x3D; 1 &amp;&amp; n)</span><br><span class="line">	&#123;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++)</span><br><span class="line">			scanf(&quot;%d%d%d%d&quot;, &amp;lamp[i].v, &amp;lamp[i].k, &amp;lamp[i].c, &amp;lamp[i].l);</span><br><span class="line"></span><br><span class="line">		sort(lamp + 1, lamp + 1 + n);</span><br><span class="line">		s[0] &#x3D; 0;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++) s[i] &#x3D; s[i - 1] + lamp[i].l;</span><br><span class="line">		d[0] &#x3D; 0;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">			d[i] &#x3D; s[i] * lamp[i].c + lamp[i].k; </span><br><span class="line">			for (int j &#x3D; 1; j &lt;&#x3D; i; j++)</span><br><span class="line">				d[i] &#x3D; min(d[i], d[j] + (s[i] - s[j]) * lamp[i].c + lamp[i].k);</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; d[n] &lt;&lt; &quot;\n&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-与非门电路" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E4%B8%8E%E9%9D%9E%E9%97%A8%E7%94%B5%E8%B7%AF/"
+    >与非门电路</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E4%B8%8E%E9%9D%9E%E9%97%A8%E7%94%B5%E8%B7%AF/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.732Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva-1607-与非门电路"><a class="markdownIt-Anchor" href="#uva-1607-与非门电路"></a> UVA 1607 与非门电路</h1>
+<p>可以用与非门（NAND）来设计逻辑电路，每个NAND门有两个输入端，输出为两个输入端与非运算的结果。也就是说 两个输入都是1是输出是0，其他输入输出都是1，给出一个由m（m&lt;=200000）个NAND组成的无环电路，电路的所有n个输入（n&lt;=100000）全部连接到一个相同的输入x,请把其中的一些输入设置为常数，用最少的x完成相同功能。输出任意方案即可。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>因为只有一个输入x，所以输出只有四种可能，0,1,x,x’</li>
+<li>首先令输出全0和全1，比较二者结果，如果相等，那么说明输出与x无关 ，整个电路肯定是常数。</li>
+<li>否则说明与x有关。不妨设x=0时输出0，x=1时输出1。假设现在把输入从00000改成10000，如果输出为1，那么可以得到一个解x0000，否则继续尝试11000，如果输出为1，则得到一个解1x000…直到输入全1时输出为1。</li>
+<li>由于m很大，所以采用二分法，二分1的个数，再计算输出。</li>
+</ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<h2 id="output-计算0~k出入为0时的输出"><a class="markdownIt-Anchor" href="#output-计算0~k出入为0时的输出"></a> output 计算0~k出入为0时的输出</h2>
+<ol>
+<li>注 输入格式中，负数代表从门输入，正数代表从其他门的输出来输入。数字绝对值代表门或输入的编号。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int output(int k) &#123;</span><br><span class="line">	for (int i &#x3D; 1; i &lt;&#x3D; m; i++) &#123;</span><br><span class="line">		int a &#x3D; gate[i].a;</span><br><span class="line">		int b &#x3D; gate[i].b;</span><br><span class="line">		int va &#x3D; a&lt;0 ? -a&gt;k:gate[a].o; </span><br><span class="line">		int vb &#x3D; b&lt;0 ? -b&gt;k:gate[b].o;</span><br><span class="line"></span><br><span class="line">		gate[i].o &#x3D; !(va&amp;&amp;vb);</span><br><span class="line">	&#125;</span><br><span class="line">	return gate[m].o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="sovle-二分查找过程"><a class="markdownIt-Anchor" href="#sovle-二分查找过程"></a> sovle 二分查找过程</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int solve(int vn) &#123;</span><br><span class="line">	int L &#x3D; 1, R &#x3D; n;</span><br><span class="line">	while (L&lt;R)</span><br><span class="line">	&#123;</span><br><span class="line">		int m &#x3D; L + (R - L) &#x2F; 2;</span><br><span class="line">		if (output(m) &#x3D;&#x3D; vn) R &#x3D; m;</span><br><span class="line">		else L &#x3D; m+1;</span><br><span class="line">	&#125;</span><br><span class="line">	return L;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="main"><a class="markdownIt-Anchor" href="#main"></a> main</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">const int maxm &#x3D; 200000 + 5;</span><br><span class="line"></span><br><span class="line">int n, m;</span><br><span class="line"></span><br><span class="line">struct Gates &#123;</span><br><span class="line">	int a, b, o;</span><br><span class="line">&#125; gate[maxm];</span><br><span class="line"></span><br><span class="line">inline int output(int k);</span><br><span class="line">inline int solve(int);</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	int T;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;T);</span><br><span class="line">	while (T--)</span><br><span class="line">	&#123;</span><br><span class="line">		scanf(&quot;%d  %d&quot;, &amp;n, &amp;m);</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; m; i++)</span><br><span class="line">			scanf(&quot;%d  %d&quot;, &amp;gate[i].a, &amp;gate[i].b);</span><br><span class="line">		int v0, vn;</span><br><span class="line">		v0 &#x3D; output(0);</span><br><span class="line">		vn &#x3D; output(n);</span><br><span class="line">		if (v0 &#x3D;&#x3D; vn) &#123;</span><br><span class="line">			for (int i &#x3D; 1; i &lt;&#x3D; n; i++) printf(&quot;0&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			int ix &#x3D; solve(vn);</span><br><span class="line">			for (int i &#x3D; 1; i &lt; ix; i++) printf(&quot;0&quot;);</span><br><span class="line">			printf(&quot;x&quot;);</span><br><span class="line">			for (int i &#x3D; ix + 1; i &lt;&#x3D; n; i++) printf(&quot;1&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-在Web中搜索" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E5%9C%A8Web%E4%B8%AD%E6%90%9C%E7%B4%A2/"
+    >在Web中搜索</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E5%9C%A8Web%E4%B8%AD%E6%90%9C%E7%B4%A2/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.732Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva-1597-在web中搜索"><a class="markdownIt-Anchor" href="#uva-1597-在web中搜索"></a> uva 1597 在web中搜索</h1>
+<p>输入nnn篇文章和mmm个请求（n&lt;100，m≤50000n &lt; 100\text{，}m \leq 50000n&lt;100，m≤50000），每个请求都是444种格式之一。</p>
+<p>A: 找包含关键字A的文章。</p>
+<p>A AND B 找同时包含关键字A和B的文章。</p>
+<p>A OR B 找包含关键字A或B的文章。</p>
+<p>NOT A 找不包含关键字A的文章。</p>
+<p>处理询问时需要对每篇文章输出证据。前3种询问输出所有至少包含一个关键字的行。第4种询问输出不包含A的整篇文章。关键字只由小写字母组成，查找时忽略大小写。每行不超过不超过80字符，一共不超过1500行。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>主要的STL是一个map&lt;string,set<Node>&gt; 用来存储每个单词出现的段号和行号。vector<string> txt[i]来存储第i段的若干句子，一句一句的存。</li>
+<li>对于AND指令，需要n2次查找两个单词出现的段落和行号，只有当两个单词出现的段落一致的时候，才输出</li>
+<li>OR指令同理</li>
+<li>NOT需要循环所有的段落，对于A出现的段落集合中不包括的段，将它防在答案集合中</li>
+</ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line"># pragma warning(disable:4996)</span><br><span class="line"># define LOCAL</span><br><span class="line"># ifdef LOCAL</span><br><span class="line">FILE *fin &#x3D; freopen(&quot;习题5-10in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">FILE *fout &#x3D; freopen(&quot;习题5-10out.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line"># endif </span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">vector&lt;string&gt; txt[105];</span><br><span class="line">map&lt;string, set&lt;int&gt;&gt; which_pa;</span><br><span class="line">struct node &#123;</span><br><span class="line">	int p;</span><br><span class="line">	int r;</span><br><span class="line">	node(int p, int r) :p(p), r(r) &#123;&#125;</span><br><span class="line">	bool operator &lt;(const node&amp;a) const &#123;</span><br><span class="line">		return p &lt; a.p || p &#x3D;&#x3D; a.p&amp;&amp;r &lt; a.r;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">map&lt;string, set&lt;node&gt;&gt; words_in_where;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, m;</span><br><span class="line">	string s;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;n); getchar();</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line"></span><br><span class="line">		while (getline(cin, s) &amp;&amp; s !&#x3D; &quot;**********&quot;) &#123;</span><br><span class="line">			txt[i].push_back(s);</span><br><span class="line">			string r;</span><br><span class="line">			for (int j &#x3D; 0; j &lt; s.length(); j++) &#123;</span><br><span class="line">				if (isalpha(s[j])) r +&#x3D; tolower(s[j]);</span><br><span class="line">				else &#123;</span><br><span class="line">					if (!r.empty()) &#123;</span><br><span class="line">						words_in_where[r].insert(node(i, txt[i].size() - 1));</span><br><span class="line">						which_pa[r].insert(i);</span><br><span class="line">					&#125;</span><br><span class="line">					r.clear();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	scanf(&quot;%d&quot;, &amp;m); getchar();</span><br><span class="line">	for (int ff &#x3D; 0; ff &lt; m; ff++) &#123;</span><br><span class="line">		getline(cin, s);</span><br><span class="line">		int orx;</span><br><span class="line">		&#x2F;&#x2F;cout &lt;&lt; endl &lt;&lt; s &lt;&lt; endl &lt;&lt; endl;</span><br><span class="line">		if ((orx &#x3D; s.find(&quot; AND &quot;)) !&#x3D; string::npos) &#123;</span><br><span class="line">			string a &#x3D; s.substr(0, orx);</span><br><span class="line">			string b &#x3D; s.substr(orx + 5);</span><br><span class="line">			&#x2F;&#x2F;	cout &lt;&lt; a &lt;&lt; &quot; &quot; &lt;&lt; b &lt;&lt; endl;</span><br><span class="line">			set&lt;node&gt; aw &#x3D; words_in_where[a];</span><br><span class="line">			set&lt;node&gt; bw &#x3D; words_in_where[b];</span><br><span class="line">			set&lt;node&gt; ans;</span><br><span class="line">			ans.clear();</span><br><span class="line">			if (a &#x3D;&#x3D; b) &#123;</span><br><span class="line">				for (set&lt;node&gt;::iterator it &#x3D; aw.begin(); it !&#x3D; aw.end(); it++)</span><br><span class="line">					ans.insert(*it);</span><br><span class="line">			&#125;</span><br><span class="line">			else &#123;</span><br><span class="line">				for (set&lt;node&gt;::iterator it &#x3D; aw.begin(); it !&#x3D; aw.end(); it++)</span><br><span class="line">					for (set&lt;node&gt;::iterator id &#x3D; bw.begin(); id !&#x3D; bw.end(); id++)</span><br><span class="line">						if ((*it).p &#x3D;&#x3D; (*id).p) &#123;</span><br><span class="line">							ans.insert(*it);</span><br><span class="line">							ans.insert(*id);</span><br><span class="line">						&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			if (ans.empty()) &#123;</span><br><span class="line">				cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">				continue;</span><br><span class="line">			&#125;</span><br><span class="line">			int k &#x3D; ans.begin()-&gt;p;</span><br><span class="line">			for (set&lt;node&gt;::iterator it &#x3D; ans.begin(); it !&#x3D; ans.end(); it++)</span><br><span class="line">			&#123;</span><br><span class="line">				int p &#x3D; (*it).p;</span><br><span class="line">				int r &#x3D; (*it).r;</span><br><span class="line">				if (k !&#x3D; p) &#123;</span><br><span class="line">					cout &lt;&lt; &quot;----------&quot; &lt;&lt; endl;</span><br><span class="line">					k &#x3D; p;</span><br><span class="line">				&#125;</span><br><span class="line">				cout &lt;&lt; txt[p][r] &lt;&lt; endl;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			cout &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		else if ((orx &#x3D; s.find(&quot; OR &quot;)) !&#x3D; string::npos) &#123;</span><br><span class="line">			string a &#x3D; s.substr(0, orx);</span><br><span class="line">			string b &#x3D; s.substr(orx + 4);</span><br><span class="line">			&#x2F;&#x2F;cout &lt;&lt; a &lt;&lt; &quot; &quot; &lt;&lt; b &lt;&lt; endl;</span><br><span class="line">			set&lt;node&gt; aw &#x3D; words_in_where[a];</span><br><span class="line">			set&lt;node&gt; bw &#x3D; words_in_where[b];</span><br><span class="line">			set&lt;node&gt; ans;</span><br><span class="line">			ans.clear();</span><br><span class="line">			if (a &#x3D;&#x3D; b) &#123;</span><br><span class="line">				for (set&lt;node&gt;::iterator it &#x3D; aw.begin(); it !&#x3D; aw.end(); it++) &#123;</span><br><span class="line">					ans.insert(*it);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			else &#123;</span><br><span class="line">				for (set&lt;node&gt;::iterator it &#x3D; aw.begin(); it !&#x3D; aw.end(); it++)</span><br><span class="line">					ans.insert(*it);</span><br><span class="line">				for (set&lt;node&gt;::iterator id &#x3D; bw.begin(); id !&#x3D; bw.end(); id++)</span><br><span class="line">					ans.insert(*id);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			if (ans.empty()) &#123;</span><br><span class="line">				cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">				continue;</span><br><span class="line">			&#125;</span><br><span class="line">			int k &#x3D; ans.begin()-&gt;p;</span><br><span class="line">			for (set&lt;node&gt;::iterator it &#x3D; ans.begin(); it !&#x3D; ans.end(); it++)</span><br><span class="line">			&#123;</span><br><span class="line">				int p &#x3D; (*it).p;</span><br><span class="line">				int r &#x3D; (*it).r;</span><br><span class="line">				if (k !&#x3D; p) &#123;</span><br><span class="line">					cout &lt;&lt; &quot;----------&quot; &lt;&lt; endl;</span><br><span class="line">					k &#x3D; p;</span><br><span class="line">				&#125;</span><br><span class="line">				cout &lt;&lt; txt[p][r] &lt;&lt; endl;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			cout &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		else if (s[0]&#x3D;&#x3D;&#39;N&#39;) &#123;</span><br><span class="line">			string no &#x3D; s.substr(4);</span><br><span class="line">			&#x2F;&#x2F;cout &lt;&lt; no &lt;&lt; endl;</span><br><span class="line">			bool flag &#x3D; false;</span><br><span class="line">			bool first &#x3D; true;</span><br><span class="line">			for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">				if (!which_pa[no].count(i)) &#123;</span><br><span class="line">					if (first) first &#x3D; false; else cout &lt;&lt; &quot;----------&quot; &lt;&lt; endl;</span><br><span class="line">					for (int j &#x3D; 0; j &lt; txt[i].size(); j++)</span><br><span class="line">						cout &lt;&lt; txt[i][j] &lt;&lt; endl;</span><br><span class="line">					flag &#x3D; true;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			if (flag) cout &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">			else cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			&#x2F;&#x2F;cout &lt;&lt; s &lt;&lt; endl;</span><br><span class="line">			if (!words_in_where.count(s)) &#123;</span><br><span class="line">				cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">				continue;</span><br><span class="line">			&#125;##    ##  </span><br><span class="line">			int k &#x3D; words_in_where[s].begin()-&gt;p;</span><br><span class="line">			for (set&lt;node&gt;::iterator it &#x3D; words_in_where[s].begin(); it !&#x3D; words_in_where[s].end(); it++) &#123;</span><br><span class="line">				int p &#x3D; (*it).p;</span><br><span class="line">				int r &#x3D; (*it).r;</span><br><span class="line">				if (k !&#x3D; p) &#123;</span><br><span class="line">					cout &lt;&lt; &quot;----------&quot; &lt;&lt; endl;</span><br><span class="line">					k &#x3D; p;</span><br><span class="line">				&#125;</span><br><span class="line">				cout &lt;&lt; txt[p][r] &lt;&lt; endl;</span><br><span class="line">			&#125;</span><br><span class="line">			&#x2F;&#x2F;if (first) cout &lt;&lt; &quot;Sorry, I found nothing.&quot; &lt;&lt; endl;</span><br><span class="line">			cout &lt;&lt; &quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-循环小数" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -405,769 +924,13 @@
 
 </article>
     
-    <article id="post-修改天平" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E4%BF%AE%E6%94%B9%E5%A4%A9%E5%B9%B3/"
-    >修改天平</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E4%BF%AE%E6%94%B9%E5%A4%A9%E5%B9%B3/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.717Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="uva12166-修改天平括号表示法给出树"><a class="markdownIt-Anchor" href="#uva12166-修改天平括号表示法给出树"></a> uva12166 修改天平	(括号表示法给出树)</h1>
-<p>给出一个深度不超过16的二叉树，代表一个天平。每根杆都悬挂在中间，每个秤砣的重量已知。至少修改多少个秤砣的重量才能让天平平衡？</p>
-<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
-<ol>
-<li>思考如何使得修改的天平最少：保证让总重量最多的秤砣不变。</li>
-<li>用sum记录总的秤砣个数，用base记录每个对应重量的秤砣数。注意秤砣重量与所在高度有关，重w的秤砣在depth深处的总重量为w&lt;&lt;depth</li>
-<li>括号表示法给出树的结构可以参考本题</li>
-</ol>
-<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<pre class="highlight"><code class="">    #include&lt;bits/stdc++.h&gt;
-    # pragma warning(disable:4996)
-    # define LOCAL
-    # ifdef LOCAL
-    FILE *fin = freopen(&quot;习题6-6in.txt&quot;, &quot;r&quot;, stdin);
-    FILE *fout = freopen(&quot;习题6-6out.txt&quot;, &quot;w&quot;, stdout);
-    # endif 
-    using namespace std;
-    int T;
-    string s;
-    int sum;
-    map&lt;long long, int&gt; base;
-    void dfs(int depth, int p, int e) {
-    	if (s[p] == '[') {
-		int not_ok = 0;
-		for (int i = p + 1; i != e; i++) {
-			if (s[i] == '[') not_ok++;
-			if (s[i] == ']') not_ok--;
-			//注意此处脱括号的方法非常灵性
-			if (!not_ok&amp;&amp;s[i] == ',') {
-				dfs(depth + 1, p + 1, i - 1);
-				dfs(depth + 1, i + 1, e - 1);
-			}
-		}
-	}
-	else {
-		long long w = 0;
-		for (int i = p; i &lt;= e; i++)
-			w = w * 10 + s[i] - '0';
-		++sum;
-		++base[w &lt;&lt; depth];//sum统计砝码总数量，base[w&lt;&lt;depth]统计该总重量对应的砝码个数
-
-	}
-	}
-	int main() {
-	cin &gt;&gt; T;
-	while (T--)
-	{
-		cin &gt;&gt; s;
-		sum = 0;
-		base.clear();
-		dfs(0, 0, s.length() - 1);
-		int maxn = 0;
-		for (auto it = base.begin(); it != base.end(); it++)
-			maxn = max(maxn, it-&gt;second);
-		cout &lt;&lt; sum - maxn &lt;&lt; endl;
-	}
-	}</code></pre>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-唯一的雪花" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E5%94%AF%E4%B8%80%E7%9A%84%E9%9B%AA%E8%8A%B1/"
-    >唯一的雪花</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E5%94%AF%E4%B8%80%E7%9A%84%E9%9B%AA%E8%8A%B1/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.717Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="uva-11572-唯一的雪花"><a class="markdownIt-Anchor" href="#uva-11572-唯一的雪花"></a> UVA 11572 唯一的雪花</h1>
-<p>求最长连续无重复子序列。输入：第一行给出样例数，对于每组数据，第一行给出序列长度n，之后n行给出每个元素的值。</p>
-<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
-<ol>
-<li>滑动窗口：优先向右扩展，如果A[R+1]已存在，那么增大L。这是因为L-R是解的情况下，增大L也必然是解，所以R不必动。</li>
-<li>判断是否出现过，可以使用set(240ms),map(270ms),数组(1140ms)
-<ol>
-<li>set的查询，插入，删除的复杂度都是O(nlogn)</li>
-<li>map[i]来记录元素i上次出现的下标，并更新到数组last。后面，如果上一次出现的下标不在目前的搜索范围内，那么可以扩展。</li>
-<li>数组法可能是因为数组太大，所以速度太慢。</li>
-</ol>
-</li>
-</ol>
-<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<h2 id="set"><a class="markdownIt-Anchor" href="#set"></a> set</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">const int maxn &#x3D; 1000000 + 5;</span><br><span class="line">int A[maxn];</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">  int T, n;</span><br><span class="line">  scanf(&quot;%d&quot;, &amp;T);</span><br><span class="line">  while(T--) &#123;</span><br><span class="line">    scanf(&quot;%d&quot;, &amp;n);</span><br><span class="line">    for(int i &#x3D; 0; i &lt; n; i++) scanf(&quot;%d&quot;, &amp;A[i]);</span><br><span class="line"></span><br><span class="line">    set&lt;int&gt; s;</span><br><span class="line">    int L &#x3D; 0, R &#x3D; 0, ans &#x3D; 0;</span><br><span class="line">    while(R &lt; n) &#123;</span><br><span class="line">      while(R &lt; n &amp;&amp; !s.count(A[R])) s.insert(A[R++]);</span><br><span class="line">      ans &#x3D; max(ans, R - L);</span><br><span class="line">      s.erase(A[L++]);</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d\n&quot;, ans);</span><br><span class="line">  &#125;</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="map"><a class="markdownIt-Anchor" href="#map"></a> map</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">const int maxn &#x3D; 1000000 + 5;</span><br><span class="line">int A[maxn], last[maxn];</span><br><span class="line">map&lt;int, int&gt; cur;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">  int T, n;</span><br><span class="line">  scanf(&quot;%d&quot;, &amp;T);</span><br><span class="line">  while(T--) &#123;</span><br><span class="line">    scanf(&quot;%d&quot;, &amp;n);</span><br><span class="line">    cur.clear();</span><br><span class="line">    for(int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">      scanf(&quot;%d&quot;, &amp;A[i]);</span><br><span class="line">      if(!cur.count(A[i])) last[i] &#x3D; -1;</span><br><span class="line">      else last[i] &#x3D; cur[A[i]];</span><br><span class="line">      cur[A[i]] &#x3D; i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int L &#x3D; 0, R &#x3D; 0, ans &#x3D; 0;</span><br><span class="line">    while(R &lt; n) &#123;</span><br><span class="line">      while(R &lt; n &amp;&amp; last[R] &lt; L) R++;</span><br><span class="line">      ans &#x3D; max(ans, R - L);</span><br><span class="line">      L++;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d\n&quot;, ans);</span><br><span class="line">  &#125;</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="数组"><a class="markdownIt-Anchor" href="#数组"></a> 数组</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">const int maxn &#x3D; 1e9 + 5;</span><br><span class="line">bool vis[maxn];</span><br><span class="line">int in[1000005];</span><br><span class="line">int main() &#123;</span><br><span class="line">	int T;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;T);</span><br><span class="line">	while (T--)</span><br><span class="line">	&#123;</span><br><span class="line">		int n;</span><br><span class="line">		memset(vis, 0, sizeof(vis));</span><br><span class="line">		scanf(&quot;%d&quot;, &amp;n);</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++)</span><br><span class="line">			scanf(&quot;%d&quot;, &amp;in[i]);</span><br><span class="line">		int L &#x3D; 0, R &#x3D; 0, ans &#x3D; 0;</span><br><span class="line">		while (L &lt;&#x3D; R &amp;&amp; R &lt; n)</span><br><span class="line">		&#123;</span><br><span class="line">			if (!vis[in[R]]) &#123; vis[in[R]] &#x3D; 1; R++; &#125;</span><br><span class="line">			else &#123;</span><br><span class="line">				ans &#x3D; max(ans, R - L);</span><br><span class="line">				vis[in[L]] &#x3D; 0; L++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;%d\n&quot;, max(ans, R - L));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-小球下落" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E5%B0%8F%E7%90%83%E4%B8%8B%E8%90%BD/"
-    >小球下落</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E5%B0%8F%E7%90%83%E4%B8%8B%E8%90%BD/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.717Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="uva-679-小球下落"><a class="markdownIt-Anchor" href="#uva-679-小球下落"></a> uva 679 小球下落</h1>
-<p> 许多的小球一个一个的从一棵满二叉树上掉下来组成一个新满二叉树，每一时间，一个正在下降的球第一个访问的是非叶子节点。然后继续下降时，或者走右子树，或者走左子树，直到访问到叶子节点。<br />
-决定球运动方向的是每个节点的布尔值。最初，所有的节点都是 FALSE，当访问到一个节点时，如果这个节点是 FALSE，则这个球把它变成 TRUE，然后从左子树走，继续它的旅程。如果节点是TRUE，则球也会改变它为 FALSE，而接下来从右子树走。满二叉树的标记方法如下图。<br />
-因为所有的节点最初为 FALSE，所以第一个球将会访问节点 1，节点 2 和节点 4，转变节点的布尔值后在在节点 8 停止。第二个球将会访问节点 1、3、6，在节点 12 停止。；明显地，第三个球在它停止之前，会访问节点 1、2、5，在节点 10 停止。</p>
-<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
-<ol>
-<li>对于二叉树，有结论编号为i的节点的左子树编号为2i,右子树为2i+1</li>
-<li>如果用一个数组存二叉树，并进行遍历，会TEL，并且数组占很大空间</li>
-<li>发现只要知道是第几个通过该节点的小球，那么就可以知道这一步他落到左子树还是右子树</li>
-<li>如果I为奇数，那么他是第（I+1）/2个向左走的小球，如果I为偶数，那么他是第I/2个向右走的小球。</li>
-</ol>
-<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   #include&lt;iostream&gt;</span><br><span class="line">   # pragma warning(disable:4996)</span><br><span class="line">   # define LOCAL</span><br><span class="line">   # ifdef LOCAL</span><br><span class="line">   FILE *fin &#x3D; freopen(&quot;小球下落in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">   FILE *fout &#x3D; freopen(&quot;小球下落out.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line">   # endif </span><br><span class="line">   using namespace std;</span><br><span class="line">   int main() &#123;</span><br><span class="line">int T;</span><br><span class="line">cin &gt;&gt; T;</span><br><span class="line">while (T--) &#123;</span><br><span class="line">	int num, depth;</span><br><span class="line">	cin &gt;&gt; depth &gt;&gt; num;</span><br><span class="line">	int No &#x3D; 1;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; depth-1; i++) &#123;</span><br><span class="line">		if (num % 2 &#x3D;&#x3D; 1) &#123;</span><br><span class="line">			No &#x3D; 2 * No;</span><br><span class="line">			num &#x3D; (num + 1) &#x2F; 2;</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			No &#x3D; 2 * No + 1;</span><br><span class="line">			num &#x3D; num &#x2F; 2;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; No &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="心得"><a class="markdownIt-Anchor" href="#心得"></a> 心得</h1>
-<ol>
-<li>关注该关注的，并找规律很重要</li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-巡逻机器人" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E5%B7%A1%E9%80%BB%E6%9C%BA%E5%99%A8%E4%BA%BA/"
-    >巡逻机器人</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E5%B7%A1%E9%80%BB%E6%9C%BA%E5%99%A8%E4%BA%BA/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.717Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="uva1600-巡逻机器人"><a class="markdownIt-Anchor" href="#uva1600-巡逻机器人"></a> uva1600 巡逻机器人</h1>
-<p>本题有t组数据，每组数据包含一个m*n的01矩阵，0表示能走，1表示有一个障碍物。机器人能往上下左右四个方向走动.它要从(1,1)到(m,n),可以连续翻越k个障碍物,求它从(1,1)到(m,n)的最短路径.如果不能到达输出&quot;-1&quot;.</p>
-<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
-<ol>
-<li>本题基础是一个bfs，附加可以跳跃0的条件。</li>
-<li>对无权图进行bfs的时候，走到每一个点时的步数都是一定的，所以对于每个点，应该让能够跨越障碍的机会越多越好，所以Node节点中应该包含(r,c,k,step)其中k为到达(r,c)位置时剩余的跨越障碍的机会，step为最小步数。(※如果只需要知道步数而不需要路径，则将其包在结构体里即可)</li>
-</ol>
-<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-# pragma warning(disable:4996)
-# define LOCAL
-# ifdef LOCAL
-FILE *fin = freopen(&quot;习题6-5in.txt&quot;, &quot;r&quot;, stdin);
-FILE *fout = freopen(&quot;习题6-5out.txt&quot;, &quot;w&quot;, stdout);
-# endif 
-using namespace std;
-int n, x, y, k;
-int g[20][20];
-struct node {
-	int r, c, k, step;
-
-	node(int r, int c, int k, int step = 0) :r(r), c(c), k(k), step(step) {}
-};
-int step[20][20];
-int dr[] = { 1, 0, -1, 0 };
-int dc[] = { 0, 1, 0, -1 };
-int min_step;
-void bfs() {
-	queue&lt;node&gt;q;
-	q.push(node(0, 0, k));
-	int block = 0;
-	while (!q.empty()) {
-		node u = q.front(); q.pop();
-
-		if (u.r == x - 1 &amp;&amp; u.c == y - 1) {
-			min_step = u.step;
-			break;
-		}
-		for (int i = 0; i &lt; 4; i++) {
-			int r = u.r + dr[i], c = u.c + dc[i];
-			if (r &gt;= 0 &amp;&amp; r &lt; x&amp;&amp;c &gt;= 0 &amp;&amp; c &lt; y) {
-				if (step[r][c] &lt; u.k) {//u.k是走到step[r][c]处，还剩余的跳过障碍的机会，所以要保留大的
-					step[r][c] = u.k;
-				}
-				else continue;//如果step[r][c]更大，说明目前正在走的路不是最好的(因为bfs走到每个节点的步数是一定的
-							  //所以剩余的跨越障碍的次数越多越好),不需要再走下去，所以不入队)
-				if (g[r][c] == 0) q.push(node(r, c, k, u.step + 1));
-				else if(u.k) q.push(node(r, c, u.k - 1, u.step + 1));
-			}
-		}
-	}
-}
-int main() {
-cin &gt;&gt; n;
-while (n--) {
-
-	memset(g, 0, sizeof(g));
-	memset(step, -1, sizeof(step));
-	cin &gt;&gt; x &gt;&gt; y;
-	cin &gt;&gt; k;
-	for (int i = 0; i &lt; x; i++)
-		for (int j = 0; j &lt; y; j++)
-			cin &gt;&gt; g[i][j];
-	min_step = 999;
-	bfs();
-	min_step == 999 ? cout &lt;&lt; &quot;-1&quot; &lt;&lt; endl:cout &lt;&lt; min_step &lt;&lt; endl;
-}
-}</code></pre>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-消防车" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E6%B6%88%E9%98%B2%E8%BD%A6/"
-    >消防车</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E6%B6%88%E9%98%B2%E8%BD%A6/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.717Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="uva-208-消防车"><a class="markdownIt-Anchor" href="#uva-208-消防车"></a> UVA 208 消防车</h1>
-<p>给你一张图，输入x，y表示xy见有一条边。输出从1到z所有的遍历方案（字典序）。每个节点从1到N标号。 有多组数据，每组数据以0 0结束。 （注意，刚开始的输入不是节点或边的数目） 输入输出格式可以参考样例. 数据范围（节点总数N&lt;21）</p>
-<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
-<ol>
-<li>本题要求输出所有的完整的路径，即要沿着一条路走到头，所以使用dfs</li>
-<li>辅助用bfs判断依次是否存在路径，否则会超时</li>
-<li>本题中各层的path之间不会影响，因为递归是走到头再返回的。</li>
-</ol>
-<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-# pragma warning(disable:4996)
-FILE *fin = freopen(&quot;习题7-1in.txt&quot;, &quot;r&quot;, stdin);
-FILE *fout = freopen(&quot;习题7-1out.txt&quot;, &quot;w&quot;, stdout);
-using namespace std;
-const int maxn = 20+5;
-map&lt;int, vector&lt;int&gt;&gt; g;
-bool bfs();
-void dfs(int u,int step);
-int goal, cnt,kase = 0;
-bool vis[maxn];
-int path[maxn];
-struct edge {
-int x, y;
-edge(int x, int y) :x(x), y(y) {}
-bool operator &lt; (const edge&amp;a) const { return x &lt; a.x; }
-};
-int main() {
-int a, b;
-while (scanf(&quot;%d&quot;, &amp;goal) == 1) {
-	g.clear();
-	printf(&quot;CASE %d:\n&quot;, ++kase);
-	while (scanf(&quot;%d %d&quot;, &amp;a, &amp;b) &amp;&amp; a) {
-		g[a].push_back(b);
-		g[b].push_back(a);
-	}
-	for (int i = 0; i &lt; maxn; i++)
-		sort(g[i].begin(), g[i].end());
-	cnt = 0;
-	memset(vis, 0, sizeof(0));
-	if (!bfs()) {//优化，否则会T
-		cnt = 0;
-	}
-	else {
-		vis[1] = 1;
-		dfs(1,0);
-	}
-	printf(&quot;There are %d routes from the firestation to streetcorner %d.\n&quot;, cnt,goal);
-}
-}
-bool bfs() {
-queue&lt;int&gt; q;
-q.push(1);
-while (!q.empty()) {
-	int u = q.front(); q.pop();
-	if (u == goal) {
-		memset(vis, 0, sizeof(vis));
-		return true;
-	}
-	for (int i = 0; i &lt; g[u].size(); i++) {
-		int v = g[u][i];
-		if (!vis[v])
-		{
-			vis[v] = 1;
-			q.push(v);
-		}
-	}
-}
-memset(vis, 0, sizeof(vis));
-return false;
-}
-void dfs(int u,int step) {
-path[step] = u;
-if (u == goal) {
-	printf(&quot;%d&quot;, path[0]);
-	for (int i =1; i &lt;= step; i++)
-		printf(&quot; %d&quot;, path[i]);
-	printf(&quot;\n&quot;);
-	cnt++;
-}
-for (int i = 0; i &lt; g[u].size(); i++) {
-	int v = g[u][i];
-	if (vis[v]) continue;
-	vis[v] = 1;
-	dfs(v,step+1);
-	vis[v] = 0;
-}
-}
-</code></pre>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-旋转游戏" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E6%97%8B%E8%BD%AC%E6%B8%B8%E6%88%8F/"
-    >旋转游戏</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E6%97%8B%E8%BD%AC%E6%B8%B8%E6%88%8F/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.717Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="uva-1343-旋转游戏"><a class="markdownIt-Anchor" href="#uva-1343-旋转游戏"></a> UVA 1343 旋转游戏</h1>
-<img src="/计安导_img/1.png">
-<p>现给定一个初始状态，请使用最少的操作次数，使 “# ” 形棋盘最中间的 888 个格子里的数字相同。输入包括不超过 303030 组测试数据。每个测试数据只包括一行，包含 242424 个整数，每相邻两个整数之间用 111 个空格隔开，表示这个 “# ” 形棋盘的初始状态。（这些整数的排列顺序是从上至下，同一行的从左至右。例如 1 1 1 1 3 2 3 2 3 1 3 2 2 3 1 2 2 2 3 1 2 1 3 3\text{1 1 1 1 3 2 3 2 3 1 3 2 2 3 1 2 2 2 3 1 2 1 3 3}1 1 1 1 3 2 3 2 3 1 3 2 2 3 1 2 2 2 3 1 2 1 3 3 表示图 111 最左边的状态。）每两组测试数据之间没有换行符。输入文件以一行 000 结束。对于每组测试数据，输出两行。第一行用字符 A∼H\text{A}\sim \text{H}A∼H 输出操作的方法，每两个操作字符之间没有空格分开，如果不需要任何步数，输出 No moves needed。第二行输出最终状态中最中间的 888 个格子里的数字。如果有多组解，输出操作次数最少的一组解；如果仍有多组解，输出字典序最小的一组。任意相邻两组测试数据的输出之间不需输出换行符。</p>
-<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
-<ol>
-<li>
-<p>典型的状态空间搜索，采用迭代加深搜的方法。</p>
-</li>
-<li>
-<p><strong>IDA*模板题</strong></p>
-</li>
-<li>
-<p>本题中要求中间8个数是相同的，而出现的数字又限定在1，2，3中。所以可以分三次求解，这样可以减少搜素空间。以目标为1为例，这时，将元素看作为1和非1的元素，那么状态总数就变成了8个1，16个非1的全排列，即24!/(8!*16!)。</p>
-</li>
-<li>
-<p>其实本题中的state可以定义为bool型，因为只关心比如1和非1</p>
-</li>
-<li>
-<p>关于剪枝</p>
-<ol>
-<li>最直接的，由于A-F/B-E/H-C/G-D相对，所以不能回滚上一层的操作。<strong>实现时使用op数组记录对应关系</strong></li>
-<li>每次旋转至多引入一个新的元素，也就是说每次回滚只能增加一个相同的元素。所以如果当前的层数d加上中间8个数字中非当前目标的数字个数大于最大个数maxd时，需要进行剪枝。</li>
-</ol>
-</li>
-<li>
-<p>关于旋转：由于输入方式比较特殊，旋转的次序固定，所以把A-H中每个元素在输入串中出现的位置手动写出。旋转时只需要模7加即可。</p>
-</li>
-<li>
-<p>相同的思路，将中间8个格出现的位置预先写出也可简化代码。</p>
-</li>
-<li>
-<p>与编辑书稿有相似之处</p>
-</li>
-</ol>
-<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
-<h3 id="dfs"><a class="markdownIt-Anchor" href="#dfs"></a> dfs</h3>
-<pre><code>bool dfs(int d) {
-if (d == maxd) {
-	if (not_equal(d) == 0) return true;
-	else return false;
-}
-int next = d + 1;
-if (d + not_equal(d) &gt; maxd) return false;
-for (int i = 0; i &lt; 8; i++) {
-	if (d &gt; 0 &amp;&amp; op[v[d-1]]== i) continue;
-
-	v[d] = i;
-	memcpy(state[next], state[d], 24 * sizeof(int));
-	for (int j = 0; j &lt; 7; j++)
-		state[next][move[i][j]] = state[d][move[i][(j + 1) % 7]];
-	if (dfs(next)) return true;
-}
-return false;
-}
-</code></pre>
-<h3 id="update-判断是否字典序更小"><a class="markdownIt-Anchor" href="#update-判断是否字典序更小"></a> update 判断是否字典序更小</h3>
-<pre><code>bool update() {
-if (ans[0] != -1)
-	for (int i = 0; i &lt; maxd; i++)
-		if (v[i] &gt; ans[i]) return false;
-		else if (v[i] &lt; ans[i]) break;
-memcpy(ans, v, sizeof(int)*maxd);
-return true;
-}
-</code></pre>
-<h3 id="not_equla-统计中间八格中与当前目标不等的元素个数"><a class="markdownIt-Anchor" href="#not_equla-统计中间八格中与当前目标不等的元素个数"></a> not_equla 统计中间八格中与当前目标不等的元素个数</h3>
-<pre><code>int not_equal(int d) {
-int ans = 0;
-for (int i = 0; i &lt; 8; i++)
-	if (state[d][mid[i]] != cur_nm)	ans++;
-return ans;
-}
-</code></pre>
-<h3 id="main"><a class="markdownIt-Anchor" href="#main"></a> main</h3>
-<pre><code>int maxd;
-int move[8][7] = {
-{0,2,6,11,15,20,22},
-{1,3,8,12,17,21,23},
-{10,9,8,7,6,5,4},
-{19,18,17,16,15,14,13},
-{23,21,17,12,8,3,1},
-{22,20,15,11,6,2,0},
-{13,14,15,16,17,18,19},
-{4,5,6,7,8,9,10}
-};
-int mid[8] = { 6,7,8,11,12,15,16,17 };
-int op[8] = { 5,4,7,6,1,0,3,2 };
-int state[50][24];
-int ans[50], v[50];
-int table[24];
-inline int not_equal(int d);
-bool dfs(int d);
-inline bool update();
-int cur_nm;
-int main() {
-while (true)
-{
-	memset(ans, -1, sizeof(ans));
-	scanf(&quot;%d&quot;, &amp;table[0]);
-	if (!table[0]) break;
-	for (int i = 1; i &lt; 24; i++)
-		scanf(&quot;%d&quot;, &amp;table[i]);
-	int p = 0;
-	for (maxd = 0;; maxd++) {
-		for (cur_nm = 1; cur_nm &lt;= 3; cur_nm++) {
-			memcpy(state[0], table, 24 * sizeof(int));
-			if (dfs(0) &amp;&amp; update()) 
-				p = cur_nm;
-		}
-		if (p) break;
-	}
-	if (maxd)
-		for (int i = 0; i &lt; maxd; i++) printf(&quot;%c&quot;, ans[i] + 'A');
-	else printf(&quot;No moves needed&quot;);
-	printf(&quot;\n%d\n&quot;, p);
-}
-}</code></pre>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/11/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/13/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/11/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/13/">下一页</a>
   </nav>
   
 </section>

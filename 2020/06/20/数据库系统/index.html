@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    数据库系统 |  Hexo
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-数据库系统" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  数据库系统
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" class="article-date">
+  <time datetime="2020-06-20T04:24:31.312Z" itemprop="datePublished">2020-06-20</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.8k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">14分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="事务"><a class="markdownIt-Anchor" href="#事务"></a> 事务</h1>
+<h2 id="acid"><a class="markdownIt-Anchor" href="#acid"></a> ACID</h2>
+<h3 id="1-原子性atomicity"><a class="markdownIt-Anchor" href="#1-原子性atomicity"></a> 1. 原子性（Atomicity）</h3>
+<p>**事务被视为不可分割的最小单元，**事务的所有操作要么全部提交成功，要么全部失败回滚。</p>
+<p>回滚可以用回滚日志（Undo Log）来实现，回滚日志记录着事务所执行的修改操作，在回滚时反向执行这些修改操作即可。</p>
+<h3 id="2-一致性consistency"><a class="markdownIt-Anchor" href="#2-一致性consistency"></a> 2. 一致性（Consistency）</h3>
+<p>**数据库在事务执行前后都保持一致性状态。**在一致性状态下，<strong>所有事务对同一个数据的读取结果都是相同的。</strong></p>
+<h3 id="3-隔离性isolation"><a class="markdownIt-Anchor" href="#3-隔离性isolation"></a> 3. 隔离性（Isolation</h3>
+<p>一个事务所做的修改在最终<strong>提交以前，对其它事务是不可见的。</strong></p>
+<h3 id="4-持久性durability"><a class="markdownIt-Anchor" href="#4-持久性durability"></a> 4. 持久性（Durability）</h3>
+<p>一旦事务提交，则其所做的修改将会永远保存到数据库中。即使系统发生崩溃，<strong>事务执行的结果也不能丢失。</strong></p>
+<p>系统发生奔溃可以用重做日志（Redo Log）进行恢复，从而实现持久性。与回滚日志记录数据的逻辑修改不同，重做日志记录的是数据页的物理修改。</p>
+<h3 id="关系"><a class="markdownIt-Anchor" href="#关系"></a> 关系</h3>
+<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200616105901714.png" alt="image-20200616105901714" /></p>
+<ul>
+<li>只有满足一致性，事务的执行结果才是正确的。</li>
+<li>在无并发的情况下，事务串行执行，隔离性一定能够满足。此时只要能满足原子性，就一定能满足一致性。</li>
+<li>在并发的情况下，多个事务并行执行，事务不仅要满足原子性，还需要满足隔离性，才能满足一致性。</li>
+<li>事务满足持久化是为了能应对系统崩溃的情况。</li>
+</ul>
+<h1 id="并发一致性问题"><a class="markdownIt-Anchor" href="#并发一致性问题"></a> 并发一致性问题</h1>
+<p><strong>在并发环境下，事务的隔离性很难保证，因此会出现很多并发一致性问题。</strong></p>
+<h2 id="丢失修改"><a class="markdownIt-Anchor" href="#丢失修改"></a> 丢失修改</h2>
+<p>丢失修改指一个事务的更新操作被另外一个事务的更新操作替换。一般在现实生活中常会遇到，例如：T1 和 T2 两个事务都对一个数据进行修改，T1 先修改并提交生效，T2 随后修改，T2 的修改覆盖了 T1 的修改。</p>
+<h2 id="读脏数据"><a class="markdownIt-Anchor" href="#读脏数据"></a> 读脏数据</h2>
+<p>读脏数据指在不同的事务下，当前事务可以读到另外事务未提交的数据。例如：T1 修改一个数据但未提交，T2 随后读取这个数据。如果 T1 撤销了这次修改，那么 T2 读取的数据是脏数据。</p>
+<h2 id="不可重复读"><a class="markdownIt-Anchor" href="#不可重复读"></a> 不可重复读</h2>
+<p>不可重复读指在一个事务内多次读取同一数据集合。在这一事务还未结束前，另一事务也访问了该同一数据集合并做了修改，由于第二个事务的修改，第一次事务的两次读取的数据可能不一致。例如：T2 读取一个数据，T1 对该数据做了修改。如果 T2 再次读取这个数据，此时读取的结果和第一次读取的结果不同。</p>
+<h2 id="幻读"><a class="markdownIt-Anchor" href="#幻读"></a> 幻读</h2>
+<p>幻读本质上也属于不可重复读的情况，T1 读取某个范围的数据，T2 在这个范围内插入新的数据，T1 再次读取这个范围的数据，此时读取的结果和和第一次读取的结果不同。</p>
+<h1 id="封锁"><a class="markdownIt-Anchor" href="#封锁"></a> 封锁</h1>
+<h2 id="封锁粒度"><a class="markdownIt-Anchor" href="#封锁粒度"></a> 封锁粒度</h2>
+<p>MySQL 中提供了两种封锁粒度：行级锁以及表级锁。</p>
+<p>应该尽量只锁定需要修改的那部分数据，而不是所有的资源。锁定的数据量越少，发生锁争用的可能就越小，系统的并发程度就越高。</p>
+<p>但是加锁需要消耗资源，锁的各种操作（包括获取锁、释放锁、以及检查锁状态）都会增加系统开销。因此封锁粒度越小，系统开销就越大。</p>
+<p>在选择封锁粒度时，需要在锁开销和并发程度之间做一个权衡。</p>
+<h2 id="封锁类型"><a class="markdownIt-Anchor" href="#封锁类型"></a> 封锁类型</h2>
+<h3 id="读写锁"><a class="markdownIt-Anchor" href="#读写锁"></a> 读写锁</h3>
+<ul>
+<li>互斥锁（Exclusive），简写为 X 锁，又称写锁。</li>
+<li>共享锁（Shared），简写为 S 锁，又称读锁。</li>
+</ul>
+<p>有以下两个规定：</p>
+<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200616110238903.png" alt="image-20200616110238903" /></p>
+<ul>
+<li>一个事务对数据对象 A 加了 X 锁，就可以对 A 进行读取和更新。加锁期间其它事务不能对 A 加任何锁。</li>
+<li>一个事务对数据对象 A 加了 S 锁，可以对 A 进行读取操作，但是不能进行更新操作。加锁期间其它事务能对 A 加 S 锁，但是不能加 X 锁。</li>
+</ul>
+<h3 id="意向锁"><a class="markdownIt-Anchor" href="#意向锁"></a> 意向锁</h3>
+<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200616110259644.png" alt="image-20200616110259644" /></p>
+<p>使用意向锁（Intention Locks）可以更容易地支持多粒度封锁。</p>
+<p>在存在行级锁和表级锁的情况下，事务 T 想要对表 A 加 X 锁，就需要先检测是否有其它事务对表 A 或者表 A 中的任意一行加了锁，那么就需要对表 A 的每一行都检测一次，这是非常耗时的。</p>
+<p><strong>意向锁在原来的 X/S 锁之上引入了 IX/IS，IX/IS 都是表锁</strong>，用来表示一个事务想要在表中的某个数据行上加 X 锁或 S 锁。有以下两个规定：</p>
+<ul>
+<li>一个事务在获得某个数据行对象的 S 锁之前，必须先获得表的 IS 锁或者更强的锁；</li>
+<li>一个事务在获得某个数据行对象的 X 锁之前，必须先获得表的 IX 锁。</li>
+</ul>
+<p>通过引入意向锁，事务 T 想要对表 A 加 X 锁，只需要先检测是否有其它事务对表 A 加了 X/IX/S/IS 锁，如果加了就表示有其它事务正在使用这个表或者表中某一行的锁，因此事务 T 加 X 锁失败。</p>
+<h2 id="封锁协议"><a class="markdownIt-Anchor" href="#封锁协议"></a> 封锁协议</h2>
+<h3 id="两段锁协议"><a class="markdownIt-Anchor" href="#两段锁协议"></a> 两段锁协议</h3>
+<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200616110511632.png" alt="image-20200616110511632" /></p>
+<p><strong>加锁和解锁分为两个阶段进行。</strong></p>
+<p>可串行化调度是指，通过并发控制，使得并发执行的事务结果与某个串行执行的事务结果相同。串行执行的事务互不干扰，不会出现并发一致性问题。</p>
+<p>事务遵循两段锁协议是保证可串行化调度的充分条件。例如以下操作满足两段锁协议，它是可串行化调度。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lock-x(A)...lock-s(B)...lock-s(C)...unlock(A)...unlock(C)...unlock(B)</span><br></pre></td></tr></table></figure>
+<p>但不是必要条件，例如以下操作不满足两段锁协议，但它还是可串行化调度。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lock-x(A)...unlock(A)...lock-s(B)...unlock(B)...lock-s(C)...unlock(C)</span><br></pre></td></tr></table></figure>
+<h1 id="隔离级别"><a class="markdownIt-Anchor" href="#隔离级别"></a> 隔离级别</h1>
+<h2 id="读未提交"><a class="markdownIt-Anchor" href="#读未提交"></a> 读未提交</h2>
+<p>事务中的修改，即使没有提交，对其它事务也是可见的。</p>
+<h2 id="读已提交"><a class="markdownIt-Anchor" href="#读已提交"></a> 读已提交</h2>
+<p>一个事务只能读取已经提交的事务所做的修改。换句话说，一个事务所做的修改在提交之前对其它事务是不可见的。</p>
+<h2 id="可重复读"><a class="markdownIt-Anchor" href="#可重复读"></a> 可重复读</h2>
+<p>保证在同一个事务中多次读取同一数据的结果是一样的。</p>
+<h2 id="可串行化"><a class="markdownIt-Anchor" href="#可串行化"></a> 可串行化</h2>
+<p>强制事务串行执行，这样多个事务互不干扰，不会出现并发一致性问题。</p>
+<p>该隔离级别需要加锁实现，因为要<strong>使用加锁机制保证同一时间只有一个事务执行，也就是保证事务串行执行。</strong></p>
+<h1 id="多版本并发控制-mvcc"><a class="markdownIt-Anchor" href="#多版本并发控制-mvcc"></a> 多版本并发控制 MVCC</h1>
+<p>MVCC是Mysql的InnoDB实现隔离级别的一种具体方式，用于实现提交读和可重复读这两种隔离级别。</p>
+<h2 id="基本思想"><a class="markdownIt-Anchor" href="#基本思想"></a> 基本思想</h2>
+<p>MVCC 利用了多版本的思想，写操作更新最新的版本快照，而读操作去读旧版本快照，没有互斥关系，这一点和 CopyOnWrite 类似。</p>
+<p>在 MVCC 中事务的修改操作（DELETE、INSERT、UPDATE）会为数据行新增一个版本快照。</p>
+<p>脏读和不可重复读最根本的原因是事务读取到其它事务未提交的修改。在事务进行读取操作时，为了解决脏读和不可重复读问题，MVCC 规定只能读取已经提交的快照。当然一个事务可以读取自身未提交的快照，这不算是脏读。</p>
+<h2 id="版本号"><a class="markdownIt-Anchor" href="#版本号"></a> 版本号</h2>
+<ul>
+<li>系统版本号 SYS_ID：是一个递增的数字，每开始一个新的事务，系统版本号就会自动递增。</li>
+<li>事务版本号 TRX_ID ：事务开始时的系统版本号。</li>
+</ul>
+<h2 id="undo日志"><a class="markdownIt-Anchor" href="#undo日志"></a> Undo日志</h2>
+<p>MVCC 的多版本指的是多个版本的快照，快照存储在 Undo 日志中，<strong>该日志通过回滚指针 ROLL_PTR 把一个数据行的所有快照连接起来。</strong></p>
+<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200616115846426.png" alt="image-20200616115846426" /></p>
+<h2 id="readview"><a class="markdownIt-Anchor" href="#readview"></a> ReadView</h2>
+<p>MVCC 维护了一个 ReadView 结构，<strong>主要包含了当前系统未提交的事务列表 TRX_IDs {TRX_ID_1, TRX_ID_2, …}</strong>，还有该列表的最小值 TRX_ID_MIN 和 TRX_ID_MAX。</p>
+<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200616120505739.png" alt="image-20200616120505739" /></p>
+<p>在进行 SELECT 操作时，根据数据行快照的 TRX_ID 与 TRX_ID_MIN 和 TRX_ID_MAX 之间的关系，从而判断数据行快照是否可以使用：</p>
+<ul>
+<li>TRX_ID &lt; TRX_ID_MIN，表示该数据行快照时在当前所有未提交事务之前进行更改的，因此可以使用。</li>
+<li>TRX_ID &gt; TRX_ID_MAX，表示该数据行快照是在事务启动之后被更改的，因此不可使用。</li>
+<li>TRX_ID_MIN &lt;= TRX_ID &lt;= TRX_ID_MAX，需要根据隔离级别再进行判断：
+<ul>
+<li>提交读：如果 TRX_ID 在 TRX_IDs 列表中，表示该数据行快照对应的事务还未提交，则该快照不可使用。否则表示已经提交，可以使用。</li>
+<li>可重复读：都不可以使用。因为如果可以使用的话，那么其它事务也可以读到这个数据行快照并进行修改，那么当前事务再去读这个数据行得到的值就会发生改变，也就是出现了不可重复读问题。</li>
+</ul>
+</li>
+</ul>
+<p><strong>在数据行快照不可使用的情况下，需要沿着 Undo Log 的回滚指针 ROLL_PTR 找到下一个快照，再进行上面的判断。</strong></p>
+<h2 id="快照读与当前读"><a class="markdownIt-Anchor" href="#快照读与当前读"></a> 快照读与当前读</h2>
+<h3 id="1-快照读"><a class="markdownIt-Anchor" href="#1-快照读"></a> 1. 快照读</h3>
+<p>MVCC 的 SELECT 操作是快照中的数据，不需要进行加锁操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table ...;</span><br></pre></td></tr></table></figure>
+<h3 id="2-当前读"><a class="markdownIt-Anchor" href="#2-当前读"></a> 2. 当前读</h3>
+<p>MVCC 其它会对数据库进行修改的操作（INSERT、UPDATE、DELETE）需要进行加锁操作，从而读取最新的数据。可以看到 MVCC 并不是完全不用加锁，而只是避免了 SELECT 的加锁操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT;</span><br><span class="line">UPDATE;</span><br><span class="line">DELETE;</span><br></pre></td></tr></table></figure>
+<p>在进行 SELECT 操作时，可以强制指定进行加锁操作。以下第一个语句需要加 S 锁，第二个需要加 X 锁。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table WHERE ? lock in share mode;</span><br><span class="line">SELECT * FROM table WHERE ? for update;</span><br></pre></td></tr></table></figure>
+<h1 id="next-key-locks"><a class="markdownIt-Anchor" href="#next-key-locks"></a> Next-Key Locks</h1>
+<p>在可重复读（REPEATABLE READ）隔离级别下，<strong>使用 MVCC + Next-Key Locks 可以解决幻读问题。</strong></p>
+<h2 id="record-locks"><a class="markdownIt-Anchor" href="#record-locks"></a> Record Locks</h2>
+<p><strong>锁定一个记录上的索引，而不是记录本身</strong></p>
+<p>如果表没有设置索引，InnoDB 会自动在主键上创建隐藏的聚簇索引，因此 Record Locks 依然可以使用。</p>
+<h2 id="gap-locks"><a class="markdownIt-Anchor" href="#gap-locks"></a> Gap Locks</h2>
+<p>锁定索引之间的间隙，但是不包含索引本身。例如当一个事务执行以下语句，其它事务就不能在 t.c 中插入 15。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c <span class="keyword">FROM</span> t <span class="keyword">WHERE</span> c <span class="keyword">BETWEEN</span> <span class="number">10</span> <span class="keyword">and</span> <span class="number">20</span> <span class="keyword">FOR</span> <span class="keyword">UPDATE</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="next-key-locks-2"><a class="markdownIt-Anchor" href="#next-key-locks-2"></a> Next-Key Locks</h2>
+<p>它是 Record Locks 和 Gap Locks 的结合，不仅锁定一个记录上的索引，也锁定索引之间的间隙。它锁定一个前开后闭区间，例如一个索引包含以下值：10, 11, 13, and 20，那么就需要锁定以下区间：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(-∞, 10]</span><br><span class="line">(10, 11]</span><br><span class="line">(11, 13]</span><br><span class="line">(13, 20]</span><br><span class="line">(20, +∞)</span><br></pre></td></tr></table></figure>
+<h1 id="关系数据库理论"><a class="markdownIt-Anchor" href="#关系数据库理论"></a> 关系数据库理论</h1>
+<h2 id="函数依赖"><a class="markdownIt-Anchor" href="#函数依赖"></a> 函数依赖</h2>
+<p>记 A-&gt;B 表示 A 函数决定 B，也可以说 B 函数依赖于 A。</p>
+<p>如果 {A1，A2，… ，An} 是关系的一个或多个属性的集合，该集合函数决定了关系的其它所有属性并且是最小的，那么该集合就称为键码。</p>
+<p>对于 A-&gt;B，如果能找到 A 的真子集 A’，使得 A’-&gt; B，那么 A-&gt;B 就是部分函数依赖，否则就是完全函数依赖。</p>
+<p>对于 A-&gt;B，B-&gt;C，则 A-&gt;C 是一个传递函数依赖。</p>
+<h2 id="异常"><a class="markdownIt-Anchor" href="#异常"></a> 异常</h2>
+<table>
+<thead>
+<tr>
+<th>Sno</th>
+<th>Sname</th>
+<th>Sdept</th>
+<th>Mname</th>
+<th>Cname</th>
+<th>Grade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>学生-1</td>
+<td>学院-1</td>
+<td>院长-1</td>
+<td>课程-1</td>
+<td>90</td>
+</tr>
+<tr>
+<td>2</td>
+<td>学生-2</td>
+<td>学院-2</td>
+<td>院长-2</td>
+<td>课程-2</td>
+<td>80</td>
+</tr>
+<tr>
+<td>2</td>
+<td>学生-2</td>
+<td>学院-2</td>
+<td>院长-2</td>
+<td>课程-1</td>
+<td>100</td>
+</tr>
+<tr>
+<td>3</td>
+<td>学生-3</td>
+<td>学院-2</td>
+<td>院长-2</td>
+<td>课程-2</td>
+<td>95</td>
+</tr>
+</tbody>
+</table>
+<p>不符合范式的关系，会产生很多异常，主要有以下四种异常：</p>
+<ul>
+<li>冗余数据：例如 <code>学生-2</code> 出现了两次。</li>
+<li>修改异常：修改了一个记录中的信息，但是另一个记录中相同的信息却没有被修改。</li>
+<li>删除异常：删除一个信息，那么也会丢失其它信息。例如删除了 <code>课程-1</code> 需要删除第一行和第三行，那么 <code>学生-1</code> 的信息就会丢失。</li>
+<li>插入异常：例如想要插入一个学生的信息，如果这个学生还没选课，那么就无法插入。</li>
+</ul>
+<h2 id="范式"><a class="markdownIt-Anchor" href="#范式"></a> 范式</h2>
+<h3 id="1-第一范式-1nf"><a class="markdownIt-Anchor" href="#1-第一范式-1nf"></a> 1. 第一范式 (1NF)</h3>
+<p>属性不可分。</p>
+<h3 id="2-第二范式-2nf"><a class="markdownIt-Anchor" href="#2-第二范式-2nf"></a> 2. 第二范式 (2NF)</h3>
+<p>每个非主属性完全函数依赖于键码。</p>
+<p>可以通过分解来满足。</p>
+<p><strong>分解前</strong></p>
+<table>
+<thead>
+<tr>
+<th>Sno</th>
+<th>Sname</th>
+<th>Sdept</th>
+<th>Mname</th>
+<th>Cname</th>
+<th>Grade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>学生-1</td>
+<td>学院-1</td>
+<td>院长-1</td>
+<td>课程-1</td>
+<td>90</td>
+</tr>
+<tr>
+<td>2</td>
+<td>学生-2</td>
+<td>学院-2</td>
+<td>院长-2</td>
+<td>课程-2</td>
+<td>80</td>
+</tr>
+<tr>
+<td>2</td>
+<td>学生-2</td>
+<td>学院-2</td>
+<td>院长-2</td>
+<td>课程-1</td>
+<td>100</td>
+</tr>
+<tr>
+<td>3</td>
+<td>学生-3</td>
+<td>学院-2</td>
+<td>院长-2</td>
+<td>课程-2</td>
+<td>95</td>
+</tr>
+</tbody>
+</table>
+<p>以上学生课程关系中，{Sno, Cname} 为键码，有如下函数依赖：</p>
+<ul>
+<li>Sno -&gt; Sname, Sdept</li>
+<li>Sdept -&gt; Mname</li>
+<li>Sno, Cname-&gt; Grade</li>
+</ul>
+<p>Grade 完全函数依赖于键码，它没有任何冗余数据，每个学生的每门课都有特定的成绩。</p>
+<p>Sname, Sdept 和 Mname 都部分依赖于键码，当一个学生选修了多门课时，这些数据就会出现多次，造成大量冗余数据。</p>
+<p><strong>分解后</strong></p>
+<p>关系-1</p>
+<table>
+<thead>
+<tr>
+<th>Sno</th>
+<th>Sname</th>
+<th>Sdept</th>
+<th>Mname</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>学生-1</td>
+<td>学院-1</td>
+<td>院长-1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>学生-2</td>
+<td>学院-2</td>
+<td>院长-2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>学生-3</td>
+<td>学院-2</td>
+<td>院长-2</td>
+</tr>
+</tbody>
+</table>
+<p>有以下函数依赖：</p>
+<ul>
+<li>Sno -&gt; Sname, Sdept</li>
+<li>Sdept -&gt; Mname</li>
+</ul>
+<p>关系-2</p>
+<table>
+<thead>
+<tr>
+<th>Sno</th>
+<th>Cname</th>
+<th>Grade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>课程-1</td>
+<td>90</td>
+</tr>
+<tr>
+<td>2</td>
+<td>课程-2</td>
+<td>80</td>
+</tr>
+<tr>
+<td>2</td>
+<td>课程-1</td>
+<td>100</td>
+</tr>
+<tr>
+<td>3</td>
+<td>课程-2</td>
+<td>95</td>
+</tr>
+</tbody>
+</table>
+<p>有以下函数依赖：</p>
+<ul>
+<li>Sno, Cname -&gt; Grade</li>
+</ul>
+<h3 id="3-第三范式-3nf"><a class="markdownIt-Anchor" href="#3-第三范式-3nf"></a> 3. 第三范式 (3NF)</h3>
+<p>非主属性不传递函数依赖于键码。</p>
+<p>上面的 关系-1 中存在以下传递函数依赖：</p>
+<ul>
+<li>Sno -&gt; Sdept -&gt; Mname</li>
+</ul>
+<p>可以进行以下分解：</p>
+<p>关系-11</p>
+<table>
+<thead>
+<tr>
+<th>Sno</th>
+<th>Sname</th>
+<th>Sdept</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>学生-1</td>
+<td>学院-1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>学生-2</td>
+<td>学院-2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>学生-3</td>
+<td>学院-2</td>
+</tr>
+</tbody>
+</table>
+<p>关系-12</p>
+<table>
+<thead>
+<tr>
+<th>Sdept</th>
+<th>Mname</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>学院-1</td>
+<td>院长-1</td>
+</tr>
+<tr>
+<td>学院-2</td>
+<td>院长-2</td>
+</tr>
+</tbody>
+</table>
+<h1 id="er-图"><a class="markdownIt-Anchor" href="#er-图"></a> ER 图</h1>
+<p>用来进行关系型数据库系统的<strong>概念设计</strong>。</p>
+<p>有三个组成部分**：实体、属性、联系**。</p>
+<h2 id="实体的三种联系"><a class="markdownIt-Anchor" href="#实体的三种联系"></a> 实体的三种联系</h2>
+<p>包含一对一，一对多，多对多三种。</p>
+<ul>
+<li>如果 A 到 B 是一对多关系，那么画个带箭头的线段指向 B；</li>
+<li>如果是一对一，画两个带箭头的线段；</li>
+<li>如果是多对多，画两个不带箭头的线段。</li>
+</ul>
+<p>下图的 Course 和 Student 是一对多的关系。</p>
+<p><a href="https://camo.githubusercontent.com/30b13bf542f6115d8bcecc903ed08a0f16d21304/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f31643238616430352d333965352d343961322d613661312d6136663439366164626136612e706e67" target="_blank" rel="noopener"><img src="D:%5CMyBlog%5Csource%5CMyImages%5C68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f31643238616430352d333965352d343961322d613661312d6136663439366164626136612e706e67" alt="img" /></a></p>
+<h2 id="表示出现多次的关系"><a class="markdownIt-Anchor" href="#表示出现多次的关系"></a> 表示出现多次的关系</h2>
+<p>一个实体在联系出现几次，就要用几条线连接。</p>
+<p>下图表示一个课程的先修关系，先修关系出现两个 Course 实体，第一个是先修课程，后一个是后修课程，因此需要用两条线来表示这种关系。</p>
+<p><a href="https://camo.githubusercontent.com/7a93b3e7d3ecd4005b1f5877303245a1663ba747/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f61633932396561332d646163612d343065632d396539352d3462326661363637383234332e706e67" target="_blank" rel="noopener"><img src="D:%5CMyBlog%5Csource%5CMyImages%5C68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f61633932396561332d646163612d343065632d396539352d3462326661363637383234332e706e67" alt="img" /></a></p>
+<h2 id="表示子类"><a class="markdownIt-Anchor" href="#表示子类"></a> 表示子类</h2>
+<p>用一个三角形和两条线来连接类和子类，与子类有关的属性和联系都连到子类上，而与父类和子类都有关的连到父类上。</p>
+<p><a href="https://camo.githubusercontent.com/144cd455691b6d05e58c063d5272b6e1681689d4/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f31343338396561342d386439362d346539362d396637362d3536346361333332346331652e706e67" target="_blank" rel="noopener"><img src="D:%5CMyBlog%5Csource%5CMyImages%5C68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f31343338396561342d386439362d346539362d396637362d3536346361333332346331652e706e67" alt="img" /></a></p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/06/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/06/20/%E7%AE%97%E6%B3%95/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            算法
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/06/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">操作系统</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        John Doe
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>
