@@ -136,7 +136,7 @@
 <p>完成用户的 I/O 请求，方便用户使用各种设备，并提高设备的利用率。</p>
 <p>主要包括缓冲管理、设备分配、设备处理、虛拟设备等。</p>
 <h2 id="大内核和微内核"><a class="markdownIt-Anchor" href="#大内核和微内核"></a> 大内核和微内核</h2>
-<img src="D:\MyBlog\source\MyImages\image-20200410143512321.png" alt="image-20200410143512321" style="zoom:80%;" />
+<img src="/MyImages/image-20200410143512321.png" alt="image-20200410143512321" style="zoom:80%;" />
 <h3 id="大内核"><a class="markdownIt-Anchor" href="#大内核"></a> 大内核</h3>
 <p>大内核是将操作系统功能作为一个紧密结合的整体放到内核。</p>
 <p>由于各模块共享信息，因此有很高的性能。</p>
@@ -158,12 +158,12 @@
 </li>
 <li>
 <p>分类</p>
-<img src="D:\MyBlog\source\MyImages\image-20200410132435683.png" alt="image-20200410132435683" style="zoom: 80%;" />
+<img src="/MyImages/image-20200410132435683.png" alt="image-20200410132435683" style="zoom: 80%;" />
 <ul>
 <li>内中断比如除0；有时候应用程序想请求操作系统内核的服务，此时会执行一条特殊的指令——陷入指令，该指令会引发一个内部中断信号</li>
 <li>外中断比如时钟中断</li>
 </ul>
-<img src="D:\MyBlog\source\MyImages\image-20200410142357027.png" alt="image-20200410142357027" style="zoom: 80%;" />
+<img src="/MyImages/image-20200410142357027.png" alt="image-20200410142357027" style="zoom: 80%;" />
 </li>
 <li>
 <p>基本原理:不同的中断信号，需要用不同的中断处理程序来处理。当CPU检测到中断信号后，会根据中断信号的类型去查询“中断向量表”，以此来找到相应的中断处理程序在内存中的存放位置。</p>
@@ -176,7 +176,7 @@
 </li>
 <li>
 <p>分类</p>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410142827633.png" alt="image-20200410142827633" /></p>
+<p><img src="/MyImages/image-20200410142827633.png" alt="image-20200410142827633" /></p>
 </li>
 <li>
 <p>系统调用过程</p>
@@ -207,7 +207,7 @@
 <ul>
 <li>
 <p><strong>PCB 进程控制块</strong>，但凡管理时所需要的信息，都会被放在PCB中</p>
-<img src="D:\MyBlog\source\MyImages\image-20200410143922690.png" alt="image-20200410143922690" style="zoom:80%;" />
+<img src="/MyImages/image-20200410143922690.png" alt="image-20200410143922690" style="zoom:80%;" />
 <p><strong>PCB 是给操作系统用的。</strong></p>
 </li>
 <li>
@@ -220,7 +220,7 @@
 </li>
 <li>
 <p><strong>进程的特征</strong></p>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410144454179.png" alt="image-20200410144454179" /></p>
+<p><img src="/MyImages/image-20200410144454179.png" alt="image-20200410144454179" /></p>
 </li>
 </ul>
 <h2 id="进程和线程"><a class="markdownIt-Anchor" href="#进程和线程"></a> 进程和线程</h2>
@@ -251,20 +251,20 @@
 </li>
 </ol>
 <h2 id="进程的组织形式"><a class="markdownIt-Anchor" href="#进程的组织形式"></a> 进程的组织形式</h2>
-<img src="D:\MyBlog\source\MyImages\image-20200410150055787.png" alt="image-20200410150055787" style="zoom:80%;" />
+<img src="/MyImages/image-20200410150055787.png" alt="image-20200410150055787" style="zoom:80%;" />
 <ul>
 <li>
 <p>链接方式</p>
-<img src="D:\MyBlog\source\MyImages\image-20200410150137085.png" alt="image-20200410150137085" style="zoom:80%;" />
+<img src="/MyImages/image-20200410150137085.png" alt="image-20200410150137085" style="zoom:80%;" />
 </li>
 <li>
 <p>索引方式</p>
-<img src="D:\MyBlog\source\MyImages\image-20200410150259354.png" alt="image-20200410150259354" style="zoom:80%;" />
+<img src="/MyImages/image-20200410150259354.png" alt="image-20200410150259354" style="zoom:80%;" />
 </li>
 </ul>
 <h2 id="进程控制"><a class="markdownIt-Anchor" href="#进程控制"></a> 进程控制</h2>
 <h3 id="进程状态的切换"><a class="markdownIt-Anchor" href="#进程状态的切换"></a> 进程状态的切换</h3>
-<img src="D:\MyBlog\source\MyImages\image-20200410150355564.png" alt="image-20200410150355564" style="zoom:80%;" />
+<img src="/MyImages/image-20200410150355564.png" alt="image-20200410150355564" style="zoom:80%;" />
 <p>注意：</p>
 <ol>
 <li>
@@ -294,10 +294,10 @@
 </li>
 </ol>
 <h3 id="进程控制原语"><a class="markdownIt-Anchor" href="#进程控制原语"></a> 进程控制原语</h3>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410151119920.png" alt="image-20200410151119920" /></p>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410151130433.png" alt="image-20200410151130433" /></p>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410151140239.png" alt="image-20200410151140239" /></p>
-<img src="D:\MyBlog\source\MyImages\image-20200410151152896.png" alt="image-20200410151152896" style="zoom: 67%;" />
+<p><img src="/MyImages/image-20200410151119920.png" alt="image-20200410151119920" /></p>
+<p><img src="/MyImages/image-20200410151130433.png" alt="image-20200410151130433" /></p>
+<p><img src="/MyImages/image-20200410151140239.png" alt="image-20200410151140239" /></p>
+<img src="/MyImages/image-20200410151152896.png" alt="image-20200410151152896" style="zoom: 67%;" />
 <h2 id="进程调度"><a class="markdownIt-Anchor" href="#进程调度"></a> 进程调度</h2>
 <h3 id="进程调度算法"><a class="markdownIt-Anchor" href="#进程调度算法"></a> 进程调度算法</h3>
 <h4 id="批处理系统"><a class="markdownIt-Anchor" href="#批处理系统"></a> 批处理系统</h4>
@@ -321,7 +321,7 @@
 </li>
 <li>
 <p><strong>多级反馈队列</strong></p>
-<img src="D:\MyBlog\source\MyImages\image-20200604234940574.png" alt="image-20200604234940574" style="zoom: 67%;" />
+<img src="/MyImages/image-20200604234940574.png" alt="image-20200604234940574" style="zoom: 67%;" />
 <p>多级队列是为这种需要连续执行多个时间片的进程考虑，它设置了多个队列，每个队列时间片大小都不同，例如 1,2,4,8,…。进程在第一个队列没执行完，就会被移到下一个队列。这种方式下，之前的进程只需要交换 7 次。</p>
 <p>每个队列优先权也不同，最上面的优先权最高。因此只有上一个队列没有进程在排队，才能调度当前队列上的进程。</p>
 <p>可以将这种调度算法看成是时间片轮转调度算法和优先级调度算法的结合。</p>
@@ -370,7 +370,7 @@
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> semaphore;</span><br><span class="line">semaphore count_mutex = <span class="number">1</span>;</span><br><span class="line">semaphore data_mutex = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reader</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(TRUE) &#123;</span><br><span class="line">        down(&amp;count_mutex);</span><br><span class="line">        count++;</span><br><span class="line">        <span class="keyword">if</span>(count == <span class="number">1</span>) down(&amp;data_mutex); <span class="comment">// 第一个读者需要对数据进行加锁，防止写进程访问</span></span><br><span class="line">        up(&amp;count_mutex);</span><br><span class="line">        <span class="built_in">read</span>();</span><br><span class="line">        down(&amp;count_mutex);</span><br><span class="line">        count--;</span><br><span class="line">        <span class="keyword">if</span>(count == <span class="number">0</span>) up(&amp;data_mutex);</span><br><span class="line">        up(&amp;count_mutex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">writer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(TRUE) &#123;</span><br><span class="line">        down(&amp;data_mutex);</span><br><span class="line">        <span class="built_in">write</span>();</span><br><span class="line">        up(&amp;data_mutex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="进程通信"><a class="markdownIt-Anchor" href="#进程通信"></a> 进程通信</h2>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410151426847.png" alt="image-20200410151426847" /></p>
+<p><img src="/MyImages/image-20200410151426847.png" alt="image-20200410151426847" /></p>
 <h3 id="进程通信-进程同步"><a class="markdownIt-Anchor" href="#进程通信-进程同步"></a> 进程通信 &amp; 进程同步</h3>
 <p>进程同步与进程通信很容易混淆，它们的区别在于：</p>
 <ul>
@@ -436,34 +436,34 @@
 </ul>
 <h3 id="线程的实现方式"><a class="markdownIt-Anchor" href="#线程的实现方式"></a> 线程的实现方式</h3>
 <h4 id="用户级线程"><a class="markdownIt-Anchor" href="#用户级线程"></a> 用户级线程</h4>
-<img src="D:\MyBlog\source\MyImages\image-20200410154146273.png" alt="image-20200410154146273" style="zoom:80%;" />
+<img src="/MyImages/image-20200410154146273.png" alt="image-20200410154146273" style="zoom:80%;" />
 <ul>
 <li>用户级线程由应用程序通过线程库实现。 所有的线程管理工作都由应用程序负责（包括线程切换）</li>
 <li>用户级线程中，线程切换可以在用户态下即可完成，<strong>无需操作系统干预</strong>。</li>
 <li>在用户看来，是有多个线程。但是在操作系统内核看来，并意识不到线程的存在（用户级线程对用户不透明，对操作系统透明）</li>
 </ul>
 <h4 id="内核级线程"><a class="markdownIt-Anchor" href="#内核级线程"></a> 内核级线程</h4>
-<img src="D:\MyBlog\source\MyImages\image-20200410154205246.png" alt="image-20200410154205246" style="zoom:80%;" />
+<img src="/MyImages/image-20200410154205246.png" alt="image-20200410154205246" style="zoom:80%;" />
 <ul>
 <li>内核级线程的管理工作<strong>由操作系统内核完成</strong>。 线程调度、切换等工作都由内核负责，因此内核级线程的切换必然需要在核心态下才能完成。</li>
 <li>可以这样理解，<strong>“内核级线程”就是“从操作系统内核视角看能看到的线程</strong>”</li>
 </ul>
 <h4 id="综合方式"><a class="markdownIt-Anchor" href="#综合方式"></a> 综合方式</h4>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410154424552.png" alt="image-20200410154424552" /></p>
+<p><img src="/MyImages/image-20200410154424552.png" alt="image-20200410154424552" /></p>
 <ul>
 <li>在同时支持用户级线程和内核级线程的系统中，可采用二者组合的方式：将n个用户级线程映射到m个内核级线程上（ n &gt;= m）</li>
 <li><strong>操作系统只“看得见”内核级线程，因此只有内核级线程才是处理机分配的单位</strong></li>
 </ul>
 <h3 id="多线程模型"><a class="markdownIt-Anchor" href="#多线程模型"></a> 多线程模型</h3>
 <h4 id="一对多模型"><a class="markdownIt-Anchor" href="#一对多模型"></a> 一对多模型</h4>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410154521212.png" alt="image-20200410154521212" /></p>
+<p><img src="/MyImages/image-20200410154521212.png" alt="image-20200410154521212" /></p>
 <ul>
 <li>一对多模型：将多个用户及线程映射到一个内核级线程。每个用户进程只对应一个内核级线程</li>
 <li><strong>优点</strong>：用户级线程的切换在用户空间即可完成，不需要切换到核心态，线程管理的系统开销小，效率高</li>
 <li><strong>缺点</strong>：当一个用户级线程被阻塞后，整个进程都会被阻塞，并发度不高。多个线程不可在多核处理机上并行运行</li>
 </ul>
 <h4 id="一对一模型"><a class="markdownIt-Anchor" href="#一对一模型"></a> 一对一模型</h4>
-<img src="D:\MyBlog\source\MyImages\image-20200410154858257.png" alt="image-20200410154858257" style="zoom:80%;" />
+<img src="/MyImages/image-20200410154858257.png" alt="image-20200410154858257" style="zoom:80%;" />
 <ul>
 <li>一对一模型：一个用户及线程映射到一个内核级线程。每个用户进程有与用户级线程同数量的内核级线程。</li>
 <li>优点：当一个线程被阻塞后，别的线程还可以继续执行，并发能力强。多线程可在多核 处理机上并行执行。</li>
@@ -475,7 +475,7 @@
 <li>克服了多对一模型并发度不高的缺点，又克服了一对一模型中一个用户进程占用太多内 核级线程，开销太大的缺点。</li>
 </ul>
 <h1 id="进程调度-2"><a class="markdownIt-Anchor" href="#进程调度-2"></a> 进程调度</h1>
-<img src="D:\MyBlog\source\MyImages\image-20200410160026896.png" alt="image-20200410160026896" style="zoom:80%;" />
+<img src="/MyImages/image-20200410160026896.png" alt="image-20200410160026896" style="zoom:80%;" />
 <h3 id="基本概念-2"><a class="markdownIt-Anchor" href="#基本概念-2"></a> 基本概念</h3>
 <ul>
 <li>处理机调度，就是从就绪队列中按照一定的算法选择一个进程并将处理机分配给它运行，以实现进程的并发执行。</li>
@@ -495,24 +495,24 @@
 <li>其主要任务是按照某种方法和策略<strong>从就绪队列中选取一个进程，将处理机分配给它。</strong></li>
 </ul>
 <h4 id="对比"><a class="markdownIt-Anchor" href="#对比"></a> 对比</h4>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410160541491.png" alt="image-20200410160541491" /></p>
+<p><img src="/MyImages/image-20200410160541491.png" alt="image-20200410160541491" /></p>
 <h3 id="调度算法"><a class="markdownIt-Anchor" href="#调度算法"></a> 调度算法</h3>
 <h4 id="先来先服务"><a class="markdownIt-Anchor" href="#先来先服务"></a> 先来先服务</h4>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410161834179.png" alt="image-20200410161834179" /></p>
+<p><img src="/MyImages/image-20200410161834179.png" alt="image-20200410161834179" /></p>
 <h4 id="最短作业优先"><a class="markdownIt-Anchor" href="#最短作业优先"></a> 最短作业优先</h4>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410162007371.png" alt="image-20200410162007371" /></p>
+<p><img src="/MyImages/image-20200410162007371.png" alt="image-20200410162007371" /></p>
 <h4 id="最高响应比优先"><a class="markdownIt-Anchor" href="#最高响应比优先"></a> 最高响应比优先</h4>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410162044259.png" alt="image-20200410162044259" /></p>
+<p><img src="/MyImages/image-20200410162044259.png" alt="image-20200410162044259" /></p>
 <h4 id="对比-2"><a class="markdownIt-Anchor" href="#对比-2"></a> 对比</h4>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410162106676.png" alt="image-20200410162106676" /></p>
+<p><img src="/MyImages/image-20200410162106676.png" alt="image-20200410162106676" /></p>
 <h3 id="评价指标"><a class="markdownIt-Anchor" href="#评价指标"></a> 评价指标</h3>
 <h4 id="cpu利用率"><a class="markdownIt-Anchor" href="#cpu利用率"></a> CPU利用率</h4>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410161213084.png" alt="image-20200410161213084" /></p>
+<p><img src="/MyImages/image-20200410161213084.png" alt="image-20200410161213084" /></p>
 <h4 id="系统吞吐量"><a class="markdownIt-Anchor" href="#系统吞吐量"></a> 系统吞吐量</h4>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410161234338.png" alt="image-20200410161234338" /></p>
+<p><img src="/MyImages/image-20200410161234338.png" alt="image-20200410161234338" /></p>
 <h4 id="周转时间"><a class="markdownIt-Anchor" href="#周转时间"></a> 周转时间</h4>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410161257474.png" alt="image-20200410161257474" /></p>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410161312274.png" alt="image-20200410161312274" /></p>
+<p><img src="/MyImages/image-20200410161257474.png" alt="image-20200410161257474" /></p>
+<p><img src="/MyImages/image-20200410161312274.png" alt="image-20200410161312274" /></p>
 <h4 id="等待时间"><a class="markdownIt-Anchor" href="#等待时间"></a> 等待时间</h4>
 <p>等待时间，指进程/作业处于等待处理机状态时间之和，等待时间越长，用户满意度越低</p>
 <ul>
@@ -536,7 +536,7 @@
 <ol>
 <li>
 <p><strong>单个资源的死锁检测</strong>：使用资源分配图，看是否存在环</p>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200410164200804.png" alt="image-20200410164200804" /></p>
+<p><img src="/MyImages/image-20200410164200804.png" alt="image-20200410164200804" /></p>
 <ol>
 <li>在资源分配图中，找出既不阻塞又不是孤点的进程 Pi（即找出一条有向边与它相连，且该有向边对应资源的申请数量小于等于系统中已有空闲资源数量。如下图中，R1没有空闲资源，R2有 一个空闲资源。若所有的连接该进程的边均满足上述条件，则这个进程能继续运行直至完成，然后释放它所占有的所有资源）。消去它所有的请求边和分配变，使之称为孤立的结点。在下图中，P1 是满足这一条件的进程结点，于是将P1的所有边消去。</li>
 <li>进程 Pi 所释放的资源，可以唤醒某些因等待这些资源而阻塞的进程，原来的阻塞进程可能变 为非阻塞进程。在下图中，P2 就满足这样的条件。根据 1）中的方法进行一系列简化后，若能消去途中所有的边，则称该图是可完全简化的。</li>
@@ -544,7 +544,7 @@
 </li>
 <li>
 <p><strong>多个资源的死锁检测</strong>：银行家算法，判断能否寻找到一个不会发生死锁的资源分配序列。</p>
-<p><strong><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200611154613285.png" alt="image-20200611154613285" /></strong></p>
+<p><strong><img src="/MyImages/image-20200611154613285.png" alt="image-20200611154613285" /></strong></p>
 </li>
 <li>
 <p><strong>死锁恢复</strong></p>
@@ -625,7 +625,7 @@
 <h3 id="虚拟存储技术"><a class="markdownIt-Anchor" href="#虚拟存储技术"></a> 虚拟存储技术</h3>
 <h2 id="内存的分配和回收"><a class="markdownIt-Anchor" href="#内存的分配和回收"></a> 内存的分配和回收</h2>
 <h3 id="连续分配方式"><a class="markdownIt-Anchor" href="#连续分配方式"></a> 连续分配方式</h3>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200411171523066.png" alt="image-20200411171523066" /></p>
+<p><img src="/MyImages/image-20200411171523066.png" alt="image-20200411171523066" /></p>
 <h4 id="单一连续分配"><a class="markdownIt-Anchor" href="#单一连续分配"></a> 单一连续分配</h4>
 <ul>
 <li>内存分为系统区和用户区</li>
@@ -646,7 +646,7 @@
 <li>外碎片可以用紧缩技术解决</li>
 </ul>
 <h3 id="非连续分配方式"><a class="markdownIt-Anchor" href="#非连续分配方式"></a> 非连续分配方式</h3>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200411172728382.png" alt="image-20200411172728382" /></p>
+<p><img src="/MyImages/image-20200411172728382.png" alt="image-20200411172728382" /></p>
 <h4 id="基本分页"><a class="markdownIt-Anchor" href="#基本分页"></a> 基本分页</h4>
 <ul>
 <li>
@@ -676,7 +676,7 @@
 </li>
 </ul>
 <h4 id="两级页表"><a class="markdownIt-Anchor" href="#两级页表"></a> 两级页表</h4>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200411175101753.png" alt="image-20200411175101753" /></p>
+<p><img src="/MyImages/image-20200411175101753.png" alt="image-20200411175101753" /></p>
 <h4 id="基本分段"><a class="markdownIt-Anchor" href="#基本分段"></a> 基本分段</h4>
 <ul>
 <li>
@@ -684,16 +684,16 @@
 </li>
 <li>
 <p>段表</p>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200411175252974.png" alt="image-20200411175252974" /></p>
+<p><img src="/MyImages/image-20200411175252974.png" alt="image-20200411175252974" /></p>
 </li>
 <li>
 <p>地址变换</p>
-<img src="D:\MyBlog\source\MyImages\image-20200411180247662.png" alt="image-20200411180247662" style="zoom: 67%;" />
+<img src="/MyImages/image-20200411180247662.png" alt="image-20200411180247662" style="zoom: 67%;" />
 </li>
 </ul>
 <h4 id="段页式管理"><a class="markdownIt-Anchor" href="#段页式管理"></a> 段页式管理</h4>
 <h2 id="动态分区分配算法"><a class="markdownIt-Anchor" href="#动态分区分配算法"></a> 动态分区分配算法</h2>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200411172221938.png" alt="image-20200411172221938" /></p>
+<p><img src="/MyImages/image-20200411172221938.png" alt="image-20200411172221938" /></p>
 <h3 id="首次适应算法"><a class="markdownIt-Anchor" href="#首次适应算法"></a> 首次适应算法</h3>
 <ul>
 <li>每次都从低地址开始查找，找到第一个能满足大小的空闲分区。</li>
@@ -746,9 +746,9 @@
 </li>
 </ul>
 <h3 id="地址变换"><a class="markdownIt-Anchor" href="#地址变换"></a> 地址变换</h3>
-<img src="D:\MyBlog\source\MyImages\image-20200411183214560.png" alt="image-20200411183214560" style="zoom:80%;" />
+<img src="/MyImages/image-20200411183214560.png" alt="image-20200411183214560" style="zoom:80%;" />
 <h2 id="页面置换算法"><a class="markdownIt-Anchor" href="#页面置换算法"></a> 页面置换算法</h2>
-<img src="D:\MyBlog\source\MyImages\image-20200411183432240.png" alt="image-20200411183432240" style="zoom:80%;" />
+<img src="/MyImages/image-20200411183432240.png" alt="image-20200411183432240" style="zoom:80%;" />
 <h3 id="最佳置换算法"><a class="markdownIt-Anchor" href="#最佳置换算法"></a> 最佳置换算法</h3>
 <ul>
 <li>每次选择淘汰的页面将是以后永不使用，或者在最长时间内不再被访问的页面，这样可以保证最低的缺页率。</li>
@@ -778,7 +778,7 @@
 <li>为每个页面设置一个访问位，再将内存中的页面都通过链接指针链接成一个循环队列。当某页被访问时，其访问位置为1。当需要淘汰一个页面时，只需检查页的访问位。如果是0，就选择该页换出；如果是1，则将它置为0，暂不换出，继续检查下一个页面，若第一轮扫 ᧿中所有页面都是1，则将这些页面的访问位依次置为0后，再进行第二轮扫᧿（第二轮扫᧿中一定会有访问位为0的页面，因此简单的CLOCK 算法选择一个淘汰页面最多会经过两轮扫᧿）</li>
 </ul>
 <h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200411183845299.png" alt="image-20200411183845299" /></p>
+<p><img src="/MyImages/image-20200411183845299.png" alt="image-20200411183845299" /></p>
 <h2 id="分页与分段的比较"><a class="markdownIt-Anchor" href="#分页与分段的比较"></a> 分页与分段的比较</h2>
 <ul>
 <li>对程序员的透明性：分页透明，但是分段需要程序员显式划分每个段。</li>
@@ -796,7 +796,7 @@
 <li>制动手臂（Actuator arm）：用于在磁道之间移动磁头；</li>
 <li>主轴（Spindle）：使整个盘面转动。</li>
 </ul>
-<img src="D:\MyBlog\source\MyImages\image-20200612195239615.png" alt="image-20200612195239615" style="zoom:80%;" />
+<img src="/MyImages/image-20200612195239615.png" alt="image-20200612195239615" style="zoom:80%;" />
 <h2 id="磁盘调度算法"><a class="markdownIt-Anchor" href="#磁盘调度算法"></a> 磁盘调度算法</h2>
 <p>影响因素</p>
 <ul>
@@ -817,7 +817,7 @@
 <p>因为考虑了移动方向，因此所有的磁盘请求都会被满足，解决了 SSTF 的饥饿问题。</p>
 <h1 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h1>
 <h2 id="编译系统"><a class="markdownIt-Anchor" href="#编译系统"></a> 编译系统</h2>
-<img src="D:\MyBlog\source\MyImages\image-20200612201710989.png" alt="image-20200612201710989" style="zoom:67%;" />
+<img src="/MyImages/image-20200612201710989.png" alt="image-20200612201710989" style="zoom:67%;" />
 <ul>
 <li>预处理阶段：处理以 # 开头的预处理命令；</li>
 <li>编译阶段：翻译成汇编文件；</li>
@@ -923,6 +923,8 @@
 <div id="share-mask"></div>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
 
     </footer>
 

@@ -114,7 +114,7 @@
 <p>一旦事务提交，则其所做的修改将会永远保存到数据库中。即使系统发生崩溃，<strong>事务执行的结果也不能丢失。</strong></p>
 <p>系统发生奔溃可以用重做日志（Redo Log）进行恢复，从而实现持久性。与回滚日志记录数据的逻辑修改不同，重做日志记录的是数据页的物理修改。</p>
 <h3 id="关系"><a class="markdownIt-Anchor" href="#关系"></a> 关系</h3>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200616105901714.png" alt="image-20200616105901714" /></p>
+<p><img src="/MyImages/image-20200616105901714.png" alt="image-20200616105901714" /></p>
 <ul>
 <li>只有满足一致性，事务的执行结果才是正确的。</li>
 <li>在无并发的情况下，事务串行执行，隔离性一定能够满足。此时只要能满足原子性，就一定能满足一致性。</li>
@@ -144,13 +144,13 @@
 <li>共享锁（Shared），简写为 S 锁，又称读锁。</li>
 </ul>
 <p>有以下两个规定：</p>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200616110238903.png" alt="image-20200616110238903" /></p>
+<p><img src="/MyImages/image-20200616110238903.png" alt="image-20200616110238903" /></p>
 <ul>
 <li>一个事务对数据对象 A 加了 X 锁，就可以对 A 进行读取和更新。加锁期间其它事务不能对 A 加任何锁。</li>
 <li>一个事务对数据对象 A 加了 S 锁，可以对 A 进行读取操作，但是不能进行更新操作。加锁期间其它事务能对 A 加 S 锁，但是不能加 X 锁。</li>
 </ul>
 <h3 id="意向锁"><a class="markdownIt-Anchor" href="#意向锁"></a> 意向锁</h3>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200616110259644.png" alt="image-20200616110259644" /></p>
+<p><img src="/MyImages/image-20200616110259644.png" alt="image-20200616110259644" /></p>
 <p>使用意向锁（Intention Locks）可以更容易地支持多粒度封锁。</p>
 <p>在存在行级锁和表级锁的情况下，事务 T 想要对表 A 加 X 锁，就需要先检测是否有其它事务对表 A 或者表 A 中的任意一行加了锁，那么就需要对表 A 的每一行都检测一次，这是非常耗时的。</p>
 <p><strong>意向锁在原来的 X/S 锁之上引入了 IX/IS，IX/IS 都是表锁</strong>，用来表示一个事务想要在表中的某个数据行上加 X 锁或 S 锁。有以下两个规定：</p>
@@ -161,7 +161,7 @@
 <p>通过引入意向锁，事务 T 想要对表 A 加 X 锁，只需要先检测是否有其它事务对表 A 加了 X/IX/S/IS 锁，如果加了就表示有其它事务正在使用这个表或者表中某一行的锁，因此事务 T 加 X 锁失败。</p>
 <h2 id="封锁协议"><a class="markdownIt-Anchor" href="#封锁协议"></a> 封锁协议</h2>
 <h3 id="两段锁协议"><a class="markdownIt-Anchor" href="#两段锁协议"></a> 两段锁协议</h3>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200616110511632.png" alt="image-20200616110511632" /></p>
+<p><img src="/MyImages/image-20200616110511632.png" alt="image-20200616110511632" /></p>
 <p><strong>加锁和解锁分为两个阶段进行。</strong></p>
 <p>可串行化调度是指，通过并发控制，使得并发执行的事务结果与某个串行执行的事务结果相同。串行执行的事务互不干扰，不会出现并发一致性问题。</p>
 <p>事务遵循两段锁协议是保证可串行化调度的充分条件。例如以下操作满足两段锁协议，它是可串行化调度。</p>
@@ -191,10 +191,10 @@
 </ul>
 <h2 id="undo日志"><a class="markdownIt-Anchor" href="#undo日志"></a> Undo日志</h2>
 <p>MVCC 的多版本指的是多个版本的快照，快照存储在 Undo 日志中，<strong>该日志通过回滚指针 ROLL_PTR 把一个数据行的所有快照连接起来。</strong></p>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200616115846426.png" alt="image-20200616115846426" /></p>
+<p><img src="/MyImages/image-20200616115846426.png" alt="image-20200616115846426" /></p>
 <h2 id="readview"><a class="markdownIt-Anchor" href="#readview"></a> ReadView</h2>
 <p>MVCC 维护了一个 ReadView 结构，<strong>主要包含了当前系统未提交的事务列表 TRX_IDs {TRX_ID_1, TRX_ID_2, …}</strong>，还有该列表的最小值 TRX_ID_MIN 和 TRX_ID_MAX。</p>
-<p><img src="D:%5CMyBlog%5Csource%5CMyImages%5Cimage-20200616120505739.png" alt="image-20200616120505739" /></p>
+<p><img src="/MyImages/image-20200616120505739.png" alt="image-20200616120505739" /></p>
 <p>在进行 SELECT 操作时，根据数据行快照的 TRX_ID 与 TRX_ID_MIN 和 TRX_ID_MAX 之间的关系，从而判断数据行快照是否可以使用：</p>
 <ul>
 <li>TRX_ID &lt; TRX_ID_MIN，表示该数据行快照时在当前所有未提交事务之前进行更改的，因此可以使用。</li>
@@ -485,14 +485,14 @@
 <li>如果是多对多，画两个不带箭头的线段。</li>
 </ul>
 <p>下图的 Course 和 Student 是一对多的关系。</p>
-<p><a href="https://camo.githubusercontent.com/30b13bf542f6115d8bcecc903ed08a0f16d21304/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f31643238616430352d333965352d343961322d613661312d6136663439366164626136612e706e67" target="_blank" rel="noopener"><img src="D:%5CMyBlog%5Csource%5CMyImages%5C68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f31643238616430352d333965352d343961322d613661312d6136663439366164626136612e706e67" alt="img" /></a></p>
+<p><a href="https://camo.githubusercontent.com/30b13bf542f6115d8bcecc903ed08a0f16d21304/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f31643238616430352d333965352d343961322d613661312d6136663439366164626136612e706e67" target="_blank" rel="noopener"><img src="/MyImages/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f31643238616430352d333965352d343961322d613661312d6136663439366164626136612e706e67" alt="img" /></a></p>
 <h2 id="表示出现多次的关系"><a class="markdownIt-Anchor" href="#表示出现多次的关系"></a> 表示出现多次的关系</h2>
 <p>一个实体在联系出现几次，就要用几条线连接。</p>
 <p>下图表示一个课程的先修关系，先修关系出现两个 Course 实体，第一个是先修课程，后一个是后修课程，因此需要用两条线来表示这种关系。</p>
-<p><a href="https://camo.githubusercontent.com/7a93b3e7d3ecd4005b1f5877303245a1663ba747/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f61633932396561332d646163612d343065632d396539352d3462326661363637383234332e706e67" target="_blank" rel="noopener"><img src="D:%5CMyBlog%5Csource%5CMyImages%5C68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f61633932396561332d646163612d343065632d396539352d3462326661363637383234332e706e67" alt="img" /></a></p>
+<p><a href="https://camo.githubusercontent.com/7a93b3e7d3ecd4005b1f5877303245a1663ba747/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f61633932396561332d646163612d343065632d396539352d3462326661363637383234332e706e67" target="_blank" rel="noopener"><img src="/MyImages/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f61633932396561332d646163612d343065632d396539352d3462326661363637383234332e706e67" alt="img" /></a></p>
 <h2 id="表示子类"><a class="markdownIt-Anchor" href="#表示子类"></a> 表示子类</h2>
 <p>用一个三角形和两条线来连接类和子类，与子类有关的属性和联系都连到子类上，而与父类和子类都有关的连到父类上。</p>
-<p><a href="https://camo.githubusercontent.com/144cd455691b6d05e58c063d5272b6e1681689d4/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f31343338396561342d386439362d346539362d396637362d3536346361333332346331652e706e67" target="_blank" rel="noopener"><img src="D:%5CMyBlog%5Csource%5CMyImages%5C68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f31343338396561342d386439362d346539362d396637362d3536346361333332346331652e706e67" alt="img" /></a></p>
+<p><a href="https://camo.githubusercontent.com/144cd455691b6d05e58c063d5272b6e1681689d4/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f31343338396561342d386439362d346539362d396637362d3536346361333332346331652e706e67" target="_blank" rel="noopener"><img src="/MyImages/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f31343338396561342d386439362d346539362d396637362d3536346361333332346331652e706e67" alt="img" /></a></p>
 
       
       <!-- reward -->
@@ -569,6 +569,8 @@
 <div id="share-mask"></div>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
 
     </footer>
 
