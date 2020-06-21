@@ -670,80 +670,6 @@
 
 </article>
     
-    <article id="post-201909-4" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/201909-4/"
-    >201909-4</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/201909-4/" class="article-date">
-  <time datetime="2020-03-30T04:00:17.117Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="推荐系统"><a class="markdownIt-Anchor" href="#推荐系统"></a> 推荐系统</h1>
-<p><img src="/ccf_img/1.png" alt="" /></p>
-<p><img src="/ccf_img/2.png" alt="" /></p>
-<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
-<ol>
-<li>主要问题在于按照三种属性排序会导致超时，所以疯狂的空间换时间，才勉强通过。</li>
-</ol>
-<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">int limit[55];</span><br><span class="line">#define rint register int</span><br><span class="line"></span><br><span class="line">struct node &#123;</span><br><span class="line">	int id;</span><br><span class="line">	int type;</span><br><span class="line">	node(int type, int id) :type(type), id(id) &#123;&#125;</span><br><span class="line">	bool operator &lt; (const node&amp;a) const &#123;</span><br><span class="line">		return type &lt; a.type || type &#x3D;&#x3D; a.type&amp;&amp;id &lt; a.id;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">map&lt;int, set&lt;node&gt;, greater&lt;int&gt;&gt; a;</span><br><span class="line">map&lt;node, int&gt; lab;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, m;&#x2F;&#x2F;m类商品</span><br><span class="line">	scanf(&quot;%d%d&quot;, &amp;m, &amp;n);</span><br><span class="line">	int id, score;</span><br><span class="line">	for (rint i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">		scanf(&quot;%d%d&quot;, &amp;id, &amp;score);</span><br><span class="line">		for (rint j &#x3D; 0; j &lt; m; j++) &#123;</span><br><span class="line">			a[score].insert(node(j, id));</span><br><span class="line">			lab[node(j, id)] &#x3D; score;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	int opnum;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;opnum);</span><br><span class="line">	int op;</span><br><span class="line">	int type, comm;</span><br><span class="line">	for (rint iii &#x3D; 0; iii &lt; opnum; iii++) &#123;</span><br><span class="line">		scanf(&quot;%d&quot;, &amp;op);</span><br><span class="line"></span><br><span class="line">		if (op &#x3D;&#x3D; 1) &#123;</span><br><span class="line">			</span><br><span class="line">			scanf(&quot;%d%d%d&quot;, &amp;type, &amp;comm, &amp;score);</span><br><span class="line">			a[score].insert(node(type, comm));</span><br><span class="line">			lab[node(type, comm)] &#x3D; score;</span><br><span class="line">		&#125;</span><br><span class="line">		else if (op &#x3D;&#x3D; 2) &#123;</span><br><span class="line">			</span><br><span class="line">			scanf(&quot;%d%d&quot;, &amp;type, &amp;comm);</span><br><span class="line">			node label &#x3D; node(type, comm);</span><br><span class="line">			score &#x3D; lab[label];</span><br><span class="line">			a[score].erase(node(type, comm));</span><br><span class="line">			lab.erase(label);</span><br><span class="line">			if (a[score].empty()) </span><br><span class="line">				a.erase(score);</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		else if (op &#x3D;&#x3D; 3) &#123;</span><br><span class="line">			int maxt;</span><br><span class="line">			scanf(&quot;%d&quot;, &amp;maxt);</span><br><span class="line">			for (rint j &#x3D; 0; j &lt; m; ++j)</span><br><span class="line">				scanf(&quot;%d&quot;, &amp;limit[j]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			vector&lt;vector&lt;int&gt;&gt; top(m);</span><br><span class="line">			for (auto i &#x3D; a.begin(); i !&#x3D; a.end() &amp;&amp; maxt &gt; 0; ++i) &#123;</span><br><span class="line">				for (auto j &#x3D; i-&gt;second.begin(); j !&#x3D; i-&gt;second.end() &amp;&amp; maxt &gt; 0; ++j) &#123;</span><br><span class="line">					if (limit[j-&gt;type] &lt;&#x3D; 0)  continue;</span><br><span class="line">					--limit[j-&gt;type];</span><br><span class="line">					top[j-&gt;type].push_back(j-&gt;id);</span><br><span class="line">					--maxt;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			for (rint i &#x3D; 0; i &lt; m; ++i) &#123;</span><br><span class="line">				if (top[i].empty()) printf(&quot;-1\n&quot;);</span><br><span class="line">				else &#123;</span><br><span class="line">					for (rint j &#x3D; 0; j &lt; top[i].size(); ++j) &#123;</span><br><span class="line">						printf(&quot;%d &quot;, top[i][j]);</span><br><span class="line">					&#125;</span><br><span class="line">					printf(&quot;\n&quot;);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
     <article id="post-201909-5" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -803,6 +729,80 @@
 </ol>
 <h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">50000</span>+<span class="number">5</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> to, w;</span><br><span class="line">	edge(<span class="keyword">int</span> to, <span class="keyword">int</span> w) :to(to), w(w) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;edge&gt; g[maxn];</span><br><span class="line"><span class="keyword">bool</span> impor[maxn];</span><br><span class="line"><span class="keyword">int</span> num[maxn];<span class="comment">//num[i]表示以i为根的子树中有多少重要结点</span></span><br><span class="line"><span class="keyword">int</span> d[maxn][<span class="number">102</span>], buf[maxn][<span class="number">102</span>];</span><br><span class="line"><span class="keyword">int</span> n, k, m;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dp</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">	d[u][<span class="number">0</span>] = <span class="number">0</span>;	<span class="comment">//初始情况下，一个都不选，路径和为0</span></span><br><span class="line">	<span class="keyword">if</span> (impor[u]) &#123;<span class="comment">//如果当前的点是重要结点，那么选择自己的话，路径和仍为0，包含重要节点数为1</span></span><br><span class="line">		d[u][<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">		num[u] = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (edge i : g[u]) &#123;</span><br><span class="line">		<span class="keyword">int</span> v = i.to;</span><br><span class="line">		<span class="keyword">int</span> w = i.w;</span><br><span class="line">		<span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>;</span><br><span class="line">		dp(v, u);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= k; i++)</span><br><span class="line">			buf[u][i] = d[u][i];</span><br><span class="line">		<span class="keyword">int</span> nu = <span class="built_in">min</span>(k, num[u]);</span><br><span class="line">		<span class="keyword">int</span> nv = <span class="built_in">min</span>(k, num[v]);</span><br><span class="line">		num[u] += num[v];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= nu; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= nv &amp;&amp; i + j &lt;= k; j++) &#123;</span><br><span class="line">				d[u][i + j] = <span class="built_in">min</span>(<span class="number">1l</span>l*d[u][i + j], <span class="number">1l</span>l * buf[u][i] + d[v][j] + j * (k - j)*w);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;n, &amp;m, &amp;k);</span><br><span class="line">	<span class="keyword">int</span> a, b, w;</span><br><span class="line">	<span class="built_in">memset</span>(impor, <span class="number">0</span>, <span class="keyword">sizeof</span>(impor));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a);</span><br><span class="line">		impor[a] = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;w);</span><br><span class="line">		g[a].push_back(edge(b, w));</span><br><span class="line">		g[b].push_back(edge(a, w));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">memset</span>(d, <span class="number">0x3f</span>, <span class="keyword">sizeof</span>(d));</span><br><span class="line">	dp(<span class="number">1</span>, <span class="number">-1</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>, d[<span class="number">1</span>][k]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-201909-4" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/201909-4/"
+    >201909-4</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/201909-4/" class="article-date">
+  <time datetime="2020-03-30T04:00:17.117Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="推荐系统"><a class="markdownIt-Anchor" href="#推荐系统"></a> 推荐系统</h1>
+<p><img src="/ccf_img/1.png" alt="" /></p>
+<p><img src="/ccf_img/2.png" alt="" /></p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>主要问题在于按照三种属性排序会导致超时，所以疯狂的空间换时间，才勉强通过。</li>
+</ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">int limit[55];</span><br><span class="line">#define rint register int</span><br><span class="line"></span><br><span class="line">struct node &#123;</span><br><span class="line">	int id;</span><br><span class="line">	int type;</span><br><span class="line">	node(int type, int id) :type(type), id(id) &#123;&#125;</span><br><span class="line">	bool operator &lt; (const node&amp;a) const &#123;</span><br><span class="line">		return type &lt; a.type || type &#x3D;&#x3D; a.type&amp;&amp;id &lt; a.id;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">map&lt;int, set&lt;node&gt;, greater&lt;int&gt;&gt; a;</span><br><span class="line">map&lt;node, int&gt; lab;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, m;&#x2F;&#x2F;m类商品</span><br><span class="line">	scanf(&quot;%d%d&quot;, &amp;m, &amp;n);</span><br><span class="line">	int id, score;</span><br><span class="line">	for (rint i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">		scanf(&quot;%d%d&quot;, &amp;id, &amp;score);</span><br><span class="line">		for (rint j &#x3D; 0; j &lt; m; j++) &#123;</span><br><span class="line">			a[score].insert(node(j, id));</span><br><span class="line">			lab[node(j, id)] &#x3D; score;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	int opnum;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;opnum);</span><br><span class="line">	int op;</span><br><span class="line">	int type, comm;</span><br><span class="line">	for (rint iii &#x3D; 0; iii &lt; opnum; iii++) &#123;</span><br><span class="line">		scanf(&quot;%d&quot;, &amp;op);</span><br><span class="line"></span><br><span class="line">		if (op &#x3D;&#x3D; 1) &#123;</span><br><span class="line">			</span><br><span class="line">			scanf(&quot;%d%d%d&quot;, &amp;type, &amp;comm, &amp;score);</span><br><span class="line">			a[score].insert(node(type, comm));</span><br><span class="line">			lab[node(type, comm)] &#x3D; score;</span><br><span class="line">		&#125;</span><br><span class="line">		else if (op &#x3D;&#x3D; 2) &#123;</span><br><span class="line">			</span><br><span class="line">			scanf(&quot;%d%d&quot;, &amp;type, &amp;comm);</span><br><span class="line">			node label &#x3D; node(type, comm);</span><br><span class="line">			score &#x3D; lab[label];</span><br><span class="line">			a[score].erase(node(type, comm));</span><br><span class="line">			lab.erase(label);</span><br><span class="line">			if (a[score].empty()) </span><br><span class="line">				a.erase(score);</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		else if (op &#x3D;&#x3D; 3) &#123;</span><br><span class="line">			int maxt;</span><br><span class="line">			scanf(&quot;%d&quot;, &amp;maxt);</span><br><span class="line">			for (rint j &#x3D; 0; j &lt; m; ++j)</span><br><span class="line">				scanf(&quot;%d&quot;, &amp;limit[j]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			vector&lt;vector&lt;int&gt;&gt; top(m);</span><br><span class="line">			for (auto i &#x3D; a.begin(); i !&#x3D; a.end() &amp;&amp; maxt &gt; 0; ++i) &#123;</span><br><span class="line">				for (auto j &#x3D; i-&gt;second.begin(); j !&#x3D; i-&gt;second.end() &amp;&amp; maxt &gt; 0; ++j) &#123;</span><br><span class="line">					if (limit[j-&gt;type] &lt;&#x3D; 0)  continue;</span><br><span class="line">					--limit[j-&gt;type];</span><br><span class="line">					top[j-&gt;type].push_back(j-&gt;id);</span><br><span class="line">					--maxt;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			for (rint i &#x3D; 0; i &lt; m; ++i) &#123;</span><br><span class="line">				if (top[i].empty()) printf(&quot;-1\n&quot;);</span><br><span class="line">				else &#123;</span><br><span class="line">					for (rint j &#x3D; 0; j &lt; top[i].size(); ++j) &#123;</span><br><span class="line">						printf(&quot;%d &quot;, top[i][j]);</span><br><span class="line">					&#125;</span><br><span class="line">					printf(&quot;\n&quot;);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
       <!-- reward -->
@@ -908,7 +908,7 @@
 
 </article>
     
-    <article id="post-201812-4" class="article article-type-post" itemscope
+    <article id="post-201809-3" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -916,8 +916,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/201812-4/"
-    >201812-4</a> 
+  <a class="article-title" href="/2020/03/30/201809-3/"
+    >201809-3</a> 
 </h2>
  
 
@@ -926,7 +926,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/03/30/201812-4/" class="article-date">
+      <a href="/2020/03/30/201809-3/" class="article-date">
   <time datetime="2020-03-30T04:00:17.101Z" itemprop="datePublished">2020-03-30</time>
 </a>
       
@@ -944,12 +944,28 @@
       
 
       
-      <h1 id="数据中心"><a class="markdownIt-Anchor" href="#数据中心"></a> 数据中心</h1>
-<p><img src="/ccf_img/7.png" alt="" /></p>
+      <table>
+<thead>
+<tr>
+<th>描述：</th>
+<th><img src="http://118.190.20.162/RequireFile.do?fid=FH8TRMFr" alt="img" /> <img src="http://118.190.20.162/RequireFile.do?fid=6tGGttRh" alt="img" /> <img src="http://118.190.20.162/RequireFile.do?fid=hfE8g2FF" alt="img" /> <img src="http://118.190.20.162/RequireFile.do?fid=3bTyJMHd" alt="img" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
-<p>典型的 最小生成树问题，采用kruskal算法，保留所有生成边中的最大值</p>
+<ol>
+<li>不需要构建这个树，只需要记录每个标签的缩进即可表明父子关系。</li>
+<li>所以只需要存每个标签的名称和其属性的名称，注意标签要忽略大小写</li>
+<li>查询时，首先匹配最后一级，然后不断向前找。注意同一级的标签只能匹配一个，所以要记录目前匹配的标签缩进。</li>
+</ol>
 <h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 100000 + 5;</span><br><span class="line">struct edge &#123;</span><br><span class="line">	int a,b;</span><br><span class="line">	int w;</span><br><span class="line">	bool operator &lt; (const edge &amp;a) const &#123; return w &lt; a.w; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">edge g[maxn];</span><br><span class="line">int Tree[maxn];</span><br><span class="line">int ans;</span><br><span class="line">int root(int p) &#123;</span><br><span class="line">	if (Tree[p] &#x3D;&#x3D; -1) return p;</span><br><span class="line">	else &#123;</span><br><span class="line">		int tmp &#x3D; root(Tree[p]);</span><br><span class="line">		Tree[p] &#x3D; tmp;</span><br><span class="line">		return tmp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">inline bool union_(int p,int q)&#123;</span><br><span class="line">	int rp &#x3D; root(p);</span><br><span class="line">	int rq &#x3D; root(q);</span><br><span class="line">	if (rp &#x3D;&#x3D; rq) return false;</span><br><span class="line">	Tree[rq] &#x3D; rp;</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, m;</span><br><span class="line">	int beg;</span><br><span class="line">	ans &#x3D; 0;</span><br><span class="line">	memset(Tree, -1, sizeof(Tree));</span><br><span class="line">	scanf(&quot;%d%d%d&quot;, &amp;n, &amp;m, &amp;beg);</span><br><span class="line">	for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">		scanf(&quot;%d%d%d&quot;, &amp;g[i].a, &amp;g[i].b, &amp;g[i].w);</span><br><span class="line">	&#125;</span><br><span class="line">	sort(g, g + m);</span><br><span class="line">	int bian &#x3D; 0;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; m; i++) &#123;</span><br><span class="line">		int a &#x3D; g[i].a;</span><br><span class="line">		int b &#x3D; g[i].b;</span><br><span class="line">		if (union_(a, b)) &#123;</span><br><span class="line">			bian++;</span><br><span class="line">			if (ans &lt; g[i].w)</span><br><span class="line">				ans &#x3D; g[i].w;</span><br><span class="line">			if (bian &#x3D;&#x3D; n - 1) break;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;%d&quot;,ans);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">100</span> + <span class="number">5</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> cnt;</span><br><span class="line">	<span class="built_in">string</span> label, id;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">lower</span><span class="params">(<span class="built_in">string</span> &amp;s)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)</span><br><span class="line">		s[i] = <span class="built_in">tolower</span>(s[i]);</span><br><span class="line">&#125;</span><br><span class="line">node nodes[maxn];</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">search</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; s, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t = s.<span class="built_in">size</span>() - <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">int</span> now = nodes[fa].cnt;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = fa - <span class="number">1</span>; i &gt;= <span class="number">0</span> &amp;&amp; t &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">		<span class="keyword">if</span> (nodes[i].cnt &gt; nodes[i + <span class="number">1</span>].cnt) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">if</span> (nodes[i].label == s[t] || nodes[i].id == s[t]) &#123;</span><br><span class="line">			<span class="keyword">if</span> (nodes[i].cnt &lt; now) &#123;</span><br><span class="line">				now = nodes[i].cnt;</span><br><span class="line">				t--;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (t &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">	getchar();</span><br><span class="line">	<span class="built_in">string</span> <span class="built_in">line</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">		getline(<span class="built_in">cin</span>, <span class="built_in">line</span>);</span><br><span class="line">		<span class="keyword">int</span> pos1 = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="built_in">line</span>.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">line</span>[i] == <span class="string">'.'</span>) pos1++;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		node xx;</span><br><span class="line">		<span class="built_in">string</span> label;</span><br><span class="line">		<span class="built_in">string</span> id;</span><br><span class="line">		<span class="keyword">int</span> pos2 = <span class="built_in">line</span>.<span class="built_in">find</span>(<span class="string">'#'</span>);</span><br><span class="line">		<span class="keyword">if</span> (pos2 == <span class="number">-1</span>) &#123;</span><br><span class="line">			label = <span class="built_in">line</span>.substr(pos1);</span><br><span class="line">			id = <span class="string">""</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			label = <span class="built_in">line</span>.substr(pos1, pos2 - pos1 - <span class="number">1</span>);</span><br><span class="line">			id = <span class="built_in">line</span>.substr(pos2);</span><br><span class="line">		&#125;</span><br><span class="line">		lower(label);</span><br><span class="line">		xx.label = label;</span><br><span class="line">		xx.id = id;</span><br><span class="line">		xx.cnt = pos1;</span><br><span class="line">		nodes[i] = xx;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">		getline(<span class="built_in">cin</span>, <span class="built_in">line</span>);</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; tmp;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">		<span class="keyword">int</span> pos = <span class="built_in">line</span>.<span class="built_in">find</span>(<span class="string">' '</span>);</span><br><span class="line">		<span class="keyword">while</span> (pos != <span class="number">-1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			tmp.push_back(<span class="built_in">line</span>.substr(<span class="number">0</span>, pos));</span><br><span class="line">			<span class="built_in">line</span> = <span class="built_in">line</span>.substr(pos + <span class="number">1</span>);</span><br><span class="line">			pos = <span class="built_in">line</span>.<span class="built_in">find</span>(<span class="string">' '</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (pos == <span class="number">-1</span>) pos = <span class="number">0</span>;</span><br><span class="line">		tmp.push_back(<span class="built_in">line</span>.substr(pos));</span><br><span class="line">		<span class="keyword">if</span> (tmp[<span class="number">0</span>][<span class="number">0</span>] != <span class="string">'#'</span>)</span><br><span class="line">			lower(tmp[<span class="number">0</span>]);</span><br><span class="line">		<span class="keyword">int</span> len = tmp.<span class="built_in">size</span>();</span><br><span class="line">		<span class="built_in">string</span> now = tmp[len - <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (nodes[i].label == now || nodes[i].id == now) &#123;</span><br><span class="line">				<span class="keyword">if</span> (search(tmp, i))</span><br><span class="line">					ans.push_back(i);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d"</span>, ans.<span class="built_in">size</span>());</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ans.<span class="built_in">size</span>(); i++)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">" %d"</span>, ans[i] + <span class="number">1</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
       <!-- reward -->

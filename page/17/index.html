@@ -268,80 +268,6 @@ for (int i = 0; i &lt; ans.size(); i++) {
 
 </article>
     
-    <article id="post-和为0的4个值" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E5%92%8C%E4%B8%BA0%E7%9A%844%E4%B8%AA%E5%80%BC/"
-    >和为0的4个值</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E5%92%8C%E4%B8%BA0%E7%9A%844%E4%B8%AA%E5%80%BC/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.607Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="uva-1152-和为0的4个值"><a class="markdownIt-Anchor" href="#uva-1152-和为0的4个值"></a> UVA 1152 和为0的4个值</h1>
-<p>给出四个集合，从每个集合中任取一个数，问有多少种方案使得四个数和为0</p>
-<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
-<ol>
-<li>最直观的四重循环复杂度O(n<sup>4</sup>)不可能</li>
-<li>三重循环计算第四个数，之后查找这个数。如果查找使用二分查找，那么复杂度也在O(n<sup>3</sup>nlogn)</li>
-<li><strong>解决</strong> 首先枚举a,b，把所有a+b记录下来放到一个有序数组中，之后枚举c,d，查一查-c-d有多少种方法写成a+b的形式。两个步骤都是n<sup>2</sup>logn，总的也是n<sup>2</sup>logn</li>
-</ol>
-<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 4000 + 5;</span><br><span class="line">int A[maxn];</span><br><span class="line">int B[maxn];</span><br><span class="line">int C[maxn];</span><br><span class="line">int D[maxn];</span><br><span class="line">int sum[maxn*maxn];</span><br><span class="line">int upper_bound(int x, int y, int v) &#123;</span><br><span class="line">int m;</span><br><span class="line">while (x&lt;y)</span><br><span class="line">&#123;</span><br><span class="line">	m &#x3D; x + (y - x) &#x2F; 2;</span><br><span class="line">	if (sum[m] &lt;&#x3D; v) x &#x3D; m + 1;</span><br><span class="line">	else y &#x3D; m;</span><br><span class="line">&#125;</span><br><span class="line">return x;</span><br><span class="line">&#125;</span><br><span class="line">int lower_bound(int x, int y, int v) &#123;</span><br><span class="line">int m;</span><br><span class="line">while (x&lt;y)</span><br><span class="line">&#123;</span><br><span class="line">	m &#x3D; x + (y - x) &#x2F; 2;</span><br><span class="line">	if (sum[m] &gt;&#x3D; v) y &#x3D; m;</span><br><span class="line">	else x &#x3D; m + 1;</span><br><span class="line">&#125;</span><br><span class="line">return x;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">int T;</span><br><span class="line">scanf(&quot;%d&quot;, &amp;T);</span><br><span class="line">while (T--)</span><br><span class="line">&#123;</span><br><span class="line">	int n;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;n);</span><br><span class="line">	for(int i&#x3D;0;i&lt;n;i++)</span><br><span class="line">		scanf(&quot;%d %d %d %d&quot;, &amp;A[i], &amp;B[i], &amp;C[i], &amp;D[i]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	int index &#x3D; 0;</span><br><span class="line">	for(int i&#x3D;0;i&lt;n;i++)</span><br><span class="line">		for (int j &#x3D; 0; j &lt; n; j++) </span><br><span class="line">			sum[index++] &#x3D; A[i] + B[j];</span><br><span class="line">	sort(sum, sum + index);</span><br><span class="line">	long long  cnt &#x3D; 0;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++)</span><br><span class="line">		for (int j &#x3D; 0; j &lt; n; j++) </span><br><span class="line">			cnt +&#x3D; upper_bound(0, index, -C[i] - D[j]) - lower_bound(0, index, -C[i] - D[j]);</span><br><span class="line">	printf(&quot;%lld\n&quot;, cnt);</span><br><span class="line">	if (T) printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
     <article id="post-古代象形符号" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -488,6 +414,80 @@ int main() {
 <li>利用向量的直接赋值来添加百变，减少了时间复杂度</li>
 </ol>
 
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-和为0的4个值" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E5%92%8C%E4%B8%BA0%E7%9A%844%E4%B8%AA%E5%80%BC/"
+    >和为0的4个值</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E5%92%8C%E4%B8%BA0%E7%9A%844%E4%B8%AA%E5%80%BC/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.607Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva-1152-和为0的4个值"><a class="markdownIt-Anchor" href="#uva-1152-和为0的4个值"></a> UVA 1152 和为0的4个值</h1>
+<p>给出四个集合，从每个集合中任取一个数，问有多少种方案使得四个数和为0</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>最直观的四重循环复杂度O(n<sup>4</sup>)不可能</li>
+<li>三重循环计算第四个数，之后查找这个数。如果查找使用二分查找，那么复杂度也在O(n<sup>3</sup>nlogn)</li>
+<li><strong>解决</strong> 首先枚举a,b，把所有a+b记录下来放到一个有序数组中，之后枚举c,d，查一查-c-d有多少种方法写成a+b的形式。两个步骤都是n<sup>2</sup>logn，总的也是n<sup>2</sup>logn</li>
+</ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 4000 + 5;</span><br><span class="line">int A[maxn];</span><br><span class="line">int B[maxn];</span><br><span class="line">int C[maxn];</span><br><span class="line">int D[maxn];</span><br><span class="line">int sum[maxn*maxn];</span><br><span class="line">int upper_bound(int x, int y, int v) &#123;</span><br><span class="line">int m;</span><br><span class="line">while (x&lt;y)</span><br><span class="line">&#123;</span><br><span class="line">	m &#x3D; x + (y - x) &#x2F; 2;</span><br><span class="line">	if (sum[m] &lt;&#x3D; v) x &#x3D; m + 1;</span><br><span class="line">	else y &#x3D; m;</span><br><span class="line">&#125;</span><br><span class="line">return x;</span><br><span class="line">&#125;</span><br><span class="line">int lower_bound(int x, int y, int v) &#123;</span><br><span class="line">int m;</span><br><span class="line">while (x&lt;y)</span><br><span class="line">&#123;</span><br><span class="line">	m &#x3D; x + (y - x) &#x2F; 2;</span><br><span class="line">	if (sum[m] &gt;&#x3D; v) y &#x3D; m;</span><br><span class="line">	else x &#x3D; m + 1;</span><br><span class="line">&#125;</span><br><span class="line">return x;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">int T;</span><br><span class="line">scanf(&quot;%d&quot;, &amp;T);</span><br><span class="line">while (T--)</span><br><span class="line">&#123;</span><br><span class="line">	int n;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;n);</span><br><span class="line">	for(int i&#x3D;0;i&lt;n;i++)</span><br><span class="line">		scanf(&quot;%d %d %d %d&quot;, &amp;A[i], &amp;B[i], &amp;C[i], &amp;D[i]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	int index &#x3D; 0;</span><br><span class="line">	for(int i&#x3D;0;i&lt;n;i++)</span><br><span class="line">		for (int j &#x3D; 0; j &lt; n; j++) </span><br><span class="line">			sum[index++] &#x3D; A[i] + B[j];</span><br><span class="line">	sort(sum, sum + index);</span><br><span class="line">	long long  cnt &#x3D; 0;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++)</span><br><span class="line">		for (int j &#x3D; 0; j &lt; n; j++) </span><br><span class="line">			cnt +&#x3D; upper_bound(0, index, -C[i] - D[j]) - lower_bound(0, index, -C[i] - D[j]);</span><br><span class="line">	printf(&quot;%lld\n&quot;, cnt);</span><br><span class="line">	if (T) printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       

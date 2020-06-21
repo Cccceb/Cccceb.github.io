@@ -460,85 +460,6 @@ while (n--)
 
 </article>
     
-    <article id="post-不无聊的序列" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E4%B8%8D%E6%97%A0%E8%81%8A%E7%9A%84%E5%BA%8F%E5%88%97/"
-    >不无聊的序列</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E4%B8%8D%E6%97%A0%E8%81%8A%E7%9A%84%E5%BA%8F%E5%88%97/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.576Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="uva-1608-不无聊的序列"><a class="markdownIt-Anchor" href="#uva-1608-不无聊的序列"></a> UVA 1608 不无聊的序列</h1>
-<p>如果一个序列的任意连续子序列都至少有一个元素唯一，则称这个序列“不无聊”，否则称这个序列“无聊”。给定T个序列，求是否“无聊”。</p>
-<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
-<ol>
-<li>分治加中途相遇</li>
-<li>如果在序列中A[i]只出现了一次，那么只需检查A[1…P-1]和A[p+1…n]是否满足条件。这是因为所有包含A[p]的子序列都是符合条件的，不需要检查。</li>
-<li>想要直到每个元素值是否在区间内不重，可以记录这个值临近的两个值的出现位置，并与区间端点比较。</li>
-</ol>
-<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<h2 id="main-填充pre和next数组"><a class="markdownIt-Anchor" href="#main-填充pre和next数组"></a> main 填充pre和next数组</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 200000 + 5;</span><br><span class="line">int n;</span><br><span class="line">int a[maxn];</span><br><span class="line">int pre[maxn], nex[maxn];</span><br><span class="line">map&lt;int, int&gt; last;</span><br><span class="line">inline bool unique(int L, int r, int v);</span><br><span class="line">bool bsearch(int l, int r);</span><br><span class="line">int main() &#123;</span><br><span class="line">	int T;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;T);</span><br><span class="line">	int x;</span><br><span class="line">	while (T--) &#123;</span><br><span class="line">		scanf(&quot;%d&quot;, &amp;n);</span><br><span class="line">		last.clear();</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			scanf(&quot;%d&quot;, &amp;x);</span><br><span class="line">			a[i] &#x3D; x;</span><br><span class="line">			if (!last.count(x))</span><br><span class="line">				pre[i] &#x3D; -1;</span><br><span class="line">			else</span><br><span class="line">				pre[i] &#x3D; last[x];</span><br><span class="line">			last[x] &#x3D; i;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		last.clear();</span><br><span class="line">		for (int i &#x3D; n - 1; i &gt;&#x3D; 0; i--) &#123;</span><br><span class="line">			if (!last.count(a[i]))</span><br><span class="line">				nex[i] &#x3D; n;</span><br><span class="line">			else nex[i] &#x3D; last[a[i]];</span><br><span class="line">			last[a[i]] &#x3D; i;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		if (bsearch(0, n - 1)) printf(&quot;non-boring\n&quot;);</span><br><span class="line">		else printf(&quot;boring\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="solve-中途相遇过程注意循环和递归条件"><a class="markdownIt-Anchor" href="#solve-中途相遇过程注意循环和递归条件"></a> solve 中途相遇过程，注意循环和递归条件</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">bool bsearch(int l, int r) &#123;</span><br><span class="line">	if (l &gt;&#x3D; r)  return true;</span><br><span class="line">	for (int d &#x3D; 0; l + d &lt;&#x3D; r - d; d++) &#123;</span><br><span class="line">		if (unique(l, r, l + d))</span><br><span class="line">			return bsearch(l, l + d - 1) &amp;&amp; bsearch(l + d + 1, r);</span><br><span class="line"></span><br><span class="line">		if (l + d &#x3D;&#x3D; r - d) break;</span><br><span class="line"></span><br><span class="line">		if (unique(l, r, r - d))</span><br><span class="line">			return bsearch(l, r - d - 1) &amp;&amp; bsearch(r - d + 1, r);</span><br><span class="line">	&#125;</span><br><span class="line">	return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="unique-判断区间内是否有重复"><a class="markdownIt-Anchor" href="#unique-判断区间内是否有重复"></a> unique 判断区间内是否有重复</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">bool unique(int L, int R, int v) &#123;</span><br><span class="line">	return L &gt; pre[v] &amp;&amp; R &lt; nex[v];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
     <article id="post-不公平竞赛" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -596,6 +517,85 @@ while (n--)
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 1024 + 5;</span><br><span class="line">char team[maxn][maxn];</span><br><span class="line">int n;</span><br><span class="line"></span><br><span class="line">vector&lt;int&gt; black;</span><br><span class="line">vector&lt;int&gt; gray;</span><br><span class="line"></span><br><span class="line">void solve();</span><br><span class="line">int main() &#123;</span><br><span class="line">	while (scanf(&quot;%d&quot;, &amp;n) &#x3D;&#x3D; 1)</span><br><span class="line">	&#123;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">			scanf(&quot;%s&quot;, team[i]+1);</span><br><span class="line">		&#125;</span><br><span class="line">		for (int i &#x3D; 2; i &lt;&#x3D; n; i++)</span><br><span class="line">			if (team[1][i] &#x3D;&#x3D; &#39;0&#39;)</span><br><span class="line">				black.push_back(i);</span><br><span class="line">			else gray.push_back(i);</span><br><span class="line"></span><br><span class="line">		solve();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="solve-执行三个阶段"><a class="markdownIt-Anchor" href="#solve-执行三个阶段"></a> solve 执行三个阶段</h2>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void solve() &#123;</span><br><span class="line"></span><br><span class="line">	while (n &gt; 1)</span><br><span class="line">	&#123;</span><br><span class="line">		vector&lt;int&gt; tgray;</span><br><span class="line">		vector&lt;int&gt; tblack;</span><br><span class="line">		vector&lt;int&gt; final;</span><br><span class="line"></span><br><span class="line">		&#x2F;&#x2F;U1</span><br><span class="line">		for (int i &#x3D; 0; i &lt; black.size(); i++) &#123;</span><br><span class="line">			int nb &#x3D; black[i];</span><br><span class="line">			int graywin &#x3D; false;</span><br><span class="line">			for (int j &#x3D; 0; j &lt; gray.size(); j++) &#123;</span><br><span class="line">				int &amp;ng &#x3D; gray[j];</span><br><span class="line">				if (ng &gt; 0 &amp;&amp; team[ng][nb] &#x3D;&#x3D; &#39;1&#39;) &#123;</span><br><span class="line">					printf(&quot;%d %d\n&quot;, ng, nb);</span><br><span class="line">					tgray.push_back(ng);</span><br><span class="line">					ng &#x3D; 0;</span><br><span class="line">					graywin &#x3D; true;</span><br><span class="line">					break;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			if (!graywin) final.push_back(nb);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		&#x2F;&#x2F;U2</span><br><span class="line">		bool first &#x3D; true;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; gray.size(); i++) &#123;</span><br><span class="line">			int ng &#x3D; gray[i];</span><br><span class="line">			if (ng &gt; 0) &#123;</span><br><span class="line">				if (first) &#123;</span><br><span class="line">					printf(&quot;1 %d\n&quot;, ng);</span><br><span class="line">					first &#x3D; false;</span><br><span class="line">				&#125;</span><br><span class="line">				else final.push_back(ng);</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		&#x2F;&#x2F;U3</span><br><span class="line">		for (int i &#x3D; 0; i &lt; (int)final.size(); i +&#x3D; 2) &#123;</span><br><span class="line">			printf(&quot;%d %d\n&quot;, final[i], final[i + 1]);</span><br><span class="line">			int keep &#x3D; final[i];</span><br><span class="line">			if (team[final[i + 1]][keep] &#x3D;&#x3D; &#39;1&#39;)</span><br><span class="line">				keep &#x3D; final[i + 1];</span><br><span class="line">			if (team[1][keep] &#x3D;&#x3D; &#39;1&#39;)</span><br><span class="line">				tgray.push_back(keep);</span><br><span class="line">			else tblack.push_back(keep);</span><br><span class="line">		&#125;</span><br><span class="line">		black &#x3D; tblack;</span><br><span class="line">		gray &#x3D; tgray;</span><br><span class="line">		n &gt;&gt;&#x3D; 1;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-不无聊的序列" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E4%B8%8D%E6%97%A0%E8%81%8A%E7%9A%84%E5%BA%8F%E5%88%97/"
+    >不无聊的序列</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E4%B8%8D%E6%97%A0%E8%81%8A%E7%9A%84%E5%BA%8F%E5%88%97/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.576Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva-1608-不无聊的序列"><a class="markdownIt-Anchor" href="#uva-1608-不无聊的序列"></a> UVA 1608 不无聊的序列</h1>
+<p>如果一个序列的任意连续子序列都至少有一个元素唯一，则称这个序列“不无聊”，否则称这个序列“无聊”。给定T个序列，求是否“无聊”。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>分治加中途相遇</li>
+<li>如果在序列中A[i]只出现了一次，那么只需检查A[1…P-1]和A[p+1…n]是否满足条件。这是因为所有包含A[p]的子序列都是符合条件的，不需要检查。</li>
+<li>想要直到每个元素值是否在区间内不重，可以记录这个值临近的两个值的出现位置，并与区间端点比较。</li>
+</ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<h2 id="main-填充pre和next数组"><a class="markdownIt-Anchor" href="#main-填充pre和next数组"></a> main 填充pre和next数组</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 200000 + 5;</span><br><span class="line">int n;</span><br><span class="line">int a[maxn];</span><br><span class="line">int pre[maxn], nex[maxn];</span><br><span class="line">map&lt;int, int&gt; last;</span><br><span class="line">inline bool unique(int L, int r, int v);</span><br><span class="line">bool bsearch(int l, int r);</span><br><span class="line">int main() &#123;</span><br><span class="line">	int T;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;T);</span><br><span class="line">	int x;</span><br><span class="line">	while (T--) &#123;</span><br><span class="line">		scanf(&quot;%d&quot;, &amp;n);</span><br><span class="line">		last.clear();</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			scanf(&quot;%d&quot;, &amp;x);</span><br><span class="line">			a[i] &#x3D; x;</span><br><span class="line">			if (!last.count(x))</span><br><span class="line">				pre[i] &#x3D; -1;</span><br><span class="line">			else</span><br><span class="line">				pre[i] &#x3D; last[x];</span><br><span class="line">			last[x] &#x3D; i;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		last.clear();</span><br><span class="line">		for (int i &#x3D; n - 1; i &gt;&#x3D; 0; i--) &#123;</span><br><span class="line">			if (!last.count(a[i]))</span><br><span class="line">				nex[i] &#x3D; n;</span><br><span class="line">			else nex[i] &#x3D; last[a[i]];</span><br><span class="line">			last[a[i]] &#x3D; i;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		if (bsearch(0, n - 1)) printf(&quot;non-boring\n&quot;);</span><br><span class="line">		else printf(&quot;boring\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="solve-中途相遇过程注意循环和递归条件"><a class="markdownIt-Anchor" href="#solve-中途相遇过程注意循环和递归条件"></a> solve 中途相遇过程，注意循环和递归条件</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">bool bsearch(int l, int r) &#123;</span><br><span class="line">	if (l &gt;&#x3D; r)  return true;</span><br><span class="line">	for (int d &#x3D; 0; l + d &lt;&#x3D; r - d; d++) &#123;</span><br><span class="line">		if (unique(l, r, l + d))</span><br><span class="line">			return bsearch(l, l + d - 1) &amp;&amp; bsearch(l + d + 1, r);</span><br><span class="line"></span><br><span class="line">		if (l + d &#x3D;&#x3D; r - d) break;</span><br><span class="line"></span><br><span class="line">		if (unique(l, r, r - d))</span><br><span class="line">			return bsearch(l, r - d - 1) &amp;&amp; bsearch(r - d + 1, r);</span><br><span class="line">	&#125;</span><br><span class="line">	return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="unique-判断区间内是否有重复"><a class="markdownIt-Anchor" href="#unique-判断区间内是否有重复"></a> unique 判断区间内是否有重复</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">bool unique(int L, int R, int v) &#123;</span><br><span class="line">	return L &gt; pre[v] &amp;&amp; R &lt; nex[v];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       

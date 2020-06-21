@@ -78,132 +78,6 @@
     
     
     
-    <article id="post-DB5" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/DB5/"
-    >DB5</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/DB5/" class="article-date">
-  <time datetime="2020-03-30T03:41:31.600Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <ol>
-<li>数据库的完整性：防止数据库中出现不合语义数据。</li>
-<li>完整性控制机制：
-<ol>
-<li>完整性约束条件定义机制。</li>
-<li>完整性检查机</li>
-<li>违约处理.</li>
-</ol>
-</li>
-<li>关系型数据库的三类完整性约束：实体完整性、参照完整性、用户定义完整性。</li>
-</ol>
-<h1 id="实体完整性"><a class="markdownIt-Anchor" href="#实体完整性"></a> 实体完整性</h1>
-<ol>
-<li>实体完整性定义：
-<ol>
-<li>单属性构成的码：定义为列级或表级约束条件。</li>
-<li>多属性构成的码：只可定义为表级约束条件。</li>
-</ol>
-</li>
-<li>实体完整性检查和违约处理
-<ol>
-<li>检查主码是否唯一；检查主码的各个属性值是否为空。</li>
-</ol>
-</li>
-</ol>
-<h1 id="参照完整性"><a class="markdownIt-Anchor" href="#参照完整性"></a> 参照完整性</h1>
-<ol>
-<li>参照完整性定义：若属性F是基本关系R的外码，它与基本关系S的码Ks相对应，则对于R中每个元组在F上的取值必须满足
-<ol>
-<li>参照关系R和被参照关系S不一定是不同的关系。</li>
-<li>外码中若有多个属性，若其一为NULL，则需全NULL。</li>
-</ol>
-</li>
-</ol>
-<h1 id="用户定义完整性"><a class="markdownIt-Anchor" href="#用户定义完整性"></a> 用户定义完整性</h1>
-<ol>
-<li>使用CHECK见本。</li>
-</ol>
-<h1 id="完整性约束命名子句"><a class="markdownIt-Anchor" href="#完整性约束命名子句"></a> 完整性约束命名子句</h1>
-<ol>
-<li>CONSTRAINT</li>
-</ol>
-<h1 id="域中的完整性限制"><a class="markdownIt-Anchor" href="#域中的完整性限制"></a> 域中的完整性限制</h1>
-<p>CREATE DOMAIN,DOMAIN相当于一个自定义的数据类型。</p>
-<h1 id="触发器"><a class="markdownIt-Anchor" href="#触发器"></a> 触发器</h1>
-<ol>
-<li>
-<p>触发器：用户定义在关系表上的 一类由事件驱动的特殊存储过程</p>
- <img src="/DB5_img/1.png" style="zoom:80%">
-</li>
-<li>
-<p>注</p>
-<ol>
-<li>触发器可以在触发事件之前或之后执行。</li>
-<li>触发事件为INSERT/DELETE/UPDATE（SELECT不触发）</li>
-<li>分为行级触发器和语句级触发器</li>
-<li>触发器被激活时，执行触发体。</li>
-<li>同一个表上的触发器，先执行BEFORE触发器，再执行SQL，再执行AFTER触发器。</li>
-</ol>
-</li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
     <article id="post-DB4" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -379,6 +253,132 @@
 <li>任何查询至少要涉及N（N足够大）个以上的记录。</li>
 <li>任意两个查询的相交数据项不能超过M个。</li>
 <li>任一用户的查询次数不能超过1+(N-2)/M次。</li>
+</ol>
+</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-DB5" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/DB5/"
+    >DB5</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/DB5/" class="article-date">
+  <time datetime="2020-03-30T03:41:31.600Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <ol>
+<li>数据库的完整性：防止数据库中出现不合语义数据。</li>
+<li>完整性控制机制：
+<ol>
+<li>完整性约束条件定义机制。</li>
+<li>完整性检查机</li>
+<li>违约处理.</li>
+</ol>
+</li>
+<li>关系型数据库的三类完整性约束：实体完整性、参照完整性、用户定义完整性。</li>
+</ol>
+<h1 id="实体完整性"><a class="markdownIt-Anchor" href="#实体完整性"></a> 实体完整性</h1>
+<ol>
+<li>实体完整性定义：
+<ol>
+<li>单属性构成的码：定义为列级或表级约束条件。</li>
+<li>多属性构成的码：只可定义为表级约束条件。</li>
+</ol>
+</li>
+<li>实体完整性检查和违约处理
+<ol>
+<li>检查主码是否唯一；检查主码的各个属性值是否为空。</li>
+</ol>
+</li>
+</ol>
+<h1 id="参照完整性"><a class="markdownIt-Anchor" href="#参照完整性"></a> 参照完整性</h1>
+<ol>
+<li>参照完整性定义：若属性F是基本关系R的外码，它与基本关系S的码Ks相对应，则对于R中每个元组在F上的取值必须满足
+<ol>
+<li>参照关系R和被参照关系S不一定是不同的关系。</li>
+<li>外码中若有多个属性，若其一为NULL，则需全NULL。</li>
+</ol>
+</li>
+</ol>
+<h1 id="用户定义完整性"><a class="markdownIt-Anchor" href="#用户定义完整性"></a> 用户定义完整性</h1>
+<ol>
+<li>使用CHECK见本。</li>
+</ol>
+<h1 id="完整性约束命名子句"><a class="markdownIt-Anchor" href="#完整性约束命名子句"></a> 完整性约束命名子句</h1>
+<ol>
+<li>CONSTRAINT</li>
+</ol>
+<h1 id="域中的完整性限制"><a class="markdownIt-Anchor" href="#域中的完整性限制"></a> 域中的完整性限制</h1>
+<p>CREATE DOMAIN,DOMAIN相当于一个自定义的数据类型。</p>
+<h1 id="触发器"><a class="markdownIt-Anchor" href="#触发器"></a> 触发器</h1>
+<ol>
+<li>
+<p>触发器：用户定义在关系表上的 一类由事件驱动的特殊存储过程</p>
+ <img src="/DB5_img/1.png" style="zoom:80%">
+</li>
+<li>
+<p>注</p>
+<ol>
+<li>触发器可以在触发事件之前或之后执行。</li>
+<li>触发事件为INSERT/DELETE/UPDATE（SELECT不触发）</li>
+<li>分为行级触发器和语句级触发器</li>
+<li>触发器被激活时，执行触发体。</li>
+<li>同一个表上的触发器，先执行BEFORE触发器，再执行SQL，再执行AFTER触发器。</li>
 </ol>
 </li>
 </ol>

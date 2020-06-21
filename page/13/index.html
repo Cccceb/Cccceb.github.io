@@ -284,88 +284,6 @@
 
 </article>
     
-    <article id="post-小球下落" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E5%B0%8F%E7%90%83%E4%B8%8B%E8%90%BD/"
-    >小球下落</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E5%B0%8F%E7%90%83%E4%B8%8B%E8%90%BD/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.717Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="uva-679-小球下落"><a class="markdownIt-Anchor" href="#uva-679-小球下落"></a> uva 679 小球下落</h1>
-<p> 许多的小球一个一个的从一棵满二叉树上掉下来组成一个新满二叉树，每一时间，一个正在下降的球第一个访问的是非叶子节点。然后继续下降时，或者走右子树，或者走左子树，直到访问到叶子节点。<br />
-决定球运动方向的是每个节点的布尔值。最初，所有的节点都是 FALSE，当访问到一个节点时，如果这个节点是 FALSE，则这个球把它变成 TRUE，然后从左子树走，继续它的旅程。如果节点是TRUE，则球也会改变它为 FALSE，而接下来从右子树走。满二叉树的标记方法如下图。<br />
-因为所有的节点最初为 FALSE，所以第一个球将会访问节点 1，节点 2 和节点 4，转变节点的布尔值后在在节点 8 停止。第二个球将会访问节点 1、3、6，在节点 12 停止。；明显地，第三个球在它停止之前，会访问节点 1、2、5，在节点 10 停止。</p>
-<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
-<ol>
-<li>对于二叉树，有结论编号为i的节点的左子树编号为2i,右子树为2i+1</li>
-<li>如果用一个数组存二叉树，并进行遍历，会TEL，并且数组占很大空间</li>
-<li>发现只要知道是第几个通过该节点的小球，那么就可以知道这一步他落到左子树还是右子树</li>
-<li>如果I为奇数，那么他是第（I+1）/2个向左走的小球，如果I为偶数，那么他是第I/2个向右走的小球。</li>
-</ol>
-<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   #include&lt;iostream&gt;</span><br><span class="line">   # pragma warning(disable:4996)</span><br><span class="line">   # define LOCAL</span><br><span class="line">   # ifdef LOCAL</span><br><span class="line">   FILE *fin &#x3D; freopen(&quot;小球下落in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">   FILE *fout &#x3D; freopen(&quot;小球下落out.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line">   # endif </span><br><span class="line">   using namespace std;</span><br><span class="line">   int main() &#123;</span><br><span class="line">int T;</span><br><span class="line">cin &gt;&gt; T;</span><br><span class="line">while (T--) &#123;</span><br><span class="line">	int num, depth;</span><br><span class="line">	cin &gt;&gt; depth &gt;&gt; num;</span><br><span class="line">	int No &#x3D; 1;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; depth-1; i++) &#123;</span><br><span class="line">		if (num % 2 &#x3D;&#x3D; 1) &#123;</span><br><span class="line">			No &#x3D; 2 * No;</span><br><span class="line">			num &#x3D; (num + 1) &#x2F; 2;</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			No &#x3D; 2 * No + 1;</span><br><span class="line">			num &#x3D; num &#x2F; 2;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; No &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="心得"><a class="markdownIt-Anchor" href="#心得"></a> 心得</h1>
-<ol>
-<li>关注该关注的，并找规律很重要</li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
     <article id="post-巡逻机器人" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -499,7 +417,7 @@ while (n--) {
 
 </article>
     
-    <article id="post-消防车" class="article article-type-post" itemscope
+    <article id="post-小球下落" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -507,8 +425,8 @@ while (n--) {
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E6%B6%88%E9%98%B2%E8%BD%A6/"
-    >消防车</a> 
+  <a class="article-title" href="/2020/03/30/%E5%B0%8F%E7%90%83%E4%B8%8B%E8%90%BD/"
+    >小球下落</a> 
 </h2>
  
 
@@ -517,7 +435,7 @@ while (n--) {
 
     
     <div class="article-meta">
-      <a href="/2020/03/30/%E6%B6%88%E9%98%B2%E8%BD%A6/" class="article-date">
+      <a href="/2020/03/30/%E5%B0%8F%E7%90%83%E4%B8%8B%E8%90%BD/" class="article-date">
   <time datetime="2020-03-30T02:15:00.717Z" itemprop="datePublished">2020-03-30</time>
 </a>
       
@@ -535,94 +453,23 @@ while (n--) {
       
 
       
-      <h1 id="uva-208-消防车"><a class="markdownIt-Anchor" href="#uva-208-消防车"></a> UVA 208 消防车</h1>
-<p>给你一张图，输入x，y表示xy见有一条边。输出从1到z所有的遍历方案（字典序）。每个节点从1到N标号。 有多组数据，每组数据以0 0结束。 （注意，刚开始的输入不是节点或边的数目） 输入输出格式可以参考样例. 数据范围（节点总数N&lt;21）</p>
-<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+      <h1 id="uva-679-小球下落"><a class="markdownIt-Anchor" href="#uva-679-小球下落"></a> uva 679 小球下落</h1>
+<p> 许多的小球一个一个的从一棵满二叉树上掉下来组成一个新满二叉树，每一时间，一个正在下降的球第一个访问的是非叶子节点。然后继续下降时，或者走右子树，或者走左子树，直到访问到叶子节点。<br />
+决定球运动方向的是每个节点的布尔值。最初，所有的节点都是 FALSE，当访问到一个节点时，如果这个节点是 FALSE，则这个球把它变成 TRUE，然后从左子树走，继续它的旅程。如果节点是TRUE，则球也会改变它为 FALSE，而接下来从右子树走。满二叉树的标记方法如下图。<br />
+因为所有的节点最初为 FALSE，所以第一个球将会访问节点 1，节点 2 和节点 4，转变节点的布尔值后在在节点 8 停止。第二个球将会访问节点 1、3、6，在节点 12 停止。；明显地，第三个球在它停止之前，会访问节点 1、2、5，在节点 10 停止。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
 <ol>
-<li>本题要求输出所有的完整的路径，即要沿着一条路走到头，所以使用dfs</li>
-<li>辅助用bfs判断依次是否存在路径，否则会超时</li>
-<li>本题中各层的path之间不会影响，因为递归是走到头再返回的。</li>
+<li>对于二叉树，有结论编号为i的节点的左子树编号为2i,右子树为2i+1</li>
+<li>如果用一个数组存二叉树，并进行遍历，会TEL，并且数组占很大空间</li>
+<li>发现只要知道是第几个通过该节点的小球，那么就可以知道这一步他落到左子树还是右子树</li>
+<li>如果I为奇数，那么他是第（I+1）/2个向左走的小球，如果I为偶数，那么他是第I/2个向右走的小球。</li>
 </ol>
-<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-# pragma warning(disable:4996)
-FILE *fin = freopen(&quot;习题7-1in.txt&quot;, &quot;r&quot;, stdin);
-FILE *fout = freopen(&quot;习题7-1out.txt&quot;, &quot;w&quot;, stdout);
-using namespace std;
-const int maxn = 20+5;
-map&lt;int, vector&lt;int&gt;&gt; g;
-bool bfs();
-void dfs(int u,int step);
-int goal, cnt,kase = 0;
-bool vis[maxn];
-int path[maxn];
-struct edge {
-int x, y;
-edge(int x, int y) :x(x), y(y) {}
-bool operator &lt; (const edge&amp;a) const { return x &lt; a.x; }
-};
-int main() {
-int a, b;
-while (scanf(&quot;%d&quot;, &amp;goal) == 1) {
-	g.clear();
-	printf(&quot;CASE %d:\n&quot;, ++kase);
-	while (scanf(&quot;%d %d&quot;, &amp;a, &amp;b) &amp;&amp; a) {
-		g[a].push_back(b);
-		g[b].push_back(a);
-	}
-	for (int i = 0; i &lt; maxn; i++)
-		sort(g[i].begin(), g[i].end());
-	cnt = 0;
-	memset(vis, 0, sizeof(0));
-	if (!bfs()) {//优化，否则会T
-		cnt = 0;
-	}
-	else {
-		vis[1] = 1;
-		dfs(1,0);
-	}
-	printf(&quot;There are %d routes from the firestation to streetcorner %d.\n&quot;, cnt,goal);
-}
-}
-bool bfs() {
-queue&lt;int&gt; q;
-q.push(1);
-while (!q.empty()) {
-	int u = q.front(); q.pop();
-	if (u == goal) {
-		memset(vis, 0, sizeof(vis));
-		return true;
-	}
-	for (int i = 0; i &lt; g[u].size(); i++) {
-		int v = g[u][i];
-		if (!vis[v])
-		{
-			vis[v] = 1;
-			q.push(v);
-		}
-	}
-}
-memset(vis, 0, sizeof(vis));
-return false;
-}
-void dfs(int u,int step) {
-path[step] = u;
-if (u == goal) {
-	printf(&quot;%d&quot;, path[0]);
-	for (int i =1; i &lt;= step; i++)
-		printf(&quot; %d&quot;, path[i]);
-	printf(&quot;\n&quot;);
-	cnt++;
-}
-for (int i = 0; i &lt; g[u].size(); i++) {
-	int v = g[u][i];
-	if (vis[v]) continue;
-	vis[v] = 1;
-	dfs(v,step+1);
-	vis[v] = 0;
-}
-}
-</code></pre>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   #include&lt;iostream&gt;</span><br><span class="line">   # pragma warning(disable:4996)</span><br><span class="line">   # define LOCAL</span><br><span class="line">   # ifdef LOCAL</span><br><span class="line">   FILE *fin &#x3D; freopen(&quot;小球下落in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">   FILE *fout &#x3D; freopen(&quot;小球下落out.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line">   # endif </span><br><span class="line">   using namespace std;</span><br><span class="line">   int main() &#123;</span><br><span class="line">int T;</span><br><span class="line">cin &gt;&gt; T;</span><br><span class="line">while (T--) &#123;</span><br><span class="line">	int num, depth;</span><br><span class="line">	cin &gt;&gt; depth &gt;&gt; num;</span><br><span class="line">	int No &#x3D; 1;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; depth-1; i++) &#123;</span><br><span class="line">		if (num % 2 &#x3D;&#x3D; 1) &#123;</span><br><span class="line">			No &#x3D; 2 * No;</span><br><span class="line">			num &#x3D; (num + 1) &#x2F; 2;</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			No &#x3D; 2 * No + 1;</span><br><span class="line">			num &#x3D; num &#x2F; 2;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; No &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="心得"><a class="markdownIt-Anchor" href="#心得"></a> 心得</h1>
+<ol>
+<li>关注该关注的，并找规律很重要</li>
+</ol>
 
       
       <!-- reward -->
@@ -805,6 +652,159 @@ while (true)
 	printf(&quot;\n%d\n&quot;, p);
 }
 }</code></pre>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-消防车" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E6%B6%88%E9%98%B2%E8%BD%A6/"
+    >消防车</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E6%B6%88%E9%98%B2%E8%BD%A6/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.717Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva-208-消防车"><a class="markdownIt-Anchor" href="#uva-208-消防车"></a> UVA 208 消防车</h1>
+<p>给你一张图，输入x，y表示xy见有一条边。输出从1到z所有的遍历方案（字典序）。每个节点从1到N标号。 有多组数据，每组数据以0 0结束。 （注意，刚开始的输入不是节点或边的数目） 输入输出格式可以参考样例. 数据范围（节点总数N&lt;21）</p>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+<ol>
+<li>本题要求输出所有的完整的路径，即要沿着一条路走到头，所以使用dfs</li>
+<li>辅助用bfs判断依次是否存在路径，否则会超时</li>
+<li>本题中各层的path之间不会影响，因为递归是走到头再返回的。</li>
+</ol>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+# pragma warning(disable:4996)
+FILE *fin = freopen(&quot;习题7-1in.txt&quot;, &quot;r&quot;, stdin);
+FILE *fout = freopen(&quot;习题7-1out.txt&quot;, &quot;w&quot;, stdout);
+using namespace std;
+const int maxn = 20+5;
+map&lt;int, vector&lt;int&gt;&gt; g;
+bool bfs();
+void dfs(int u,int step);
+int goal, cnt,kase = 0;
+bool vis[maxn];
+int path[maxn];
+struct edge {
+int x, y;
+edge(int x, int y) :x(x), y(y) {}
+bool operator &lt; (const edge&amp;a) const { return x &lt; a.x; }
+};
+int main() {
+int a, b;
+while (scanf(&quot;%d&quot;, &amp;goal) == 1) {
+	g.clear();
+	printf(&quot;CASE %d:\n&quot;, ++kase);
+	while (scanf(&quot;%d %d&quot;, &amp;a, &amp;b) &amp;&amp; a) {
+		g[a].push_back(b);
+		g[b].push_back(a);
+	}
+	for (int i = 0; i &lt; maxn; i++)
+		sort(g[i].begin(), g[i].end());
+	cnt = 0;
+	memset(vis, 0, sizeof(0));
+	if (!bfs()) {//优化，否则会T
+		cnt = 0;
+	}
+	else {
+		vis[1] = 1;
+		dfs(1,0);
+	}
+	printf(&quot;There are %d routes from the firestation to streetcorner %d.\n&quot;, cnt,goal);
+}
+}
+bool bfs() {
+queue&lt;int&gt; q;
+q.push(1);
+while (!q.empty()) {
+	int u = q.front(); q.pop();
+	if (u == goal) {
+		memset(vis, 0, sizeof(vis));
+		return true;
+	}
+	for (int i = 0; i &lt; g[u].size(); i++) {
+		int v = g[u][i];
+		if (!vis[v])
+		{
+			vis[v] = 1;
+			q.push(v);
+		}
+	}
+}
+memset(vis, 0, sizeof(vis));
+return false;
+}
+void dfs(int u,int step) {
+path[step] = u;
+if (u == goal) {
+	printf(&quot;%d&quot;, path[0]);
+	for (int i =1; i &lt;= step; i++)
+		printf(&quot; %d&quot;, path[i]);
+	printf(&quot;\n&quot;);
+	cnt++;
+}
+for (int i = 0; i &lt; g[u].size(); i++) {
+	int v = g[u][i];
+	if (vis[v]) continue;
+	vis[v] = 1;
+	dfs(v,step+1);
+	vis[v] = 0;
+}
+}
+</code></pre>
 
       
       <!-- reward -->
