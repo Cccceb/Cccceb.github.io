@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+
+
+<html lang="cn" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    10模型评估与选择 |  
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-10模型评估与选择" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  10模型评估与选择
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/30/10%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E4%B8%8E%E9%80%89%E6%8B%A9/" class="article-date">
+  <time datetime="2020-06-30T15:22:17.779Z" itemprop="datePublished">2020-06-30</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.6k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">9分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="经验误差与过拟合"><a class="markdownIt-Anchor" href="#经验误差与过拟合"></a> 经验误差与过拟合</h1>
+<h2 id="基本概念"><a class="markdownIt-Anchor" href="#基本概念"></a> 基本概念</h2>
+<ol>
+<li><strong>错误率</strong> 错误样本占样本总数的比例</li>
+<li><strong>精度</strong> = 1- 错误率</li>
+<li><strong>误差</strong> 机器学习的实际预测输出与样本的真实输出之间的差异称为误差</li>
+<li><strong>训练误差</strong> 指学习器在训练集上的误差</li>
+<li><strong>泛化误差</strong> 指在新样本上的误差</li>
+<li>过拟合因素：学习能力过于强大</li>
+<li>欠拟合因素：学习能力太弱，训练轮次不够</li>
+</ol>
+<h1 id="模型评估方法"><a class="markdownIt-Anchor" href="#模型评估方法"></a> 模型评估方法</h1>
+<h2 id="留出法"><a class="markdownIt-Anchor" href="#留出法"></a> 留出法</h2>
+<ol>
+<li>
+<p>直接讲数据集划分成两个互斥的集合，其中一个作为训练集S，另一个作为测试集T</p>
+</li>
+<li>
+<p><strong>注意</strong> 训练集和测试集要尽可能保持数据分布的一致性。<strong>保留类别比例的采样方式称为分层采样</strong></p>
+</li>
+<li>
+<p>在使用留出法时，<strong>一般要采用若干次随机划分</strong>，重复进行试验评估后取平均值作为留出法的评估结果。例如进行100次随即划分，每次产生一个训练/测试集用于试验评估，100次后得到100个结果，而留出法返回的则是这100个结果的平均。</p>
+</li>
+<li>
+<p><strong>通常</strong> 将大约2/3~4/5的样本用于训练，剩余样本用于测试</p>
+</li>
+</ol>
+<h2 id="交叉验证法"><a class="markdownIt-Anchor" href="#交叉验证法"></a> 交叉验证法</h2>
+<ol>
+<li>先将数据集D划分成k个大小相似的互斥子集，即D = D1∪D2∪…∪Dk。每个子集Di都尽可能保持数据分布的一致性(分层采样);然后每次用K-1个子集的并集作为训练集，1个用作测试集。得到k组结果，最终返回k组结果的均值</li>
+<li>通常k折交叉验证要随机使用不同的划分重复p次，最终的评估结果是这p次k折交叉结果的均值。常见的是10次10折交叉验证</li>
+<li>k通常取3，5，10，15</li>
+</ol>
+<h3 id="留一法"><a class="markdownIt-Anchor" href="#留一法"></a> <strong>留一法</strong></h3>
+<p>若D中包含m个样本，令k=m得到的交叉验证法称为留一法。<strong>留一法不受随机样本划分方式的影响</strong></p>
+<h2 id="自助法"><a class="markdownIt-Anchor" href="#自助法"></a> 自助法</h2>
+<ol>
+<li>
+<p>以自助采样法为基础，给定包含m个样本的数据集D，然后对它进行采样产生数据集D’：<strong>每次随机从D中挑选一个样本，将其拷贝放入D’中，使得该样本在线下次采样时仍然有可能被采到</strong>，重复执行m次，得到包含m个样本的数据集D’即为自主采样的结果。</p>
+</li>
+<li>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%5Cmd%5C%E5%9B%BE%E7%89%87%5C2.png" alt="" /></p>
+<p>因此，初始数据集中约有36.8%的样本未出现在采样数据集中。</p>
+</li>
+<li>
+<p><strong>优点</strong> 实际评估的模型与期望评估的模型都是用m个训练样本，而我们热能有约1/3的样本可以用于测试。<strong>适用于小的数据集</strong></p>
+</li>
+<li>
+<p><strong>缺点</strong> 改变了原始数据集的分布，<strong>引入估计偏差</strong>。因此大数据集上还是留出法和交叉验证法更为常用</p>
+</li>
+</ol>
+<h2 id="调参与最终模型"><a class="markdownIt-Anchor" href="#调参与最终模型"></a> 调参与最终模型</h2>
+<h3 id="方法"><a class="markdownIt-Anchor" href="#方法"></a> 方法</h3>
+<ol>
+<li>方法时对每种参数设定取值范围和步长，</li>
+</ol>
+<h1 id="性能度量"><a class="markdownIt-Anchor" href="#性能度量"></a> 性能度量</h1>
+<p>性能度量反应了任务需求</p>
+<h2 id="回归问题"><a class="markdownIt-Anchor" href="#回归问题"></a> 回归问题</h2>
+<img src="C:\Users\86139\Desktop\机器学习\md\图片\3.png" style="zoom:50%;" />
+<h2 id="错误率与精度"><a class="markdownIt-Anchor" href="#错误率与精度"></a> 错误率与精度</h2>
+<ol>
+<li>
+<p><strong>常用于分类问题</strong></p>
+</li>
+<li>
+<p>对于数据分布D和概率密度函数p，则错误率和精度可分别定义为</p>
+<img src="C:\Users\86139\Desktop\机器学习\md\图片\4.png" style="zoom:50%;" />
+<img src="C:\Users\86139\Desktop\机器学习\md\图片\5.png" style="zoom:50%;" />
+</li>
+</ol>
+<h2 id="查准率-查全率与f1"><a class="markdownIt-Anchor" href="#查准率-查全率与f1"></a> 查准率、查全率与F1</h2>
+<h3 id="非类结果混淆矩阵"><a class="markdownIt-Anchor" href="#非类结果混淆矩阵"></a> 非类结果混淆矩阵</h3>
+<img src="C:\Users\86139\Desktop\机器学习\md\图片\6.png" style="zoom:50%;" />
+<h3 id="查准率-p-与查全率-r"><a class="markdownIt-Anchor" href="#查准率-p-与查全率-r"></a> 查准率 P 与查全率 R</h3>
+<img src="C:\Users\86139\Desktop\机器学习\md\图片\7.png" style="zoom:50%;" />
+<ol>
+<li>查准率：正确率</li>
+<li>查全率：真正例率</li>
+<li><strong>是一对矛盾的度量</strong>。一般来说，查准率高时，查全率往往偏低；反之亦然。只有在一些简单任务中，才可能使查全率和查准率都很高</li>
+</ol>
+<h3 id="p-r曲线"><a class="markdownIt-Anchor" href="#p-r曲线"></a> P-R曲线</h3>
+<img src="C:\Users\86139\Desktop\机器学习\md\图片\8.png" style="zoom: 67%;" />
+<ol>
+<li>根据学习器的预测结果对样例进行排序，排在前面的是学习器认为最可能是正例的样本，排在后面的则是学习器认为最不可能是正例的样本，按此顺序逐个把样本作为正例进行预测，则每次可以计算出当前的查全率，和查准率，即可绘制出P-R图</li>
+<li>若一个学习器的P-R曲线被另一个完全包住，<strong>那么可断言后者优于前者</strong>。如A优于C</li>
+<li>也可通过曲线下面积进行比较，但是不易判断。故提出平衡点</li>
+</ol>
+<h3 id="平衡点"><a class="markdownIt-Anchor" href="#平衡点"></a> 平衡点</h3>
+<ol>
+<li>平衡点是查准率=查全率时的取值，越大越好</li>
+</ol>
+<h3 id="f1度量调和平均"><a class="markdownIt-Anchor" href="#f1度量调和平均"></a> F1度量：调和平均</h3>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%5Cmd%5C%E5%9B%BE%E7%89%87%5C9.png" alt="" /></p>
+<h3 id="fβ度量"><a class="markdownIt-Anchor" href="#fβ度量"></a> Fβ度量</h3>
+<p>体现了对查全率和查准率的不同偏好</p>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%5Cmd%5C%E5%9B%BE%E7%89%87%5C10.png" alt="" /></p>
+<h3 id="多分类问题的度量"><a class="markdownIt-Anchor" href="#多分类问题的度量"></a> 多分类问题的度量</h3>
+<p>有时，我们有多个混淆矩阵，想要估计算法的全局性能。</p>
+<ol>
+<li>
+<p>宏查准率/查全率</p>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%5Cmd%5C%E5%9B%BE%E7%89%87%5C11.png" alt="" /></p>
+</li>
+<li>
+<p>微查准率、微查全率、微F1</p>
+<p>先计算混淆矩阵的对应元素的平均，则计算P和R，F1</p>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%5Cmd%5C%E5%9B%BE%E7%89%87%5C12.png" alt="" /></p>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%5Cmd%5C%E5%9B%BE%E7%89%87%5C13.png" alt="" /></p>
+</li>
+</ol>
+<h2 id="roc-与-auc"><a class="markdownIt-Anchor" href="#roc-与-auc"></a> ROC 与 AUC</h2>
+<h3 id="roc"><a class="markdownIt-Anchor" href="#roc"></a> ROC</h3>
+<p>纵轴是真正例率TPR，横轴是假正例率FPR</p>
+<img src="C:\Users\86139\Desktop\机器学习\md\图片\14.png" style="zoom:50%;" />
+<ol>
+<li>
+<p>绘制过程</p>
+<img src="C:\Users\86139\Desktop\机器学习\md\图片\15.png" style="zoom:50%;" />
+</li>
+</ol>
+<h3 id="auc"><a class="markdownIt-Anchor" href="#auc"></a> AUC</h3>
+<ol>
+<li>
+<p>是ROC曲线下的面积</p>
+</li>
+<li>
+<p>估算</p>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%5Cmd%5C%E5%9B%BE%E7%89%87%5C16.png" alt="" /></p>
+</li>
+<li>
+<p>AUC考虑的是样本预测的排序质量，它与排序误差有紧密联系。</p>
+</li>
+<li>
+<p><strong>损失</strong></p>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%5Cmd%5C%E5%9B%BE%E7%89%87%5C17.png" alt="" /></p>
+<ol>
+<li>给定m+的正例和m-个反例，令D+,D-分别表示正反例集合</li>
+<li><strong>解释</strong> 考虑每一对正反例，若正例的预测值小于反例，则记一个罚分，若相等，则记0.5个罚分</li>
+<li>loss对应ROC曲线之上的面积</li>
+</ol>
+</li>
+</ol>
+<h3 id="多分类roc"><a class="markdownIt-Anchor" href="#多分类roc"></a> 多分类ROC</h3>
+<p>一般转换成多个二分类，画多个ROC</p>
+<h2 id="代价敏感错误率和代价曲线"><a class="markdownIt-Anchor" href="#代价敏感错误率和代价曲线"></a> 代价敏感错误率和代价曲线</h2>
+<h3 id="代价矩阵cost"><a class="markdownIt-Anchor" href="#代价矩阵cost"></a> 代价矩阵cost</h3>
+<p>以二分类为例，其中cost<sub>ij</sub>代表将第i类样本预测为第j类样本的代价。</p>
+<h3 id="代价敏感的错误率非均等代价"><a class="markdownIt-Anchor" href="#代价敏感的错误率非均等代价"></a> 代价敏感的错误率(非均等代价)</h3>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%5Cmd%5C%E5%9B%BE%E7%89%87%5C18.png" alt="" /></p>
+<p><strong>带权的错误率</strong></p>
+<h3 id="代价曲线"><a class="markdownIt-Anchor" href="#代价曲线"></a> 代价曲线</h3>
+<p>在非均等代价下，ROC曲线不能直接反应出学习器的期望总体代价，而代价曲线可以。</p>
+<ol>
+<li>
+<p>其横轴是取值为[0,1]的正例概率代价。其中p是样例为正例的概率</p>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%5Cmd%5C%E5%9B%BE%E7%89%87%5C19.png" alt="" /></p>
+</li>
+<li>
+<p>其纵轴是取值为[0,1]的归一化代价</p>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%5Cmd%5C%E5%9B%BE%E7%89%87%5C20.png" alt="" /></p>
+<p>FNR = 1- TPR 假负例率</p>
+</li>
+<li>
+<p>绘制</p>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%5Cmd%5C%E5%9B%BE%E7%89%87%5C21.png" alt="" /></p>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%5Cmd%5C%E5%9B%BE%E7%89%87%5C22.png" alt="" /></p>
+</li>
+</ol>
+<h1 id="比较检验"><a class="markdownIt-Anchor" href="#比较检验"></a> 比较检验</h1>
+<ol>
+<li>要综合考虑泛化能力和在测试集上的性能。</li>
+<li>测试集上的性能与测试集本身的选择有很大关系</li>
+<li>很多机器学习算法本身具有一定随机性，即便用相同的参数设置在同一个测试集上多次运行，其结果也会不同</li>
+<li>由于以上问题，使用一些方法来为机器学习性能的比较提供依据。比如假设检验法</li>
+</ol>
+<h2 id="假设检验"><a class="markdownIt-Anchor" href="#假设检验"></a> 假设检验</h2>
+<h3 id="假设"><a class="markdownIt-Anchor" href="#假设"></a> 假设</h3>
+<ol>
+<li>是对学习器泛化错误率分布的某种判断或猜想。现实中，往往根据测试错误率估推出泛化错误率的分布。</li>
+</ol>
+<h3 id="泛化错误率为ε的学习器被测得测试错误率为ε的概率"><a class="markdownIt-Anchor" href="#泛化错误率为ε的学习器被测得测试错误率为ε的概率"></a> 泛化错误率为ε的学习器被测得测试错误率为ε^^^的概率<img src="C:%5CUsers%5C86139%5CDesktop%5C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%5Cmd%5C%E5%9B%BE%E7%89%87%5C23.png" alt="" /></h3>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%5Cmd%5C%E5%9B%BE%E7%89%87%5C24.png" alt="" /></p>
+<ol>
+<li>
+<p><strong>二项检验</strong></p>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%5Cmd%5C%E5%9B%BE%E7%89%87%5C25.png" alt="" /></p>
+<p>结论：</p>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%5Cmd%5C%E5%9B%BE%E7%89%87%5C26.png" alt="" /></p>
+</li>
+<li>
+<p><strong>t检验</strong> ：用于手里多个测试错误率的情况</p>
+<ol>
+<li>平均错误率和方差</li>
+</ol>
+</li>
+</ol>
+<h1 id="过拟合"><a class="markdownIt-Anchor" href="#过拟合"></a> 过拟合</h1>
+<h2 id="将训练数据分为训练集和验证集"><a class="markdownIt-Anchor" href="#将训练数据分为训练集和验证集"></a> 将训练数据分为训练集和验证集</h2>
+<img src="/MyImages/90.png" style="zoom:50%;" />
+<ul>
+<li>目标是在验证集上误差最小</li>
+</ul>
+<h1 id="评估一个假设"><a class="markdownIt-Anchor" href="#评估一个假设"></a> 评估一个假设</h1>
+<ul>
+<li>目的是防止过拟合</li>
+<li>需要将数据分成训练集和测试集，重点是要保证数据分布一致</li>
+<li>在测试集上测试模型
+<ul>
+<li>对于线性回归模型，利用测试集数据计算代价函数 J</li>
+<li>
+<img src="/MyImages/image-20200516091605630.png" alt="image-20200516091605630" style="zoom:67%;" />
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="模型选择和交叉验证集"><a class="markdownIt-Anchor" href="#模型选择和交叉验证集"></a> 模型选择和交叉验证集</h1>
+<h2 id="模型选择的方法"><a class="markdownIt-Anchor" href="#模型选择的方法"></a> 模型选择的方法</h2>
+<ul>
+<li>使用训练集训练出 10 个模型</li>
+<li>用 10 个模型分别对交叉验证集计算得出交叉验证误差（代价函数的值）</li>
+<li>选取代价函数值最小的模型</li>
+<li>用步骤 3 中选出的模型对测试集计算得出推广误差（代价函数的值）</li>
+</ul>
+<img src="/MyImages/image-20200516092528849.png" alt="image-20200516092528849" style="zoom:50%;" />
+<h1 id="诊断偏差和方差"><a class="markdownIt-Anchor" href="#诊断偏差和方差"></a> 诊断偏差和方差</h1>
+<ul>
+<li>判断过拟合和欠拟合与偏差、方差的关系。</li>
+</ul>
+<img src="/MyImages/image-20200516093118866.png" alt="image-20200516093118866" style="zoom: 67%;" />
+<ul>
+<li>通常将训练集和交叉验证集的代价函数误差与多项式的次数绘制在同一张图上</li>
+</ul>
+<img src="/MyImages/image-20200516093354773.png" alt="image-20200516093354773" style="zoom:50%;" />
+<ul>
+<li>
+<p>对于训练集，当 𝑑 较小时，模型拟合程度更低，误差较大；随着 𝑑 的增长，拟合程</p>
+<p>度提高，误差减小。</p>
+</li>
+<li>
+<p>对于交叉验证集，当 𝑑 较小时，模型拟合程度低，误差较大；但是随着 𝑑 的增长，</p>
+<p>误差呈现先减小后增大的趋势，转折点是我们的模型开始过拟合训练数据集的时候。</p>
+</li>
+</ul>
+<img src="/MyImages/image-20200516093446803.png" alt="image-20200516093446803" style="zoom: 50%;" />
+<h2 id="判断方法"><a class="markdownIt-Anchor" href="#判断方法"></a> 判断方法</h2>
+<img src="/MyImages/162bbe3ae6c8f46da4f4e05edea2d9fc_1440w.jpg" alt="img" style="zoom:50%;" />
+<ul>
+<li>同时结合前面方差和偏差随次数变换的情况可得结论
+<ul>
+<li>当训练集误差和交叉验证集误差近似时（都高）是欠拟合，有高偏差问题</li>
+<li>当交叉验证集误差大于训练集误差时：是过拟合，有高方差问题。</li>
+</ul>
+</li>
+</ul>
+<h1 id="正则化和偏差方差"><a class="markdownIt-Anchor" href="#正则化和偏差方差"></a> 正则化和偏差/方差</h1>
+<img src="/MyImages/image-20200516095811229.png" alt="image-20200516095811229"  />
+<ul>
+<li>
+<p>选择λ的方法</p>
+<p>1.使用训练集训练出 12 个不同程度正则化的模型</p>
+<p>2.用 12 个模型分别对交叉验证集计算的出交叉验证误差</p>
+<p>3.选择得出交叉验证误差<strong>最小</strong>的模型</p>
+<p>4.运用步骤 3 中选出模型对测试集计算得出推广误差，我们也可以同时将训练集和交叉验证集模型的代价函数误差与 λ 的值绘制在一张图表上：</p>
+</li>
+</ul>
+<h2 id="偏差方差-与-正则化的关系"><a class="markdownIt-Anchor" href="#偏差方差-与-正则化的关系"></a> 偏差/方差 与 正则化的关系</h2>
+<p><img src="/MyImages/image-20200516102004045.png" alt="image-20200516102004045" /></p>
+<ul>
+<li>当 𝜆 较小时，训练集误差较小（过拟合）而交叉验证集误差较大</li>
+<li>随着 𝜆 的增加，训练集误差不断增加（欠拟合），而交叉验证集误差则是先减小后增加</li>
+</ul>
+<h1 id="学习曲线"><a class="markdownIt-Anchor" href="#学习曲线"></a> 学习曲线</h1>
+<ul>
+<li>学习曲线是将训练集误差和交叉验证集误差作为训练集实例数量的函数绘制的图表</li>
+</ul>
+<img src="/MyImages/image-20200516102352692.png" alt="image-20200516102352692" style="zoom:80%;" />
+<ul>
+<li>
+<img src="/MyImages/image-20200516102503027.png" alt="image-20200516102503027" style="zoom:80%;" />
+* 如果用一条直线来模拟这些点，那么无论训练集有多么大误差都不会有太大改观
+* **即高偏差/欠拟合的情况下，增加数据到训练集不一定有帮助**
+</li>
+<li>
+<img src="/MyImages/image-20200516102720570.png" alt="image-20200516102720570" style="zoom: 80%;" />
+* 使用非常高次的多项式来模拟，可以看出，当交叉验证集误差远大于训练集误差时，往训练集增加更多数据可以提高模型的效果。
+* **即在高方差/过拟合的情况下，增加更多数据到训练集可能提高算法效果**
+</li>
+</ul>
+<h1 id="不同情况的做法"><a class="markdownIt-Anchor" href="#不同情况的做法"></a> 不同情况的做法</h1>
+<ol>
+<li>
+<p>获得更多的训练实例——解决高方差</p>
+</li>
+<li>
+<p>尝试减少特征的数量——解决高方差</p>
+</li>
+<li>
+<p>尝试获得更多的特征——解决高偏差</p>
+</li>
+<li>
+<p>尝试增加多项式特征——解决高偏差</p>
+</li>
+<li>
+<p>尝试减少正则化程度 λ——解决高偏差</p>
+</li>
+<li>
+<p>尝试增加正则化程度 λ——解决高方差</p>
+</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/06/30/10%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E4%B8%8E%E9%80%89%E6%8B%A9/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/06/30/12%E8%81%9A%E7%B1%BB/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            12聚类
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/06/30/2%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">2单变量线性回归</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        CuiEnbo
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt=""></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['', '', ''],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: false
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

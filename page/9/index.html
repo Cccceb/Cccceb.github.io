@@ -78,7 +78,7 @@
     
     
     
-    <article id="post-视觉第15讲" class="article article-type-post" itemscope
+    <article id="post-DB4" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -86,8 +86,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC15%E8%AE%B2/"
-    >视觉第15讲</a> 
+  <a class="article-title" href="/2020/03/30/DB4/"
+    >DB4</a> 
 </h2>
  
 
@@ -96,8 +96,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC15%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.901Z" itemprop="datePublished">2020-03-30</time>
+      <a href="/2020/03/30/DB4/" class="article-date">
+  <time datetime="2020-03-30T03:41:31.600Z" itemprop="datePublished">2020-03-30</time>
 </a>
       
       
@@ -114,29 +114,147 @@
       
 
       
-      <h1 id="运动恢复结构-sfm"><a class="markdownIt-Anchor" href="#运动恢复结构-sfm"></a> 运动恢复结构 SFM</h1>
+      <p>数据库的安全性是指保护数据库，防止因用户非法使用数据库造成数据泄漏、更改或破坏。</p>
+<p>数据库系统的安全：包括计算机安全和数据库安全。</p>
+<h1 id="数据库安全性控制"><a class="markdownIt-Anchor" href="#数据库安全性控制"></a> 数据库安全性控制</h1>
+<p>数据库安全性控制的常用方法：用户标识和鉴定、存取控制、视图、审计、数据加密。</p>
+<h2 id="用户标识与鉴别"><a class="markdownIt-Anchor" href="#用户标识与鉴别"></a> 用户标识与鉴别</h2>
 <ol>
-<li>目的：输入一对匹配点的图像坐标，输出这个点的三维坐标及相机内外参数(可能的话)。同时使得目标函数具有最小化重投影误差。</li>
-<li>过程：
+<li>用户标识与鉴别是系统提供的最外层安全保护措施。</li>
+<li>基本方法：系统通过一定方式让用户标识自己的身份或名字。</li>
+</ol>
+<h2 id="自主存取控制-授权与回收"><a class="markdownIt-Anchor" href="#自主存取控制-授权与回收"></a> 自主存取控制-授权与回收</h2>
+<h3 id="存取控制机制的功能"><a class="markdownIt-Anchor" href="#存取控制机制的功能"></a> 存取控制机制的功能</h3>
 <ol>
-<li>特征检测与匹配</li>
-<li>匹配每对图像之间的特征</li>
-<li>用 RANSAC 优化匹配以估计各对之间的基本矩阵</li>
+<li>存取控制机制的组成：
+<ol>
+<li>定义存取权限</li>
+<li>检查存取权限</li>
+</ol>
+</li>
+<li>用户权限定义和合法权检查机制一起组成了DBMS的安全子系统</li>
+</ol>
+<h3 id="常用存取控制方法"><a class="markdownIt-Anchor" href="#常用存取控制方法"></a> 常用存取控制方法</h3>
+<ol>
+<li>自主存取控制：
+<ol>
+<li>同一用户对不同对象有不同的存储权限。</li>
+<li>不同用户对同一对象也有不同的存储权限。</li>
+<li>用户还可以将其拥有的存储权限转授给其他用户。</li>
+<li><strong>优点</strong>：能够通过授权机制有效的控制其他用户对敏感数据的存取。</li>
+<li><strong>缺点</strong>：
+<ol>
+<li>可能存在数据的无意泄漏。</li>
+<li><strong>原因</strong>：这种机制仅仅通过对数据的存取权限来进行安全控制，而对数据本身并无安全性标记。</li>
+<li><strong>解决</strong>：对系统控制下的所有主客体实施强制存取控制。</li>
 </ol>
 </li>
 </ol>
-<h2 id="目标函数"><a class="markdownIt-Anchor" href="#目标函数"></a> 目标函数</h2>
-<img src="/视觉_img/15-1.png" style="zoom:80%">
-<ol>
-<li>目标是使重投影误差平方和最小</li>
-<li>P(xi,Rj,tj)表示把Xi这个点投影到第j个相机。</li>
-<li>Wij：=1代表三维点在图像中出现了；=0代表没出现。</li>
-<li>解不唯一。</li>
+</li>
 </ol>
-<h2 id="重复结构问题的解决"><a class="markdownIt-Anchor" href="#重复结构问题的解决"></a> 重复结构问题的解决</h2>
+<h3 id="授权与回收"><a class="markdownIt-Anchor" href="#授权与回收"></a> 授权与回收</h3>
 <ol>
-<li>预处理：删除不一致的场景图边缘</li>
-<li>后处理：识别和更正重复的结构</li>
+<li>授权语法：见本</li>
+<li>注意：
+<ol>
+<li>DBA拥有数据库操作的所有权限，可以将权限赋给其他用户。</li>
+<li>建立数据库对象的的用户称为该对象的属主，他拥有该对象的所有操作权限。</li>
+<li>授权给全体用户是PUBLIC。</li>
+<li>若指定了WITH GRANT OPTION子句，则获得某种权限的用户还可以把这种权限再授予别的用户。否则，不能传播该权限。</li>
+</ol>
+</li>
+<li>回收权限REVOKE</li>
+<li>授权图：用户拥有授权当且仅当存在从授权图的根到代表该用户的节点的路径。</li>
+</ol>
+<h3 id="数据库角色被命名的一组与数据库操作相关的权限"><a class="markdownIt-Anchor" href="#数据库角色被命名的一组与数据库操作相关的权限"></a> 数据库角色：被命名的一组与数据库操作相关的权限。</h3>
+<ol>
+<li>数据库角色
+<ol>
+<li>角色是权限的集合。</li>
+<li>可以为一组具有相同权限的用户创建一个角色。</li>
+</ol>
+</li>
+<li>相关语法：见本</li>
+</ol>
+<h3 id="权限总结"><a class="markdownIt-Anchor" href="#权限总结"></a> 权限总结</h3>
+<ol>
+<li>DBA拥有对数据库中所有对象的所有权限，并可以根据应用<br />
+的需要将不同的权限授予不同的用户；</li>
+<li>用户对自己建立的基本表和视图拥有全部的操作权限，并且<br />
+可以用GRANT语句把其中某些权限授予其他用户；</li>
+<li>被授权的用户如果有“继续授权”的许可，还可以把获得的<br />
+权限再授予其他用户；</li>
+<li>所有授予出去的权力在必要时可以用REVOKE语句收回；</li>
+<li>使用角色管理数据库可以简化授权的过程；</li>
+</ol>
+<h2 id="强制存取控制"><a class="markdownIt-Anchor" href="#强制存取控制"></a> 强制存取控制</h2>
+<ol>
+<li>强制存取控制：
+<ol>
+<li>对每一个数据对象都标以一定的密级。</li>
+<li>对每一个用户都授予一个级别的许可证。</li>
+<li>对于任意的一个对象，只有具有合法许可证的用户才能存取。</li>
+</ol>
+</li>
+<li>敏感度标记： 绝密（Top Secret、机密（Secret）、秘密（Confidential）、公开（Public）。</li>
+<li>强制存取控制规则
+<ol>
+<li>仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体。</li>
+<li>仅当主体的许可证级别等于客体的密级时，主体才能写相应客体。</li>
+</ol>
+</li>
+<li>DAC和MAC关系
+<ol>
+<li>二者共同构成DBMS的安全机制。因为较高安全性级别提供的安全保护要包含较低级别的所有保护。</li>
+<li>安全性检查，要先进行DAC检查，通过DAC检查的数据对象再由系统进行MAC检查，只有都通过的才能进行存取。</li>
+</ol>
+</li>
+</ol>
+<h2 id="视图机制"><a class="markdownIt-Anchor" href="#视图机制"></a> 视图机制</h2>
+<ol>
+<li>视图机制与授权机制配合使用共同提供安全性。
+<ol>
+<li>先用视图屏蔽掉一部分保密数据。</li>
+<li>再进一步在视图上定义存取权限。</li>
+<li>间接实现了支持存取谓词的用户权限定义。</li>
+</ol>
+</li>
+</ol>
+<h2 id="审计"><a class="markdownIt-Anchor" href="#审计"></a> 审计</h2>
+<ol>
+<li>审计：将用户对数据库的所有操作记录在上面。</li>
+</ol>
+<h2 id="数据加密"><a class="markdownIt-Anchor" href="#数据加密"></a> 数据加密</h2>
+<ol>
+<li>加密方法
+<ol>
+<li>替换方法：将明文中的每一个字符都转换维密文中的每一个字符。</li>
+<li>置换方法：将明文的字符按不同的顺序重新排列。</li>
+<li>混合方法</li>
+</ol>
+</li>
+</ol>
+<h1 id="统计数据库安全性"><a class="markdownIt-Anchor" href="#统计数据库安全性"></a> 统计数据库安全性</h1>
+<ol>
+<li>统计数据库的特点
+<ol>
+<li>允许用户查询聚集类型信息。</li>
+<li>不允许查询单个记录信息。</li>
+</ol>
+</li>
+<li>统计数据库的问题
+<ol>
+<li>隐藏的信息通道</li>
+<li>从合法的查询中推导出不合法的信息。</li>
+</ol>
+</li>
+<li>统计数据库的规则
+<ol>
+<li>任何查询至少要涉及N（N足够大）个以上的记录。</li>
+<li>任意两个查询的相交数据项不能超过M个。</li>
+<li>任一用户的查询次数不能超过1+(N-2)/M次。</li>
+</ol>
+</li>
 </ol>
 
       
@@ -167,7 +285,7 @@
 
 </article>
     
-    <article id="post-视觉第14讲" class="article article-type-post" itemscope
+    <article id="post-DB5" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -175,8 +293,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC14%E8%AE%B2/"
-    >视觉第14讲</a> 
+  <a class="article-title" href="/2020/03/30/DB5/"
+    >DB5</a> 
 </h2>
  
 
@@ -185,8 +303,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC14%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.898Z" itemprop="datePublished">2020-03-30</time>
+      <a href="/2020/03/30/DB5/" class="article-date">
+  <time datetime="2020-03-30T03:41:31.600Z" itemprop="datePublished">2020-03-30</time>
 </a>
       
       
@@ -203,88 +321,67 @@
       
 
       
-      <h1 id="极线"><a class="markdownIt-Anchor" href="#极线"></a> 极线</h1>
-<img src="/视觉_img/14_2.png" style="zoom:1%">
+      <ol>
+<li>数据库的完整性：防止数据库中出现不合语义数据。</li>
+<li>完整性控制机制：
 <ol>
-<li>极线：极面与成像平面的交线</li>
-</ol>
-<h1 id="基本矩阵"><a class="markdownIt-Anchor" href="#基本矩阵"></a> 基本矩阵</h1>
-<h2 id="基本矩阵性质"><a class="markdownIt-Anchor" href="#基本矩阵性质"></a> 基本矩阵性质</h2>
-<ol>
-<li>F将图像1中的点映射到图像2中的极线</li>
-<li>Fp是与p对应的极线</li>
-<li>F<sup>T</sup>q是与q对应的极线</li>
-<li>Fe1=0，F<sup>T</sup>e2=0
-<ol>
-<li><strong>证明</strong> 比如极线恒过e1，则对于任意的q，e1<sup>T</sup>F1<sup>T</sup>q=0，则e1<sup>T</sup>F1<sup>T</sup>=0</li>
+<li>完整性约束条件定义机制。</li>
+<li>完整性检查机</li>
+<li>违约处理.</li>
 </ol>
 </li>
-<li>F的秩是2，行列式为0</li>
-<li>点p在图2中的极线是:Fp</li>
-<li>对应点间<strong>极线约束</strong>为q<sup>T</sup>Fp=0,即匹配点必须在极线上</li>
-<li>特殊点e1和e2(极点)：是相机在另一个相机成像平面上的投影。(两个相机互相拍照)</li>
-<li>所有极线都通过极点</li>
+<li>关系型数据库的三类完整性约束：实体完整性、参照完整性、用户定义完整性。</li>
 </ol>
-<h2 id="求解基本矩阵-已标定时"><a class="markdownIt-Anchor" href="#求解基本矩阵-已标定时"></a> 求解基本矩阵-已标定时</h2>
-<img src="/视觉_img/14_3.png" style="zoom:1%">	
-<p>其中</p>
+<h1 id="实体完整性"><a class="markdownIt-Anchor" href="#实体完整性"></a> 实体完整性</h1>
 <ol>
-<li>ot为baseline</li>
-<li>相机1坐标系即世界坐标系</li>
-<li>p,q为齐次坐标</li>
-<li>旋转矩阵R<sup>-1</sup>=R<sup>T</sup><br />
-<img src="/视觉_img/14_4.png" style="zoom:1%"></li>
+<li>实体完整性定义：
+<ol>
+<li>单属性构成的码：定义为列级或表级约束条件。</li>
+<li>多属性构成的码：只可定义为表级约束条件。</li>
 </ol>
-<img src="/视觉_img/14_5.png" style="zoom:1%">
-<ol start="3">
-<li>与t的叉积可表示为</li>
+</li>
+<li>实体完整性检查和违约处理
+<ol>
+<li>检查主码是否唯一；检查主码的各个属性值是否为空。</li>
 </ol>
-<img src="/视觉_img/14_6.png" style="zoom:1%">
-<img src="/视觉_img/14_7.png" style="zoom:1%">
-<ol start="4">
-<li>求得本质矩阵E</li>
+</li>
 </ol>
-<img src="/视觉_img/14_8.png" style="zoom:1%">
-<ol start="5">
-<li>求得基本矩阵F</li>
+<h1 id="参照完整性"><a class="markdownIt-Anchor" href="#参照完整性"></a> 参照完整性</h1>
+<ol>
+<li>参照完整性定义：若属性F是基本关系R的外码，它与基本关系S的码Ks相对应，则对于R中每个元组在F上的取值必须满足
+<ol>
+<li>参照关系R和被参照关系S不一定是不同的关系。</li>
+<li>外码中若有多个属性，若其一为NULL，则需全NULL。</li>
 </ol>
-<img src="/视觉_img/14_9.png" style="zoom:1%">	
-<h2 id="估计基本矩阵"><a class="markdownIt-Anchor" href="#估计基本矩阵"></a> 估计基本矩阵</h2>
-<p>在不知道K1,K2,R或t的情况下估计F</p>
-<h3 id="8点算法"><a class="markdownIt-Anchor" href="#8点算法"></a> 8点算法</h3>
+</li>
+</ol>
+<h1 id="用户定义完整性"><a class="markdownIt-Anchor" href="#用户定义完整性"></a> 用户定义完整性</h1>
+<ol>
+<li>使用CHECK见本。</li>
+</ol>
+<h1 id="完整性约束命名子句"><a class="markdownIt-Anchor" href="#完整性约束命名子句"></a> 完整性约束命名子句</h1>
+<ol>
+<li>CONSTRAINT</li>
+</ol>
+<h1 id="域中的完整性限制"><a class="markdownIt-Anchor" href="#域中的完整性限制"></a> 域中的完整性限制</h1>
+<p>CREATE DOMAIN,DOMAIN相当于一个自定义的数据类型。</p>
+<h1 id="触发器"><a class="markdownIt-Anchor" href="#触发器"></a> 触发器</h1>
 <ol>
 <li>
-<p>求解思路<br />
-对于每对匹配点，由x’<sup>T</sup>Fx=0</p>
- <img src="/视觉_img/14_10.png" style="zoom:1%">	
-<p>将问题转换成求解让det(Af)最小化的f,其解为A<sup>T</sup>A的最小特征向量。</p>
+<p>触发器：用户定义在关系表上的 一类由事件驱动的特殊存储过程</p>
+ <img src="/DB5_img/1.png" style="zoom:80%">
 </li>
 <li>
-<p>问题</p>
+<p>注</p>
 <ol>
-<li>不能保证F的秩是2</li>
-</ol>
-</li>
-<li>
-<p>解决</p>
-<ol>
-<li>因此应将F换成F’，F’的秩为2，且是|F-F’|最小化</li>
-</ol>
- <img src="/视觉_img/14_11.png" style="zoom:1%">
-</li>
-<li>
-<p>8点算法：</p>
-<ol>
-<li><strong>优点</strong> 是线性的，易于实现且速度快</li>
-<li><strong>缺点</strong> 易受噪声影响，当各列间数量级差别较大的时候，最小二乘法得到不良解。</li>
+<li>触发器可以在触发事件之前或之后执行。</li>
+<li>触发事件为INSERT/DELETE/UPDATE（SELECT不触发）</li>
+<li>分为行级触发器和语句级触发器</li>
+<li>触发器被激活时，执行触发体。</li>
+<li>同一个表上的触发器，先执行BEFORE触发器，再执行SQL，再执行AFTER触发器。</li>
 </ol>
 </li>
 </ol>
-<h2 id="归一化的8点算法"><a class="markdownIt-Anchor" href="#归一化的8点算法"></a> 归一化的8点算法</h2>
-<p>将图像变换到[-1,1]×[-1,1]</p>
-<img src="/视觉_img/14_12.png" style="zoom:1%">
-<img src="/视觉_img/14_13.png" style="zoom:1%">
-<p>其中T为归一化矩阵</p>
 
       
       <!-- reward -->
@@ -314,7 +411,7 @@
 
 </article>
     
-    <article id="post-视觉第13讲" class="article article-type-post" itemscope
+    <article id="post-数据库目录" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -322,8 +419,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC13%E8%AE%B2/"
-    >视觉第13讲</a> 
+  <a class="article-title" href="/2020/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%AE%E5%BD%95/"
+    >数据库目录</a> 
 </h2>
  
 
@@ -332,8 +429,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC13%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.895Z" itemprop="datePublished">2020-03-30</time>
+      <a href="/2020/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%AE%E5%BD%95/" class="article-date">
+  <time datetime="2020-03-30T03:41:23.740Z" itemprop="datePublished">2020-03-30</time>
 </a>
       
       
@@ -350,1187 +447,899 @@
       
 
       
-      <h1 id="极几何"><a class="markdownIt-Anchor" href="#极几何"></a> 极几何</h1>
-<h2 id="基本的立体图算法"><a class="markdownIt-Anchor" href="#基本的立体图算法"></a> 基本的立体图算法</h2>
-<img src="/视觉_img/13_1.png" style="zoom:1%">
-<p>对于左图中每个像素，在右图同一个极线上选择最小匹配成本的像素。</p>
-<ol>
-<li>用SSD衡量成本</li>
-<li>匹配窗口：大窗口粒度粗，小窗口更加精细，但是噪声多。</li>
-</ol>
-<h2 id="能量最小化求解立体视觉"><a class="markdownIt-Anchor" href="#能量最小化求解立体视觉"></a> 能量最小化求解立体视觉</h2>
-<ol>
-<li>目标
-<ol>
-<li>匹配质量：希望每个像素在其他图像中找到一个好的匹配项</li>
-<li>平滑：如果两个像素相邻，他们的应该平移大约相同的量</li>
-</ol>
-</li>
-</ol>
-<h3 id="贪心匹配"><a class="markdownIt-Anchor" href="#贪心匹配"></a> 贪心匹配</h3>
-<ol start="2">
+      <h2 id="第三章基本语法"><a class="markdownIt-Anchor" href="#第三章基本语法"></a> <a href="/2020/03/30/DB3">第三章基本语法</a></h2>
+<h2 id="第四章数据库安全"><a class="markdownIt-Anchor" href="#第四章数据库安全"></a> <a href="/2020/03/30/DB4">第四章数据库安全</a></h2>
+<h2 id="第五章"><a class="markdownIt-Anchor" href="#第五章"></a> <a href="/2020/03/30/DB5/">第五章</a></h2>
+<h2 id="第六章"><a class="markdownIt-Anchor" href="#第六章"></a> <a href="/2020/03/30/DB6/">第六章</a></h2>
+<h2 id="第七章"><a class="markdownIt-Anchor" href="#第七章"></a> <a href="/2020/03/30/DB7/">第七章</a></h2>
+<h2 id="mysql基本语法"><a class="markdownIt-Anchor" href="#mysql基本语法"></a> <a href="/2020/03/30/Mysql%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95">Mysql基本语法</a></h2>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-视觉实验目录" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E5%AE%9E%E9%AA%8C%E7%9B%AE%E5%BD%95/"
+    >视觉实验目录</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E5%AE%9E%E9%AA%8C%E7%9B%AE%E5%BD%95/" class="article-date">
+  <time datetime="2020-03-30T03:25:51.816Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="高斯混合图像"><a class="markdownIt-Anchor" href="#高斯混合图像"></a> <a href="https://github.com/Cccceb/BTF/tree/master/CV_Exp1">高斯混合图像</a></h2>
+<p>将两张图片通过高斯核进行滤波得到一幅图片的高通(left)和另一幅图片的低通部分(right)，然后按照混合比例将两张图片混合得到混合图像</p>
+<p><img src="/MyImages/image-20200407103221556.png" alt="image-20200407103221556" /></p>
+<h2 id="基于harris的角点检测及特征匹配"><a class="markdownIt-Anchor" href="#基于harris的角点检测及特征匹配"></a> <a href="https://github.com/Cccceb/BTF/tree/master/CV_Exp2">基于Harris的角点检测及特征匹配</a></h2>
+<p>本次实验包括三大部分：特征检测，特征描述，特征匹配</p>
+<ul>
 <li>
-<p>定义能量函数E(d)</p>
- <img src="/视觉_img/13_2.png" style="zoom:1%">
-<ol>
-<li>现在要找一个平移量映射D，最大限度的减少一个能量函数E(d)</li>
-<li>独立的选择每一列的最小值d(x,y)=argmin C(x,y,d’)</li>
-</ol>
-</li>
-</ol>
-<h3 id="改进目标函数"><a class="markdownIt-Anchor" href="#改进目标函数"></a> 改进目标函数</h3>
-<img src="/视觉_img/13_3.png" style="zoom:1%">
-<p>其中</p>
-<img src="/视觉_img/13_4.png" style="zoom:1%">
-<p>对于平滑成本，v的选择很多</p>
-<img src="/视觉_img/13_5.png" style="zoom:1%">
-<ol>
-<li>
-<p>一维动态规划</p>
-<ol>
-<li>
-<p>对每条扫描线使用动态规划方法独立求解</p>
+<p>特征检测：本次实验中实现了 Harris 算子，Harris 算子的实现分为三小部分</p>
+<ul>
+<li>计算每个像素处的角点响应强度大小及方向。首先通过Sobel 算子求得 x 方向和 y 方向上的导数。根据 MOPS 论文中所述，为了防止混叠，在较高的高斯金字塔上进行采样，本实验中使用σ=0.5 的高斯核处理，求得 H 矩阵的四个参数，带入公式得到每一点的角点响应强度。方向由该点处的梯度近似给出，注意要转为角度才能通过 <a href="http://test.py" target="_blank" rel="noopener">test.py</a>。</li>
+<li>检测每个点是否是局部最大值，针对 TODO2 采用了简化处理，只判断每个点是否是 7*7 窗口的极大值即可。后续我实现了非 极大值抑制，性能提高 27</li>
+<li>将 特 征 点 的 角 点 响 应 强 度 ， 方 向 ， 坐 标 等 信 息 放 进 cv2.KeyPoint 对象列表中，返回特征点列表。</li>
+</ul>
 </li>
 <li>
-<p>以增量方式构建成本函数D</p>
- <img src="/视觉_img/13_6.png" style="zoom:1%">
+<p>特征描述：本次实验中分别实现了 SimpleFeatureDescriptor 和 MOPS 特征描述。</p>
+<ul>
+<li>
+<p>SimpleFeatureDescriptor：先给矩阵加一圈 2*2 的白边，以防越界，然后取每个点周围 5*5 的区域，并以行序为主序构成描述向量。</p>
 </li>
+<li>
+<p>MOPS 实现需要用到 cv2 的仿射变换函数，仿射变换用到的 矩 阵 由 四 部 分 矩 阵 乘 法 得 到 ： 分 别 是</p>
+<p>平 移 到 原 点 的 矩$$ T1 =np.array([[1,0,-x],[0,1,-y],[0,0,1]]) $$</p>
+</li>
+<li>
+<p>旋 转 到 水 平 的 矩 阵</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi><mo>=</mo><mi>n</mi><mi>p</mi><mi mathvariant="normal">.</mi><mi>a</mi><mi>r</mi><mi>r</mi><mi>a</mi><mi>y</mi><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>m</mi><mi>a</mi><mi>t</mi><mi>h</mi><mi mathvariant="normal">.</mi><mi>c</mi><mi>o</mi><mi>s</mi><mo stretchy="false">(</mo><mi>a</mi><mi>n</mi><mi>g</mi><mi>l</mi><mi>e</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mo>−</mo><mi>m</mi><mi>a</mi><mi>t</mi><mi>h</mi><mi mathvariant="normal">.</mi><mi>s</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>a</mi><mi>n</mi><mi>g</mi><mi>l</mi><mi>e</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">]</mo><mo separator="true">,</mo><mo stretchy="false">[</mo><mi>m</mi><mi>a</mi><mi>t</mi><mi>h</mi><mi mathvariant="normal">.</mi><mi>s</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>a</mi><mi>n</mi><mi>g</mi><mi>l</mi><mi>e</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>m</mi><mi>a</mi><mi>t</mi><mi>h</mi><mi mathvariant="normal">.</mi><mi>c</mi><mi>o</mi><mi>s</mi><mo stretchy="false">(</mo><mi>a</mi><mi>n</mi><mi>g</mi><mi>l</mi><mi>e</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">]</mo><mo separator="true">,</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R = np.array([[math.cos(angle),-math.sin(angle),0],[math.sin(angle),math.co s(angle),0],[0,0,1]])
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">p</span><span class="mord">.</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mopen">(</span><span class="mopen">[</span><span class="mopen">[</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mord">.</span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">−</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mord">.</span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mopen">[</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mord">.</span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mord">.</span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mclose">]</span><span class="mclose">)</span></span></span></span></span></p>
+<p>缩放的矩阵 $$S = np.array([[1/5,0,0],[0,1/5,0],[0,0,1]]) $$</p>
+<p>平移到中心的矩阵 $$T2 = np.array([[1,0,4],[0,1,4],[0,0,1]])$$</p>
+<p>这四部分进行矩阵乘法的结果作为仿射变换的矩阵，将变换的结果按行序为主序展成列表，得到特征描述符。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>特征匹配：本次实验中实现了两种特征匹配 SSD 和 RatioTest，二者的区别是 SSD 是求到其他特征点距离的平方和，二 RatioTest 是选择其中最大的两个距离的平均值。</p>
+</li>
+</ul>
+<p><img src="/MyImages/image-20200407104149788.png" alt="image-20200407104149788" /></p>
+<p><img src="/MyImages/image-20200407104106565.png" alt="image-20200407104106565" style="zoom: 33%;" /><img src="/MyImages/image-20200407104121516.png" alt="image-20200407104121516" style="zoom: 67%;" /></p>
+<ul>
+<li>
+<p>优化：非极大值抑制</p>
+<p>实现了自适应非极大值抑制，在选择区域内最大点的时候，从半径等于图像大小开始，枚举半径，将半径最大的 1250(论文中是 500，实测出来 1500 左右的 AUC 比较好)点选出来，作为基础的特征点。通过在yosemite 数据集上的测试，性能提升 27%。</p>
+</li>
+</ul>
+<h2 id="全景图拼接orbransac拉普拉斯融合"><a class="markdownIt-Anchor" href="#全景图拼接orbransac拉普拉斯融合"></a> <a href="https://github.com/Cccceb/BTF/tree/master/CV_Exp3">全景图拼接(ORB+RANSAC+拉普拉斯融合)</a></h2>
+<ul>
+<li>实现了将一系列水平重叠的照片合成成一张全景图。</li>
+<li>通过ORB进行特征检测，得到特征匹配集</li>
+<li>通过特征匹配集来估计单应映射，其中使用了 SVD 来计算最佳拟合单应映射</li>
+<li>利用 RANSAC 求一个最佳匹配</li>
+<li>对图像进行融合，使用了羽化和拉普拉斯融合</li>
+<li>实现 360 度全景图</li>
+</ul>
+<p><img src="/MyImages/campus_pano_blendwidth200_360degree.png" alt="" /></p>
+<h2 id="立体视觉"><a class="markdownIt-Anchor" href="#立体视觉"></a> <a href="https://github.com/Cccceb/BTF/tree/master/CV_Exp4">立体视觉</a></h2>
+<p>本实验将运用平面扫描立体视觉与光度测量立体视觉的方法，来恢复图像深度，并建立立体图。实验包含三个部分：</p>
+<ul>
+<li>光度测量立体视觉：给定在不同的已知光照方向下从相同视角拍摄的一组图像，从中恢复物体表面的反照率(albedo)和法线方向(normals)。</li>
+<li>平面扫描立体视觉：给定同一场景从不同的视角拍摄的两幅校准图像，从中恢复出粗略的深度图。</li>
+<li>基于泊松方程重建深度图：根据法线图及粗略深 度图，恢复出物体每个点的深度，并重建 3D 网格。</li>
+</ul>
+<p><img src="/MyImages/image-20200407104421416.png" alt="image-20200407104421416" /></p>
+<p><img src="/MyImages/image-20200407104435407.png" alt="image-20200407104435407" /></p>
+<p><img src="/MyImages/image-20200407104457098.png" alt="image-20200407104457098" /></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-计算机视觉目录" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%9B%AE%E5%BD%95/"
+    >计算机视觉目录</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%9B%AE%E5%BD%95/" class="article-date">
+  <time datetime="2020-03-30T03:17:15.384Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="视觉第1讲"><a class="markdownIt-Anchor" href="#视觉第1讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC1%E8%AE%B2/">视觉第1讲</a></h2>
+<h2 id="视觉第2讲"><a class="markdownIt-Anchor" href="#视觉第2讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC2%E8%AE%B2/">视觉第2讲</a></h2>
+<h2 id="视觉第3讲"><a class="markdownIt-Anchor" href="#视觉第3讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC3%E8%AE%B2/">视觉第3讲</a></h2>
+<h2 id="视觉第4讲"><a class="markdownIt-Anchor" href="#视觉第4讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC4%E8%AE%B2/">视觉第4讲</a></h2>
+<h2 id="视觉第5讲"><a class="markdownIt-Anchor" href="#视觉第5讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC5%E8%AE%B2/">视觉第5讲</a></h2>
+<h2 id="视觉第6讲"><a class="markdownIt-Anchor" href="#视觉第6讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC6%E8%AE%B2/">视觉第6讲</a></h2>
+<h2 id="视觉第7讲"><a class="markdownIt-Anchor" href="#视觉第7讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC7%E8%AE%B2/">视觉第7讲</a></h2>
+<h2 id="视觉第8讲"><a class="markdownIt-Anchor" href="#视觉第8讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC8%E8%AE%B2/">视觉第8讲</a></h2>
+<h2 id="视觉第9讲"><a class="markdownIt-Anchor" href="#视觉第9讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC9%E8%AE%B2/">视觉第9讲</a></h2>
+<h2 id="视觉第10讲"><a class="markdownIt-Anchor" href="#视觉第10讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC10%E8%AE%B2/">视觉第10讲</a></h2>
+<h2 id="视觉第11讲"><a class="markdownIt-Anchor" href="#视觉第11讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC11%E8%AE%B2/">视觉第11讲</a></h2>
+<h2 id="视觉第12讲"><a class="markdownIt-Anchor" href="#视觉第12讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC12%E8%AE%B2/">视觉第12讲</a></h2>
+<h2 id="视觉第13讲"><a class="markdownIt-Anchor" href="#视觉第13讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC13%E8%AE%B2/">视觉第13讲</a></h2>
+<h2 id="视觉第14讲"><a class="markdownIt-Anchor" href="#视觉第14讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC14%E8%AE%B2/">视觉第14讲</a></h2>
+<h2 id="视觉第15讲"><a class="markdownIt-Anchor" href="#视觉第15讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC15%E8%AE%B2/">视觉第15讲</a></h2>
+<h2 id="视觉第16讲"><a class="markdownIt-Anchor" href="#视觉第16讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC16%E8%AE%B2/">视觉第16讲</a></h2>
+<h2 id="视觉第17讲"><a class="markdownIt-Anchor" href="#视觉第17讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC17%E8%AE%B2/">视觉第17讲</a></h2>
+<h2 id="视觉第18讲"><a class="markdownIt-Anchor" href="#视觉第18讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC18%E8%AE%B2/">视觉第18讲</a></h2>
+<h2 id="视觉第19讲"><a class="markdownIt-Anchor" href="#视觉第19讲"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC19%E8%AE%B2/">视觉第19讲</a></h2>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-视觉第1讲" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC1%E8%AE%B2/"
+    >视觉第1讲</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC1%E8%AE%B2/" class="article-date">
+  <time datetime="2020-03-30T03:17:13.915Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="滤波器"><a class="markdownIt-Anchor" href="#滤波器"></a> 滤波器</h1>
+<ol>
+<li><strong>滤波</strong>：形成一个新的图像，其像素是原始像素的组合。</li>
+<li>用途：
+<ol>
+<li>提取边缘或轮廓</li>
+<li>消除噪音</li>
+<li>锐化和增强形象</li>
+</ol>
+</li>
+</ol>
+<h1 id="线性滤波"><a class="markdownIt-Anchor" href="#线性滤波"></a> 线性滤波</h1>
+<ol>
+<li>线性滤波：用相邻的线性组合(加权和)替换每个像素</li>
+</ol>
+<p>–&gt;互相关，卷积</p>
+<h2 id="相关"><a class="markdownIt-Anchor" href="#相关"></a> 相关</h2>
+<img src="/视觉_img/1-1.png" style="zoom:1%">
+<ol>
+<li>将图像记为,以H表示权重核（大小为(2K+1)x(2K+1)),并记G为输出图像</li>
+<li>G=H×F</li>
+</ol>
+<h2 id="卷积"><a class="markdownIt-Anchor" href="#卷积"></a> 卷积</h2>
+<img src="/视觉_img/1-2.png" style="zoom:1%">
+<ol>
+<li>与相关相同，只是将权重核在水平和竖直方向翻转。</li>
+<li>妈祖交换律、分配律和结合律</li>
+</ol>
+<h2 id="平均滤波"><a class="markdownIt-Anchor" href="#平均滤波"></a> 平均滤波</h2>
+<ol>
+<li>H 全为1/k，其中k为权重核边长。</li>
+</ol>
+<h2 id="锐化-增强图像-平均滤波"><a class="markdownIt-Anchor" href="#锐化-增强图像-平均滤波"></a> 锐化 = 增强图像-平均滤波</h2>
+<img src="/视觉_img/1-3.png" style="zoom:1%">
+<img src="/视觉_img/1-5.png" style="zoom:1%">
+<h2 id="高斯滤波"><a class="markdownIt-Anchor" href="#高斯滤波"></a> 高斯滤波</h2>
+<ol>
+<li>
+<p>高斯核</p>
+ <img src="/视觉_img/1-4.png" style="zoom:1%">
+<ol>
+<li>σ作用：σ越大，带通越大，高斯核函数的局部影响的范围就越大。中心亮点也越大，卷积后的图像越模糊。</li>
 </ol>
 </li>
 <li>
-<p>二维动态规划</p>
- <img src="/视觉_img/13_7.png" style="zoom:1%">
+<p>高斯滤波器（低通滤波器）</p>
 <ol>
-<li>不能用二维动态规划求解，因为dx,y-1和 dx-1,y可能取决于 dx-1,y-1 的不同值</li>
-<li>2D有许多局部极小值</li>
-<li>以及一个大的搜索群空间</li>
-<li>好的方法是马尔可夫随机场</li>
+<li>用宽度为σ的核卷积两次=以宽度为√2σ的核卷积一次。</li>
 </ol>
 </li>
 </ol>
-<h1 id="通过视差求深度"><a class="markdownIt-Anchor" href="#通过视差求深度"></a> 通过视差求深度</h1>
-<img src="/视觉_img/13_8.png" style="zoom:1%">
+<h2 id="阈值滤波器"><a class="markdownIt-Anchor" href="#阈值滤波器"></a> 阈值滤波器</h2>
+<p><strong>不是线性滤波器</strong></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-视觉第19讲" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC19%E8%AE%B2/"
+    >视觉第19讲</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC19%E8%AE%B2/" class="article-date">
+  <time datetime="2020-03-30T03:17:13.912Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="图像识别"><a class="markdownIt-Anchor" href="#图像识别"></a> 图像识别</h1>
 <ol>
-<li>baseline 极线，平行于成像平面</li>
-<li>X是物体</li>
-<li>x和x’是向量</li>
-<li>(baseline-(x-x’))/baseline=z-f/z</li>
-<li>z为深度</li>
+<li>简单匹配存在的问题：
+<ol>
+<li>遮挡，视角的变化</li>
+<li>类内的变化</li>
+<li>照明变化</li>
+<li>变形</li>
+<li>背景杂乱</li>
 </ol>
-<h1 id="立体重建"><a class="markdownIt-Anchor" href="#立体重建"></a> 立体重建</h1>
+</li>
+<li>没有明确的解</li>
+</ol>
+<h1 id="数据驱动的方法"><a class="markdownIt-Anchor" href="#数据驱动的方法"></a> 数据驱动的方法</h1>
+<img src="/视觉_img/19-1.png">
+<ol>
+<li>收集带有标签的图像数据库</li>
+<li>使用机器学习算法训练图像分类器</li>
+<li>用测试图像评估分类器的效果</li>
+</ol>
+<h2 id="线性分类器"><a class="markdownIt-Anchor" href="#线性分类器"></a> 线性分类器</h2>
+<p>要做</p>
+<ol>
+<li>定义一个损失函数：在训练集上评估我们对分类分数的不满意程度</li>
+<li>优化方法：求解参数的方法，以最小化损失函数</li>
+</ol>
+<h3 id="评分函数-原始数据到类分数"><a class="markdownIt-Anchor" href="#评分函数-原始数据到类分数"></a> 评分函数 原始数据到类分数</h3>
+<img src="/视觉_img/19-2.png">
+<ol>
+<li>要将图像拉成列向量</li>
+<li>偏执向量可归到权重向量中</li>
+</ol>
+<h3 id="损失函数-预测分数与实际标签的一致性"><a class="markdownIt-Anchor" href="#损失函数-预测分数与实际标签的一致性"></a> 损失函数 预测分数与实际标签的一致性</h3>
+<img src="/视觉_img/19-3.png">
+<ol>
+<li>其中yi为真实标签</li>
+<li>目标是通过训练找到最小化损失函数的参数W(评分函数中的权)</li>
+</ol>
+<h2 id="softmax分类"><a class="markdownIt-Anchor" href="#softmax分类"></a> Softmax分类</h2>
+<p>由于分数不直观，所以将分数归一化得到概率分布。推广逻辑斯蒂回归将分数转到(0,1)。</p>
+<img src="/视觉_img/19-4.png">
+<img src="/视觉_img/19-5.png">
+<ol>
+<li>分数转到(0,1)</li>
+<li>Li只对真实标签计算，取值[0,∞]。S=0时，Li=logN</li>
+<li>注意Li的负号</li>
+</ol>
+<h3 id="交叉熵损失"><a class="markdownIt-Anchor" href="#交叉熵损失"></a> 交叉熵损失</h3>
+<ol>
+<li>
+<img src="/视觉_img/19-6.png">
+</li>
+<li>Softmax分类器目标是最小化交叉熵</li>
+</ol>
+<h3 id="kl-散度-相对熵"><a class="markdownIt-Anchor" href="#kl-散度-相对熵"></a> KL 散度 相对熵</h3>
+<img src="/视觉_img/19-7.png">
+<ol>
+<li>描述p与q之间的差异</li>
+<li>非负</li>
+</ol>
+<h3 id="正则化"><a class="markdownIt-Anchor" href="#正则化"></a> 正则化</h3>
+<img src="/视觉_img/19-8.png">
+<img src="/视觉_img/19-13.png">
+<ol>
+<li>使模型更加简单，增强其泛化能力</li>
+<li>使权重均匀</li>
+<li>避免过拟合，避免拟合噪声，增强泛化能力</li>
+</ol>
+<h2 id="设置权重的方法"><a class="markdownIt-Anchor" href="#设置权重的方法"></a> 设置权重的方法</h2>
+<h3 id="随机搜索"><a class="markdownIt-Anchor" href="#随机搜索"></a> 随机搜索</h3>
+<h3 id="随机梯度下降"><a class="markdownIt-Anchor" href="#随机梯度下降"></a> 随机梯度下降</h3>
+<p>跟随斜坡(沿梯度反方向进发)</p>
+<img src="/视觉_img/19-9.png">
+<p>𝛻<sub>w</sub>L = W-α𝛻<sub>w</sub>L</p>
+<ol>
+<li>
+<p>对于一维函数，梯度即导数。对于多维函数，梯度是沿各维的偏导数。</p>
+</li>
+<li>
+<p>某个方向上的斜率是该方向与梯度的点积。</p>
+</li>
+<li>
+<p>两向量方向相同时，点积模长最大。所以下降最快速的方向是负梯度方向。</p>
+</li>
+<li>
+<p>α为学习率：太大会错过最低点，太小收敛速度慢。</p>
+</li>
+<li>
+<p>数值解求法 速度慢</p>
+ <img src="/视觉_img/19-10.png">
+ <img src="/视觉_img/19-11.png">
+ <img src="/视觉_img/19-12.png">
+<p>近似、速度慢、容易编程</p>
+</li>
+<li>
+<p><strong>解析解求法</strong>(梯度检查) 用微积分来求</p>
+ <img src="/视觉_img/19-14.png">
+<p>精确、快速、容易出错</p>
+</li>
+</ol>
+<h3 id="批量梯度下降"><a class="markdownIt-Anchor" href="#批量梯度下降"></a> 批量梯度下降</h3>
+<img src="/视觉_img/19-15.png">
+<h3 id="动量项"><a class="markdownIt-Anchor" href="#动量项"></a> 动量项</h3>
+<img src="/视觉_img/19-16.png">
+<p>使得梯度变换平缓一些</p>
+<h1 id="图像特征分类"><a class="markdownIt-Anchor" href="#图像特征分类"></a> 图像特征分类</h1>
+<p>方法</p>
+<ol>
+<li>建立颜色直方图</li>
+<li>建立梯度直方图</li>
+<li>建立词袋</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-视觉第18讲" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC18%E8%AE%B2/"
+    >视觉第18讲</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC18%E8%AE%B2/" class="article-date">
+  <time datetime="2020-03-30T03:17:13.909Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="光度测量立体视觉"><a class="markdownIt-Anchor" href="#光度测量立体视觉"></a> 光度测量立体视觉</h1>
+<p>基于<strong>朗伯漫反射</strong></p>
+<h2 id="步骤"><a class="markdownIt-Anchor" href="#步骤"></a> 步骤</h2>
+<h3 id="求光照方向"><a class="markdownIt-Anchor" href="#求光照方向"></a> 求光照方向</h3>
+<p>利用铬球的镜面反射</p>
+<img src="/视觉_img/18-2.png">
+### 求法线方向
+<p>假设已知三个点</p>
+<ol>
+<li>
+<img src="/视觉_img/18-3.png">
+</li>
+<li>
+<p>写成矩阵形式</p>
+</li>
+<li>
+ <img src="/视觉_img/18-4.png">
+</li>
+<li>
+<p>求解N</p>
+ <img src="/视觉_img/18-5.png">
+</li>
+<li>
+<p>对每个像素求解可以获得该像素的表面法线方向</p>
+</li>
+<li>
+<p>超过三个光源<br />
+<img src="/视觉_img/18-1.png"></p>
+</li>
+</ol>
+<h3 id="从法线计算深度泊松方程"><a class="markdownIt-Anchor" href="#从法线计算深度泊松方程"></a> 从法线计算深度(泊松方程)</h3>
+<p>将相邻的连个点的连线看成是曲面的切面向量，那么这条线与法线垂直。</p>
+<img src="/视觉_img/18-6.png">
+<h3 id="局限性"><a class="markdownIt-Anchor" href="#局限性"></a> 局限性</h3>
+<p>对于有反射，折射，阴影等情况不起效</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-视觉第17讲" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC17%E8%AE%B2/"
+    >视觉第17讲</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC17%E8%AE%B2/" class="article-date">
+  <time datetime="2020-03-30T03:17:13.906Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="光"><a class="markdownIt-Anchor" href="#光"></a> 光</h1>
+<h2 id="辐射"><a class="markdownIt-Anchor" href="#辐射"></a> 辐射</h2>
+<ol>
+<li>像素亮度决定因素
+<ol>
+<li>光源属性</li>
+<li>表面特性</li>
+</ol>
+</li>
+</ol>
+<h2 id="光谱"><a class="markdownIt-Anchor" href="#光谱"></a> 光谱</h2>
+<p>可见光为400nm-700nm的电磁辐射</p>
+<h2 id="颜色知觉"><a class="markdownIt-Anchor" href="#颜色知觉"></a> 颜色知觉</h2>
+<img src="/视觉_img/17-1.png">
+<img src="/视觉_img/17-2.png">
+<ol>
+<li>视锥细胞和视杆细胞在光谱上充当滤波器。</li>
+</ol>
+<h2 id="亮度对比度和恒常"><a class="markdownIt-Anchor" href="#亮度对比度和恒常"></a> 亮度对比度和恒常</h2>
+<ol>
+<li>亮度对比度：恒定的有色区域根据周围的强度看起来更亮或更暗。</li>
+<li>明度恒常性：当照明条件改变时，人知觉到的物体的相对明度保持不变。</li>
+</ol>
+<h2 id="光照"><a class="markdownIt-Anchor" href="#光照"></a> 光照</h2>
+<h3 id="定向照明"><a class="markdownIt-Anchor" href="#定向照明"></a> 定向照明：</h3>
+<ol>
+<li>所有射线都是平行的</li>
+<li>等价于无穷远的点光源</li>
+</ol>
+<h3 id="漫反射"><a class="markdownIt-Anchor" href="#漫反射"></a> 漫反射</h3>
+<img src="/视觉_img/17-3.png">
+<p>I = N·L</p>
+<ol>
+<li>漫反射反射到各个角度得到的光强一样，与视角无关</li>
+<li>正比于夹角余弦</li>
+</ol>
+<h3 id="三种材料"><a class="markdownIt-Anchor" href="#三种材料"></a> 三种材料</h3>
+<ol>
+<li>理想漫反射：哑光表面</li>
+<li></li>
+</ol>
+<h1 id="图像形成模型"><a class="markdownIt-Anchor" href="#图像形成模型"></a> 图像形成模型</h1>
+<img src="/视觉_img/17-4.png">
+<h2 id="模型"><a class="markdownIt-Anchor" href="#模型"></a> 模型</h2>
+<ol>
+<li>Kd：表示入射光反射的比例</li>
+<li>I：光强度，表示有多少光射进来</li>
+<li>相机相应函数：假设像素值与传入光的能量成线性比例关系。</li>
+</ol>
+<h2 id="用途"><a class="markdownIt-Anchor" href="#用途"></a> 用途</h2>
+<p>测量光的方向以辨别真假照片。</p>
+<p>需要增加假设</p>
+<ol>
+<li>反照率恒定</li>
+<li>已知一些法线</li>
+<li>已知法线的平滑度</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-视觉第16讲" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC16%E8%AE%B2/"
+    >视觉第16讲</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC16%E8%AE%B2/" class="article-date">
+  <time datetime="2020-03-30T03:17:13.904Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="立体视觉"><a class="markdownIt-Anchor" href="#立体视觉"></a> 立体视觉</h1>
+<p>通过多个角度拍摄的标定过 的图像，进行3D对象建模。###</p>
+<h1 id="多视图立体视觉"><a class="markdownIt-Anchor" href="#多视图立体视觉"></a> 多视图立体视觉</h1>
+<ol>
+<li>需要多视图原因
+<ol>
+<li>可能有某些区域的特写</li>
+<li>某些表面在某些视图中缩小了</li>
+<li>某些点可能在某些视图中完全消失。</li>
+<li>多次测量同一个点可以减小误差。</li>
+</ol>
+</li>
+</ol>
+<h1 id="多基线立体视觉"><a class="markdownIt-Anchor" href="#多基线立体视觉"></a> 多基线立体视觉</h1>
+<p>将几台相机矫正到同一共同平面上。可能有宽基线和扭曲问题。</p>
+<h2 id="选择立体视图基线"><a class="markdownIt-Anchor" href="#选择立体视图基线"></a> 选择立体视图基线</h2>
+<img src="/视觉_img/16-1.png" height="5%" width="%5">
+<img src="/视觉_img/16-2.png" height="5%" width="%5">
+<ol>
+<li>基线太小导致深度误差大</li>
+<li>基线太大大致搜索范围大，计算复杂度提高。</li>
+</ol>
+<h2 id="基本方法"><a class="markdownIt-Anchor" href="#基本方法"></a> 基本方法</h2>
+<ol>
+<li>选择参考视图</li>
+<li>使用立体视图算法，但将其中双视图SSD换成SSSD(SUM SSD)</li>
+</ol>
+<h3 id="限制"><a class="markdownIt-Anchor" href="#限制"></a> 限制</h3>
+<ol>
+<li>只能给出深度图，不能给出对象模型</li>
+<li>不适用于广泛分布的视图</li>
+</ol>
+<h1 id="照片一致性评分"><a class="markdownIt-Anchor" href="#照片一致性评分"></a> 照片一致性评分</h1>
+<h2 id="衡量函数"><a class="markdownIt-Anchor" href="#衡量函数"></a> 衡量函数</h2>
+<ol>
+<li>
+<p>SSD</p>
+ <img src="/视觉_img/16-3.png" height="5%" width="%5">
+</li>
+<li>
+<p>SAD</p>
+ <img src="/视觉_img/16-4.png" height="5%" width="%5">
+</li>
+<li>
+<p>ZNCC</p>
+ <img src="/视觉_img/16-5.png" height="5%" width="%5">
+</li>
+</ol>
+<h1 id="平面扫描立体视觉"><a class="markdownIt-Anchor" href="#平面扫描立体视觉"></a> 平面扫描立体视觉</h1>
+<h2 id="基础"><a class="markdownIt-Anchor" href="#基础"></a> 基础</h2>
+<img src="/视觉_img/16-6.png" height="5%" width="%5">
+<ol>
+<li>
+<p>相机1系即世界坐标系，相机1为参考相机</p>
+</li>
+<li>
+<p>深度平面</p>
+ <img src="/视觉_img/16-7.png" height="5%" width="%5">
+<ol>
+<li>其中n<sub>m</sub>为深度平面的法向量</li>
+<li>平面表示为ax+by+cz+d=0</li>
+<li>点到平面距离dm=√a<sup>2</sup>+b<sup>2</sup>+c<sup>2</sup>?</li>
+</ol>
+</li>
+<li>
+<p>从参考相机Pref映射到深度平<br />
+面Πm，再映射到相机Pk的单应<br />
+映射为</p>
+ <img src="/视觉_img/16-8.png" height="5%" width="%5">
+</li>
+</ol>
 <h2 id="过程"><a class="markdownIt-Anchor" href="#过程"></a> 过程</h2>
+<img src="/视觉_img/16-9.png" height="5%" width="%5">
+<h3 id="参考平面"><a class="markdownIt-Anchor" href="#参考平面"></a> 参考平面</h3>
 <ol>
-<li>标定摄像机：标定内外参数</li>
-<li>校正图像：将两个图像放到同一个平面上，且平行于baseline</li>
-<li>计算平移量</li>
-<li>估计深度</li>
-</ol>
-<h2 id="由结构光主动获得立体图"><a class="markdownIt-Anchor" href="#由结构光主动获得立体图"></a> 由结构光主动获得立体图</h2>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-视觉第12讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC12%E8%AE%B2/"
-    >视觉第12讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC12%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.893Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="点和线"><a class="markdownIt-Anchor" href="#点和线"></a> 点和线</h1>
-<h2 id="点和线的对偶性"><a class="markdownIt-Anchor" href="#点和线的对偶性"></a> 点和线的对偶性</h2>
-<img src="/视觉_img/12_1.png" style="zoom:70%">
-<ol>
-<li>对于线上的每一点P,有I·P=0	（面上一点同理）</li>
-<li>由射线P1和P2决定的线I,有I=P1×P2</li>
-<li>两条线I1和I2的交点P，有P=I1×I2</li>
-</ol>
-<h2 id="理想的点和线"><a class="markdownIt-Anchor" href="#理想的点和线"></a> 理想的点和线</h2>
-<img src="/视觉_img/12_2.png" style="zoom:70%">
-<ol>
-<li>
-<p>理想点（无穷远点）</p>
-<ol>
-<li>P(x,y,0)平行于图像平面</li>
-<li>有无限的图像坐标</li>
-</ol>
-</li>
-<li>
-<p>理想线</p>
-<ol>
-<li>I(a,b,0)平行于图像平面</li>
-<li>对应于图像平面过主点的一条线</li>
-<li>由ax+by=0组成的线</li>
-</ol>
-</li>
-</ol>
-<h2 id="面和点的对偶性"><a class="markdownIt-Anchor" href="#面和点的对偶性"></a> 面和点的对偶性</h2>
-<ol>
-<li>一个平面可以用四维向量表示</li>
-<li>点和平面是对偶的：N·P=0</li>
-<li>三点定义一个平面，三个平面定义一个点</li>
-</ol>
-<h1 id="透视投影"><a class="markdownIt-Anchor" href="#透视投影"></a> 透视投影</h1>
-<img src="/视觉_img/12_3.png" style="zoom:40%">
-<h2 id="消失点-1d"><a class="markdownIt-Anchor" href="#消失点-1d"></a> 消失点 1D</h2>
-<img src="/视觉_img/12_4.png" style="zoom:40%">
-<ol>
-<li>消失点：
-<ol>
-<li>是无穷处一个点的投影</li>
-<li>通常投影到图像中的一个有限点</li>
-</ol>
-</li>
-</ol>
-<h2 id="消失点-2d"><a class="markdownIt-Anchor" href="#消失点-2d"></a> 消失点 2D</h2>
-<img src="/视觉_img/12_5.png" style="zoom:40%">
-## 消失点 3D
-<img src="/视觉_img/12_6.png" style="zoom:40%">
-<ol>
-<li>特性
-<ol>
-<li>任意两条平行线都有相同的消失点V</li>
-<li>从光心C通过消失点V的射线与那些平行线平行</li>
-<li>图像可能有多个消失点</li>
-</ol>
-</li>
-</ol>
-<h2 id="消失线"><a class="markdownIt-Anchor" href="#消失线"></a> 消失线</h2>
-<img src="/视觉_img/12_7.png" style="zoom:40%">
-<ol>
-<li>平面上任意一组平行线都定义一个消失点</li>
-<li>消失点的联合就是消失线(地平线)</li>
-<li>不同平面可以定义不同的消失线</li>
-</ol>
-<h2 id="计算消失点"><a class="markdownIt-Anchor" href="#计算消失点"></a> 计算消失点</h2>
-<img src="/视觉_img/12_8.png" style="zoom:40%">
-<p>v = ΠP<sub>∞</sub></p>
-<ol>
-<li>
-<p>解释：</p>
-<ol>
-<li>先得到一条射线Px，其中t是一个自由变化的系数，D是方向向量</li>
-<li>将t-&gt;∞代入，得到P<sub>∞</sub></li>
-<li>将P<sub>∞</sub>投影到成像平面</li>
-</ol>
-</li>
-<li>
-<p>特性：</p>
-<ol>
-<li>P<sub>∞</sub> 是无穷远处的一个点，v是其投影</li>
-<li>仅取决于线的方向</li>
-<li>平行线P<sub>0</sub>+tD和P<sub>1</sub>+tD相交于P<sub>∞</sub></li>
-</ol>
-</li>
-<li>
-<img src="/视觉_img/12_10.png" style="zoom:40%">
-</li>
-</ol>
-<h2 id="计算消失线"><a class="markdownIt-Anchor" href="#计算消失线"></a> 计算消失线</h2>
-<img src="/视觉_img/12_9.png" style="zoom:40%">
-<p>作平行于地面平面且过C的平面与投影平面的交线。</p>
-<ol>
-<li>特性
-<ol>
-<li>I是通过C的水平平面与图像平面的交集</li>
-<li>可以通过地面平面上的两组平行线计算I</li>
-<li>所有与光心C同样高度的点投影到I上</li>
-<li>提供了比较场景中对象高度的方法</li>
-</ol>
-</li>
-</ol>
-<h1 id="通过参照物测量高度"><a class="markdownIt-Anchor" href="#通过参照物测量高度"></a> 通过参照物测量高度</h1>
-<ol>
-<li>
-<p>交叉比—射影不变量</p>
- <img src="/视觉_img/12_11.png" style="zoom:40%">
-</li>
-<li>
-<p>测量高度</p>
- <img src="/视觉_img/12_12.png" style="zoom:40%">
-</li>
-<li>
-<p>实际</p>
- <img src="/视觉_img/12_13.png" style="zoom:40%"></li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-视觉第11讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC11%E8%AE%B2/"
-    >视觉第11讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC11%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.890Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="创建全景图"><a class="markdownIt-Anchor" href="#创建全景图"></a> 创建全景图</h1>
-<h2 id="基本流程"><a class="markdownIt-Anchor" href="#基本流程"></a> 基本流程</h2>
-<ol>
-<li>从同一位置拍摄一系列图像。<strong>光心不动</strong></li>
-<li>计算第二个图像与第一个映像之间的变换。</li>
-<li>变换第二个图像与第一个图像部分重合</li>
-<li>将二者融合在一起创建拼图。</li>
-<li>多个图像重复上述过程</li>
-</ol>
-<img src="/视觉_img/11_1.png" style="zoom:80%">
-## 变换矩阵
-<img src="/视觉_img/11_2.png" style="zoom:80%">
-<img src="/视觉_img/11_3.png" style="zoom:80%">
-<p>注：</p>
-<ol>
-<li>图像平面一般以主点为圆心。</li>
-<li>相机1的坐标系为世界坐标系。</li>
-</ol>
-<h2 id="360全景图"><a class="markdownIt-Anchor" href="#360全景图"></a> 360°全景图</h2>
-<p>使用拼图投影球</p>
-<img src="/视觉_img/11_4.png" style="zoom:80%">
-<p>注：</p>
-<ol>
-<li>球面坐标：弧长</li>
-<li>s为投影球半径</li>
-</ol>
-<h2 id="装配全景图"><a class="markdownIt-Anchor" href="#装配全景图"></a> 装配全景图</h2>
-<ol>
-<li>过程：拼接，融合，裁剪</li>
-<li>问题：出现漂移</li>
-<li>解决</li>
-</ol>
-<img src="/视觉_img/11_5.png" style="zoom:80%">
-<h2 id="图像融合"><a class="markdownIt-Anchor" href="#图像融合"></a> 图像融合</h2>
-<ol>
-<li>
-<p>使用羽化</p>
-<ol>
-<li>窗口大小影响羽化效果。
-<ol>
-<li>窗口大小为0和直接拼接一样</li>
-<li>良好的窗口应该是平滑且没有虚影的。</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>
-<p>金字塔混合<br />
-使用拉普拉斯金子塔在各层次上融合，最终叠加。</p>
-<p>拉普拉斯金字塔</p>
- <img src="/视觉_img/11_6.png" style="zoom:80%">
-</li>
-<li>
-<p>Alpha混合<br />
-<img src="/视觉_img/11_7.png" style="zoom:80%"></p>
-</li>
-<li>
-<p>泊松图像编辑</p>
-</li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-视觉第10讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC10%E8%AE%B2/"
-    >视觉第10讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC10%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.887Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="相机成像原理"><a class="markdownIt-Anchor" href="#相机成像原理"></a> 相机成像原理</h1>
-<ol>
-<li>为什么不使光圈尽可能小?<br />
-（1）使光线减少 （2）衍射影响</li>
-<li>人的眼睛：瞳孔相当于光圈；视网膜上的感光细胞相当于胶片。</li>
-</ol>
-<h2 id="相机模型"><a class="markdownIt-Anchor" href="#相机模型"></a> 相机模型</h2>
-<ol>
-<li>
-<p>投影建模</p>
- <img src="/视觉_img/10_1.png" style="zoom:80%">
- 1. 将相机近似为针孔模型
- 2. 把小孔的位置设在原点
- 3. 将图像平面放在投影中心COP的前面(为了得到正立的相)
- 4. 相机向负z轴看去(右手坐标系下)
-</li>
-<li>
-<p>投影方程</p>
- <img src="/视觉_img/10_2.png" style="zoom:80%">
-<ol>
-<li>
-<p>不是线性变换----&gt;采用3D齐次坐标。</p>
- <img src="/视觉_img/10_3.png" style="zoom:80%">
-</li>
-</ol>
-</li>
-<li>
-<p>透视投影</p>
-<ol>
-<li>
-<p>投影是使用齐次坐标的矩阵乘法：</p>
- <img src="/视觉_img/10_4.png" style="zoom:80%">
-</li>
-<li>
-<p>改变投影变换的吃尺度对变换没有影响</p>
- <img src="/视觉_img/10_5.png" style="zoom:80%">
-</li>
-</ol>
-</li>
-<li>
-<p>正交投影（平行投影）</p>
-<ol>
-<li>
-<p>是透视投影的特殊情况：当光学中心COP到投影平面PP的距离是无限的时候。（1/d = 0）</p>
- <img src="/视觉_img/10_6.png" style="zoom:80%">
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="正交投影的变体"><a class="markdownIt-Anchor" href="#正交投影的变体"></a> 正交投影的变体</h2>
-<ol start="5">
-<li>
-<p>缩放正交（弱透视）</p>
-<p>相当于在物体聚焦到角点前就将图像截获。</p>
- <img src="/视觉_img/10_7.png" style="zoom:80%">
-<p>分两步:</p>
-<ol>
-<li>第一步：整个物体按平行于光轴的方向正交投影到经过物体质心并与图像平面平行的平面上。</li>
-<li>第二步：再按透视模型投影到图像平面上，这一步实际是全局的缩放。</li>
-</ol>
-</li>
-<li>
-<p>仿射投影</p>
- <img src="/视觉_img/10_8.png" style="zoom:80%">
-<p>分两步：</p>
-<ol>
-<li>仍把物体平行投影到过质心且与图象平面平行的平面上，不过这次的投影线不是平行于光轴，而是平行于光心C和物体质心G的连线CG；</li>
-<li>再按透视模型投影到图象平面上。</li>
-</ol>
-</li>
-<li>
-<p>总结</p>
-</li>
-</ol>
-<img src="/视觉_img/10_9.png" style="zoom:80%">
-<h2 id="降维"><a class="markdownIt-Anchor" href="#降维"></a> 降维</h2>
-<ol>
-<li>
-<p>投影属性</p>
-<ol>
-<li>多对一：同一光线上的所有点映射到图像中的同一点。</li>
-<li>点-&gt;点，线-&gt;线（通过角点的线变成一个点）</li>
-<li>平面-&gt;平面（通过角点的平面变成一条线）</li>
-<li>平行线在消失点汇合
-<ol>
-<li>每个方向在空间中都有他自己的消失点，但平行于图像平面的平行线保持平行。</li>
-</ol>
-</li>
-</ol>
- <img src="/视觉_img/10_10.png" style="zoom:80%">
-</li>
-</ol>
-<h2 id="相机参数"><a class="markdownIt-Anchor" href="#相机参数"></a> 相机参数</h2>
-<p>现在我们要将世界坐标系中的一个点投影到相机坐标系中。我们需要知道相机在世界坐标系中的位置和方向。然后透视投影到图像平面上以获得像素坐标。</p>
-<ol>
-<li>
-<p>相机内参数</p>
-<ol>
-<li>从世界坐标系原点到光心COP的平移变换T</li>
-<li>描述相机方向的旋转变换R</li>
-<li>焦距f、主点(x,y)、像素大小（sx,sy）</li>
-</ol>
-</li>
-<li>
- <img src="/视觉_img/10_11.png" style="zoom:80%">
-<p>·</p>
-<p>·</p>
- <img src="/视觉_img/10_12.png" style="zoom:80%">
-<p>这个公式要从右向左看</p>
-<ol>
-<li>平移矩阵即是将相机原点与世界原点重合。</li>
-<li>第二步旋转，是将相机坐标系的三个轴旋转到与世界坐标系坐标轴平行。</li>
-<li>第三步是将世界坐标系中的三维点透过光心进行投影。</li>
-<li>第四步是使用相机内参数将图像变成离散的坐标。</li>
-<li><strong>注意</strong> 该公式中对投影变换进行了拆分，，一部分与内参数乘在了一起。</li>
-</ol>
-</li>
-</ol>
-<h2 id="外参数让相机规范化"><a class="markdownIt-Anchor" href="#外参数让相机规范化"></a> 外参数—让相机规范化</h2>
-<ol>
-<li>
-<p>第一步 平移-c，将相机坐标系原点与世界坐标系原点重合。<br />
-<img src="/视觉_img/10_15.png" style="zoom:80%"></p>
-<p>其中c为相机坐标原点在世界坐标系中的坐标[[tx,ty,tz]].T</p>
-</li>
-<li>
-<p>第二步 旋转R， 将相机坐标系的轴旋转到与世界坐标系轴平行。</p>
- <img src="/视觉_img/10_16.png" style="zoom:80%">
-</li>
-</ol>
-<h2 id="透视投影"><a class="markdownIt-Anchor" href="#透视投影"></a> 透视投影</h2>
-<img src="/视觉_img/10_17.png" style="zoom:80%">
-<h2 id="投影矩阵"><a class="markdownIt-Anchor" href="#投影矩阵"></a> 投影矩阵</h2>
-<img src="/视觉_img/10_18.png" style="zoom:80%">
-<p><strong>注：</strong></p>
-<ol>
-<li>
-<p>平移的三个参数是相机原点在世界坐标系中的坐标。</p>
-</li>
-<li>
-<p>旋转的三个参数是相机坐标系的坐标轴在用世界坐标系的方向向量来表达的向量坐标的转置。</p>
-</li>
-<li>
-<p><strong>将投影矩阵乘开</strong></p>
-</li>
-</ol>
-<img src="/视觉_img/10_19.png" style="zoom:80%">
-<img src="/视觉_img/10_13.png" style="zoom:80%">
-<h2 id="透视失真"><a class="markdownIt-Anchor" href="#透视失真"></a> 透视失真</h2>
-<ol>
-<li>梯形失真</li>
-<li>仰拍导致。解决：移轴镜头</li>
-<li>外侧列更大</li>
-<li>镜头失真：枕型，桶型–&gt;由不完美镜头引起</li>
-<li><strong>修正径向畸变</strong><br />
-<img src="/视觉_img/10_14.png" style="zoom:80%"></li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-视觉第9讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC9%E8%AE%B2/"
-    >视觉第9讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC9%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.883Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="随机抽样一致"><a class="markdownIt-Anchor" href="#随机抽样一致"></a> 随机抽样一致</h1>
-<p>针对最小二乘法出现的离群点问题</p>
-<ol>
-<li>思路
-<ol>
-<li>先求得一条候选直线</li>
-<li>计算与该直线的内群点</li>
-<li>对于所有候选直线，选择内群点最多的那一条。</li>
-</ol>
-</li>
-<li>RANSAC算法
-<ol>
-<li>
-<p>思想：所有的内点将在平移向量上达成一致；少部分离群点彼此矛盾。</p>
-</li>
-<li>
-<p>RANSAC只能在离群点少于50%时才能保证正确解。</p>
-</li>
-<li>
-<p>衡量内点：通过阈值过滤</p>
-<p>阈值与噪声量有关，通常噪声建模为高斯噪声，标准差为3个像素。</p>
-<p>通过设置阈值，使高斯分布中95%的比例位于半径内。</p>
-</li>
-<li>
-<p>算法完整过程</p>
-<ol>
-<li>
-<p>随机选择s个样本点</p>
-<p>通常s=可求解模型的最少样本点数</p>
-</li>
-<li>
-<p>根据样本得到一个解</p>
-</li>
-<li>
-<p>计算内点数</p>
-</li>
-<li>
-<p>重复N次</p>
-</li>
-<li>
-<p>选择具有最多内点的模型。</p>
-</li>
-<li>
-<p>计算所有内点的平均平移向量。</p>
-</li>
-</ol>
-</li>
-<li>
-<p>实验轮数</p>
- <img src="/视觉_img/9_1.png " style="zoom:80%">
-<p>其中p为内点概率；s是每次实验使用的样本点数目；P为能最终找到正确解的概率；R为实验轮次</p>
-</li>
-<li>
-<p>s的取值<br />
-为自由度/2下取整</p>
- <img src="/视觉_img/9_2.png " style="zoom:80%">
-</li>
-<li>
-<p>优点</p>
-<ol>
-<li>简单，通用</li>
-<li>适用于许多不同的问题</li>
-<li>实践中表现良好，通常比蛮力取样要好</li>
-</ol>
-</li>
-<li>
-<p>缺点：</p>
-<ol>
-<li>需要调整参数</li>
-<li>有时需要大量迭代，耗费时间</li>
-<li>内点概率极低时可能失败</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-视觉第8讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC8%E8%AE%B2/"
-    >视觉第8讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC8%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.881Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="图像配准"><a class="markdownIt-Anchor" href="#图像配准"></a> 图像配准</h1>
-<p>问题：给定图像A和B之间的一组匹配项，如何计算从A到B的变换T？</p>
-<ol>
-<li>
-<p>对于平移</p>
-<ol>
-<li>最简单的取n对匹配的移动平均值值<br />
-<img src="/视觉_img/8_1.png" style = "zoom:80%" /></li>
-<li>通过线性方程组求解
-<ol>
-<li>问题：对于n对匹配点，有2两个未知数和2n个方程–&gt;最小二乘法。</li>
-<li>最小二乘法
-<ol>
-<li>
-<p>最小二乘法公式</p>
- <img src="/视觉_img/8_2.png" style = "zoom:80%"/>
-</li>
-<li>
-<p>矩阵形式</p>
- <img src="/视觉_img/8_3.png" style = "zoom:80%"/>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>
-<p>对于仿射变化</p>
-<ol>
-<li>
-<p>有6个未知数</p>
- <img src="/视觉_img/8_4.png" style = "zoom:80%"/>
-</li>
-</ol>
-</li>
-<li>
-<p>对于同态映射（单应映射）</p>
-<ol>
-<li>有8个未知数，至少需要4个匹配对。</li>
-</ol>
- <img src="/视觉_img/8_5.png" style = "zoom:80%"/>
- <img src="/视觉_img/8_6.png" style = "zoom:80%"/>
- <img src="/视觉_img/8_7.png" style = "zoom:80%"/>
-</li>
-<li>
-<p>图像配准过程</p>
-<ol>
-<li>计算A和B的特征</li>
-<li>匹配A和B之间的特征</li>
-<li>使用匹配集计算A到B单应映射矩阵的最小二乘解。</li>
-</ol>
-</li>
-<li>
-<p>离群点（外点）</p>
-</li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-视觉第7讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC7%E8%AE%B2/"
-    >视觉第7讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC7%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.877Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="图像卷绕"><a class="markdownIt-Anchor" href="#图像卷绕"></a> 图像卷绕</h1>
-<p>卷绕&amp;滤波：</p>
-<p>滤波改变图像的值域</p>
-<p>&lt;img src=&quot;/视觉_img/7-1.png&quot;style=“zoom:1%”&gt;</p>
-<p>卷绕改变图像的定义域</p>
-<p>&lt;img src=&quot;/视觉_img/7-2.png&quot;style=“zoom:1%”&gt;</p>
-<h2 id="线性变换"><a class="markdownIt-Anchor" href="#线性变换"></a> 线性变换</h2>
-<ol>
 <li>
-<p>缩放</p>
-<p>&lt;img src=&quot;/视觉_img/7-3.png&quot;style=“zoom:1%”&gt;</p>
+<p>与成像平面平行<br />
+<img src="/视觉_img/16-10.png" height="5%" width="%5"></p>
 </li>
 <li>
-<p>旋转</p>
-<p>&lt;img src=&quot;/视觉_img/7-4.png&quot;style=“zoom:1%”&gt;</p>
-<ol>
-<li>R<sup>-1</sup>=R<sup>T</sup></li>
-</ol>
-</li>
-<li>
-<p>镜像</p>
-<ol>
-<li>
-<p>关于Y轴镜像</p>
-<p>&lt;img src=&quot;/视觉_img/7-5.png&quot;style=“zoom:1%”&gt;</p>
-</li>
-<li>
-<p>关于y=x镜像</p>
-<p>&lt;img src=&quot;/视觉_img/7-6.png&quot;style=“zoom:1%”&gt;</p>
-</li>
-</ol>
-</li>
-<li>
-<p>剪切</p>
-</li>
-<li>
-<p>性质：</p>
-<ol>
-<li>原点映射到原点</li>
-<li>直线映射到直线</li>
-<li>平行线保持平行</li>
-<li>保持比率</li>
-<li>线性变换的组合仍然是线性变换。</li>
-</ol>
-</li>
-</ol>
-<h2 id="非线性变换仿射变换"><a class="markdownIt-Anchor" href="#非线性变换仿射变换"></a> 非线性变换–仿射变换</h2>
-<p>&lt;img src=&quot;/视觉_img/7-8.png&quot;style=“zoom:1%”&gt;</p>
-<p>方式变换是线性变换和平移变换的组合</p>
-<ol>
-<li>
-<p>基本仿射变换</p>
-<p>&lt;img src=&quot;/视觉_img/7-7.png&quot;style=“zoom:1%”&gt;</p>
-</li>
-<li>
-<p>仿射变换的性质</p>
-<ol>
-<li>原点不一定映射到原点</li>
-<li>直线映射到直线</li>
-<li>平行线保持平行</li>
-<li>保持比率</li>
-<li>仿射变换的组合仍然是仿射变换</li>
-</ol>
-</li>
-</ol>
-<h2 id="投影变换透视变换单应映射"><a class="markdownIt-Anchor" href="#投影变换透视变换单应映射"></a> 投影变换(透视变换/单应映射)</h2>
-<p>&lt;img src=&quot;/视觉_img/7-9.png&quot;style=“zoom:1%”&gt;</p>
-<ol>
-<li>8个自由度</li>
-<li>投影变换的属性
-<ol start="2">
-<li>
-<p>保直线</p>
-</li>
-<li>
-<p>原点不一定映射到原点</p>
-</li>
-<li>
-<p>不保平行</p>
-</li>
-<li>
-<p>不保比率</p>
-</li>
-<li>
-<p>投影的组合仍然是投影变换</p>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
-<p>&lt;img src=&quot;/视觉_img/7-10.png&quot;style=“zoom:1%”&gt;</p>
-<h1 id="实现图像卷绕"><a class="markdownIt-Anchor" href="#实现图像卷绕"></a> 实现图像卷绕</h1>
-<h2 id="前向卷绕"><a class="markdownIt-Anchor" href="#前向卷绕"></a> 前向卷绕</h2>
-<p>将每个像素f (x,y)复制到g图中对应位置(x’,y’) = T(x,y)</p>
-<ol>
-<li>如果(x’,y’)不是整数，则将像素值分配给四个最近邻，记录每个点的权重并在最后归一化。</li>
-<li><strong>问题</strong> 可能有空洞，效果是混叠与模糊</li>
-</ol>
-<h2 id="反向卷绕"><a class="markdownIt-Anchor" href="#反向卷绕"></a> 反向卷绕</h2>
-<p>获取每个像素g(x’, y’) 在原图像中对应的位 置 (x, y) = T<sup>-1</sup>(x’<br />
-, y’) 处的像素值f(x, y)</p>
-<ol>
-<li>如果(x,y)不是整数，则f(x,y)的颜色值通过原图像中邻域的插值获得，且可以使用滤波器来控制混叠。</li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-视觉第6讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC6%E8%AE%B2/"
-    >视觉第6讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC6%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.874Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="特征描述符"><a class="markdownIt-Anchor" href="#特征描述符"></a> 特征描述符</h1>
-<ol>
-<li>性质：
-<ol>
-<li>不变性：图像被变换，描述符应该不变</li>
-<li>区分力：每个点的描述符是高度唯一的</li>
-</ol>
-</li>
-</ol>
-<h2 id="实现不变性"><a class="markdownIt-Anchor" href="#实现不变性"></a> 实现不变性</h2>
-<ol>
-<li>确保检测器是不变的</li>
-<li>设计不变的特征描述符</li>
-</ol>
-<h2 id="旋转不变性"><a class="markdownIt-Anchor" href="#旋转不变性"></a> 旋转不变性</h2>
-<p>通过寻找图像块的主导方向实现，主导方向为<br />
-1. H的特征向量Xmax对应的λmax<br />
-2. 梯度方向</p>
-<h2 id="mops"><a class="markdownIt-Anchor" href="#mops"></a> MOPS</h2>
-<ol>
-<li><strong>步骤</strong>：
-<ol>
-<li>选出特征点周围40×40的窗口</li>
-<li>缩放到1/5大小</li>
-<li>旋转至水平</li>
-<li>在以特征为中心的8×8窗口内采样</li>
-<li>规格化：强度减去平均值除以标准差，使之均值为0，方差为1。</li>
-</ol>
-</li>
-</ol>
-<h2 id="sift"><a class="markdownIt-Anchor" href="#sift"></a> SIFT</h2>
-<ol>
-<li>
-<p><strong>步骤</strong></p>
-<ol>
-<li>取特征周围16×16的窗口，划分为4×4单元格</li>
-<li>为每个像素计算边缘方向(梯度方向-90°)</li>
-<li>通过梯度幅值阈值去除弱的边缘</li>
-<li>为剩余边缘<strong>方向</strong>建立直方图，得到16个单元格×8方向=128维描述符</li>
-<li>将该128维描述符归一化到单位长度</li>
-</ol>
-</li>
-<li>
-<p>性质：</p>
-<ol>
-<li>可以处理视角变化</li>
-<li>适应光照变化</li>
-<li>快速高效</li>
-</ol>
-</li>
-</ol>
-<h1 id="特征匹配"><a class="markdownIt-Anchor" href="#特征匹配"></a> 特征匹配</h1>
-<p>想找到最佳匹配</p>
-<ol>
-<li>定义距离函数来比较两个描述符</li>
-<li>测试I2中所有的特征，找出距离最小的一个。</li>
-</ol>
-<h2 id="特征距离"><a class="markdownIt-Anchor" href="#特征距离"></a> 特征距离</h2>
-<ol>
-<li>定义为||f1-f2||
-<ol>
-<li><strong>问题</strong> 可能对不正确匹配给出小的距离。</li>
-<li><strong>解决</strong> 定义距离比= ||f1-f2||/||f1-f2’||
-<ol>
-<li>f2是f1在I2中最好的SSD匹配</li>
-<li>f2’是f1在I2中次好的SSD匹配</li>
-<li>距离比可以对不正确的匹配给出较大的值，用阈值过滤即可。</li>
-</ol>
-</li>
-</ol>
+<p>其他方向</p>
+ <img src="/视觉_img/16-11.png" height="5%" width="%5">
 </li>
 </ol>
-<h1 id="结果评估"><a class="markdownIt-Anchor" href="#结果评估"></a> 结果评估</h1>
+<h1 id="深度图融合"><a class="markdownIt-Anchor" href="#深度图融合"></a> 深度图融合</h1>
+<p>方法</p>
 <ol>
-<li>最大化真阳性，最小化假阳性</li>
+<li>使用多基线方法计算一个深度图</li>
+<li>体积融合</li>
 </ol>
-<h2 id="roc-曲线"><a class="markdownIt-Anchor" href="#roc-曲线"></a> Roc 曲线</h2>
-<img src="/视觉_img/6-1.png" style="zoom:1%">
-<img src="/视觉_img/6-2.png" style="zoom:1%">
-1. AUC:一个正例，一个负例，预测为正的概率值比负的概率值还要大的可能性。
 
       
       <!-- reward -->
@@ -1566,7 +1375,7 @@
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/8/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/10/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/8/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/10/">下一页</a>
   </nav>
   
 </section>
