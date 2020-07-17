@@ -78,6 +78,211 @@
     
     
     
+    <article id="post-9神经网络学习" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/30/9%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0/"
+    >9神经网络学习</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/30/9%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2020-06-30T15:22:17.779Z" itemprop="datePublished">2020-06-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="代价函数"><a class="markdownIt-Anchor" href="#代价函数"></a> 代价函数</h1>
+<img src="/MyImages/image-20200409111224222.png" alt="image-20200409111224222" style="zoom:67%;" />
+<ul>
+<li>
+<p>对于每一行特征，都会给出K个预测，在K的预测中选择可能性最高的一个作为预测的分类</p>
+</li>
+<li>
+<p>最后一项为正则化项。正则化的那一项只是排除了每一层𝜃0后，每一层的𝜃 矩阵的和。最里层的循环𝑗循环所有的行（由𝑠𝑙 +1 层的激活单元数决定），循环𝑖则循环所有的列，由该层（𝑠𝑙层）的激活单</p>
+<p>元数所决定。即：ℎ𝜃(𝑥)与真实值之间的距离为每个样本-每个类输出的加和，对参数进行<strong>regularization</strong> 的 <strong>bias</strong> 项处理所有参数的平方和。</p>
+</li>
+</ul>
+<h1 id="反向传播算法"><a class="markdownIt-Anchor" href="#反向传播算法"></a> 反向传播算法</h1>
+<ul>
+<li>目的是计算$$\frac{\alpha}{\alpha\theta_{ij}^{(l)}}J(\theta)$$</li>
+<li>首先计算最后一层的误差，然后再一层一层反向求出各层的误差，知道导数第二层</li>
+</ul>
+<h2 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h2>
+<ul>
+<li>
+<p>假设已知一个四层的神经网络，其中K=4,S<sub>L</sub>=4,L=4</p>
+</li>
+<li>
+<p>前向传播得到</p>
+<img src="/MyImages/image-20200409112541529.png" alt="image-20200409112541529" style="zoom:50%;" />
+</li>
+<li>
+<p>然后反向传播计算误差</p>
+<ul>
+<li>
+<p>计算最后一层的误差，𝛿(4) = 𝑎(4) − 𝑦</p>
+</li>
+<li>
+<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 38: …) ∗ 𝑔′(𝑧(3)) $̲$其中
+
+* 𝑔′(𝑧(3…'>𝛿(3) = (𝛩(3))^𝑇𝛿(4) ∗ 𝑔′(𝑧(3)) $$其中
+
+* 𝑔′(𝑧(3)) = 𝑎(3) ∗ (1 − 𝑎(3))
+* $$(𝜃(3))^𝑇𝛿(4)$$是权重导致的误差的和
+
+</p>
+</li>
+<li>
+<p>第一层是输入变量，不存在误差。假设𝜆 = 0，即我们不做任何正则化处理时有：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mi>α</mi><mrow><mi>α</mi><msubsup><mi>θ</mi><mrow><mi>i</mi><mi>j</mi></mrow><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msubsup></mrow></mfrac><mi>J</mi><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mi>a</mi><mi>j</mi><mrow><mo stretchy="false">(</mo><mi>l</mi><mo stretchy="false">)</mo></mrow></msubsup><msubsup><mi>δ</mi><mi>i</mi><mrow><mi>l</mi><mo>+</mo><mn>1</mn></mrow></msubsup></mrow><annotation encoding="application/x-tex">\frac{\alpha}{\alpha\theta_{ij}^{(i)}}J(\theta)=a_j^{(l)}\delta_i^{l+1}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.4553320000000003em;vertical-align:-1.347772em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.10756em;"><span style="top:-2.11em;"><span class="pstrut" style="height:3.0448em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.4231360000000004em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3.2198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">i</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.412972em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.2748em;"><span class="pstrut" style="height:3.0448em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.7218em;"><span class="pstrut" style="height:3.0448em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.347772em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.4577719999999998em;vertical-align:-0.412972em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.4231360000000004em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.2198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.412972em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999998em;"><span style="top:-2.433005em;margin-left:-0.03785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.266995em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>𝑙 代表目前所计算的是第几层。</li>
+<li>𝑗 代表目前计算层中的激活单元的下标，也将是下一层的第𝑗个输入变量的下标。</li>
+<li>𝑖 代表下一层中误差单元的下标，是受到权重矩阵中第𝑖行影响的下一层中的误差单元的下标</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="考虑正则化处理"><a class="markdownIt-Anchor" href="#考虑正则化处理"></a> 考虑正则化处理</h2>
+<ul>
+<li>
+<p>如果我们考虑正则化处理，并且我们的训练集是一个特征矩阵而非向量。在上面的特殊情况中，我们需要计算每一层的误差单元来计算代价函数的偏导数。在更为一般的情况中，我们同样需要计算每一层的误差单元，但是我们需要为整个训练集计算误差单元，此时的误差单元也是一个矩阵，用$$Δ_{ij}^{(l)}$$来表示第l层的第i个激活单元收到第j个参数影响而导致的误差</p>
+</li>
+<li>
+<p><img src="/MyImages/image-20200409115010301.png" alt="image-20200409115010301" /></p>
+</li>
+<li>
+<p>求出$$Δ_{ij}^{(l)}$$后，计算代价函数的偏导数</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>D</mi><mrow><mi>i</mi><mi>j</mi></mrow><mrow><mo stretchy="false">(</mo><mi>l</mi><mo stretchy="false">)</mo></mrow></msubsup><mo>:</mo><mfrac><mn>1</mn><mi>m</mi></mfrac><msub><mi mathvariant="normal">Δ</mi><mrow><mi>i</mi><msup><mi>j</mi><mrow><mo stretchy="false">(</mo><mi>l</mi><mo stretchy="false">)</mo></mrow></msup></mrow></msub><mo>+</mo><mi>λ</mi><msubsup><mi>θ</mi><mrow><mi>i</mi><mi>j</mi></mrow><mrow><mo stretchy="false">(</mo><mi>l</mi><mo stretchy="false">)</mo></mrow></msubsup><mi>i</mi><mi>f</mi><mi>k</mi><mi mathvariant="normal">≠</mi><mn>0</mn><mspace linebreak="newline"></mspace><msubsup><mi>D</mi><mrow><mi>i</mi><mi>j</mi></mrow><mrow><mo stretchy="false">(</mo><mi>l</mi><mo stretchy="false">)</mo></mrow></msubsup><mo>:</mo><mfrac><mn>1</mn><mi>m</mi></mfrac><msub><mi mathvariant="normal">Δ</mi><mrow><mi>i</mi><msup><mi>j</mi><mrow><mo stretchy="false">(</mo><mi>l</mi><mo stretchy="false">)</mo></mrow></msup></mrow></msub><mi>i</mi><mi>f</mi><mi>k</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">D_{ij}^{(l)}:\frac{1}{m}Δ_{ij^{(l)}}+\lambda\theta_{ij}^{(l)} if k \neq0\\
+D_{ij}^{(l)}:\frac{1}{m}Δ_{ij^{(l)}}if k =0
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.4577719999999998em;vertical-align:-0.412972em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.4231360000000004em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3.2198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.412972em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">m</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord">Δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.4693750000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8220357142857143em;"><span style="top:-2.8220357142857138em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5357142857142856em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.366733em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.4577719999999998em;vertical-align:-0.412972em;"></span><span class="mord mathdefault">λ</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.4231360000000004em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3.2198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.412972em;"><span></span></span></span></span></span></span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1.4577719999999998em;vertical-align:-0.412972em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.4231360000000004em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3.2198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.412972em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">m</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord">Δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.4693750000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8220357142857143em;"><span style="top:-2.8220357142857138em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5357142857142856em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.366733em;"><span></span></span></span></span></span></span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></span></p>
+</li>
+</ul>
+<h1 id="杂记"><a class="markdownIt-Anchor" href="#杂记"></a> 杂记</h1>
+<h2 id="静态系统-动态系统"><a class="markdownIt-Anchor" href="#静态系统-动态系统"></a> 静态系统 &amp; 动态系统</h2>
+<ul>
+<li>静态系统与历史状态无关，没有记忆能力</li>
+<li>动态系统与历史状态有关，一个系统中只要有部分是动态的，那么整个系统就是动态的</li>
+</ul>
+<h2 id="反向传播"><a class="markdownIt-Anchor" href="#反向传播"></a> 反向传播</h2>
+<ul>
+<li>
+<p>目标函数$$E_p(W)=\frac{1}{2}\sum_k(y_k-O_k<sup>M)</sup>2$$</p>
+</li>
+<li>
+<p>更新权重<img src="/MyImages/image-20200424215640128.png" alt="image-20200424215640128" style="zoom: 50%;" /></p>
+</li>
+<li>
+<p>求偏导<img src="/MyImages/image-20200424215706733.png" alt="image-20200424215706733" style="zoom: 50%;" /></p>
+</li>
+<li>
+<p>误差对第k层第j个神经元的偏导</p>
+<img src="/MyImages/image-20200424215855262.png" alt="image-20200424215855262" style="zoom: 50%;" />
+</li>
+</ul>
+<h3 id="加速学习img-srcmyimagesimage-20200424224548636png-altimage-20200424224548636-stylezoom67"><a class="markdownIt-Anchor" href="#加速学习img-srcmyimagesimage-20200424224548636png-altimage-20200424224548636-stylezoom67"></a> 加速学习<img src="/MyImages/image-20200424224548636.png" alt="image-20200424224548636" style="zoom:67%;" /></h3>
+<ul>
+<li>第二项就好像加上一个惯性</li>
+</ul>
+<h3 id="顺序与批量梯度下降"><a class="markdownIt-Anchor" href="#顺序与批量梯度下降"></a> 顺序与批量梯度下降</h3>
+<ul>
+<li>顺序模型是指
+<ul>
+<li>计算速度更快</li>
+<li>更适合大型数据集</li>
+<li>使权值空间的搜索具有随机性</li>
+<li>更不容易陷入到局部极小值</li>
+<li>较难建立算法收敛的理论条件</li>
+</ul>
+</li>
+</ul>
+<h3 id="学习结束标志"><a class="markdownIt-Anchor" href="#学习结束标志"></a> 学习结束标志</h3>
+<ul>
+<li>梯度向量
+<ul>
+<li>当梯度向量的欧几里德范数达到一个足够小的梯度阈值时结束</li>
+</ul>
+</li>
+<li>错误减少
+<ul>
+<li>如果两代之间的误差的减少量很小，那么可以停止学习</li>
+</ul>
+</li>
+<li>泛化性能
+<ul>
+<li>当泛化性能到达顶点的时候结束</li>
+</ul>
+</li>
+</ul>
+<h3 id="隐藏神经元数目取决于"><a class="markdownIt-Anchor" href="#隐藏神经元数目取决于"></a> 隐藏神经元数目取决于</h3>
+<ul>
+<li>训练样本数量</li>
+<li>输入输出神经元数量</li>
+<li>噪声和数据质量</li>
+<li>要学习的问题的复杂程度</li>
+<li>激活函数的形式</li>
+<li>学习算法</li>
+</ul>
+<p>隐藏神经元数太少，导致误差很大；隐藏神经元太多，会导致模型自由度大，参数多，学习慢，得到的模型也更可能出现过拟合</p>
+<h3 id="学-习"><a class="markdownIt-Anchor" href="#学-习"></a> 学 &amp; 习</h3>
+<ul>
+<li>学：和别人学，是有监督的</li>
+<li>习：是自己悟，是无监督的</li>
+</ul>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-算法" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -3300,127 +3505,6 @@
 <p>​																																	<strong>崔恩博</strong></p>
 </li>
 </ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-数据挖掘实验二" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/13/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%AE%9E%E9%AA%8C%E4%BA%8C/"
-    >数据挖掘实验二</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/06/13/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%AE%9E%E9%AA%8C%E4%BA%8C/" class="article-date">
-  <time datetime="2020-06-13T07:26:10.985Z" itemprop="datePublished">2020-06-13</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p><a href="https://github.com/Cccceb/No3.second.git">源码:https://github.com/Cccceb/No3.second.git</a></p>
-<h1 id="实验内容"><a class="markdownIt-Anchor" href="#实验内容"></a> 实验内容</h1>
-<p>1、 数据来源 <a href="http://archive.ics.uci.edu/ml/datasets/Congressional+Voting+Records" target="_blank" rel="noopener">http://archive.ics.uci.edu/ml/datasets/Congressional+Voting+Records</a></p>
-<p>2、使用 Apriori算法，支持度设为 30%，置信度为 90%，挖掘高置信度的规则</p>
-<h1 id="分析及设计"><a class="markdownIt-Anchor" href="#分析及设计"></a> 分析及设计</h1>
-<h2 id="转换数据集"><a class="markdownIt-Anchor" href="#转换数据集"></a> 转换数据集</h2>
-<p>首先将数据集转换为课堂常见的形式，每一条记录中如果为赞同，那么记录该列的正索引，否则记录负索引，忽略?。其中第1列，将‘republican’标记为正索引</p>
-<h2 id="获取频繁项集"><a class="markdownIt-Anchor" href="#获取频繁项集"></a> 获取频繁项集</h2>
-<ol>
-<li>实现计算支持度的函数caluSupp，该函数通过遍历整个数据库和候选项集列表，累加每个候选集的出现次数。然后计算其支持度与支持度阈值比较，返回频繁项集和所有候选项集的支持度计数</li>
-<li>[-17,-1],[1,17]构成了候选1-项集，利用上述函数计算频繁1-项集。</li>
-<li>将频繁1-项集中元素进行两两合并，得到候选2-项集，再利用1中函数计算得到频繁2-项集。同时扩展所有候选项集的支持度计数</li>
-<li>将频繁k-项集中元素前k-2个元素相同的项集进行两两合并得到候选k+1-项集，以支持度阈值过滤得到频繁k+1项集</li>
-<li>重复步骤4直到频繁k-项集为空</li>
-</ol>
-<h2 id="推导关联规则"><a class="markdownIt-Anchor" href="#推导关联规则"></a> 推导关联规则</h2>
-<ol>
-<li>从频繁2-项集开始挖掘关联规则。对于频繁2-项集，只需要判断两两之间是否有关联关系，即对于集合{a,b}只需要计算S(a,b)/S(a)以及S(a,b)/S(b)即可</li>
-<li>对于其他频繁k-项集(k&gt;2)，则需要递归判断。对于规则$$A\to B$$，其中A,B为集合，首先判断B大小为1的情况计算其置信度，并通过置信度阈值过滤。然后逐步增大B的大小(利用计算频繁项集中的合并函数)，再次计算置信度，并用阈值过滤。重复上述步骤直到B的大小=频繁k-项集大小-1时停止。返回得到的规则</li>
-</ol>
-<h1 id="详细实现"><a class="markdownIt-Anchor" href="#详细实现"></a> 详细实现</h1>
-<h2 id="转换数据集-2"><a class="markdownIt-Anchor" href="#转换数据集-2"></a> 转换数据集</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> joblib</span><br><span class="line">dataset = pd.read_table(<span class="string">"./house-votes-84.data"</span>,sep=<span class="string">','</span>,header = <span class="literal">None</span>).values</span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(dataset)):</span><br><span class="line">    tmp = []</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(dataset[i])):</span><br><span class="line">        <span class="keyword">if</span> dataset[i,j] == <span class="string">'y'</span> <span class="keyword">or</span> dataset[i,j] == <span class="string">'republican'</span>:</span><br><span class="line">            tmp.append(j)</span><br><span class="line">        <span class="keyword">elif</span> dataset[i,j] == <span class="string">'n'</span> <span class="keyword">or</span> dataset[i,j] == <span class="string">'democrat'</span>:</span><br><span class="line">            tmp.append(-(j+<span class="number">1</span>))</span><br><span class="line">    a.append(tmp)</span><br><span class="line">joblib.dump(a,<span class="string">"MyDataset"</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="获取频繁项集-2"><a class="markdownIt-Anchor" href="#获取频繁项集-2"></a> 获取频繁项集</h2>
-<h3 id="计算支持度"><a class="markdownIt-Anchor" href="#计算支持度"></a> 计算支持度</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">caluSupp</span><span class="params">(dataset, Ck, minSupport)</span>:</span></span><br><span class="line">    total = <span class="number">435</span></span><br><span class="line">    Ck = list(Ck)</span><br><span class="line">    tmp = &#123;&#125;<span class="comment"># tmp用来暂存支持度计数</span></span><br><span class="line">    <span class="keyword">for</span> tid <span class="keyword">in</span> dataset:</span><br><span class="line">        <span class="keyword">for</span> can <span class="keyword">in</span> Ck:</span><br><span class="line">            <span class="keyword">if</span> can.issubset(tid): <span class="comment"># can是一个集合类型</span></span><br><span class="line">                <span class="keyword">if</span> can <span class="keyword">not</span> <span class="keyword">in</span> tmp.keys():<span class="comment"># 第一次加入初始化为1</span></span><br><span class="line">                    tmp[can] = <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:	<span class="comment"># 之后每次+1</span></span><br><span class="line">                    tmp[can] += <span class="number">1</span></span><br><span class="line">    frequency = []</span><br><span class="line">    supportData = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> tmp:</span><br><span class="line">        <span class="comment"># 计算支持度</span></span><br><span class="line">        support = tmp[key] / total</span><br><span class="line">        <span class="keyword">if</span> support &gt;= minSupport:</span><br><span class="line">            <span class="comment"># 将满足阈值的放入频繁项集中</span></span><br><span class="line">            frequency.append(key)</span><br><span class="line">        <span class="comment"># 记录所有的支持度</span></span><br><span class="line">        supportData[key] = support</span><br><span class="line">    <span class="keyword">return</span> frequency, supportData</span><br></pre></td></tr></table></figure>
-<h3 id="apriori算法生成频繁项集"><a class="markdownIt-Anchor" href="#apriori算法生成频繁项集"></a> Apriori算法生成频繁项集</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">apriori</span><span class="params">(dataSet, minSupport)</span>:</span></span><br><span class="line">    C1 = map(frozenset,[[i] <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">17</span>)])</span><br><span class="line">    <span class="comment"># 对每一行进行 set 转换，然后存放到集合中</span></span><br><span class="line">    dataSet = list(map(set, dataSet))</span><br><span class="line">    <span class="comment"># print 'dataSet=', dataSet</span></span><br><span class="line">    <span class="comment"># 计算候选数据集 C1 在数据集 dataSet 中的支持度，并返回支持度大于 minSupport 的数据</span></span><br><span class="line">    L1, supportData = caluSupp(dataSet, C1, minSupport)</span><br><span class="line"></span><br><span class="line">    frequency = [L1] <span class="comment"># frequency为所有频繁项集</span></span><br><span class="line">    k = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> (len(frequency[k - <span class="number">2</span>]) &gt; <span class="number">0</span>):</span><br><span class="line">        <span class="comment"># 从候选2-项集开始计算，直到</span></span><br><span class="line">        Ck = aprioriGen(frequency[k - <span class="number">2</span>],k) <span class="comment"># 合并得到候选k项集</span></span><br><span class="line"></span><br><span class="line">        Lk, supK = caluSupp(dataSet, Ck, minSupport)  <span class="comment"># 计算频繁k-项集</span></span><br><span class="line">        <span class="comment"># 将新产生的项集的支持度计数加入到集合中</span></span><br><span class="line">        supportData.update(supK)</span><br><span class="line">        <span class="keyword">if</span> len(Lk) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        frequency.append(Lk)</span><br><span class="line">        k += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> frequency, supportData</span><br></pre></td></tr></table></figure>
-<h3 id="上面用到的合并得到k项集函数"><a class="markdownIt-Anchor" href="#上面用到的合并得到k项集函数"></a> 上面用到的合并得到k项集函数</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">aprioriGen</span><span class="params">(Lk, k)</span>:</span></span><br><span class="line">    retList = []</span><br><span class="line">    lenLk = len(Lk)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(lenLk):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>, lenLk):</span><br><span class="line">            L1 = list(Lk[i])[: k - <span class="number">2</span>]</span><br><span class="line">            L2 = list(Lk[j])[: k - <span class="number">2</span>]</span><br><span class="line">            L1.sort()</span><br><span class="line">            L2.sort()</span><br><span class="line">            <span class="comment"># 对于前k-2项相同的两个集合进行合并，计入到k项集中</span></span><br><span class="line">            <span class="keyword">if</span> L1 == L2:</span><br><span class="line">                <span class="comment"># print(Lk[i] | Lk[j], Lk[i], Lk[j])</span></span><br><span class="line">                retList.append(Lk[i] | Lk[j])</span><br><span class="line">    <span class="keyword">return</span> retList</span><br></pre></td></tr></table></figure>
-<h2 id="推导关联规则-2"><a class="markdownIt-Anchor" href="#推导关联规则-2"></a> 推导关联规则</h2>
-<h3 id="计算置信度"><a class="markdownIt-Anchor" href="#计算置信度"></a> 计算置信度</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calcConf</span><span class="params">(freqSet, subSet, supportData, brl, minConf)</span>:</span></span><br><span class="line">    <span class="comment"># subSet 是集合的列表，包含本次要判断的规则的右部集合</span></span><br><span class="line">    retList = []</span><br><span class="line">    <span class="keyword">for</span> conseq <span class="keyword">in</span> subSet:</span><br><span class="line">        conf = supportData[freqSet] / supportData[freqSet - conseq]</span><br><span class="line">        <span class="comment"># 支持度定义: a -&gt; b = support(a | b) / support(a).</span></span><br><span class="line">        <span class="keyword">if</span> conf &gt;= minConf:</span><br><span class="line">            print(freqSet - conseq, <span class="string">'-&gt;'</span>, conseq, <span class="string">'confidence:'</span>, conf)</span><br><span class="line">            brl.append((freqSet - conseq, conseq, conf))</span><br><span class="line">            retList.append(conseq)</span><br><span class="line">    <span class="keyword">return</span> retList</span><br></pre></td></tr></table></figure>
-<h3 id="生成关联规则"><a class="markdownIt-Anchor" href="#生成关联规则"></a> 生成关联规则</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generateRules</span><span class="params">(L, supportData, minConf)</span>:</span></span><br><span class="line">    ruleList = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(L)):<span class="comment"># L[i]为所有i-1项集构成的列表</span></span><br><span class="line">        <span class="keyword">for</span> freqSet <span class="keyword">in</span> L[i]:</span><br><span class="line">            H1 = [frozenset([item]) <span class="keyword">for</span> item <span class="keyword">in</span> freqSet] <span class="comment"># 频繁项集中所有元素形成的列表</span></span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">1</span>:<span class="comment"># 2以上的项集，还需要递归的扩大关联规则的右部</span></span><br><span class="line">                rulesFromConseq(freqSet, H1, supportData, ruleList, minConf)</span><br><span class="line">            <span class="keyword">else</span>:<span class="comment"># 频繁2-项集，只需要计算两个置信度，所以单拿出来</span></span><br><span class="line">                calcConf(freqSet, H1, supportData, ruleList, minConf)</span><br><span class="line">    <span class="keyword">return</span> ruleList</span><br></pre></td></tr></table></figure>
-<h3 id="递归的合并规则"><a class="markdownIt-Anchor" href="#递归的合并规则"></a> 递归的合并规则</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rulesFromConseq</span><span class="params">(freqSet, H, supportData, brl, minConf)</span>:</span></span><br><span class="line">    Hmp1 = calcConf(freqSet, H, supportData, brl, minConf)  <span class="comment"># 利用阈值进行过滤，返回可信度大于阈值的集合</span></span><br><span class="line">    <span class="keyword">if</span> (len(Hmp1) &gt;= <span class="number">1</span>):</span><br><span class="line">        m = len(H[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">if</span> m &lt; len(freqSet)<span class="number">-1</span>: <span class="comment"># 当关联规则的右部小于频繁项集的长度时</span></span><br><span class="line">            Hmp1 = aprioriGen(H, m+<span class="number">1</span>) <span class="comment"># 利用合并函数将规则右部扩展一位</span></span><br><span class="line">            <span class="comment"># 如果仍有满足阈值的规则，那么递归的合并规则，并进行过滤，直到没有满足阈值要求的规则</span></span><br><span class="line">            rulesFromConseq(freqSet, Hmp1, supportData, brl, minConf)</span><br></pre></td></tr></table></figure>
-<h1 id="实验结果"><a class="markdownIt-Anchor" href="#实验结果"></a> 实验结果</h1>
-<ul>
-<li>
-<p>具体输出内容见<a href="./out.txt">out.txt</a></p>
-</li>
-<li>
-<p>在支持度阈值0.3，置信度阈值0.9的情况下，共计挖掘到2990条规则。</p>
-</li>
-<li>
-<p>结果文件的集合中数字为每个属性的索引，索引从1开始</p>
-</li>
-</ul>
-<h1 id="心得体会"><a class="markdownIt-Anchor" href="#心得体会"></a> 心得体会</h1>
-<ul>
-<li>本次实验实现了Apriori算法生成频繁项集，以及关联规则的产生，并且利用置信度进行了剪枝。通过本次实验，我更加了解算法的流程，对于一些边界处的处理也有了实际体会。</li>
-<li>起初忘记用set了，还在考虑将下标转字符串作为键。后来参考了《机器学习实战》慢慢理清了思路，以后还要多多看书，才能少走弯路。</li>
-</ul>
-<p>​																																								<strong>17069130005</strong></p>
-<p>​																																											<strong>崔恩博</strong></p>
 
       
       <!-- reward -->

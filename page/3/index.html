@@ -78,6 +78,127 @@
     
     
     
+    <article id="post-数据挖掘实验二" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/13/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%AE%9E%E9%AA%8C%E4%BA%8C/"
+    >数据挖掘实验二</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/06/13/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%AE%9E%E9%AA%8C%E4%BA%8C/" class="article-date">
+  <time datetime="2020-06-13T07:26:10.985Z" itemprop="datePublished">2020-06-13</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p><a href="https://github.com/Cccceb/No3.second.git">源码:https://github.com/Cccceb/No3.second.git</a></p>
+<h1 id="实验内容"><a class="markdownIt-Anchor" href="#实验内容"></a> 实验内容</h1>
+<p>1、 数据来源 <a href="http://archive.ics.uci.edu/ml/datasets/Congressional+Voting+Records" target="_blank" rel="noopener">http://archive.ics.uci.edu/ml/datasets/Congressional+Voting+Records</a></p>
+<p>2、使用 Apriori算法，支持度设为 30%，置信度为 90%，挖掘高置信度的规则</p>
+<h1 id="分析及设计"><a class="markdownIt-Anchor" href="#分析及设计"></a> 分析及设计</h1>
+<h2 id="转换数据集"><a class="markdownIt-Anchor" href="#转换数据集"></a> 转换数据集</h2>
+<p>首先将数据集转换为课堂常见的形式，每一条记录中如果为赞同，那么记录该列的正索引，否则记录负索引，忽略?。其中第1列，将‘republican’标记为正索引</p>
+<h2 id="获取频繁项集"><a class="markdownIt-Anchor" href="#获取频繁项集"></a> 获取频繁项集</h2>
+<ol>
+<li>实现计算支持度的函数caluSupp，该函数通过遍历整个数据库和候选项集列表，累加每个候选集的出现次数。然后计算其支持度与支持度阈值比较，返回频繁项集和所有候选项集的支持度计数</li>
+<li>[-17,-1],[1,17]构成了候选1-项集，利用上述函数计算频繁1-项集。</li>
+<li>将频繁1-项集中元素进行两两合并，得到候选2-项集，再利用1中函数计算得到频繁2-项集。同时扩展所有候选项集的支持度计数</li>
+<li>将频繁k-项集中元素前k-2个元素相同的项集进行两两合并得到候选k+1-项集，以支持度阈值过滤得到频繁k+1项集</li>
+<li>重复步骤4直到频繁k-项集为空</li>
+</ol>
+<h2 id="推导关联规则"><a class="markdownIt-Anchor" href="#推导关联规则"></a> 推导关联规则</h2>
+<ol>
+<li>从频繁2-项集开始挖掘关联规则。对于频繁2-项集，只需要判断两两之间是否有关联关系，即对于集合{a,b}只需要计算S(a,b)/S(a)以及S(a,b)/S(b)即可</li>
+<li>对于其他频繁k-项集(k&gt;2)，则需要递归判断。对于规则$$A\to B$$，其中A,B为集合，首先判断B大小为1的情况计算其置信度，并通过置信度阈值过滤。然后逐步增大B的大小(利用计算频繁项集中的合并函数)，再次计算置信度，并用阈值过滤。重复上述步骤直到B的大小=频繁k-项集大小-1时停止。返回得到的规则</li>
+</ol>
+<h1 id="详细实现"><a class="markdownIt-Anchor" href="#详细实现"></a> 详细实现</h1>
+<h2 id="转换数据集-2"><a class="markdownIt-Anchor" href="#转换数据集-2"></a> 转换数据集</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> joblib</span><br><span class="line">dataset = pd.read_table(<span class="string">"./house-votes-84.data"</span>,sep=<span class="string">','</span>,header = <span class="literal">None</span>).values</span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(dataset)):</span><br><span class="line">    tmp = []</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(dataset[i])):</span><br><span class="line">        <span class="keyword">if</span> dataset[i,j] == <span class="string">'y'</span> <span class="keyword">or</span> dataset[i,j] == <span class="string">'republican'</span>:</span><br><span class="line">            tmp.append(j)</span><br><span class="line">        <span class="keyword">elif</span> dataset[i,j] == <span class="string">'n'</span> <span class="keyword">or</span> dataset[i,j] == <span class="string">'democrat'</span>:</span><br><span class="line">            tmp.append(-(j+<span class="number">1</span>))</span><br><span class="line">    a.append(tmp)</span><br><span class="line">joblib.dump(a,<span class="string">"MyDataset"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="获取频繁项集-2"><a class="markdownIt-Anchor" href="#获取频繁项集-2"></a> 获取频繁项集</h2>
+<h3 id="计算支持度"><a class="markdownIt-Anchor" href="#计算支持度"></a> 计算支持度</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">caluSupp</span><span class="params">(dataset, Ck, minSupport)</span>:</span></span><br><span class="line">    total = <span class="number">435</span></span><br><span class="line">    Ck = list(Ck)</span><br><span class="line">    tmp = &#123;&#125;<span class="comment"># tmp用来暂存支持度计数</span></span><br><span class="line">    <span class="keyword">for</span> tid <span class="keyword">in</span> dataset:</span><br><span class="line">        <span class="keyword">for</span> can <span class="keyword">in</span> Ck:</span><br><span class="line">            <span class="keyword">if</span> can.issubset(tid): <span class="comment"># can是一个集合类型</span></span><br><span class="line">                <span class="keyword">if</span> can <span class="keyword">not</span> <span class="keyword">in</span> tmp.keys():<span class="comment"># 第一次加入初始化为1</span></span><br><span class="line">                    tmp[can] = <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:	<span class="comment"># 之后每次+1</span></span><br><span class="line">                    tmp[can] += <span class="number">1</span></span><br><span class="line">    frequency = []</span><br><span class="line">    supportData = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> tmp:</span><br><span class="line">        <span class="comment"># 计算支持度</span></span><br><span class="line">        support = tmp[key] / total</span><br><span class="line">        <span class="keyword">if</span> support &gt;= minSupport:</span><br><span class="line">            <span class="comment"># 将满足阈值的放入频繁项集中</span></span><br><span class="line">            frequency.append(key)</span><br><span class="line">        <span class="comment"># 记录所有的支持度</span></span><br><span class="line">        supportData[key] = support</span><br><span class="line">    <span class="keyword">return</span> frequency, supportData</span><br></pre></td></tr></table></figure>
+<h3 id="apriori算法生成频繁项集"><a class="markdownIt-Anchor" href="#apriori算法生成频繁项集"></a> Apriori算法生成频繁项集</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">apriori</span><span class="params">(dataSet, minSupport)</span>:</span></span><br><span class="line">    C1 = map(frozenset,[[i] <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">17</span>)])</span><br><span class="line">    <span class="comment"># 对每一行进行 set 转换，然后存放到集合中</span></span><br><span class="line">    dataSet = list(map(set, dataSet))</span><br><span class="line">    <span class="comment"># print 'dataSet=', dataSet</span></span><br><span class="line">    <span class="comment"># 计算候选数据集 C1 在数据集 dataSet 中的支持度，并返回支持度大于 minSupport 的数据</span></span><br><span class="line">    L1, supportData = caluSupp(dataSet, C1, minSupport)</span><br><span class="line"></span><br><span class="line">    frequency = [L1] <span class="comment"># frequency为所有频繁项集</span></span><br><span class="line">    k = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> (len(frequency[k - <span class="number">2</span>]) &gt; <span class="number">0</span>):</span><br><span class="line">        <span class="comment"># 从候选2-项集开始计算，直到</span></span><br><span class="line">        Ck = aprioriGen(frequency[k - <span class="number">2</span>],k) <span class="comment"># 合并得到候选k项集</span></span><br><span class="line"></span><br><span class="line">        Lk, supK = caluSupp(dataSet, Ck, minSupport)  <span class="comment"># 计算频繁k-项集</span></span><br><span class="line">        <span class="comment"># 将新产生的项集的支持度计数加入到集合中</span></span><br><span class="line">        supportData.update(supK)</span><br><span class="line">        <span class="keyword">if</span> len(Lk) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        frequency.append(Lk)</span><br><span class="line">        k += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> frequency, supportData</span><br></pre></td></tr></table></figure>
+<h3 id="上面用到的合并得到k项集函数"><a class="markdownIt-Anchor" href="#上面用到的合并得到k项集函数"></a> 上面用到的合并得到k项集函数</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">aprioriGen</span><span class="params">(Lk, k)</span>:</span></span><br><span class="line">    retList = []</span><br><span class="line">    lenLk = len(Lk)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(lenLk):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>, lenLk):</span><br><span class="line">            L1 = list(Lk[i])[: k - <span class="number">2</span>]</span><br><span class="line">            L2 = list(Lk[j])[: k - <span class="number">2</span>]</span><br><span class="line">            L1.sort()</span><br><span class="line">            L2.sort()</span><br><span class="line">            <span class="comment"># 对于前k-2项相同的两个集合进行合并，计入到k项集中</span></span><br><span class="line">            <span class="keyword">if</span> L1 == L2:</span><br><span class="line">                <span class="comment"># print(Lk[i] | Lk[j], Lk[i], Lk[j])</span></span><br><span class="line">                retList.append(Lk[i] | Lk[j])</span><br><span class="line">    <span class="keyword">return</span> retList</span><br></pre></td></tr></table></figure>
+<h2 id="推导关联规则-2"><a class="markdownIt-Anchor" href="#推导关联规则-2"></a> 推导关联规则</h2>
+<h3 id="计算置信度"><a class="markdownIt-Anchor" href="#计算置信度"></a> 计算置信度</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calcConf</span><span class="params">(freqSet, subSet, supportData, brl, minConf)</span>:</span></span><br><span class="line">    <span class="comment"># subSet 是集合的列表，包含本次要判断的规则的右部集合</span></span><br><span class="line">    retList = []</span><br><span class="line">    <span class="keyword">for</span> conseq <span class="keyword">in</span> subSet:</span><br><span class="line">        conf = supportData[freqSet] / supportData[freqSet - conseq]</span><br><span class="line">        <span class="comment"># 支持度定义: a -&gt; b = support(a | b) / support(a).</span></span><br><span class="line">        <span class="keyword">if</span> conf &gt;= minConf:</span><br><span class="line">            print(freqSet - conseq, <span class="string">'-&gt;'</span>, conseq, <span class="string">'confidence:'</span>, conf)</span><br><span class="line">            brl.append((freqSet - conseq, conseq, conf))</span><br><span class="line">            retList.append(conseq)</span><br><span class="line">    <span class="keyword">return</span> retList</span><br></pre></td></tr></table></figure>
+<h3 id="生成关联规则"><a class="markdownIt-Anchor" href="#生成关联规则"></a> 生成关联规则</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generateRules</span><span class="params">(L, supportData, minConf)</span>:</span></span><br><span class="line">    ruleList = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(L)):<span class="comment"># L[i]为所有i-1项集构成的列表</span></span><br><span class="line">        <span class="keyword">for</span> freqSet <span class="keyword">in</span> L[i]:</span><br><span class="line">            H1 = [frozenset([item]) <span class="keyword">for</span> item <span class="keyword">in</span> freqSet] <span class="comment"># 频繁项集中所有元素形成的列表</span></span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">1</span>:<span class="comment"># 2以上的项集，还需要递归的扩大关联规则的右部</span></span><br><span class="line">                rulesFromConseq(freqSet, H1, supportData, ruleList, minConf)</span><br><span class="line">            <span class="keyword">else</span>:<span class="comment"># 频繁2-项集，只需要计算两个置信度，所以单拿出来</span></span><br><span class="line">                calcConf(freqSet, H1, supportData, ruleList, minConf)</span><br><span class="line">    <span class="keyword">return</span> ruleList</span><br></pre></td></tr></table></figure>
+<h3 id="递归的合并规则"><a class="markdownIt-Anchor" href="#递归的合并规则"></a> 递归的合并规则</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rulesFromConseq</span><span class="params">(freqSet, H, supportData, brl, minConf)</span>:</span></span><br><span class="line">    Hmp1 = calcConf(freqSet, H, supportData, brl, minConf)  <span class="comment"># 利用阈值进行过滤，返回可信度大于阈值的集合</span></span><br><span class="line">    <span class="keyword">if</span> (len(Hmp1) &gt;= <span class="number">1</span>):</span><br><span class="line">        m = len(H[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">if</span> m &lt; len(freqSet)<span class="number">-1</span>: <span class="comment"># 当关联规则的右部小于频繁项集的长度时</span></span><br><span class="line">            Hmp1 = aprioriGen(H, m+<span class="number">1</span>) <span class="comment"># 利用合并函数将规则右部扩展一位</span></span><br><span class="line">            <span class="comment"># 如果仍有满足阈值的规则，那么递归的合并规则，并进行过滤，直到没有满足阈值要求的规则</span></span><br><span class="line">            rulesFromConseq(freqSet, Hmp1, supportData, brl, minConf)</span><br></pre></td></tr></table></figure>
+<h1 id="实验结果"><a class="markdownIt-Anchor" href="#实验结果"></a> 实验结果</h1>
+<ul>
+<li>
+<p>具体输出内容见<a href="./out.txt">out.txt</a></p>
+</li>
+<li>
+<p>在支持度阈值0.3，置信度阈值0.9的情况下，共计挖掘到2990条规则。</p>
+</li>
+<li>
+<p>结果文件的集合中数字为每个属性的索引，索引从1开始</p>
+</li>
+</ul>
+<h1 id="心得体会"><a class="markdownIt-Anchor" href="#心得体会"></a> 心得体会</h1>
+<ul>
+<li>本次实验实现了Apriori算法生成频繁项集，以及关联规则的产生，并且利用置信度进行了剪枝。通过本次实验，我更加了解算法的流程，对于一些边界处的处理也有了实际体会。</li>
+<li>起初忘记用set了，还在考虑将下标转字符串作为键。后来参考了《机器学习实战》慢慢理清了思路，以后还要多多看书，才能少走弯路。</li>
+</ul>
+<p>​																																								<strong>17069130005</strong></p>
+<p>​																																											<strong>崔恩博</strong></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-第8章聚类分析" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -3693,569 +3814,6 @@ x1 is A’1 , x2 is A’2 , x3 is A’3</p>
 <li>
 <img src="/MyImages/63.png" style="zoom:50%;" /></li>
 </ul>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-第3章经典逻辑推理" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/13/%E7%AC%AC3%E7%AB%A0%E7%BB%8F%E5%85%B8%E9%80%BB%E8%BE%91%E6%8E%A8%E7%90%86/"
-    >第3章经典逻辑推理</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/06/13/%E7%AC%AC3%E7%AB%A0%E7%BB%8F%E5%85%B8%E9%80%BB%E8%BE%91%E6%8E%A8%E7%90%86/" class="article-date">
-  <time datetime="2020-06-13T05:03:31.626Z" itemprop="datePublished">2020-06-13</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="基本概念"><a class="markdownIt-Anchor" href="#基本概念"></a> 基本概念</h1>
-<h2 id="推理"><a class="markdownIt-Anchor" href="#推理"></a> 推理</h2>
-<ol>
-<li>所谓<strong>推理</strong>就是按某种<strong>策略</strong>由<strong>已知判断</strong>推出<strong>另一个判断</strong>的思维过程。将事实与规则借助一些符号来表示，推理过程就可以被形式化</li>
-</ol>
-<h2 id="推理方式及其分类"><a class="markdownIt-Anchor" href="#推理方式及其分类"></a> 推理方式及其分类</h2>
-<h3 id="演绎推理-归纳推理-默认推理"><a class="markdownIt-Anchor" href="#演绎推理-归纳推理-默认推理"></a> 演绎推理、归纳推理、默认推理</h3>
-<ol>
-<li>
-<p>演绎推理：从一般到特殊。例如三段论。</p>
-</li>
-<li>
-<p>归纳推理：从个体到一般。</p>
-</li>
-<li>
-<p>默认推理：缺省推理，在知识不完全的情况下假设某些条已经具备所进行的推理。</p>
-</li>
-</ol>
-<h3 id="确定性-不确定性推理"><a class="markdownIt-Anchor" href="#确定性-不确定性推理"></a> 确定性、不确定性推理</h3>
-<h3 id="单调推理-非单调推理"><a class="markdownIt-Anchor" href="#单调推理-非单调推理"></a> 单调推理、非单调推理</h3>
-<p>推出的结论是否单调增加</p>
-<h3 id="启发式-非启发式推理"><a class="markdownIt-Anchor" href="#启发式-非启发式推理"></a> 启发式、非启发式推理</h3>
-<p>所谓启发性知识是指与问题有关且能加快推理进程、求得问题最优解的知识。</p>
-<h3 id="基于知识的推理专家系统-统计推理-直觉推理常识性推理"><a class="markdownIt-Anchor" href="#基于知识的推理专家系统-统计推理-直觉推理常识性推理"></a> 基于知识的推理（专家系统） 、统计推理、直觉推理（常识性推理）</h3>
-<h2 id="推理的控制策略"><a class="markdownIt-Anchor" href="#推理的控制策略"></a> 推理的控制策略</h2>
-<h3 id="正向推理-数据驱动推理"><a class="markdownIt-Anchor" href="#正向推理-数据驱动推理"></a> 正向推理 (数据驱动推理)</h3>
-<ol>
-<li>基本思想：从用户提供的初始已知事实出发，在<strong>知识库KB</strong>中找出当前可适用的知识，构成<strong>可适用的知识集KS</strong>，然后按某种冲突消解策略从KS中选出一条知识进行推理，并将推出的新事实加入到数据库DB中，作为下一步推理的已知事实。在此之后，再在知识库中选取可适用的知识进行推理。如此重复进行这一过程，直到求得所要求的解。</li>
-<li>DB中存的是所有已知的知识，反复判断是否能通过DB中的知识推出结论</li>
-<li>示意图<img src="/AI_img/16.png" alt="16" style="zoom:67%;" /></li>
-</ol>
-<h3 id="逆向推理"><a class="markdownIt-Anchor" href="#逆向推理"></a> 逆向推理</h3>
-<img src="/AI_img/17.png" style="zoom:67%;" />
-<ol>
-<li>不需要别的事实推出的，即为一个证据</li>
-</ol>
-<h3 id="混合推理"><a class="markdownIt-Anchor" href="#混合推理"></a> 混合推理</h3>
-<p>先正向推理后逆向推理 或 先逆向推理后正向推理</p>
-<h3 id="双向推理"><a class="markdownIt-Anchor" href="#双向推理"></a> 双向推理</h3>
-<p>正向推理与逆向推理<strong>同时</strong>进行，且在推理过程中的某一步上“碰头”。</p>
-<h3 id="求解策略"><a class="markdownIt-Anchor" href="#求解策略"></a> 求解策略</h3>
-<p>只求一个解，还是求所有解以及最优解</p>
-<h3 id="限制策略"><a class="markdownIt-Anchor" href="#限制策略"></a> 限制策略</h3>
-<p>限制搜索的深度、宽度、时间、空间等等</p>
-<h2 id="模式匹配"><a class="markdownIt-Anchor" href="#模式匹配"></a> 模式匹配</h2>
-<h3 id="代换的复合"><a class="markdownIt-Anchor" href="#代换的复合"></a> 代换的复合</h3>
-<p>两步(保证不会出现相同的分母以及分子分母相同的情况)</p>
-<ol>
-<li>
-<p>合并</p>
-<img src="/AI_img/18.png" style="zoom: 67%;" />
-</li>
-<li>
-<p>删除</p>
-<img src="/AI_img/19.png" style="zoom: 67%;" />
-</li>
-</ol>
-<h3 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h3>
-   <img src="/AI_img/20.png" style="zoom:67%;" />
-<h3 id="公式集的合一"><a class="markdownIt-Anchor" href="#公式集的合一"></a> 公式集的合一</h3>
-<ol>
-<li>
-<p>定义 设有公式集F={F1,F2,…,Fn}，若存在一个代换λ使得<strong>F<sub>1</sub>λ=F<sub>2</sub>λ=…=F<sub>n</sub>λ</strong>则称λ为公式集F的一个合一，且称F1,F2,…,Fn是可合一的。<strong>公式集的合一一般不唯一</strong></p>
-</li>
-<li>
-<p>举例</p>
-<img src="/AI_img/21.png" style="zoom:67%;" />
-<p><strong>置换的时候一般令分母是变量</strong>，用分子换掉分母,用项换掉变量（项包括变量，常量和函数）</p>
-</li>
-</ol>
-<h3 id="最一般的合一"><a class="markdownIt-Anchor" href="#最一般的合一"></a> 最一般的合一</h3>
-<ol>
-<li>
-<p>定义 设σ是公式集F的一个合一，如果对任一个合一θ都存在一个代换λ，使得θ=σ°λ则称σ是一个最一般的合一。<strong>最一般合一是唯一的</strong></p>
-</li>
-<li>
-<p>差异集：两个公式中相同位置处不同符号的集合</p>
-<p><strong>例如</strong>：F1:P(x,y,z), F2:P(x,f(a),h(b))<br />
-则D1={y,f(a)}, D2={z,h(b)}</p>
-</li>
-<li>
-<p><strong>求解最一般合一</strong></p>
-<img src="/MyImages/image-20200407115934367.png" alt="image-20200407115934367" style="zoom:50%;" />
-<h4 id="举例-2"><a class="markdownIt-Anchor" href="#举例-2"></a> <strong>举例</strong></h4>
-<img src="/MyImages/image-20200407120004829.png" alt="image-20200407120004829" style="zoom:50%;" />
-</li>
-</ol>
-<h1 id="自然演绎推理"><a class="markdownIt-Anchor" href="#自然演绎推理"></a> 自然演绎推理</h1>
-<p>从一组已知为真的事实出发，直接运用经典逻辑的推理规则推出结论的过程，称为自然演绎推理。其中，基本的推理规则是P规则、T规则、假言推理、拒取式推理等。</p>
-<h2 id="一般形式"><a class="markdownIt-Anchor" href="#一般形式"></a> 一般形式</h2>
-<p><img src="/AI_img/23.png" alt="" /></p>
-<h2 id="pt规则"><a class="markdownIt-Anchor" href="#pt规则"></a> P/T规则</h2>
-<ol>
-<li>P规则：在推理的任何步骤都可以引入前提。</li>
-<li>T规则：推理时，如果前面步骤中有一个或者多个公式永真蕴含公式S，则可把S引入推理过程中。</li>
-</ol>
-<h1 id="归结演绎推理-必考"><a class="markdownIt-Anchor" href="#归结演绎推理-必考"></a> 归结演绎推理  (必考)</h1>
-<h2 id="子句"><a class="markdownIt-Anchor" href="#子句"></a> 子句</h2>
-<ol>
-<li>
-<p><strong>文字</strong> 在谓词逻辑中，<strong>把原子谓词公式及其否定统称为文字</strong>。如：P(x)， ¬P(x,f(x))， Q(x,g(x))</p>
-</li>
-<li>
-<p><strong>子句</strong> 任何文字的析取式称为子句</p>
-<ol>
-<li>不包含任何文字的子句称为<strong>空子句；空子句恒为假</strong></li>
-</ol>
-</li>
-</ol>
-<h3 id="子句集"><a class="markdownIt-Anchor" href="#子句集"></a> 子句集</h3>
-<ol>
-<li>合取范式：C1 ∧C2 ∧C3… ∧Cn</li>
-<li>子句集:     S= {C1 ,C2 ,C3… ,Cn}</li>
-<li><strong>任何谓词公式F都可通过等价关系及推理规则化为相应的子句集S。</strong></li>
-</ol>
-<h3 id="把谓词公式化成子句集的步骤"><a class="markdownIt-Anchor" href="#把谓词公式化成子句集的步骤"></a> 把谓词公式化成子句集的步骤</h3>
-<p>消去蕴含关系和量词符号</p>
-<img src="/AI_img/24.png" style="zoom:50%;" />
-<img src="/AI_img/25.png" style="zoom: 67%;" />
-<img src="/AI_img/26.png" style="zoom: 67%;" />
-<h3 id="子句集的性质"><a class="markdownIt-Anchor" href="#子句集的性质"></a> 子句集的性质</h3>
-<ol>
-<li>
-<p>句集中子句之间是合取关系。</p>
-</li>
-<li>
-<p>子句集中的变元受全称量词的约束</p>
-</li>
-</ol>
-<h3 id="子句集的意义"><a class="markdownIt-Anchor" href="#子句集的意义"></a> 子句集的意义</h3>
-<ol>
-<li><strong>子句集S的不可满足性</strong>：对于任意论域中的任意一个解释，S中的子句不能同时取得真值T。</li>
-<li><strong>定理</strong> 设有谓词公式F，其子句集为S，则F不可满足的充要条件是S不可满足。<strong>要证明P→Q永真，只需证明公式F=(P∧¬Q)永假，即S不可满足。</strong></li>
-</ol>
-<h2 id="herbrand理论了解"><a class="markdownIt-Anchor" href="#herbrand理论了解"></a> Herbrand理论(了解)</h2>
-<p>海伯伦构造了一个特殊的论域(海伯伦域)，并证明只要对这个特殊域上的一切解释进行判定，就可知子句集是否不可满足。</p>
-<h3 id="海伯伦域"><a class="markdownIt-Anchor" href="#海伯伦域"></a> 海伯伦域</h3>
-<p><img src="/AI_img/27.png" alt="" /></p>
-<h2 id="鲁滨逊归结原理"><a class="markdownIt-Anchor" href="#鲁滨逊归结原理"></a> 鲁滨逊归结原理</h2>
-<ul>
-<li>鲁滨逊归结原理的基本思想：
-<ul>
-<li>检查子句集S中是否包含空子句。
-<ul>
-<li>若包含，则S不可满足；</li>
-<li>若不包含，就在子句集中选择合适的子句进行归结，一旦通过归结能推出空子句，就说明子句集S是不可满足的。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="命题逻辑中的归结原理"><a class="markdownIt-Anchor" href="#命题逻辑中的归结原理"></a> 命题逻辑中的归结原理</h3>
-<ol>
-<li>
-<p>若P是原子谓词公式，则称P与¬P为互补文字。在命题逻辑中，P为命题。</p>
-</li>
-<li>
-<p>设C1与C2是子句集中的任意两个子句。如果C1中的文字L1与C2中文字L2互补，那么从C1和C2中分别消去L1和L2，并将两个子句中余下的部分析取，构成一个新子句C12，则称这一过程为<strong>归结</strong>。称C12为C1和C2的<strong>归结式</strong>，C1和C2为C12的<strong>亲本子句。</strong></p>
-</li>
-<li>
-<p><strong>定理</strong> C12是其亲本子句C1与C2的逻辑结论。</p>
-<img src="/AI_img/28.png" style="zoom: 33%;" />
-</li>
-<li>
-<p><strong>推论1</strong>：设C1与C2是子句集S中的两个子句，C12是它们的归结式。若用C12代替C1和C2后得到新子句集S1，则由S1的不可满足性可推出原子句集S的不可满足性，即</p>
-<p>​		 <strong>S1的不可满足性＝&gt;S的不可满足性</strong></p>
-</li>
-<li>
-<p><strong>推论2</strong> 设C1与C2是子句集S中的两个子句，C12是它们的归结式。若把C12加入S中得到新子句集S2，则S与S2在不可满足的意义上是等价的，即</p>
-<p>​		<strong>S2的不可满足性&lt;＝&gt;S的不可满足性</strong></p>
-</li>
-</ol>
-<h3 id="举例-3"><a class="markdownIt-Anchor" href="#举例-3"></a> 举例</h3>
-<p><img src="/AI_img/29.png" alt="" /></p>
-<h3 id="二元归结式的定义"><a class="markdownIt-Anchor" href="#二元归结式的定义"></a> 二元归结式的定义</h3>
-<ol>
-<li>
-<p>设C1与C2是两个没有相同变元的子句，L1和L2分别是C1和C2中的文字。若σ是L1和¬L2的最一般合一，则称<br />
-<strong>C12=(C1σ-{L1σ})∨(C2σ-{L2σ})<strong>为C1和C2的</strong>二元归结式</strong>，L1和L2称为<strong>归结式上的文字</strong>。</p>
-</li>
-<li>
-<p><strong>举例</strong></p>
-<p><img src="/AI_img/30.png" alt="" /></p>
-<ol>
-<li><strong>P 和 Q不能同时约掉，因为我们要选的是互补文字</strong></li>
-</ol>
-</li>
-<li>
-<p>子句C1和C2的归结式是下列二元归结式之一：</p>
-<ol>
-<li>C1与C2的二元归结式；</li>
-<li>C1与C2的因子C2σ2的二元归结式；</li>
-<li>C1的因子C1σ1与C2的二元归结式；</li>
-<li>C1的因子C1σ1与C2的因子C2σ2的二元归结式。</li>
-</ol>
-</li>
-<li>
-<p>**结论：**对于一阶谓词逻辑归结原理也是完备的。即，若子句集S不可满足，则必然存在一个从S到空子句的归结演绎；<strong>若存在一个从S到空子句的归结演绎，则S一定是不可满足的。</strong></p>
-</li>
-</ol>
-<h2 id="归结反演"><a class="markdownIt-Anchor" href="#归结反演"></a> 归结反演</h2>
-<h3 id="过程"><a class="markdownIt-Anchor" href="#过程"></a> 过程</h3>
-<ol>
-<li>应用归结原理证明定理的过程称为归结反演。</li>
-<li>设P为已知前提的公式集，Q为目标公式(结论)，用归结反演证明Q为真的步骤是：
-<ol>
-<li>否定Q，得到¬Q；</li>
-<li>把¬Q并入到公式集P中，得到{P, ¬Q};</li>
-<li>把公式集{P, ¬Q}化为子句集S；</li>
-<li>应用归结原理对子句集S中的子句进行归结，并把每次归结得到的归结式都并入S中。如此反复进行，若出现了空子句，则停止归结，此时就证明了Q为真。</li>
-</ol>
-</li>
-</ol>
-<h3 id="举例-4"><a class="markdownIt-Anchor" href="#举例-4"></a> 举例</h3>
-<p><img src="/AI_img/31.png" alt="" /></p>
-<p><img src="/AI_img/32.png" alt="" /></p>
-<p><img src="/AI_img/33.png" alt="" /></p>
-<h3 id="注意"><a class="markdownIt-Anchor" href="#注意"></a> 注意</h3>
-<ul>
-<li>归结时，并不要求把子句集中所有的子句都用到。</li>
-<li>在归结过程中，一个子句可以多次被用来进行归结。</li>
-</ul>
-<h2 id="归结策略"><a class="markdownIt-Anchor" href="#归结策略"></a> 归结策略</h2>
-<h3 id="归结的一般过程"><a class="markdownIt-Anchor" href="#归结的一般过程"></a> 归结的一般过程</h3>
-<ol>
-<li>
-<p>S内任意子句两两逐一进行归结，得到一组归结式，称为第一级归结式，记为S1。</p>
-</li>
-<li>
-<p>把S与S1内的任意子句两两逐一进行归结，得到一组归结式，称为第二级归结式，记为S2。</p>
-</li>
-<li>
-<p>S和S1内的子句与S2内的任意子句两两逐一进行归结，得到一组归结式，称为第三级归结式，记为S3。</p>
-</li>
-<li>
-<p>如此继续，直到出现了空子句或者不能再继续归结为止。</p>
-</li>
-<li>
-<p>举例</p>
-<p><img src="/AI_img/34.png" alt="" /></p>
-</li>
-</ol>
-<h2 id="删除策略"><a class="markdownIt-Anchor" href="#删除策略"></a> 删除策略</h2>
-<ol>
-<li>纯文字删除法<br />
-如果某文字L在子句集中不存在可与之互补的文字¬L，则称该文字为纯文字。包含纯文字的子句可以删除。</li>
-<li>重言式删除法<br />
-如果一个子句中同时包含互补文字对，则该字句称为重言式。重言式是永远为真的子句，可以删除。</li>
-</ol>
-<h2 id="支持集策略"><a class="markdownIt-Anchor" href="#支持集策略"></a> 支持集策略</h2>
-<ol>
-<li>
-<p>对参加归结的子句提出如下限制：</p>
-<ol>
-<li>每一次归结时，亲本子句中至少有一个是由目标公式的否定所得到的子句，</li>
-<li>或者是它的后裔。可以证明，支持集策略是完备的。</li>
-</ol>
-</li>
-<li>
-<p>举例</p>
-<p><img src="/AI_img/35.png" alt="" /></p>
-<ol>
-<li>s1是 1-2，1-3，1-4得到，支持集策略主要减少的就是s1的数量</li>
-<li>s2开始，就是1-5,1-6,2-5,2-6,</li>
-</ol>
-<p><img src="/AI_img/36.png" alt="" /></p>
-</li>
-</ol>
-<h2 id="线性输入策略"><a class="markdownIt-Anchor" href="#线性输入策略"></a> 线性输入策略</h2>
-<ol>
-<li>参加归结的两个子句中必须至少有一个是初始子句集中的子句。线性输入策略可限制生成归结式的数量，具有简单、高效的优点。<strong>但是它是不完备的。</strong></li>
-</ol>
-<h2 id="单文字子句策略"><a class="markdownIt-Anchor" href="#单文字子句策略"></a> 单文字子句策略</h2>
-<p>如果一个子句只包含一个文字，则称它为单文字子句。</p>
-<h3 id="思想"><a class="markdownIt-Anchor" href="#思想"></a> 思想</h3>
-<ol>
-<li>参加归结的两个子句中必须至少有一个是单文字子句</li>
-<li>用单文字子句策略归结时，归结式比亲本子句含有较少的文字，这有利于朝着空子句的方向前进，因此它有较高的归结效率。但是，<strong>这种归结策略是不完备的</strong>。当初始子句集中不包含单文字子句时，归结就无法进行</li>
-</ol>
-<h2 id="祖先过滤策略"><a class="markdownIt-Anchor" href="#祖先过滤策略"></a> 祖先过滤策略</h2>
-<p>当对两个子句C1和C2进行归结时，只要它们满足下述任一个条件就可以归结。</p>
-<ol>
-<li>C1和C2中至少有一个是初始子句集中的子句。</li>
-<li>C1和C2中一个是另外一个的祖先子句。<br />
-祖先过滤策略是完备的。</li>
-</ol>
-<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
-<ol>
-<li>优点：<br />
-简单，便于在计算机上实现。</li>
-<li>缺点：
-<ul>
-<li>必须把逻辑公式化成子句集。</li>
-<li>不便于阅读与理解。<br />
-¬P(x)∨Q(x)没有P(x)→Q(x)直观。</li>
-<li>可能丢失控制信息。<br />
-下列逻辑公式：<br />
-(¬A∧¬B)→C	 ¬A→(B∨C)<br />
-(¬A∧¬C)→B	 ¬B→(A∨C)<br />
-(¬C∧¬B)→A	 ¬C→(B∨A)<br />
-化成子句后都是: A∨B∨C</li>
-</ul>
-</li>
-</ol>
-<h1 id="冲突消解策略"><a class="markdownIt-Anchor" href="#冲突消解策略"></a> 冲突消解策略</h1>
-<h2 id="冲突"><a class="markdownIt-Anchor" href="#冲突"></a> 冲突</h2>
-<ol>
-<li>冲突：多个知识都匹配成功。</li>
-<li>对于正向推理：多条产生式前件都与已知事实匹配成功</li>
-<li>对于逆向推理：多条规则后件都和同一个假设匹配成功<br />
-<strong>冲突消解的基本思想都是对知识进行排序</strong></li>
-</ol>
-<h2 id="几种冲突消解策略排序策略"><a class="markdownIt-Anchor" href="#几种冲突消解策略排序策略"></a> 几种冲突消解策略(排序策略)</h2>
-<ol>
-<li>按针对性排序<br />
-优先选用针对性强的产生式规则。</li>
-<li>按已知事实的新鲜性排序<br />
-优先选用与较多新事实匹配的规则。</li>
-<li>按匹配度排序<br />
-在不确定性匹配中，计算两个知识模式的相似度(匹配度)，并对其排序，相似度高的规则先推。</li>
-<li>按领域问题特点排序</li>
-<li>按上下文限制排序<br />
-把规则按照下上文分组，并只能选取组中的规则。</li>
-<li>按冗余限制排序<br />
-冗余知识越少的规则先推。</li>
-<li>按条件个数排序<br />
-条件少的规则先推。</li>
-</ol>
-<h1 id="与或形演绎推理"><a class="markdownIt-Anchor" href="#与或形演绎推理"></a> 与或形演绎推理</h1>
-<h2 id="基于规则的演绎推理"><a class="markdownIt-Anchor" href="#基于规则的演绎推理"></a> 基于规则的演绎推理</h2>
-<h3 id="规则"><a class="markdownIt-Anchor" href="#规则"></a> 规则</h3>
-<ol>
-<li>规则是一种比较接近于人们习惯的问题描述方式，用蕴含式（“If →Then”规则）按照这种问题描述方式进行求解的系统称为基于规则的系统，或者叫做规则演绎系统。</li>
-<li>规则演绎系统按照推理方式可分为：
-<ul>
-<li>规则正向演绎系统</li>
-<li>规则逆向演绎系统</li>
-<li>规则双向演绎系统</li>
-</ul>
-</li>
-</ol>
-<h3 id="规则正向演绎系统"><a class="markdownIt-Anchor" href="#规则正向演绎系统"></a> 规则正向演绎系统</h3>
-<ol>
-<li>
-<p>规则正向演绎系统是从已知事实出发，正向使用规则（蕴含式）直接进行演绎，直至到达目标为止。</p>
-<ul>
-<li>在规则正向演绎系统中，对已知事实和规则都有一定的要求，如果不是所要求的形式，需要进行变换。</li>
-</ul>
-</li>
-<li>
-<p>把事实表达式化为非蕴含形式的与/或形的步骤如下：</p>
-<ol>
-<li>利用 “P→Q⇔﹁P∨Q”，消去蕴含符号；</li>
-<li>利用狄.摩根定律及量词转换率把“﹁”移到紧靠谓词的位置，直到否定符号的辖域最多只含一个谓词为止；</li>
-<li>重新命名变元，使不同量词约束的变元有不同的名字；</li>
-<li>对存在量词量化的变量用skolem函数代替；</li>
-<li>消去全称量词，且使各主要合取式中的变元具有不同的变量名。</li>
-</ol>
-<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C20.png" alt="" /></p>
-</li>
-<li>
-<p>与或图</p>
-<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C21.png" alt="" /></p>
-<ol>
-<li>与或图的根节点就是整个事实表达式，叶结点均为事实表达式中的一个文字</li>
-<li>解树集中的每个解树都对应着子句集中的一个子句。解树集中每个解树的端节点上的文字的析取就是子句集中的一个子句。</li>
-<li>上图所示的与/或图有3个解树，分别对应这以下3个子句：
-<ul>
-<li>Q(z, a)</li>
-<li>﹁R(y)∨ ﹁ S(a, y)</li>
-<li>﹁P(y)∨ ﹁ S(a, y)</li>
-</ul>
-</li>
-<li><strong>在第二章问题归约表示中所描述的与/或图表示方法与这里与/或形的与/或图表示有着不同的目的和含义</strong>，因此应用时应加以区分。</li>
-</ol>
-</li>
-</ol>
-<h3 id="规则的表示"><a class="markdownIt-Anchor" href="#规则的表示"></a> 规则的表示</h3>
-<ol>
-<li>
-<p>通常要求规则具有如下形式   L→W ，其中L为单文字，W为与/或形公式。不是的要进行转换</p>
-</li>
-<li>
-<p>将规则转换为要求形式的步骤</p>
-<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C22.png" alt="" /></p>
-<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C23.png" alt="" /></p>
-</li>
-</ol>
-<h3 id="谓词逻辑的规则正向演绎过程"><a class="markdownIt-Anchor" href="#谓词逻辑的规则正向演绎过程"></a> 谓词逻辑的规则正向演绎过程</h3>
-<ol>
-<li>
-<p>已知事实的与/或形表示：P(x, y)∨(Q(z)∧R(v, y))</p>
-</li>
-<li>
-<p>规则： P(u, v)→(S(u)∨N(v))</p>
-</li>
-<li>
-<p>目标公式： S(a)∨N(b)∨Q©</p>
-</li>
-<li>
-<p>证明：</p>
-<ul>
-<li>在谓词逻辑情况下，由于事实、规则及目标中均含有变元，因此，其规则演绎过程还需要用最一般合一对变进行置换。</li>
-<li>证明过程可用下图表示。</li>
-</ul>
-<p><img src="/AI_img/37.png" alt="" /></p>
-</li>
-</ol>
-<h2 id="规则逆向演绎系统"><a class="markdownIt-Anchor" href="#规则逆向演绎系统"></a> 规则逆向演绎系统</h2>
-<h3 id="规则逆向演绎推理过程"><a class="markdownIt-Anchor" href="#规则逆向演绎推理过程"></a> 规则逆向演绎推理过程</h3>
-<p>规则逆向演绎推理过程是从待证明的问题，即目标公式的与/或树出发，通过逆向地使用蕴含式（B规则），对目标公式的与/或树进行变换，直到得出包含已知事实的终止条件为止</p>
-<h3 id="目标公式的与或形变换"><a class="markdownIt-Anchor" href="#目标公式的与或形变换"></a> 目标公式的与/或形变换</h3>
-<ol>
-<li>
-<p>在与/或形逆向演绎推理中，要求目标公式采用与/或形表示，其化简采用与正向系统中对事实表达式处理的对偶形式。</p>
-</li>
-<li>
-<p><strong>步骤</strong></p>
-<ol>
-<li>要用<strong>存在量词</strong>约束变元的Skolem函数来替换由<strong>全称量词</strong>约束的相应变元，消去全称量词。（隐含着变量受存在量词的约束 ）</li>
-<li>再消去**存在量词，**并进行变元换名，使主析取元之间具有不同的变元名。</li>
-</ol>
-</li>
-<li>
-<p>举例</p>
-<p><img src="/AI_img/38.png" alt="" /></p>
-<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C59.png" alt="" /></p>
-</li>
-</ol>
-<h3 id="b规则的表示形式"><a class="markdownIt-Anchor" href="#b规则的表示形式"></a> B规则的表示形式</h3>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi><mo>→</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">W\to L
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span></span></p>
-<ol>
-<li>其中前项W为任一与/或形公式，后项L为一单文字</li>
-</ol>
-<h3 id="已知事实的表示形式"><a class="markdownIt-Anchor" href="#已知事实的表示形式"></a> 已知事实的表示形式</h3>
-<ol>
-<li>
-<p>反向演绎系统的事实表达式限制为<strong>文字合取</strong>形式</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>F</mi><mn>1</mn></msub><mo>∧</mo><msub><mi>F</mi><mn>2</mn></msub><mo>∧</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>∧</mo><msub><mi>F</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">F_1\land F_2\land ...\land F_n
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.55556em;vertical-align:0em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
-<p>其中每个F<sub>i</sub>都为单文字，且能单独起作用</p>
-</li>
-</ol>
-<h3 id="推理过程"><a class="markdownIt-Anchor" href="#推理过程"></a> 推理过程</h3>
-<ol>
-<li>首先用与/或树把目标公式表示出来；</li>
-<li>用B规则的右部和与/或树的叶节点进行匹配，并将匹配成功的B规则加入到与/或树中；</li>
-<li>重复进行步骤2，直到产生某个终止在事实节点上的一致解图为止。这里的“一致解图”是指在推理过程中所用到的代换应该是一致的。</li>
-</ol>
-<h3 id="举例-5"><a class="markdownIt-Anchor" href="#举例-5"></a> 举例</h3>
-<ol>
-<li>
-<p>已知事实</p>
-<ul>
-<li>
-<p>f1:  DOG(Fido)                       Fido是一只狗</p>
-</li>
-<li>
-<p>f 2: ¬ BARKS(Fido)                 Fido是不叫的</p>
-</li>
-<li>
-<p>f 3:  WAGS-TAIL(Fido)            Fido摇尾巴</p>
-</li>
-<li>
-<p>f 4:  MEOWS(Myrtle)             Myrtle喵喵叫</p>
-</li>
-</ul>
-</li>
-<li>
-<p>已知规则</p>
-<ul>
-<li>r1:  (WAGS-TAIL(x1)∧DOG(x1))→ FRIENDLY(x1)<br />
-摇尾巴的狗是温顺的狗</li>
-<li>r2:  (FRIENDLY(x2)∧ ¬ BARKS(x2))→ ¬ AFRAID(y2, x2)<br />
-温顺又不叫的东西是不值得害怕的</li>
-<li>r3:  DOG(x3)→ANIMAL(x3) ：狗为动物</li>
-<li>r4:  CAT(x4)→ANIMAL(x4)：猫为动物</li>
-<li>r5:  MEOWS(x5)→CAT(x5)：喵喵叫的动物是猫</li>
-</ul>
-</li>
-<li>
-<p>问题：是否存在这样的一只猫和一条狗，使得这只猫不害怕这只狗？</p>
-<ul>
-<li>
-<p>即目标公式为**(∃x) (∃y) (CAT(x)∧DOG(y)∧¬AFRAID(x, y))**</p>
-</li>
-<li>
-<p>变换得到</p>
-<p><strong>CAT(x)∧DOG(y)∧ ¬ AFRAID(x, y)</strong></p>
-</li>
-</ul>
-</li>
-<li>
-<p>逆向求解</p>
-<p><img src="D:%5Cblog%5CCebBlog%5Csource%5CMyImages%5C60.png" alt="s" /></p>
-</li>
-</ol>
 
       
       <!-- reward -->

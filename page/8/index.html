@@ -78,6 +78,87 @@
     
     
     
+    <article id="post-其他技巧" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E5%85%B6%E4%BB%96%E6%8A%80%E5%B7%A7/"
+    >其他技巧</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E5%85%B6%E4%BB%96%E6%8A%80%E5%B7%A7/" class="article-date">
+  <time datetime="2020-03-30T03:55:19.536Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="标准模板库"><a class="markdownIt-Anchor" href="#标准模板库"></a> 标准模板库</h1>
+<h2 id="字符串匹配北航"><a class="markdownIt-Anchor" href="#字符串匹配北航"></a> 字符串匹配(北航)</h2>
+<p>读入数据string[ ]，然后读入一个短字符串。要求查找string[ ]中和短字符串的所有匹配，输出行号、匹配字符串。匹配时不区分大小写，并且可以有一个用中括号表示的模式匹配。如“aa[123]bb”，就是说aa1bb、aa2bb、aa3bb都算匹配。</p>
+<p>输入有多组数据。<br />
+每组数据第一行输入n(1&lt;=n&lt;=1000)，从第二行开始输入n个字符串（不含空格），接下来输入一个匹配字符串。</p>
+<p>输出匹配到的字符串的行号和该字符串（匹配时不区分大小写）。</p>
+<p><strong>注意[]会有多个即可</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 1005;</span><br><span class="line">string in[maxn];</span><br><span class="line">vector&lt;string&gt; tep;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n;</span><br><span class="line">	while (cin &gt;&gt; n)</span><br><span class="line">	&#123;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++)</span><br><span class="line">			cin &gt;&gt; in[i];</span><br><span class="line">		string t;</span><br><span class="line">		cin &gt;&gt; t;</span><br><span class="line">		string s &#x3D; t;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; t.length(); i++)</span><br><span class="line">			s[i] &#x3D; tolower(t[i]);</span><br><span class="line"></span><br><span class="line">		tep.push_back(s);</span><br><span class="line">		int cnt &#x3D; 0;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; tep.size(); i++) &#123;</span><br><span class="line">			s &#x3D; tep[i];</span><br><span class="line">			int f1 &#x3D; s.find(&#39;[&#39;);</span><br><span class="line">			int f2 &#x3D; s.find(&#39;]&#39;);</span><br><span class="line">			if (f1 !&#x3D; -1) &#123;</span><br><span class="line">				string tp &#x3D; s.substr(f1+1, f2-f1-1);</span><br><span class="line">				cnt +&#x3D; tp.length();</span><br><span class="line">				t &#x3D; s.substr(0, f1);</span><br><span class="line">				s &#x3D; s.substr(f2 + 1);</span><br><span class="line">				for (int i &#x3D; 0; i &lt; tp.length(); i++)</span><br><span class="line">					tep.push_back(t + tp[i] + s);</span><br><span class="line">			&#125;</span><br><span class="line">			else break;</span><br><span class="line">		&#125;</span><br><span class="line">		if (!cnt) cnt &#x3D; 1;</span><br><span class="line"></span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">			t &#x3D; in[i];</span><br><span class="line">			for (int j &#x3D; tep.size()-cnt; j &lt; tep.size(); j++) &#123;</span><br><span class="line">				transform(in[i].begin(), in[i].end(), in[i].begin(), ::tolower);</span><br><span class="line">				if (in[i].find(tep[j]) !&#x3D; -1)</span><br><span class="line">				&#123;</span><br><span class="line">					cout &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; t &lt;&lt; endl;</span><br><span class="line">					break;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="其他技巧"><a class="markdownIt-Anchor" href="#其他技巧"></a> 其他技巧</h1>
+<h2 id="手动读入intdouble"><a class="markdownIt-Anchor" href="#手动读入intdouble"></a> 手动读入int，double</h2>
+<h3 id="readint"><a class="markdownIt-Anchor" href="#readint"></a> readint</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">bool readint(int &amp;ret) &#123;</span><br><span class="line">	int sgn;</span><br><span class="line">	char c;</span><br><span class="line">	c &#x3D; getchar();</span><br><span class="line">	if (c &#x3D;&#x3D; EOF) return false;</span><br><span class="line">	while (c !&#x3D; &#39;-&#39;&amp;&amp;c&lt;&#39;0&#39; || c&gt;&#39;9&#39;) c &#x3D; getchar();</span><br><span class="line">	sgn &#x3D; (c &#x3D;&#x3D; &#39;-&#39;) ? -1 : 1;</span><br><span class="line">	ret &#x3D; (c &#x3D;&#x3D; &#39;-&#39;) ? 0 : (c - &#39;0&#39;);</span><br><span class="line">	while ((c &#x3D; getchar()) &gt;&#x3D; &#39;0&#39;&amp;&amp;c &lt;&#x3D; &#39;9&#39;) ret &#x3D; ret * 10 + (c - &#39;0&#39;);</span><br><span class="line">	ret *&#x3D; sgn;</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="readdouble"><a class="markdownIt-Anchor" href="#readdouble"></a> readdouble</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">bool readdouble(double &amp;ret) &#123;</span><br><span class="line">	int sgn;</span><br><span class="line">	char c;</span><br><span class="line">	double bit &#x3D; 0.1;&#x2F;&#x2F;小数点后数位的权重</span><br><span class="line">	c &#x3D; getchar();</span><br><span class="line">	if (c &#x3D;&#x3D; EOF) return false;</span><br><span class="line">	while (c !&#x3D; &#39;-&#39;&amp;&amp;c&lt;&#39;0&#39; || c&gt;&#39;9&#39;) c &#x3D; getchar();</span><br><span class="line">	sgn &#x3D; (c &#x3D;&#x3D; &#39;-&#39;) ? -1 : 1;</span><br><span class="line">	ret &#x3D; (c &#x3D;&#x3D; &#39;-&#39;) ? 0 : (c - &#39;0&#39;);</span><br><span class="line">	while ((c &#x3D; getchar()) &gt;&#x3D; &#39;0&#39;&amp;&amp;c &lt;&#x3D; &#39;9&#39;) ret &#x3D; ret * 10 + (c - &#39;0&#39;);</span><br><span class="line">	if (c &#x3D;&#x3D; &#39; &#39; || c &#x3D;&#x3D; &#39;\n&#39;) &#123; ret *&#x3D; sgn; return true; &#125;&#x2F;&#x2F;不存在小数位</span><br><span class="line">	while ((c &#x3D; getchar()) &gt;&#x3D; &#39;0&#39;&amp;&amp;c &lt;&#x3D; &#39;9&#39;) ret +&#x3D; (c - &#39;0&#39;)*bit, bit &#x2F;&#x3D; 10;</span><br><span class="line">	ret *&#x3D; sgn;</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="流氓剪枝"><a class="markdownIt-Anchor" href="#流氓剪枝"></a> 流氓剪枝</h2>
+<p>没啥理由的剪枝，以保证不超时</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-动态规划" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -2296,164 +2377,6 @@ X→A能由F 根据Armstrong公理导出}。</p>
 <li>无损连结性分解能达到4NF</li>
 <li>函数依赖性分解可达到3NF，未必达到BCNF</li>
 </ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-DB7" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/DB7/"
-    >DB7</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/DB7/" class="article-date">
-  <time datetime="2020-03-30T03:41:31.616Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="数据库的设计方法"><a class="markdownIt-Anchor" href="#数据库的设计方法"></a> 数据库的设计方法</h1>
-<ol>
-<li>新奥尔良法:将数据库设计分为四个阶段：需求分析、概念设计、逻辑设计和物理设计。</li>
-<li>基于ER模型的设计方法：使用ER模型来设计数据库的概念模型。</li>
-<li>3NF的设计方法：用关系数据理论指导逻辑模型的设计。</li>
-<li>ODL方法：用面向对象的概念和属于来说明数据库结构。</li>
-</ol>
-<h2 id="数据库设计中的各级模式"><a class="markdownIt-Anchor" href="#数据库设计中的各级模式"></a> 数据库设计中的各级模式</h2>
-<img src="/DB7_img/1.png">
-<h1 id="需求分析"><a class="markdownIt-Anchor" href="#需求分析"></a> 需求分析</h1>
-<p>需求分析的重点是调查、收集与分析用户在数据管理中的信息要求、处理要求、安全性与完整性要求。</p>
-<h2 id="需求信息的收集"><a class="markdownIt-Anchor" href="#需求信息的收集"></a> 需求信息的收集</h2>
-<p>即了解用户的组织机构设置、主要业务活动和职能及对新系统的要求。</p>
-<h2 id="需求信息的分析"><a class="markdownIt-Anchor" href="#需求信息的分析"></a> 需求信息的分析</h2>
-<p>步骤</p>
-<h3 id="确定系统边界"><a class="markdownIt-Anchor" href="#确定系统边界"></a> 确定系统边界</h3>
-<h3 id="业务流程分析"><a class="markdownIt-Anchor" href="#业务流程分析"></a> 业务流程分析</h3>
-<p>使用数据流图</p>
-<ol>
-<li>
-<p>表达方式</p>
-<ol>
-<li>圆圈：表示一次处理过程</li>
-<li>有向线：表示数据流</li>
-<li>双线段：表示存储的信息</li>
-</ol>
- <img src="/DB7_img/2.png">
-</li>
-<li>
-<p>分析方法</p>
-<ol>
-<li>自顶向下，逐层分解</li>
-<li>先主干后分支</li>
-</ol>
-</li>
-<li>
-<p>建立<strong>数据字典</strong></p>
-<ol>
-<li>数据字典是各类数据描述的集合，通常以表格的形式详细地描述业务处理过程中用到的各类数据</li>
-<li>数据字典的内容包括数据项、数据结构、数据流、数据存储、处理过程等五部分。</li>
-<li>数据流：可以是数据项，也可以是数据结构，表示数据的来源和去向。</li>
-<li>数据存储：xx表。包括数据存储名、说明、输入数据流、输出数据流、组成成份、数据量、存取方式、存取频度等。</li>
-<li>处理过程：加工处理过程定义和说明。</li>
-</ol>
-</li>
-</ol>
-<h1 id="概念结构设计"><a class="markdownIt-Anchor" href="#概念结构设计"></a> 概念结构设计</h1>
-<p>概念结构设计就是将现实事物以不依赖于任何数据模<br />
-型的方式加以描述，目的在于以符号化的形式正确地反映<br />
-现实事物及事物与事物间的联系。概念结构设计的内容就<br />
-是建立概念模型。</p>
-<h2 id="概念结构设计四种策略"><a class="markdownIt-Anchor" href="#概念结构设计四种策略"></a> 概念结构设计四种策略</h2>
-<h3 id="自顶向下"><a class="markdownIt-Anchor" href="#自顶向下"></a> 自顶向下</h3>
-<p>即首先定义全局概念结构的框架，然后逐步细化。</p>
-<h3 id="自底向上"><a class="markdownIt-Anchor" href="#自底向上"></a> 自底向上</h3>
-<p>即首先定义各局部应用的概念结构，然后将它们集成起来，得到全局概念结构。</p>
-<h3 id="逐步扩张"><a class="markdownIt-Anchor" href="#逐步扩张"></a> 逐步扩张</h3>
-<p>即首先确定核心业务的概念结构，然后以此为中心向外扩张，最终实现全局概念结构。</p>
-<h3 id="混合策略"><a class="markdownIt-Anchor" href="#混合策略"></a> 混合策略</h3>
-<p>即将自顶向下和自底向上两种策略结合使用，首先确定全局框架，划分为若干个局部概念模型，再采取自底向上的策略实现各局部概念模型，加以合并实现全局概念模型。</p>
-<h2 id="抽象现实事物的三种方法"><a class="markdownIt-Anchor" href="#抽象现实事物的三种方法"></a> 抽象现实事物的三种方法</h2>
-<p>分类；聚集；概括</p>
-<h2 id="设计局部视图"><a class="markdownIt-Anchor" href="#设计局部视图"></a> 设计局部视图</h2>
-<p>步骤</p>
-<h3 id="选择局部应用"><a class="markdownIt-Anchor" href="#选择局部应用"></a> 选择局部应用</h3>
-<h3 id="设计分e-r图"><a class="markdownIt-Anchor" href="#设计分e-r图"></a> 设计分E-R图</h3>
-<h2 id="确定实体与属性的两条准则"><a class="markdownIt-Anchor" href="#确定实体与属性的两条准则"></a> 确定实体与属性的两条准则</h2>
-<ol>
-<li>属性是不可再分的数据项，属性不可以再有属性</li>
-<li>属性不能与其他实体发生联系，联系只能存在于实体与<br />
-实体之间</li>
-<li>例如职工(职工号，姓名，年龄，职称)，其中的职称如果<br />
-与工资、住房和福利挂勾(即有联系)，则应该单独作为<br />
-实体，而职工与职称间构成联系</li>
-</ol>
-<h2 id="视图集成"><a class="markdownIt-Anchor" href="#视图集成"></a> 视图集成</h2>
-<img src="/DB7_img/4.png">
-<p>选择两个具有相同实体的E-R图，通过相同实体将两个ER图连结起来构成一个E-R图，然后再与其它E-R图连结直到将<br />
-所有的局部E-R图全部连结成一个E-R图，称为全局E-R图</p>
-<h3 id="作用"><a class="markdownIt-Anchor" href="#作用"></a> 作用</h3>
-<ol>
-<li>可以完整地描述企业的信息及其联系</li>
-<li>另一方面在集成过程中可以解决冲突和消除冗余。</li>
-</ol>
-<h3 id="分e-r图之间的三类冲突"><a class="markdownIt-Anchor" href="#分e-r图之间的三类冲突"></a> 分E-R图之间的三类冲突</h3>
-<ol>
-<li>属性冲突</li>
-<li>命名冲突</li>
-<li>结构冲突：同一对象在某一分E-R图中被抽象为实体而在另一分E-R图中又被抽象为属性，需要统一。</li>
-</ol>
-<h3 id="冗余"><a class="markdownIt-Anchor" href="#冗余"></a> 冗余</h3>
-<p>注意从一个实体到另一个实体存在多条路的情况，要检查能否消除冗余。</p>
-<h1 id="逻辑结构设计"><a class="markdownIt-Anchor" href="#逻辑结构设计"></a> 逻辑结构设计</h1>
 
       
       <!-- reward -->

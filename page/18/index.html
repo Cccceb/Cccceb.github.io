@@ -78,6 +78,72 @@
     
     
     
+    <article id="post-二叉树的重建" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%87%8D%E5%BB%BA/"
+    >二叉树的重建</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%87%8D%E5%BB%BA/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.607Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva-536-二叉树的重建-先中造树"><a class="markdownIt-Anchor" href="#uva-536-二叉树的重建-先中造树"></a> UVA 536 二叉树的重建 (先中造树)</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">   #include&lt;string&gt;</span><br><span class="line">   # pragma warning(disable:4996)</span><br><span class="line">   # define LOCAL</span><br><span class="line">   # ifdef LOCAL</span><br><span class="line">   FILE *fin &#x3D; freopen(&quot;习题6-3in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">   FILE *fout &#x3D; freopen(&quot;习题6-3out.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line">   # endif </span><br><span class="line">   using namespace std;</span><br><span class="line">   typedef struct node &#123;</span><br><span class="line">   	struct node *lchild, *rchild;</span><br><span class="line">   	char data;</span><br><span class="line">   &#125;node, *ptr;</span><br><span class="line">   ptr Create(char *pre, char *in, int n)</span><br><span class="line">   &#123;</span><br><span class="line">   	ptr s;</span><br><span class="line">   </span><br><span class="line">   	if (n &#x3D;&#x3D; 1)</span><br><span class="line">   	&#123;</span><br><span class="line">   		s &#x3D; (ptr)malloc(sizeof(node));</span><br><span class="line">   		s-&gt;data &#x3D; *pre;</span><br><span class="line">   		s-&gt;lchild &#x3D; s-&gt;rchild &#x3D; NULL;</span><br><span class="line">   		return s;</span><br><span class="line">   	&#125;</span><br><span class="line">   	char *p;</span><br><span class="line">   	for (p &#x3D; in; p &lt; in + n; p++)</span><br><span class="line">   		if (*p &#x3D;&#x3D; *pre) break;</span><br><span class="line">   	int k &#x3D; p - in;</span><br><span class="line">   	s &#x3D; (ptr)malloc(sizeof(node));</span><br><span class="line">   	s-&gt;data &#x3D; *p;</span><br><span class="line">   	s-&gt;lchild &#x3D; s-&gt;rchild &#x3D; NULL;</span><br><span class="line">   	if (k) s-&gt;lchild &#x3D; Create(pre + 1, in, k);</span><br><span class="line">   	if (n - k - 1) s-&gt;rchild &#x3D; Create(pre + k + 1, p + 1, n - k - 1);</span><br><span class="line">   	return s;</span><br><span class="line">   &#125;</span><br><span class="line">   int lastorder(ptr T)</span><br><span class="line">   &#123;</span><br><span class="line">   	if (!T) return 0;</span><br><span class="line">   	lastorder(T-&gt;lchild);</span><br><span class="line">   	lastorder(T-&gt;rchild);</span><br><span class="line">   	printf(&quot;%c&quot;, T-&gt;data);</span><br><span class="line">   	return 1;</span><br><span class="line">   &#125;</span><br><span class="line">   int main()</span><br><span class="line">   &#123;</span><br><span class="line">   </span><br><span class="line">   	string pre, in;</span><br><span class="line">   	while (cin &gt;&gt; pre &gt;&gt; in) &#123;</span><br><span class="line">   		int n &#x3D; pre.length();</span><br><span class="line">   		ptr T &#x3D; Create(&amp;pre[0], &amp;in[0], n);</span><br><span class="line">   		lastorder(T);</span><br><span class="line">   		cout &lt;&lt; endl;</span><br><span class="line">   	&#125;</span><br><span class="line">   </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-分数拆分" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -926,85 +992,6 @@ int main() {
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update_ans</span><span class="params">(node u)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> d = u.v[i];</span><br><span class="line">		<span class="keyword">if</span> (ans[d] &lt; <span class="number">0</span> || u.dist &lt; ans[d])</span><br><span class="line">			ans[d] = u.dist;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="main"><a class="markdownIt-Anchor" href="#main"></a> main</h2>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update_ans</span><span class="params">(node)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>, <span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">200</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> ans[maxn];</span><br><span class="line"><span class="keyword">int</span> vis[maxn][maxn];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n, a, b, c, d;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="keyword">while</span> (n--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>, &amp;a, &amp;b, &amp;c, &amp;d);</span><br><span class="line">		solve(a, b, c, d);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-单向TSP" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E5%8D%95%E5%90%91TSP/"
-    >单向TSP</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E5%8D%95%E5%90%91TSP/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.592Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="uva-116-单向tsp"><a class="markdownIt-Anchor" href="#uva-116-单向tsp"></a> UVA 116 单向TSP</h1>
-<p>给一个m行n列（m≤10，n≤100）的整数矩阵，从第一列任何一个位置出发每次往右、右上、右下走一格，最终到达最后一列。要求经过的整数之和最小。整个矩阵是环形的，即第一行的上一行是最后一行，最后一行的下一行是第一行。输出路径上每列的行号。多解时输出字典序最小的。</p>
-<p>输入：有若干组数据：每组的第1行：m和n，分别为行数和列数。每组的第2~m+1行：每行n个数，用空格分开，代表整数矩阵。</p>
-<p>输出：每组有两行，第一行是每列的行号，第二行是路径的经过的整数之和。</p>
-<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
-<ol>
-<li>定义dp(i,j)为从(i,j)格除法到最后一行的最小开销。易知边界条件为dp(r-1,j) = a[r-1][j]，因此从后往前遍历，即从底边走到顶边</li>
-<li>关于决策：在每一种状态dp，可能的方案有，直行，右上和右下</li>
-<li>计算dp(i,j)的过程中要同时记录下一刻的行号的最小值(保证最优的条件下)。并记录达到顶边时最小的开销对应的列号列号</li>
-<li>最终的答案是依据next中记录的路径进行遍历得到</li>
-<li>是一个多阶段决策问题，每一列是一个阶段，每个阶段都有3种决策。</li>
-</ol>
-<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 100 + 5;</span><br><span class="line">int p[maxn][maxn];</span><br><span class="line">int dp[maxn][maxn];</span><br><span class="line">int next[maxn][maxn];</span><br><span class="line">#define inf 10000000</span><br><span class="line">int main() &#123;</span><br><span class="line">	int r, c;</span><br><span class="line">	while (scanf(&quot;%d%d&quot;, &amp;r, &amp;c) &#x3D;&#x3D; 2)</span><br><span class="line">	&#123;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; r; i++)</span><br><span class="line">			for (int j &#x3D; 0; j &lt; c; j++)</span><br><span class="line">				scanf(&quot;%d&quot;, &amp;p[i][j]);</span><br><span class="line"></span><br><span class="line">		int ans &#x3D; inf, first &#x3D; 0;</span><br><span class="line">		for (int j &#x3D; c - 1; j &gt;&#x3D; 0; j--) &#123; &#x2F;&#x2F;注意逆序</span><br><span class="line">			for (int i &#x3D; 0; i &lt; r; i++) &#123;</span><br><span class="line">				if (j &#x3D;&#x3D; c - 1) dp[i][j] &#x3D; p[i][j];&#x2F;&#x2F;边界</span><br><span class="line">				else &#123;</span><br><span class="line">					int row[3] &#x3D; &#123; i,i - 1 ,i + 1 &#125;;&#x2F;&#x2F;此处比较细节</span><br><span class="line">					if (i &#x3D;&#x3D; 0) row[1] &#x3D; r - 1;</span><br><span class="line">					if (i &#x3D;&#x3D; r - 1) row[2] &#x3D; 0;</span><br><span class="line">					sort(row, row + 3);&#x2F;&#x2F;为了字典序</span><br><span class="line"></span><br><span class="line">					dp[i][j] &#x3D; inf;</span><br><span class="line">					for (int k &#x3D; 0; k &lt; 3; k++) &#123;</span><br><span class="line">						int nv &#x3D; dp[row[k]][j + 1] + p[i][j];</span><br><span class="line">						if (nv &lt; dp[i][j]) &#123;&#x2F;&#x2F;填充dp，记录后继点</span><br><span class="line">							dp[i][j] &#x3D; nv;</span><br><span class="line">							::next[i][j] &#x3D; row[k];</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				if (j &#x3D;&#x3D; 0 &amp;&amp; dp[i][j] &lt; ans) &#123;&#x2F;&#x2F;更新答案，记录路径起始点</span><br><span class="line">					ans &#x3D; dp[i][j];</span><br><span class="line">					first &#x3D; i;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		printf(&quot;%d&quot;, first + 1);</span><br><span class="line">		for (int i &#x3D; ::next[first][0], j &#x3D; 1; j &lt; c; i &#x3D; ::next[i][j], j++)</span><br><span class="line">			printf(&quot; %d&quot;, i + 1);</span><br><span class="line">		printf(&quot;\n%d\n&quot;, ans);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
       
       <!-- reward -->
       

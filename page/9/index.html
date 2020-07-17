@@ -78,6 +78,164 @@
     
     
     
+    <article id="post-DB7" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/DB7/"
+    >DB7</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/DB7/" class="article-date">
+  <time datetime="2020-03-30T03:41:31.616Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="数据库的设计方法"><a class="markdownIt-Anchor" href="#数据库的设计方法"></a> 数据库的设计方法</h1>
+<ol>
+<li>新奥尔良法:将数据库设计分为四个阶段：需求分析、概念设计、逻辑设计和物理设计。</li>
+<li>基于ER模型的设计方法：使用ER模型来设计数据库的概念模型。</li>
+<li>3NF的设计方法：用关系数据理论指导逻辑模型的设计。</li>
+<li>ODL方法：用面向对象的概念和属于来说明数据库结构。</li>
+</ol>
+<h2 id="数据库设计中的各级模式"><a class="markdownIt-Anchor" href="#数据库设计中的各级模式"></a> 数据库设计中的各级模式</h2>
+<img src="/DB7_img/1.png">
+<h1 id="需求分析"><a class="markdownIt-Anchor" href="#需求分析"></a> 需求分析</h1>
+<p>需求分析的重点是调查、收集与分析用户在数据管理中的信息要求、处理要求、安全性与完整性要求。</p>
+<h2 id="需求信息的收集"><a class="markdownIt-Anchor" href="#需求信息的收集"></a> 需求信息的收集</h2>
+<p>即了解用户的组织机构设置、主要业务活动和职能及对新系统的要求。</p>
+<h2 id="需求信息的分析"><a class="markdownIt-Anchor" href="#需求信息的分析"></a> 需求信息的分析</h2>
+<p>步骤</p>
+<h3 id="确定系统边界"><a class="markdownIt-Anchor" href="#确定系统边界"></a> 确定系统边界</h3>
+<h3 id="业务流程分析"><a class="markdownIt-Anchor" href="#业务流程分析"></a> 业务流程分析</h3>
+<p>使用数据流图</p>
+<ol>
+<li>
+<p>表达方式</p>
+<ol>
+<li>圆圈：表示一次处理过程</li>
+<li>有向线：表示数据流</li>
+<li>双线段：表示存储的信息</li>
+</ol>
+ <img src="/DB7_img/2.png">
+</li>
+<li>
+<p>分析方法</p>
+<ol>
+<li>自顶向下，逐层分解</li>
+<li>先主干后分支</li>
+</ol>
+</li>
+<li>
+<p>建立<strong>数据字典</strong></p>
+<ol>
+<li>数据字典是各类数据描述的集合，通常以表格的形式详细地描述业务处理过程中用到的各类数据</li>
+<li>数据字典的内容包括数据项、数据结构、数据流、数据存储、处理过程等五部分。</li>
+<li>数据流：可以是数据项，也可以是数据结构，表示数据的来源和去向。</li>
+<li>数据存储：xx表。包括数据存储名、说明、输入数据流、输出数据流、组成成份、数据量、存取方式、存取频度等。</li>
+<li>处理过程：加工处理过程定义和说明。</li>
+</ol>
+</li>
+</ol>
+<h1 id="概念结构设计"><a class="markdownIt-Anchor" href="#概念结构设计"></a> 概念结构设计</h1>
+<p>概念结构设计就是将现实事物以不依赖于任何数据模<br />
+型的方式加以描述，目的在于以符号化的形式正确地反映<br />
+现实事物及事物与事物间的联系。概念结构设计的内容就<br />
+是建立概念模型。</p>
+<h2 id="概念结构设计四种策略"><a class="markdownIt-Anchor" href="#概念结构设计四种策略"></a> 概念结构设计四种策略</h2>
+<h3 id="自顶向下"><a class="markdownIt-Anchor" href="#自顶向下"></a> 自顶向下</h3>
+<p>即首先定义全局概念结构的框架，然后逐步细化。</p>
+<h3 id="自底向上"><a class="markdownIt-Anchor" href="#自底向上"></a> 自底向上</h3>
+<p>即首先定义各局部应用的概念结构，然后将它们集成起来，得到全局概念结构。</p>
+<h3 id="逐步扩张"><a class="markdownIt-Anchor" href="#逐步扩张"></a> 逐步扩张</h3>
+<p>即首先确定核心业务的概念结构，然后以此为中心向外扩张，最终实现全局概念结构。</p>
+<h3 id="混合策略"><a class="markdownIt-Anchor" href="#混合策略"></a> 混合策略</h3>
+<p>即将自顶向下和自底向上两种策略结合使用，首先确定全局框架，划分为若干个局部概念模型，再采取自底向上的策略实现各局部概念模型，加以合并实现全局概念模型。</p>
+<h2 id="抽象现实事物的三种方法"><a class="markdownIt-Anchor" href="#抽象现实事物的三种方法"></a> 抽象现实事物的三种方法</h2>
+<p>分类；聚集；概括</p>
+<h2 id="设计局部视图"><a class="markdownIt-Anchor" href="#设计局部视图"></a> 设计局部视图</h2>
+<p>步骤</p>
+<h3 id="选择局部应用"><a class="markdownIt-Anchor" href="#选择局部应用"></a> 选择局部应用</h3>
+<h3 id="设计分e-r图"><a class="markdownIt-Anchor" href="#设计分e-r图"></a> 设计分E-R图</h3>
+<h2 id="确定实体与属性的两条准则"><a class="markdownIt-Anchor" href="#确定实体与属性的两条准则"></a> 确定实体与属性的两条准则</h2>
+<ol>
+<li>属性是不可再分的数据项，属性不可以再有属性</li>
+<li>属性不能与其他实体发生联系，联系只能存在于实体与<br />
+实体之间</li>
+<li>例如职工(职工号，姓名，年龄，职称)，其中的职称如果<br />
+与工资、住房和福利挂勾(即有联系)，则应该单独作为<br />
+实体，而职工与职称间构成联系</li>
+</ol>
+<h2 id="视图集成"><a class="markdownIt-Anchor" href="#视图集成"></a> 视图集成</h2>
+<img src="/DB7_img/4.png">
+<p>选择两个具有相同实体的E-R图，通过相同实体将两个ER图连结起来构成一个E-R图，然后再与其它E-R图连结直到将<br />
+所有的局部E-R图全部连结成一个E-R图，称为全局E-R图</p>
+<h3 id="作用"><a class="markdownIt-Anchor" href="#作用"></a> 作用</h3>
+<ol>
+<li>可以完整地描述企业的信息及其联系</li>
+<li>另一方面在集成过程中可以解决冲突和消除冗余。</li>
+</ol>
+<h3 id="分e-r图之间的三类冲突"><a class="markdownIt-Anchor" href="#分e-r图之间的三类冲突"></a> 分E-R图之间的三类冲突</h3>
+<ol>
+<li>属性冲突</li>
+<li>命名冲突</li>
+<li>结构冲突：同一对象在某一分E-R图中被抽象为实体而在另一分E-R图中又被抽象为属性，需要统一。</li>
+</ol>
+<h3 id="冗余"><a class="markdownIt-Anchor" href="#冗余"></a> 冗余</h3>
+<p>注意从一个实体到另一个实体存在多条路的情况，要检查能否消除冗余。</p>
+<h1 id="逻辑结构设计"><a class="markdownIt-Anchor" href="#逻辑结构设计"></a> 逻辑结构设计</h1>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-DB4" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -1184,161 +1342,6 @@
 <li>反照率恒定</li>
 <li>已知一些法线</li>
 <li>已知法线的平滑度</li>
-</ol>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-视觉第16讲" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC16%E8%AE%B2/"
-    >视觉第16讲</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E7%AC%AC16%E8%AE%B2/" class="article-date">
-  <time datetime="2020-03-30T03:17:13.904Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="立体视觉"><a class="markdownIt-Anchor" href="#立体视觉"></a> 立体视觉</h1>
-<p>通过多个角度拍摄的标定过 的图像，进行3D对象建模。###</p>
-<h1 id="多视图立体视觉"><a class="markdownIt-Anchor" href="#多视图立体视觉"></a> 多视图立体视觉</h1>
-<ol>
-<li>需要多视图原因
-<ol>
-<li>可能有某些区域的特写</li>
-<li>某些表面在某些视图中缩小了</li>
-<li>某些点可能在某些视图中完全消失。</li>
-<li>多次测量同一个点可以减小误差。</li>
-</ol>
-</li>
-</ol>
-<h1 id="多基线立体视觉"><a class="markdownIt-Anchor" href="#多基线立体视觉"></a> 多基线立体视觉</h1>
-<p>将几台相机矫正到同一共同平面上。可能有宽基线和扭曲问题。</p>
-<h2 id="选择立体视图基线"><a class="markdownIt-Anchor" href="#选择立体视图基线"></a> 选择立体视图基线</h2>
-<img src="/视觉_img/16-1.png" height="5%" width="%5">
-<img src="/视觉_img/16-2.png" height="5%" width="%5">
-<ol>
-<li>基线太小导致深度误差大</li>
-<li>基线太大大致搜索范围大，计算复杂度提高。</li>
-</ol>
-<h2 id="基本方法"><a class="markdownIt-Anchor" href="#基本方法"></a> 基本方法</h2>
-<ol>
-<li>选择参考视图</li>
-<li>使用立体视图算法，但将其中双视图SSD换成SSSD(SUM SSD)</li>
-</ol>
-<h3 id="限制"><a class="markdownIt-Anchor" href="#限制"></a> 限制</h3>
-<ol>
-<li>只能给出深度图，不能给出对象模型</li>
-<li>不适用于广泛分布的视图</li>
-</ol>
-<h1 id="照片一致性评分"><a class="markdownIt-Anchor" href="#照片一致性评分"></a> 照片一致性评分</h1>
-<h2 id="衡量函数"><a class="markdownIt-Anchor" href="#衡量函数"></a> 衡量函数</h2>
-<ol>
-<li>
-<p>SSD</p>
- <img src="/视觉_img/16-3.png" height="5%" width="%5">
-</li>
-<li>
-<p>SAD</p>
- <img src="/视觉_img/16-4.png" height="5%" width="%5">
-</li>
-<li>
-<p>ZNCC</p>
- <img src="/视觉_img/16-5.png" height="5%" width="%5">
-</li>
-</ol>
-<h1 id="平面扫描立体视觉"><a class="markdownIt-Anchor" href="#平面扫描立体视觉"></a> 平面扫描立体视觉</h1>
-<h2 id="基础"><a class="markdownIt-Anchor" href="#基础"></a> 基础</h2>
-<img src="/视觉_img/16-6.png" height="5%" width="%5">
-<ol>
-<li>
-<p>相机1系即世界坐标系，相机1为参考相机</p>
-</li>
-<li>
-<p>深度平面</p>
- <img src="/视觉_img/16-7.png" height="5%" width="%5">
-<ol>
-<li>其中n<sub>m</sub>为深度平面的法向量</li>
-<li>平面表示为ax+by+cz+d=0</li>
-<li>点到平面距离dm=√a<sup>2</sup>+b<sup>2</sup>+c<sup>2</sup>?</li>
-</ol>
-</li>
-<li>
-<p>从参考相机Pref映射到深度平<br />
-面Πm，再映射到相机Pk的单应<br />
-映射为</p>
- <img src="/视觉_img/16-8.png" height="5%" width="%5">
-</li>
-</ol>
-<h2 id="过程"><a class="markdownIt-Anchor" href="#过程"></a> 过程</h2>
-<img src="/视觉_img/16-9.png" height="5%" width="%5">
-<h3 id="参考平面"><a class="markdownIt-Anchor" href="#参考平面"></a> 参考平面</h3>
-<ol>
-<li>
-<p>与成像平面平行<br />
-<img src="/视觉_img/16-10.png" height="5%" width="%5"></p>
-</li>
-<li>
-<p>其他方向</p>
- <img src="/视觉_img/16-11.png" height="5%" width="%5">
-</li>
-</ol>
-<h1 id="深度图融合"><a class="markdownIt-Anchor" href="#深度图融合"></a> 深度图融合</h1>
-<p>方法</p>
-<ol>
-<li>使用多基线方法计算一个深度图</li>
-<li>体积融合</li>
 </ol>
 
       

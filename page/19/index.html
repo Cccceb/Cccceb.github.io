@@ -78,6 +78,85 @@
     
     
     
+    <article id="post-单向TSP" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E5%8D%95%E5%90%91TSP/"
+    >单向TSP</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E5%8D%95%E5%90%91TSP/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.592Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva-116-单向tsp"><a class="markdownIt-Anchor" href="#uva-116-单向tsp"></a> UVA 116 单向TSP</h1>
+<p>给一个m行n列（m≤10，n≤100）的整数矩阵，从第一列任何一个位置出发每次往右、右上、右下走一格，最终到达最后一列。要求经过的整数之和最小。整个矩阵是环形的，即第一行的上一行是最后一行，最后一行的下一行是第一行。输出路径上每列的行号。多解时输出字典序最小的。</p>
+<p>输入：有若干组数据：每组的第1行：m和n，分别为行数和列数。每组的第2~m+1行：每行n个数，用空格分开，代表整数矩阵。</p>
+<p>输出：每组有两行，第一行是每列的行号，第二行是路径的经过的整数之和。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>定义dp(i,j)为从(i,j)格除法到最后一行的最小开销。易知边界条件为dp(r-1,j) = a[r-1][j]，因此从后往前遍历，即从底边走到顶边</li>
+<li>关于决策：在每一种状态dp，可能的方案有，直行，右上和右下</li>
+<li>计算dp(i,j)的过程中要同时记录下一刻的行号的最小值(保证最优的条件下)。并记录达到顶边时最小的开销对应的列号列号</li>
+<li>最终的答案是依据next中记录的路径进行遍历得到</li>
+<li>是一个多阶段决策问题，每一列是一个阶段，每个阶段都有3种决策。</li>
+</ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 100 + 5;</span><br><span class="line">int p[maxn][maxn];</span><br><span class="line">int dp[maxn][maxn];</span><br><span class="line">int next[maxn][maxn];</span><br><span class="line">#define inf 10000000</span><br><span class="line">int main() &#123;</span><br><span class="line">	int r, c;</span><br><span class="line">	while (scanf(&quot;%d%d&quot;, &amp;r, &amp;c) &#x3D;&#x3D; 2)</span><br><span class="line">	&#123;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; r; i++)</span><br><span class="line">			for (int j &#x3D; 0; j &lt; c; j++)</span><br><span class="line">				scanf(&quot;%d&quot;, &amp;p[i][j]);</span><br><span class="line"></span><br><span class="line">		int ans &#x3D; inf, first &#x3D; 0;</span><br><span class="line">		for (int j &#x3D; c - 1; j &gt;&#x3D; 0; j--) &#123; &#x2F;&#x2F;注意逆序</span><br><span class="line">			for (int i &#x3D; 0; i &lt; r; i++) &#123;</span><br><span class="line">				if (j &#x3D;&#x3D; c - 1) dp[i][j] &#x3D; p[i][j];&#x2F;&#x2F;边界</span><br><span class="line">				else &#123;</span><br><span class="line">					int row[3] &#x3D; &#123; i,i - 1 ,i + 1 &#125;;&#x2F;&#x2F;此处比较细节</span><br><span class="line">					if (i &#x3D;&#x3D; 0) row[1] &#x3D; r - 1;</span><br><span class="line">					if (i &#x3D;&#x3D; r - 1) row[2] &#x3D; 0;</span><br><span class="line">					sort(row, row + 3);&#x2F;&#x2F;为了字典序</span><br><span class="line"></span><br><span class="line">					dp[i][j] &#x3D; inf;</span><br><span class="line">					for (int k &#x3D; 0; k &lt; 3; k++) &#123;</span><br><span class="line">						int nv &#x3D; dp[row[k]][j + 1] + p[i][j];</span><br><span class="line">						if (nv &lt; dp[i][j]) &#123;&#x2F;&#x2F;填充dp，记录后继点</span><br><span class="line">							dp[i][j] &#x3D; nv;</span><br><span class="line">							::next[i][j] &#x3D; row[k];</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				if (j &#x3D;&#x3D; 0 &amp;&amp; dp[i][j] &lt; ans) &#123;&#x2F;&#x2F;更新答案，记录路径起始点</span><br><span class="line">					ans &#x3D; dp[i][j];</span><br><span class="line">					first &#x3D; i;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		printf(&quot;%d&quot;, first + 1);</span><br><span class="line">		for (int i &#x3D; ::next[first][0], j &#x3D; 1; j &lt; c; i &#x3D; ::next[i][j], j++)</span><br><span class="line">			printf(&quot; %d&quot;, i + 1);</span><br><span class="line">		printf(&quot;\n%d\n&quot;, ans);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-多米诺效应" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -1125,146 +1204,6 @@ int main() {
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void solve() &#123;</span><br><span class="line">	bool cir;</span><br><span class="line">	memset(print, 0, sizeof(print));</span><br><span class="line">	while (mins &lt; maxs)</span><br><span class="line">	&#123;</span><br><span class="line">		int p &#x3D; (mins + maxs) &#x2F; 2;</span><br><span class="line">		cir &#x3D; below(p);</span><br><span class="line">		if (cir) maxs &#x3D; p;</span><br><span class="line">		else mins &#x3D; p + 1;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	ans &#x3D; mins;</span><br><span class="line">	&#x2F;&#x2F;printf(&quot;ans &#x3D; %d\n&quot;, ans);</span><br><span class="line">	int s &#x3D; 0;</span><br><span class="line">	int need &#x3D; k;</span><br><span class="line"></span><br><span class="line">	for (int i &#x3D; n; i &gt;&#x3D; 1; i--) &#123;</span><br><span class="line">		if (s + a[i] &gt; ans || i &lt; need) &#123;&#x2F;&#x2F;注意此处剩余插入位置i不能少于待插入隔板数</span><br><span class="line">			print[i] &#x3D; 1;</span><br><span class="line">			need--;</span><br><span class="line">			s &#x3D; a[i];</span><br><span class="line">		&#125;</span><br><span class="line">		else s +&#x3D; a[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for (int i &#x3D; 1; i &lt; n; i++) &#123;</span><br><span class="line">		printf(&quot;%d &quot;, a[i]);</span><br><span class="line">		if (print[i]) printf(&quot;&#x2F; &quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;%d\n&quot;, a[n]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="main"><a class="markdownIt-Anchor" href="#main"></a> main</h2>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 500 + 5;</span><br><span class="line">int n, k;</span><br><span class="line">long long a[maxn];</span><br><span class="line">long long sum[maxn];</span><br><span class="line">int print[maxn];</span><br><span class="line">long long ans;</span><br><span class="line">long long maxs, mins;</span><br><span class="line"></span><br><span class="line">bool below(long long p);</span><br><span class="line">void solve();</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	int T;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;T);</span><br><span class="line">	while (T--)</span><br><span class="line">	&#123;</span><br><span class="line">		scanf(&quot;%d %d&quot;, &amp;n, &amp;k);</span><br><span class="line">		mins &#x3D; -1;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">			scanf(&quot;%lld&quot;, &amp;a[i]);</span><br><span class="line">			mins &#x3D; max(mins, a[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		sum[0] &#x3D; 0;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++)</span><br><span class="line">			sum[i] &#x3D; sum[i - 1] + a[i];</span><br><span class="line">		maxs &#x3D; sum[n];</span><br><span class="line">		solve();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-编辑书稿" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E7%BC%96%E8%BE%91%E4%B9%A6%E7%A8%BF/"
-    >编辑书稿</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E7%BC%96%E8%BE%91%E4%B9%A6%E7%A8%BF/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.576Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="uva-11212-编辑书稿"><a class="markdownIt-Anchor" href="#uva-11212-编辑书稿"></a> UVA 11212 编辑书稿</h1>
-<p>你有一篇n(2≤n≤9)个自然段组成的文章，希望将它们排列成1，2，…，n。可以用Ctrl+X（剪切）和Ctrl+V（粘贴）快捷键来完成任务。每次可以剪切一段连续的自然段，粘贴时按照顺序粘贴。注意，剪贴板只有一个，所以不能连续剪切两次，只能剪切和粘贴交替。例如，为了将{2，4，1，5，3，6}变为升序，可以剪切1将其放到2前，然后剪切3将其放到4前。再如，排列{3，4，5，1，2}，只需一次剪切和一次粘贴即可——将{3，4，5}放在{1，2}后，或者将{1，2}放在{3，4，5}前。</p>
-<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
-<ol>
-<li>
-<p>典型的状态空间搜索问题，其中的状态是1-n的排列。排列最多有9！个。但是由于剪切和粘贴的位置不定，所以搜索空间很大。</p>
-</li>
-<li>
-<p>关于剪枝</p>
-<ol>
-<li>每次只剪切一段连续的数字，不破坏已经有序的串。</li>
-<li>每次剪切至多使后继数字不正确的个数减少3个。考虑abc变成acb时，a b c 三段的末尾的数字。</li>
-</ol>
-</li>
-<li>
-<p>迭代加深搜。迭代以获得下一次递归调用的初始状态，深度搜索来找解。迭代的时候需要枚举剪切的长度，剪切和粘贴的起始位置。注意循环的边界问题。</p>
-</li>
-<li>
-<p>进行剪切和粘贴的时候，要分情况，因为涉及到其他元素往前移动还是往后移动的问题。</p>
-<ol>
-<li>如果start位置在pos后面，那么粘贴之后，需要将pos之后到start的元素向后移动len位。</li>
-<li>同理如果start在pos前面，则需要从pos开始到start之前的元素向前移动len位。</li>
-</ol>
-</li>
-</ol>
-<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
-<h3 id="dfs"><a class="markdownIt-Anchor" href="#dfs"></a> dfs()</h3>
-<pre><code>bool dfs(int d) {
-if (d == maxd) 
-	return not_inorder(d) == 0;
-if (d * 3 + not_inorder(d) &gt; 3 * maxd) return false; //每次剪切时后继不正确的数字个数至多减少三个
-													//考虑abc变成acb，那么受影响的至多是a b c的最后一个数
-
-//枚举剪切的起始位置和长度
-int next = d + 1;
-for (rint len = 0; len &lt; T; len++) {
-	for (rint start = 0; start &lt;= T - len; start++) {
-
-
-		//如果试图剪切有序串，那么剪枝
-		if (start &gt; 0 &amp;&amp; in[d][start - 1] == in[d][start] - 1) continue;
-		if (start + len &lt; T &amp;&amp; in[d][start + d - 1] == in[d][start + d] - 1) continue;
-
-		//枚举粘贴的起始位置
-		for (rint pos = 0; pos &lt;= T - len; pos++)
-		{
-			//也不能粘到自己里面
-			if (pos &gt;= start &amp;&amp; pos &lt; start + len) continue;
-			for (rint i = 0; i &lt; T; i++) in[next][i] = in[d][i];
-			//粘贴
-			for (rint i = 0; i &lt; len; i++)
-				in[next][pos + i] = in[d][start + i];
-
-			if (pos &lt; start)
-				for (rint i(pos); i &lt; start; ++i)
-					in[next][i + len] = in[d][i];
-			else
-				for (rint i(pos); i &gt; start; --i)
-					in[next][i - len] = in[d][i];
-			if (dfs(next)) return true;
-		}
-
-	}
-}
-return false;
-}
-</code></pre>
-<h3 id="not_inorder-返回后继不正确的数字的个数"><a class="markdownIt-Anchor" href="#not_inorder-返回后继不正确的数字的个数"></a> not_inorder() 返回后继不正确的数字的个数</h3>
-<pre><code>inline int not_inorder(int d) {
-int ret(0);
-for (int i(0); i &lt; T - 1; ++i)
-	ret += in[d][i + 1] != in[d][i] + 1;
-return ret + (in[d][T - 1] != (T - 1));
-
-}</code></pre>
-
       
       <!-- reward -->
       

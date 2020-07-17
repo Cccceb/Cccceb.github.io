@@ -78,6 +78,96 @@
     
     
     
+    <article id="post-平均值" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E5%B9%B3%E5%9D%87%E5%80%BC/"
+    >平均值</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E5%B9%B3%E5%9D%87%E5%80%BC/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.670Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva-1451-平均值"><a class="markdownIt-Anchor" href="#uva-1451-平均值"></a> UVA 1451 平均值</h1>
+<p>给定一个长度为 n 的 01 串，选一个长度至少为  的连续子串，使得子串中数字的平均值最大。如果有多解，子串长度应尽量小；如果仍有多解，起点编号尽量小。序列中的字符编号为 1 ~ n，因此 [1,n] 就是完整的字符串。1≤n≤100000</p>
+<p>例如，对于如下长度为 171717 的序列00101011011011010，如果 L=7L=7L=7 ，最大平均值为 34\frac 3 443​ （子序列为 [7,14]其长度为 8）；如果 L=5，子序列 [7,11]的平均值最大，为 4/5​。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>
+<p>观察目标函数的形式，非常类似sum函数的斜率，其中sum(i)为前i项和，并且相邻两项间都是x+1,y不变或加1。所以问题转化成了寻找两点间斜率的最大值。那么哪种情况斜率最大呢？假设给点一个点Pt，现在要求Pt’使得直线PtPt’斜率最大。</p>
+</li>
+<li>
+<p>假设Pt的x坐标为x0。假设有三个候选点Pi,Pj,Pk 且i&lt;j&lt;k&lt;t</p>
+<ol>
+<li>若Pj为上凸点。因为t&gt;k，所以yt&gt;=yk，画图可知，忽略点点j不会丢掉最优点。因此，所有的上凸点都可以直接忽略</li>
+<li>若Pj为下凹点。那么该点与当前的枚举的结尾点的连线即为可能的最优解。但问题是，新的点的加入可能使原来的点变成上凸点，这时就应该把上凸点删除。被删除的点总时原来的下凹点中最右边的若干连续点(因此可以用栈实现)</li>
+</ol>
+</li>
+<li>
+<p>因此，主过程就是枚举终点，计算可能的起始点。对于合法的起始点，更新答案。</p>
+</li>
+</ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<h2 id="compare_avg-比较平均值-使用通分做差后的分子避免除法误差"><a class="markdownIt-Anchor" href="#compare_avg-比较平均值-使用通分做差后的分子避免除法误差"></a> compare_avg 比较平均值 使用通分做差后的分子避免除法误差</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int compare_avg(int x1, int x2, int x3, int x4) &#123;</span><br><span class="line">	return (sum[x2] - sum[x1-1])*(x4 - x3 + 1) - (sum[x4] - sum[x3-1])*(x2 - x1 + 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="solve-枚举终点计算可能的起始点对于合法的起始点更新答案"><a class="markdownIt-Anchor" href="#solve-枚举终点计算可能的起始点对于合法的起始点更新答案"></a> solve 枚举终点，计算可能的起始点，对于合法的起始点，更新答案</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void solve() &#123;</span><br><span class="line">	int ansL&#x3D;1, ansR &#x3D; L;</span><br><span class="line">	int i &#x3D; 0, j &#x3D; 0;</span><br><span class="line">	for (int t &#x3D; L; t &lt;&#x3D; n; t++) &#123;</span><br><span class="line">		&#x2F;&#x2F;p[i,j)为候选起始点</span><br><span class="line"></span><br><span class="line">		&#x2F;&#x2F;略过上凸点</span><br><span class="line">		while (j - i &gt; 1 &amp;&amp; compare_avg(p[j - 2], t - L, p[j - 1], t - L) &gt;&#x3D; 0) </span><br><span class="line">		&#x2F;&#x2F;当斜率下降过程中出现上升，则停止</span><br><span class="line">		j--; </span><br><span class="line"></span><br><span class="line">		p[j++] &#x3D; t - L + 1;</span><br><span class="line">		</span><br><span class="line">		&#x2F;&#x2F;找到第一个切点</span><br><span class="line">		while (j - i &gt; 1 &amp;&amp; compare_avg(p[i], t, p[i + 1], t) &lt;&#x3D; 0) i++;	</span><br><span class="line">		&#x2F;&#x2F;当斜率上升过程中出现下降，则停止</span><br><span class="line">	</span><br><span class="line">		int nans &#x3D; compare_avg(p[i], t, ansL, ansR);</span><br><span class="line">			if (nans &gt; 0 || (nans &#x3D;&#x3D; 0 &amp;&amp; t - p[i] &lt; ansR - ansL)) &#123;</span><br><span class="line">				ansL &#x3D; p[i];</span><br><span class="line">				ansR &#x3D; t;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;%d %d\n&quot;, ansL, ansR);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="main"><a class="markdownIt-Anchor" href="#main"></a> main</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">const int maxn &#x3D; 100000 + 5;</span><br><span class="line">int sum[maxn];</span><br><span class="line">char s[maxn];</span><br><span class="line">int p[maxn];</span><br><span class="line">int n, L;</span><br><span class="line"></span><br><span class="line">int compare_avg(int x1, int x2, int x3, int x4);</span><br><span class="line">void solve();</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	int T;</span><br><span class="line">	scanf(&quot;%d\n&quot;, &amp;T);</span><br><span class="line">	while (T--)</span><br><span class="line">	&#123;</span><br><span class="line">		scanf(&quot;%d %d&quot;, &amp;n, &amp;L);</span><br><span class="line">		</span><br><span class="line">		scanf(&quot;%s&quot;, s + 1);</span><br><span class="line">		sum[0] &#x3D; 0;</span><br><span class="line">		for (int i &#x3D; 1; i &lt;&#x3D; n; i++) sum[i] &#x3D; sum[i - 1] + s[i]-&#39;0&#39;;</span><br><span class="line">		solve();</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-排序与检索" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -1112,82 +1202,6 @@ return 0;
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int maxn &#x3D; 50 + 5;</span><br><span class="line">const int INF &#x3D; 1000000000;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; d[i][j]: maximal number of songs from first i songs, whose total length is exactly j</span><br><span class="line">int f[maxn * 180 + 678];</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	int T;</span><br><span class="line">	int n, t, ti;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;T);</span><br><span class="line">	for (int kase &#x3D; 1; kase &lt;&#x3D; T; kase++) &#123;</span><br><span class="line">		scanf(&quot;%d%d&quot;, &amp;n, &amp;t);</span><br><span class="line">		memset(f, -1, sizeof(f));</span><br><span class="line">		f[0] &#x3D; 0;</span><br><span class="line">		for(int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">			scanf(&quot;%d&quot;, &amp;ti);</span><br><span class="line">			for (int j &#x3D; t - 1; j &gt;&#x3D; ti; j--)</span><br><span class="line">				f[j] &#x3D; max(f[j], f[j - ti] + 1);</span><br><span class="line">		&#125;</span><br><span class="line">		int ans &#x3D; t - 1;</span><br><span class="line">		for (int i &#x3D; t - 1; i &gt;&#x3D; 0; i--)&#123;</span><br><span class="line">			if (f[i] &gt; f[ans])</span><br><span class="line">				ans &#x3D; i;</span><br><span class="line">		&#125;</span><br><span class="line">			</span><br><span class="line"></span><br><span class="line">		printf(&quot;Case %d: %d %d\n&quot;, kase, f[ans] + 1, ans + 678);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="附上刘老师的代码"><a class="markdownIt-Anchor" href="#附上刘老师的代码"></a> 附上刘老师的代码</h2>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">const int maxn &#x3D; 50 + 5;</span><br><span class="line">const int INF &#x3D; 1000000000;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; d[i][j]: maximal number of songs from first i songs, whose total length is exactly j</span><br><span class="line">int n, t, len[maxn], d[2][maxn*180+678]; </span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">  int T;</span><br><span class="line">  scanf(&quot;%d&quot;, &amp;T);</span><br><span class="line">  for(int kase &#x3D; 1; kase &lt;&#x3D; T; kase++) &#123;</span><br><span class="line">    scanf(&quot;%d%d&quot;, &amp;n, &amp;t);</span><br><span class="line">    for(int i &#x3D; 1; i &lt;&#x3D; n; i++) scanf(&quot;%d&quot;, &amp;len[i]);</span><br><span class="line"></span><br><span class="line">    for(int i &#x3D; 0; i &lt; t; i++) d[0][i] &#x3D; -1;</span><br><span class="line">    d[0][0] &#x3D; 0;</span><br><span class="line"></span><br><span class="line">    int p &#x3D; 1, ans &#x3D; 0;</span><br><span class="line">    for(int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">      for(int j &#x3D; 0; j &lt; t; j++) &#123;</span><br><span class="line">        d[p][j] &#x3D; d[p^1][j];</span><br><span class="line">        if(j &gt;&#x3D; len[i] &amp;&amp; d[p^1][j - len[i]] &gt;&#x3D; 0)</span><br><span class="line">          d[p][j] &#x3D; max(d[p][j], d[p^1][j - len[i]] + 1);</span><br><span class="line">        ans &#x3D; max(ans, d[p][j]);</span><br><span class="line">      &#125;</span><br><span class="line">      p ^&#x3D; 1;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i &#x3D; t-1; i &gt;&#x3D; 0; i--)</span><br><span class="line">      if(d[p^1][i] &#x3D;&#x3D; ans) &#123;</span><br><span class="line">        printf(&quot;Case %d: %d %d\n&quot;, kase, ans + 1, i + 678);</span><br><span class="line">        break;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-困难的串" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/%E5%9B%B0%E9%9A%BE%E7%9A%84%E4%B8%B2/"
-    >困难的串</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/%E5%9B%B0%E9%9A%BE%E7%9A%84%E4%B8%B2/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.638Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="uva-129-困难的串"><a class="markdownIt-Anchor" href="#uva-129-困难的串"></a> UVA 129 困难的串</h1>
-<p>将一个包含两个相邻的重复子串的子串，称为“容易的串”，其他为“困难的串”。 输入正整数n和l,输出由前l个字符组成的，字典序第k小的困难的串。</p>
-<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
-<ol>
-<li>输出完整的串，即这条路要走到头，想到用dfs。枚举每个位置处的字符，并判断当前局面的合法性。</li>
-<li>合法性：如果扩展到当前处没有导致重复子串的出现即为合法。</li>
-</ol>
-<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<h2 id="dfs"><a class="markdownIt-Anchor" href="#dfs"></a> dfs</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">	int dfs(int cur) &#123;</span><br><span class="line">	if (cnt++ &#x3D;&#x3D; n) &#123;</span><br><span class="line">		int len &#x3D; 1;</span><br><span class="line">		cout &lt;&lt; char(&#39;A&#39; + S[0]);</span><br><span class="line">		for (int i &#x3D; 1; i &lt; cur; i++) &#123;</span><br><span class="line">			if (i&amp;&amp;i % 4 &#x3D;&#x3D; 0) &#123;</span><br><span class="line">				cout &lt;&lt; &quot; &quot;;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">			cout &lt;&lt; char(&#39;A&#39; + S[i]);</span><br><span class="line">			if (i + 1 &lt; cur) &#123;</span><br><span class="line">				if ((i + 1) % 64 &#x3D;&#x3D; 0) &#123;</span><br><span class="line">					cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">					cout &lt;&lt; char(&#39;A&#39; + S[++i]);</span><br><span class="line">					len++;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">			len++;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">		cout &lt;&lt; len &lt;&lt; endl;</span><br><span class="line">		return 0;</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; l; i++) &#123;</span><br><span class="line">		S[cur] &#x3D; i;</span><br><span class="line">		int ok &#x3D; 1;</span><br><span class="line">		for (int j &#x3D; 1; j * 2 &lt;&#x3D; cur + 1; j++) &#123;</span><br><span class="line">	&gt; 相当于在枚举循环节,关注循环条件</span><br><span class="line">			int equal &#x3D; 1;</span><br><span class="line">			for (int k &#x3D; 0; k &lt; j; k++)</span><br><span class="line">				if (S[cur - k] !&#x3D; S[cur - k - j]) &#123;</span><br><span class="line">					equal &#x3D; 0;</span><br><span class="line">					break;</span><br><span class="line">				&#125;</span><br><span class="line">			if (equal) &#123;</span><br><span class="line">	&gt; 如果后一半等于前一半，则不合法</span><br><span class="line">				ok &#x3D; 0;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		if (ok) if (!dfs(cur + 1)) return 0;</span><br><span class="line">	&gt; 递归的搜索剩余位置</span><br><span class="line">	&#125;</span><br><span class="line">	return 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="main"><a class="markdownIt-Anchor" href="#main"></a> main</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">const int maxn &#x3D; 80;</span><br><span class="line">int cnt, n, l;</span><br><span class="line">int S[maxn];</span><br><span class="line">int main() &#123;</span><br><span class="line"></span><br><span class="line">while (cin &gt;&gt; n &gt;&gt; l &amp;&amp; n&amp;&amp;l) &#123;</span><br><span class="line">	cnt &#x3D; 0;</span><br><span class="line">	memset(S, 0,sizeof(S));</span><br><span class="line">	dfs(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       
