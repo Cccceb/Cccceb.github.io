@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+
+
+<html lang="cn" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    第5章总体设计 |  
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-第5章总体设计" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  第5章总体设计
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/28/%E7%AC%AC5%E7%AB%A0%E6%80%BB%E4%BD%93%E8%AE%BE%E8%AE%A1/" class="article-date">
+  <time datetime="2020-07-28T02:23:52.640Z" itemprop="datePublished">2020-07-28</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">4.5k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">15分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="设计目标和任务"><a class="markdownIt-Anchor" href="#设计目标和任务"></a> 设计目标和任务</h1>
+<img src="\MyImages\image-20200407144132971.png" alt="image-20200407144132971" style="zoom:67%;" />
+<h2 id="数据设计"><a class="markdownIt-Anchor" href="#数据设计"></a> 数据设计</h2>
+<p>将实体 – 关系图中描述的对象和关系，以及<strong>数据词典中描述的详细数据内容转化为数据结构的定义</strong>。</p>
+<h2 id="体系结构设计"><a class="markdownIt-Anchor" href="#体系结构设计"></a> 体系结构设计</h2>
+<p>定义软件系统各主要成份之间的关系</p>
+<h2 id="接口设计"><a class="markdownIt-Anchor" href="#接口设计"></a> 接口设计</h2>
+<p>根据数据流图定义软件内部各成份之间、软件与其它协同系统之间及软件与用户之间的交互机制</p>
+<h2 id="过程设计"><a class="markdownIt-Anchor" href="#过程设计"></a> 过程设计</h2>
+<p>把结构成份转换成软件的过程性描述</p>
+<h1 id="软件设计任务"><a class="markdownIt-Anchor" href="#软件设计任务"></a> 软件设计任务</h1>
+<ul>
+<li>软件设计分成两步
+<ul>
+<li>概要设计
+<ul>
+<li>面向人的</li>
+<li>将软件需求转化为数据结构和软件的系统结构</li>
+</ul>
+</li>
+<li>详细设计
+<ul>
+<li>面向具体实现</li>
+<li>即过程设计。通过对结构表示进行细化，得到软件的详细的数据结构和算法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="制定规范"><a class="markdownIt-Anchor" href="#制定规范"></a> 制定规范</h2>
+<ul>
+<li>在进入软件开发阶段之初，首先应为软件开发组制定在设计时应该共同遵守的标准，以便协调组内各成员的工作</li>
+</ul>
+<h2 id="软件系统结构的总体设计"><a class="markdownIt-Anchor" href="#软件系统结构的总体设计"></a> 软件系统结构的总体设计</h2>
+<ul>
+<li>
+<p>采用某种设计方法，将系统按功能划分成模块的<strong>层次结构</strong></p>
+</li>
+<li>
+<p>确定每个<strong>模块的功能</strong></p>
+</li>
+<li>
+<p>建立与已确定的<strong>软件需求的对应关系</strong></p>
+</li>
+<li>
+<p>确定模块间的<strong>调用关系</strong></p>
+</li>
+<li>
+<p>确定模块间的<strong>接口</strong></p>
+</li>
+<li>
+<p>评估模块<strong>划分的质量</strong></p>
+</li>
+</ul>
+<h2 id="处理方式设计"><a class="markdownIt-Anchor" href="#处理方式设计"></a> 处理方式设计</h2>
+<ul>
+<li>确定为实现系统的功能需求<strong>所必需的算法</strong></li>
+<li>确定为满足系统的性能需求所必需的<strong>算法和模块间的控制方式</strong>
+<ul>
+<li>周转时间</li>
+<li>响应时间</li>
+<li>吞吐量</li>
+<li>精度</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据结构设计"><a class="markdownIt-Anchor" href="#数据结构设计"></a> 数据结构设计</h2>
+<ul>
+<li>确定软件涉及的<strong>文件系统的结构以及数据库的模式</strong>、子模式，进行数据完整性和安全性的设计</li>
+<li>确定<strong>输入，输出文件的详细的数据结构</strong></li>
+<li>结合算法设计，确定<strong>算法所必需的逻辑数据结构</strong>及其操作</li>
+<li>确定对逻辑数据结构所必需的那些操作的程序模块</li>
+</ul>
+<h3 id="考虑的因素"><a class="markdownIt-Anchor" href="#考虑的因素"></a> 考虑的因素</h3>
+<ul>
+<li>限制和确定各个数据设计决策的影响范围</li>
+<li>若需要与操作系统或调度程序接口所必须的控制表等数据时，确定其详细的数据结构和使用规则</li>
+<li>数据的保护性设计
+<ul>
+<li>防卫性设计：规定输入格式</li>
+<li>一致性设计：处理并发问题,Petri网</li>
+<li>冗余性设计：两个不同风格设计的结果之差在允许范围内</li>
+</ul>
+</li>
+</ul>
+<h2 id="可靠性设计"><a class="markdownIt-Anchor" href="#可靠性设计"></a> 可靠性设计</h2>
+<ul>
+<li>也叫质量设计</li>
+</ul>
+<h2 id="编写概要设计阶段的文档"><a class="markdownIt-Anchor" href="#编写概要设计阶段的文档"></a> 编写概要设计阶段的文档</h2>
+<ul>
+<li>概要设计说明书</li>
+<li>数据库设计说明书</li>
+<li>用户手册</li>
+<li>制定初步的测试计划</li>
+</ul>
+<h2 id="设计评审"><a class="markdownIt-Anchor" href="#设计评审"></a> 设计评审</h2>
+<ul>
+<li>可追溯性：确认该设计是否复盖了所有已确定的软件需求，软件每一成份是否可追溯到某一项需求</li>
+<li>接口：确认该软件的内部接口与外部接口是否已经明确定义。模块是否满足高内聚和低耦合的要求。模块作用范围是否在其控制范围之内</li>
+<li>风险：确认该设计在现有技术条件下和预算范围内是否能按时实现</li>
+<li>实用性：确认该设计对于需求的解决方案是否实用</li>
+<li>技术清晰度：确认该设计是否以一种易于翻译成代码的形式表达</li>
+<li>可维护性：确认该设计是否考虑了方便未来的维护</li>
+<li>质量：确认该设计是否表现出良好的质量特征</li>
+<li>各种选择方案：看是否考虑过其它方案，比较各种选择方案的标准是什么</li>
+<li>限制：评估对该软件的限制是否现实，是否与需求一致</li>
+<li>其它具体问题：对于文档、可测试性、设计过程…等进行评估</li>
+</ul>
+<h2 id="总结总体设计过程"><a class="markdownIt-Anchor" href="#总结总体设计过程"></a> 总结总体设计过程</h2>
+<h3 id="主要阶段组成"><a class="markdownIt-Anchor" href="#主要阶段组成"></a> 主要阶段组成</h3>
+<ol>
+<li>系统设计：确定系统的具体实现方案</li>
+<li>结构设计：确定软件结构</li>
+</ol>
+<h3 id="设想供选择的方案"><a class="markdownIt-Anchor" href="#设想供选择的方案"></a> 设想供选择的方案</h3>
+<p>设想把数据流图中的处理分组的各种可能的方法，抛弃在技术上行不通的分组方法，余下的分组方法代表可能的实现策略，并且可以启示供选择的物理系统。</p>
+<h3 id="选取合理的方案"><a class="markdownIt-Anchor" href="#选取合理的方案"></a> 选取合理的方案</h3>
+<p>要准备四份材料</p>
+<p>① 系统流程图        ②  组成系统的物理元素清单<br />
+③ 成本/效益分析     ④ 实现该系统的进度计划</p>
+<h3 id="推荐最佳方案"><a class="markdownIt-Anchor" href="#推荐最佳方案"></a> 推荐最佳方案</h3>
+<p>分析员推荐最佳方案，用户及专家应认真审查该方案，是否满足用户的要求，应请部门负责人进一步审批，然后进入下一个阶段——结构设计。</p>
+<h3 id="功能分解"><a class="markdownIt-Anchor" href="#功能分解"></a> 功能分解</h3>
+<p>分为两阶段完成</p>
+<ol>
+<li>结构设计：确定程序由哪些模块组成及几个模块之间的关系；</li>
+<li>过程设计：确定每个模块的处理过程。</li>
+</ol>
+<h3 id="设计软件结构"><a class="markdownIt-Anchor" href="#设计软件结构"></a> 设计软件结构</h3>
+<ul>
+<li>
+<p>通常程序中的一个模块完成一个适当的功能。应该把模块组织成良好的的<strong>层次系统</strong>。</p>
+</li>
+<li>
+<p>数据流图已经细化到适当的层次，则可以直接从数据流图映射出软件结构</p>
+</li>
+</ul>
+<h3 id="数据库设计"><a class="markdownIt-Anchor" href="#数据库设计"></a> 数据库设计</h3>
+<h3 id="制定测试计划"><a class="markdownIt-Anchor" href="#制定测试计划"></a> 制定测试计划</h3>
+<p>在软件开发的早期阶段考虑测试问题，能促使软件设计人员在设计时注意提高软件的可测试性。</p>
+<h3 id="书写文档"><a class="markdownIt-Anchor" href="#书写文档"></a> 书写文档</h3>
+<p>（1）系统说明         （2）用户手册        （3）测试计划<br />
+（4）详细的实现计划         （5）数据库设计结果</p>
+<h3 id="审查和复查"><a class="markdownIt-Anchor" href="#审查和复查"></a> 审查和复查</h3>
+<p>对总体设计的结果进行严格的技术审查，在技术审查通过之后再由使用部门的负责人从管理角度进行复审。</p>
+<h1 id="设计原理"><a class="markdownIt-Anchor" href="#设计原理"></a> 设计原理</h1>
+<h2 id="模块化"><a class="markdownIt-Anchor" href="#模块化"></a> 模块化</h2>
+<ul>
+<li>模块是数据说明，可执行语句等程序对象的集合，它是单独命名的，而且是可通过名字来访问。</li>
+</ul>
+<h3 id="顺序模块"><a class="markdownIt-Anchor" href="#顺序模块"></a> 顺序模块</h3>
+<ul>
+<li>[子例程，函数，过程，宏］</li>
+<li>它在没有中断的情况下，被应用软件引用或执行</li>
+</ul>
+<h3 id="增量模块"><a class="markdownIt-Anchor" href="#增量模块"></a> 增量模块</h3>
+<ul>
+<li>又称为协同程序，在引用完成之前，可以被应用程序中断，然后在中断点重新启动</li>
+</ul>
+<h3 id="并行模块"><a class="markdownIt-Anchor" href="#并行模块"></a> 并行模块</h3>
+<ul>
+<li>可与其他模块同时执行的模块</li>
+</ul>
+<h3 id="构件模块"><a class="markdownIt-Anchor" href="#构件模块"></a> 构件模块</h3>
+<ul>
+<li>可以降低耦合</li>
+</ul>
+<h2 id="抽象"><a class="markdownIt-Anchor" href="#抽象"></a> 抽象</h2>
+<ul>
+<li>软件工程过程中的每一步，都是对软件解的抽象层次的一次细化。当从总体设计转入详细设计过渡时，抽象的程度随之减少，最后当源代码写出以后，抽象的最低层也就到达了</li>
+<li>抽象的低端就是代码</li>
+</ul>
+<h3 id="数据抽象"><a class="markdownIt-Anchor" href="#数据抽象"></a> 数据抽象</h3>
+<ul>
+<li>是一个命名的说明数据对象的数据集合</li>
+<li>例如工资单，含有信息有：单位、姓名、房租、水电、有线电视费……,最后是总额</li>
+</ul>
+<h3 id="过程抽象"><a class="markdownIt-Anchor" href="#过程抽象"></a> 过程抽象</h3>
+<ul>
+<li>是一个命令的指令序列</li>
+<li>例如：“入门”是一个过程抽象，它含有一个很长的过程步骤的序列</li>
+</ul>
+<h2 id="逐步求精"><a class="markdownIt-Anchor" href="#逐步求精"></a> 逐步求精</h2>
+<p>逐步求精是人类解决复杂问题时采用的基本方法，也是许多软件工程技术（例如，规格说明技术，设计和实现技术）的基础。可以把逐步求精定义为：“为了能集中精力解决主要问题而尽量推迟对问题细节的考虑。”</p>
+<h2 id="局部化和信息隐蔽"><a class="markdownIt-Anchor" href="#局部化和信息隐蔽"></a> 局部化和信息隐蔽</h2>
+<ul>
+<li><strong>局部化</strong>是指把一些关系密切的软件元素物理的放得彼此靠近。显然，局部化有助于实现信息隐藏。</li>
+<li><strong>隐藏</strong>意味着有效的模块化可以通过定义一组独立的模块而实现，这些独立的模块彼此间仅仅交换那些为了完成系统功能而必须交换的信息。</li>
+</ul>
+<h2 id="模块独立"><a class="markdownIt-Anchor" href="#模块独立"></a> 模块独立</h2>
+<h3 id="模块独立重要性"><a class="markdownIt-Anchor" href="#模块独立重要性"></a> 模块独立重要性</h3>
+<ul>
+<li>有效的模块化软件比较容易开发。</li>
+<li>模块容易测试和维护。</li>
+</ul>
+<h3 id="独立性程度衡量"><a class="markdownIt-Anchor" href="#独立性程度衡量"></a> 独立性程度衡量</h3>
+<ul>
+<li><strong>耦合</strong>：它是衡量<strong>不同模块彼此间</strong>互相依赖的紧密程度。</li>
+<li><strong>内聚</strong>：它是衡量<strong>一个模块内部</strong>各个元素彼此结合的紧密程度。</li>
+</ul>
+<h3 id="内聚"><a class="markdownIt-Anchor" href="#内聚"></a> 内聚</h3>
+<h4 id="功能内聚"><a class="markdownIt-Anchor" href="#功能内聚"></a> 功能内聚</h4>
+<p>一个模块中各个部分都是<strong>完成某一具体功能必不可少的组成部分</strong>，或者说该模块中所有部分都是为了完成一项具体功能而协同工作，紧密联系，不可分割的。则称该模块为功能内聚模块。</p>
+<h4 id="顺序内聚"><a class="markdownIt-Anchor" href="#顺序内聚"></a> 顺序内聚</h4>
+<p>该模块根据不同要求，确定执行某个功能，由于该模块所有功能<strong>基于同一个数据结果（符号表</strong>）故为顺序内聚模块。</p>
+<h4 id="通信内聚"><a class="markdownIt-Anchor" href="#通信内聚"></a> 通信内聚</h4>
+<p>如果一个<strong>模块内各功能部分都使用了相同的输入数据</strong>，或产生了相同的输出数据，则称之为通信内聚模块。通常，通信内聚模块是通过数据流图来定义的。</p>
+<h4 id="过程内聚"><a class="markdownIt-Anchor" href="#过程内聚"></a> 过程内聚</h4>
+<p>使用流程图做为工具设计程序时，<strong>把流程图中的某一部分划出组成模块，就得到过程内聚模块</strong>。例如，把流程图中的循环部分、判定部分、计算部分分成三个模块，这三个模块都是过程内聚模块。</p>
+<h4 id="时间内聚"><a class="markdownIt-Anchor" href="#时间内聚"></a> 时间内聚</h4>
+<p>时间内聚又称为经典内聚。<strong>这种模块大多为多功能模块，但模块的各个功能的执行与时间有关</strong>，通常要求所有功能必须在同一时间段内执行。例如初始化模块和终止模块。</p>
+<h4 id="逻辑内聚"><a class="markdownIt-Anchor" href="#逻辑内聚"></a> 逻辑内聚</h4>
+<p>这种模块把几种相关的功能组合在一起，每次被调用时，由传送给模块的判定参数来确定该模块应执行哪一种功能。(switch)</p>
+<h4 id="巧合内聚"><a class="markdownIt-Anchor" href="#巧合内聚"></a> 巧合内聚</h4>
+<p>当模块内各部分之间没有联系，或者即使有联系，该联系也很松散，则称这种模块为巧合内聚模块，它是内聚程度最低的模块。</p>
+<h4 id="内聚关系比较"><a class="markdownIt-Anchor" href="#内聚关系比较"></a> 内聚关系比较</h4>
+<img src="\MyImages\image-20200417103936301.png" alt="image-20200417103936301" style="zoom: 50%;" />
+<h3 id="耦合"><a class="markdownIt-Anchor" href="#耦合"></a> 耦合</h3>
+<img src="\MyImages\image-20200417104323192.png" alt="image-20200417104323192" style="zoom: 50%;" />
+<h4 id="非直接耦合"><a class="markdownIt-Anchor" href="#非直接耦合"></a> 非直接耦合</h4>
+<p>两个模块之间没有直接关系，它们之间的联系完全是通过主模块的控制和调用来实现的。</p>
+<h4 id="数据耦合"><a class="markdownIt-Anchor" href="#数据耦合"></a> 数据耦合</h4>
+<p>一个模块访问另一个模块时，彼此之间是通<strong>过简单数据参数</strong> (<strong>不是控制参数、公共数据结构或外部变量</strong>)  来交换输入、输出信息的。</p>
+<h4 id="标记耦合"><a class="markdownIt-Anchor" href="#标记耦合"></a> 标记耦合</h4>
+<p>一组模块通过参数表传递记录信息，就是标记耦合。这个记录是某一数据结构的子结构，而不是简单变量。传递是一个数据结构</p>
+<h4 id="控制耦合"><a class="markdownIt-Anchor" href="#控制耦合"></a> 控制耦合</h4>
+<p>如果一个模块通过传送开关、标志、名字等控制信息，明显地控制选择另一模块的功能，就是控制耦合。</p>
+<h4 id="外部耦合"><a class="markdownIt-Anchor" href="#外部耦合"></a> 外部耦合</h4>
+<p>一组模块都访问<strong>同一全局简单变量</strong>而不是同一全局数据结构，而且不是通过参数表传递该全局变量的信息，则称之为外部耦合。</p>
+<h4 id="公共耦合"><a class="markdownIt-Anchor" href="#公共耦合"></a> 公共耦合</h4>
+<p>若一组模块都访问<strong>同一个公共数据环境</strong>，则它们之间的耦合就称为公共耦合。</p>
+<ul>
+<li>公共耦合程度随着参与公共耦合的模块数量的增加而增加</li>
+<li>需要加锁来协调各个模块</li>
+</ul>
+<h4 id="内容耦合"><a class="markdownIt-Anchor" href="#内容耦合"></a> 内容耦合</h4>
+<p>如果发生下列情形，两个模块之间就发生了内容耦合</p>
+<ol>
+<li>一个模块直接访问另一个模块的内部数据</li>
+<li>一个模块不通过正常入口转到另一模块内部</li>
+<li>两个模块有一部分程序代码重迭(只可能出现在汇编语言中);</li>
+<li>一个模块有多个入口</li>
+</ol>
+<h1 id="启发式规则"><a class="markdownIt-Anchor" href="#启发式规则"></a> 启发式规则</h1>
+<h2 id="改进软件结构提高模块独立性"><a class="markdownIt-Anchor" href="#改进软件结构提高模块独立性"></a> 改进软件结构提高模块独立性</h2>
+<ul>
+<li>
+<p>多个模块共有的一个子功能可以独立成一个模块，由这些模块调用。</p>
+</li>
+<li>
+<p>有时可以通过分解或合并模块以减少控制信息的传递及全程数据的引用，并且降低接口复杂度。</p>
+</li>
+</ul>
+<h2 id="模块规模应该适中"><a class="markdownIt-Anchor" href="#模块规模应该适中"></a> 模块规模应该适中</h2>
+<p>一个模块的规模不应过大</p>
+<h2 id="深度-宽度-扇入扇出应该适当"><a class="markdownIt-Anchor" href="#深度-宽度-扇入扇出应该适当"></a> 深度、宽度、扇入扇出应该适当</h2>
+<ul>
+<li><strong>深度</strong>：软件结构中的控制层数，一般深度不超过7级</li>
+<li><strong>宽度</strong>：同一层上模块总数的最大值</li>
+<li><strong>扇出</strong>：一个模块直接控制（调用）的模块数目</li>
+<li><strong>扇入</strong>：一个模块有多少个上级模块调用它</li>
+<li>设计良好的系统结构
+<ul>
+<li>顶层扇出比较高；</li>
+<li>中层扇出较少；</li>
+<li>底层扇入到公共的实用模块中去。</li>
+</ul>
+</li>
+</ul>
+<h2 id="模块的作用域"><a class="markdownIt-Anchor" href="#模块的作用域"></a> 模块的作用域</h2>
+<ul>
+<li>
+<p><strong>模块的作用域应该在控制域之内</strong>模块的作用域：该模块本身以及所有直接或间接从属于它的模块集合。模块A的控制域是A、B、C、D、E、F。若不是这样，会造成软件难于理解，这时需要传递判别结果，会使模块间出现控制耦合。</p>
+<img src="\MyImages\image-20200417105726428.png" alt="image-20200417105726428" style="zoom:50%;" />
+</li>
+</ul>
+<h2 id="力争降低模块接口的复杂程度"><a class="markdownIt-Anchor" href="#力争降低模块接口的复杂程度"></a> 力争降低模块接口的复杂程度</h2>
+<h2 id="设计单入口单出口的模块"><a class="markdownIt-Anchor" href="#设计单入口单出口的模块"></a> 设计单入口单出口的模块</h2>
+<p>从顶部入模块并且从底部退出，软件比较容易理解、容易维护。防止了内容耦合</p>
+<h2 id="模块功能应该可以预测"><a class="markdownIt-Anchor" href="#模块功能应该可以预测"></a> 模块功能应该可以预测</h2>
+<ul>
+<li>预测指，输入一定，输出也是一定的</li>
+<li>若一个模块当作黑盒子，即只要输入的数据相同就产生同样的输出，则该模块可预测。带有内部“存贮器”的模块的功能是不可预测的，因为它的输出可能取决于内部存储器的状态。实际上，要在软件设计时尽量避免在使用现场修改软件，这样的工程代价太高。</li>
+</ul>
+<h1 id="描绘软件结构的图形工具"><a class="markdownIt-Anchor" href="#描绘软件结构的图形工具"></a> 描绘软件结构的图形工具</h1>
+<h2 id="层次图和hipo图"><a class="markdownIt-Anchor" href="#层次图和hipo图"></a> 层次图和HIPO图</h2>
+<p>如上图中展示宽度和高度的图</p>
+<h2 id="结构图"><a class="markdownIt-Anchor" href="#结构图"></a> 结构图</h2>
+<p>按惯例总是图中位于上方的方框代表的模块调用下方的模块，用带注释的箭头表示模块调用过程中来回传递的信息。如果希望进一步表明传递信息是数据还是控制信息，用尾部形状区分：尾部是空心圆表示传递的是数据，实心圆表示传递的是控制信息。</p>
+<h1 id="面向数据流的设计方法"><a class="markdownIt-Anchor" href="#面向数据流的设计方法"></a> 面向数据流的设计方法</h1>
+<h2 id="概念"><a class="markdownIt-Anchor" href="#概念"></a> 概念</h2>
+<ul>
+<li>软件设计方法包括
+<ul>
+<li>面向数据流的设计</li>
+<li>面向数据结构的设计</li>
+<li>面向对象的设计</li>
+</ul>
+</li>
+</ul>
+<h3 id="面向数据流的设计方法-2"><a class="markdownIt-Anchor" href="#面向数据流的设计方法-2"></a> 面向数据流的设计方法</h3>
+<p>①  首先研究、分析数据流图<br />
+②  然后根据数据流图决定问题的类型<br />
+③  由数据流图推导出系统的初始结构图<br />
+④ 利用启发性原则来改进系统的初始结构图，直到符合要求的结构图为止<br />
+⑤  修改和补充数据字典<br />
+⑥  制定测试计划</p>
+<h4 id="信息流包括"><a class="markdownIt-Anchor" href="#信息流包括"></a> 信息流包括</h4>
+<ul>
+<li>变换流：<strong>信息沿输入通路进入系统，同时由外部形式变换成内部形式</strong>，进入系统的信息通过变化中心，经加工处理以后再沿输出通路变换成外部形式离开软件系统</li>
+<li>事物流：数据沿输入通路到达一个处理T，这个处理根据输入数据的类型在若干个动作序列中选出一个来执行。</li>
+</ul>
+<img src="\MyImages\image-20200417110653808.png" alt="image-20200417110653808" style="zoom:50%;" />
+<h2 id="变换分析"><a class="markdownIt-Anchor" href="#变换分析"></a> 变换分析</h2>
+<p>变换分析是一系列设计步骤的总称。经这些步骤把具有变换特点的数据流图按预先确定的模式映射成软件结构</p>
+<p>举例：以C-&gt;D为变换中心</p>
+<img src="\MyImages\image-20200417110759819.png" alt="image-20200417110759819" style="zoom:67%;" />
+<img src="\MyImages\image-20200417110805314.png" alt="image-20200417110805314" style="zoom: 67%;" />
+<h3 id="变换流设计方法"><a class="markdownIt-Anchor" href="#变换流设计方法"></a> 变换流设计方法</h3>
+<ol>
+<li>找出变换中心
+<ul>
+<li>从输入端开始一步步向后推；</li>
+<li>从输出端向前移</li>
+</ul>
+</li>
+<li>设计软件结构的顶层和第二层</li>
+</ol>
+<ul>
+<li>变换中心确定，等于确定了主模块，其功能主要是完成对所有模块控制。顶层之后是第二层，一般第二层至少有三种功能：输入、输出和交换中心，它们可以是一个或多个。</li>
+</ul>
+<ol start="3">
+<li>下层模块
+<ul>
+<li>根据第二层，自顶而下，逐步细化，分别为各模块设计出下属模块</li>
+</ul>
+</li>
+</ol>
+<h3 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h3>
+<img src="\MyImages\image-20200417111154849.png" alt="image-20200417111154849" style="zoom:50%;" />
+<img src="\MyImages\image-20200417111156905.png" alt="image-20200417111156905" style="zoom:50%;" />
+<h2 id="事务分析"><a class="markdownIt-Anchor" href="#事务分析"></a> 事务分析</h2>
+<p>在很多软件应用中，存在某种作业数据流，它可以引发一个或多个处理，这些处理能够完成该作业要求的功能。这种数据流就叫做事务流。</p>
+<ul>
+<li>特征：数据流图中扇入出现扇入少而扇出多，最后又扇入到一个点的模块</li>
+</ul>
+<h3 id="事务分析过程"><a class="markdownIt-Anchor" href="#事务分析过程"></a> 事务分析过程</h3>
+<ol>
+<li>识别事物源
+<ul>
+<li>利用数据流图和数据词典，从问题定义和需求分析的结果中，找出各种需要处理的事务。通常，事务来自物理输入装置。有时，设计人员还必须区别系统的输入、中心加工和输出中产生的事务。</li>
+</ul>
+</li>
+<li>规定适当的是事物型结构
+<ul>
+<li>在确定了该数据流图具有事务型特征之后，根据模块划分理论，建立适当的事务型结构。</li>
+</ul>
+</li>
+<li>识别各种事务和它们定义的操作。从问题定义
+<ul>
+<li>需求分析中找出的事务及其操作所必需的全部信息，对于系统内部产生的事务，必须仔细地定义它们的操作。</li>
+</ul>
+</li>
+<li>注意利用公用模块
+<ul>
+<li>在事务分析的过程中，如果不同事务的一些中间模块可由具有类似的语法和语义的若干个低层模块组成，则可以把这些低层模块构造成公用模块。</li>
+</ul>
+</li>
+<li>对每一事务，或对联系密切的一组事务，建立一个事务处理模块</li>
+</ol>
+<ul>
+<li>如果发现在系统中有类似的事务，可以把它们组成一个事务处理模块</li>
+</ul>
+<ol start="6">
+<li>对事务处理模块规定它们全部的下层操作模块</li>
+<li>对操作模块规定它们的全部细节模块</li>
+</ol>
+<h3 id="举例-2"><a class="markdownIt-Anchor" href="#举例-2"></a> 举例</h3>
+<img src="\MyImages\image-20200417111517752.png" alt="image-20200417111517752" style="zoom: 50%;" />
+<h3 id="综合举例"><a class="markdownIt-Anchor" href="#综合举例"></a> 综合举例</h3>
+<ul>
+<li>通常是变换流为主，事物流为辅的情况</li>
+</ul>
+<img src="\MyImages\image-20200417112110574.png" alt="image-20200417112110574" style="zoom: 50%;" />
+<img src="\MyImages\image-20200417112113474.png" alt="image-20200417112113474" style="zoom: 50%;" />
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/07/28/%E7%AC%AC5%E7%AB%A0%E6%80%BB%E4%BD%93%E8%AE%BE%E8%AE%A1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/07/28/%E7%AC%AC6%E7%AB%A0%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            第6章详细设计
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/07/28/%E7%AC%AC4%E7%AB%A0%E5%BD%A2%E5%BC%8F%E5%8C%96%E8%AF%B4%E6%98%8E%E6%8A%80%E6%9C%AF/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">第4章形式化说明技术</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        CuiEnbo
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt=""></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['', '', ''],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: false
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

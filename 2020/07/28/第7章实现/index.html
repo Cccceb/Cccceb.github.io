@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+
+
+<html lang="cn" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    第7章实现 |  
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-第7章实现" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  第7章实现
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/28/%E7%AC%AC7%E7%AB%A0%E5%AE%9E%E7%8E%B0/" class="article-date">
+  <time datetime="2020-07-28T02:23:54.274Z" itemprop="datePublished">2020-07-28</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">5k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">16分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="程序设计语言"><a class="markdownIt-Anchor" href="#程序设计语言"></a> 程序设计语言</h1>
+<h2 id="程序设计语言特点与特性"><a class="markdownIt-Anchor" href="#程序设计语言特点与特性"></a> 程序设计语言特点与特性</h2>
+<h3 id="程序设计语言的心理学观点"><a class="markdownIt-Anchor" href="#程序设计语言的心理学观点"></a> 程序设计语言的心理学观点</h3>
+<ul>
+<li><strong>一致性</strong>：是表示某种语言使用一致的符号,采用看似任意的限制和支持语法或语义例外规则的程度。</li>
+<li><strong>多义性</strong>：编程语言的多义性是程序员的理解。一般一条语句一个解释。有时却有多种解释 。</li>
+<li><strong>紧凑性</strong>：代表语言的表达能力</li>
+<li><strong>局域性</strong>：是编程语言的综合特性，当语句可以组合为程序块,结构化构造可以直接实现,设计代码和合成代码具有高的模块性和聚合时,局域性就高.</li>
+<li><strong>线性</strong>：是一种心理特性．它与保持功能域的概念紧密联系。即当遇到一个逻辑运算线性序列时,人容易理解,外延分支和外延大的循环都违反处理的线性,而结构化构造的直接实现有助于编程语言的线性。</li>
+</ul>
+<h3 id="程序设计语言的工程学观点"><a class="markdownIt-Anchor" href="#程序设计语言的工程学观点"></a> 程序设计语言的工程学观点</h3>
+<ul>
+<li>易于把设计翻译为代码</li>
+<li>编译器效率</li>
+<li>源代码的可移植性</li>
+<li>开发工具的可用性</li>
+<li>可维护性</li>
+</ul>
+<h3 id="选择一种语言"><a class="markdownIt-Anchor" href="#选择一种语言"></a> 选择一种语言</h3>
+<p>用于评价语言的准则</p>
+<p>(1)   一般的应用领域<br />
+(2)   算法和计算的复杂性<br />
+(3)   软件运行环境<br />
+(4)   性能考虑<br />
+(5)   数据结构的复杂性<br />
+(6)   软件开发人员的知识<br />
+(7)   一个好的编译器或交叉编译器的可使用性．</p>
+<h2 id="程序设计途径与编写程序的风格"><a class="markdownIt-Anchor" href="#程序设计途径与编写程序的风格"></a> 程序设计途径与编写程序的风格</h2>
+<h3 id="方法"><a class="markdownIt-Anchor" href="#方法"></a> 方法</h3>
+<ul>
+<li>自上而下：程序可读性好,可靠性高。</li>
+<li>自下而上：局部优化：系统整体性差,但能及时发现算法是否可行,返工性好。</li>
+</ul>
+<h3 id="程序设计工具"><a class="markdownIt-Anchor" href="#程序设计工具"></a> 程序设计工具</h3>
+<ul>
+<li>编译程序</li>
+<li>代码管理系统</li>
+</ul>
+<h3 id="编码风格"><a class="markdownIt-Anchor" href="#编码风格"></a> 编码风格</h3>
+<p>编码风格实际上是一种编码原则</p>
+<h3 id="代码文档化"><a class="markdownIt-Anchor" href="#代码文档化"></a> 代码文档化</h3>
+<ul>
+<li>代码文档化是从选择标识符（变量、标号）的名字开始，接着是写程序和安排注释，最后是程序的整个组织形式的视觉。</li>
+</ul>
+<h3 id="注释"><a class="markdownIt-Anchor" href="#注释"></a> 注释</h3>
+<ul>
+<li>
+<p>序言性注释：应该安排在每个模块的起始部分</p>
+<p>​			   （1）  说明每个模块的用途，并指明它的功能<br />
+​               （2）  接口描述，应包括：调用序列，每个参数的描述，以及所有从属模块清单。<br />
+​               （3） 有关数据的讨论，包括：重要的变量和它们的用途、限制或约束条件，以及其他必要的信息。<br />
+​               （4）  开发历史，包括：模块设计人姓名，评审人姓名及日期、修改说明及日期。</p>
+</li>
+<li>
+<p>功能性注释：应嵌入在源代码体内，用来描述处理功能。书写这种注释的基本原则是：注释要解释程序代码，还应提供附加说明。此外，注释还应做到以下几点：<br />
+（1） 注释是说明代码块，而不是注释每一行代码。<br />
+（2） 使用空行或缩格，以便很容易的区分注释和代码<br />
+（3） 注释一定要正确，以免引起错误，造成误解。</p>
+</li>
+</ul>
+<h3 id="语言构造"><a class="markdownIt-Anchor" href="#语言构造"></a> 语言构造</h3>
+<ul>
+<li>每条语句应当简单而直接，同时也不应为了追求运行效率而使代码变得复杂化，而让人难以理解。</li>
+</ul>
+<h3 id="io"><a class="markdownIt-Anchor" href="#io"></a> I/O</h3>
+<p>I/O的风格不是在编码时确定的，而是在软件需求分析和实际中就确定了的。但是，在编码时，I/O的实现方式决定了用户对系统特征的可接受程度。</p>
+<h3 id="效率"><a class="markdownIt-Anchor" href="#效率"></a> 效率</h3>
+<ul>
+<li><strong>代码效率</strong>：源代码的效率与详细设计阶段所确定的算法效率直接相关。但编码风格也会影响运行速度和对内存的需要。</li>
+<li><strong>内存效率</strong>：在大型计算机和工作站领域中，内存限制大多已是过去的事了。低成本内存提供了大的物理地址空间，而虚存管理为应用软件提供了巨大的逻辑地址空间，对于这样的环境，内存效率不等于使用最小内存。</li>
+</ul>
+<h2 id="保护性编程"><a class="markdownIt-Anchor" href="#保护性编程"></a> 保护性编程</h2>
+<h3 id="主动保护"><a class="markdownIt-Anchor" href="#主动保护"></a> 主动保护</h3>
+<p>主动保护技术周期性的或在空闲时间对整个程序或数据库进行搜索，用以发现异常情况。</p>
+<h3 id="被动保护"><a class="markdownIt-Anchor" href="#被动保护"></a> 被动保护</h3>
+<p>被动保护技术是在到达检查代码时，对程序的某些部分进行检查。</p>
+<h2 id="冗余编程"><a class="markdownIt-Anchor" href="#冗余编程"></a> 冗余编程</h2>
+<ul>
+<li>
+<p>**冗余（redundant）**是改善系统可靠性的一种重要技术。对于硬件，即提供额外的元件或系统，使其与原始系统并行工作。在某些情况下，其连接是使所有的元件并行工作。</p>
+</li>
+<li>
+<p>作用</p>
+<ul>
+<li>保证系统可靠性</li>
+<li>提高系统容错性</li>
+</ul>
+</li>
+</ul>
+<h1 id="基本概念"><a class="markdownIt-Anchor" href="#基本概念"></a> 基本概念</h1>
+<ul>
+<li>测试的目的：是尽可能多的发现并排除软件中的错误。国际上惯用α测试和β测试。</li>
+</ul>
+<h2 id="黑盒测试"><a class="markdownIt-Anchor" href="#黑盒测试"></a> 黑盒测试</h2>
+<ul>
+<li><strong>黑盒测试</strong>：又称为功能测试，典型的β测试</li>
+</ul>
+<p>①  完全不考虑程序内部结构和处理过程。<br />
+②  具体是在程序接口进行测试，它只检查程序功能是否按照规格说明书的规定进行，程序能否适当地接受输入数据，产生正确的输出信息并且保持外部信息（数据库、文件）的完整性。</p>
+<h2 id="白盒测试"><a class="markdownIt-Anchor" href="#白盒测试"></a> 白盒测试</h2>
+<ul>
+<li><strong>白盒测试</strong>：由称为结构测试，典型的α测试</li>
+</ul>
+<p>①  进行逻辑测试，它完全了解结构及处理过程。<br />
+②  按照程序内部的逻辑测试程序，检查程序中每条通路是否都能按预定要求正确工作。</p>
+<h2 id="测试原则"><a class="markdownIt-Anchor" href="#测试原则"></a> 测试原则</h2>
+<p>（1）<strong>回避原则</strong>：程序员或程序设计机构不应该测试自己设计的程序（采用客观态度比较难，自己测效率低）<br />
+（2）<strong>测试用例的设计</strong>不仅要有确定的输入数据，而且要有确定预期输出的详细数据。</p>
+<p>（3）测试用例的设计不仅要有合理的输入数据，<strong>还要有不合理的输入数据</strong>。<br />
+（4）除了检查程序是否做完了它应作的事之外，<strong>还要检查它是否做了不应该做的事</strong>。<br />
+（5）<strong>保留全部测试用例</strong>，并作为软件的组成部分之一。<br />
+（6）程序中<strong>存在错误的概率与在该程序中已发现的错误数成正比</strong>。例如，用户的错误有47%集中在4%的模块中，但这些现象告诉我们，为了提高测试效率，要集中对付那些容易出错的程序段。</p>
+<h3 id="测试阶段的信息流"><a class="markdownIt-Anchor" href="#测试阶段的信息流"></a> 测试阶段的信息流</h3>
+<img src="\MyImages\image-20200512151209769.png" alt="image-20200512151209769" style="zoom:50%;" />
+<h1 id="单元测试"><a class="markdownIt-Anchor" href="#单元测试"></a> 单元测试</h1>
+<ul>
+<li>单元测试是针对模块，它不是一个独立的程序。因此，模块自己不能运行，要靠其它部分来调动和驱动，这样就要为每个单元测试开发两个软件：驱动程序和连接程序。</li>
+</ul>
+<h2 id="单元测试内容"><a class="markdownIt-Anchor" href="#单元测试内容"></a> 单元测试内容</h2>
+<h3 id="模块接口"><a class="markdownIt-Anchor" href="#模块接口"></a> 模块接口</h3>
+<ul>
+<li>测试输入输出是否正确，规范</li>
+</ul>
+<h3 id="局部数据结构"><a class="markdownIt-Anchor" href="#局部数据结构"></a> 局部数据结构</h3>
+<p>主要错误来源<br />
+①  不正确或不一致的说明<br />
+②  错误的初始化或错误的缺省值<br />
+③  拼写错误或截短的变量名<br />
+④  上溢、下溢错误<br />
+⑤  不一致的数据类型</p>
+<h3 id="重要的执行路径"><a class="markdownIt-Anchor" href="#重要的执行路径"></a> 重要的执行路径</h3>
+<p>计算中比较常见的错误<br />
+①  算术运算优先次序不正确或理解错误<br />
+②  运算方式不正确<br />
+③  初始化不正确<br />
+④  精度不够<br />
+⑤  表达式符号表示错误</p>
+<h3 id="边界测试"><a class="markdownIt-Anchor" href="#边界测试"></a> 边界测试</h3>
+<p>软件通常容易在边界上出错，比如一个n位数组，当处理数组的第n个元素时，或M次循环在遇到第M次重复时，都常常发生错误。就是说使用数据流、控制流，当刚好等于、小于、或大于最大值或最小值的数据时，非常可能发生错误。</p>
+<h2 id="计算机测试"><a class="markdownIt-Anchor" href="#计算机测试"></a> 计算机测试</h2>
+<h3 id="驱动程序"><a class="markdownIt-Anchor" href="#驱动程序"></a> 驱动程序</h3>
+<p>它实际上相当于一个程序，它接受不同的测试用例的数据，并把这些数据传送给测试模块，最后打印结果，即通常所讲设计一个测试路径。（<strong>单元测试主控程序</strong>）</p>
+<h3 id="连接程序"><a class="markdownIt-Anchor" href="#连接程序"></a> 连接程序</h3>
+<ul>
+<li>连接程序是被驱动程序调用的部分</li>
+<li>连接程序用来代替被测模块所调用的模块。
+<ul>
+<li>单元测试相当于分调，组装测试相当于联调</li>
+<li>确认测试相当于黑盒测试，相当于考机</li>
+</ul>
+</li>
+</ul>
+<h2 id="单元测试过程"><a class="markdownIt-Anchor" href="#单元测试过程"></a> 单元测试过程</h2>
+<h3 id="代码审查"><a class="markdownIt-Anchor" href="#代码审查"></a> 代码审查</h3>
+<p>优缺点</p>
+<ul>
+<li>一次可以发现多处错误</li>
+<li>采用代码审查可减少系统验证的总工作量</li>
+</ul>
+<h3 id="测试软件"><a class="markdownIt-Anchor" href="#测试软件"></a> 测试软件</h3>
+<ul>
+<li>驱动、存根程序是单元测试必须编写的测试软件（是开销），但不交给用户，模块的内聚程度高可以简化<strong>单元测试</strong>过程。</li>
+<li><strong>集成测试</strong>：是组装软件的系统技术。</li>
+</ul>
+<h1 id="集成测试"><a class="markdownIt-Anchor" href="#集成测试"></a> 集成测试</h1>
+<ul>
+<li>自顶而下集成：称为渐增测试:一个要测模块与已测试好的结合测试；</li>
+<li>自底向上集成：非渐增测试：分别测试每个模块，再把所有模块按设计要求结合。</li>
+</ul>
+<img src="\MyImages\image-20200512175439082.png" alt="image-20200512175439082" style="zoom: 50%;" />
+<h2 id="自顶而下结合"><a class="markdownIt-Anchor" href="#自顶而下结合"></a> 自顶而下结合</h2>
+<ul>
+<li>
+<p>自顶而下结合是从主模块（主程序）开始，沿控制层次向下移动，逐步结合每个模块。</p>
+</li>
+<li>
+<p>步骤</p>
+</li>
+</ul>
+<p>1  以主控模块作为测试驱动模块，把对主控模块进行单元测试时引入的所有桩模块用实际模块替代；</p>
+<p>2  依据所选的集成策略（深度优先或广度优先），每次只替代一个桩模块；</p>
+<p>3  每集成一个模块立即测试一遍；</p>
+<p>4  只有每组测试完成后，才着手替换下一个桩模块；</p>
+<p>5  为避免引入新错误，须不断地进行回归测试（即全部或部分地重复已做过的测试）。</p>
+<h2 id="自底向上结合"><a class="markdownIt-Anchor" href="#自底向上结合"></a> 自底向上结合</h2>
+<ul>
+<li>
+<p>自底向上测试是从“原子”模块（即软件结构最低层的模块）开始组装测试，因测试到较高层模块时，所需的下层模块功能均已具备，所以不再需要桩模块。</p>
+</li>
+<li>
+<p>步骤</p>
+</li>
+</ul>
+<p>1 把低层模块组织成实现某个子功能的模块群（cluster）;</p>
+<p>2 开发一个测试驱动模块，控制测试数据的输入和测试结果的输出；</p>
+<p>3 对每个模块群进行测试；</p>
+<p>4 删除测试使用的驱动模块，用较高层模块把模块群组织成为完成更大功能的新模块群。</p>
+<h2 id="不同集成测试策略的比较"><a class="markdownIt-Anchor" href="#不同集成测试策略的比较"></a> 不同集成测试策略的比较</h2>
+<ul>
+<li>自顶向下集成的优点在于能尽早地对程序的主要控制和决策机制进行检验，因此<strong>较早地发现错误</strong>。缺点是在测试较高层模块时，<strong>低层处理采用桩模块替代，不能反映真实情况</strong>，重要数据不能及时回送到上层模块，因此测试并不充分。</li>
+<li>自底向上集成方法不用桩模块，测试用例的设计亦相对简单，但缺点是<strong>程序最后一个模块加入时才具有整体形象</strong>。它与自顶向综合测试方法优缺点正好相反。因此，在测试软件系统时，应根据软件的特点和工程的进度，选用适当的测试策略，有时混和使用两种策略更为有效，<strong>上层模块用自顶向下的方法，下层模块用自底向上的方法。</strong></li>
+</ul>
+<h1 id="确认测试验收测试"><a class="markdownIt-Anchor" href="#确认测试验收测试"></a> 确认测试(验收测试)</h1>
+<ul>
+<li>
+<p>目的：向用户表明系统能满足要求，测试范围与系统测试范围类似，<strong>确认测试是黑盒测试</strong></p>
+</li>
+<li>
+<p>设计目标：确定一组最可能发现某个错误或某类错误的测试数据</p>
+</li>
+<li>
+<p>设计技术主要有：<br />
+• 适用于黑盒测试的等价划分<br />
+• 边界值分析以及错误推测法<br />
+• 适用于白盒测试的逻辑覆盖法<br />
+通常做法：用黑盒法设计基本测试方案，再用白盒测补充一些方案。</p>
+</li>
+</ul>
+<h1 id="白盒测试-2"><a class="markdownIt-Anchor" href="#白盒测试-2"></a> 白盒测试</h1>
+<ul>
+<li>所谓<strong>白盒测试</strong>是对一系列测试过程的总称，这组测试过程逐渐进行越来越完整的<strong>通路测试</strong>。大致有以下一些不同的覆盖标准。</li>
+</ul>
+<h2 id="覆盖标准"><a class="markdownIt-Anchor" href="#覆盖标准"></a> 覆盖标准</h2>
+<p>①    语句覆盖：至少每个语句应执行一次，是较弱的逻辑覆盖。<br />
+②    判定覆盖：称为分支覆盖，每个判定的每个分支都至少执行一次(两组设定输入数据)</p>
+<p>③    条件覆盖：不仅每个语句至少执行一次，而且判定表达式中每个条件都取得各种可能的结果。<br />
+条件覆盖通常比判定覆盖强，它使判定表达式中每个条件都取得到两个不同的结果。判定覆盖却只关心整个判定表达式的值。<br />
+④    判定/条件覆盖<br />
+同时满足判定覆盖与条件覆盖含义是：<br />
+选取足够多地测试数据，使得判定表达式中的每个条件都取到各种可能的值，而且每个判定表达式也都取到各种可能的结果。</p>
+<p>⑤  条件组合覆盖<br />
+选取足够多的数据，使每个判定表达式中的条件的各种可能组合都至少出现一次。</p>
+<h3 id="判定覆盖-条件覆盖"><a class="markdownIt-Anchor" href="#判定覆盖-条件覆盖"></a> 判定覆盖 &amp; 条件覆盖</h3>
+<ul>
+<li>条件覆盖比判定覆盖强，因为它使得判定表达式中每个条件都取到了两个不同的结果，而判定覆盖只关心整个判定表达式的值。</li>
+<li>但也有例外，虽然每个表达式取到了两个不同的结果，判定表达式却始终只取一个值。（只满足条件覆盖不满足判定覆盖）</li>
+</ul>
+<h2 id="循环测试"><a class="markdownIt-Anchor" href="#循环测试"></a> 循环测试</h2>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200521182034057.png" alt="image-20200521182034057" style="zoom: 50%;" />
+<h3 id="单循环测试"><a class="markdownIt-Anchor" href="#单循环测试"></a> 单循环测试</h3>
+<p>​     其中n是可允许通过循环的最大次数<br />
+​            （1） 跳过整个循环<br />
+​            （2）只通过循环一次<br />
+​            （3） 通过循环一次<br />
+​            （4） 通过循环m次，m&lt;n<br />
+​            （5） 通过循环n-1,n,n+1次</p>
+<ul>
+<li>关键是想测试不进入循环，进入一次循环，以及循环上界次会怎么样</li>
+</ul>
+<h3 id="嵌套循环测试"><a class="markdownIt-Anchor" href="#嵌套循环测试"></a> 嵌套循环测试</h3>
+<p>（1） 从最内层的循环开始，将其他循环设为最小值；<br />
+（2）保持外层循环处于它的最小重复参数（即循环技术器）值，对最内曾进行单循环测试；<br />
+（3）进行下一层的循环测试，但仍保持所有外层处于最小值，而其他嵌套循环处于“一般”值；<br />
+（4）照此进行，直至全部循环测试完毕。</p>
+<h3 id="串联循环"><a class="markdownIt-Anchor" href="#串联循环"></a> 串联循环</h3>
+<ul>
+<li>若串联循环的每个循环独立，则采用上面单循环的方法，若两个循环串联，而且循环1的循环计数器是循环2的初值，则它们是非独立的。<strong>则应采用嵌套循环测试法</strong></li>
+</ul>
+<h2 id="控制结构测试"><a class="markdownIt-Anchor" href="#控制结构测试"></a> 控制结构测试</h2>
+<h3 id="流图符号"><a class="markdownIt-Anchor" href="#流图符号"></a> 流图符号</h3>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200521231512181.png" alt="image-20200521231512181" style="zoom: 50%;" />
+<ul>
+<li>
+<p>举例：将程序流程图映射到一个相应的流图</p>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200521231555832.png" alt="image-20200521231555832" style="zoom:50%;" />
+<ul>
+<li><strong>任何过程设计表示方法都可以被翻译成流图</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>复合条件</strong></p>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200521231837115.png" alt="image-20200521231837115" style="zoom:50%;" />
+<ul>
+<li>注意：为语句 IF a OR b 中的每一个a和b 创建了一个独立的节点，包含条件的节点被称为判定节点，从每一个判定节点发出两条或多条边</li>
+</ul>
+</li>
+</ul>
+<h3 id="导出测试用例"><a class="markdownIt-Anchor" href="#导出测试用例"></a> 导出测试用例</h3>
+<ol>
+<li>以设计或代码为基础，画出相应的流图。<br />
+创建流图时，要对将被映射为流图节点的PDL语句进行标号。    下面我们将给出 “求平均值”过程的对应的PDL语句和流图。</li>
+<li>确定结果流图的环型复杂性。<br />
+可采用教材中介绍的任意一种算法来计算环形复杂性-----V(G)。应该注意到，计算V(G)并不一定要画出流图，计算PDL中的所有条件语句数量（过程求平均值中复合条件语句为2，然后加1即可得到环形复杂性。</li>
+<li>确定线性独立的路径的一个基本集。<br />
+V(G)的值提供了程序控制结构中线性独立的路径的数量，在过程求平均值中，我们指定六条路径：</li>
+<li>准备测试用例，强制执行基本集中每条路径。</li>
+</ol>
+<h1 id="黑盒测试-2"><a class="markdownIt-Anchor" href="#黑盒测试-2"></a> 黑盒测试</h1>
+<p>设计黑盒测试方案应考虑下述问题：</p>
+<ol>
+<li>怎样测试功能的有效性</li>
+<li>哪些类型的输入可构成好测试用例</li>
+<li>系统是否对特定的输入值特别敏感</li>
+<li>怎样化定数据类的边界</li>
+<li>系统能够承受什么样的数据率和数据量</li>
+<li>数据的特定组合将对系统运行产生什么影响</li>
+</ol>
+<h2 id="等价划分"><a class="markdownIt-Anchor" href="#等价划分"></a> 等价划分</h2>
+<ul>
+<li>等价划分法设计测试方案首先的出从划分输入数据等价类入手，为此需要研究程序功能说明，从而确定输入数据的有效等价类和无效等价类，然后再分析出输出数据的等价类。</li>
+</ul>
+<h2 id="边界值分析"><a class="markdownIt-Anchor" href="#边界值分析"></a> 边界值分析</h2>
+<h3 id="边界值-等价类"><a class="markdownIt-Anchor" href="#边界值-等价类"></a> 边界值 &amp; 等价类</h3>
+<ol>
+<li>边界值分析不是从等价类中随便选一数据做代表,而是选一个或几个特定值 ,使这个等价类的每个边界都作为测试的目标.</li>
+<li>边界值分析不仅要考虑输入条件,还要考虑输出情况(即输出等价类)</li>
+</ol>
+<h2 id="错误推测"><a class="markdownIt-Anchor" href="#错误推测"></a> 错误推测</h2>
+<p>错误推测则很大程度上靠直觉和经验进行，是列举出程序中可能有的错误和容易发生错误的特殊情况。<br />
+1．输入/输出数据为零时，容易出错；<br />
+2．输入/输出数目允许变化（如被检测或生成表的项数）则输入/输出数目为0或1时（表为空表或只有一项内容）容易出错；<br />
+3．等价划分法和边界分析法都只考虑各个输入数据的测试效率，而没有考虑多个输入数据的组合效率，可能会遗漏了输入数据易出错的组合情况。</p>
+<h1 id="调试纠错"><a class="markdownIt-Anchor" href="#调试纠错"></a> 调试（纠错）</h1>
+<h2 id="蛮干法"><a class="markdownIt-Anchor" href="#蛮干法"></a> 蛮干法</h2>
+<p>在特定位置打印输出也是一种办法</p>
+<h2 id="消去原因"><a class="markdownIt-Anchor" href="#消去原因"></a> 消去原因</h2>
+<ul>
+<li>消去原因有两种方法：包括归纳法和演绎法</li>
+</ul>
+<h3 id="归纳法"><a class="markdownIt-Anchor" href="#归纳法"></a> 归纳法</h3>
+<ul>
+<li>归纳法：从对个别事例的认识中，概括共同特性点，得出一般规律性</li>
+</ul>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522000002753.png" alt="image-20200522000002753" style="zoom: 50%;" />
+<ul>
+<li>
+<p>设置相应的数据</p>
+<p>第一步应列出所有已知信息，即程序能正确完成什麽；它能出现什麽错误，即确定错误的征兆；</p>
+</li>
+<li>
+<p>组织这些数据</p>
+<p>将数据结构化，使人们能够观察到它的模式，最重要的是搜寻矛盾</p>
+</li>
+<li>
+<p>设置假设</p>
+</li>
+<li>
+<p>证明假设</p>
+</li>
+</ul>
+<h3 id="演绎法"><a class="markdownIt-Anchor" href="#演绎法"></a> 演绎法</h3>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522000349268.png" alt="image-20200522000349268" style="zoom:50%;" />
+<ul>
+<li>
+<p>列举可能的错误原因和假设</p>
+<p>把所有可能的错误原因列表，不需要完全的解释，仅仅是一些可能因素或假定，通过它们，能够组织和分析这些错误。</p>
+</li>
+<li>
+<p>使用第（1）步所列举的可能的错误原因 ，消去次要原因</p>
+</li>
+<li>
+<p>进一步完善留下的假设</p>
+</li>
+<li>
+<p>证明假设的正确性</p>
+</li>
+</ul>
+<h2 id="回溯"><a class="markdownIt-Anchor" href="#回溯"></a> 回溯</h2>
+<p>它是从发现错误征兆的位置开始，人工追溯源程序代码，直到找到错误的原因为止。但是如果源程序代码行为不断增加，回溯是可能经过的路径数目变得很大，以至实际上无法进行工作。</p>
+<h1 id="应用题"><a class="markdownIt-Anchor" href="#应用题"></a> 应用题</h1>
+<h2 id="三角形类别"><a class="markdownIt-Anchor" href="#三角形类别"></a> 三角形类别</h2>
+<h3 id="等价划分-2"><a class="markdownIt-Anchor" href="#等价划分-2"></a> 等价划分</h3>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522001255367.png" alt="image-20200522001255367" style="zoom:50%;" />
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522001412901.png" alt="image-20200522001412901" style="zoom:50%;" />
+<h3 id="边界值分析-2"><a class="markdownIt-Anchor" href="#边界值分析-2"></a> 边界值分析</h3>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522001451662.png" alt="image-20200522001451662" style="zoom:67%;" />
+<h2 id="给出下图的路径覆盖测试用例"><a class="markdownIt-Anchor" href="#给出下图的路径覆盖测试用例"></a> 给出下图的路径覆盖测试用例</h2>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522001544804.png" alt="image-20200522001544804" style="zoom:50%;" />
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522001558774.png" alt="image-20200522001558774" style="zoom:50%;" />
+<h1 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h1>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522001626075.png" alt="image-20200522001626075" style="zoom: 50%;" />
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522001645039.png" alt="image-20200522001645039" style="zoom:50%;" />
+<h2 id="实时系统测试"><a class="markdownIt-Anchor" href="#实时系统测试"></a> 实时系统测试</h2>
+<h3 id="任务测试"><a class="markdownIt-Anchor" href="#任务测试"></a> 任务测试</h3>
+<p>对每个任务(看做是接受输入,并产生输出的单个程序,一个任务可有多个模块组成)进行单独测试.。即为每个任务设计和运行黑盒与白盒测试</p>
+<h3 id="行为测试"><a class="markdownIt-Anchor" href="#行为测试"></a> 行为测试</h3>
+<p>用case工具创建应用系统模型，它可以模拟实时系统行为，还可作为系统外部事件结果的检查。</p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/07/28/%E7%AC%AC7%E7%AB%A0%E5%AE%9E%E7%8E%B0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/07/28/%E7%AC%AC9%E7%AB%A0%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%E5%AD%A6/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            第9章面向对象方法学
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/07/28/%E7%AC%AC6%E7%AB%A0%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">第6章详细设计</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        CuiEnbo
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt=""></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['', '', ''],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: false
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

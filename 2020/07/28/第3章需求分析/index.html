@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+
+
+<html lang="cn" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    第3章需求分析 |  
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-第3章需求分析" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  第3章需求分析
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/28/%E7%AC%AC3%E7%AB%A0%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/" class="article-date">
+  <time datetime="2020-07-28T02:23:54.439Z" itemprop="datePublished">2020-07-28</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.9k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">9分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="软件需求分析"><a class="markdownIt-Anchor" href="#软件需求分析"></a> 软件需求分析</h1>
+<p>核心在于明确做什么</p>
+<h1 id="需求分析的任务"><a class="markdownIt-Anchor" href="#需求分析的任务"></a> 需求分析的任务</h1>
+<h2 id="确定对系统的综合要求"><a class="markdownIt-Anchor" href="#确定对系统的综合要求"></a> 确定对系统的综合要求</h2>
+<ol>
+<li>
+<p>功能需求</p>
+</li>
+<li>
+<p>性能需求</p>
+</li>
+<li>
+<p>可靠性和可用性需求</p>
+</li>
+<li>
+<p>出错处理需求</p>
+</li>
+<li>
+<p>接口需求</p>
+</li>
+<li>
+<p>约束</p>
+</li>
+<li>
+<p>逆向需求</p>
+</li>
+<li>
+<p>将来可能提出的需求</p>
+</li>
+</ol>
+<h2 id="分析系统的数据要求"><a class="markdownIt-Anchor" href="#分析系统的数据要求"></a> 分析系统的数据要求</h2>
+<ol>
+<li>通常采用建立<strong>数据模型</strong>的方法</li>
+<li>用数据结构表示数据元素之间的逻辑关系</li>
+<li>用数据字典来全面定义数据，但不直观</li>
+<li>常用图形工具绘制数据结构</li>
+</ol>
+<h2 id="导出系统的逻辑模型"><a class="markdownIt-Anchor" href="#导出系统的逻辑模型"></a> 导出系统的逻辑模型</h2>
+<p>通常用数据流图、实体-联系图、状态转换图、数据字典和处理算法描述这个逻辑模型。</p>
+<h2 id="修改系统的开发计划"><a class="markdownIt-Anchor" href="#修改系统的开发计划"></a> 修改系统的开发计划</h2>
+<p>根据分析过程中获得的对系统更深入的了解，可以比较准确地估计系统的成本和进度，修正以前制定的开发计划。</p>
+<h1 id="与用户沟通获取需求的方法"><a class="markdownIt-Anchor" href="#与用户沟通获取需求的方法"></a> 与用户沟通获取需求的方法</h1>
+<h2 id="访谈"><a class="markdownIt-Anchor" href="#访谈"></a> 访谈</h2>
+<p>两种基本形式：正式和非正式的访谈。</p>
+<h2 id="面向数据流自顶向下求精"><a class="markdownIt-Anchor" href="#面向数据流自顶向下求精"></a> 面向数据流自顶向下求精</h2>
+<blockquote>
+<p>数据流图是帮助对分析结果进行复查的极好的工具。从输出端开始，分析员借助数据流图、数据字典、IPO图向用户解释数据是怎样转变成输出数据的，并填补遗漏或空白元素。</p>
+</blockquote>
+<ol>
+<li>可行性研究已经得出了目标系统的<strong>高层数据流图</strong>，需求分析的目标之一就是<strong>把数据流和数据存储定义到元素级。</strong></li>
+<li>一般<strong>从数据流图的输出端</strong>入手。输出数据决定了系统必须具有的最基本的组成元素。</li>
+<li><strong>从输出向输入回溯</strong>，可以确定每个数据元素的来源。可行性研究已经得出了目标系统的高层数据流图，需求分析的目标之一就是把数据流和数据存储定义到元素级。</li>
+</ol>
+<h3 id="方法回溯"><a class="markdownIt-Anchor" href="#方法回溯"></a> 方法：回溯</h3>
+<ol>
+<li>回溯过程种可能遇到下述问题：
+<ol>
+<li>为了得到某个数据元素需要用到数据流图中目前还没有的数据元素;</li>
+<li>或者得出这个数据元素需要的算法尚不完全清楚。</li>
+</ol>
+</li>
+</ol>
+<h3 id="过程结构化分析方法sa法"><a class="markdownIt-Anchor" href="#过程结构化分析方法sa法"></a> 过程：结构化分析方法(SA法)</h3>
+<ol>
+<li>
+<p>它是面向数据流自上而下逐步求精进行需求分析的方法。由可行性研究得出目标系统的高层数据流图。<strong>需求分析的目的之一是把数据流和存贮定义到元素级。</strong></p>
+</li>
+<li>
+<p>基本过程</p>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%5C%E5%9B%BE%E7%89%87%5C12.png" alt="" /></p>
+</li>
+</ol>
+<h2 id="简易的应用规格说明技术"><a class="markdownIt-Anchor" href="#简易的应用规格说明技术"></a> 简易的应用规格说明技术</h2>
+<p>使用简易的应用规格说明<strong>技术分析需求的典型过程是：</strong><br />
+初步访谈开发者和用户分别写出“产品需求”会议讨论统一意见</p>
+<h2 id="快速建立软件原型"><a class="markdownIt-Anchor" href="#快速建立软件原型"></a> 快速建立软件原型</h2>
+<p>快速建立软件原型是最准确、最有效、最强大的<strong>需求分析技术。</strong></p>
+<h1 id="分析模型与规格说明"><a class="markdownIt-Anchor" href="#分析模型与规格说明"></a> 分析模型与规格说明</h1>
+<h2 id="模型建立"><a class="markdownIt-Anchor" href="#模型建立"></a> 模型建立</h2>
+<h3 id="三种模型"><a class="markdownIt-Anchor" href="#三种模型"></a> 三种模型</h3>
+<ol>
+<li><strong>数据模型</strong>：实体－联系图，描绘数据及数据对象之间的关系。</li>
+<li><strong>功能模型</strong>：数据流图，描绘当数据在软件系统中移动时被变换的逻辑过程。</li>
+<li><strong>行为模型</strong>：状态转换图，描绘系统各种行为模式和在不同状态间的转换。</li>
+</ol>
+<h3 id="建模的目的"><a class="markdownIt-Anchor" href="#建模的目的"></a> 建模的目的</h3>
+<ol>
+<li>更好的了解系统<strong>信息、功能和行为</strong>，使<strong>分析更系统化</strong>。</li>
+<li>模型是评审的焦点，是<strong>确定系统完整性（completeness），一致性（consistency）和规格说明准确性（accuracy</strong>）的关键。</li>
+<li>模型是<strong>设计的基础</strong>，能给设计人员一种软件基本表达式。它可映射成为实现的正文。</li>
+</ol>
+<h2 id="规格说明"><a class="markdownIt-Anchor" href="#规格说明"></a> 规格说明</h2>
+<ol>
+<li>
+<p>从实现中说出功能。</p>
+</li>
+<li>
+<p>要求一个面向过程的系统规格说明语言。</p>
+</li>
+<li>
+<p>一个规格说明必须围绕整个系统，而软件只是它的一个组成部分。</p>
+</li>
+<li>
+<p>一个规格说明必须围绕整个系统的操作环境。</p>
+</li>
+<li>
+<p>一个规格说明必须是可操作的。</p>
+</li>
+<li>
+<p>一个规格说明必须是容许它是不完整的和可扩展的。</p>
+</li>
+<li>
+<p>一个规格说明必须是局部化的和松散耦合的。</p>
+<ul>
+<li>局部化是当信息改变时，只有一些简单的碎片（理想的）需要修改；</li>
+<li>松散耦合结构是碎片可以方便的加入或取出，结构自动调整。</li>
+</ul>
+</li>
+</ol>
+<h1 id="概念模型和规范化"><a class="markdownIt-Anchor" href="#概念模型和规范化"></a> 概念模型和规范化</h1>
+<p><strong>方法是</strong> 实体-联系方法，即<strong>E-R图</strong></p>
+<h2 id="e-r模型"><a class="markdownIt-Anchor" href="#e-r模型"></a> E-R模型</h2>
+<h3 id="联系"><a class="markdownIt-Anchor" href="#联系"></a> 联系</h3>
+<p>此联系有3类：</p>
+<ol>
+<li>一对一 (1 : 1)  例如部门与经理；</li>
+<li>一对N  (1 : N)  某教师上多门课；</li>
+<li>多对多(M :N)  一个学生学多门课，而每门课有多名学生上。</li>
+</ol>
+<h3 id="实体"><a class="markdownIt-Anchor" href="#实体"></a> 实体</h3>
+<p>实体是可相互区分的事物：例如  职工、学生、课程、教师</p>
+<h3 id="属性"><a class="markdownIt-Anchor" href="#属性"></a> 属性</h3>
+<p>属性是<strong>实体或联系</strong>所具有的性质，通常一个实体由若干个属性来刻画。如：学生实体有姓名、性别、系、年级。教师-----职称、职务</p>
+<h2 id="数据规范化"><a class="markdownIt-Anchor" href="#数据规范化"></a> 数据规范化</h2>
+<h3 id="要求"><a class="markdownIt-Anchor" href="#要求"></a> 要求</h3>
+<ol>
+<li>消除数据<strong>冗余</strong>，即消除表格中数据的重复；</li>
+<li>消除<strong>多义性</strong>，使关系中的属性含义清楚、单一；</li>
+<li><strong>使关系的“概念”单一化</strong>，让每个数据项只是一个简单的数或字符串，而不是一个组项或重复组；<br />
+方便操作。使数据的插入、删除与修改操作可行而且方便；</li>
+<li>使<strong>关系模式更灵活</strong>，易于实现接近自然语言的查询方式。</li>
+</ol>
+<h3 id="范式"><a class="markdownIt-Anchor" href="#范式"></a> 范式</h3>
+<p>推荐到3NF(平衡性能和范式级别)</p>
+<h1 id="状态转移图"><a class="markdownIt-Anchor" href="#状态转移图"></a> 状态转移图</h1>
+<p>状态图提供了行为建模机制</p>
+<h2 id="状态"><a class="markdownIt-Anchor" href="#状态"></a> 状态</h2>
+<ol>
+<li>状态是任何可以被观察到的系统行为模式，<strong>一个状态代表系统的一个行为模式。</strong></li>
+<li>状态规定了<strong>系统对事件的响应方式</strong>。系统对事件响应
+<ul>
+<li>既可以是做一个（或一系列）动作</li>
+<li>也可以是仅仅改变系统本身的状态</li>
+<li>还可以是既改变状态又做动作。</li>
+</ul>
+</li>
+</ol>
+<h2 id="事件"><a class="markdownIt-Anchor" href="#事件"></a> 事件</h2>
+<ol>
+<li>事件是<strong>在某个特定时刻发生的事情</strong>，它是对引起系统做动作或从一个状态转换到另一个状态的外界事件的抽象。</li>
+<li>事件就是引起系统做动作或转换状态的<strong>控制信息</strong>。</li>
+</ol>
+<h2 id="符号"><a class="markdownIt-Anchor" href="#符号"></a> 符号</h2>
+<ol>
+<li>初态用实心圆表示，终态用一对同心圆（内圆为实心圆）表示。</li>
+<li>中间状态用圆角矩形表示，可以用平衡线把它分割成上、中、下3个部分。
+<ul>
+<li>上部分为状态的名称，该部分是必须的；</li>
+<li>中间部分为状态变量的名字和值，该部分为可选；</li>
+<li>下面部分是活动表，该部分为可选。</li>
+</ul>
+</li>
+<li>箭头指明了转换方向。如转换过程中有事件触发，可以用事件表达式标明。</li>
+</ol>
+<img src="C:\Users\86139\Desktop\软件工程\图片\13.png" style="zoom: 50%;" />
+<img src="\MyImages\image-20200601224344569.png" alt="image-20200601224344569" style="zoom:50%;" />
+<h1 id="其他图形工具"><a class="markdownIt-Anchor" href="#其他图形工具"></a> 其他图形工具</h1>
+<h2 id="层次方框图"><a class="markdownIt-Anchor" href="#层次方框图"></a> 层次方框图</h2>
+<p>层次方框图采用树形结构的一系列多层次的矩形框来描绘数据的层次结构。</p>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%5C%E5%9B%BE%E7%89%87%5C14.png" alt="" /></p>
+<h1 id="验证软件需求"><a class="markdownIt-Anchor" href="#验证软件需求"></a> 验证软件需求</h1>
+<h2 id="结构化分析方法"><a class="markdownIt-Anchor" href="#结构化分析方法"></a> 结构化分析方法</h2>
+<ol>
+<li><strong>结构化分析方法</strong>采用自顶向下、逐层进行功能分解的系统分析方法来定义系统的需求。</li>
+<li><strong>特点</strong>：利用数据流图（Data Flow Diagram，DFD）来帮助理解问题，对问题进行分析。</li>
+<li>分析工具
+<ul>
+<li>功能分析工具：<strong>DFD</strong>、DD、结构化英语、判定表和判定树。</li>
+<li>行为分析工具：<strong>状态迁移图</strong>、Petri网等。</li>
+<li>数据分析工具：<strong>ER图</strong>或者EER（扩展ER）图。</li>
+</ul>
+</li>
+<li><strong>结构化分析方法的弊端</strong>
+<ul>
+<li>基于功能分析和数据分析，将功能和数据分离，与人类现实世界环境不一样，和人的自然思维也就不一致了。</li>
+<li>以功能为主，数据只是被动的信息载体。当<strong>系统行为发生变化时，系统维护非常困难</strong>。</li>
+<li>DFD中<strong>不涉及系统的控制信息</strong>，因此，SA不适合于分析以控制信息为主的系统需求。</li>
+</ul>
+</li>
+</ol>
+<h2 id="面向对象方法"><a class="markdownIt-Anchor" href="#面向对象方法"></a> 面向对象方法</h2>
+<h3 id="基本思想"><a class="markdownIt-Anchor" href="#基本思想"></a> 基本思想</h3>
+<ol>
+<li>把客观世界看成是由各种对象组成的，任何事实都是对象，复杂的对象可由简单的对象组合而成。</li>
+<li>所有的对象都划分成各种对象类，简称类;</li>
+<li>按子类与父类的关系，把若干个对象组成一个层次结构的系统，在这个层次中，下层的子类具有和上层的父类相同的性质，这种现象称为继承。</li>
+<li>对象之间能够而且只能通过传递消息互相联系。</li>
+</ol>
+<h3 id="优点"><a class="markdownIt-Anchor" href="#优点"></a> 优点</h3>
+<ol>
+<li>与人类习惯的思维方法一致。</li>
+<li>稳定性好</li>
+<li>可重用好。</li>
+<li>可维护性好。</li>
+</ol>
+<h3 id="三个阶段"><a class="markdownIt-Anchor" href="#三个阶段"></a> 三个阶段</h3>
+<ol>
+<li><strong>面向对象分析阶段</strong>：通常，面向对象分析主要包括需求陈述和面向对象建模两个步骤。</li>
+<li><strong>面向对象设计阶段</strong>：系统设计确定实现系统的策略和目标系统的高层结构；对象设计确定空间中的类、关联、接口形式及实现服务的算法。</li>
+<li><strong>面向对象实现阶段</strong>：主要包括两项工作：把面向对象设计的结果翻译成用某种程序语言书写的面向对象程序；测试并调试面向对象的程序。</li>
+</ol>
+<h2 id="开发方法的选择"><a class="markdownIt-Anchor" href="#开发方法的选择"></a> 开发方法的选择</h2>
+<ol>
+<li>系统的规模、复杂程度与不确定因素是选择开发方法的重要依据。系统规模大，功能与数据关系复杂，开发周期比较长，适宜采用生命周期法；系统规模适中，需求的不确定性高，适宜采用原型法；系统规模小，复杂程度不高，适宜采用生成法；功能单一、结构简单的单项数据处理系统，则适宜采用IMPO法，面向对象几乎适用于各种方法。</li>
+<li>开发人员的素质和工作基础是选择开发方法的先决条件。初次参与开发工作，开发经验不多的人员适宜采用生命周期法；技术水平高，开发经验丰富的人员，可以考虑采用原型法、IMPO法；具有较好工作基础的可以采用生成法、智能法和面向对象方法等。</li>
+<li>用户和系统环境的条件是选择开发方法的重要参考因素。用户人才队伍的技术水平，科学管理的基础，领导的重视程度以及时间性，实用性等都会影响到选择方法的决定。</li>
+<li>系统开发方法的确定与选择的开发策略直接有关。</li>
+</ol>
+<h2 id="需求分析方法的比较"><a class="markdownIt-Anchor" href="#需求分析方法的比较"></a> 需求分析方法的比较</h2>
+<ol>
+<li>结构化分析方法以系统的功能分析为主，而功能是易变的；面向对象分析方法以组成系统的对象分析为主，而对象是比较稳定的。</li>
+<li>结构化分析方法主要针对数据处理领域，而面向对象分析方法同样适用于以控制为主的系统。</li>
+<li>面向对象分析具有更好的扩展性，因为对象的结构和关系相对于系统的功能而言更稳定，功能的变化通过更新对象的操作加以适应。</li>
+</ol>
+<h1 id="项目管理"><a class="markdownIt-Anchor" href="#项目管理"></a> 项目管理</h1>
+<h2 id="项目管理概述"><a class="markdownIt-Anchor" href="#项目管理概述"></a> 项目管理概述</h2>
+<h3 id="特点"><a class="markdownIt-Anchor" href="#特点"></a> 特点</h3>
+<ol>
+<li>项目管理是一项复杂的工作</li>
+<li>项目管理具有创造性
+<ul>
+<li>继承累积性</li>
+<li>综合性</li>
+</ul>
+</li>
+<li></li>
+</ol>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/07/28/%E7%AC%AC3%E7%AB%A0%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/07/28/%E7%AC%AC2%E7%AB%A0%E5%8F%AF%E8%A1%8C%E6%80%A7%E7%A0%94%E7%A9%B6/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">第2章可行性研究</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        CuiEnbo
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt=""></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['', '', ''],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: false
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

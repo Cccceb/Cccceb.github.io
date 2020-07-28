@@ -78,6 +78,882 @@
     
     
     
+    <article id="post-UnixIS命令" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/UnixIS%E5%91%BD%E4%BB%A4/"
+    >UnixIS命令</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/UnixIS%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.560Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="unix-is-命令"><a class="markdownIt-Anchor" href="#unix-is-命令"></a> unix is 命令</h1>
+<p>输入正整数n 以及n个文件名，排序后按列优先的方式左对齐输出。假设最长文件名有M字符，则最右边有M字符，其他列都是M+2 字符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  #include&lt;bits&#x2F;stdc++.h&gt;</span><br><span class="line">  # pragma warning(disable:4996)</span><br><span class="line">  # define LOCAL</span><br><span class="line">  # ifdef LOCAL</span><br><span class="line">  FILE *fin &#x3D; freopen(&quot;unix命令in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">  FILE *fout &#x3D; freopen(&quot;unix命令out.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line">  # endif &#x2F;&#x2F; LOCAL</span><br><span class="line">  using namespace std;</span><br><span class="line">  void print(const string &amp;in, int len, char extra) &#123;</span><br><span class="line">&#x2F;&#x2F;输出字符串s，长度不足len时补字符extra</span><br><span class="line">  	cout &lt;&lt; in;</span><br><span class="line">  	for (int i &#x3D; 0; i &lt; len - in.length(); i++) cout &lt;&lt; extra;</span><br><span class="line">  &#125;</span><br><span class="line">  int main() &#123;</span><br><span class="line">  	int n;</span><br><span class="line">  </span><br><span class="line">  	while (scanf(&quot;%d&quot;, &amp;n) &#x3D;&#x3D; 1) &#123;</span><br><span class="line">  		int m &#x3D; 0;</span><br><span class="line">  		print(&quot;&quot;, 60, &#39;-&#39;);</span><br><span class="line">  		cout &lt;&lt; endl;</span><br><span class="line">  		vector&lt;string&gt; s;</span><br><span class="line">  		for (int i &#x3D; 0; i &lt; n;i++) &#123;</span><br><span class="line">  			string in;</span><br><span class="line">  			cin &gt;&gt; in;</span><br><span class="line">  			s.push_back(in);</span><br><span class="line">  			m &#x3D; max(m, (int)in.length());</span><br><span class="line">  		&#125;</span><br><span class="line">  		sort(s.begin(), s.end());</span><br><span class="line">  </span><br><span class="line">  		&#x2F;*cout &lt;&lt; &quot;**********************************&quot; &lt;&lt; endl;</span><br><span class="line">  		for (int i &#x3D; 0; i &lt; s.size(); i++) cout &lt;&lt; s[i] &lt;&lt; endl;</span><br><span class="line">  		cout &lt;&lt; &quot;**********************************&quot; &lt;&lt; endl;*&#x2F;</span><br><span class="line">  		int cols &#x3D; (60 - m) &#x2F; (m + 2) + 1;</span><br><span class="line">  		int rows &#x3D; (n - 1) &#x2F; cols + 1;</span><br><span class="line">  		for (int r &#x3D; 0; r &lt; rows; r++) &#123;</span><br><span class="line">  			for (int c &#x3D; 0; c &lt; cols; c++) &#123;</span><br><span class="line">  				int idx &#x3D; c * rows + r;</span><br><span class="line">  				if (idx &lt; n) print(s[idx], c &#x3D;&#x3D; cols - 1 ? m : m + 2, &#39; &#39;);</span><br><span class="line">  			&#125;</span><br><span class="line">  			cout &lt;&lt; endl;</span><br><span class="line">  		&#125;</span><br><span class="line">  	&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-八皇后问题" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/"
+    >八皇后问题</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.560Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>/*<br />
+恰好每行每列各放置一个皇后，如果用A[x]表示第x行皇后的列号，则问题变成了一个全排列生成问题。<br />
+*/</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+# pragma warning(disable:4996)
+# define LOCAL
+# ifdef LOCAL
+FILE *fin = freopen(&quot;八皇后in.txt&quot;, &quot;r&quot;, stdin);
+FILE *fout = freopen(&quot;八皇后out.txt&quot;, &quot;w&quot;, stdout);
+# endif 
+using namespace std;
+int print_num = 1;
+int tot = 0;
+int n;
+int A[100];
+int vis[100][100];
+void search(int cur) {
+ios::sync_with_stdio(false);
+if (cur == n) {
+	if (print_num &lt;= 3) {
+		cout &lt;&lt; A[0];
+		for (unsigned int i = 1; i &lt; n; i++)
+			cout &lt;&lt; &quot; &quot;&lt;&lt; A[i] ;
+		cout &lt;&lt; endl;
+		print_num++;
+	}
+	tot++;
+}
+else for (unsigned int i = 0; i &lt; n; i++) {
+	if (!vis[0][i] &amp;&amp; !vis[1][cur + i] &amp;&amp; !vis[2][cur - i + n]) {
+		//对于(i,cur)
+		//以cur+i来标识副对角线，cur-i来标识主对角线，由于主对角线可能为负
+		//所以要加上n
+		A[cur] = i + 1;
+		//对于(cur,i)处要么有子要么无子--&gt;回溯的两种情况
+		vis[0][i] = vis[1][cur + i] = vis[2][cur - i + n] = 1;
+		search(cur + 1);
+		vis[0][i] = vis[1][cur + i] = vis[2][cur - i + n] = 0;//非常关键，回溯法中修改的辅助
+															 //局部变量，一定要及时恢复原状
+	}
+}
+}
+int main() {
+	ios::sync_with_stdio(false);
+	cin &gt;&gt; n;
+	search(0);
+	cout &lt;&lt; tot &lt;&lt; endl;
+}</code></pre>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-八数码" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E5%85%AB%E6%95%B0%E7%A0%81/"
+    >八数码</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E5%85%AB%E6%95%B0%E7%A0%81/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.560Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="八数码-p1379"><a class="markdownIt-Anchor" href="#八数码-p1379"></a> 八数码 P1379</h1>
+<p>有一个3*3的网格，给定一个初始局面，问至少多少步能到达目标局面.</p>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+<p>经典的隐式图最短路径问题。</p>
+<h2 id="注意"><a class="markdownIt-Anchor" href="#注意"></a> 注意</h2>
+<ol>
+<li>sizeof(字符串)会计算结束符。对于二维的字符数组，对某一行用sizeof不会计算结束符，可能产生问题。</li>
+<li>一般的bfs采用队列，但是本题中由于状态是八个元素的信息，所以采用了类似链表的方法近似队列。在编辑书稿中也使用了类似的方式，只不过那个题是dfs，迭代加深搜实现的。</li>
+<li>本题可以使用bfs是因为每一步的状态不是无限的。</li>
+<li>注意rear<ins>和front</ins>的位置</li>
+<li>dist数组是必要的</li>
+</ol>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<pre><code>const int maxn = 1000000;
+bool bfs();
+bool can_insert(int s);
+char st[maxn][9];
+int dx[] = { 1,-1,0,0 };
+int dy[] = { 0,0,1,-1 };   
+int dist[maxn];
+char goal[] = {&quot;123804765&quot;};
+int front, rear;
+std::set&lt;int&gt; vis;
+int main() {
+scanf(&quot;%s&quot;, st[1]);
+if (bfs()) printf(&quot;%d&quot;, dist[front]);
+else printf(&quot;-1&quot;);
+}
+bool bfs() {
+front = 1, rear = 2;
+while (front &lt; rear) {
+	if (memcmp(goal,st[front], sizeof(st[front])) == 0) return true;
+	int z = 0;
+	while (st[front][z] != '0') z++;
+	for (int i = 0; i &lt; 4; i++) {
+		int newx = z / 3 + dx[i];
+		int newy = z % 3 + dy[i];
+		if (newx &lt; 0 || newx &gt;= 3 || newy &lt; 0 || newy &gt;= 3) continue;
+		int newz = newx * 3 + newy;
+		memcpy(st[rear], st[front], sizeof(char)*9);
+		st[rear][newz] = st[front][z];
+		st[rear][z] = st[front][newz];
+		dist[rear] = dist[front] + 1;
+		if(can_insert(rear)) rear++;
+	}
+	front++;
+}
+	return false;
+}
+bool can_insert(int s) {
+int v = 0;
+for (int i = 0; i &lt; 9; i++) v = v * 10 + st[s][i] - '0';
+if (!vis.count(v)) {
+	vis.insert(v);
+	return true;
+}
+return false;
+}</code></pre>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-埃及分数" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E5%9F%83%E5%8F%8A%E5%88%86%E6%95%B0/"
+    >埃及分数</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E5%9F%83%E5%8F%8A%E5%88%86%E6%95%B0/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.560Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva-12258-埃及分数"><a class="markdownIt-Anchor" href="#uva-12258-埃及分数"></a> UVA 12258 埃及分数</h1>
+<p>输入出a,b,k，然后输入k个数，要求这k个数不出现在结果中。埃及分数是将任何一个分数a/b，转换成1/x1+1/x2+1/x3…的形式。好的解应该是项数最少的，对于相同项数的解，最小的分数值越大越好。</p>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+<ol>
+<li>由于本题中深度没有上限，而且加数的选择也没有上届，因此如果用广度有限遍历，可能连一层都遍历不完。</li>
+<li>使用迭代加深度搜索解决。不断枚举深度的上限maxd，每次搜索深度不超过maxd的节点。<strong>这样只要解的深度有限，那么一定可以在有限的时间内枚举得到</strong>；</li>
+<li>关于剪枝：本题中，如果剩余的maxd-d+1项都是1/i，但是和仍然小于目标a/b，那么说明项数不够，则不需要继续递归下去。</li>
+<li>关于约分：使用到gcd算法，求出g = gcd(a,b)，那么a/b 可以转换成(a/g)/(b/g)；</li>
+<li>关于inline:使用inline之后，时间从2290减到1380。不能使用inline的情况包括
+<ol>
+<li>不适用于包含复杂控制语句的函数</li>
+<li>不适用于直接递归函数</li>
+</ol>
+</li>
+</ol>
+<p><strong>但是是否真的设置为内联，由编译器决定</strong></p>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<h3 id="dfs-深度搜索"><a class="markdownIt-Anchor" href="#dfs-深度搜索"></a> dfs 深度搜索</h3>
+<pre><code>bool dfs(int d, LL from, LL a, LL b) {
+if (d == maxd) {
+	if (b%a || avoid.count(b / a)) return false;
+
+	v[d] = b / a;
+	if (better(d)) memcpy(ans, v, sizeof(LL)*(d + 1)); //0~d
+	return true;
+}
+bool ok = false;
+from = max(from, get_first(a, b));
+for (LL i = from;; i++) {
+	if (b*(maxd - d + 1) &lt;= a * i) break;
+	//如果a/b &gt;= (maxd-d+1)*/(1/i)，则剪枝
+	if (avoid.count(i)) continue;
+	v[d] = i;
+
+	//这一部分目的是计算a/b-1/i
+	LL a2 = a * i - b;
+	LL b2 = b * i;
+	LL g = gcd(a, b);
+	if (dfs(d + 1, i + 1, a2 / g, b2 / g)) ok = true;
+}
+return ok;
+</code></pre>
+<h3 id="比较函数"><a class="markdownIt-Anchor" href="#比较函数"></a> 比较函数</h3>
+<pre><code>inline bool better(int d) {
+for (int i = d; i &gt;= 0; i--) {
+	if (ans[i] != v[i])
+		return ans[i] == -1 || ans[i] &gt; v[i];
+}
+return false;
+}
+</code></pre>
+<ol>
+<li>要求最小的分数值越大越好，即是要求分母最大的数越小越好。所以从i=d开始比较。</li>
+</ol>
+<h3 id="gcd-固定的"><a class="markdownIt-Anchor" href="#gcd-固定的"></a> gcd 固定的</h3>
+<pre><code>inline LL gcd(LL a, LL b) {
+if (b == 0) return a;
+return gcd(b, a%b);
+}
+</code></pre>
+<h3 id="get_first-返回1从ab的最小的"><a class="markdownIt-Anchor" href="#get_first-返回1从ab的最小的"></a> get_first 返回1/从&lt;=a/b的最小的</h3>
+<pre><code>inline LL get_first(LL a, LL b) 
+{ return b / a + 1; }
+</code></pre>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-宝箱" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E5%AE%9D%E7%AE%B1/"
+    >宝箱</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E5%AE%9D%E7%AE%B1/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.560Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva-12325-宝箱"><a class="markdownIt-Anchor" href="#uva-12325-宝箱"></a> UVA 12325 宝箱</h1>
+<p>你有一个体积为N的箱子和两种数量无限的宝物。宝物1的体积为S1，价值为V1:；宝物2的体积为S2，价值为V2。输入均为32位带符号整数。 计算最多能装多大价值的宝物。（每种宝物都必须拿非负整数个）。</p>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+<ol>
+<li>可以选择枚举宝藏1的个数，然后尽可能多的拿宝物2；或者；但是当n和s1,s2的差距较大的时候，这种方法不奏效。</li>
+<li>假设宝物1取总体积S2，宝物2取总体积S1，且二者总价值相等，即S1<em>V2 == S2</em>V1。那么当V1较大时，宝藏1至多取S2-1个，否则可用S1个宝物二替换。同理，如果V2较大，那么宝物2至多取S1-1个.因此，枚举量只有S1和S2。</li>
+<li>解决TLE：
+<ol>
+<li>当N/S1比较小时，枚举宝物1的个数，时间复杂度为O(N/S1)；否则，当N/S2比较小时，枚举宝物2的个数，时间复杂度为O(N/S2)。</li>
+<li>因此枚举的时间复杂度为O(max(S1,S2))</li>
+</ol>
+</li>
+</ol>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<pre><code>typedef long long int64;
+using std::swap; using std::max;
+int main() {
+int T, id = 0; scanf(&quot;%d&quot;, &amp;T);
+while (T--) {
+	int n, s1, v1, s2, v2; scanf(&quot;%d %d %d %d %d&quot;, &amp;n, &amp;s1, &amp;v1, &amp;s2, &amp;v2);
+	if (s1 &gt; s2) swap(s1, s2), swap(v1, v2);//目的是使得S2&gt;S1
+	int64 ans = 0;
+	if (n / s2 &gt;= 65536) {	//S2&gt;S1，如果除以S2都大于65536，说明S2就很小，那么S1更小，那么使用特殊枚举。
+		for (int64 i = 0; i &lt;= s1; i++) ans = max(ans, v2 * i + (n - s2 * i) / s1 * v1);
+		for (int64 i = 0; i &lt;= s2; i++) ans = max(ans, v1 * i + (n - s1 * i) / s2 * v2);
+	}
+	else {//否则枚举宝物2的数量。
+		for (int64 i = 0; s2 * i &lt;= n; i++) ans = max(ans, v2 * i + (n - s2 * i) / s1 * v1);
+	}
+	printf(&quot;Case # %d: %lld\n&quot;, ++id, ans);
+}
+
+return 0;
+}
+</code></pre>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-安迪的第一本字典" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E5%AE%89%E8%BF%AA%E7%9A%84%E7%AC%AC%E4%B8%80%E6%9C%AC%E5%AD%97%E5%85%B8/"
+    >安迪的第一本字典</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E5%AE%89%E8%BF%AA%E7%9A%84%E7%AC%AC%E4%B8%80%E6%9C%AC%E5%AD%97%E5%85%B8/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.560Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva10815-安迪的第一本字典"><a class="markdownIt-Anchor" href="#uva10815-安迪的第一本字典"></a> UVa10815 安迪的第一本字典</h1>
+<p>输入一个文本，找出所有不同的单词(连续字母序列)，按字典序从小到大输出，单词不区分大小写</p>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+<p>主要利用set自动排序的特性实现字典序;主要工作是分割单词，即连续字母序列</p>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;sstream&gt;
+#include&lt;set&gt;
+using namespace std;
+set&lt;string&gt; dir;
+int main() {
+string s, buf;
+while (cin &gt;&gt; s) {
+	for (int i = 0; i &lt; s.length(); i++) {
+		if (isalpha(s[i])) s[i] = tolower(s[i]);
+		else s[i] = ' ';
+		
+	}
+
+/*
+将文本存在s中，遍历s；遇到字母，则都转为小写，防止排序出错；若字母序列中断，则插入一个空格，这样在之后向buf中输入的时候，单词即可分开。
+*/
+
+	stringstream ss(s);
+	while (ss &gt;&gt; buf) dir.insert(buf);
+}
+
+for (set&lt;string&gt;::iterator it = dir.begin(); it != dir.end(); it++)
+	cout &lt;&lt; *it &lt;&lt; endl;
+}
+</code></pre>
+<p>主要这一段stringstream以及迭代器的用法；迭代器可以理解为一个指针</p>
+<h2 id="心得"><a class="markdownIt-Anchor" href="#心得"></a> 心得</h2>
+<p>本题主要是对set的应用</p>
+<ol>
+<li>要学习set的声明和基本使用：insert(插入元素)；</li>
+<li>要学习拆分单词的技巧</li>
+<li>要学习迭代器的使用方法</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-巴比伦塔" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E5%B7%B4%E6%AF%94%E4%BC%A6%E5%A1%94/"
+    >巴比伦塔</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E5%B7%B4%E6%AF%94%E4%BC%A6%E5%A1%94/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.560Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva-437-巴比伦塔"><a class="markdownIt-Anchor" href="#uva-437-巴比伦塔"></a> UVA 437 巴比伦塔</h1>
+<p>你可能已经听说过巴比伦塔的传说。现在这个传说的许多细节已经被遗忘。所以本着本场比赛的教育性质，我们现在会告诉你整个传说：</p>
+<p>巴比伦人有n种长方形方块，每种有无限个，第i种方块的三边边长是xi,yi,zi。对于每一个方块，你可以任意选择一面作为底，这样高就随着确定了。举个例子，同一种方块，可能其中一个是竖着放的，一个是侧着放的，一个是横着放的。</p>
+<p>他们想要用堆方块的方式建尽可能高的塔。问题是，只有一个方块的底的两条边严格小于另一个方块的底的两条边，这个方块才能堆在另一个上面。这意味着，一个方块甚至不能堆在一个底的尺寸与它一样的方块的上面。</p>
+<p>你的任务是编写一个程序，计算出这个塔可以建出的最高的高度。</p>
+<p>输入会包含至少一组数据，每组数据的第一行是一个整数n(n&lt;=30)，表示方块的种类数。 这组数据接下来的n行，每行有三个整数，表示xi,yi,zi。 输入数据会以0结束。</p>
+<p>对于每组数据，输出一行，其中包含组号(从1开始)和塔最高的高度。按以下格式： Case : maximum height = __</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol start="3">
+<li>每次决策的影响因素只有顶面尺寸</li>
+<li>每次的顶面长宽都会严格减小，所以状态图是一个有向无环图，所以问题转换成了求DAG上的最长路径问题</li>
+<li>关于状态的存储。如果使用(a,b)表示顶面面积a*b，由于ab可能很大是，所以不可行；如果用(idx,k)表示以第idx号立方体的第k号边为高，则可行。</li>
+</ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<h2 id="get_wl-将以b号边为高的第a号矩形的长宽填入数组v"><a class="markdownIt-Anchor" href="#get_wl-将以b号边为高的第a号矩形的长宽填入数组v"></a> get_wl 将以b号边为高的第a号矩形的长宽填入数组v</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">void get_wl(int *v, int a, int b) &#123;&#x2F;&#x2F;将长宽填入数组</span><br><span class="line">	int idx &#x3D; 0;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; 3; i++)</span><br><span class="line">		if (i !&#x3D; b)</span><br><span class="line">			v[idx++] &#x3D; block[a][i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="dp-尝试填充d数组"><a class="markdownIt-Anchor" href="#dp-尝试填充d数组"></a> dp 尝试填充d数组</h2>
+<p>d[i][j]表示以第i个立方体的第j条边，能达到的最大高度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">int dp(int i, int j) &#123;</span><br><span class="line">	int &amp;ans &#x3D; d[i][j];</span><br><span class="line">	if (ans &gt; 0)  return ans;</span><br><span class="line">	ans &#x3D; 0;</span><br><span class="line">	int v1[2], v2[2];</span><br><span class="line">	get_wl(v1, i, j);</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">		for (int j &#x3D; 0; j &lt; 3; j++) &#123;</span><br><span class="line">			get_wl(v2, i, j);</span><br><span class="line">			if (v1[0] &gt; v2[0] &amp;&amp; v1[1] &gt; v2[1])</span><br><span class="line">				ans &#x3D; max(ans, dp(i, j));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	ans +&#x3D; block[i][j];</span><br><span class="line">	return ans;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="main"><a class="markdownIt-Anchor" href="#main"></a> main</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">int main() &#123;</span><br><span class="line">	int kase &#x3D; 0;</span><br><span class="line">	while (scanf(&quot;%d&quot;, &amp;n) &#x3D;&#x3D; 1 &amp;&amp; n)</span><br><span class="line">	&#123;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			for (int j &#x3D; 0; j &lt; 3; j++)</span><br><span class="line">				scanf(&quot;%d&quot;, &amp;block[i][j]);</span><br><span class="line">			sort(block[i], block[i] + 3);</span><br><span class="line">		&#125;</span><br><span class="line">		memset(d, 0, sizeof(d));</span><br><span class="line">		int ans &#x3D; 0;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			for (int j &#x3D; 0; j &lt; 3; j++)</span><br><span class="line">				ans &#x3D; max(ans, dp(i, j));</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;Case %d: maximum height &#x3D; %d\n&quot;, ++kase, ans);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Gergovia的酒交易" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/Gergovia%E7%9A%84%E9%85%92%E4%BA%A4%E6%98%93/"
+    >Gergovia的酒交易</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/Gergovia%E7%9A%84%E9%85%92%E4%BA%A4%E6%98%93/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.545Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva-11054-gergovia的酒交易"><a class="markdownIt-Anchor" href="#uva-11054-gergovia的酒交易"></a> UVA 11054 Gergovia的酒交易</h1>
+<p>n个等距村庄,每个村庄要么买酒要么卖酒,把k个单位的酒运到相邻村庄去需要k*酒的需求的劳动力,问最少需要多少劳动力才能满足所有的村庄的要求。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>等价转换，考虑最左侧的村庄
+<ol>
+<li>假设a1&gt;0,则需要从其他的村庄向1运a1单位的酒，等价于只有村庄2-n，且第二个村庄的需求量为a1+a2。</li>
+<li>再举个例子，如果a1&lt;0,a2&gt;0，由于供需平衡，a1的酒需要全部运出，耗费劳动力|a1|，剩余的酒从a2运走需要||a1|-a2| = a1+a2</li>
+</ol>
+</li>
+</ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">	int main() &#123;</span><br><span class="line">	int n;</span><br><span class="line">	while (scanf(&quot;%d&quot;, &amp;n) &amp;&amp; n) &#123;</span><br><span class="line">		long long ans &#x3D; 0, left &#x3D; 0, a;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">			scanf(&quot;%lld&quot;, &amp;a);</span><br><span class="line">			ans +&#x3D; abs(left);</span><br><span class="line">			left +&#x3D; a;</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;%lld\n&quot;, ans);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Hali-Bula的晚会" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/Hali-Bula%E7%9A%84%E6%99%9A%E4%BC%9A/"
+    >Hali-Bula的晚会</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/Hali-Bula%E7%9A%84%E6%99%9A%E4%BC%9A/" class="article-date">
+  <time datetime="2020-03-30T02:15:00.545Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="uva-1220-hali-bula的晚会"><a class="markdownIt-Anchor" href="#uva-1220-hali-bula的晚会"></a> UVA 1220 Hali-Bula的晚会</h1>
+<p>公司里有n(n&lt;=200)个人形成一个树状结构，即除了老板之外每个员工都有唯一的直属上司。要求选尽量多的人，但不能同时选择一个人和他的直属上司。问：最多能选多少人，以及在人数最多的前提下方案是否唯一。</p>
+<p>输入：第一行一个数n;第二行输入老板的名字;以下的n-1行中,每行是一位员工的名字和其直属上司的名字(英文单词,长度为1到100),两个名字之间有空格隔开,'0’为输入结束的标识符。</p>
+<p>输出：一行,输出一个数字，表示最大的访客数量。并再同一行输出单词’Yes’或’No’，代表目前方案是否唯一。</p>
+<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
+<ol>
+<li>参考最大独立集，不过本题实现与那篇不同</li>
+<li>本题的特殊之处在于需要需要判断唯一性，<strong>我认为唯一性的原则是取判断导出当前状态的状态是否是唯一方案</strong></li>
+<li>由于每个点处决策只有两种，选或不选，所以用d[maxn][2]表示以u为根的子树中，能达到的最大人数。0表示不取u，1表示取u。f[maxn][2]来表示相应状态是否是唯一的，具体的f的判定见注释</li>
+</ol>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">200</span> + <span class="number">5</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; g[maxn];</span><br><span class="line"><span class="keyword">int</span> cnt;</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; id;</span><br><span class="line"><span class="keyword">int</span> d[maxn][<span class="number">2</span>], f[maxn][<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ID</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!id.count(s))</span><br><span class="line">		id[s] = cnt++;</span><br><span class="line">	<span class="keyword">return</span> id[s];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dp</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	f[u][k] = <span class="number">1</span>;</span><br><span class="line">	d[u][k] = k;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> v : g[u]) &#123;</span><br><span class="line">		<span class="keyword">if</span> (k == <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="comment">//如果取了u，那么他的孩子不能取</span></span><br><span class="line">			<span class="comment">//所以d[u][1]只能来源于d[v][0]</span></span><br><span class="line">			<span class="comment">//所以f取决于f[v][0]</span></span><br><span class="line">			d[u][<span class="number">1</span>] += dp(v, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">if</span> (f[v][<span class="number">0</span>] == <span class="number">0</span>) f[u][<span class="number">1</span>] = <span class="number">0</span>;	</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">//如果不取u，那么v可取可不取</span></span><br><span class="line">			<span class="comment">//因为要求最大人数，所以u的状态来自要取二者最大值</span></span><br><span class="line">			<span class="comment">//所以f取决于子树的最大状态的f</span></span><br><span class="line">			d[u][<span class="number">0</span>] += <span class="built_in">max</span>(dp(v, <span class="number">0</span>), dp(v, <span class="number">1</span>));</span><br><span class="line">			<span class="keyword">if</span> (d[v][<span class="number">0</span>] == d[v][<span class="number">1</span>]) f[u][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (d[v][<span class="number">0</span>] &gt; d[v][<span class="number">1</span>] &amp;&amp; f[v][<span class="number">0</span>] == <span class="number">0</span>) f[u][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (d[v][<span class="number">1</span>] &gt; d[v][<span class="number">0</span>] &amp;&amp; f[v][<span class="number">1</span>] == <span class="number">0</span>) f[u][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> d[u][k];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">string</span> s1, s2;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; n &amp;&amp; n)</span><br><span class="line">	&#123;</span><br><span class="line">		cnt = <span class="number">0</span>;</span><br><span class="line">		id.<span class="built_in">clear</span>();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">			g[i].<span class="built_in">clear</span>();</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; s1;</span><br><span class="line">		ID(s1);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; s1 &gt;&gt; s2;</span><br><span class="line">			g[ID(s2)].push_back(ID(s1));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d "</span>, <span class="built_in">max</span>(dp(<span class="number">0</span>, <span class="number">0</span>), dp(<span class="number">0</span>, <span class="number">1</span>)));</span><br><span class="line">		<span class="keyword">bool</span> unique = <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">if</span> (d[<span class="number">0</span>][<span class="number">0</span>] &gt; d[<span class="number">0</span>][<span class="number">1</span>] &amp;&amp; f[<span class="number">0</span>][<span class="number">0</span>]) unique = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">if</span> (d[<span class="number">0</span>][<span class="number">1</span>] &gt; d[<span class="number">0</span>][<span class="number">0</span>] &amp;&amp; f[<span class="number">0</span>][<span class="number">1</span>]) unique = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">if</span> (unique) <span class="built_in">printf</span>(<span class="string">"Yes\n"</span>); <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"No\n"</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-Shuffle的播放记录" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -165,537 +1041,13 @@
 
 </article>
     
-    <article id="post-S树" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/S%E6%A0%91/"
-    >S树</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/S%E6%A0%91/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.545Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="uva712-s树"><a class="markdownIt-Anchor" href="#uva712-s树"></a> uva712 S树</h1>
-<p>给一棵满二叉树，每一层代表一个010101变量，取000时往左走，取111时往右走。例如下图中两个图都对应表达式x1∧(x2∨x3)x_1\land (x_2\lor x_3)x1​∧(x2​∨x3​)。<br />
-给出所有叶子的值以及一些查询（即每个变量xix_ixi​的取值），求每个查询到达的叶子的值。例如有444个查询：000000000，010010010，111111111，110110110，则输出应为001100110011。</p>
-<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
-<ol>
-<li>n0 = n2+1;本题中直到叶子节点数，又是满二叉树，所以非叶子节点共n0-1个，所以直接从n0开始存叶子节点。</li>
-<li>对于每个查询，遇到1代表向右走，k = 2<em>k+1;遇到0带表k = 2</em>k；最终会走到叶子节点，将他们输出即可；</li>
-</ol>
-<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">   #include&lt;bits&#x2F;stdc++.h&gt;</span><br><span class="line">   # pragma warning(disable:4996)</span><br><span class="line">   # define LOCAL</span><br><span class="line">   # ifdef LOCAL</span><br><span class="line">   FILE *fin &#x3D; freopen(&quot;习题6-2in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">   FILE *fout &#x3D; freopen(&quot;习题6-2out.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line">   # endif </span><br><span class="line">   using namespace std;</span><br><span class="line">   int n, m, kase &#x3D; 0;</span><br><span class="line">   int main() &#123;</span><br><span class="line">while (cin &gt;&gt; m &amp;&amp; m) &#123;</span><br><span class="line">	cout &lt;&lt; &quot;S-Tree # &quot; &lt;&lt; ++kase &lt;&lt; &quot;:&quot; &lt;&lt; endl;</span><br><span class="line">	getchar();</span><br><span class="line">	string s;</span><br><span class="line">	getline(cin, s);</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	getline(cin, s);</span><br><span class="line"></span><br><span class="line">	int first &#x3D; s.length();</span><br><span class="line">	map&lt;long long , char&gt; leaf;</span><br><span class="line">	for (int i &#x3D; 0; i &lt; s.length(); i++) leaf[first++] &#x3D; s[i];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	cin &gt;&gt; n; getchar();</span><br><span class="line">	for (int i &#x3D; 0; i &lt; n; i++) &#123;</span><br><span class="line">		getline(cin, s);</span><br><span class="line">		int k &#x3D; 1;</span><br><span class="line">		for (int j &#x3D; 0; j &lt; s.length(); j++) &#123;</span><br><span class="line">			if (s[j] &#x3D;&#x3D; &#39;0&#39;) k *&#x3D; 2;</span><br><span class="line">			else k &#x3D; k * 2 + 1;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; leaf[k];</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-Tex中的引导" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/Tex%E4%B8%AD%E7%9A%84%E5%BC%95%E5%AF%BC/"
-    >Tex中的引导</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/Tex%E4%B8%AD%E7%9A%84%E5%BC%95%E5%AF%BC/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.545Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="tex-中的引导"><a class="markdownIt-Anchor" href="#tex-中的引导"></a> TEx 中的引导</h1>
-<p>/*<br />
-在TeX中，左双引号是“``”，有双引号是“’’”.输入一篇包<br />
-含双引号的文章，你的任务是把它转换乘TeX的格式<br />
-*/</p>
-<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   #include&lt;iostream&gt;</span><br><span class="line">   #include&lt;cstring&gt;</span><br><span class="line">   #pragma warning(disable :4996)</span><br><span class="line">   &#x2F;&#x2F;# define LOCAL</span><br><span class="line">   int main() &#123;</span><br><span class="line">   # ifdef LOCAL</span><br><span class="line">   	FILE *fin, *fout;</span><br><span class="line">   	fin &#x3D; freopen(&quot;Texin.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">   	fout &#x3D; freopen(&quot;Texout.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line">   # endif &#x2F;&#x2F; LOCAL</span><br><span class="line">&#x2F;&#x2F;本题特点是可以边读边写</span><br><span class="line">int c;&#x2F;&#x2F;c要定义为整型，因为文件结束会返回一个特殊标记EOF，它是一个整型；</span><br><span class="line">int p &#x3D; 1;</span><br><span class="line">while ((c &#x3D; getchar())!&#x3D; EOF) &#123;&#x2F;&#x2F;c&#x3D;getchar()一定要先括起来，因为等于和不等于同级，从右侧开始</span><br><span class="line">	if (c &#x3D;&#x3D; &#39;&quot;&#39;) &#123;</span><br><span class="line">		printf(&quot;%s&quot;, p ? &quot;&#96;&#96;&quot; : &quot;&#39;&#39;&quot;);</span><br><span class="line">		p &#x3D; !p;&#x2F;&#x2F;这个反转非常的灵性</span><br><span class="line">	&#125;</span><br><span class="line">	else printf(&quot;%c&quot;, c);</span><br><span class="line">&#125;</span><br><span class="line">system(&quot;pause&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-Abbott的复仇" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/Abbott%E7%9A%84%E5%A4%8D%E4%BB%87/"
-    >Abbott的复仇</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/Abbott%E7%9A%84%E5%A4%8D%E4%BB%87/" class="article-date">
-  <time datetime="2020-03-30T02:15:00.529Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="uva-140-abbott的复仇"><a class="markdownIt-Anchor" href="#uva-140-abbott的复仇"></a> UVA 140 ABBOTT的复仇</h1>
-<p>给出一个箭头迷宫，在每个路口处，如果你从某个方向进入了该路口，那么路口的地面上在靠近你的方向会画有一组箭头，它们相对于你的方向可以是向左，向前，向右，或者是它们的任意组合。</p>
-<p>当你从某一方向进入某个入口时，下一步只能在这个入口对应方向上标记的箭头中选一个方向继续行进。在起点时，可以选择任何方向。</p>
-<p>给出起点和终点，求它们之间的最短路径。</p>
-<p>每条边的长度为1</p>
-<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
-<ol>
-<li>对于迷宫问题，一般采用遍历的方法去找出口，本题中采用广度优先遍历。</li>
-<li>本题特殊在进入每个交叉点的方向不同，允许他出去的方向也不同。采用map来存储进入方向和出去方向的对应关系，因为一个进入方向对应的出去方向不唯一，所以采用map&lt;int,set<int>&gt; 来存储</li>
-</ol>
-<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   #include&lt;bits&#x2F;stdc++.h&gt;</span><br><span class="line">   # pragma warning(disable:4996)</span><br><span class="line">   # define LOCAL</span><br><span class="line">   # ifdef LOCAL</span><br><span class="line">   FILE *fin &#x3D; freopen(&quot;Abbott的复仇in.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">   FILE *fout &#x3D; freopen(&quot;Abbott的复仇out.txt&quot;, &quot;w&quot;, stdout);</span><br><span class="line">   # endif </span><br><span class="line">   using namespace std;</span><br><span class="line">   const int dr[] &#x3D; &#123; -1,0,1,0 &#125;;</span><br><span class="line">   const int dc[] &#x3D; &#123; 0,1,0,-1 &#125;;</span><br><span class="line">&#x2F;&#x2F;注意此处写法，简化代码</span><br><span class="line">   struct Node &#123;</span><br><span class="line">	&#x2F;&#x2F;节点 表示当前位置</span><br><span class="line">   	int r;</span><br><span class="line">   	int c;</span><br><span class="line">   	int dir;</span><br><span class="line">   	Node() &#123;&#125;;</span><br><span class="line">   	Node(int r, int c, int dir &#x3D; -5) :r(r), c(c), dir(dir) &#123;&#125;</span><br><span class="line">   	bool operator&lt;(const Node &amp;a) const &#123;</span><br><span class="line">   		return r &lt; a.r || r &#x3D;&#x3D; a.r&amp;&amp;c &lt; a.c || r &#x3D;&#x3D; a.r&amp;&amp;c &#x3D;&#x3D; a.c&amp;&amp;dir &lt; a.dir;</span><br><span class="line">   	&#125;</span><br><span class="line">   	bool operator!&#x3D;(const Node &amp;a) const &#123;</span><br><span class="line">   		return r !&#x3D; a.r || c !&#x3D; a.c || dir !&#x3D; a.dir;</span><br><span class="line">   	&#125;</span><br><span class="line">   &#125;;</span><br><span class="line">   Node sta, over;</span><br><span class="line">   string dirs &#x3D; &quot;NESW&quot;;</span><br><span class="line">   int dir_id(char c) &#123; return dirs.find(c); &#125;</span><br><span class="line">   string turns &#x3D; &quot;FLR&quot;;</span><br><span class="line">   int turn_id(char c) &#123; return turns.find(c); &#125;</span><br><span class="line">   </span><br><span class="line">   map&lt;int, map&lt;int, map&lt;int, set&lt;int&gt;&gt;&gt;&gt; maze;&#x2F;&#x2F;r,c,dir,turn</span><br><span class="line">   set&lt;Node&gt;have_travel;</span><br><span class="line">   map&lt;Node, Node&gt; path;</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">   Node walk(const Node &amp;u, int turn) &#123;</span><br><span class="line">	&#x2F;&#x2F;※非常nb的简化</span><br><span class="line">   	int dir &#x3D; u.dir;</span><br><span class="line">   	if (turn &#x3D;&#x3D; 1) dir &#x3D; (dir + 3) % 4;&#x2F;&#x2F;顺时针走一步</span><br><span class="line">   	if (turn &#x3D;&#x3D; 2) dir &#x3D; (dir + 1) % 4;&#x2F;&#x2F;逆时针走一个</span><br><span class="line">   	return Node(u.r + dr[dir], u.c + dc[dir], dir);</span><br><span class="line">   &#125;</span><br><span class="line">   int main() &#123;</span><br><span class="line">   	string name;</span><br><span class="line">   	while (getline(cin, name) &amp;&amp; name !&#x3D; &quot;END&quot;)</span><br><span class="line">   	&#123;</span><br><span class="line">   		path.clear();</span><br><span class="line">   		have_travel.clear();</span><br><span class="line">   		maze.clear();</span><br><span class="line">   		cout &lt;&lt; name &lt;&lt; endl &lt;&lt; &quot; &quot;;</span><br><span class="line">   		char ch;</span><br><span class="line">   		cin &gt;&gt; sta.r &gt;&gt; sta.c &gt;&gt; ch &gt;&gt; over.r &gt;&gt; over.c;</span><br><span class="line">   		sta.dir &#x3D; dir_id(ch);</span><br><span class="line">   </span><br><span class="line">   		int a &#x3D; sta.r, b &#x3D; sta.c;</span><br><span class="line">   	</span><br><span class="line">   		sta.r +&#x3D; dr[sta.dir];</span><br><span class="line">   		sta.c +&#x3D; dc[sta.dir];</span><br><span class="line">   		&#x2F;&#x2F;得到入口和出口，并从入口处走了一步</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">   		int r, c;</span><br><span class="line">   		while (cin &gt;&gt; r &amp;&amp; r) &#123;</span><br><span class="line">   			cin &gt;&gt; c;</span><br><span class="line">   			string s;</span><br><span class="line">   			while (cin &gt;&gt; s &amp;&amp; s !&#x3D; &quot;*&quot;) &#123;</span><br><span class="line">   </span><br><span class="line">   				for (int i &#x3D; 1; i &lt; s.length(); i++) &#123;</span><br><span class="line">   					maze[r][c][dir_id(s[0])].insert(turn_id(s[i]));</span><br><span class="line">   					&#x2F;存下每个(x,y)处，进入方向和出去方向的对应关系</span><br><span class="line">   				&#125;</span><br><span class="line">   			&#125;</span><br><span class="line">   </span><br><span class="line">   		&#125;</span><br><span class="line">   		getchar();</span><br><span class="line">   		queue&lt;Node&gt; q;</span><br><span class="line">   		vector&lt;Node&gt; ans;</span><br><span class="line">   </span><br><span class="line">   		bool flag &#x3D; false;</span><br><span class="line">   		if (sta.c &#x3D;&#x3D; over.c &amp;&amp; sta.r &#x3D;&#x3D; over.r) &#123;</span><br><span class="line">   			flag &#x3D; true;</span><br><span class="line">   		&#125;</span><br><span class="line">   		else &#123;</span><br><span class="line">   			q.push(sta);</span><br><span class="line">   			ans.push_back(over);</span><br><span class="line">   		&#125;</span><br><span class="line">   		&#x2F;&#x2F;开始广度优先遍历</span><br><span class="line">   		while (!q.empty()) &#123;</span><br><span class="line">   			Node u &#x3D; q.front(); q.pop();</span><br><span class="line">   			if (u.r &#x3D;&#x3D; over.r&amp;&amp;u.c &#x3D;&#x3D; over.c) &#123;</span><br><span class="line">   				over &#x3D; u;</span><br><span class="line">   				flag &#x3D; true;</span><br><span class="line">   				break;</span><br><span class="line">   			&#125;</span><br><span class="line">   			for (int i &#x3D; 0; i &lt; 3; i++) &#123;</span><br><span class="line">   				&#x2F;&#x2F;四个方向尝试走</span><br><span class="line">   				Node v &#x3D; walk(u, i);</span><br><span class="line">   				if (maze[u.r][u.c][u.dir].count(i)</span><br><span class="line">   					&amp;&amp; !have_travel.count(v)</span><br><span class="line">   					)&#x2F;&#x2F;能走：该进入方向能通向出去的方向；该点没被遍历过</span><br><span class="line">   				&#123;</span><br><span class="line">   					have_travel.insert(v);</span><br><span class="line">   					path[v] &#x3D; u;</span><br><span class="line">   					q.push(v);</span><br><span class="line">   				&#125;</span><br><span class="line">   </span><br><span class="line">   			&#125;</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">   		&#125;</span><br><span class="line">   		if (!flag) &#123;</span><br><span class="line">   			cout &lt;&lt; &quot; No Solution Possible&quot; &lt;&lt; endl;</span><br><span class="line">   			continue;</span><br><span class="line">   		&#125;</span><br><span class="line">   		Node u &#x3D; path[over];</span><br><span class="line">   </span><br><span class="line">   		&#x2F;&#x2F;迭代输出路径</span><br><span class="line">   		while (u !&#x3D; sta) &#123;</span><br><span class="line">   			if (!path.count(u)) break;</span><br><span class="line">   			ans.push_back(u);</span><br><span class="line">   			u &#x3D; path[u];</span><br><span class="line">   		&#125;</span><br><span class="line">   		ans.push_back(sta);</span><br><span class="line">   		ans.push_back(Node(a, b, 0));</span><br><span class="line">   </span><br><span class="line">   		for (int i &#x3D; ans.size() - 1; i &gt;&#x3D; 0; i--) &#123;</span><br><span class="line">   			cout &lt;&lt; &quot; (&quot; &lt;&lt; ans[i].r &lt;&lt; &quot;,&quot; &lt;&lt; ans[i].c &lt;&lt; &quot;)&quot;;</span><br><span class="line">   			if ((ans.size() - i) % 10 &#x3D;&#x3D; 0 &amp;&amp; i) cout &lt;&lt; endl &lt;&lt; &quot; &quot;;</span><br><span class="line">   		&#125;</span><br><span class="line">   		cout &lt;&lt; endl;</span><br><span class="line">   	&#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-UVA习题目录" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/30/UVA%E4%B9%A0%E9%A2%98%E7%9B%AE%E5%BD%95/"
-    >UVA习题目录</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/30/UVA%E4%B9%A0%E9%A2%98%E7%9B%AE%E5%BD%95/" class="article-date">
-  <time datetime="2020-03-30T02:01:20.895Z" itemprop="datePublished">2020-03-30</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="abbott的复仇"><a class="markdownIt-Anchor" href="#abbott的复仇"></a> <a href="/2020/03/30/Abbott%E7%9A%84%E5%A4%8D%E4%BB%87/">Abbott的复仇</a></h2>
-<h2 id="gergovia的酒交易"><a class="markdownIt-Anchor" href="#gergovia的酒交易"></a> <a href="/2020/03/30/Gergovia%E7%9A%84%E9%85%92%E4%BA%A4%E6%98%93/">Gergovia的酒交易</a></h2>
-<h2 id="hali-bula的晚会"><a class="markdownIt-Anchor" href="#hali-bula的晚会"></a> <a href="/2020/03/30/Hali-Bula%E7%9A%84%E6%99%9A%E4%BC%9A/">Hali-Bula的晚会</a></h2>
-<h2 id="shuffle的播放记录"><a class="markdownIt-Anchor" href="#shuffle的播放记录"></a> <a href="/2020/03/30/Shuffle%E7%9A%84%E6%92%AD%E6%94%BE%E8%AE%B0%E5%BD%95/">Shuffle的播放记录</a></h2>
-<h2 id="s树"><a class="markdownIt-Anchor" href="#s树"></a> <a href="/2020/03/30/S%E6%A0%91/">S树</a></h2>
-<h2 id="tex中的引导"><a class="markdownIt-Anchor" href="#tex中的引导"></a> <a href="/2020/03/30/Tex%E4%B8%AD%E7%9A%84%E5%BC%95%E5%AF%BC/">Tex中的引导</a></h2>
-<h2 id="unix-is-命令"><a class="markdownIt-Anchor" href="#unix-is-命令"></a> <a href="/2020/03/30/UnixIS%E5%91%BD%E4%BB%A4/">Unix IS 命令</a></h2>
-<h2 id="万圣节后的早晨"><a class="markdownIt-Anchor" href="#万圣节后的早晨"></a> <a href="/2020/03/30/%E4%B8%87%E5%9C%A3%E8%8A%82%E5%90%8E%E7%9A%84%E6%97%A9%E6%99%A8/">万圣节后的早晨</a></h2>
-<h2 id="不公平竞赛"><a class="markdownIt-Anchor" href="#不公平竞赛"></a> <a href="/2020/03/30/%E4%B8%8D%E5%85%AC%E5%B9%B3%E7%AB%9E%E8%B5%9B/">不公平竞赛</a></h2>
-<h2 id="不无聊的序列"><a class="markdownIt-Anchor" href="#不无聊的序列"></a> <a href="/2020/03/30/%E4%B8%8D%E6%97%A0%E8%81%8A%E7%9A%84%E5%BA%8F%E5%88%97/">不无聊的序列</a></h2>
-<h2 id="与非门电路"><a class="markdownIt-Anchor" href="#与非门电路"></a> <a href="/2020/03/30/%E4%B8%8E%E9%9D%9E%E9%97%A8%E7%94%B5%E8%B7%AF/">与非门电路</a></h2>
-<h2 id="两亲性分子"><a class="markdownIt-Anchor" href="#两亲性分子"></a> <a href="/2020/03/30/%E4%B8%A4%E4%BA%B2%E6%80%A7%E5%88%86%E5%AD%90/">两亲性分子</a></h2>
-<h2 id="二叉树的层序遍历"><a class="markdownIt-Anchor" href="#二叉树的层序遍历"></a> <a href="/2020/03/30/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/">二叉树的层序遍历</a></h2>
-<h2 id="二叉树的重建"><a class="markdownIt-Anchor" href="#二叉树的重建"></a> <a href="/2020/03/30/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%87%8D%E5%BB%BA/">二叉树的重建</a></h2>
-<h2 id="传说中的车"><a class="markdownIt-Anchor" href="#传说中的车"></a> <a href="/2020/03/30/%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84%E8%BD%A6/">传说中的车</a></h2>
-<h2 id="修改天平"><a class="markdownIt-Anchor" href="#修改天平"></a> <a href="/2020/03/30/%E4%BF%AE%E6%94%B9%E5%A4%A9%E5%B9%B3/">修改天平</a></h2>
-<h2 id="倒水问题"><a class="markdownIt-Anchor" href="#倒水问题"></a> <a href="/2020/03/30/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98/">倒水问题</a></h2>
-<h2 id="八数码"><a class="markdownIt-Anchor" href="#八数码"></a> <a href="/2020/03/30/%E5%85%AB%E6%95%B0%E7%A0%81/">八数码</a></h2>
-<h2 id="八皇后问题"><a class="markdownIt-Anchor" href="#八皇后问题"></a> <a href="/2020/03/30/%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/">八皇后问题</a></h2>
-<h2 id="分数拆分"><a class="markdownIt-Anchor" href="#分数拆分"></a> <a href="/2020/03/30/%E5%88%86%E6%95%B0%E6%8B%86%E5%88%86/">分数拆分</a></h2>
-<h2 id="切断圆环链"><a class="markdownIt-Anchor" href="#切断圆环链"></a> <a href="/2020/03/30/%E5%88%87%E6%96%AD%E5%9C%86%E7%8E%AF%E9%93%BE/">切断圆环链</a></h2>
-<h2 id="切木棍"><a class="markdownIt-Anchor" href="#切木棍"></a> <a href="/2020/03/30/%E5%88%87%E6%9C%A8%E6%A3%8D/">切木棍</a></h2>
-<h2 id="划分成回文串"><a class="markdownIt-Anchor" href="#划分成回文串"></a> <a href="/2020/03/30/%E5%88%92%E5%88%86%E6%88%90%E5%9B%9E%E6%96%87%E4%B8%B2/">划分成回文串</a></h2>
-<h2 id="劲歌金曲"><a class="markdownIt-Anchor" href="#劲歌金曲"></a> <a href="/2020/03/30/%E5%8A%B2%E6%AD%8C%E9%87%91%E6%9B%B2/">劲歌金曲</a></h2>
-<h2 id="单向tsp"><a class="markdownIt-Anchor" href="#单向tsp"></a> <a href="/2020/03/30/%E5%8D%95%E5%90%91TSP/">单向TSP</a></h2>
-<h2 id="反片语"><a class="markdownIt-Anchor" href="#反片语"></a> <a href="/2020/03/30/%E5%8F%8D%E7%89%87%E8%AF%AD/">反片语</a></h2>
-<h2 id="古代象形符号"><a class="markdownIt-Anchor" href="#古代象形符号"></a> <a href="/2020/03/30/%E5%8F%A4%E4%BB%A3%E8%B1%A1%E5%BD%A2%E7%AC%A6%E5%8F%B7/">古代象形符号</a></h2>
-<h2 id="周期串"><a class="markdownIt-Anchor" href="#周期串"></a> <a href="/2020/03/30/%E5%91%A8%E6%9C%9F%E4%B8%B2/">周期串</a></h2>
-<h2 id="和为0的4个值"><a class="markdownIt-Anchor" href="#和为0的4个值"></a> <a href="/2020/03/30/%E5%92%8C%E4%B8%BA0%E7%9A%844%E4%B8%AA%E5%80%BC/">和为0的4个值</a></h2>
-<h2 id="唯一的雪花"><a class="markdownIt-Anchor" href="#唯一的雪花"></a> <a href="/2020/03/30/%E5%94%AF%E4%B8%80%E7%9A%84%E9%9B%AA%E8%8A%B1/">唯一的雪花</a></h2>
-<h2 id="团体队列"><a class="markdownIt-Anchor" href="#团体队列"></a> <a href="/2020/03/30/%E5%9B%A2%E4%BD%93%E9%98%9F%E5%88%97/">团体队列</a></h2>
-<h2 id="困难的串"><a class="markdownIt-Anchor" href="#困难的串"></a> <a href="/2020/03/30/%E5%9B%B0%E9%9A%BE%E7%9A%84%E4%B8%B2/">困难的串</a></h2>
-<h2 id="图书管理系统"><a class="markdownIt-Anchor" href="#图书管理系统"></a> <a href="/2020/03/30/%E5%9B%BE%E4%B9%A6%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">图书管理系统</a></h2>
-<h2 id="在web中搜索"><a class="markdownIt-Anchor" href="#在web中搜索"></a> <a href="/2020/03/30/%E5%9C%A8Web%E4%B8%AD%E6%90%9C%E7%B4%A2/">在Web中搜索</a></h2>
-<h2 id="埃及分数"><a class="markdownIt-Anchor" href="#埃及分数"></a> <a href="/2020/03/30/%E5%9F%83%E5%8F%8A%E5%88%86%E6%95%B0/">埃及分数</a></h2>
-<h2 id="城市正视图"><a class="markdownIt-Anchor" href="#城市正视图"></a> <a href="/2020/03/30/%E5%9F%8E%E5%B8%82%E6%AD%A3%E8%A7%86%E5%9B%BE/">城市正视图</a></h2>
-<h2 id="城市里的间谍"><a class="markdownIt-Anchor" href="#城市里的间谍"></a> <a href="/2020/03/30/%E5%9F%8E%E5%B8%82%E9%87%8C%E7%9A%84%E9%97%B4%E8%B0%8D/">城市里的间谍</a></h2>
-<h2 id="多米诺效应"><a class="markdownIt-Anchor" href="#多米诺效应"></a> <a href="/2020/03/30/%E5%A4%9A%E7%B1%B3%E8%AF%BA%E6%95%88%E5%BA%94/">多米诺效应</a></h2>
-<h2 id="天平难题"><a class="markdownIt-Anchor" href="#天平难题"></a> <a href="/2020/03/30/%E5%A4%A9%E5%B9%B3%E9%9A%BE%E9%A2%98/">天平难题</a></h2>
-<h2 id="奇怪的气球膨胀"><a class="markdownIt-Anchor" href="#奇怪的气球膨胀"></a> <a href="/2020/03/30/%E5%A5%87%E6%80%AA%E7%9A%84%E6%B0%94%E7%90%83%E8%86%A8%E8%83%80/">奇怪的气球膨胀</a></h2>
-<h2 id="安迪的第一本字典"><a class="markdownIt-Anchor" href="#安迪的第一本字典"></a> <a href="/2020/03/30/%E5%AE%89%E8%BF%AA%E7%9A%84%E7%AC%AC%E4%B8%80%E6%9C%AC%E5%AD%97%E5%85%B8/">安迪的第一本字典</a></h2>
-<h2 id="宝箱"><a class="markdownIt-Anchor" href="#宝箱"></a> <a href="/2020/03/30/%E5%AE%9D%E7%AE%B1/">宝箱</a></h2>
-<h2 id="小球下落"><a class="markdownIt-Anchor" href="#小球下落"></a> <a href="/2020/03/30/%E5%B0%8F%E7%90%83%E4%B8%8B%E8%90%BD/">小球下落</a></h2>
-<h2 id="巡逻机器人"><a class="markdownIt-Anchor" href="#巡逻机器人"></a> <a href="/2020/03/30/%E5%B7%A1%E9%80%BB%E6%9C%BA%E5%99%A8%E4%BA%BA/">巡逻机器人</a></h2>
-<h2 id="工人的请愿书"><a class="markdownIt-Anchor" href="#工人的请愿书"></a> <a href="/2020/03/30/%E5%B7%A5%E4%BA%BA%E7%9A%84%E8%AF%B7%E6%84%BF%E4%B9%A6/">工人的请愿书</a></h2>
-<h2 id="巴比伦塔"><a class="markdownIt-Anchor" href="#巴比伦塔"></a> <a href="/2020/03/30/%E5%B7%B4%E6%AF%94%E4%BC%A6%E5%A1%94/">巴比伦塔</a></h2>
-<h2 id="带宽"><a class="markdownIt-Anchor" href="#带宽"></a> <a href="/2020/03/30/%E5%B8%A6%E5%AE%BD/">带宽</a></h2>
-<h2 id="平均值"><a class="markdownIt-Anchor" href="#平均值"></a> <a href="/2020/03/30/%E5%B9%B3%E5%9D%87%E5%80%BC/">平均值</a></h2>
-<h2 id="并行程序模拟"><a class="markdownIt-Anchor" href="#并行程序模拟"></a> <a href="/2020/03/30/%E5%B9%B6%E8%A1%8C%E7%A8%8B%E5%BA%8F%E6%A8%A1%E6%8B%9F/">并行程序模拟</a></h2>
-<h2 id="循环小数"><a class="markdownIt-Anchor" href="#循环小数"></a> <a href="/2020/03/30/%E5%BE%AA%E7%8E%AF%E5%B0%8F%E6%95%B0/">循环小数</a></h2>
-<h2 id="快速幂计算"><a class="markdownIt-Anchor" href="#快速幂计算"></a> <a href="/2020/03/30/%E5%BF%AB%E9%80%9F%E5%B9%82%E8%AE%A1%E7%AE%97/">快速幂计算</a></h2>
-<h2 id="战场"><a class="markdownIt-Anchor" href="#战场"></a> <a href="/2020/03/30/%E6%88%98%E5%9C%BA/">战场</a></h2>
-<h2 id="打印队列"><a class="markdownIt-Anchor" href="#打印队列"></a> <a href="/2020/03/30/%E6%89%93%E5%8D%B0%E9%98%9F%E5%88%97/">打印队列</a></h2>
-<h2 id="抄书"><a class="markdownIt-Anchor" href="#抄书"></a> <a href="/2020/03/30/%E6%8A%84%E4%B9%A6/">抄书</a></h2>
-<h2 id="括号序列"><a class="markdownIt-Anchor" href="#括号序列"></a> <a href="/2020/03/30/%E6%8B%AC%E5%8F%B7%E5%BA%8F%E5%88%97/">括号序列</a></h2>
-<h2 id="排序与检索"><a class="markdownIt-Anchor" href="#排序与检索"></a> <a href="/2020/03/30/%E6%8E%92%E5%BA%8F%E4%B8%8E%E6%A3%80%E7%B4%A2/">排序与检索</a></h2>
-<h2 id="数据库"><a class="markdownIt-Anchor" href="#数据库"></a> <a href="/2020/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></h2>
-<h2 id="旅行"><a class="markdownIt-Anchor" href="#旅行"></a> <a href="/2020/03/30/%E6%97%85%E8%A1%8C/">旅行</a></h2>
-<h2 id="旋转游戏"><a class="markdownIt-Anchor" href="#旋转游戏"></a> <a href="/2020/03/30/%E6%97%8B%E8%BD%AC%E6%B8%B8%E6%88%8F/">旋转游戏</a></h2>
-<h2 id="最大连续和问题"><a class="markdownIt-Anchor" href="#最大连续和问题"></a> <a href="/2020/03/30/%E6%9C%80%E5%A4%A7%E8%BF%9E%E7%BB%AD%E5%92%8C%E9%97%AE%E9%A2%98/">最大连续和问题</a></h2>
-<h2 id="木块问题"><a class="markdownIt-Anchor" href="#木块问题"></a> <a href="/2020/03/30/%E6%9C%A8%E5%9D%97%E9%97%AE%E9%A2%98/">木块问题</a></h2>
-<h2 id="树"><a class="markdownIt-Anchor" href="#树"></a> <a href="/2020/03/30/%E6%A0%91/">树</a></h2>
-<h2 id="树的最大独立集"><a class="markdownIt-Anchor" href="#树的最大独立集"></a> <a href="/2020/03/30/%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E7%8B%AC%E7%AB%8B%E9%9B%86/">树的最大独立集</a></h2>
-<h2 id="流水线调度"><a class="markdownIt-Anchor" href="#流水线调度"></a> <a href="/2020/03/30/%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%B0%83%E5%BA%A6/">流水线调度</a></h2>
-<h2 id="消防车"><a class="markdownIt-Anchor" href="#消防车"></a> <a href="/2020/03/30/%E6%B6%88%E9%98%B2%E8%BD%A6/">消防车</a></h2>
-<h2 id="滑动窗口最小问题"><a class="markdownIt-Anchor" href="#滑动窗口最小问题"></a> <a href="/2020/03/30/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%B0%8F%E9%97%AE%E9%A2%98/">滑动窗口最小问题</a></h2>
-<h2 id="煎饼"><a class="markdownIt-Anchor" href="#煎饼"></a> <a href="/2020/03/30/%E7%85%8E%E9%A5%BC/">煎饼</a></h2>
-<h2 id="照明系统设计"><a class="markdownIt-Anchor" href="#照明系统设计"></a> <a href="/2020/03/30/%E7%85%A7%E6%98%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">照明系统设计</a></h2>
-<h2 id="环形跑道"><a class="markdownIt-Anchor" href="#环形跑道"></a> <a href="/2020/03/30/%E7%8E%AF%E5%BD%A2%E8%B7%91%E9%81%93/">环形跑道</a></h2>
-<h2 id="理想路径"><a class="markdownIt-Anchor" href="#理想路径"></a> <a href="/2020/03/30/%E7%90%86%E6%83%B3%E8%B7%AF%E5%BE%84/">理想路径</a></h2>
-<h2 id="破坏正方形"><a class="markdownIt-Anchor" href="#破坏正方形"></a> <a href="/2020/03/30/%E7%A0%B4%E5%9D%8F%E6%AD%A3%E6%96%B9%E5%BD%A2/">破坏正方形</a></h2>
-<h2 id="移动木块"><a class="markdownIt-Anchor" href="#移动木块"></a> <a href="/2020/03/30/%E7%A7%BB%E5%8A%A8%E6%9C%A8%E5%9D%97/">移动木块</a></h2>
-<h2 id="空间结构"><a class="markdownIt-Anchor" href="#空间结构"></a> <a href="/2020/03/30/%E7%A9%BA%E9%97%B4%E7%BB%93%E6%9E%84/">空间结构</a></h2>
-<h2 id="素数环"><a class="markdownIt-Anchor" href="#素数环"></a> <a href="/2020/03/30/%E7%B4%A0%E6%95%B0%E7%8E%AF/">素数环</a></h2>
-<h2 id="编辑书稿"><a class="markdownIt-Anchor" href="#编辑书稿"></a> <a href="/2020/03/30/%E7%BC%96%E8%BE%91%E4%B9%A6%E7%A8%BF/">编辑书稿</a></h2>
-<h2 id="缩点"><a class="markdownIt-Anchor" href="#缩点"></a> <a href="/2020/03/30/%E7%BC%A9%E7%82%B9/">缩点</a></h2>
-<h2 id="网格动物"><a class="markdownIt-Anchor" href="#网格动物"></a> <a href="/2020/03/30/%E7%BD%91%E6%A0%BC%E5%8A%A8%E7%89%A9/">网格动物</a></h2>
-<h2 id="联合国大楼"><a class="markdownIt-Anchor" href="#联合国大楼"></a> <a href="/2020/03/30/%E8%81%94%E5%90%88%E5%9B%BD%E5%A4%A7%E6%A5%BC/">联合国大楼</a></h2>
-<h2 id="邮件传输代理的交互"><a class="markdownIt-Anchor" href="#邮件传输代理的交互"></a> <a href="/2020/03/30/%E9%82%AE%E4%BB%B6%E4%BC%A0%E8%BE%93%E4%BB%A3%E7%90%86%E7%9A%84%E4%BA%A4%E4%BA%92/">邮件传输代理的交互</a></h2>
-<h2 id="防线"><a class="markdownIt-Anchor" href="#防线"></a> <a href="/2020/03/30/%E9%98%B2%E7%BA%BF/">防线</a></h2>
-<h2 id="集合栈计算机"><a class="markdownIt-Anchor" href="#集合栈计算机"></a> <a href="/2020/03/30/%E9%9B%86%E5%90%88%E6%A0%88%E8%AE%A1%E7%AE%97%E6%9C%BA/">集合栈计算机</a></h2>
-<h2 id="颜色的长度"><a class="markdownIt-Anchor" href="#颜色的长度"></a> <a href="/2020/03/30/%E9%A2%9C%E8%89%B2%E7%9A%84%E9%95%BF%E5%BA%A6/">颜色的长度</a></h2>
-<h2 id="黄金图形"><a class="markdownIt-Anchor" href="#黄金图形"></a> <a href="/2020/03/30/%E9%BB%84%E9%87%91%E5%9B%BE%E5%BD%A2/">黄金图形</a></h2>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-人工智能目录" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/29/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9B%AE%E5%BD%95/"
-    >人工智能目录</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/29/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9B%AE%E5%BD%95/" class="article-date">
-  <time datetime="2020-03-29T15:56:22.526Z" itemprop="datePublished">2020-03-29</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="第1章人工智能的定义及其发展"><a class="markdownIt-Anchor" href="#第1章人工智能的定义及其发展"></a> <a href="/2020/06/13/%E7%AC%AC1%E7%AB%A0%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%85%B6%E5%8F%91%E5%B1%95/">第1章人工智能的定义及其发展</a></h2>
-<h2 id="第2章知识表示方法"><a class="markdownIt-Anchor" href="#第2章知识表示方法"></a> <a href="/2020/06/13/%E7%AC%AC2%E7%AB%A0%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/">第2章知识表示方法</a></h2>
-<h2 id="第3章经典逻辑推理"><a class="markdownIt-Anchor" href="#第3章经典逻辑推理"></a> <a href="/2020/06/13/%E7%AC%AC3%E7%AB%A0%E7%BB%8F%E5%85%B8%E9%80%BB%E8%BE%91%E6%8E%A8%E7%90%86/">第3章经典逻辑推理</a></h2>
-<h2 id="第5章不确定性推理"><a class="markdownIt-Anchor" href="#第5章不确定性推理"></a> <a href="/2020/06/13/%E7%AC%AC5%E7%AB%A0%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%8E%A8%E7%90%86/">第5章不确定性推理</a></h2>
-<h2 id="第6章问题求解与搜索策略"><a class="markdownIt-Anchor" href="#第6章问题求解与搜索策略"></a> <a href="/2020/06/13/%E7%AC%AC6%E7%AB%A0%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3%E4%B8%8E%E6%90%9C%E7%B4%A2%E7%AD%96%E7%95%A5/">第6章问题求解与搜索策略</a></h2>
-<h2 id="第7章搜索策略之与或树"><a class="markdownIt-Anchor" href="#第7章搜索策略之与或树"></a> <a href="/2020/06/13/%E7%AC%AC7%E7%AB%A0%E6%90%9C%E7%B4%A2%E7%AD%96%E7%95%A5%E4%B9%8B%E4%B8%8E%E6%88%96%E6%A0%91/">第7章搜索策略之与或树</a></h2>
-<h2 id="第8章遗传算法"><a class="markdownIt-Anchor" href="#第8章遗传算法"></a> <a href="/2020/06/13/%E7%AC%AC8%E7%AB%A0%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/">第8章遗传算法</a></h2>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-目录" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/29/%E7%9B%AE%E5%BD%95/"
-    >目录</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/29/%E7%9B%AE%E5%BD%95/" class="article-date">
-  <time datetime="2020-03-29T15:48:03.331Z" itemprop="datePublished">2020-03-29</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="青鸟-加密聊天社区"><a class="markdownIt-Anchor" href="#青鸟-加密聊天社区"></a> <a href="http://www.xdchat2020.xyz:8443/login" target="_blank" rel="noopener">青鸟-加密聊天社区</a></h2>
-<h2 id="myssql"><a class="markdownIt-Anchor" href="#myssql"></a> <a href="/2020/06/16/iSql/">MySSql</a></h2>
-<h2 id="iptables-exp"><a class="markdownIt-Anchor" href="#iptables-exp"></a> <a href="/2020/03/30/Iptables%E5%AE%9E%E9%AA%8C%E7%9B%AE%E5%BD%95/">IPtables Exp</a></h2>
-<h2 id="区块链技术"><a class="markdownIt-Anchor" href="#区块链技术"></a> <a href="/2020/03/30/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9B%AE%E5%BD%95/">区块链技术</a></h2>
-<h2 id="uva习题"><a class="markdownIt-Anchor" href="#uva习题"></a> <a href="/2020/03/30/UVA%E4%B9%A0%E9%A2%98%E7%9B%AE%E5%BD%95/">UVA习题</a></h2>
-<h2 id="计算机视觉相关项目"><a class="markdownIt-Anchor" href="#计算机视觉相关项目"></a> <a href="/2020/03/30/%E8%A7%86%E8%A7%89%E5%AE%9E%E9%AA%8C%E7%9B%AE%E5%BD%95/">计算机视觉相关项目</a></h2>
-<h2 id="公交管理系统"><a class="markdownIt-Anchor" href="#公交管理系统"></a> <a href="/2020/07/17/%E5%85%AC%E4%BA%A4%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">公交管理系统</a></h2>
-<h2 id="基础知识汇总"><a class="markdownIt-Anchor" href="#基础知识汇总"></a> <a href="/2020/06/20/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/">基础知识汇总</a></h2>
-<h2 id="考研机试"><a class="markdownIt-Anchor" href="#考研机试"></a> <a href="/2020/03/30/%E8%80%83%E7%A0%94%E6%9C%BA%E8%AF%95%E7%9B%AE%E5%BD%95/">考研机试</a></h2>
-<h2 id="csp认证"><a class="markdownIt-Anchor" href="#csp认证"></a> <a href="/2020/03/30/CSP%E8%AE%A4%E8%AF%81%E7%9B%AE%E5%BD%95/">CSP认证</a></h2>
-<h2 id="python可视化"><a class="markdownIt-Anchor" href="#python可视化"></a> <a href="/2020/03/30/Python%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%AE%E5%BD%95/">Python可视化</a></h2>
-<h2 id="springboot"><a class="markdownIt-Anchor" href="#springboot"></a> <a href="/2020/03/30/SpringBoot%E7%9B%AE%E5%BD%95/">SpringBoot</a></h2>
-<h2 id="人工智能"><a class="markdownIt-Anchor" href="#人工智能"></a> <a href="/2020/03/29/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9B%AE%E5%BD%95/">人工智能</a></h2>
-<h2 id="机器学习"><a class="markdownIt-Anchor" href="#机器学习"></a> <a href="/2020/06/30/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95/">机器学习</a></h2>
-<h2 id="数据挖掘-实验"><a class="markdownIt-Anchor" href="#数据挖掘-实验"></a> <a href="/2020/03/30/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E8%AF%BE%E5%A0%82%E7%9B%AE%E5%BD%95/">数据挖掘 &amp; 实验</a></h2>
-<h2 id="计算机视觉基础"><a class="markdownIt-Anchor" href="#计算机视觉基础"></a> <a href="/2020/03/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%9B%AE%E5%BD%95/">计算机视觉基础</a></h2>
-<h2 id="数据库系统"><a class="markdownIt-Anchor" href="#数据库系统"></a> <a href="/2020/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%AE%E5%BD%95/">数据库系统</a></h2>
-<h2 id="计算机安全基础"><a class="markdownIt-Anchor" href="#计算机安全基础"></a> <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%9B%AE%E5%BD%95/">计算机安全基础</a></h2>
-<h2 id="python数据分析与挖掘实战"><a class="markdownIt-Anchor" href="#python数据分析与挖掘实战"></a> <a href="/2020/03/30/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%AE%9E%E6%88%98%E7%9B%AE%E5%BD%95/">Python数据分析与挖掘实战</a></h2>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/20/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span>
+    <a class="extend prev" rel="prev" href="/page/20/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/22/">下一页</a>
   </nav>
   
 </section>

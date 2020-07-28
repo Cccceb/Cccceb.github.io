@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+
+<html lang="cn" >
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    第9章人工神经网络 |  
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+  <script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-第9章人工神经网络" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  第9章人工神经网络
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/28/%E7%AC%AC9%E7%AB%A0%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="article-date">
+  <time datetime="2020-07-28T02:19:36.659Z" itemprop="datePublished">2020-07-28</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.3k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">8分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="生物神经系统"><a class="markdownIt-Anchor" href="#生物神经系统"></a> 生物神经系统</h1>
+<ul>
+<li>生物神经元主要由以下几个部分组成：</li>
+<li>胞体，是神经细胞的本体;</li>
+<li>树突，用以接受来自其它细胞元的信号;</li>
+<li>轴突，用以输出信号，与多个神经元连接;</li>
+<li>突触，是一个神经元与另一个神经元相联系的特殊部位，通过神经元轴突的端部靠化学接触和电接触将信号传递给下一个神经元的树突或胞体。</li>
+</ul>
+<h1 id="人工神经网络结构"><a class="markdownIt-Anchor" href="#人工神经网络结构"></a> 人工神经网络结构</h1>
+<h2 id="人工神经网络"><a class="markdownIt-Anchor" href="#人工神经网络"></a> 人工神经网络</h2>
+<ul>
+<li>是反映人脑结构及功能的一种抽象<strong>数学模型</strong>，是由<strong>大量神经元节点互连而成的复杂网络</strong>，用以<strong>模拟人类</strong>进行<strong>知识的表示与存储</strong>以及利用知识进行<strong>推理</strong>的行为</li>
+</ul>
+<h2 id="人工神经网络的特性"><a class="markdownIt-Anchor" href="#人工神经网络的特性"></a> 人工神经网络的特性</h2>
+<ol>
+<li>可以充分<strong>逼近任意复杂的非线性关系</strong></li>
+<li>所有定量或定性的<strong>信息都等势分布贮存于 网络内的各神经元</strong>，故有很<strong>强的鲁棒性和容错性</strong></li>
+<li>采用<strong>并行分布处理方法</strong>，使得快速进行大量运算成为可能</li>
+<li><strong>可学习和自适应</strong>不知道或不确定的系统</li>
+<li>能够<strong>同时处理定量、定性知识。</strong></li>
+<li>可以<strong>通过软件和硬件实现。</strong></li>
+</ol>
+<h2 id="人工神经元模型"><a class="markdownIt-Anchor" href="#人工神经元模型"></a> 人工神经元模型</h2>
+<ul>
+<li>
+<p>通用模型</p>
+<img src="\MyImages\MyImages\image-20200625234820529.png" alt="image-20200625234820529" style="zoom:50%;" />
+</li>
+</ul>
+<h2 id="激活函数"><a class="markdownIt-Anchor" href="#激活函数"></a> 激活函数</h2>
+<ul>
+<li>激励函数f的基本作用
+<ul>
+<li>控制输入对输出的<strong>激活作用</strong>(线性变非线性)</li>
+<li>对输入、输出进行函数转换</li>
+<li>将可能无限域的输入变换成指定的有限范围内的输出</li>
+</ul>
+</li>
+</ul>
+<h3 id="阈值型"><a class="markdownIt-Anchor" href="#阈值型"></a> 阈值型</h3>
+<img src="\MyImages\MyImages\image-20200625235008505.png" alt="image-20200625235008505" style="zoom:67%;" />
+<h3 id="sigmoid函数"><a class="markdownIt-Anchor" href="#sigmoid函数"></a> Sigmoid函数</h3>
+<p><img src="%5CMyImages%5CMyImages%5Cimage-20200625235031662.png" alt="image-20200625235031662" /></p>
+<ul>
+<li>
+<p>缺点</p>
+<p>1.Sigmoid函数输入值区域正无穷或负无穷时，函数的梯度（斜率）也就会非常小，导致向底层传输的梯度趋近于0，此时网络参数很难得到有效训练。这种现象称为<strong>梯度消失</strong>。<br />
+2.sigmoid的输出恒为正值，导致权值更新时只能朝一个方向更新，使得<strong>收敛缓慢</strong>。</p>
+</li>
+</ul>
+<h3 id="双曲正切函数"><a class="markdownIt-Anchor" href="#双曲正切函数"></a> 双曲正切函数</h3>
+<p>tanh函数是sigmoid的向下平移和伸缩后的结果。对它进行了变形后，穿过了原点，并且值域介于+1和-1之间。</p>
+<img src="\MyImages\MyImages\image-20200625235152896.png" alt="image-20200625235152896" style="zoom: 80%;" />
+<ul>
+<li>优点<br />
+tanh函数解决了sigmoid函数的不是zero-centered输出问题，<strong>输出均值是0</strong>。</li>
+<li>缺点：<br />
+sigmoid函数和tanh函数两者共同的缺点：在输入特别大或者特别小的情况下，导数的梯度或者函数的斜率会变得特别小，最后就会接近于 0，（<strong>也存在梯度消失</strong>）</li>
+</ul>
+<h3 id="relu函数"><a class="markdownIt-Anchor" href="#relu函数"></a> ReLu函数</h3>
+<p><img src="%5CMyImages%5CMyImages%5Cimage-20200625235423944.png" alt="image-20200625235423944" /></p>
+<ul>
+<li>优点<br />
+ReLu函数是目前最常用的默认选择激活函数。当x&gt;0时，不存在饱和问题，在x&gt;0时保持梯度不衰减，缓解梯度消失的问题。并且由于激活矩阵具有稀疏性，收敛速度远快于sigmoid和tanh。</li>
+<li>缺点：<br />
+当x&lt;0时，ReLu硬饱和，随着训练的推进，部分输入会落入到硬饱和区，导致权重无法更新。</li>
+</ul>
+<h3 id="leaky-relu函数"><a class="markdownIt-Anchor" href="#leaky-relu函数"></a> Leaky-ReLu函数</h3>
+<p><img src="%5CMyImages%5CMyImages%5Cimage-20200625235623635.png" alt="image-20200625235623635" /></p>
+<p>在负数区域内，Leaky-ReLU有一个很小的斜率，<strong>可以避免ReLU死掉的问题。</strong></p>
+<h1 id="人工神经网络结构-2"><a class="markdownIt-Anchor" href="#人工神经网络结构-2"></a> 人工神经网络结构</h1>
+<h2 id="神经网络的基本特性和结构"><a class="markdownIt-Anchor" href="#神经网络的基本特性和结构"></a> 神经网络的基本特性和结构</h2>
+<ul>
+<li>
+<p>人工神经网络是具有下列特性的有向图<br />
+◇对于每个节点i 存在一个状态变量xi ；<br />
+◇从节点j 至节点i ,存在一个连接权系数wij；<br />
+◇对于每个节点i ，存在一个阈值θ i；<br />
+◇对于每个节点  i ，定义一个变换函数fi ；</p>
+</li>
+<li>
+<p>对于最一般的情况，此函数取如下的形式</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">(</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>w</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><msub><mi>x</mi><mi>j</mi></msub><mo>−</mo><msub><mi>θ</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f_i(\sum_iw_{ij}x_j-\theta_i)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.327674em;vertical-align:-1.277669em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0500050000000003em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+</ul>
+<h2 id="人工神经网络典型结构"><a class="markdownIt-Anchor" href="#人工神经网络典型结构"></a> 人工神经网络典型结构</h2>
+<h3 id="单纯前馈网络"><a class="markdownIt-Anchor" href="#单纯前馈网络"></a> 单纯前馈网络</h3>
+<img src="\MyImages\MyImages\image-20200626000418051.png" alt="image-20200626000418051" style="zoom:33%;" />
+<h3 id="有反馈的前馈网络"><a class="markdownIt-Anchor" href="#有反馈的前馈网络"></a> 有反馈的前馈网络</h3>
+<img src="\MyImages\MyImages\image-20200626000435262.png" alt="image-20200626000435262" style="zoom: 50%;" />
+<h3 id="前馈内层互联网络"><a class="markdownIt-Anchor" href="#前馈内层互联网络"></a> 前馈内层互联网络</h3>
+<img src="\MyImages\MyImages\image-20200626000458590.png" alt="image-20200626000458590" style="zoom:50%;" />
+<h3 id="反馈型全互联网络"><a class="markdownIt-Anchor" href="#反馈型全互联网络"></a> 反馈型全互联网络</h3>
+<img src="\MyImages\MyImages\image-20200626000507955.png" alt="image-20200626000507955" style="zoom:50%;" />
+<h1 id="人工神经网络的基本学习算法"><a class="markdownIt-Anchor" href="#人工神经网络的基本学习算法"></a> 人工神经网络的基本学习算法</h1>
+<h2 id="学习"><a class="markdownIt-Anchor" href="#学习"></a> 学习</h2>
+<ul>
+<li>学习就是对信息进行编码,其目的就是通过向有限个例子（训练样本）的学习来找到隐藏在例子背后（即产生这些例子）的规律（如函数形式）。</li>
+<li>当样本数据改变系统参数时，系统会对这些改变进行自适应或自组织的学习，<strong>在神经网络中表现为突触的改变。</strong></li>
+</ul>
+<h2 id="学习算法"><a class="markdownIt-Anchor" href="#学习算法"></a> 学习算法</h2>
+<h3 id="有监督学习"><a class="markdownIt-Anchor" href="#有监督学习"></a> 有监督学习</h3>
+<ul>
+<li>就是**对每一个输入Xi, 都假定我们已经知道它的期望输出Yi,**这个Yi可以理解为监督信号，也叫“教师信号”。对每一个输入Xi及其对其估计的期望输出Yi，就构成了一个训练样本。根据这若干组训练样本（Xi，Yi），对人工神经网络进行训练，利用学习系统的误差（ 期望输出与实际输出之差），不断校正学习系统的行为（即突触权值），直到误差满足要求，算法停止。有师学习算法主要有δ规则、BP算法、LVQ算法等。</li>
+</ul>
+<h3 id="无监督学习"><a class="markdownIt-Anchor" href="#无监督学习"></a> 无监督学习</h3>
+<ul>
+<li>无师学习<strong>不需要知道期望输出</strong>。在训练过程中，只要想神经网络提供输入模式，神经网络就能够自动地适应连接权，以便按照相似特征把输入模式分组聚集。无师学习算法主要在自适应谐振理论ART、Kohonen等自组织竞争型网络中采用。</li>
+</ul>
+<h3 id="强化学习"><a class="markdownIt-Anchor" href="#强化学习"></a> 强化学习</h3>
+<ul>
+<li>
+<p><strong>强化（reinforcement）学习是指从环境状态到行为映射的学习</strong>，以使系统行为<strong>从环境中获得的累积奖励值最大</strong>。我们并没有直接告诉主体要做什么或者要采取哪个动作,而是主体通过看哪个动作得到了最多的奖励来自己发现。主体的动作的影响不只是立即得到的奖励，而且还影响接下来的动作和最终的奖励。</p>
+</li>
+<li>
+<img src="\MyImages\MyImages\image-20200626000829355.png" alt="image-20200626000829355" style="zoom:80%;" />
+</li>
+</ul>
+<h3 id="三者关系"><a class="markdownIt-Anchor" href="#三者关系"></a> 三者关系</h3>
+<h4 id="有监督-无监督"><a class="markdownIt-Anchor" href="#有监督-无监督"></a> 有监督 &amp; 无监督</h4>
+<ul>
+<li>在监督学习中，假定我们知道每一输入对应的期望输出，并利用学习系统的误差，不断校正系统的行为；</li>
+<li>在非监督学习中，我们不知道学习系统的期望输出。</li>
+</ul>
+<h4 id="有监督-强化学习"><a class="markdownIt-Anchor" href="#有监督-强化学习"></a> 有监督 &amp; 强化学习</h4>
+<ul>
+<li>有监督学习是从有标签的样本中学习</li>
+<li>强化学习从互动中学习从自己的经验中学习，目标是获得尽可能多的奖励。学习者并没有被告知应该采取哪些行动，而是必须通过尝试来发现哪些行动会带来最大的回报。</li>
+</ul>
+<h1 id="人工神经网络基本模型"><a class="markdownIt-Anchor" href="#人工神经网络基本模型"></a> 人工神经网络基本模型</h1>
+<h2 id="mp模型"><a class="markdownIt-Anchor" href="#mp模型"></a> MP模型</h2>
+<img src="\MyImages\MyImages\image-20200626001135958.png" alt="image-20200626001135958" style="zoom: 67%;" />
+<ul>
+<li>
+<p>MP模型属于一种阈值元件模型</p>
+</li>
+<li>
+<p>我们可以根据需要，采用一些常见的算法来调整神经元连接权，以达到学习目的。如Hebb学习</p>
+</li>
+</ul>
+<h3 id="hebb学习规则"><a class="markdownIt-Anchor" href="#hebb学习规则"></a> Hebb学习规则</h3>
+<ul>
+<li>调整wij的原则为：若第i和第j个神经元同时处于兴奋状态，则它们之间的连接应当加强，即：$$\Delta w_{ij}=\alpha u_iv_j$$</li>
+</ul>
+<h2 id="mlp感知器模型"><a class="markdownIt-Anchor" href="#mlp感知器模型"></a> MLP感知器模型</h2>
+<h3 id="简单感知器"><a class="markdownIt-Anchor" href="#简单感知器"></a> 简单感知器</h3>
+<img src="\MyImages\MyImages\image-20200626001407611.png" alt="image-20200626001407611" style="zoom:50%;" />
+<ul>
+<li>
+<p>简单感知器模型实际上仍然是MP模型的结构，但是它通过<strong>采用监督学习来逐步增强模式划分的能力</strong>，达到所谓学习的目的。</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>v</mi><mi>i</mi></msub><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><msub><mi>w</mi><mi>i</mi></msub><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">v_i=f(\sum_{i=0}^nw_ix_i-\theta)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+<li>
+<p>其中，Wi为第i个输入到处理单元的连接权值θ为阈值。 f取阶跃函数.</p>
+</li>
+<li>
+<p>感知器的连接权定义为可变的，这样感知器就被赋予了学习的特性。</p>
+</li>
+</ul>
+<h3 id="进行与或非运算"><a class="markdownIt-Anchor" href="#进行与或非运算"></a> 进行“与或非”运算</h3>
+<img src="\MyImages\MyImages\image-20200626001848151.png" alt="image-20200626001848151" style="zoom: 80%;" />
+<img src="\MyImages\MyImages\image-20200626001921992.png" alt="image-20200626001921992" style="zoom:80%;" />
+<h2 id="几何意义"><a class="markdownIt-Anchor" href="#几何意义"></a> 几何意义</h2>
+<ul>
+<li>
+<p>代表一条直线</p>
+<img src="\MyImages\MyImages\image-20200626202547311.png" alt="image-20200626202547311" style="zoom:67%;" />
+</li>
+<li>
+<p>可以把感知器看作n维空间内的超平面</p>
+</li>
+</ul>
+<h1 id="基于神经网络的知识表示和推理"><a class="markdownIt-Anchor" href="#基于神经网络的知识表示和推理"></a> 基于神经网络的知识表示和推理</h1>
+<h2 id="基于神经网络的知识表示"><a class="markdownIt-Anchor" href="#基于神经网络的知识表示"></a> 基于神经网络的知识表示</h2>
+<ul>
+<li>传统人工智能系统中所用的方法是知识的显式表示，而<strong>神经网络中的知识表示是一种隐式的表示方法</strong>。在这里，知识并不像产生式系统中独立地表示为每一条规则，而是<strong>将某一问题的若干知识在同一网络中表示</strong></li>
+</ul>
+<h3 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h3>
+<img src="\MyImages\MyImages\image-20200626203057350.png" alt="image-20200626203057350" style="zoom:80%;" />
+<img src="\MyImages\MyImages\image-20200626203845424.png" alt="image-20200626203845424" style="zoom:80%;" />
+<h2 id="基于神经网络的推理"><a class="markdownIt-Anchor" href="#基于神经网络的推理"></a> 基于神经网络的推理</h2>
+<ul>
+<li>把用户提供的初始证据用作网络的输入，通过网络计算最终得到输出结果</li>
+</ul>
+<h3 id="正向网络的推理步骤"><a class="markdownIt-Anchor" href="#正向网络的推理步骤"></a> 正向网络的推理步骤</h3>
+<ol>
+<li>把已知数据输入网络输入层的各个节点。</li>
+<li>利用特性函数分别计算网络中各层的输出。计算中，前一层的输出作为后一层有关节点的输入，逐层进行计算 ，直至计算出输出层的输出值为止。</li>
+<li>用阈值函数对输出层的输出进行判定，从而得到输出结果。</li>
+</ol>
+<h1 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h1>
+<h2 id="ann适用范围"><a class="markdownIt-Anchor" href="#ann适用范围"></a> ANN适用范围</h2>
+<p><strong>一般而言, ANN与经典计算方法相比并非优越,</strong> 只有当常规方法解决不了或效果不佳时ANN方法才能显示出其优越性。**尤其对问题的机理不甚了解或不能用数学模型表示的系统,**如故障诊断、特征提取和预测等问题, ANN往往是最有利的工具。另一方面, ANN对处理大量原始数据而不能用规则或公式描述的问题, 表现出极大的灵活性和自适应性。</p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Cccceb/Cccceb.github.io.git/2020/07/28/%E7%AC%AC9%E7%AB%A0%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hide/" rel="tag">hide</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/07/28/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%9B%AE%E5%BD%95/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            软件工程目录
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/07/17/%E5%85%AC%E4%BA%A4%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">公交管理系统</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        CuiEnbo
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt=""></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['', '', ''],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: false
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

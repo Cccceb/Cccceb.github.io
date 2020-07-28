@@ -3928,12 +3928,21 @@ iterate：类似于continue，用于结束本次循环，继续下一次</p>
     <title>人工智能目录</title>
     <url>/2020/03/29/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9B%AE%E5%BD%95/</url>
     <content><![CDATA[<h2 id="第1章人工智能的定义及其发展"><a class="markdownIt-Anchor" href="#第1章人工智能的定义及其发展"></a> <a href="/2020/06/13/%E7%AC%AC1%E7%AB%A0%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%85%B6%E5%8F%91%E5%B1%95/">第1章人工智能的定义及其发展</a></h2>
+<p><img src="/MyImages/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%85%B6%E5%8F%91%E5%B1%95.png" alt="人工智能定义及其发展" /></p>
 <h2 id="第2章知识表示方法"><a class="markdownIt-Anchor" href="#第2章知识表示方法"></a> <a href="/2020/06/13/%E7%AC%AC2%E7%AB%A0%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/">第2章知识表示方法</a></h2>
+<p><img src="/MyImages/%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95.png" alt="知识表示方法" /></p>
 <h2 id="第3章经典逻辑推理"><a class="markdownIt-Anchor" href="#第3章经典逻辑推理"></a> <a href="/2020/06/13/%E7%AC%AC3%E7%AB%A0%E7%BB%8F%E5%85%B8%E9%80%BB%E8%BE%91%E6%8E%A8%E7%90%86/">第3章经典逻辑推理</a></h2>
+<p><img src="/MyImages/%E7%BB%8F%E5%85%B8%E9%80%BB%E8%BE%91%E6%8E%A8%E7%90%86.png" alt="经典逻辑推理" /></p>
 <h2 id="第5章不确定性推理"><a class="markdownIt-Anchor" href="#第5章不确定性推理"></a> <a href="/2020/06/13/%E7%AC%AC5%E7%AB%A0%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%8E%A8%E7%90%86/">第5章不确定性推理</a></h2>
+<p><img src="/MyImages/%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%8E%A8%E7%90%86.png" alt="不确定推理" /></p>
+<p><img src="/MyImages/%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%8E%A8%E7%90%86.png" alt="不确定性推理" /></p>
 <h2 id="第6章问题求解与搜索策略"><a class="markdownIt-Anchor" href="#第6章问题求解与搜索策略"></a> <a href="/2020/06/13/%E7%AC%AC6%E7%AB%A0%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3%E4%B8%8E%E6%90%9C%E7%B4%A2%E7%AD%96%E7%95%A5/">第6章问题求解与搜索策略</a></h2>
+<p><img src="/MyImages/%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3%E4%B8%8E%E6%8E%A2%E7%B4%A2%E7%AD%96%E7%95%A5.png" alt="问题求解与探索策略" /></p>
 <h2 id="第7章搜索策略之与或树"><a class="markdownIt-Anchor" href="#第7章搜索策略之与或树"></a> <a href="/2020/06/13/%E7%AC%AC7%E7%AB%A0%E6%90%9C%E7%B4%A2%E7%AD%96%E7%95%A5%E4%B9%8B%E4%B8%8E%E6%88%96%E6%A0%91/">第7章搜索策略之与或树</a></h2>
+<p><img src="/MyImages/%E4%B8%8E%E6%88%96%E6%A0%91%E6%90%9C%E7%B4%A2.png" alt="与或树搜索" /></p>
 <h2 id="第8章遗传算法"><a class="markdownIt-Anchor" href="#第8章遗传算法"></a> <a href="/2020/06/13/%E7%AC%AC8%E7%AB%A0%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/">第8章遗传算法</a></h2>
+<p><img src="/MyImages/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95.png" alt="遗传算法" /></p>
+<h2 id="第9章人工神经网络"><a class="markdownIt-Anchor" href="#第9章人工神经网络"></a> <a href="/2020/07/28/%E7%AC%AC9%E7%AB%A0%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">第9章人工神经网络</a></h2>
 ]]></content>
       <tags>
         <tag>hide</tag>
@@ -10843,6 +10852,7 @@ int main() {
 <h2 id="人工智能"><a class="markdownIt-Anchor" href="#人工智能"></a> <a href="/2020/03/29/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9B%AE%E5%BD%95/">人工智能</a></h2>
 <h2 id="机器学习"><a class="markdownIt-Anchor" href="#机器学习"></a> <a href="/2020/06/30/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95/">机器学习</a></h2>
 <h2 id="数据挖掘-实验"><a class="markdownIt-Anchor" href="#数据挖掘-实验"></a> <a href="/2020/03/30/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E8%AF%BE%E5%A0%82%E7%9B%AE%E5%BD%95/">数据挖掘 &amp; 实验</a></h2>
+<h2 id="软件工程"><a class="markdownIt-Anchor" href="#软件工程"></a> <a href="/2020/07/28/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%9B%AE%E5%BD%95/">软件工程</a></h2>
 <h2 id="计算机视觉基础"><a class="markdownIt-Anchor" href="#计算机视觉基础"></a> <a href="/2020/03/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%9B%AE%E5%BD%95/">计算机视觉基础</a></h2>
 <h2 id="数据库系统"><a class="markdownIt-Anchor" href="#数据库系统"></a> <a href="/2020/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%AE%E5%BD%95/">数据库系统</a></h2>
 <h2 id="计算机安全基础"><a class="markdownIt-Anchor" href="#计算机安全基础"></a> <a href="/2020/03/30/%E8%AE%A1%E5%AE%89%E5%AF%BC%E7%9B%AE%E5%BD%95/">计算机安全基础</a></h2>
@@ -25058,6 +25068,2261 @@ D_{ij}^{(l)}:\frac{1}{m}Δ_{ij^{(l)}}if k =0
 <li>前端使用JAVA GUI，后端使用JAVA+Mysql+原生JDBC</li>
 </ol>
 <h1 id="源代码"><a class="markdownIt-Anchor" href="#源代码"></a> <a href="https://github.com/Cccceb/BTF/tree/master/DataBaseHomeWork">源代码</a></h1>
+]]></content>
+      <tags>
+        <tag>hide</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第2章可行性研究</title>
+    <url>/2020/07/28/%E7%AC%AC2%E7%AB%A0%E5%8F%AF%E8%A1%8C%E6%80%A7%E7%A0%94%E7%A9%B6/</url>
+    <content><![CDATA[<h1 id="可行性研究的任务"><a class="markdownIt-Anchor" href="#可行性研究的任务"></a> 可行性研究的任务</h1>
+<p><strong>目的是 用最小代价在尽可能短的时间内确定问题是否能够解决</strong></p>
+<h2 id="三方面可行性"><a class="markdownIt-Anchor" href="#三方面可行性"></a> 三方面可行性</h2>
+<h3 id="技术可行性"><a class="markdownIt-Anchor" href="#技术可行性"></a> 技术可行性</h3>
+<h3 id="经济可行性"><a class="markdownIt-Anchor" href="#经济可行性"></a> 经济可行性</h3>
+<h3 id="操作可行性"><a class="markdownIt-Anchor" href="#操作可行性"></a> 操作可行性</h3>
+<p>系统的操作方式在这个用户组织内行的通吗</p>
+<h1 id="可行性研究的过程"><a class="markdownIt-Anchor" href="#可行性研究的过程"></a> 可行性研究的过程</h1>
+<h2 id="1复查系统的规模和目标"><a class="markdownIt-Anchor" href="#1复查系统的规模和目标"></a> 1.复查系统的规模和目标</h2>
+<p>确保分析员要解决问题确实是要求他解决的问题</p>
+<h2 id="2研究目前正在使用的系统"><a class="markdownIt-Anchor" href="#2研究目前正在使用的系统"></a> 2.研究目前正在使用的系统</h2>
+<p>实地考察旧系统，找出旧系统的不足，为新系统的建立提供基础。</p>
+<h2 id="3导出新系统的高层逻辑模型"><a class="markdownIt-Anchor" href="#3导出新系统的高层逻辑模型"></a> 3.导出新系统的高层逻辑模型</h2>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%5C%E5%9B%BE%E7%89%87%5C1.png" alt="" /></p>
+<h2 id="4重新定义问题"><a class="markdownIt-Anchor" href="#4重新定义问题"></a> 4.重新定义问题</h2>
+<p>逻辑模型事实上表达了分析员对新系统必须作什麽的看法。因此分析员应与用户一起再次复查问题定义，工程规模和目标。(<strong>数据流图</strong>和<strong>数据字典</strong>作为讨论的基础)</p>
+<h2 id="5导出和评价供选择的解法"><a class="markdownIt-Anchor" href="#5导出和评价供选择的解法"></a> 5.导出和评价供选择的解法</h2>
+<h2 id="6推荐行动方针"><a class="markdownIt-Anchor" href="#6推荐行动方针"></a> 6.推荐行动方针</h2>
+<h2 id="7草拟开发计划"><a class="markdownIt-Anchor" href="#7草拟开发计划"></a> 7.草拟开发计划</h2>
+<p>计划内容包括：</p>
+<ol>
+<li>工程进度表</li>
+<li>开发人员及硬件需求情况表</li>
+<li>开发工期</li>
+</ol>
+<h2 id="8书写文档提交审查"><a class="markdownIt-Anchor" href="#8书写文档提交审查"></a> 8.书写文档提交审查</h2>
+<h1 id="数据流图"><a class="markdownIt-Anchor" href="#数据流图"></a> 数据流图</h1>
+<p><strong>数据流图</strong>描绘系统的<strong>逻辑模型</strong>，图中没有物理元素，只是描绘<strong>信息在系统中流动和处理情况</strong>。该图<strong>只需考虑系统必须完成的基本逻辑功能</strong>，不需要考虑如何具体实现。</p>
+<h2 id="符号"><a class="markdownIt-Anchor" href="#符号"></a> 符号</h2>
+<ol>
+<li>（*）号表示数据流之间是“与”的关系。</li>
+<li>（+）号表示数据流之间是“或”的关系。</li>
+<li>（⊕）号表示只能从中选一个（互斥关系）</li>
+<li><strong>圆圈</strong> 代表<strong>加工</strong>。输入数据在此进行变换产生输出数据，其中要注明加工的名字。</li>
+<li><strong>方框</strong> 代表<strong>数据输入的源点或数据输出的汇点</strong>。其中要注明源点或汇点的名字。</li>
+<li><strong>箭头</strong> 代表<strong>数据流</strong>。被加工的数据与流向，箭头边应给出数据流名字，可用名词或名词性短语命名</li>
+<li><strong>双线</strong> 代表<strong>数据存储文件</strong>。也必须加以命名，用名词或名词性短语命名。</li>
+</ol>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%5C%E5%9B%BE%E7%89%87%5C3.png" alt="" /></p>
+<h2 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h2>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%5C%E5%9B%BE%E7%89%87%5C2.png" alt="" /></p>
+<h2 id="命名"><a class="markdownIt-Anchor" href="#命名"></a> 命名</h2>
+<h3 id="为数据流命名"><a class="markdownIt-Anchor" href="#为数据流命名"></a> 为数据流命名</h3>
+<ol>
+<li>应代表整个数据流（或数据存贮）的内容，而不是仅仅反映它的某些成分</li>
+<li>起名字时遇到了困难，则很可能是因为对数据流图分解不恰当造成，应该重新分解。</li>
+</ol>
+<h3 id="为处理命名"><a class="markdownIt-Anchor" href="#为处理命名"></a> 为处理命名</h3>
+<ol>
+<li>通常先为数据流命名，然后再为相关的处理命名</li>
+<li>名字应该反映整个处理的功能，而不是它的一部分。</li>
+<li>名字最好有一个<strong>具体</strong>的及物动词，加上一个具体的宾语组成</li>
+<li>如果必须用两个动词才可能描述整个处理的功能，则把这个处理<strong>再分解</strong>成两个处理可能更恰当。</li>
+<li>如果在为某个处理命名困难时，则很可能是发现了分解不当的迹象，应当<strong>重新分解</strong>。</li>
+</ol>
+<h2 id="用途"><a class="markdownIt-Anchor" href="#用途"></a> 用途</h2>
+<p>数据流图的基本目的是利用它作为交流信息的工具，分析员把他对现有系统的认识或对目标系统的设想用数据流图描绘出来，供有关人员审查确认。</p>
+<h2 id="分层数据流图"><a class="markdownIt-Anchor" href="#分层数据流图"></a> 分层数据流图</h2>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%5C%E5%9B%BE%E7%89%87%5C7.png" alt="" /></p>
+<h2 id="家庭安全系统三层dfd"><a class="markdownIt-Anchor" href="#家庭安全系统三层dfd"></a> 家庭安全系统三层DFD</h2>
+<h3 id="家庭安全系统的第1层-dfd"><a class="markdownIt-Anchor" href="#家庭安全系统的第1层-dfd"></a> 家庭安全系统的第1层 DFD</h3>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%5C%E5%9B%BE%E7%89%87%5C4.png" alt="" /></p>
+<h3 id="家庭安全系统的第2层-dfd"><a class="markdownIt-Anchor" href="#家庭安全系统的第2层-dfd"></a> 家庭安全系统的第2层 DFD</h3>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%5C%E5%9B%BE%E7%89%87%5C5.png" alt="" /></p>
+<h3 id="监控传感器过程细化的第3层-dfd"><a class="markdownIt-Anchor" href="#监控传感器过程细化的第3层-dfd"></a> 监控传感器过程细化的第3层 DFD</h3>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%5C%E5%9B%BE%E7%89%87%5C6.png" alt="" /></p>
+<h1 id="数据字典"><a class="markdownIt-Anchor" href="#数据字典"></a> 数据字典</h1>
+<ol>
+<li>数据字典是关于<strong>数据的信息</strong>的集合，也就是对<strong>数据流图中包含的所有元素的定义</strong>的集合。</li>
+<li><strong>数据流图和数据字典共同构成系统的逻辑模型</strong>，没有数据字典，数据流图不严格，反之，没有数据流图数据字典难发挥作用.</li>
+</ol>
+<h2 id="数据字典的内容"><a class="markdownIt-Anchor" href="#数据字典的内容"></a> 数据字典的内容</h2>
+<blockquote>
+<p>数据字典存储有关数据的来源、说明、与其他数据的关系、用途和格式等信息，它本身就是一个数据库，<strong>存储“关于数据项的数据”</strong></p>
+</blockquote>
+<p>数据字典由对下列四类元素的定义组成：</p>
+<ol>
+<li>数据流</li>
+<li>数据流分量（即：数据元素）</li>
+<li>数据存储</li>
+<li>处理</li>
+</ol>
+<h3 id="对图形定义的内容"><a class="markdownIt-Anchor" href="#对图形定义的内容"></a> 对图形定义的内容</h3>
+<ol>
+<li>图形元素的名字：某一词条的名字，要求无二义性，为人们所公认；</li>
+<li>别名或编号；</li>
+<li>分类：加工，数据流，数据文件，数据元素，数据源，汇点等；</li>
+<li>描述：功能，特点；</li>
+<li>定义：该词条的组成，数据结构等；</li>
+<li>位置：数据流的来源，去处，加工框的编号，输入输出；数据元素在那个数据结构中等。</li>
+<li>其他：数据流的数据量，流通量；数据文件的存储方式，存取要求；数据加工的加工顺序，以及外部实体的数量等。</li>
+</ol>
+<h3 id="对数据结构的描述"><a class="markdownIt-Anchor" href="#对数据结构的描述"></a> 对数据结构的描述</h3>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%5C%E5%9B%BE%E7%89%87%5C8.png" alt="" /></p>
+<h2 id="银行取款的数据流图和数据字典"><a class="markdownIt-Anchor" href="#银行取款的数据流图和数据字典"></a> 银行取款的数据流图和数据字典</h2>
+<h3 id="数据流图-2"><a class="markdownIt-Anchor" href="#数据流图-2"></a> 数据流图</h3>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%5C%E5%9B%BE%E7%89%87%5C9.png" alt="" /></p>
+<h3 id="数据字典-2"><a class="markdownIt-Anchor" href="#数据字典-2"></a> 数据字典</h3>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%5C%E5%9B%BE%E7%89%87%5C10.png" alt="" /></p>
+<h1 id="成本效益分析"><a class="markdownIt-Anchor" href="#成本效益分析"></a> 成本/效益分析</h1>
+<h2 id="成本估计"><a class="markdownIt-Anchor" href="#成本估计"></a> 成本估计</h2>
+<h3 id="代码行技术"><a class="markdownIt-Anchor" href="#代码行技术"></a> 代码行技术</h3>
+<p>用每行代码的平均成本乘以行数便可确定软件的成本．每行代码的平均成本主要取决于软件的复杂程度和工资水平．</p>
+<h3 id="任务分解技术"><a class="markdownIt-Anchor" href="#任务分解技术"></a> 任务分解技术</h3>
+<p>把软件开发分解为若干个相对独立的任务，再分别估计每个单独的开发任务成本，最后累加起来得出软件开发工程的总成本．估计每个任务的总成本时，通常先估计完成该项任务需要用的人力（以人月为单位），再乘以每人每月的平均工资而得出每个任务的成本．</p>
+<h3 id="自动估计成本技术"><a class="markdownIt-Anchor" href="#自动估计成本技术"></a> 自动估计成本技术</h3>
+<p>它不太常用，采用这种技术须有长期收集的大量历史数据为基础</p>
+<h2 id="简单的成本核算核算方法中应考虑的几个方面"><a class="markdownIt-Anchor" href="#简单的成本核算核算方法中应考虑的几个方面"></a> 简单的成本核算核算方法中应考虑的几个方面</h2>
+<ol>
+<li>
+<p>硬件投入费用</p>
+</li>
+<li>
+<p>软件人员开发投入费用</p>
+</li>
+<li>
+<p>软件开发平台投入费用</p>
+</li>
+<li>
+<p>调研费用与资料费</p>
+</li>
+<li>
+<p>不可预见费（总经费 5.5 ％）</p>
+</li>
+<li>
+<p>利润 ＊</p>
+</li>
+<li>
+<p>管理费 ＊（总经费 15 ％）</p>
+</li>
+<li>
+<p>运行维护费 ＊</p>
+</li>
+</ol>
+<p>＊ 表示与对方讨价还价点，是可取舍，是打折的依据．</p>
+]]></content>
+      <tags>
+        <tag>hide</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第3章需求分析</title>
+    <url>/2020/07/28/%E7%AC%AC3%E7%AB%A0%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h1 id="软件需求分析"><a class="markdownIt-Anchor" href="#软件需求分析"></a> 软件需求分析</h1>
+<p>核心在于明确做什么</p>
+<h1 id="需求分析的任务"><a class="markdownIt-Anchor" href="#需求分析的任务"></a> 需求分析的任务</h1>
+<h2 id="确定对系统的综合要求"><a class="markdownIt-Anchor" href="#确定对系统的综合要求"></a> 确定对系统的综合要求</h2>
+<ol>
+<li>
+<p>功能需求</p>
+</li>
+<li>
+<p>性能需求</p>
+</li>
+<li>
+<p>可靠性和可用性需求</p>
+</li>
+<li>
+<p>出错处理需求</p>
+</li>
+<li>
+<p>接口需求</p>
+</li>
+<li>
+<p>约束</p>
+</li>
+<li>
+<p>逆向需求</p>
+</li>
+<li>
+<p>将来可能提出的需求</p>
+</li>
+</ol>
+<h2 id="分析系统的数据要求"><a class="markdownIt-Anchor" href="#分析系统的数据要求"></a> 分析系统的数据要求</h2>
+<ol>
+<li>通常采用建立<strong>数据模型</strong>的方法</li>
+<li>用数据结构表示数据元素之间的逻辑关系</li>
+<li>用数据字典来全面定义数据，但不直观</li>
+<li>常用图形工具绘制数据结构</li>
+</ol>
+<h2 id="导出系统的逻辑模型"><a class="markdownIt-Anchor" href="#导出系统的逻辑模型"></a> 导出系统的逻辑模型</h2>
+<p>通常用数据流图、实体-联系图、状态转换图、数据字典和处理算法描述这个逻辑模型。</p>
+<h2 id="修改系统的开发计划"><a class="markdownIt-Anchor" href="#修改系统的开发计划"></a> 修改系统的开发计划</h2>
+<p>根据分析过程中获得的对系统更深入的了解，可以比较准确地估计系统的成本和进度，修正以前制定的开发计划。</p>
+<h1 id="与用户沟通获取需求的方法"><a class="markdownIt-Anchor" href="#与用户沟通获取需求的方法"></a> 与用户沟通获取需求的方法</h1>
+<h2 id="访谈"><a class="markdownIt-Anchor" href="#访谈"></a> 访谈</h2>
+<p>两种基本形式：正式和非正式的访谈。</p>
+<h2 id="面向数据流自顶向下求精"><a class="markdownIt-Anchor" href="#面向数据流自顶向下求精"></a> 面向数据流自顶向下求精</h2>
+<blockquote>
+<p>数据流图是帮助对分析结果进行复查的极好的工具。从输出端开始，分析员借助数据流图、数据字典、IPO图向用户解释数据是怎样转变成输出数据的，并填补遗漏或空白元素。</p>
+</blockquote>
+<ol>
+<li>可行性研究已经得出了目标系统的<strong>高层数据流图</strong>，需求分析的目标之一就是<strong>把数据流和数据存储定义到元素级。</strong></li>
+<li>一般<strong>从数据流图的输出端</strong>入手。输出数据决定了系统必须具有的最基本的组成元素。</li>
+<li><strong>从输出向输入回溯</strong>，可以确定每个数据元素的来源。可行性研究已经得出了目标系统的高层数据流图，需求分析的目标之一就是把数据流和数据存储定义到元素级。</li>
+</ol>
+<h3 id="方法回溯"><a class="markdownIt-Anchor" href="#方法回溯"></a> 方法：回溯</h3>
+<ol>
+<li>回溯过程种可能遇到下述问题：
+<ol>
+<li>为了得到某个数据元素需要用到数据流图中目前还没有的数据元素;</li>
+<li>或者得出这个数据元素需要的算法尚不完全清楚。</li>
+</ol>
+</li>
+</ol>
+<h3 id="过程结构化分析方法sa法"><a class="markdownIt-Anchor" href="#过程结构化分析方法sa法"></a> 过程：结构化分析方法(SA法)</h3>
+<ol>
+<li>
+<p>它是面向数据流自上而下逐步求精进行需求分析的方法。由可行性研究得出目标系统的高层数据流图。<strong>需求分析的目的之一是把数据流和存贮定义到元素级。</strong></p>
+</li>
+<li>
+<p>基本过程</p>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%5C%E5%9B%BE%E7%89%87%5C12.png" alt="" /></p>
+</li>
+</ol>
+<h2 id="简易的应用规格说明技术"><a class="markdownIt-Anchor" href="#简易的应用规格说明技术"></a> 简易的应用规格说明技术</h2>
+<p>使用简易的应用规格说明<strong>技术分析需求的典型过程是：</strong><br />
+初步访谈开发者和用户分别写出“产品需求”会议讨论统一意见</p>
+<h2 id="快速建立软件原型"><a class="markdownIt-Anchor" href="#快速建立软件原型"></a> 快速建立软件原型</h2>
+<p>快速建立软件原型是最准确、最有效、最强大的<strong>需求分析技术。</strong></p>
+<h1 id="分析模型与规格说明"><a class="markdownIt-Anchor" href="#分析模型与规格说明"></a> 分析模型与规格说明</h1>
+<h2 id="模型建立"><a class="markdownIt-Anchor" href="#模型建立"></a> 模型建立</h2>
+<h3 id="三种模型"><a class="markdownIt-Anchor" href="#三种模型"></a> 三种模型</h3>
+<ol>
+<li><strong>数据模型</strong>：实体－联系图，描绘数据及数据对象之间的关系。</li>
+<li><strong>功能模型</strong>：数据流图，描绘当数据在软件系统中移动时被变换的逻辑过程。</li>
+<li><strong>行为模型</strong>：状态转换图，描绘系统各种行为模式和在不同状态间的转换。</li>
+</ol>
+<h3 id="建模的目的"><a class="markdownIt-Anchor" href="#建模的目的"></a> 建模的目的</h3>
+<ol>
+<li>更好的了解系统<strong>信息、功能和行为</strong>，使<strong>分析更系统化</strong>。</li>
+<li>模型是评审的焦点，是<strong>确定系统完整性（completeness），一致性（consistency）和规格说明准确性（accuracy</strong>）的关键。</li>
+<li>模型是<strong>设计的基础</strong>，能给设计人员一种软件基本表达式。它可映射成为实现的正文。</li>
+</ol>
+<h2 id="规格说明"><a class="markdownIt-Anchor" href="#规格说明"></a> 规格说明</h2>
+<ol>
+<li>
+<p>从实现中说出功能。</p>
+</li>
+<li>
+<p>要求一个面向过程的系统规格说明语言。</p>
+</li>
+<li>
+<p>一个规格说明必须围绕整个系统，而软件只是它的一个组成部分。</p>
+</li>
+<li>
+<p>一个规格说明必须围绕整个系统的操作环境。</p>
+</li>
+<li>
+<p>一个规格说明必须是可操作的。</p>
+</li>
+<li>
+<p>一个规格说明必须是容许它是不完整的和可扩展的。</p>
+</li>
+<li>
+<p>一个规格说明必须是局部化的和松散耦合的。</p>
+<ul>
+<li>局部化是当信息改变时，只有一些简单的碎片（理想的）需要修改；</li>
+<li>松散耦合结构是碎片可以方便的加入或取出，结构自动调整。</li>
+</ul>
+</li>
+</ol>
+<h1 id="概念模型和规范化"><a class="markdownIt-Anchor" href="#概念模型和规范化"></a> 概念模型和规范化</h1>
+<p><strong>方法是</strong> 实体-联系方法，即<strong>E-R图</strong></p>
+<h2 id="e-r模型"><a class="markdownIt-Anchor" href="#e-r模型"></a> E-R模型</h2>
+<h3 id="联系"><a class="markdownIt-Anchor" href="#联系"></a> 联系</h3>
+<p>此联系有3类：</p>
+<ol>
+<li>一对一 (1 : 1)  例如部门与经理；</li>
+<li>一对N  (1 : N)  某教师上多门课；</li>
+<li>多对多(M :N)  一个学生学多门课，而每门课有多名学生上。</li>
+</ol>
+<h3 id="实体"><a class="markdownIt-Anchor" href="#实体"></a> 实体</h3>
+<p>实体是可相互区分的事物：例如  职工、学生、课程、教师</p>
+<h3 id="属性"><a class="markdownIt-Anchor" href="#属性"></a> 属性</h3>
+<p>属性是<strong>实体或联系</strong>所具有的性质，通常一个实体由若干个属性来刻画。如：学生实体有姓名、性别、系、年级。教师-----职称、职务</p>
+<h2 id="数据规范化"><a class="markdownIt-Anchor" href="#数据规范化"></a> 数据规范化</h2>
+<h3 id="要求"><a class="markdownIt-Anchor" href="#要求"></a> 要求</h3>
+<ol>
+<li>消除数据<strong>冗余</strong>，即消除表格中数据的重复；</li>
+<li>消除<strong>多义性</strong>，使关系中的属性含义清楚、单一；</li>
+<li><strong>使关系的“概念”单一化</strong>，让每个数据项只是一个简单的数或字符串，而不是一个组项或重复组；<br />
+方便操作。使数据的插入、删除与修改操作可行而且方便；</li>
+<li>使<strong>关系模式更灵活</strong>，易于实现接近自然语言的查询方式。</li>
+</ol>
+<h3 id="范式"><a class="markdownIt-Anchor" href="#范式"></a> 范式</h3>
+<p>推荐到3NF(平衡性能和范式级别)</p>
+<h1 id="状态转移图"><a class="markdownIt-Anchor" href="#状态转移图"></a> 状态转移图</h1>
+<p>状态图提供了行为建模机制</p>
+<h2 id="状态"><a class="markdownIt-Anchor" href="#状态"></a> 状态</h2>
+<ol>
+<li>状态是任何可以被观察到的系统行为模式，<strong>一个状态代表系统的一个行为模式。</strong></li>
+<li>状态规定了<strong>系统对事件的响应方式</strong>。系统对事件响应
+<ul>
+<li>既可以是做一个（或一系列）动作</li>
+<li>也可以是仅仅改变系统本身的状态</li>
+<li>还可以是既改变状态又做动作。</li>
+</ul>
+</li>
+</ol>
+<h2 id="事件"><a class="markdownIt-Anchor" href="#事件"></a> 事件</h2>
+<ol>
+<li>事件是<strong>在某个特定时刻发生的事情</strong>，它是对引起系统做动作或从一个状态转换到另一个状态的外界事件的抽象。</li>
+<li>事件就是引起系统做动作或转换状态的<strong>控制信息</strong>。</li>
+</ol>
+<h2 id="符号"><a class="markdownIt-Anchor" href="#符号"></a> 符号</h2>
+<ol>
+<li>初态用实心圆表示，终态用一对同心圆（内圆为实心圆）表示。</li>
+<li>中间状态用圆角矩形表示，可以用平衡线把它分割成上、中、下3个部分。
+<ul>
+<li>上部分为状态的名称，该部分是必须的；</li>
+<li>中间部分为状态变量的名字和值，该部分为可选；</li>
+<li>下面部分是活动表，该部分为可选。</li>
+</ul>
+</li>
+<li>箭头指明了转换方向。如转换过程中有事件触发，可以用事件表达式标明。</li>
+</ol>
+<img src="C:\Users\86139\Desktop\软件工程\图片\13.png" style="zoom: 50%;" />
+<img src="\MyImages\image-20200601224344569.png" alt="image-20200601224344569" style="zoom:50%;" />
+<h1 id="其他图形工具"><a class="markdownIt-Anchor" href="#其他图形工具"></a> 其他图形工具</h1>
+<h2 id="层次方框图"><a class="markdownIt-Anchor" href="#层次方框图"></a> 层次方框图</h2>
+<p>层次方框图采用树形结构的一系列多层次的矩形框来描绘数据的层次结构。</p>
+<p><img src="C:%5CUsers%5C86139%5CDesktop%5C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%5C%E5%9B%BE%E7%89%87%5C14.png" alt="" /></p>
+<h1 id="验证软件需求"><a class="markdownIt-Anchor" href="#验证软件需求"></a> 验证软件需求</h1>
+<h2 id="结构化分析方法"><a class="markdownIt-Anchor" href="#结构化分析方法"></a> 结构化分析方法</h2>
+<ol>
+<li><strong>结构化分析方法</strong>采用自顶向下、逐层进行功能分解的系统分析方法来定义系统的需求。</li>
+<li><strong>特点</strong>：利用数据流图（Data Flow Diagram，DFD）来帮助理解问题，对问题进行分析。</li>
+<li>分析工具
+<ul>
+<li>功能分析工具：<strong>DFD</strong>、DD、结构化英语、判定表和判定树。</li>
+<li>行为分析工具：<strong>状态迁移图</strong>、Petri网等。</li>
+<li>数据分析工具：<strong>ER图</strong>或者EER（扩展ER）图。</li>
+</ul>
+</li>
+<li><strong>结构化分析方法的弊端</strong>
+<ul>
+<li>基于功能分析和数据分析，将功能和数据分离，与人类现实世界环境不一样，和人的自然思维也就不一致了。</li>
+<li>以功能为主，数据只是被动的信息载体。当<strong>系统行为发生变化时，系统维护非常困难</strong>。</li>
+<li>DFD中<strong>不涉及系统的控制信息</strong>，因此，SA不适合于分析以控制信息为主的系统需求。</li>
+</ul>
+</li>
+</ol>
+<h2 id="面向对象方法"><a class="markdownIt-Anchor" href="#面向对象方法"></a> 面向对象方法</h2>
+<h3 id="基本思想"><a class="markdownIt-Anchor" href="#基本思想"></a> 基本思想</h3>
+<ol>
+<li>把客观世界看成是由各种对象组成的，任何事实都是对象，复杂的对象可由简单的对象组合而成。</li>
+<li>所有的对象都划分成各种对象类，简称类;</li>
+<li>按子类与父类的关系，把若干个对象组成一个层次结构的系统，在这个层次中，下层的子类具有和上层的父类相同的性质，这种现象称为继承。</li>
+<li>对象之间能够而且只能通过传递消息互相联系。</li>
+</ol>
+<h3 id="优点"><a class="markdownIt-Anchor" href="#优点"></a> 优点</h3>
+<ol>
+<li>与人类习惯的思维方法一致。</li>
+<li>稳定性好</li>
+<li>可重用好。</li>
+<li>可维护性好。</li>
+</ol>
+<h3 id="三个阶段"><a class="markdownIt-Anchor" href="#三个阶段"></a> 三个阶段</h3>
+<ol>
+<li><strong>面向对象分析阶段</strong>：通常，面向对象分析主要包括需求陈述和面向对象建模两个步骤。</li>
+<li><strong>面向对象设计阶段</strong>：系统设计确定实现系统的策略和目标系统的高层结构；对象设计确定空间中的类、关联、接口形式及实现服务的算法。</li>
+<li><strong>面向对象实现阶段</strong>：主要包括两项工作：把面向对象设计的结果翻译成用某种程序语言书写的面向对象程序；测试并调试面向对象的程序。</li>
+</ol>
+<h2 id="开发方法的选择"><a class="markdownIt-Anchor" href="#开发方法的选择"></a> 开发方法的选择</h2>
+<ol>
+<li>系统的规模、复杂程度与不确定因素是选择开发方法的重要依据。系统规模大，功能与数据关系复杂，开发周期比较长，适宜采用生命周期法；系统规模适中，需求的不确定性高，适宜采用原型法；系统规模小，复杂程度不高，适宜采用生成法；功能单一、结构简单的单项数据处理系统，则适宜采用IMPO法，面向对象几乎适用于各种方法。</li>
+<li>开发人员的素质和工作基础是选择开发方法的先决条件。初次参与开发工作，开发经验不多的人员适宜采用生命周期法；技术水平高，开发经验丰富的人员，可以考虑采用原型法、IMPO法；具有较好工作基础的可以采用生成法、智能法和面向对象方法等。</li>
+<li>用户和系统环境的条件是选择开发方法的重要参考因素。用户人才队伍的技术水平，科学管理的基础，领导的重视程度以及时间性，实用性等都会影响到选择方法的决定。</li>
+<li>系统开发方法的确定与选择的开发策略直接有关。</li>
+</ol>
+<h2 id="需求分析方法的比较"><a class="markdownIt-Anchor" href="#需求分析方法的比较"></a> 需求分析方法的比较</h2>
+<ol>
+<li>结构化分析方法以系统的功能分析为主，而功能是易变的；面向对象分析方法以组成系统的对象分析为主，而对象是比较稳定的。</li>
+<li>结构化分析方法主要针对数据处理领域，而面向对象分析方法同样适用于以控制为主的系统。</li>
+<li>面向对象分析具有更好的扩展性，因为对象的结构和关系相对于系统的功能而言更稳定，功能的变化通过更新对象的操作加以适应。</li>
+</ol>
+<h1 id="项目管理"><a class="markdownIt-Anchor" href="#项目管理"></a> 项目管理</h1>
+<h2 id="项目管理概述"><a class="markdownIt-Anchor" href="#项目管理概述"></a> 项目管理概述</h2>
+<h3 id="特点"><a class="markdownIt-Anchor" href="#特点"></a> 特点</h3>
+<ol>
+<li>项目管理是一项复杂的工作</li>
+<li>项目管理具有创造性
+<ul>
+<li>继承累积性</li>
+<li>综合性</li>
+</ul>
+</li>
+<li></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>hide</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第5章总体设计</title>
+    <url>/2020/07/28/%E7%AC%AC5%E7%AB%A0%E6%80%BB%E4%BD%93%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h1 id="设计目标和任务"><a class="markdownIt-Anchor" href="#设计目标和任务"></a> 设计目标和任务</h1>
+<img src="\MyImages\image-20200407144132971.png" alt="image-20200407144132971" style="zoom:67%;" />
+<h2 id="数据设计"><a class="markdownIt-Anchor" href="#数据设计"></a> 数据设计</h2>
+<p>将实体 – 关系图中描述的对象和关系，以及<strong>数据词典中描述的详细数据内容转化为数据结构的定义</strong>。</p>
+<h2 id="体系结构设计"><a class="markdownIt-Anchor" href="#体系结构设计"></a> 体系结构设计</h2>
+<p>定义软件系统各主要成份之间的关系</p>
+<h2 id="接口设计"><a class="markdownIt-Anchor" href="#接口设计"></a> 接口设计</h2>
+<p>根据数据流图定义软件内部各成份之间、软件与其它协同系统之间及软件与用户之间的交互机制</p>
+<h2 id="过程设计"><a class="markdownIt-Anchor" href="#过程设计"></a> 过程设计</h2>
+<p>把结构成份转换成软件的过程性描述</p>
+<h1 id="软件设计任务"><a class="markdownIt-Anchor" href="#软件设计任务"></a> 软件设计任务</h1>
+<ul>
+<li>软件设计分成两步
+<ul>
+<li>概要设计
+<ul>
+<li>面向人的</li>
+<li>将软件需求转化为数据结构和软件的系统结构</li>
+</ul>
+</li>
+<li>详细设计
+<ul>
+<li>面向具体实现</li>
+<li>即过程设计。通过对结构表示进行细化，得到软件的详细的数据结构和算法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="制定规范"><a class="markdownIt-Anchor" href="#制定规范"></a> 制定规范</h2>
+<ul>
+<li>在进入软件开发阶段之初，首先应为软件开发组制定在设计时应该共同遵守的标准，以便协调组内各成员的工作</li>
+</ul>
+<h2 id="软件系统结构的总体设计"><a class="markdownIt-Anchor" href="#软件系统结构的总体设计"></a> 软件系统结构的总体设计</h2>
+<ul>
+<li>
+<p>采用某种设计方法，将系统按功能划分成模块的<strong>层次结构</strong></p>
+</li>
+<li>
+<p>确定每个<strong>模块的功能</strong></p>
+</li>
+<li>
+<p>建立与已确定的<strong>软件需求的对应关系</strong></p>
+</li>
+<li>
+<p>确定模块间的<strong>调用关系</strong></p>
+</li>
+<li>
+<p>确定模块间的<strong>接口</strong></p>
+</li>
+<li>
+<p>评估模块<strong>划分的质量</strong></p>
+</li>
+</ul>
+<h2 id="处理方式设计"><a class="markdownIt-Anchor" href="#处理方式设计"></a> 处理方式设计</h2>
+<ul>
+<li>确定为实现系统的功能需求<strong>所必需的算法</strong></li>
+<li>确定为满足系统的性能需求所必需的<strong>算法和模块间的控制方式</strong>
+<ul>
+<li>周转时间</li>
+<li>响应时间</li>
+<li>吞吐量</li>
+<li>精度</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据结构设计"><a class="markdownIt-Anchor" href="#数据结构设计"></a> 数据结构设计</h2>
+<ul>
+<li>确定软件涉及的<strong>文件系统的结构以及数据库的模式</strong>、子模式，进行数据完整性和安全性的设计</li>
+<li>确定<strong>输入，输出文件的详细的数据结构</strong></li>
+<li>结合算法设计，确定<strong>算法所必需的逻辑数据结构</strong>及其操作</li>
+<li>确定对逻辑数据结构所必需的那些操作的程序模块</li>
+</ul>
+<h3 id="考虑的因素"><a class="markdownIt-Anchor" href="#考虑的因素"></a> 考虑的因素</h3>
+<ul>
+<li>限制和确定各个数据设计决策的影响范围</li>
+<li>若需要与操作系统或调度程序接口所必须的控制表等数据时，确定其详细的数据结构和使用规则</li>
+<li>数据的保护性设计
+<ul>
+<li>防卫性设计：规定输入格式</li>
+<li>一致性设计：处理并发问题,Petri网</li>
+<li>冗余性设计：两个不同风格设计的结果之差在允许范围内</li>
+</ul>
+</li>
+</ul>
+<h2 id="可靠性设计"><a class="markdownIt-Anchor" href="#可靠性设计"></a> 可靠性设计</h2>
+<ul>
+<li>也叫质量设计</li>
+</ul>
+<h2 id="编写概要设计阶段的文档"><a class="markdownIt-Anchor" href="#编写概要设计阶段的文档"></a> 编写概要设计阶段的文档</h2>
+<ul>
+<li>概要设计说明书</li>
+<li>数据库设计说明书</li>
+<li>用户手册</li>
+<li>制定初步的测试计划</li>
+</ul>
+<h2 id="设计评审"><a class="markdownIt-Anchor" href="#设计评审"></a> 设计评审</h2>
+<ul>
+<li>可追溯性：确认该设计是否复盖了所有已确定的软件需求，软件每一成份是否可追溯到某一项需求</li>
+<li>接口：确认该软件的内部接口与外部接口是否已经明确定义。模块是否满足高内聚和低耦合的要求。模块作用范围是否在其控制范围之内</li>
+<li>风险：确认该设计在现有技术条件下和预算范围内是否能按时实现</li>
+<li>实用性：确认该设计对于需求的解决方案是否实用</li>
+<li>技术清晰度：确认该设计是否以一种易于翻译成代码的形式表达</li>
+<li>可维护性：确认该设计是否考虑了方便未来的维护</li>
+<li>质量：确认该设计是否表现出良好的质量特征</li>
+<li>各种选择方案：看是否考虑过其它方案，比较各种选择方案的标准是什么</li>
+<li>限制：评估对该软件的限制是否现实，是否与需求一致</li>
+<li>其它具体问题：对于文档、可测试性、设计过程…等进行评估</li>
+</ul>
+<h2 id="总结总体设计过程"><a class="markdownIt-Anchor" href="#总结总体设计过程"></a> 总结总体设计过程</h2>
+<h3 id="主要阶段组成"><a class="markdownIt-Anchor" href="#主要阶段组成"></a> 主要阶段组成</h3>
+<ol>
+<li>系统设计：确定系统的具体实现方案</li>
+<li>结构设计：确定软件结构</li>
+</ol>
+<h3 id="设想供选择的方案"><a class="markdownIt-Anchor" href="#设想供选择的方案"></a> 设想供选择的方案</h3>
+<p>设想把数据流图中的处理分组的各种可能的方法，抛弃在技术上行不通的分组方法，余下的分组方法代表可能的实现策略，并且可以启示供选择的物理系统。</p>
+<h3 id="选取合理的方案"><a class="markdownIt-Anchor" href="#选取合理的方案"></a> 选取合理的方案</h3>
+<p>要准备四份材料</p>
+<p>① 系统流程图        ②  组成系统的物理元素清单<br />
+③ 成本/效益分析     ④ 实现该系统的进度计划</p>
+<h3 id="推荐最佳方案"><a class="markdownIt-Anchor" href="#推荐最佳方案"></a> 推荐最佳方案</h3>
+<p>分析员推荐最佳方案，用户及专家应认真审查该方案，是否满足用户的要求，应请部门负责人进一步审批，然后进入下一个阶段——结构设计。</p>
+<h3 id="功能分解"><a class="markdownIt-Anchor" href="#功能分解"></a> 功能分解</h3>
+<p>分为两阶段完成</p>
+<ol>
+<li>结构设计：确定程序由哪些模块组成及几个模块之间的关系；</li>
+<li>过程设计：确定每个模块的处理过程。</li>
+</ol>
+<h3 id="设计软件结构"><a class="markdownIt-Anchor" href="#设计软件结构"></a> 设计软件结构</h3>
+<ul>
+<li>
+<p>通常程序中的一个模块完成一个适当的功能。应该把模块组织成良好的的<strong>层次系统</strong>。</p>
+</li>
+<li>
+<p>数据流图已经细化到适当的层次，则可以直接从数据流图映射出软件结构</p>
+</li>
+</ul>
+<h3 id="数据库设计"><a class="markdownIt-Anchor" href="#数据库设计"></a> 数据库设计</h3>
+<h3 id="制定测试计划"><a class="markdownIt-Anchor" href="#制定测试计划"></a> 制定测试计划</h3>
+<p>在软件开发的早期阶段考虑测试问题，能促使软件设计人员在设计时注意提高软件的可测试性。</p>
+<h3 id="书写文档"><a class="markdownIt-Anchor" href="#书写文档"></a> 书写文档</h3>
+<p>（1）系统说明         （2）用户手册        （3）测试计划<br />
+（4）详细的实现计划         （5）数据库设计结果</p>
+<h3 id="审查和复查"><a class="markdownIt-Anchor" href="#审查和复查"></a> 审查和复查</h3>
+<p>对总体设计的结果进行严格的技术审查，在技术审查通过之后再由使用部门的负责人从管理角度进行复审。</p>
+<h1 id="设计原理"><a class="markdownIt-Anchor" href="#设计原理"></a> 设计原理</h1>
+<h2 id="模块化"><a class="markdownIt-Anchor" href="#模块化"></a> 模块化</h2>
+<ul>
+<li>模块是数据说明，可执行语句等程序对象的集合，它是单独命名的，而且是可通过名字来访问。</li>
+</ul>
+<h3 id="顺序模块"><a class="markdownIt-Anchor" href="#顺序模块"></a> 顺序模块</h3>
+<ul>
+<li>[子例程，函数，过程，宏］</li>
+<li>它在没有中断的情况下，被应用软件引用或执行</li>
+</ul>
+<h3 id="增量模块"><a class="markdownIt-Anchor" href="#增量模块"></a> 增量模块</h3>
+<ul>
+<li>又称为协同程序，在引用完成之前，可以被应用程序中断，然后在中断点重新启动</li>
+</ul>
+<h3 id="并行模块"><a class="markdownIt-Anchor" href="#并行模块"></a> 并行模块</h3>
+<ul>
+<li>可与其他模块同时执行的模块</li>
+</ul>
+<h3 id="构件模块"><a class="markdownIt-Anchor" href="#构件模块"></a> 构件模块</h3>
+<ul>
+<li>可以降低耦合</li>
+</ul>
+<h2 id="抽象"><a class="markdownIt-Anchor" href="#抽象"></a> 抽象</h2>
+<ul>
+<li>软件工程过程中的每一步，都是对软件解的抽象层次的一次细化。当从总体设计转入详细设计过渡时，抽象的程度随之减少，最后当源代码写出以后，抽象的最低层也就到达了</li>
+<li>抽象的低端就是代码</li>
+</ul>
+<h3 id="数据抽象"><a class="markdownIt-Anchor" href="#数据抽象"></a> 数据抽象</h3>
+<ul>
+<li>是一个命名的说明数据对象的数据集合</li>
+<li>例如工资单，含有信息有：单位、姓名、房租、水电、有线电视费……,最后是总额</li>
+</ul>
+<h3 id="过程抽象"><a class="markdownIt-Anchor" href="#过程抽象"></a> 过程抽象</h3>
+<ul>
+<li>是一个命令的指令序列</li>
+<li>例如：“入门”是一个过程抽象，它含有一个很长的过程步骤的序列</li>
+</ul>
+<h2 id="逐步求精"><a class="markdownIt-Anchor" href="#逐步求精"></a> 逐步求精</h2>
+<p>逐步求精是人类解决复杂问题时采用的基本方法，也是许多软件工程技术（例如，规格说明技术，设计和实现技术）的基础。可以把逐步求精定义为：“为了能集中精力解决主要问题而尽量推迟对问题细节的考虑。”</p>
+<h2 id="局部化和信息隐蔽"><a class="markdownIt-Anchor" href="#局部化和信息隐蔽"></a> 局部化和信息隐蔽</h2>
+<ul>
+<li><strong>局部化</strong>是指把一些关系密切的软件元素物理的放得彼此靠近。显然，局部化有助于实现信息隐藏。</li>
+<li><strong>隐藏</strong>意味着有效的模块化可以通过定义一组独立的模块而实现，这些独立的模块彼此间仅仅交换那些为了完成系统功能而必须交换的信息。</li>
+</ul>
+<h2 id="模块独立"><a class="markdownIt-Anchor" href="#模块独立"></a> 模块独立</h2>
+<h3 id="模块独立重要性"><a class="markdownIt-Anchor" href="#模块独立重要性"></a> 模块独立重要性</h3>
+<ul>
+<li>有效的模块化软件比较容易开发。</li>
+<li>模块容易测试和维护。</li>
+</ul>
+<h3 id="独立性程度衡量"><a class="markdownIt-Anchor" href="#独立性程度衡量"></a> 独立性程度衡量</h3>
+<ul>
+<li><strong>耦合</strong>：它是衡量<strong>不同模块彼此间</strong>互相依赖的紧密程度。</li>
+<li><strong>内聚</strong>：它是衡量<strong>一个模块内部</strong>各个元素彼此结合的紧密程度。</li>
+</ul>
+<h3 id="内聚"><a class="markdownIt-Anchor" href="#内聚"></a> 内聚</h3>
+<h4 id="功能内聚"><a class="markdownIt-Anchor" href="#功能内聚"></a> 功能内聚</h4>
+<p>一个模块中各个部分都是<strong>完成某一具体功能必不可少的组成部分</strong>，或者说该模块中所有部分都是为了完成一项具体功能而协同工作，紧密联系，不可分割的。则称该模块为功能内聚模块。</p>
+<h4 id="顺序内聚"><a class="markdownIt-Anchor" href="#顺序内聚"></a> 顺序内聚</h4>
+<p>该模块根据不同要求，确定执行某个功能，由于该模块所有功能<strong>基于同一个数据结果（符号表</strong>）故为顺序内聚模块。</p>
+<h4 id="通信内聚"><a class="markdownIt-Anchor" href="#通信内聚"></a> 通信内聚</h4>
+<p>如果一个<strong>模块内各功能部分都使用了相同的输入数据</strong>，或产生了相同的输出数据，则称之为通信内聚模块。通常，通信内聚模块是通过数据流图来定义的。</p>
+<h4 id="过程内聚"><a class="markdownIt-Anchor" href="#过程内聚"></a> 过程内聚</h4>
+<p>使用流程图做为工具设计程序时，<strong>把流程图中的某一部分划出组成模块，就得到过程内聚模块</strong>。例如，把流程图中的循环部分、判定部分、计算部分分成三个模块，这三个模块都是过程内聚模块。</p>
+<h4 id="时间内聚"><a class="markdownIt-Anchor" href="#时间内聚"></a> 时间内聚</h4>
+<p>时间内聚又称为经典内聚。<strong>这种模块大多为多功能模块，但模块的各个功能的执行与时间有关</strong>，通常要求所有功能必须在同一时间段内执行。例如初始化模块和终止模块。</p>
+<h4 id="逻辑内聚"><a class="markdownIt-Anchor" href="#逻辑内聚"></a> 逻辑内聚</h4>
+<p>这种模块把几种相关的功能组合在一起，每次被调用时，由传送给模块的判定参数来确定该模块应执行哪一种功能。(switch)</p>
+<h4 id="巧合内聚"><a class="markdownIt-Anchor" href="#巧合内聚"></a> 巧合内聚</h4>
+<p>当模块内各部分之间没有联系，或者即使有联系，该联系也很松散，则称这种模块为巧合内聚模块，它是内聚程度最低的模块。</p>
+<h4 id="内聚关系比较"><a class="markdownIt-Anchor" href="#内聚关系比较"></a> 内聚关系比较</h4>
+<img src="\MyImages\image-20200417103936301.png" alt="image-20200417103936301" style="zoom: 50%;" />
+<h3 id="耦合"><a class="markdownIt-Anchor" href="#耦合"></a> 耦合</h3>
+<img src="\MyImages\image-20200417104323192.png" alt="image-20200417104323192" style="zoom: 50%;" />
+<h4 id="非直接耦合"><a class="markdownIt-Anchor" href="#非直接耦合"></a> 非直接耦合</h4>
+<p>两个模块之间没有直接关系，它们之间的联系完全是通过主模块的控制和调用来实现的。</p>
+<h4 id="数据耦合"><a class="markdownIt-Anchor" href="#数据耦合"></a> 数据耦合</h4>
+<p>一个模块访问另一个模块时，彼此之间是通<strong>过简单数据参数</strong> (<strong>不是控制参数、公共数据结构或外部变量</strong>)  来交换输入、输出信息的。</p>
+<h4 id="标记耦合"><a class="markdownIt-Anchor" href="#标记耦合"></a> 标记耦合</h4>
+<p>一组模块通过参数表传递记录信息，就是标记耦合。这个记录是某一数据结构的子结构，而不是简单变量。传递是一个数据结构</p>
+<h4 id="控制耦合"><a class="markdownIt-Anchor" href="#控制耦合"></a> 控制耦合</h4>
+<p>如果一个模块通过传送开关、标志、名字等控制信息，明显地控制选择另一模块的功能，就是控制耦合。</p>
+<h4 id="外部耦合"><a class="markdownIt-Anchor" href="#外部耦合"></a> 外部耦合</h4>
+<p>一组模块都访问<strong>同一全局简单变量</strong>而不是同一全局数据结构，而且不是通过参数表传递该全局变量的信息，则称之为外部耦合。</p>
+<h4 id="公共耦合"><a class="markdownIt-Anchor" href="#公共耦合"></a> 公共耦合</h4>
+<p>若一组模块都访问<strong>同一个公共数据环境</strong>，则它们之间的耦合就称为公共耦合。</p>
+<ul>
+<li>公共耦合程度随着参与公共耦合的模块数量的增加而增加</li>
+<li>需要加锁来协调各个模块</li>
+</ul>
+<h4 id="内容耦合"><a class="markdownIt-Anchor" href="#内容耦合"></a> 内容耦合</h4>
+<p>如果发生下列情形，两个模块之间就发生了内容耦合</p>
+<ol>
+<li>一个模块直接访问另一个模块的内部数据</li>
+<li>一个模块不通过正常入口转到另一模块内部</li>
+<li>两个模块有一部分程序代码重迭(只可能出现在汇编语言中);</li>
+<li>一个模块有多个入口</li>
+</ol>
+<h1 id="启发式规则"><a class="markdownIt-Anchor" href="#启发式规则"></a> 启发式规则</h1>
+<h2 id="改进软件结构提高模块独立性"><a class="markdownIt-Anchor" href="#改进软件结构提高模块独立性"></a> 改进软件结构提高模块独立性</h2>
+<ul>
+<li>
+<p>多个模块共有的一个子功能可以独立成一个模块，由这些模块调用。</p>
+</li>
+<li>
+<p>有时可以通过分解或合并模块以减少控制信息的传递及全程数据的引用，并且降低接口复杂度。</p>
+</li>
+</ul>
+<h2 id="模块规模应该适中"><a class="markdownIt-Anchor" href="#模块规模应该适中"></a> 模块规模应该适中</h2>
+<p>一个模块的规模不应过大</p>
+<h2 id="深度-宽度-扇入扇出应该适当"><a class="markdownIt-Anchor" href="#深度-宽度-扇入扇出应该适当"></a> 深度、宽度、扇入扇出应该适当</h2>
+<ul>
+<li><strong>深度</strong>：软件结构中的控制层数，一般深度不超过7级</li>
+<li><strong>宽度</strong>：同一层上模块总数的最大值</li>
+<li><strong>扇出</strong>：一个模块直接控制（调用）的模块数目</li>
+<li><strong>扇入</strong>：一个模块有多少个上级模块调用它</li>
+<li>设计良好的系统结构
+<ul>
+<li>顶层扇出比较高；</li>
+<li>中层扇出较少；</li>
+<li>底层扇入到公共的实用模块中去。</li>
+</ul>
+</li>
+</ul>
+<h2 id="模块的作用域"><a class="markdownIt-Anchor" href="#模块的作用域"></a> 模块的作用域</h2>
+<ul>
+<li>
+<p><strong>模块的作用域应该在控制域之内</strong>模块的作用域：该模块本身以及所有直接或间接从属于它的模块集合。模块A的控制域是A、B、C、D、E、F。若不是这样，会造成软件难于理解，这时需要传递判别结果，会使模块间出现控制耦合。</p>
+<img src="\MyImages\image-20200417105726428.png" alt="image-20200417105726428" style="zoom:50%;" />
+</li>
+</ul>
+<h2 id="力争降低模块接口的复杂程度"><a class="markdownIt-Anchor" href="#力争降低模块接口的复杂程度"></a> 力争降低模块接口的复杂程度</h2>
+<h2 id="设计单入口单出口的模块"><a class="markdownIt-Anchor" href="#设计单入口单出口的模块"></a> 设计单入口单出口的模块</h2>
+<p>从顶部入模块并且从底部退出，软件比较容易理解、容易维护。防止了内容耦合</p>
+<h2 id="模块功能应该可以预测"><a class="markdownIt-Anchor" href="#模块功能应该可以预测"></a> 模块功能应该可以预测</h2>
+<ul>
+<li>预测指，输入一定，输出也是一定的</li>
+<li>若一个模块当作黑盒子，即只要输入的数据相同就产生同样的输出，则该模块可预测。带有内部“存贮器”的模块的功能是不可预测的，因为它的输出可能取决于内部存储器的状态。实际上，要在软件设计时尽量避免在使用现场修改软件，这样的工程代价太高。</li>
+</ul>
+<h1 id="描绘软件结构的图形工具"><a class="markdownIt-Anchor" href="#描绘软件结构的图形工具"></a> 描绘软件结构的图形工具</h1>
+<h2 id="层次图和hipo图"><a class="markdownIt-Anchor" href="#层次图和hipo图"></a> 层次图和HIPO图</h2>
+<p>如上图中展示宽度和高度的图</p>
+<h2 id="结构图"><a class="markdownIt-Anchor" href="#结构图"></a> 结构图</h2>
+<p>按惯例总是图中位于上方的方框代表的模块调用下方的模块，用带注释的箭头表示模块调用过程中来回传递的信息。如果希望进一步表明传递信息是数据还是控制信息，用尾部形状区分：尾部是空心圆表示传递的是数据，实心圆表示传递的是控制信息。</p>
+<h1 id="面向数据流的设计方法"><a class="markdownIt-Anchor" href="#面向数据流的设计方法"></a> 面向数据流的设计方法</h1>
+<h2 id="概念"><a class="markdownIt-Anchor" href="#概念"></a> 概念</h2>
+<ul>
+<li>软件设计方法包括
+<ul>
+<li>面向数据流的设计</li>
+<li>面向数据结构的设计</li>
+<li>面向对象的设计</li>
+</ul>
+</li>
+</ul>
+<h3 id="面向数据流的设计方法-2"><a class="markdownIt-Anchor" href="#面向数据流的设计方法-2"></a> 面向数据流的设计方法</h3>
+<p>①  首先研究、分析数据流图<br />
+②  然后根据数据流图决定问题的类型<br />
+③  由数据流图推导出系统的初始结构图<br />
+④ 利用启发性原则来改进系统的初始结构图，直到符合要求的结构图为止<br />
+⑤  修改和补充数据字典<br />
+⑥  制定测试计划</p>
+<h4 id="信息流包括"><a class="markdownIt-Anchor" href="#信息流包括"></a> 信息流包括</h4>
+<ul>
+<li>变换流：<strong>信息沿输入通路进入系统，同时由外部形式变换成内部形式</strong>，进入系统的信息通过变化中心，经加工处理以后再沿输出通路变换成外部形式离开软件系统</li>
+<li>事物流：数据沿输入通路到达一个处理T，这个处理根据输入数据的类型在若干个动作序列中选出一个来执行。</li>
+</ul>
+<img src="\MyImages\image-20200417110653808.png" alt="image-20200417110653808" style="zoom:50%;" />
+<h2 id="变换分析"><a class="markdownIt-Anchor" href="#变换分析"></a> 变换分析</h2>
+<p>变换分析是一系列设计步骤的总称。经这些步骤把具有变换特点的数据流图按预先确定的模式映射成软件结构</p>
+<p>举例：以C-&gt;D为变换中心</p>
+<img src="\MyImages\image-20200417110759819.png" alt="image-20200417110759819" style="zoom:67%;" />
+<img src="\MyImages\image-20200417110805314.png" alt="image-20200417110805314" style="zoom: 67%;" />
+<h3 id="变换流设计方法"><a class="markdownIt-Anchor" href="#变换流设计方法"></a> 变换流设计方法</h3>
+<ol>
+<li>找出变换中心
+<ul>
+<li>从输入端开始一步步向后推；</li>
+<li>从输出端向前移</li>
+</ul>
+</li>
+<li>设计软件结构的顶层和第二层</li>
+</ol>
+<ul>
+<li>变换中心确定，等于确定了主模块，其功能主要是完成对所有模块控制。顶层之后是第二层，一般第二层至少有三种功能：输入、输出和交换中心，它们可以是一个或多个。</li>
+</ul>
+<ol start="3">
+<li>下层模块
+<ul>
+<li>根据第二层，自顶而下，逐步细化，分别为各模块设计出下属模块</li>
+</ul>
+</li>
+</ol>
+<h3 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h3>
+<img src="\MyImages\image-20200417111154849.png" alt="image-20200417111154849" style="zoom:50%;" />
+<img src="\MyImages\image-20200417111156905.png" alt="image-20200417111156905" style="zoom:50%;" />
+<h2 id="事务分析"><a class="markdownIt-Anchor" href="#事务分析"></a> 事务分析</h2>
+<p>在很多软件应用中，存在某种作业数据流，它可以引发一个或多个处理，这些处理能够完成该作业要求的功能。这种数据流就叫做事务流。</p>
+<ul>
+<li>特征：数据流图中扇入出现扇入少而扇出多，最后又扇入到一个点的模块</li>
+</ul>
+<h3 id="事务分析过程"><a class="markdownIt-Anchor" href="#事务分析过程"></a> 事务分析过程</h3>
+<ol>
+<li>识别事物源
+<ul>
+<li>利用数据流图和数据词典，从问题定义和需求分析的结果中，找出各种需要处理的事务。通常，事务来自物理输入装置。有时，设计人员还必须区别系统的输入、中心加工和输出中产生的事务。</li>
+</ul>
+</li>
+<li>规定适当的是事物型结构
+<ul>
+<li>在确定了该数据流图具有事务型特征之后，根据模块划分理论，建立适当的事务型结构。</li>
+</ul>
+</li>
+<li>识别各种事务和它们定义的操作。从问题定义
+<ul>
+<li>需求分析中找出的事务及其操作所必需的全部信息，对于系统内部产生的事务，必须仔细地定义它们的操作。</li>
+</ul>
+</li>
+<li>注意利用公用模块
+<ul>
+<li>在事务分析的过程中，如果不同事务的一些中间模块可由具有类似的语法和语义的若干个低层模块组成，则可以把这些低层模块构造成公用模块。</li>
+</ul>
+</li>
+<li>对每一事务，或对联系密切的一组事务，建立一个事务处理模块</li>
+</ol>
+<ul>
+<li>如果发现在系统中有类似的事务，可以把它们组成一个事务处理模块</li>
+</ul>
+<ol start="6">
+<li>对事务处理模块规定它们全部的下层操作模块</li>
+<li>对操作模块规定它们的全部细节模块</li>
+</ol>
+<h3 id="举例-2"><a class="markdownIt-Anchor" href="#举例-2"></a> 举例</h3>
+<img src="\MyImages\image-20200417111517752.png" alt="image-20200417111517752" style="zoom: 50%;" />
+<h3 id="综合举例"><a class="markdownIt-Anchor" href="#综合举例"></a> 综合举例</h3>
+<ul>
+<li>通常是变换流为主，事物流为辅的情况</li>
+</ul>
+<img src="\MyImages\image-20200417112110574.png" alt="image-20200417112110574" style="zoom: 50%;" />
+<img src="\MyImages\image-20200417112113474.png" alt="image-20200417112113474" style="zoom: 50%;" />]]></content>
+      <tags>
+        <tag>hide</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第4章形式化说明技术</title>
+    <url>/2020/07/28/%E7%AC%AC4%E7%AB%A0%E5%BD%A2%E5%BC%8F%E5%8C%96%E8%AF%B4%E6%98%8E%E6%8A%80%E6%9C%AF/</url>
+    <content><![CDATA[<h1 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h1>
+<h2 id="非形式化方法的缺点"><a class="markdownIt-Anchor" href="#非形式化方法的缺点"></a> 非形式化方法的缺点</h2>
+<ul>
+<li>矛盾：指一组相互冲突的陈述</li>
+<li>二义性：指读者可以用不同方式理解的陈述</li>
+<li>含糊性</li>
+<li>不完整性：可能是在系统规格说明中最常遇到的问题之一</li>
+</ul>
+<h2 id="形式化方法的优点"><a class="markdownIt-Anchor" href="#形式化方法的优点"></a> 形式化方法的优点</h2>
+<p>把数学引入后的优点有</p>
+<ul>
+<li>能够简洁的描述物理现象</li>
+<li>准确，几乎没有二义性，而且可以用数学方法来验证，以发现存在的矛盾和不完整性，在这样的规格说明中完全没有含糊性</li>
+<li>可以再不同的软件工程活动之间平滑的过度</li>
+<li>提供了高层确认的手段</li>
+</ul>
+<h3 id="形式化规格说明语言构成"><a class="markdownIt-Anchor" href="#形式化规格说明语言构成"></a> 形式化规格说明语言构成：</h3>
+<ul>
+<li><strong>语法</strong>：一般基于集合论、数理逻辑或代数学。</li>
+<li><strong>语义</strong>：是其所有语法符号的意义的数学描述。经典的语义定义方法包括指称语义、代数语义和操作语义方法。</li>
+<li><strong>推演规则</strong>：一般预期数学基础和语义定义方法密切相关。规则必须在规格说明语言的语义系统中可证。因此，可以认为规则是派生的语义定义，它们可以直接应用于软件规格说明的性质证明并简化推演过程。</li>
+</ul>
+<h2 id="应用形式化方法的准则"><a class="markdownIt-Anchor" href="#应用形式化方法的准则"></a> 应用形式化方法的准则</h2>
+<ul>
+<li>应该选用适当的表示方法</li>
+<li>应该形式化，但不要过分形式化</li>
+<li>应该估算成本</li>
+<li>应该有形式化方法顾问随时提供咨询</li>
+<li>不应该放弃传统的开发方法</li>
+<li>应该建立详尽的文档</li>
+<li>不应该放弃质量标准</li>
+<li>不应该盲目依赖形式化方法</li>
+<li>应该测试、测试再测试</li>
+<li>应该重用。即使采用了形式化方法，软件重用仍然是降低软件成本和提高软件质量的唯一合理的方法</li>
+</ul>
+<h2 id="形式化方法的分类自行了解"><a class="markdownIt-Anchor" href="#形式化方法的分类自行了解"></a> 形式化方法的分类(自行了解)</h2>
+<p>用于微观状态的描述</p>
+<h1 id="有穷状态机"><a class="markdownIt-Anchor" href="#有穷状态机"></a> 有穷状态机</h1>
+<h2 id="概念"><a class="markdownIt-Anchor" href="#概念"></a> 概念</h2>
+<img src="\MyImages\38.png" style="zoom:50%;" />
+<h3 id="状态机组成"><a class="markdownIt-Anchor" href="#状态机组成"></a> 状态机组成</h3>
+<ul>
+<li>状态集J：{保险箱锁定，A，B，保险箱解锁，报警}。</li>
+<li>输入集K：{1L,1R,2L,2R,3L,3R }。</li>
+<li>转换函数T：由当前状态和当前输入确定下一个状态（次态），如表4.1所示。</li>
+<li>初始态S：保险箱锁定。</li>
+<li>终态集F：{保险箱解锁，报警}。</li>
+</ul>
+<h4 id="一个有穷状态机可以表示为一个5元组jktst-其中"><a class="markdownIt-Anchor" href="#一个有穷状态机可以表示为一个5元组jktst-其中"></a> <strong>一个有穷状态机可以表示为一个5元组（J,K,T,S,T）</strong>, 其中：</h4>
+<p>​	   J 是一个有穷的非空状态集；<br />
+K 是一个有穷的非空输入集；<br />
+​	  T 是一个从（J-F）*K到J的转换函数；<br />
+​      S ᇀ J，是一个初始状态；<br />
+​      F	  J，是终态集。</p>
+<p>​	当前状态［菜单］＋事件［所选择的项］＝&gt;下个状态。</p>
+<h4 id="为了对一个系统进行规格说明引入谓词集p从而把有穷状态机扩展为一个6元组"><a class="markdownIt-Anchor" href="#为了对一个系统进行规格说明引入谓词集p从而把有穷状态机扩展为一个6元组"></a> 为了对一个系统进行规格说明,引入谓词集P，从而把有穷状态机扩展为一个6元组</h4>
+<p>当前状态［菜单］＋事件［所选择的项］＋谓词 = &gt;下个状态</p>
+<h3 id="状态转换表"><a class="markdownIt-Anchor" href="#状态转换表"></a> 状态转换表</h3>
+<img src="\MyImages\44.png" style="zoom:50%;" />
+<h2 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h2>
+<h3 id="需求"><a class="markdownIt-Anchor" href="#需求"></a> 需求</h3>
+<p>首先给出用自然语言描述的对电梯系统的需求：</p>
+<ul>
+<li>在一幢m层的大厦中需要一套控制n部电梯的产品，要求这n部电梯按照约束条件C1，C2和C3在楼层间移动。</li>
+<li>C1：每部电梯内有m个按钮，每个按钮代表一个楼层。当按下一个按钮时该按钮指示灯亮，同时电梯驶向相应的楼层，到达按钮指定的楼层时指示灯熄灭。</li>
+<li>C2：除了大厦的最低层和最高层之外，每层楼都有两个按钮分别请求电梯上行和下行。这两个按钮之一被按下时相应的指示灯亮，当电梯到达此楼层时灯熄灭，电梯向要求的方向移动。</li>
+<li>C3：当对电梯没有请求时，它关门并停在当前楼层。</li>
+<li>现在使用一个扩展的有穷状态机对本产品进行规格说明。这个问题中有两个按钮集:电梯按钮和楼层按钮。</li>
+</ul>
+<h3 id="转换规则1"><a class="markdownIt-Anchor" href="#转换规则1"></a> 转换规则1</h3>
+<p><strong>谓词用来限制状态</strong></p>
+<ul>
+<li>令EB(e,f)表示按下电梯e内的按钮并请求到f层去。EB(e,f)有两个状态，分别是按钮发光(打开)和不发光(关闭)。更精确地说，状态是：
+<ul>
+<li>EBON(e,f)：电梯按钮(e,f)打开</li>
+<li>EBOFF(e,f)：电梯按钮(e,f)关闭</li>
+</ul>
+</li>
+<li>如果电梯按钮(e,f)发光且电梯到达f层，该按钮将熄灭。相反如果按钮熄灭，则按下它时，按钮将发光。上述描述中包含了两个事件，它们分别是：
+<ul>
+<li>EBP(e,f)：电梯按钮(e,f)被按下</li>
+<li>EAF(e,f)：电梯e到达f层</li>
+</ul>
+</li>
+<li>为了定义与这些事件和状态相联系的状态转换规则，需要一个谓词V(e,f)，它的含义如下：<br />
+V(e,f)：电梯e停在f层<br />
+如果电梯按钮(e,f)处于关闭状态〔当前状态〕，而且电梯按钮(e,f)被按下〔事件〕，而且电梯e不在f层〔谓词〕，则该电梯按钮打开发光〔下个状态〕。状态转换规则的形式化描述如下：<br />
+EBOFF(e,f)+EBP(e,f)+not V(e,f)  EBON(e,f)<br />
+反之，如果电梯到达f层，而且电梯按钮是打开的，于是它就会熄灭。这条转换规则可以形式化地表示为：<br />
+EBON(e,f)+EAF(e,f)EBOFF(e,f)</li>
+</ul>
+<h4 id="状态转移图"><a class="markdownIt-Anchor" href="#状态转移图"></a> 状态转移图</h4>
+<ul>
+<li>
+<p>电梯按钮的状态转换图</p>
+<img src="\MyImages\image-20200401202425399.png" alt="image-20200401202425399" style="zoom: 33%;" />
+</li>
+<li>
+<p>楼层按钮的状态转换图</p>
+<img src="\MyImages\image-20200401202444535.png" alt="image-20200401202444535" style="zoom: 33%;" />
+</li>
+</ul>
+<h3 id="转换规则2"><a class="markdownIt-Anchor" href="#转换规则2"></a> 转换规则2</h3>
+<ul>
+<li>
+<p>接下来考虑楼层按钮。令FB(d,f)表示f层请求电梯向d方向运动的按钮，楼层按钮的状态如下：<br />
+FBON(d,f)：楼层按钮(d,f)打开<br />
+FBOFF(d,f)：楼层按钮(d,f)关闭</p>
+</li>
+<li>
+<p>如果楼层按钮已经打开，而且一部电梯到达f层，则按钮关闭。反之，如果楼层按钮原来是关闭的，被按下后该按钮将打开。这段叙述中包含了以下两个事件。<br />
+FBP(d,f)：楼层按钮(d,f)被按下<br />
+EAF(1…n,f)：电梯1或…或n到达f层<br />
+其中1…n表示或为1或为2…或为n。</p>
+</li>
+<li>
+<p>定义电梯按钮和楼层按钮的状态都是很简单、直观的事情。现在转向讨论电梯的状态及其转换规则，就会出现一些复杂的情况。一个电梯状态实质上包含许多子状态。<br />
+下面定义电梯的3个状态：<br />
+M(d,e,f)：电梯e正沿d方向移动，即将到达的是第f层<br />
+S(d,e,f)：电梯e停在f层，将朝d方向移动(尚未关门)<br />
+W(e,f)：电梯e在f层等待(已关门)</p>
+<p>其中S(d,e,f)状态已在讨论楼层按钮时定义过，但是，现在的定义更完备一些。</p>
+</li>
+<li>
+<p>3个电梯停止状态S(U,e,f)、S(N,e,f)和S(D,e,f)已被组合成一个大的状态，这样做的目的是减少状态总数以简化流图。<br />
+DC(e,f)：电梯e在楼层f关上门<br />
+ST(e,f)：电梯e靠近f层时触发传感器，电梯控制器决定在当前楼层电梯是否停下<br />
+RL：电梯按钮或楼层按钮被按下进入打开状态，登录需求</p>
+</li>
+</ul>
+<h4 id="状态转移图-2"><a class="markdownIt-Anchor" href="#状态转移图-2"></a> 状态转移图</h4>
+<p><img src="%5CMyImages%5Cimage-20200401202720158.png" alt="image-20200401202720158" /></p>
+<h3 id="转移规则3"><a class="markdownIt-Anchor" href="#转移规则3"></a> 转移规则3</h3>
+<p>最后，给出电梯的状态转换规则。为简单起见，这里给出的规则仅发生在关门之时。<br />
+S(U,e,f)+DC(e,f)-&gt;M(U,e,f+1)<br />
+S(D,e,f)+DC(e,f)-&gt;M(D,e,f-1)<br />
+S(N,e,f)+DC(e,f)-&gt;W(e,f)<br />
+第一条规则表明，如果电梯e停在f层准备向上移动，且门已经关闭，则电梯将向上一楼层移动。第二条和第三条规则，分别对应于电梯即将下降或者没有待处理的请求的情况</p>
+<h2 id="评价"><a class="markdownIt-Anchor" href="#评价"></a> 评价</h2>
+<p>有穷状态机方法采用了一种简单的格式来描述规格说明：<br />
+当前状态+事件+谓词-&gt;下个状态</p>
+<ul>
+<li>这种形式的规格说明易于书写、易于验证，而且可以比较容易地把它转变成设计或程序代码。</li>
+<li>有穷状态机方法比数据流图技术更精确，而且和它一样易于理解。</li>
+<li>缺点：在开发一个大系统时三元组(即状态、事件、谓词)的数量会迅速增长。</li>
+</ul>
+<h1 id="petri网"><a class="markdownIt-Anchor" href="#petri网"></a> Petri网</h1>
+<h2 id="概念-2"><a class="markdownIt-Anchor" href="#概念-2"></a> 概念</h2>
+<ul>
+<li><strong>定时问题</strong>：这个问题可以表现为多种形式，如同步问题﹑竞争条件以及死锁问题．定时问题通常是由不好的设计或者有错误的实现引起的，而这些的设计和实现通常又是由不好的规格说明造成的．</li>
+<li><strong>Petri网</strong>：用于确定系统中隐含的定时问题的一种有效技术</li>
+</ul>
+<h3 id="petri网组成元素"><a class="markdownIt-Anchor" href="#petri网组成元素"></a> Petri网组成元素</h3>
+<img src="\MyImages\image-20200401204203587.png" alt="image-20200401204203587" style="zoom: 50%;" />
+<p>Petri网包含４种元素：一组位置P﹑一组转换T﹑输入函数I和输出函数O。Petri网的组成．其中：</p>
+<ul>
+<li>一组位置P，在图中用圆圈代表位置．</li>
+<li>一组转换T，在图中用短直线表示转换．</li>
+<li>两个用于转换的输入函数，用由位置指向转换的箭头表示，它们是：
+<ul>
+<li>I(t1)= {P2，P4}</li>
+<li>I(t2)= {P2}</li>
+</ul>
+</li>
+<li>两个用于转换的输出函数，用有转换指向位置的箭头表示，它们是：
+<ul>
+<li>O(t1)={P1}</li>
+<li>O(t2)={P3，P3}</li>
+</ul>
+</li>
+</ul>
+<h4 id="形式化的petri网结构"><a class="markdownIt-Anchor" href="#形式化的petri网结构"></a> 形式化的Petri网结构</h4>
+<p>是一个四元组C=(P,T,I,O)。其中，</p>
+<ul>
+<li>P={P1，…，Pn}是一个<strong>有穷位置集</strong>，n&gt;=0。</li>
+<li>T={t1，…，tm}是一个<strong>有穷转换集</strong>，m&gt;=0，且T和P不相交。</li>
+<li>I：T→P∞为<strong>输入函数</strong>，是由转换到位置无序单位组（bags）的映射。</li>
+<li>O：T→P∞为<strong>输出函数</strong>，是由转换到位置无序单位组的映射。</li>
+</ul>
+<h2 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h2>
+<img src="\MyImages\45.png" style="zoom:50%;" />
+<h3 id="禁止线"><a class="markdownIt-Anchor" href="#禁止线"></a> 禁止线</h3>
+<p>对Petri网的一个重要扩充是加入禁止线。如图所示，禁止线是用一个小圆圈而不是用箭头标记的输入线。通常，当每个输入线上至少有一个标权，而禁止线上没有标权，因此转换t1可以被激发</p>
+<img src="\MyImages\image-20200401205113499.png" alt="image-20200401205113499" style="zoom: 67%;" />
+<h2 id="动态转移特征"><a class="markdownIt-Anchor" href="#动态转移特征"></a> 动态转移特征</h2>
+<p><strong>包括冲突、并发、碰撞、混惑</strong></p>
+<img src="\MyImages\image-20200401205337693.png" alt="image-20200401205337693" style="zoom:67%;" />
+<ul>
+<li>
+<p>图中的Petri网，只有p1中有一个标记，从这个给定的初始标识看，t1和t3都能发生，但不能同时发生，因为它们共享p1中的一个资源，<strong>这种现象叫做“冲突”</strong>（conflict）。</p>
+</li>
+<li>
+<p>网论的观点认为，<strong>解决冲突的办法可以是，通过环境对系统进行控制</strong>。这里有两种可能：</p>
+<ul>
+<li>若t1发生，p1失去标记，p2获得标记，这时只有t2可以发生，之后标记回到p1。这时若再让t1发生，则会重复上述过程。</li>
+<li>若让t3发生，p1失去标记，p3和p4同时各得一个标记。这时t4和t5都可以发生，且互不影响。<strong>网论中称这种现象为“并发”(concurrent)</strong></li>
+<li>t4和t5发生以后，t6可以发生，使标记又回到p1，<strong>p6起着使t4和t5两个异步活动同步的作用。</strong></li>
+</ul>
+</li>
+<li>
+<p>如果让p1和p3各有一个标记，并规定位置容量均不能超过1，这时t3不能发生，因为t3的发生会使p3的容量超过1，<strong>称这种现象为“碰撞”（contact）。</strong></p>
+</li>
+<li>
+<p>有时，一个Petri网中同时存在着并发和冲突，而且并发的实施会引起冲突的消失（减少）或出现（增加），<strong>我们称这种情况为“混惑”（confusion）。</strong></p>
+</li>
+</ul>
+<h3 id="举例-2"><a class="markdownIt-Anchor" href="#举例-2"></a> 举例</h3>
+<img src="\MyImages\image-20200401205827948.png" alt="image-20200401205827948" style="zoom:67%;" />
+<p>在图示Petri网中，t1和t3是两个并发事件，如果t1实际上在t3之前发生，则t2不会发生冲突；反之，则发生冲突。所以存在着“混惑”的系统是不好的系统，因为在这种系统中，冲突忽隐忽现，使得外部环境对系统难以控制</p>
+<h2 id="例子-2"><a class="markdownIt-Anchor" href="#例子-2"></a> 例子</h2>
+<p>将Petri网用于上一节中的电梯问题</p>
+<h3 id="电梯按钮"><a class="markdownIt-Anchor" href="#电梯按钮"></a> 电梯按钮</h3>
+<ul>
+<li>为了用Petri网表达电梯按钮的规格说明，在Petri网中还必须设置其他的位置。电梯中楼层f的按钮，在Petri网中用位置EBf表示(1≤f≤m)。在EBf上有一个权标，就表示电梯内楼层f的按钮被按下了。</li>
+<li>电梯按钮只有在第一次被按下时才会由暗变亮，以后再按它则只会被忽略。如图所示Petri网准确地描述了电梯按钮的行为规律。
+<ul>
+<li>首先，假设按钮没有发亮，显然在位置EBf上没有权标，从而在存在禁止线的情况下，转换“EBf被按下”是允许发生的。假设现在按下按钮，则转换被激发并在EBf上放置了一个权标。</li>
+<li>以后不论再按下多少次按钮，禁止线与现有权标的组合都决定了转换“EBf被按下”不能再被激发了，因此，位置EBf上的权标数不会多于1。</li>
+</ul>
+</li>
+</ul>
+<img src="\MyImages\image-20200401211228868.png" alt="image-20200401211228868" style="zoom: 50%;" />
+<ul>
+<li>假设电梯由g层驶向f层，因为电梯在g层，位置Fg上有一个权标。由于每条输入线上各有一个权标，转换“电梯在运行”被激发，从而EBf和Fg上的权标被移走，按钮EBf被关闭，在位置Ff上出现一个新权标，即转换的激发使电梯由g层驶到f层。
+<ul>
+<li>事实上，电梯由g层移到f层是需要时间的，为处理这个情况及其他类似的问题(例如，由于物理上的原因按钮被按下后不能马上发亮)，<strong>Petri网模型中必须加入时限</strong>。也就是说，在<strong>标准Petri网中转换是瞬时完成的</strong>，而在现实情况下就需要时间控制Petri网，以使转换与非零时间相联系。</li>
+</ul>
+</li>
+</ul>
+<h3 id="楼层按钮"><a class="markdownIt-Anchor" href="#楼层按钮"></a> 楼层按钮</h3>
+<ul>
+<li>
+<p>第二条约束C2：除了第一层与顶层之外，每个楼层都有两个按钮，一个要求电梯上行，另一个要求电梯下行。这些按钮在按下时发亮，当电梯到达该层并将向指定方向移动时，相应的按钮才会熄灭。</p>
+</li>
+<li>
+<p>在Petri网中楼层按钮用位置FBf<sup>u</sup>和FBf<sup>d</sup>表示，分别代表f楼层请求电梯上行和下行的按钮。底层的按钮为FB1<sup>u</sup>，最高层的按钮为FBm<sup>d</sup>，中间每一层有两个按钮FBf<sup>u</sup>和FBf<sup>d</sup>(1＜f＜m)。</p>
+</li>
+<li>
+<p>第三条约束C3：当电梯没有收到请求时，它将停留在当前楼层并关门。</p>
+</li>
+</ul>
+<img src="\MyImages\image-20200401211843454.png" alt="image-20200401211843454" style="zoom: 50%;" />
+<ul>
+<li>当没有请求(FBfu和FBfd上无权标）时，任何一个转换“电梯在运行”都不能被激发。</li>
+<li>根据电梯乘客的要求，某一个楼层按钮亮或两个楼层按钮都亮。如果两个按钮都亮了，则只有一个按钮熄灭。图4.11所示的Petri网可以保证，当两个按钮都亮了的时候，只有一个按钮熄灭。但是要保证按钮熄灭正确，则需要更复杂的Petri网模型。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>hide</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第9章面向对象方法学</title>
+    <url>/2020/07/28/%E7%AC%AC9%E7%AB%A0%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%E5%AD%A6/</url>
+    <content><![CDATA[<h1 id="软件开发面临的普遍性问题"><a class="markdownIt-Anchor" href="#软件开发面临的普遍性问题"></a> 软件开发面临的普遍性问题</h1>
+<ul>
+<li>软件开发面临的普遍性问题</li>
+<li>应用的普及和深入对软件能力提出了更高要求</li>
+<li>残酷的市场竞争对软件企业提出了更高要求</li>
+<li>软件相对于硬件固有的弱势地位</li>
+<li>软件开发技术落后的现实</li>
+</ul>
+<h1 id="面向对象技术对软件开发观念的影响"><a class="markdownIt-Anchor" href="#面向对象技术对软件开发观念的影响"></a> 面向对象技术对软件开发观念的影响</h1>
+<ul>
+<li>确定可行的软件工业化目标</li>
+<li>采用以状态保持与转换为特征的计算模型</li>
+<li>减少软件开发阶段之间的模型差异</li>
+</ul>
+<h1 id="面向对象方法"><a class="markdownIt-Anchor" href="#面向对象方法"></a> 面向对象方法</h1>
+<h2 id="面向对象方法简介"><a class="markdownIt-Anchor" href="#面向对象方法简介"></a> 面向对象方法简介</h2>
+<ul>
+<li>面向对象方法学的<strong>出发点和基本原则，是尽可能模拟人类习惯的思维方式</strong>，使开发软件的方法与过程尽可能接近人类认识世界解决问题的方法与过程。</li>
+</ul>
+<h3 id="面向对象方法的四个要点"><a class="markdownIt-Anchor" href="#面向对象方法的四个要点"></a> 面向对象方法的四个要点</h3>
+<ol>
+<li>
+<p><strong>认为客观世界是由各种对象组成的，任何事物都是对象</strong>，复杂的对象可以由比较简单的对象以某种方式组合而成。按照这种观点，可以认为整个世界就是一个最复杂的对象。</p>
+</li>
+<li>
+<p><strong>把所有对象都划分成各种对象类</strong>(简称为类，Class)，每个对象类都定义了一组数据和一组方法。数据用于表示对象的静态属性，是对象的状态信息。</p>
+</li>
+<li>
+<p><strong>按照子类(或称为派生类)与父类(或称为基类)的关系，把若干个对象类组成一个层次结构的系统</strong>(也称为类等级)。在这种层次结构中，通常下层的派生类具有和上层的基类相同的特性(包括数据和方法)，这种现象称为继承(Inheritance)。</p>
+</li>
+<li>
+<p><strong>对象彼此之间仅能通过传递消息互相联系。<strong>对象与传统的数据有本质区别，它不是被动地等待外界对它施加操作，相反，它是进行处理的主体，必</strong>须发消息请求它执行它的某个操作，处理它的私有数据</strong>，而不能从外界直接对它的私有数据进行操作。</p>
+</li>
+</ol>
+<h2 id="优点"><a class="markdownIt-Anchor" href="#优点"></a> 优点</h2>
+<ul>
+<li>与人类习惯的思维方式一致</li>
+<li>稳定性好</li>
+<li>可重用性好</li>
+<li>可维护性好
+<ul>
+<li>面向对象的软件稳定性比较好</li>
+<li>面向对象的软件比较容易修改</li>
+<li>面向对象的软件比较容易理解</li>
+<li>已于测试和调试</li>
+</ul>
+</li>
+</ul>
+<h2 id="面向对象建模"><a class="markdownIt-Anchor" href="#面向对象建模"></a> 面向对象建模</h2>
+<ul>
+<li>
+<p>将问题通过面向对象的方法建立起类和对象的描述关系</p>
+</li>
+<li>
+<p>包括三种模型</p>
+<ul>
+<li>描述静态的，结构化的系统的对象模型</li>
+<li>描述系统控制结构的动态模型</li>
+<li>描述系统功能的功能模型</li>
+</ul>
+</li>
+</ul>
+<h1 id="对象模型"><a class="markdownIt-Anchor" href="#对象模型"></a> 对象模型</h1>
+<ul>
+<li>表示静态的，结构化的系统的数据性质。它是对模拟客观世界实体的对象以及对象彼此间的关系的映射，描述了系统的静态结构。</li>
+</ul>
+<h2 id="表示类-对象的图形符号"><a class="markdownIt-Anchor" href="#表示类-对象的图形符号"></a> 表示类 &amp; 对象的图形符号</h2>
+<h3 id="举例-课程注册管理系统的类图"><a class="markdownIt-Anchor" href="#举例-课程注册管理系统的类图"></a> 举例 课程注册管理系统的类图</h3>
+<img src="\MyImages\image-20200522212225290.png" alt="image-20200522212225290" style="zoom:50%;" />
+<h1 id="动态模型"><a class="markdownIt-Anchor" href="#动态模型"></a> 动态模型</h1>
+<ul>
+<li>动态模型表示瞬时的、行为化的系统的“控制”性质，它规定了对象模型中的对象的合法变化序列。</li>
+</ul>
+<h2 id="术语"><a class="markdownIt-Anchor" href="#术语"></a> 术语</h2>
+<ul>
+<li>
+<p><strong>事件</strong>：是某个特定时刻所发生的事情，它是对引起对象从一种状态转换到另一种状态的现实世界中的事件的抽象。事件没有持续时间，是瞬间完成的。</p>
+</li>
+<li>
+<p><strong>状态</strong>：状态就是对象在其生命周期中的某个特定阶段所处的某种情形，它是对影响对象行为的属性值的一种抽象</p>
+</li>
+</ul>
+<h2 id="表示方法"><a class="markdownIt-Anchor" href="#表示方法"></a> 表示方法</h2>
+<img src="\MyImages\image-20200522212636299.png" alt="image-20200522212636299" style="zoom: 50%;" />
+<h3 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h3>
+<ul>
+<li>要求每个“课程设置”最多只能容纳50个选课学生</li>
+</ul>
+<img src="\MyImages\image-20200522212653992.png" alt="image-20200522212653992" style="zoom:50%;" />
+<h1 id="功能模型"><a class="markdownIt-Anchor" href="#功能模型"></a> 功能模型</h1>
+<ul>
+<li>功能模型表示变化的系统的“功能”性质，它指明了系统应该“做什么”，因此更直接地反映了用户对目标系统的需求。</li>
+</ul>
+<h2 id="表示方法-2"><a class="markdownIt-Anchor" href="#表示方法-2"></a> 表示方法</h2>
+<ul>
+<li>
+<p>通常使用数据流图</p>
+</li>
+<li>
+<p>使用UML提供的用例图</p>
+<img src="\MyImages\image-20200523100402347.png" alt="image-20200523100402347" style="zoom:50%;" />
+</li>
+</ul>
+<h2 id="三种模型之间的关系"><a class="markdownIt-Anchor" href="#三种模型之间的关系"></a> 三种模型之间的关系</h2>
+<p>面向对象建模技术所建立的三种模型，分别从三个不同侧面描述了所要开发的系统。这三种模型相互补充、相互配合，使得我们对系统的认识更加全面：</p>
+<ul>
+<li>功能模型指明了系统应该“做什么”；</li>
+<li>动态模型明确规定了什么时候(即在何种状态下接受了什么事件的触发)做；</li>
+<li>对象模型则定义了做事情的实体。</li>
+</ul>
+<h3 id="扼要叙述"><a class="markdownIt-Anchor" href="#扼要叙述"></a> 扼要叙述</h3>
+<ol>
+<li>
+<p>针对每个类建立的动态模型，描述了类实例的生命周期或运行周期</p>
+</li>
+<li>
+<p>状态转换驱使行为发生，这些行为在数据流图中被映射成处理，在用例图中被映射成用例，它们同时与类图中的服务相对应。</p>
+</li>
+<li>
+<p>功能模型中的处理，对应于对象模型中类&amp;对象所提供的服务。有时一个处理对应多个服务，也有一个服务对应多个处理的时候。</p>
+</li>
+<li>
+<p>数据流图中的数据存储，以及数据的源点/终点，通常是对象模型中的对象。</p>
+</li>
+<li>
+<p>数据流图中的数据流，往往是对象模型中对象的属性值，也可能是整个对象。</p>
+</li>
+<li>
+<p>用例图中的行为者，可能是对象模型中的对象。</p>
+</li>
+<li>
+<p>功能模型中的处理（或用例）可能产生动态模型中的事件。</p>
+</li>
+<li>
+<p>对象模型描述了数据流图中的数据流、数据存储以及数据源点/终点结构。</p>
+</li>
+</ol>
+<h2 id="uml图分类"><a class="markdownIt-Anchor" href="#uml图分类"></a> UML图分类</h2>
+<p>1、用例图：从外部用户的角度描述系统的功能，并指出功能的执行者。<br />
+2、静态图：描述系统的静态结构。<br />
+<strong>.类图</strong><br />
+.对象图<br />
+.包图<br />
+3、行为图：刻画系统的动态行为。<br />
+.交互图(顺序图与合作图)<br />
+<strong>.状态图</strong><br />
+.活动图<br />
+4、实现图：描述软件实现系统的组成和分布状况。<br />
+.构件图<br />
+.部署图</p>
+<h1 id="面向对象补充"><a class="markdownIt-Anchor" href="#面向对象补充"></a> 面向对象补充</h1>
+<h2 id="类"><a class="markdownIt-Anchor" href="#类"></a> 类</h2>
+<h3 id="类间关系"><a class="markdownIt-Anchor" href="#类间关系"></a> 类间关系</h3>
+<ul>
+<li>类之间的关系通常有关联、泛化（继承）、依赖和细化等4种关系</li>
+</ul>
+<h4 id="关联"><a class="markdownIt-Anchor" href="#关联"></a> 关联</h4>
+<ul>
+<li>
+<p>包括普通关联、限定关联、关联类</p>
+</li>
+<li>
+<p><strong>普通关联</strong>表示</p>
+<ul>
+<li>
+<p>0…1：    表示0到1个对象；</p>
+</li>
+<li>
+<p>0…<em>或</em>： 表示0到多个对象；</p>
+</li>
+<li>
+<p>1+或1…*：表示1到多个对象；</p>
+</li>
+<li>
+<p>1…15：   表示1到15个对象；</p>
+</li>
+<li>
+<p>3：		表示3个对象。</p>
+</li>
+<li>
+<p>举例</p>
+<img src="\MyImages\image-20200523102908349.png" alt="image-20200523102908349" style="zoom:50%;" />
+</li>
+</ul>
+</li>
+<li>
+<p><strong>限定关联</strong>通常用在一对多或多对多的关联关系中，可以把模型中的重数从一对多变成一对一，或将多对多简化成多对一</p>
+<img src="\MyImages\image-20200523103122400.png" alt="image-20200523103122400" style="zoom: 50%;" />
+<ul>
+<li>在类图中把限定词放在关联关系末端的一个小方框内</li>
+</ul>
+</li>
+<li>
+<p><strong>关联类</strong>为了说明关联的性质，我们还可以增加一些附加信息。这样可以引入关联类来记录这些信息。关联中的每个连接与关联类的一个对象相联系。关联类通过一条虚线与关联连接。</p>
+<img src="\MyImages\image-20200523103619238.png" alt="image-20200523103619238" style="zoom:50%;" />
+</li>
+</ul>
+<h4 id="聚集"><a class="markdownIt-Anchor" href="#聚集"></a> 聚集</h4>
+<ul>
+<li>
+<p><strong>聚集</strong>是关联的特例。聚集所表示的类之间的关系是<strong>整体与部分的关系</strong>。常常会使用的“包含”、“组成”、“分为……部分”等字句。包括共享聚集和组合聚集</p>
+</li>
+<li>
+<p><strong>共享聚集</strong>如果在聚集关系中处于部分方的对象可同时参与多个处于整体方对象的构成，则该聚集称为共享聚集</p>
+<img src="\MyImages\image-20200523103943061.png" alt="image-20200523103943061" style="zoom:50%;" />
+</li>
+<li>
+<p><strong>组合聚集</strong>如果部分类完全隶属于整体类，部分类需要与整体类共存，一旦整体类不存在了，则部分类也会随之消失，或失去存在价值，则称该聚集称为组合聚集</p>
+<img src="\MyImages\image-20200523104045481.png" alt="image-20200523104045481" style="zoom:50%;" />
+</li>
+</ul>
+<h4 id="泛化"><a class="markdownIt-Anchor" href="#泛化"></a> 泛化</h4>
+<ul>
+<li>关系就是通常所说的继承关系，它是通用元素和具体元素之间的一种分类关系。具体元素完全拥有通用元素的信息，并且还可以附加一些其他信息。泛化可分成普通泛化和受限泛化两类。</li>
+<li>抽象类通常具有抽象操作，抽象操作仅用来指定该抽象类的所有子类应该具有哪些行为</li>
+</ul>
+ <img src="\MyImages\image-20200523110426605.png" alt="image-20200523110426605" style="zoom:50%;" />
+<h4 id="约束"><a class="markdownIt-Anchor" href="#约束"></a> 约束</h4>
+<ul>
+<li>对泛化关系，我们可以增加约束条件，以进一步说明该泛化关系的使用方法或扩充方法，这样的泛化关系称为受限泛化。</li>
+<li>预定义的约束有4种： 多重、不相交、完全和不完全。这些约束都是语义约束。
+<ul>
+<li><strong>多重继承</strong>指的是，一个子类可同时多次继承同一个上层基类.</li>
+<li>与多重继承相反的是<strong>单继承</strong>，即一个子类不能多次继承同一个基类。一般的继承都是单继承。</li>
+<li><strong>完全继承</strong>是父类的所有子类都已在类图中穷举出来了。</li>
+<li><strong>不完全继承</strong>则相反，父类的子类并没有都穷举出来，随着对问题理解的深入，可不断补充和维护，这为日后系统的扩充和维护带来很大方便。不完全继承是一般情况下默认的继承关系。</li>
+</ul>
+</li>
+</ul>
+<h4 id="依赖"><a class="markdownIt-Anchor" href="#依赖"></a> 依赖</h4>
+<p><strong>依赖关系</strong>描述两个模型元素（类、用例等）之间的语义连接关系：其中一个模型元素是独立的，另一个模型元素不是独立的，它依赖于独立的模型元素，如果独立的模型元素改变了，将影响依赖于它的模型元素。</p>
+<h3 id="实例"><a class="markdownIt-Anchor" href="#实例"></a> 实例</h3>
+<p>实例就是由某个特定类所描述的一个具体对象。对象是类的实际例子，通常称为实例</p>
+<h3 id="消息"><a class="markdownIt-Anchor" href="#消息"></a> 消息</h3>
+<p>消息是一个对象与另一个对象之间交互的手段，它要求某个对象执行类中定义的某个操作的规格说明。</p>
+<h3 id="方法"><a class="markdownIt-Anchor" href="#方法"></a> 方法</h3>
+<p>方法是对象所能执行的操作，即类中所定义的服务或操作。方法描述了对象执行操作的算法，以及响应消息的方法</p>
+<h3 id="属性"><a class="markdownIt-Anchor" href="#属性"></a> 属性</h3>
+<p>属性是类中定义的数据，它是对客观世界实体所具有性质的抽象。类的<strong>每个实例都有自己特有的属性值。</strong></p>
+<ul>
+<li>可见性  属性名： 类型名=初值{性质串}
+<ul>
+<li>属性的可见性（即可访问性）通常有下述3种：<strong>公有的(public)、私有的(private)和保护的(protected)，分别用加号（+）、减号（-）和井号（#）表示</strong>。如果未声明可见性，则表示该属性的可见性尚未定义。</li>
+<li>属性名和类型名之间用冒号（：）分隔。类型名表示该属性的数据类型，它可以是基本数据类型，也可以是用户自定义的类型。</li>
+</ul>
+</li>
+</ul>
+<h3 id="类图举例"><a class="markdownIt-Anchor" href="#类图举例"></a> 类图举例</h3>
+<img src="\MyImages\image-20200523112414497.png" alt="image-20200523112414497" style="zoom:50%;" />
+<h3 id="封装"><a class="markdownIt-Anchor" href="#封装"></a> 封装</h3>
+<p>**封装就是信息隐藏，通过封装对外界隐藏了对象的实现细节。**这样，使用一个对象时，只需知道它向外界提供的接口形式，无须知道它的数据结构细节和实现操作的算法。</p>
+<h3 id="多态性"><a class="markdownIt-Anchor" href="#多态性"></a> 多态性</h3>
+<p>多态性(polymorphism) ：<strong>多态性是指同样的消息既可以发送给父类对象也可以发送给子类对象，即在类等级的不同层次中可以共享一个方法的名字，不同层次中的每个类按自己的需要来实现这个行为</strong>。在C++语言中，多态性是通过虚函数来实现的。</p>
+<h3 id="重载"><a class="markdownIt-Anchor" href="#重载"></a> 重载</h3>
+<ul>
+<li><strong>重载</strong>分为函数重载和运算符重载。</li>
+<li><strong>函数重载</strong>是指在同一作用域内的若干个参数特征不同的函数可以使用相同的函数名字。</li>
+<li><strong>运算符重载</strong>是指同一个运算符可以施加于不同类型的操作数上面。重</li>
+</ul>
+<h1 id="uml"><a class="markdownIt-Anchor" href="#uml"></a> UML</h1>
+<ul>
+<li>在UML中使用<strong>类图表示对象模型</strong>，使用对象、属性、关联和操作来描述系统的结构。</li>
+<li>在UML中使用<strong>用例图表示功能模型</strong>，以从用户观点上描述系统功能。</li>
+<li>在UML中使用<strong>交互图、状态图和活动图表示动态模型</strong>，以描述系统的内部行为。</li>
+</ul>
+<h2 id="用例图"><a class="markdownIt-Anchor" href="#用例图"></a> 用例图</h2>
+<ul>
+<li>用例图（use case diagram）在需求获取和分析过程中使用，以表示系统功能。<strong>每个功能点要做一个用例图</strong></li>
+<li>一幅用例图包含的模型元素有<strong>系统、行为者(actor)、用例及用例之间的关系</strong>。</li>
+<li>一个<strong>角色</strong>可以描述与该系统交互的任意实体（例如：一个用户、另一个系统、该系统的物理环境）</li>
+</ul>
+<img src="\MyImages\image-20200523115116760.png" alt="image-20200523115116760" style="zoom: 50%;" />
+<img src="\MyImages\image-20200523115150462.png" alt="image-20200523115150462" style="zoom:50%;" />
+<h3 id="系统"><a class="markdownIt-Anchor" href="#系统"></a> 系统</h3>
+<p>系统被看作一个提供用例的黑盒子，而黑盒子内部如何工作、用例如何实现，这些对于建立用例模型来说都是不重要的。</p>
+<h3 id="用例"><a class="markdownIt-Anchor" href="#用例"></a> 用例</h3>
+<ul>
+<li>
+<p>一个<strong>用例</strong>是能够被行为者感受到的、<strong>系统将完成的一个完整功能</strong></p>
+</li>
+<li>
+<p>用例通过关联与行为者连接，关联指出一个用例与哪些行为者交互，这种交互是双向的</p>
+</li>
+<li>
+<p><strong>特征</strong></p>
+<ul>
+<li>用例代表某些用户可见的功能，以实现一个具体的用户目标；</li>
+<li>用例总是被行为者启动的，并向行为者提供可识别的值；</li>
+<li>用例必须是完整的。</li>
+</ul>
+</li>
+<li>
+<p><strong>注意</strong>：用例是一个类，代表一类功能而不是使用该功能的某个实例</p>
+</li>
+</ul>
+<h3 id="行为者"><a class="markdownIt-Anchor" href="#行为者"></a> 行为者</h3>
+<ul>
+<li>行为者（actor）是指与系统交互的人或其他系统，它代表外部实体。使用用例并且与系统交互的任何人或物都是行为者。</li>
+<li><strong>行为者代表一种角色，而不是某个具体的人或物</strong>。事实上，一个具体的人可以充当多种不同角色。</li>
+<li>行为者触发（激活）用例，并与用例交换信息</li>
+</ul>
+<h3 id="场景"><a class="markdownIt-Anchor" href="#场景"></a> 场景</h3>
+<ul>
+<li>一个用例是描述相关功能的所有可能场景的抽象</li>
+</ul>
+<h3 id="用例之间的关系"><a class="markdownIt-Anchor" href="#用例之间的关系"></a> 用例之间的关系</h3>
+<ul>
+<li>UML用例之间主要有扩展和使用两种关系，它们是泛化关系的两种不同形式</li>
+</ul>
+<h4 id="扩展关系"><a class="markdownIt-Anchor" href="#扩展关系"></a> <strong>扩展关系</strong></h4>
+<p><strong>向一个用例中添加一些动作后构成了另一个用例，这两个用例之间的关系就是扩展关系</strong>，后者继承前者的一些行为，通常把后者称为扩展用例。我理解为进一步解释，细化</p>
+  <img src="\MyImages\image-20200523120655560.png" alt="image-20200523120655560" style="zoom:50%;" />
+<ul>
+<li>为了将功能说清楚一点</li>
+</ul>
+<h4 id="使用关系"><a class="markdownIt-Anchor" href="#使用关系"></a> 使用关系</h4>
+<ul>
+<li>当一个用例使用另一个用例时，这两个用例之间就构成了使用关系。</li>
+<li>一般将动作提取出来作为抽象用例</li>
+</ul>
+<h4 id="扩展关系-使用关系"><a class="markdownIt-Anchor" href="#扩展关系-使用关系"></a> 扩展关系 &amp; 使用关系</h4>
+<ul>
+<li>相同：这两种关系都意味着从几个用例中<strong>抽取那些公共的行为</strong>并放入一个单独的用例中，而这个用例被其他用例使用或扩展。</li>
+<li>不同：<strong>目的是不同的</strong>。通常在描述一般<strong>行为的变化时采用扩展关系</strong>；在两个或多个用例中出现重复描述又想<strong>避免这种重复时，可以采用使用关系。</strong></li>
+</ul>
+<h3 id="用例模型建模过程"><a class="markdownIt-Anchor" href="#用例模型建模过程"></a> 用例模型建模过程</h3>
+<ul>
+<li>需求分析阶段产生。每个用例都是对系统的一个潜在的需求</li>
+<li>工作包括：定义系统，寻找行为者和用例，描述用例，定义用例之间的关系，确认模型。</li>
+</ul>
+<h4 id="1-寻找行为者"><a class="markdownIt-Anchor" href="#1-寻找行为者"></a> 1. 寻找行为者</h4>
+<p>可以通过请系统的用户回答一些问题的办法来发现行为者。下述问题有助于发现行为者：<br />
+ 谁将使用系统的主要功能（主行为者）？<br />
+ 谁需要借助系统的支持来完成日常工作？<br />
+ 谁来维护和管理系统（辅助行为者）？<br />
+ 系统控制哪些硬件设备？<br />
+ 系统需要与哪些其他系统交互？<br />
+ 哪些人或系统对本系统产生的结果（值）感兴趣？</p>
+<h4 id="2-寻找用例"><a class="markdownIt-Anchor" href="#2-寻找用例"></a> 2. 寻找用例</h4>
+<p>可以通过请系统的用户回答一些问题的办法来发现行为者。下述问题有助于发现行为者：<br />
+ 谁将使用系统的主要功能（主行为者）？<br />
+ 谁需要借助系统的支持来完成日常工作？<br />
+ 谁来维护和管理系统（辅助行为者）？<br />
+ 系统控制哪些硬件设备？<br />
+ 系统需要与哪些其他系统交互？<br />
+ 哪些人或系统对本系统产生的结果（值）感兴趣？</p>
+<p> 系统需要那些输入输出？输入来自何处？输出去往哪里？</p>
+<h2 id="类图"><a class="markdownIt-Anchor" href="#类图"></a> 类图</h2>
+<img src="\MyImages\image-20200622115930059.png" alt="image-20200622115930059" style="zoom:50%;" />	
+<h2 id="交互图"><a class="markdownIt-Anchor" href="#交互图"></a> 交互图</h2>
+<ul>
+<li>交互图(interaction diagram)用于描述系统形式化的动态行为，交互图也可以用可视化方式描述对象之间的通信。<strong>交互图关注对象之间的信息交换</strong></li>
+<li>我们将包含在用例中的对象称为参与对象。<strong>一个交互图表示了发生在这些对象之间的交互。</strong></li>
+<li>例从上方卫星表用例图</li>
+</ul>
+<img src="\MyImages\image-20200622120107886.png" alt="image-20200622120107886" style="zoom: 50%;" />
+<ul>
+<li>图中<strong>最左栏表示了卫星表用户角色的时间线</strong>，该角色启动用例。</li>
+<li>其它栏目代表参与到这一用例的对象时间线。<strong>对象名用下划线表示</strong>，以说明它们是实例（与类不同）。</li>
+<li>带标号的<strong>箭头表示一个角色或一个对象向另一个对象发送的激励</strong>。在这种情况下，卫星表用户按下按钮1两次，按下按钮2一次，就可以设置其卫星表的分针。</li>
+</ul>
+<h2 id="状态图"><a class="markdownIt-Anchor" href="#状态图"></a> 状态图</h2>
+<ul>
+<li>
+<p>用多个状态以及这些状态之间的迁移描述了单个对象的<strong>动态行为</strong>。</p>
+</li>
+<li>
+<p><strong>一个状态代表一个对象值的特定集合</strong>。状态图关注状态之间的迁移，其结果时由一个独立对象产生了外部事件</p>
+</li>
+</ul>
+<h3 id="举例-2"><a class="markdownIt-Anchor" href="#举例-2"></a> 举例</h3>
+<img src="\MyImages\image-20200622121620021.png" alt="image-20200622121620021" style="zoom:50%;" />
+<ul>
+<li>一个状态是对象属性满足的条件。</li>
+<li>一个迁移表示由事件、条件或时间触发后的状态改变。</li>
+<li>一个<strong>状态用一个圆角矩形表示</strong>。一个<strong>迁移通过连接两个状态的开箭头表示</strong>。状态用其名字表示。一个小型实心黑圆表示了初始状态。一个套有小型实心黑圆的圆表示了终止状态。</li>
+<li><strong>动作是原子行为</strong>，该**原子行为在状态机中的特定点上执行。**原子活动的执行只需要一小段时间且执行不可中断。</li>
+<li>**内部迁移是一个未离开该状态的迁移。**触发内部迁移事件，可以产生与这些事件相关联的活动。但一个内部迁移的激活不会导致任何进入或退出活动的执行。</li>
+<li>一个<strong>活动是对象只有驻留在某些状态上执行的行为</strong>。</li>
+<li><strong>动作 &amp; 活动</strong>：
+<ul>
+<li>一个动作的执行时间短且是不可中断的，一个活动的执行需要一段时间且其执行时是可以中断的，其中断的时机是在一个退出迁移的状态被触发时。</li>
+</ul>
+</li>
+</ul>
+<h2 id="活动图"><a class="markdownIt-Anchor" href="#活动图"></a> 活动图</h2>
+<ul>
+<li>活动图(activity diagram)利<strong>用活动描述了一个系统的行为</strong>。</li>
+<li>活动是建模的元素，以<strong>表示操作集合的执行</strong>。这些操作完成后，会触发迁移以转到另一活动上。</li>
+</ul>
+<h3 id="举例-3"><a class="markdownIt-Anchor" href="#举例-3"></a> 举例</h3>
+<img src="\MyImages\image-20200622122153294.png" alt="image-20200622122153294" style="zoom:50%;" />
+<ul>
+<li>活动图中的圆角矩形表示活动；</li>
+<li>箭头表示活动之间的迁移；</li>
+<li>粗短棒表示控制流同步。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>hide</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>软件工程目录</title>
+    <url>/2020/07/28/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%9B%AE%E5%BD%95/</url>
+    <content><![CDATA[<h2 id="第2章可行性研究"><a class="markdownIt-Anchor" href="#第2章可行性研究"></a> <a href="/2020/07/28/%E7%AC%AC2%E7%AB%A0%E5%8F%AF%E8%A1%8C%E6%80%A7%E7%A0%94%E7%A9%B6/">第2章可行性研究</a></h2>
+<p><img src="/MyImages/2%E5%8F%AF%E8%A1%8C%E6%80%A7%E5%88%86%E6%9E%90.png" alt="2可行性分析" /></p>
+<h2 id="第3章需求分析"><a class="markdownIt-Anchor" href="#第3章需求分析"></a> <a href="/2020/07/28/%E7%AC%AC3%E7%AB%A0%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/">第3章需求分析</a></h2>
+<p><img src="/MyImages/3%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90.png" alt="3需求分析" /></p>
+<h2 id="第4章形式化说明技术"><a class="markdownIt-Anchor" href="#第4章形式化说明技术"></a> <a href="/2020/07/28/%E7%AC%AC4%E7%AB%A0%E5%BD%A2%E5%BC%8F%E5%8C%96%E8%AF%B4%E6%98%8E%E6%8A%80%E6%9C%AF/">第4章形式化说明技术</a></h2>
+<p><img src="/MyImages/4%E5%BD%A2%E5%BC%8F%E5%8C%96%E8%AF%B4%E6%98%8E%E6%8A%80%E6%9C%AF.png" alt="4形式化说明技术" /></p>
+<h2 id="第5章总体设计"><a class="markdownIt-Anchor" href="#第5章总体设计"></a> <a href="/2020/07/28/%E7%AC%AC5%E7%AB%A0%E6%80%BB%E4%BD%93%E8%AE%BE%E8%AE%A1/">第5章总体设计</a></h2>
+<p><img src="/MyImages/5%E6%80%BB%E4%BD%93%E8%AE%BE%E8%AE%A1.png" alt="5总体设计" /></p>
+<h2 id="第6章详细设计"><a class="markdownIt-Anchor" href="#第6章详细设计"></a> <a href="/2020/07/28/%E7%AC%AC6%E7%AB%A0%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/">第6章详细设计</a></h2>
+<p><img src="/MyImages/6%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1.png" alt="6详细设计" /></p>
+<h2 id="第7章实现"><a class="markdownIt-Anchor" href="#第7章实现"></a> <a href="/2020/07/28/%E7%AC%AC7%E7%AB%A0%E5%AE%9E%E7%8E%B0/">第7章实现</a></h2>
+<p><img src="/MyImages/7.1%E5%AE%9E%E7%8E%B0.png" alt="7.1实现" /></p>
+<p><img src="/MyImages/7.2%E6%B5%8B%E8%AF%95.png" alt="7.2测试" /></p>
+<p><img src="/MyImages/7.3%E8%B0%83%E8%AF%95%EF%BC%88%E7%BA%A0%E9%94%99%EF%BC%89%E6%8A%80%E6%9C%AF.png" alt="7.3调试（纠错）技术" /></p>
+<h2 id="第9章面向对象方法学"><a class="markdownIt-Anchor" href="#第9章面向对象方法学"></a> <a href="/2020/07/28/%E7%AC%AC9%E7%AB%A0%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%E5%AD%A6/">第9章面向对象方法学</a></h2>
+<p><img src="/MyImages/9%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95.png" alt="9面向对象方法" /></p>
+]]></content>
+      <tags>
+        <tag>hide</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第7章实现</title>
+    <url>/2020/07/28/%E7%AC%AC7%E7%AB%A0%E5%AE%9E%E7%8E%B0/</url>
+    <content><![CDATA[<h1 id="程序设计语言"><a class="markdownIt-Anchor" href="#程序设计语言"></a> 程序设计语言</h1>
+<h2 id="程序设计语言特点与特性"><a class="markdownIt-Anchor" href="#程序设计语言特点与特性"></a> 程序设计语言特点与特性</h2>
+<h3 id="程序设计语言的心理学观点"><a class="markdownIt-Anchor" href="#程序设计语言的心理学观点"></a> 程序设计语言的心理学观点</h3>
+<ul>
+<li><strong>一致性</strong>：是表示某种语言使用一致的符号,采用看似任意的限制和支持语法或语义例外规则的程度。</li>
+<li><strong>多义性</strong>：编程语言的多义性是程序员的理解。一般一条语句一个解释。有时却有多种解释 。</li>
+<li><strong>紧凑性</strong>：代表语言的表达能力</li>
+<li><strong>局域性</strong>：是编程语言的综合特性，当语句可以组合为程序块,结构化构造可以直接实现,设计代码和合成代码具有高的模块性和聚合时,局域性就高.</li>
+<li><strong>线性</strong>：是一种心理特性．它与保持功能域的概念紧密联系。即当遇到一个逻辑运算线性序列时,人容易理解,外延分支和外延大的循环都违反处理的线性,而结构化构造的直接实现有助于编程语言的线性。</li>
+</ul>
+<h3 id="程序设计语言的工程学观点"><a class="markdownIt-Anchor" href="#程序设计语言的工程学观点"></a> 程序设计语言的工程学观点</h3>
+<ul>
+<li>易于把设计翻译为代码</li>
+<li>编译器效率</li>
+<li>源代码的可移植性</li>
+<li>开发工具的可用性</li>
+<li>可维护性</li>
+</ul>
+<h3 id="选择一种语言"><a class="markdownIt-Anchor" href="#选择一种语言"></a> 选择一种语言</h3>
+<p>用于评价语言的准则</p>
+<p>(1)   一般的应用领域<br />
+(2)   算法和计算的复杂性<br />
+(3)   软件运行环境<br />
+(4)   性能考虑<br />
+(5)   数据结构的复杂性<br />
+(6)   软件开发人员的知识<br />
+(7)   一个好的编译器或交叉编译器的可使用性．</p>
+<h2 id="程序设计途径与编写程序的风格"><a class="markdownIt-Anchor" href="#程序设计途径与编写程序的风格"></a> 程序设计途径与编写程序的风格</h2>
+<h3 id="方法"><a class="markdownIt-Anchor" href="#方法"></a> 方法</h3>
+<ul>
+<li>自上而下：程序可读性好,可靠性高。</li>
+<li>自下而上：局部优化：系统整体性差,但能及时发现算法是否可行,返工性好。</li>
+</ul>
+<h3 id="程序设计工具"><a class="markdownIt-Anchor" href="#程序设计工具"></a> 程序设计工具</h3>
+<ul>
+<li>编译程序</li>
+<li>代码管理系统</li>
+</ul>
+<h3 id="编码风格"><a class="markdownIt-Anchor" href="#编码风格"></a> 编码风格</h3>
+<p>编码风格实际上是一种编码原则</p>
+<h3 id="代码文档化"><a class="markdownIt-Anchor" href="#代码文档化"></a> 代码文档化</h3>
+<ul>
+<li>代码文档化是从选择标识符（变量、标号）的名字开始，接着是写程序和安排注释，最后是程序的整个组织形式的视觉。</li>
+</ul>
+<h3 id="注释"><a class="markdownIt-Anchor" href="#注释"></a> 注释</h3>
+<ul>
+<li>
+<p>序言性注释：应该安排在每个模块的起始部分</p>
+<p>​			   （1）  说明每个模块的用途，并指明它的功能<br />
+​               （2）  接口描述，应包括：调用序列，每个参数的描述，以及所有从属模块清单。<br />
+​               （3） 有关数据的讨论，包括：重要的变量和它们的用途、限制或约束条件，以及其他必要的信息。<br />
+​               （4）  开发历史，包括：模块设计人姓名，评审人姓名及日期、修改说明及日期。</p>
+</li>
+<li>
+<p>功能性注释：应嵌入在源代码体内，用来描述处理功能。书写这种注释的基本原则是：注释要解释程序代码，还应提供附加说明。此外，注释还应做到以下几点：<br />
+（1） 注释是说明代码块，而不是注释每一行代码。<br />
+（2） 使用空行或缩格，以便很容易的区分注释和代码<br />
+（3） 注释一定要正确，以免引起错误，造成误解。</p>
+</li>
+</ul>
+<h3 id="语言构造"><a class="markdownIt-Anchor" href="#语言构造"></a> 语言构造</h3>
+<ul>
+<li>每条语句应当简单而直接，同时也不应为了追求运行效率而使代码变得复杂化，而让人难以理解。</li>
+</ul>
+<h3 id="io"><a class="markdownIt-Anchor" href="#io"></a> I/O</h3>
+<p>I/O的风格不是在编码时确定的，而是在软件需求分析和实际中就确定了的。但是，在编码时，I/O的实现方式决定了用户对系统特征的可接受程度。</p>
+<h3 id="效率"><a class="markdownIt-Anchor" href="#效率"></a> 效率</h3>
+<ul>
+<li><strong>代码效率</strong>：源代码的效率与详细设计阶段所确定的算法效率直接相关。但编码风格也会影响运行速度和对内存的需要。</li>
+<li><strong>内存效率</strong>：在大型计算机和工作站领域中，内存限制大多已是过去的事了。低成本内存提供了大的物理地址空间，而虚存管理为应用软件提供了巨大的逻辑地址空间，对于这样的环境，内存效率不等于使用最小内存。</li>
+</ul>
+<h2 id="保护性编程"><a class="markdownIt-Anchor" href="#保护性编程"></a> 保护性编程</h2>
+<h3 id="主动保护"><a class="markdownIt-Anchor" href="#主动保护"></a> 主动保护</h3>
+<p>主动保护技术周期性的或在空闲时间对整个程序或数据库进行搜索，用以发现异常情况。</p>
+<h3 id="被动保护"><a class="markdownIt-Anchor" href="#被动保护"></a> 被动保护</h3>
+<p>被动保护技术是在到达检查代码时，对程序的某些部分进行检查。</p>
+<h2 id="冗余编程"><a class="markdownIt-Anchor" href="#冗余编程"></a> 冗余编程</h2>
+<ul>
+<li>
+<p>**冗余（redundant）**是改善系统可靠性的一种重要技术。对于硬件，即提供额外的元件或系统，使其与原始系统并行工作。在某些情况下，其连接是使所有的元件并行工作。</p>
+</li>
+<li>
+<p>作用</p>
+<ul>
+<li>保证系统可靠性</li>
+<li>提高系统容错性</li>
+</ul>
+</li>
+</ul>
+<h1 id="基本概念"><a class="markdownIt-Anchor" href="#基本概念"></a> 基本概念</h1>
+<ul>
+<li>测试的目的：是尽可能多的发现并排除软件中的错误。国际上惯用α测试和β测试。</li>
+</ul>
+<h2 id="黑盒测试"><a class="markdownIt-Anchor" href="#黑盒测试"></a> 黑盒测试</h2>
+<ul>
+<li><strong>黑盒测试</strong>：又称为功能测试，典型的β测试</li>
+</ul>
+<p>①  完全不考虑程序内部结构和处理过程。<br />
+②  具体是在程序接口进行测试，它只检查程序功能是否按照规格说明书的规定进行，程序能否适当地接受输入数据，产生正确的输出信息并且保持外部信息（数据库、文件）的完整性。</p>
+<h2 id="白盒测试"><a class="markdownIt-Anchor" href="#白盒测试"></a> 白盒测试</h2>
+<ul>
+<li><strong>白盒测试</strong>：由称为结构测试，典型的α测试</li>
+</ul>
+<p>①  进行逻辑测试，它完全了解结构及处理过程。<br />
+②  按照程序内部的逻辑测试程序，检查程序中每条通路是否都能按预定要求正确工作。</p>
+<h2 id="测试原则"><a class="markdownIt-Anchor" href="#测试原则"></a> 测试原则</h2>
+<p>（1）<strong>回避原则</strong>：程序员或程序设计机构不应该测试自己设计的程序（采用客观态度比较难，自己测效率低）<br />
+（2）<strong>测试用例的设计</strong>不仅要有确定的输入数据，而且要有确定预期输出的详细数据。</p>
+<p>（3）测试用例的设计不仅要有合理的输入数据，<strong>还要有不合理的输入数据</strong>。<br />
+（4）除了检查程序是否做完了它应作的事之外，<strong>还要检查它是否做了不应该做的事</strong>。<br />
+（5）<strong>保留全部测试用例</strong>，并作为软件的组成部分之一。<br />
+（6）程序中<strong>存在错误的概率与在该程序中已发现的错误数成正比</strong>。例如，用户的错误有47%集中在4%的模块中，但这些现象告诉我们，为了提高测试效率，要集中对付那些容易出错的程序段。</p>
+<h3 id="测试阶段的信息流"><a class="markdownIt-Anchor" href="#测试阶段的信息流"></a> 测试阶段的信息流</h3>
+<img src="\MyImages\image-20200512151209769.png" alt="image-20200512151209769" style="zoom:50%;" />
+<h1 id="单元测试"><a class="markdownIt-Anchor" href="#单元测试"></a> 单元测试</h1>
+<ul>
+<li>单元测试是针对模块，它不是一个独立的程序。因此，模块自己不能运行，要靠其它部分来调动和驱动，这样就要为每个单元测试开发两个软件：驱动程序和连接程序。</li>
+</ul>
+<h2 id="单元测试内容"><a class="markdownIt-Anchor" href="#单元测试内容"></a> 单元测试内容</h2>
+<h3 id="模块接口"><a class="markdownIt-Anchor" href="#模块接口"></a> 模块接口</h3>
+<ul>
+<li>测试输入输出是否正确，规范</li>
+</ul>
+<h3 id="局部数据结构"><a class="markdownIt-Anchor" href="#局部数据结构"></a> 局部数据结构</h3>
+<p>主要错误来源<br />
+①  不正确或不一致的说明<br />
+②  错误的初始化或错误的缺省值<br />
+③  拼写错误或截短的变量名<br />
+④  上溢、下溢错误<br />
+⑤  不一致的数据类型</p>
+<h3 id="重要的执行路径"><a class="markdownIt-Anchor" href="#重要的执行路径"></a> 重要的执行路径</h3>
+<p>计算中比较常见的错误<br />
+①  算术运算优先次序不正确或理解错误<br />
+②  运算方式不正确<br />
+③  初始化不正确<br />
+④  精度不够<br />
+⑤  表达式符号表示错误</p>
+<h3 id="边界测试"><a class="markdownIt-Anchor" href="#边界测试"></a> 边界测试</h3>
+<p>软件通常容易在边界上出错，比如一个n位数组，当处理数组的第n个元素时，或M次循环在遇到第M次重复时，都常常发生错误。就是说使用数据流、控制流，当刚好等于、小于、或大于最大值或最小值的数据时，非常可能发生错误。</p>
+<h2 id="计算机测试"><a class="markdownIt-Anchor" href="#计算机测试"></a> 计算机测试</h2>
+<h3 id="驱动程序"><a class="markdownIt-Anchor" href="#驱动程序"></a> 驱动程序</h3>
+<p>它实际上相当于一个程序，它接受不同的测试用例的数据，并把这些数据传送给测试模块，最后打印结果，即通常所讲设计一个测试路径。（<strong>单元测试主控程序</strong>）</p>
+<h3 id="连接程序"><a class="markdownIt-Anchor" href="#连接程序"></a> 连接程序</h3>
+<ul>
+<li>连接程序是被驱动程序调用的部分</li>
+<li>连接程序用来代替被测模块所调用的模块。
+<ul>
+<li>单元测试相当于分调，组装测试相当于联调</li>
+<li>确认测试相当于黑盒测试，相当于考机</li>
+</ul>
+</li>
+</ul>
+<h2 id="单元测试过程"><a class="markdownIt-Anchor" href="#单元测试过程"></a> 单元测试过程</h2>
+<h3 id="代码审查"><a class="markdownIt-Anchor" href="#代码审查"></a> 代码审查</h3>
+<p>优缺点</p>
+<ul>
+<li>一次可以发现多处错误</li>
+<li>采用代码审查可减少系统验证的总工作量</li>
+</ul>
+<h3 id="测试软件"><a class="markdownIt-Anchor" href="#测试软件"></a> 测试软件</h3>
+<ul>
+<li>驱动、存根程序是单元测试必须编写的测试软件（是开销），但不交给用户，模块的内聚程度高可以简化<strong>单元测试</strong>过程。</li>
+<li><strong>集成测试</strong>：是组装软件的系统技术。</li>
+</ul>
+<h1 id="集成测试"><a class="markdownIt-Anchor" href="#集成测试"></a> 集成测试</h1>
+<ul>
+<li>自顶而下集成：称为渐增测试:一个要测模块与已测试好的结合测试；</li>
+<li>自底向上集成：非渐增测试：分别测试每个模块，再把所有模块按设计要求结合。</li>
+</ul>
+<img src="\MyImages\image-20200512175439082.png" alt="image-20200512175439082" style="zoom: 50%;" />
+<h2 id="自顶而下结合"><a class="markdownIt-Anchor" href="#自顶而下结合"></a> 自顶而下结合</h2>
+<ul>
+<li>
+<p>自顶而下结合是从主模块（主程序）开始，沿控制层次向下移动，逐步结合每个模块。</p>
+</li>
+<li>
+<p>步骤</p>
+</li>
+</ul>
+<p>1  以主控模块作为测试驱动模块，把对主控模块进行单元测试时引入的所有桩模块用实际模块替代；</p>
+<p>2  依据所选的集成策略（深度优先或广度优先），每次只替代一个桩模块；</p>
+<p>3  每集成一个模块立即测试一遍；</p>
+<p>4  只有每组测试完成后，才着手替换下一个桩模块；</p>
+<p>5  为避免引入新错误，须不断地进行回归测试（即全部或部分地重复已做过的测试）。</p>
+<h2 id="自底向上结合"><a class="markdownIt-Anchor" href="#自底向上结合"></a> 自底向上结合</h2>
+<ul>
+<li>
+<p>自底向上测试是从“原子”模块（即软件结构最低层的模块）开始组装测试，因测试到较高层模块时，所需的下层模块功能均已具备，所以不再需要桩模块。</p>
+</li>
+<li>
+<p>步骤</p>
+</li>
+</ul>
+<p>1 把低层模块组织成实现某个子功能的模块群（cluster）;</p>
+<p>2 开发一个测试驱动模块，控制测试数据的输入和测试结果的输出；</p>
+<p>3 对每个模块群进行测试；</p>
+<p>4 删除测试使用的驱动模块，用较高层模块把模块群组织成为完成更大功能的新模块群。</p>
+<h2 id="不同集成测试策略的比较"><a class="markdownIt-Anchor" href="#不同集成测试策略的比较"></a> 不同集成测试策略的比较</h2>
+<ul>
+<li>自顶向下集成的优点在于能尽早地对程序的主要控制和决策机制进行检验，因此<strong>较早地发现错误</strong>。缺点是在测试较高层模块时，<strong>低层处理采用桩模块替代，不能反映真实情况</strong>，重要数据不能及时回送到上层模块，因此测试并不充分。</li>
+<li>自底向上集成方法不用桩模块，测试用例的设计亦相对简单，但缺点是<strong>程序最后一个模块加入时才具有整体形象</strong>。它与自顶向综合测试方法优缺点正好相反。因此，在测试软件系统时，应根据软件的特点和工程的进度，选用适当的测试策略，有时混和使用两种策略更为有效，<strong>上层模块用自顶向下的方法，下层模块用自底向上的方法。</strong></li>
+</ul>
+<h1 id="确认测试验收测试"><a class="markdownIt-Anchor" href="#确认测试验收测试"></a> 确认测试(验收测试)</h1>
+<ul>
+<li>
+<p>目的：向用户表明系统能满足要求，测试范围与系统测试范围类似，<strong>确认测试是黑盒测试</strong></p>
+</li>
+<li>
+<p>设计目标：确定一组最可能发现某个错误或某类错误的测试数据</p>
+</li>
+<li>
+<p>设计技术主要有：<br />
+• 适用于黑盒测试的等价划分<br />
+• 边界值分析以及错误推测法<br />
+• 适用于白盒测试的逻辑覆盖法<br />
+通常做法：用黑盒法设计基本测试方案，再用白盒测补充一些方案。</p>
+</li>
+</ul>
+<h1 id="白盒测试-2"><a class="markdownIt-Anchor" href="#白盒测试-2"></a> 白盒测试</h1>
+<ul>
+<li>所谓<strong>白盒测试</strong>是对一系列测试过程的总称，这组测试过程逐渐进行越来越完整的<strong>通路测试</strong>。大致有以下一些不同的覆盖标准。</li>
+</ul>
+<h2 id="覆盖标准"><a class="markdownIt-Anchor" href="#覆盖标准"></a> 覆盖标准</h2>
+<p>①    语句覆盖：至少每个语句应执行一次，是较弱的逻辑覆盖。<br />
+②    判定覆盖：称为分支覆盖，每个判定的每个分支都至少执行一次(两组设定输入数据)</p>
+<p>③    条件覆盖：不仅每个语句至少执行一次，而且判定表达式中每个条件都取得各种可能的结果。<br />
+条件覆盖通常比判定覆盖强，它使判定表达式中每个条件都取得到两个不同的结果。判定覆盖却只关心整个判定表达式的值。<br />
+④    判定/条件覆盖<br />
+同时满足判定覆盖与条件覆盖含义是：<br />
+选取足够多地测试数据，使得判定表达式中的每个条件都取到各种可能的值，而且每个判定表达式也都取到各种可能的结果。</p>
+<p>⑤  条件组合覆盖<br />
+选取足够多的数据，使每个判定表达式中的条件的各种可能组合都至少出现一次。</p>
+<h3 id="判定覆盖-条件覆盖"><a class="markdownIt-Anchor" href="#判定覆盖-条件覆盖"></a> 判定覆盖 &amp; 条件覆盖</h3>
+<ul>
+<li>条件覆盖比判定覆盖强，因为它使得判定表达式中每个条件都取到了两个不同的结果，而判定覆盖只关心整个判定表达式的值。</li>
+<li>但也有例外，虽然每个表达式取到了两个不同的结果，判定表达式却始终只取一个值。（只满足条件覆盖不满足判定覆盖）</li>
+</ul>
+<h2 id="循环测试"><a class="markdownIt-Anchor" href="#循环测试"></a> 循环测试</h2>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200521182034057.png" alt="image-20200521182034057" style="zoom: 50%;" />
+<h3 id="单循环测试"><a class="markdownIt-Anchor" href="#单循环测试"></a> 单循环测试</h3>
+<p>​     其中n是可允许通过循环的最大次数<br />
+​            （1） 跳过整个循环<br />
+​            （2）只通过循环一次<br />
+​            （3） 通过循环一次<br />
+​            （4） 通过循环m次，m&lt;n<br />
+​            （5） 通过循环n-1,n,n+1次</p>
+<ul>
+<li>关键是想测试不进入循环，进入一次循环，以及循环上界次会怎么样</li>
+</ul>
+<h3 id="嵌套循环测试"><a class="markdownIt-Anchor" href="#嵌套循环测试"></a> 嵌套循环测试</h3>
+<p>（1） 从最内层的循环开始，将其他循环设为最小值；<br />
+（2）保持外层循环处于它的最小重复参数（即循环技术器）值，对最内曾进行单循环测试；<br />
+（3）进行下一层的循环测试，但仍保持所有外层处于最小值，而其他嵌套循环处于“一般”值；<br />
+（4）照此进行，直至全部循环测试完毕。</p>
+<h3 id="串联循环"><a class="markdownIt-Anchor" href="#串联循环"></a> 串联循环</h3>
+<ul>
+<li>若串联循环的每个循环独立，则采用上面单循环的方法，若两个循环串联，而且循环1的循环计数器是循环2的初值，则它们是非独立的。<strong>则应采用嵌套循环测试法</strong></li>
+</ul>
+<h2 id="控制结构测试"><a class="markdownIt-Anchor" href="#控制结构测试"></a> 控制结构测试</h2>
+<h3 id="流图符号"><a class="markdownIt-Anchor" href="#流图符号"></a> 流图符号</h3>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200521231512181.png" alt="image-20200521231512181" style="zoom: 50%;" />
+<ul>
+<li>
+<p>举例：将程序流程图映射到一个相应的流图</p>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200521231555832.png" alt="image-20200521231555832" style="zoom:50%;" />
+<ul>
+<li><strong>任何过程设计表示方法都可以被翻译成流图</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>复合条件</strong></p>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200521231837115.png" alt="image-20200521231837115" style="zoom:50%;" />
+<ul>
+<li>注意：为语句 IF a OR b 中的每一个a和b 创建了一个独立的节点，包含条件的节点被称为判定节点，从每一个判定节点发出两条或多条边</li>
+</ul>
+</li>
+</ul>
+<h3 id="导出测试用例"><a class="markdownIt-Anchor" href="#导出测试用例"></a> 导出测试用例</h3>
+<ol>
+<li>以设计或代码为基础，画出相应的流图。<br />
+创建流图时，要对将被映射为流图节点的PDL语句进行标号。    下面我们将给出 “求平均值”过程的对应的PDL语句和流图。</li>
+<li>确定结果流图的环型复杂性。<br />
+可采用教材中介绍的任意一种算法来计算环形复杂性-----V(G)。应该注意到，计算V(G)并不一定要画出流图，计算PDL中的所有条件语句数量（过程求平均值中复合条件语句为2，然后加1即可得到环形复杂性。</li>
+<li>确定线性独立的路径的一个基本集。<br />
+V(G)的值提供了程序控制结构中线性独立的路径的数量，在过程求平均值中，我们指定六条路径：</li>
+<li>准备测试用例，强制执行基本集中每条路径。</li>
+</ol>
+<h1 id="黑盒测试-2"><a class="markdownIt-Anchor" href="#黑盒测试-2"></a> 黑盒测试</h1>
+<p>设计黑盒测试方案应考虑下述问题：</p>
+<ol>
+<li>怎样测试功能的有效性</li>
+<li>哪些类型的输入可构成好测试用例</li>
+<li>系统是否对特定的输入值特别敏感</li>
+<li>怎样化定数据类的边界</li>
+<li>系统能够承受什么样的数据率和数据量</li>
+<li>数据的特定组合将对系统运行产生什么影响</li>
+</ol>
+<h2 id="等价划分"><a class="markdownIt-Anchor" href="#等价划分"></a> 等价划分</h2>
+<ul>
+<li>等价划分法设计测试方案首先的出从划分输入数据等价类入手，为此需要研究程序功能说明，从而确定输入数据的有效等价类和无效等价类，然后再分析出输出数据的等价类。</li>
+</ul>
+<h2 id="边界值分析"><a class="markdownIt-Anchor" href="#边界值分析"></a> 边界值分析</h2>
+<h3 id="边界值-等价类"><a class="markdownIt-Anchor" href="#边界值-等价类"></a> 边界值 &amp; 等价类</h3>
+<ol>
+<li>边界值分析不是从等价类中随便选一数据做代表,而是选一个或几个特定值 ,使这个等价类的每个边界都作为测试的目标.</li>
+<li>边界值分析不仅要考虑输入条件,还要考虑输出情况(即输出等价类)</li>
+</ol>
+<h2 id="错误推测"><a class="markdownIt-Anchor" href="#错误推测"></a> 错误推测</h2>
+<p>错误推测则很大程度上靠直觉和经验进行，是列举出程序中可能有的错误和容易发生错误的特殊情况。<br />
+1．输入/输出数据为零时，容易出错；<br />
+2．输入/输出数目允许变化（如被检测或生成表的项数）则输入/输出数目为0或1时（表为空表或只有一项内容）容易出错；<br />
+3．等价划分法和边界分析法都只考虑各个输入数据的测试效率，而没有考虑多个输入数据的组合效率，可能会遗漏了输入数据易出错的组合情况。</p>
+<h1 id="调试纠错"><a class="markdownIt-Anchor" href="#调试纠错"></a> 调试（纠错）</h1>
+<h2 id="蛮干法"><a class="markdownIt-Anchor" href="#蛮干法"></a> 蛮干法</h2>
+<p>在特定位置打印输出也是一种办法</p>
+<h2 id="消去原因"><a class="markdownIt-Anchor" href="#消去原因"></a> 消去原因</h2>
+<ul>
+<li>消去原因有两种方法：包括归纳法和演绎法</li>
+</ul>
+<h3 id="归纳法"><a class="markdownIt-Anchor" href="#归纳法"></a> 归纳法</h3>
+<ul>
+<li>归纳法：从对个别事例的认识中，概括共同特性点，得出一般规律性</li>
+</ul>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522000002753.png" alt="image-20200522000002753" style="zoom: 50%;" />
+<ul>
+<li>
+<p>设置相应的数据</p>
+<p>第一步应列出所有已知信息，即程序能正确完成什麽；它能出现什麽错误，即确定错误的征兆；</p>
+</li>
+<li>
+<p>组织这些数据</p>
+<p>将数据结构化，使人们能够观察到它的模式，最重要的是搜寻矛盾</p>
+</li>
+<li>
+<p>设置假设</p>
+</li>
+<li>
+<p>证明假设</p>
+</li>
+</ul>
+<h3 id="演绎法"><a class="markdownIt-Anchor" href="#演绎法"></a> 演绎法</h3>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522000349268.png" alt="image-20200522000349268" style="zoom:50%;" />
+<ul>
+<li>
+<p>列举可能的错误原因和假设</p>
+<p>把所有可能的错误原因列表，不需要完全的解释，仅仅是一些可能因素或假定，通过它们，能够组织和分析这些错误。</p>
+</li>
+<li>
+<p>使用第（1）步所列举的可能的错误原因 ，消去次要原因</p>
+</li>
+<li>
+<p>进一步完善留下的假设</p>
+</li>
+<li>
+<p>证明假设的正确性</p>
+</li>
+</ul>
+<h2 id="回溯"><a class="markdownIt-Anchor" href="#回溯"></a> 回溯</h2>
+<p>它是从发现错误征兆的位置开始，人工追溯源程序代码，直到找到错误的原因为止。但是如果源程序代码行为不断增加，回溯是可能经过的路径数目变得很大，以至实际上无法进行工作。</p>
+<h1 id="应用题"><a class="markdownIt-Anchor" href="#应用题"></a> 应用题</h1>
+<h2 id="三角形类别"><a class="markdownIt-Anchor" href="#三角形类别"></a> 三角形类别</h2>
+<h3 id="等价划分-2"><a class="markdownIt-Anchor" href="#等价划分-2"></a> 等价划分</h3>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522001255367.png" alt="image-20200522001255367" style="zoom:50%;" />
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522001412901.png" alt="image-20200522001412901" style="zoom:50%;" />
+<h3 id="边界值分析-2"><a class="markdownIt-Anchor" href="#边界值分析-2"></a> 边界值分析</h3>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522001451662.png" alt="image-20200522001451662" style="zoom:67%;" />
+<h2 id="给出下图的路径覆盖测试用例"><a class="markdownIt-Anchor" href="#给出下图的路径覆盖测试用例"></a> 给出下图的路径覆盖测试用例</h2>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522001544804.png" alt="image-20200522001544804" style="zoom:50%;" />
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522001558774.png" alt="image-20200522001558774" style="zoom:50%;" />
+<h1 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h1>
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522001626075.png" alt="image-20200522001626075" style="zoom: 50%;" />
+<img src="C:\Users\86139\AppData\Roaming\Typora\typora-user-images\image-20200522001645039.png" alt="image-20200522001645039" style="zoom:50%;" />
+<h2 id="实时系统测试"><a class="markdownIt-Anchor" href="#实时系统测试"></a> 实时系统测试</h2>
+<h3 id="任务测试"><a class="markdownIt-Anchor" href="#任务测试"></a> 任务测试</h3>
+<p>对每个任务(看做是接受输入,并产生输出的单个程序,一个任务可有多个模块组成)进行单独测试.。即为每个任务设计和运行黑盒与白盒测试</p>
+<h3 id="行为测试"><a class="markdownIt-Anchor" href="#行为测试"></a> 行为测试</h3>
+<p>用case工具创建应用系统模型，它可以模拟实时系统行为，还可作为系统外部事件结果的检查。</p>
+]]></content>
+      <tags>
+        <tag>hide</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第6章详细设计</title>
+    <url>/2020/07/28/%E7%AC%AC6%E7%AB%A0%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h1 id="结构程序设计"><a class="markdownIt-Anchor" href="#结构程序设计"></a> 结构程序设计</h1>
+<ul>
+<li><strong>结构程序设计</strong>是一种设计程序的技术，它采用自上向下逐步求精的设计方法和单入口单出口的控制结构。</li>
+</ul>
+<h2 id="分类"><a class="markdownIt-Anchor" href="#分类"></a> 分类</h2>
+<img src="\MyImages\image-20200422125040328.png" alt="image-20200422125040328" style="zoom: 50%;" />
+<h1 id="详细设计工具"><a class="markdownIt-Anchor" href="#详细设计工具"></a> 详细设计工具</h1>
+<h2 id="程序流程图"><a class="markdownIt-Anchor" href="#程序流程图"></a> 程序流程图</h2>
+<img src="\MyImages\image-20200422125518994.png" alt="image-20200422125518994" style="zoom: 67%;" />
+<h2 id="盒图"><a class="markdownIt-Anchor" href="#盒图"></a> 盒图</h2>
+<ul>
+<li>增强流程图的结构化程度，非结构化设计画不出盒图</li>
+</ul>
+<h3 id="特点"><a class="markdownIt-Anchor" href="#特点"></a> 特点</h3>
+<ul>
+<li>功能域(即，一个特定控制结构的作用域)明确，可以从盒图上一眼就看出来。</li>
+<li>不可能任意转移控制。</li>
+<li>很容易确定局部和全程数据的作用域。</li>
+<li>很容易表现嵌套关系，也可以表示模块的层次结构。</li>
+</ul>
+<h3 id="基本符号"><a class="markdownIt-Anchor" href="#基本符号"></a> 基本符号</h3>
+<img src="\MyImages\image-20200422125715790.png" alt="image-20200422125715790" style="zoom: 50%;" />
+<ul>
+<li>注：这里的do-while 就是while；do-until是我们平常理解的do-while</li>
+</ul>
+<h2 id="pad-图"><a class="markdownIt-Anchor" href="#pad-图"></a> PAD 图</h2>
+<h3 id="优点"><a class="markdownIt-Anchor" href="#优点"></a> 优点</h3>
+<ol>
+<li>使用表示结构优化控制结构的PAD符号所设计出来的程序必然是程序化程序</li>
+<li>PAD图所描述的程序结构十分清晰。图中最左边的竖线是程序的主线，即第一层控制结构。随着程序层次的增加，PAD图逐渐向右延伸，每增加一个层次，图形向右扩展一条竖线。PAD图中竖线的总条数就是程序的层次数；</li>
+<li>用PAD图表现程序逻辑，易读、易懂、易记。PAD图是二维数型结构的图形，程序从图中最左边上端的结点开始执行，自上而下，从左到右顺序执行</li>
+<li>很容易将PDA图转换成高级程序语言源程序，这种转换可由软件工具自动完成，从而可省去人工编码的工作，有利于提高软件可靠性和软件生产率。</li>
+<li>既可用于表示程序逻辑，也可用于描述数据结构</li>
+<li>PAD图的符号支持自顶向下、逐步求精方法的使用。开始时设计者可以定义一个抽象程序，随着设计工作的深入而使用“def”符号逐步增加细节，直至完成详细设计。</li>
+</ol>
+<h3 id="基本符号-2"><a class="markdownIt-Anchor" href="#基本符号-2"></a> 基本符号</h3>
+<img src="\MyImages\image-20200422130431355.png" alt="image-20200422130431355" style="zoom:67%;" />
+<ul>
+<li>a左侧是时间轴</li>
+<li>c图中c是条件，P1,P2处要标清true和false</li>
+<li><strong>b中while循环的头部应该在左侧</strong></li>
+</ul>
+<h2 id="三种工具对比"><a class="markdownIt-Anchor" href="#三种工具对比"></a> 三种工具对比</h2>
+<img src="\MyImages\image-20200422130836852.png" alt="image-20200422130836852" style="zoom:67%;" />
+<p><img src="\MyImages\image-20200422131011218.png" alt="image-20200422131011218" style="zoom:67%;" /><img src="%5CMyImages%5Cimage-20200422131017565.png" alt="image-20200422131017565" /></p>
+<p><img src="\MyImages\image-20200422131011218.png" alt="image-20200422131011218" style="zoom:67%;" /><img src="%5CMyImages%5Cimage-20200422131017565.png" alt="image-20200422131017565" /><img src="%5CMyImages%5Cimage-20200422131359055.png" alt="image-20200422131359055" /></p>
+<h2 id="流程图-盒图"><a class="markdownIt-Anchor" href="#流程图-盒图"></a> 流程图-&gt;盒图</h2>
+<img src="\MyImages\image-20200422131428380.png" alt="image-20200422131428380" style="zoom:67%;" />
+<h2 id="流程图-pad图"><a class="markdownIt-Anchor" href="#流程图-pad图"></a> 流程图-&gt;PAD图</h2>
+<p><img src="\MyImages\image-20200422131619608.png" alt="image-20200422131619608" style="zoom: 50%;" /><img src="\MyImages\image-20200422131657050.png" alt="image-20200422131657050" style="zoom:50%;" /></p>
+<h2 id="判定表"><a class="markdownIt-Anchor" href="#判定表"></a> 判定表</h2>
+<p>​	算法中包含有多重嵌套的条件选择时，用程序流程图、盒图、PAD图及过程设计语言（PDL）都不易清楚的描述，此时用判定表则比较容易。<br />
+​	判定表能简洁而又无歧义的描述处理规则。但是判定表并不是与作为一种通用的设计工具，没有一种简单的方法使它能同时清晰的表示顺序和重复等处理特性。</p>
+<h3 id="判定表表特征计算行李费算法"><a class="markdownIt-Anchor" href="#判定表表特征计算行李费算法"></a> 判定表表特征计算行李费算法</h3>
+<img src="\MyImages\image-20200422132114765.png" alt="image-20200422132114765" style="zoom: 50%;" />
+<h3 id="特点-2"><a class="markdownIt-Anchor" href="#特点-2"></a> 特点</h3>
+<ul>
+<li>每次划分都是二分，条件多的时候很繁琐</li>
+</ul>
+<h2 id="判定树"><a class="markdownIt-Anchor" href="#判定树"></a> 判定树</h2>
+<p>判定树是判定表的变种，容易掌握与使用，是一种比较常用的系统分析和设计的工具。缺点是简洁性不如判定表，数据元素的同一个值往往要重复写多便，而且越接近树的叶端重复次数越多</p>
+<img src="\MyImages\image-20200422132335162.png" alt="image-20200422132335162" style="zoom: 50%;" />
+<h2 id="过程设计语言-pdl了解"><a class="markdownIt-Anchor" href="#过程设计语言-pdl了解"></a> 过程设计语言 PDL（了解）</h2>
+<ul>
+<li>PDL也称为伪码，它使用正文形式表示数据和处理过程的设计工具。伪码的语法规则分为“外部语法”和“内部语法”。外部语法应当符合一般程序设计语言常用语句的语法规则。内部语法可用英语中一些简单的句子，短语和通用的数学符号来描述程序应执行的功能</li>
+</ul>
+<h1 id="面向数据结构的设计方法"><a class="markdownIt-Anchor" href="#面向数据结构的设计方法"></a> 面向数据结构的设计方法</h1>
+<ul>
+<li>面向数据结构的设计方法的最终目标：是得出对程序处理过程的描述。使用面向数据结构的设计方法，应先分析确定数据结构，用适当的工具清晰地描绘出数据结构。</li>
+<li><strong>关心程序的输入和输出</strong></li>
+</ul>
+<h2 id="jackson图"><a class="markdownIt-Anchor" href="#jackson图"></a> Jackson图</h2>
+<h3 id="顺序结构"><a class="markdownIt-Anchor" href="#顺序结构"></a> 顺序结构</h3>
+<p>顺序结构的数据由一个或多个数据元素组成，每个元素按确定次序出现一次。</p>
+<h3 id="选择结构"><a class="markdownIt-Anchor" href="#选择结构"></a> 选择结构</h3>
+<p>选择结构与数据应包含两个或多个数据元素，每次使用这个数据时按一定条件从这些数据元素中选一个。</p>
+<h3 id="重复结构"><a class="markdownIt-Anchor" href="#重复结构"></a> 重复结构</h3>
+<p>该数据使用时的条件有一个数据元素出现一次或多次构成。</p>
+<img src="\MyImages\image-20200422141630104.png" alt="image-20200422141630104" style="zoom:67%;" />
+<h3 id="优缺点"><a class="markdownIt-Anchor" href="#优缺点"></a> 优缺点</h3>
+<h4 id="优点-2"><a class="markdownIt-Anchor" href="#优点-2"></a> 优点</h4>
+<ul>
+<li>便于表示层次结构，而且是对结构进行白顶向下分解的有力工具；</li>
+<li>·形象直观可读性好；</li>
+<li>既能表示数据结构也能表示程序结构(因为结构程序设计</li>
+</ul>
+<h4 id="缺点"><a class="markdownIt-Anchor" href="#缺点"></a> 缺点</h4>
+<p>循环和选择条件无法列出，影像图解表达能力</p>
+<h3 id="改进的jackson图"><a class="markdownIt-Anchor" href="#改进的jackson图"></a> 改进的Jackson图</h3>
+<img src="\MyImages\image-20200422141803705.png" alt="image-20200422141803705" style="zoom:67%;" />
+<h3 id="程序设计步骤"><a class="markdownIt-Anchor" href="#程序设计步骤"></a> 程序设计步骤</h3>
+<p><img src="\MyImages\image-20200422141951776.png" alt="image-20200422141951776" style="zoom:50%;" /><img src="%5CMyImages%5Cimage-20200617170641119.png" alt="image-20200617170641119" /></p>
+<h3 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h3>
+<ul>
+<li>
+<p>一个正文文件由若干记录组成，每个记录是一个字符串，<strong>要求统计每个记录中空格字符的个数及文件中空格字符的总个数</strong>。要求输出数据格式是每复制一行字符串后，另起一行打印出这个字符串中的空格数，最后打印出文件空格的总个数，使用Jackson方法设计该程序结构。</p>
+<img src="\MyImages\image-20200502224623407.png" alt="image-20200502224623407" style="zoom:33%;" />
+</li>
+</ul>
+<img src="\MyImages\image-20200502224636787.png" alt="image-20200502224636787" style="zoom:33%;" />
+<ul>
+<li>上面两个Jackson图合成下面的</li>
+</ul>
+<h3 id="举例学生名册"><a class="markdownIt-Anchor" href="#举例学生名册"></a> 举例：学生名册</h3>
+<img src="\MyImages\image-20200422142436939.png" alt="image-20200422142436939" style="zoom: 33%;" />
+<h3 id="jackson伪代码"><a class="markdownIt-Anchor" href="#jackson伪代码"></a> Jackson伪代码</h3>
+<img src="\MyImages\image-20200422142605740.png" alt="image-20200422142605740" style="zoom:33%;" />
+<p><img src="\MyImages\image-20200422142622118.png" alt="image-20200422142622118" style="zoom:33%;" /><img src="%5CMyImages%5Cimage-20200422142629626.png" alt="image-20200422142629626" /><img src="\MyImages\image-20200422142622118.png" alt="image-20200422142622118" style="zoom:33%;" /><img src="%5CMyImages%5Cimage-20200422142629626.png" alt="image-20200422142629626" /><img src="\MyImages\image-20200422142622118.png" alt="image-20200422142622118" style="zoom: 33%;" /><img src="%5CMyImages%5Cimage-20200422142629626.png" alt="image-20200422142629626" /><img src="\MyImages\image-20200422142622118.png" alt="image-20200422142622118" style="zoom: 50%;" /><img src="%5CMyImages%5Cimage-20200422142629626.png" alt="image-20200422142629626" /><img src="\MyImages\image-20200422142622118.png" alt="image-20200422142622118" style="zoom: 33%;" /><img src="%5CMyImages%5Cimage-20200422142629626.png" alt="image-20200422142629626" /><img src="\MyImages\image-20200422142622118.png" alt="image-20200422142622118" style="zoom: 50%;" /><img src="%5CMyImages%5Cimage-20200422142629626.png" alt="image-20200422142629626" /></p>
+<p><img src="\MyImages\image-20200422142622118.png" alt="image-20200422142622118" style="zoom:33%;" /><img src="%5CMyImages%5Cimage-20200422142629626.png" alt="image-20200422142629626" /><img src="\MyImages\image-20200422142622118.png" alt="image-20200422142622118" style="zoom:33%;" /><img src="%5CMyImages%5Cimage-20200422142629626.png" alt="image-20200422142629626" /></p>
+<h1 id="warnier-程序设计方法"><a class="markdownIt-Anchor" href="#warnier-程序设计方法"></a> Warnier 程序设计方法</h1>
+<h2 id="warnier图"><a class="markdownIt-Anchor" href="#warnier图"></a> Warnier图</h2>
+<img src="\MyImages\image-20200422142841131.png" alt="image-20200422142841131" style="zoom:50%;" />
+<h1 id="非结构化转结构化"><a class="markdownIt-Anchor" href="#非结构化转结构化"></a> 非结构化转结构化</h1>
+<h2 id="定理"><a class="markdownIt-Anchor" href="#定理"></a> 定理</h2>
+<ul>
+<li>假如不增加辅助变量，不增加额外计算或不改变程序的执行顺序，那么必然存在不能用if-while表示的构造。</li>
+<li>在定理一的假设条件下，if-while构造的充分必要条件是：该构造不含两个（或两个以上）出口循环</li>
+<li>若允许增加辅助变量或增加额外计算，或改变程序的执行顺序，问题解的任何算法都可以表示为结构化的构造</li>
+</ul>
+<h2 id="例1"><a class="markdownIt-Anchor" href="#例1"></a> 例1</h2>
+<img src="\MyImages\image-20200422143145414.png" alt="image-20200422143145414" style="zoom: 50%;" />
+<ul>
+<li>中间T型部分破坏了结构化程序设计，不是单入单出的</li>
+</ul>
+<img src="\MyImages\image-20200422143229291.png" alt="image-20200422143229291" style="zoom:50%;" />
+<h2 id="例2"><a class="markdownIt-Anchor" href="#例2"></a> 例2</h2>
+<img src="\MyImages\image-20200510143526793.png" alt="image-20200510143526793" style="zoom: 50%;" />
+<img src="\MyImages\image-20200510143533252.png" alt="image-20200510143533252" style="zoom: 50%;" />
+<h2 id="例3"><a class="markdownIt-Anchor" href="#例3"></a> 例3</h2>
+<img src="\MyImages\image-20200510143657727.png" alt="image-20200510143657727" style="zoom:50%;" />
+<p>左图可转化为右图</p>
+<h2 id="例4"><a class="markdownIt-Anchor" href="#例4"></a> 例4</h2>
+<img src="\MyImages\image-20200510143848419.png" alt="image-20200510143848419" style="zoom: 33%;" />
+<p>转化为</p>
+<img src="\MyImages\image-20200617171744572.png" alt="image-20200617171744572" style="zoom:50%;" />
+<h1 id="体系结构的设计和优化"><a class="markdownIt-Anchor" href="#体系结构的设计和优化"></a> 体系结构的设计和优化</h1>
+<h2 id="开发方法"><a class="markdownIt-Anchor" href="#开发方法"></a> 开发方法</h2>
+<ol>
+<li>
+<p>开发和精化程序结构，且不考虑关键性能而进行的优化。</p>
+</li>
+<li>
+<p>使用可以提高运行性能的CASE工具来孤立低效的部分。</p>
+</li>
+<li>
+<p>在后期设计中，对有可能最消耗时间的模块的算法进行时间优化。</p>
+</li>
+<li>
+<p>用适当的程序设计语言编码</p>
+</li>
+<li>
+<p>孤立出那些大量占用处理器时间的模块。</p>
+</li>
+<li>
+<p>如果需要，用依赖机器的语言重新设计和编码，提高效率。</p>
+</li>
+</ol>
+<h1 id="接口设计"><a class="markdownIt-Anchor" href="#接口设计"></a> 接口设计</h1>
+<h2 id="三个方面"><a class="markdownIt-Anchor" href="#三个方面"></a> 三个方面</h2>
+<p>（1） 设计软件模块间的接口；<br />
+（2） 设计模块和其他非人的信息生产者和消费者（比如外部实体）的接口；<br />
+（3） 设计人（用户）和计算机间的接口；</p>
+<h2 id="内部和外部接口设计"><a class="markdownIt-Anchor" href="#内部和外部接口设计"></a> 内部和外部接口设计</h2>
+<ul>
+<li><strong>内部程序接口</strong>的设计有时称为模块间的接口设计特性，它是由模块间传递数据和程序设计语言的共同导致的。</li>
+<li>数据流图描述了数据对象在系统中流动时发生的变换，DFD中的变换被映射到程序结构的模块中。因此，每个DFD变换的输入/输出的箭头（数据对象）必须映射到该变换对应的模块接口上。</li>
+<li><strong>外部接口设计</strong>始于对分析模型的DFD变换中的每个外部实体的评估。<strong>外部接口设计就是软件和软件之间的接口</strong></li>
+<li>内/外部接口设计必须与模块内的数据验证和错误处理算法紧密相关。由于副作用往往是程序接口进行传递的，必须对从某模块流向另一个模块的数据进行检查，以保证符合需求分析时要求的确定。</li>
+</ul>
+<h1 id="人机交互的界面设计"><a class="markdownIt-Anchor" href="#人机交互的界面设计"></a> 人机交互的界面设计</h1>
+<h2 id="界面设计宏观分类"><a class="markdownIt-Anchor" href="#界面设计宏观分类"></a> 界面设计宏观分类</h2>
+<h2 id="人机界面的交互方式"><a class="markdownIt-Anchor" href="#人机界面的交互方式"></a> 人机界面的交互方式</h2>
+<ul>
+<li>问答式对话</li>
+<li>菜单界面</li>
+<li>功能键</li>
+<li>图标界面</li>
+<li>填表界面</li>
+<li>命令语言界面</li>
+<li>查询语言界面</li>
+</ul>
+<h2 id="人机界面的开发过程"><a class="markdownIt-Anchor" href="#人机界面的开发过程"></a> 人机界面的开发过程</h2>
+<h3 id="瀑布式模型"><a class="markdownIt-Anchor" href="#瀑布式模型"></a> 瀑布式模型</h3>
+<p>采用瀑布模型开发人一机界面软件部分时，要把与用户、界面以及系统的使用性能的相关内同结合到系统的分析、设计和评估中。它与开发一般软件系统的差别在于，增加或强调了与用户特性及人—机交互有关的内容。</p>
+<h3 id="原型模型"><a class="markdownIt-Anchor" href="#原型模型"></a> 原型模型</h3>
+]]></content>
+      <tags>
+        <tag>hide</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第9章人工神经网络</title>
+    <url>/2020/07/28/%E7%AC%AC9%E7%AB%A0%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<h1 id="生物神经系统"><a class="markdownIt-Anchor" href="#生物神经系统"></a> 生物神经系统</h1>
+<ul>
+<li>生物神经元主要由以下几个部分组成：</li>
+<li>胞体，是神经细胞的本体;</li>
+<li>树突，用以接受来自其它细胞元的信号;</li>
+<li>轴突，用以输出信号，与多个神经元连接;</li>
+<li>突触，是一个神经元与另一个神经元相联系的特殊部位，通过神经元轴突的端部靠化学接触和电接触将信号传递给下一个神经元的树突或胞体。</li>
+</ul>
+<h1 id="人工神经网络结构"><a class="markdownIt-Anchor" href="#人工神经网络结构"></a> 人工神经网络结构</h1>
+<h2 id="人工神经网络"><a class="markdownIt-Anchor" href="#人工神经网络"></a> 人工神经网络</h2>
+<ul>
+<li>是反映人脑结构及功能的一种抽象<strong>数学模型</strong>，是由<strong>大量神经元节点互连而成的复杂网络</strong>，用以<strong>模拟人类</strong>进行<strong>知识的表示与存储</strong>以及利用知识进行<strong>推理</strong>的行为</li>
+</ul>
+<h2 id="人工神经网络的特性"><a class="markdownIt-Anchor" href="#人工神经网络的特性"></a> 人工神经网络的特性</h2>
+<ol>
+<li>可以充分<strong>逼近任意复杂的非线性关系</strong></li>
+<li>所有定量或定性的<strong>信息都等势分布贮存于 网络内的各神经元</strong>，故有很<strong>强的鲁棒性和容错性</strong></li>
+<li>采用<strong>并行分布处理方法</strong>，使得快速进行大量运算成为可能</li>
+<li><strong>可学习和自适应</strong>不知道或不确定的系统</li>
+<li>能够<strong>同时处理定量、定性知识。</strong></li>
+<li>可以<strong>通过软件和硬件实现。</strong></li>
+</ol>
+<h2 id="人工神经元模型"><a class="markdownIt-Anchor" href="#人工神经元模型"></a> 人工神经元模型</h2>
+<ul>
+<li>
+<p>通用模型</p>
+<img src="\MyImages\MyImages\image-20200625234820529.png" alt="image-20200625234820529" style="zoom:50%;" />
+</li>
+</ul>
+<h2 id="激活函数"><a class="markdownIt-Anchor" href="#激活函数"></a> 激活函数</h2>
+<ul>
+<li>激励函数f的基本作用
+<ul>
+<li>控制输入对输出的<strong>激活作用</strong>(线性变非线性)</li>
+<li>对输入、输出进行函数转换</li>
+<li>将可能无限域的输入变换成指定的有限范围内的输出</li>
+</ul>
+</li>
+</ul>
+<h3 id="阈值型"><a class="markdownIt-Anchor" href="#阈值型"></a> 阈值型</h3>
+<img src="\MyImages\MyImages\image-20200625235008505.png" alt="image-20200625235008505" style="zoom:67%;" />
+<h3 id="sigmoid函数"><a class="markdownIt-Anchor" href="#sigmoid函数"></a> Sigmoid函数</h3>
+<p><img src="%5CMyImages%5CMyImages%5Cimage-20200625235031662.png" alt="image-20200625235031662" /></p>
+<ul>
+<li>
+<p>缺点</p>
+<p>1.Sigmoid函数输入值区域正无穷或负无穷时，函数的梯度（斜率）也就会非常小，导致向底层传输的梯度趋近于0，此时网络参数很难得到有效训练。这种现象称为<strong>梯度消失</strong>。<br />
+2.sigmoid的输出恒为正值，导致权值更新时只能朝一个方向更新，使得<strong>收敛缓慢</strong>。</p>
+</li>
+</ul>
+<h3 id="双曲正切函数"><a class="markdownIt-Anchor" href="#双曲正切函数"></a> 双曲正切函数</h3>
+<p>tanh函数是sigmoid的向下平移和伸缩后的结果。对它进行了变形后，穿过了原点，并且值域介于+1和-1之间。</p>
+<img src="\MyImages\MyImages\image-20200625235152896.png" alt="image-20200625235152896" style="zoom: 80%;" />
+<ul>
+<li>优点<br />
+tanh函数解决了sigmoid函数的不是zero-centered输出问题，<strong>输出均值是0</strong>。</li>
+<li>缺点：<br />
+sigmoid函数和tanh函数两者共同的缺点：在输入特别大或者特别小的情况下，导数的梯度或者函数的斜率会变得特别小，最后就会接近于 0，（<strong>也存在梯度消失</strong>）</li>
+</ul>
+<h3 id="relu函数"><a class="markdownIt-Anchor" href="#relu函数"></a> ReLu函数</h3>
+<p><img src="%5CMyImages%5CMyImages%5Cimage-20200625235423944.png" alt="image-20200625235423944" /></p>
+<ul>
+<li>优点<br />
+ReLu函数是目前最常用的默认选择激活函数。当x&gt;0时，不存在饱和问题，在x&gt;0时保持梯度不衰减，缓解梯度消失的问题。并且由于激活矩阵具有稀疏性，收敛速度远快于sigmoid和tanh。</li>
+<li>缺点：<br />
+当x&lt;0时，ReLu硬饱和，随着训练的推进，部分输入会落入到硬饱和区，导致权重无法更新。</li>
+</ul>
+<h3 id="leaky-relu函数"><a class="markdownIt-Anchor" href="#leaky-relu函数"></a> Leaky-ReLu函数</h3>
+<p><img src="%5CMyImages%5CMyImages%5Cimage-20200625235623635.png" alt="image-20200625235623635" /></p>
+<p>在负数区域内，Leaky-ReLU有一个很小的斜率，<strong>可以避免ReLU死掉的问题。</strong></p>
+<h1 id="人工神经网络结构-2"><a class="markdownIt-Anchor" href="#人工神经网络结构-2"></a> 人工神经网络结构</h1>
+<h2 id="神经网络的基本特性和结构"><a class="markdownIt-Anchor" href="#神经网络的基本特性和结构"></a> 神经网络的基本特性和结构</h2>
+<ul>
+<li>
+<p>人工神经网络是具有下列特性的有向图<br />
+◇对于每个节点i 存在一个状态变量xi ；<br />
+◇从节点j 至节点i ,存在一个连接权系数wij；<br />
+◇对于每个节点i ，存在一个阈值θ i；<br />
+◇对于每个节点  i ，定义一个变换函数fi ；</p>
+</li>
+<li>
+<p>对于最一般的情况，此函数取如下的形式</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">(</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>w</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><msub><mi>x</mi><mi>j</mi></msub><mo>−</mo><msub><mi>θ</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f_i(\sum_iw_{ij}x_j-\theta_i)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.327674em;vertical-align:-1.277669em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0500050000000003em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+</ul>
+<h2 id="人工神经网络典型结构"><a class="markdownIt-Anchor" href="#人工神经网络典型结构"></a> 人工神经网络典型结构</h2>
+<h3 id="单纯前馈网络"><a class="markdownIt-Anchor" href="#单纯前馈网络"></a> 单纯前馈网络</h3>
+<img src="\MyImages\MyImages\image-20200626000418051.png" alt="image-20200626000418051" style="zoom:33%;" />
+<h3 id="有反馈的前馈网络"><a class="markdownIt-Anchor" href="#有反馈的前馈网络"></a> 有反馈的前馈网络</h3>
+<img src="\MyImages\MyImages\image-20200626000435262.png" alt="image-20200626000435262" style="zoom: 50%;" />
+<h3 id="前馈内层互联网络"><a class="markdownIt-Anchor" href="#前馈内层互联网络"></a> 前馈内层互联网络</h3>
+<img src="\MyImages\MyImages\image-20200626000458590.png" alt="image-20200626000458590" style="zoom:50%;" />
+<h3 id="反馈型全互联网络"><a class="markdownIt-Anchor" href="#反馈型全互联网络"></a> 反馈型全互联网络</h3>
+<img src="\MyImages\MyImages\image-20200626000507955.png" alt="image-20200626000507955" style="zoom:50%;" />
+<h1 id="人工神经网络的基本学习算法"><a class="markdownIt-Anchor" href="#人工神经网络的基本学习算法"></a> 人工神经网络的基本学习算法</h1>
+<h2 id="学习"><a class="markdownIt-Anchor" href="#学习"></a> 学习</h2>
+<ul>
+<li>学习就是对信息进行编码,其目的就是通过向有限个例子（训练样本）的学习来找到隐藏在例子背后（即产生这些例子）的规律（如函数形式）。</li>
+<li>当样本数据改变系统参数时，系统会对这些改变进行自适应或自组织的学习，<strong>在神经网络中表现为突触的改变。</strong></li>
+</ul>
+<h2 id="学习算法"><a class="markdownIt-Anchor" href="#学习算法"></a> 学习算法</h2>
+<h3 id="有监督学习"><a class="markdownIt-Anchor" href="#有监督学习"></a> 有监督学习</h3>
+<ul>
+<li>就是**对每一个输入Xi, 都假定我们已经知道它的期望输出Yi,**这个Yi可以理解为监督信号，也叫“教师信号”。对每一个输入Xi及其对其估计的期望输出Yi，就构成了一个训练样本。根据这若干组训练样本（Xi，Yi），对人工神经网络进行训练，利用学习系统的误差（ 期望输出与实际输出之差），不断校正学习系统的行为（即突触权值），直到误差满足要求，算法停止。有师学习算法主要有δ规则、BP算法、LVQ算法等。</li>
+</ul>
+<h3 id="无监督学习"><a class="markdownIt-Anchor" href="#无监督学习"></a> 无监督学习</h3>
+<ul>
+<li>无师学习<strong>不需要知道期望输出</strong>。在训练过程中，只要想神经网络提供输入模式，神经网络就能够自动地适应连接权，以便按照相似特征把输入模式分组聚集。无师学习算法主要在自适应谐振理论ART、Kohonen等自组织竞争型网络中采用。</li>
+</ul>
+<h3 id="强化学习"><a class="markdownIt-Anchor" href="#强化学习"></a> 强化学习</h3>
+<ul>
+<li>
+<p><strong>强化（reinforcement）学习是指从环境状态到行为映射的学习</strong>，以使系统行为<strong>从环境中获得的累积奖励值最大</strong>。我们并没有直接告诉主体要做什么或者要采取哪个动作,而是主体通过看哪个动作得到了最多的奖励来自己发现。主体的动作的影响不只是立即得到的奖励，而且还影响接下来的动作和最终的奖励。</p>
+</li>
+<li>
+<img src="\MyImages\MyImages\image-20200626000829355.png" alt="image-20200626000829355" style="zoom:80%;" />
+</li>
+</ul>
+<h3 id="三者关系"><a class="markdownIt-Anchor" href="#三者关系"></a> 三者关系</h3>
+<h4 id="有监督-无监督"><a class="markdownIt-Anchor" href="#有监督-无监督"></a> 有监督 &amp; 无监督</h4>
+<ul>
+<li>在监督学习中，假定我们知道每一输入对应的期望输出，并利用学习系统的误差，不断校正系统的行为；</li>
+<li>在非监督学习中，我们不知道学习系统的期望输出。</li>
+</ul>
+<h4 id="有监督-强化学习"><a class="markdownIt-Anchor" href="#有监督-强化学习"></a> 有监督 &amp; 强化学习</h4>
+<ul>
+<li>有监督学习是从有标签的样本中学习</li>
+<li>强化学习从互动中学习从自己的经验中学习，目标是获得尽可能多的奖励。学习者并没有被告知应该采取哪些行动，而是必须通过尝试来发现哪些行动会带来最大的回报。</li>
+</ul>
+<h1 id="人工神经网络基本模型"><a class="markdownIt-Anchor" href="#人工神经网络基本模型"></a> 人工神经网络基本模型</h1>
+<h2 id="mp模型"><a class="markdownIt-Anchor" href="#mp模型"></a> MP模型</h2>
+<img src="\MyImages\MyImages\image-20200626001135958.png" alt="image-20200626001135958" style="zoom: 67%;" />
+<ul>
+<li>
+<p>MP模型属于一种阈值元件模型</p>
+</li>
+<li>
+<p>我们可以根据需要，采用一些常见的算法来调整神经元连接权，以达到学习目的。如Hebb学习</p>
+</li>
+</ul>
+<h3 id="hebb学习规则"><a class="markdownIt-Anchor" href="#hebb学习规则"></a> Hebb学习规则</h3>
+<ul>
+<li>调整wij的原则为：若第i和第j个神经元同时处于兴奋状态，则它们之间的连接应当加强，即：$$\Delta w_{ij}=\alpha u_iv_j$$</li>
+</ul>
+<h2 id="mlp感知器模型"><a class="markdownIt-Anchor" href="#mlp感知器模型"></a> MLP感知器模型</h2>
+<h3 id="简单感知器"><a class="markdownIt-Anchor" href="#简单感知器"></a> 简单感知器</h3>
+<img src="\MyImages\MyImages\image-20200626001407611.png" alt="image-20200626001407611" style="zoom:50%;" />
+<ul>
+<li>
+<p>简单感知器模型实际上仍然是MP模型的结构，但是它通过<strong>采用监督学习来逐步增强模式划分的能力</strong>，达到所谓学习的目的。</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>v</mi><mi>i</mi></msub><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><msub><mi>w</mi><mi>i</mi></msub><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">v_i=f(\sum_{i=0}^nw_ix_i-\theta)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+<li>
+<p>其中，Wi为第i个输入到处理单元的连接权值θ为阈值。 f取阶跃函数.</p>
+</li>
+<li>
+<p>感知器的连接权定义为可变的，这样感知器就被赋予了学习的特性。</p>
+</li>
+</ul>
+<h3 id="进行与或非运算"><a class="markdownIt-Anchor" href="#进行与或非运算"></a> 进行“与或非”运算</h3>
+<img src="\MyImages\MyImages\image-20200626001848151.png" alt="image-20200626001848151" style="zoom: 80%;" />
+<img src="\MyImages\MyImages\image-20200626001921992.png" alt="image-20200626001921992" style="zoom:80%;" />
+<h2 id="几何意义"><a class="markdownIt-Anchor" href="#几何意义"></a> 几何意义</h2>
+<ul>
+<li>
+<p>代表一条直线</p>
+<img src="\MyImages\MyImages\image-20200626202547311.png" alt="image-20200626202547311" style="zoom:67%;" />
+</li>
+<li>
+<p>可以把感知器看作n维空间内的超平面</p>
+</li>
+</ul>
+<h1 id="基于神经网络的知识表示和推理"><a class="markdownIt-Anchor" href="#基于神经网络的知识表示和推理"></a> 基于神经网络的知识表示和推理</h1>
+<h2 id="基于神经网络的知识表示"><a class="markdownIt-Anchor" href="#基于神经网络的知识表示"></a> 基于神经网络的知识表示</h2>
+<ul>
+<li>传统人工智能系统中所用的方法是知识的显式表示，而<strong>神经网络中的知识表示是一种隐式的表示方法</strong>。在这里，知识并不像产生式系统中独立地表示为每一条规则，而是<strong>将某一问题的若干知识在同一网络中表示</strong></li>
+</ul>
+<h3 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h3>
+<img src="\MyImages\MyImages\image-20200626203057350.png" alt="image-20200626203057350" style="zoom:80%;" />
+<img src="\MyImages\MyImages\image-20200626203845424.png" alt="image-20200626203845424" style="zoom:80%;" />
+<h2 id="基于神经网络的推理"><a class="markdownIt-Anchor" href="#基于神经网络的推理"></a> 基于神经网络的推理</h2>
+<ul>
+<li>把用户提供的初始证据用作网络的输入，通过网络计算最终得到输出结果</li>
+</ul>
+<h3 id="正向网络的推理步骤"><a class="markdownIt-Anchor" href="#正向网络的推理步骤"></a> 正向网络的推理步骤</h3>
+<ol>
+<li>把已知数据输入网络输入层的各个节点。</li>
+<li>利用特性函数分别计算网络中各层的输出。计算中，前一层的输出作为后一层有关节点的输入，逐层进行计算 ，直至计算出输出层的输出值为止。</li>
+<li>用阈值函数对输出层的输出进行判定，从而得到输出结果。</li>
+</ol>
+<h1 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h1>
+<h2 id="ann适用范围"><a class="markdownIt-Anchor" href="#ann适用范围"></a> ANN适用范围</h2>
+<p><strong>一般而言, ANN与经典计算方法相比并非优越,</strong> 只有当常规方法解决不了或效果不佳时ANN方法才能显示出其优越性。**尤其对问题的机理不甚了解或不能用数学模型表示的系统,**如故障诊断、特征提取和预测等问题, ANN往往是最有利的工具。另一方面, ANN对处理大量原始数据而不能用规则或公式描述的问题, 表现出极大的灵活性和自适应性。</p>
 ]]></content>
       <tags>
         <tag>hide</tag>
